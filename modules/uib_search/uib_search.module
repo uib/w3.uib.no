@@ -16,5 +16,50 @@ function uib_search_menu() {
  */
 function uib_search__page() {
   $q = isset($_GET['qq']) ? $_GET['qq'] : 'uib';
-  return "<h2>Search for $q</h2>";
+  drupal_add_js("//www.google.com/jsapi", array('type' => 'external'));
+  $script = <<<JS
+    google.load('search', '1', {language : 'no', style : google.loader.themes.V2_DEFAULT});
+    google.setOnLoadCallback(function() {
+      var customSearchOptions = {};
+      var orderByOptions = {};
+      orderByOptions['keys'] = [{label: 'Relevans', key: ''},{label: 'Dato', key: 'date'}];
+      customSearchOptions['enableOrderBy'] = true;
+      customSearchOptions['orderByOptions'] = orderByOptions;
+      customSearchOptions['adoptions'] = {'layout': 'noTop'};
+      var customSearchControl = new google.search.CustomSearchControl('000077022656589805190:s7hjxymr2ey', customSearchOptions);
+      customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+      customSearchControl.setLinkTarget (google.search.Search.LINK_TARGET_SELF);
+      var options = new google.search.DrawOptions();
+      //options.setAutoComplete(true);
+      options.enableSearchResultsOnly();
+      customSearchControl.draw('cse', options);
+      function parseParamsFromUrl() {
+        var params = {};
+        var parts = window.location.search.substr(1).split('\x26');
+        for (var i = 0; i < parts.length; i++) {
+          var keyValuePair = parts[i].split('=');
+          var key = decodeURIComponent(keyValuePair[0]);
+          params[key] = keyValuePair[1] ?
+          decodeURIComponent(keyValuePair[1].replace(/\+/g, ' ')) :
+          keyValuePair[1];
+        }
+        return params;
+      }
+      var urlParams = parseParamsFromUrl();
+      customSearchControl.execute(urlParams["qq"] || "uib");
+    }, true);
+JS;
+  drupal_add_js($script, array('type' => 'inline'));
+
+  return <<<"HTML"
+<div id=cse>Søker etter $q...</div>
+<noscript>
+  <p>Our search depends on Javascript, please enable Javascript or use Google to search our site</p>
+  <form action="http://www.google.com/search" method="get">
+    <input size="50" type="hidden" name="q" id="searchField2" value="$q">
+    <input style="margin:20px 0px; font-size: 14px;" type="submit" value="Search on Google">
+    <input type="hidden" name="sitesearch" value="www.uib.no"/>
+  </form>
+</noscript>
+HTML;
 }
