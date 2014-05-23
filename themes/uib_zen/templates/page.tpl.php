@@ -100,7 +100,7 @@
           <form method="get" action="<?php print $front_page ?>/search">
             <div class="searchbox">
               <label for="searchField" class="element-invisible"><?php print t('Global search');?></label>
-              <input placeholder="<?php print t('Search UiB') ?>" type="text" id="searchField" name="q" value="" autocomplete="off">
+              <input placeholder="<?php print t('Search UiB') ?>" type="text" id="searchField" name="qq" value="<?php @print check_plain($_GET['qq']) ?>" autocomplete="off">
               <label for="submitbutton" class="element-invisible">Search button</label>
               <input id="submitbutton" alt="Submit" type="image" src="<?php print base_path() . drupal_get_path('theme', 'uib_zen'); ?>/images/submit.gif" value="Search">
             </div>

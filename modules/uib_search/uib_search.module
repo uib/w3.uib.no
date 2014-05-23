@@ -15,5 +15,6 @@ function uib_search_menu() {
  * Returns the search page
  */
 function uib_search__page() {
-  return "<h2>Search</h2>";
+  $q = isset($_GET['qq']) ? $_GET['qq'] : 'uib';
+  return "<h2>Search for $q</h2>";
 }
