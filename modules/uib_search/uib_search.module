@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function uib_search_menu() {
+  $items["search"] = array(
+    'page callback' => 'uib_search__page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Returns the search page
+ */
+function uib_search__page() {
+  return "<h2>Search</h2>";
+}

@@ -1,0 +1,4 @@
+name = UiB Search
+description = Integration with our search provider; currently Google Custom Search
+core = 7.x
+package = UiB

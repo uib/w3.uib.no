@@ -128,3 +128,10 @@ function uib_setup_update_7010() {
 function uib_setup_update_7011() {
   module_enable(array('uib_geography'));
 }
+
+/*
+ * Enable new module: uib_search
+ */
+function uib_setup_update_7012() {
+  module_enable(array('uib_search'));
+}

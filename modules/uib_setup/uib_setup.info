@@ -54,6 +54,7 @@ dependencies[] = uib_field
 dependencies[] = uib_filter
 dependencies[] = uib_h2tabs
 dependencies[] = uib_media
+dependencies[] = uib_search
 dependencies[] = uib_service_links
 dependencies[] = uib_study
 dependencies[] = uib_urlfilter

@@ -97,7 +97,7 @@
           ?>
         </nav>
         <div id="global-searchform">
-          <form method="get" action="http://www.uib.no/search">
+          <form method="get" action="<?php print $front_page ?>/search">
             <div class="searchbox">
               <label for="searchField" class="element-invisible"><?php print t('Global search');?></label>
               <input placeholder="<?php print t('Search UiB') ?>" type="text" id="searchField" name="q" value="" autocomplete="off">
