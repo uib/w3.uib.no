@@ -32,6 +32,7 @@ projects[context][version] = 3.3
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.4
 projects[date][version] = 2.8
+projects[datepicker][version] = 1.0
 projects[devel][version] = 1.5
 projects[diff][version] = 3.2
 projects[entity][version] = 1.5

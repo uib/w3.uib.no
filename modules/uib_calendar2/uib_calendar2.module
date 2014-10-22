@@ -1,0 +1,251 @@
+<?php
+
+include_once 'uib_calendar2.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function uib_calendar2_menu() {
+  $items["calendar2"] = array(
+    'page callback' => 'uib_calendar2__index_page',
+    'access callback' => TRUE,
+  );
+  $items['autocomplete/calendar2/area'] = array(
+    'title' => 'Autocomplete for area',
+    'page callback' => 'calendar2_form__autocomplete',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function uib_calendar2_block_info() {
+  return array(
+    'cal2form' => array(
+      'info' => t('Calendar2s form'),
+      'status' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_calendar2_block_view($delta='') {
+  $block = array();
+  if ($delta == 'cal2form') {
+    $block['content'] = array(
+      'form' => drupal_get_form('uib_calendar2_form'),
+      'more' => array('#markup' => '<br><hr>'),
+    );
+  }
+  return $block;
+}
+
+/**
+ * Generates the render array for the top level calendar page.
+ */
+function uib_calendar2__index_page($limit=20) {
+  $page = array();
+  $page['header'] = array('#markup' => "<h1>Calendar Test " . date('Y-m-d H:i:s') . "</h1>");
+
+  $form = drupal_get_form('uib_calendar2_form');
+
+  $offset = $limit - 20;
+  if ($offset < 0) {
+    $offset = 0;
+  }
+  $event_types = array();
+  $event_types = $form['event']['type']['#value'];
+  $sql_event_types = "";
+
+  $dayOfYear = strftime('%Y-%m-%d');
+  $multiOverlap = strftime('%d %m %Y');
+  if (isset($form['datepicker']['#value']) && $form['datepicker']['#value']['date'] != 0) {
+    $dayOfYear = strftime('%Y-%m-%d',strtotime($form['datepicker']['#value']['date']));
+    $multiOverlap = strftime('%d %m %Y',strtotime($form['datepicker']['#value']['date']));
+  }
+
+  // adding language variable to query*/
+  $langVal = $form['language']['#value'];
+  if (is_numeric($langVal)) {
+    if ($langVal == 0) {
+      $langVal = '%n%';
+    } else if ($langVal == 1){
+      $langVal = 'en';
+    } else {
+      $langVal = 'nb';
+    }
+  }
+  $sqlOptions[':lang'] = $langVal;
+
+  // adding event types selected to query
+  $i = 0;
+  if (!in_array("any",$event_types) && !in_array("Hva som helst",$event_types)) {
+    foreach ($event_types as $event_type) {
+      $i++;
+      if ($i == 1)
+        $sql_event_types = "AND ( ";
+      else
+        $sql_event_types .= " OR ";
+      $sql_event_types .= "( field_data_field_uib_event_type.field_uib_event_type_value like :$i )";
+      $sqlOptions[":$i"] = $event_type;
+      if ($i == count($event_types))
+        $sql_event_types .= " ) ";
+    }
+  }
+
+  // adding day variable to query
+  $sqlOptions[':day'] = array(':day' => $dayOfYear);
+
+  $query = db_query_range("
+      SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
+      FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
+      WHERE field_uib_article_type_value like 'event'
+      AND field_data_field_uib_article_type.entity_id = node.nid
+      AND field_data_field_uib_date.entity_id = node.nid
+      AND field_data_field_uib_event_type.entity_id=node.nid
+      AND substring(cast (field_uib_date_value as text) from 1 for 10) like substring(cast (field_uib_date_value2 as text) from 1 for 10)
+      AND node.language like :lang
+      $sql_event_types
+      AND field_data_field_uib_date.field_uib_date_value >= :day
+      ORDER BY field_uib_date_value ASC
+    ", $offset, $limit, $sqlOptions);
+
+  $sqlMultiOptions = array();
+  $sqlMultiOptions[':lang'] = $langVal;
+  $sqlMultiOptions[':day'] = $dayOfYear;
+  $queryMultiDay = db_query("
+      SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
+      FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
+      WHERE field_uib_article_type_value like 'event'
+      AND field_data_field_uib_article_type.entity_id = node.nid
+      AND field_data_field_uib_date.entity_id = node.nid
+      AND field_data_field_uib_event_type.entity_id=node.nid
+      AND substring(cast (field_uib_date_value as text) from 1 for 10) not like substring(cast (field_uib_date_value2 as text) from 1 for 10)
+      AND node.language like :lang
+      AND field_data_field_uib_date.field_uib_date_value2 >= :day
+      AND :day >= field_data_field_uib_date.field_uib_date_value
+      ORDER BY field_uib_date_value2 ASC
+      ", $sqlMultiOptions);
+
+  $nodes = $query->fetchAll();
+  $printDate = date('Y-m-00');
+  $lastItemPrintDate = "";
+  $lastItemPrintTime = "";
+  foreach ($nodes as $node) {
+    $date = date('M d Y',strtotime($node->date1));
+    $time = date('H.i',strtotime($node->date1.'GMT'));
+
+    if ($date != $printDate) {
+      $page[$node->date1] = array('#markup' => '<h2 style=clear:both>' . $date . '</h2>');
+      $printDate = $date;
+    }
+    $page[$node->nid] = array('#markup' => '<li>' . $time . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+    $lastItemPrintDate = substr($node->date1,0,10);
+    $lastItemPrintTime = $node->date1;
+  }
+
+  if ($lastItemPrintDate != "" && $lastItemPrintTime != "") {
+    $sqlOptions[':lastPrintTime'] = $lastItemPrintTime;
+    $sqlOptions[':day'] = $lastItemPrintDate;
+    $queryLastDay = db_query("
+        SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
+        FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
+        WHERE field_uib_article_type_value like 'event'
+        AND field_data_field_uib_article_type.entity_id = node.nid
+        AND field_data_field_uib_date.entity_id = node.nid
+        AND field_data_field_uib_event_type.entity_id=node.nid
+        AND substring(cast (field_uib_date_value as text) from 1 for 10) like substring(cast (field_uib_date_value2 as text) from 1 for 10)
+        AND node.language like :lang
+        $sql_event_types
+        AND substring(cast (field_uib_date_value as text) from 1 for 10) = :day
+        AND field_uib_date_value > :lastPrintTime
+        ORDER BY field_uib_date_value ASC
+        ",$sqlOptions);
+    $nodesLastDay = $queryLastDay->fetchAll();
+    foreach ($nodesLastDay as $node) {
+      $time = date('H.i',strtotime($node->date1.'GMT'));
+      $page[$node->nid] = array('#markup' => '<li>' . $time . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+    }
+  }
+  $page['multiday'] = array('#markup' =>
+    '<h2 style=clear:both>'
+    . t('Multiday events running ')
+    . t($multiOverlap)
+    . '</h2>');
+  $nodesMulti = $queryMultiDay->fetchAll();
+  foreach ($nodesMulti as $node) {
+    $page[$node->nid] = array('#markup' => '<li>' . l($node->title, "node/$node->nid") . '</li>');
+  }
+  return $page;
+}
+
+/**
+ * Implements hook_form().
+ */
+function uib_calendar2_form($form, &$form_state) {
+  $area = variable_get('area');
+  if (isset($_GET['area']))$area = check_plain($_GET['area']);
+  $form['#method'] = array(
+    '#type' => 'POST'
+  );
+  $form['datepicker'] = array(
+    '#type' => 'datepicker',
+    '#date_format' => 'Y-m-d',
+  );
+  $form['language'] = array(
+    '#type' => 'radios',
+    '#title' => 'Language',
+    '#default_value' => '2',
+    '#options' => array(t('Any'),t('English'),t('Norwegian')),
+  );
+  $form['event']['type'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('Event types'),
+    '#options' => array(
+      'any' => t('Any'),
+      'book_release' => t('Book Release'),
+      'conference' => t('Conference'),
+      'consert' => t('Consert'),
+      'course' => t('Course'),
+      'deadline' => t('Deadline'),
+      'disputation' => t('Disputation'),
+      'event' => t('Event'),
+      'exhibition' => t('Exhibition'),
+      'grant' => t('Grant'),
+      'guest_lecturer' => t('Guest Lecturer'),
+      'guided_tour' => t('Guided tour'),
+      'lecture' => t('Lecture'),
+      'meeting' => t('Meeting'),
+      'presentation' => t('Presentation'),
+      'seminar' => t('Seminar'),
+      'trial_lecture' => t('Trial lecture'),
+      'workshop' => t('Workshop')
+    ),
+  );
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function uib_calendar2_form_submit($form, &$form_state){
+  $form_state['rebuild'] = TRUE;
+  return $form;
+}
+
+/**
+ * Implements hook_form_validate().
+ */
+function uib_calendar2_form_validate($form, &$form_state) {
+  // not implemented
+}

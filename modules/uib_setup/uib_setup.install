@@ -135,3 +135,10 @@ function uib_setup_update_7011() {
 function uib_setup_update_7012() {
   module_enable(array('uib_search'));
 }
+
+/**
+ * Enable new module: uib_calendar2
+ */
+function uib_setup_update_7013() {
+  module_enable(array('datepicker', 'uib_calendar2'));
+}

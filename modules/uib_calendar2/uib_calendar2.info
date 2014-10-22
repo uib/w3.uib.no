@@ -1,0 +1,12 @@
+name = UiB Calendar v2
+description = Listings of events in various forms
+core = 7.x
+package = UiB
+dependencies[] = context
+dependencies[] = datepicker
+dependencies[] = uib_article
+features[context][] = calendar2_form
+features[ctools][] = context:context:3
+features[features_api][] = api:2
+features_exclude[dependencies][ctools] = ctools
+mtime = 1417517357
