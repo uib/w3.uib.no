@@ -164,6 +164,7 @@ function uib_sebra__update_uib_ou($place_id) {
  * Sync the 'field_uib_staff' of all areas that define a 'field_uib_sebra_id'.
  */
 function uib_sebra__sync_areas() {
+  $usernames = array();
   // fetch all roles for all areas
   $all_area_roles = uib_sebra__sws_get('omraaderoller');
   if (empty($all_area_roles)) {
@@ -201,18 +202,30 @@ function uib_sebra__sync_areas() {
     uib_sebra__sync_jobbnorge_id($area, $area_doc);
     $staff = array();
     if (isset($area_doc->omraade->visninger->uibid)) {
-      foreach ($area_doc->omraade->visninger->uibid as $uname) {
-        $account = user_load_by_name($uname);
-        if (!$account) {
-          $account = uib_sebra__sync_user($uname, FALSE, "area $sebra_id staff");
-          if (!$account) {
-            continue;
-          }
+      foreach ((array)$area_doc->omraade->visninger->uibid as $uname) {
+        if (!isset($usernames[$uname])) {
+          $usernames[$uname] = uib_sebra_get_main_user($uname);
         }
-        $staff['und'][]['target_id'] = $account->uid;
+        if ($usernames[$uname]) {
+          $uname = $usernames[$uname];
+          $account = user_load_by_name($uname);
+          if (!$account) {
+            $account = uib_sebra__sync_user($uname, FALSE, "area $sebra_id staff");
+            if (!$account) {
+              continue;
+            }
+          }
+          $staff['und'][]['target_id'] = $account->uid;
+        }
       }
     }
-    if (!isset($area->field_uib_staff) || $area->field_uib_staff != $staff) {
+    if (isset($area->field_uib_staff['und'])) {
+      sort($area->field_uib_staff['und']);
+    }
+    if (isset($staff['und'])) {
+      sort($staff['und']);
+    }
+    if ($area->field_uib_staff != $staff) {
       $area->field_uib_staff = $staff;
       $edit_p = TRUE;
       uibx_log("Updating staff setting area /node/$nid");
@@ -721,6 +734,19 @@ function uib_sebra_user_is_main($name = NULL) {
       return ($main->uid == $name) ? TRUE : FALSE;
     }
   }
+}
+
+/**
+ * Get the user's main account name
+ */
+function uib_sebra_get_main_user($name = NULL) {
+  if ($name) {
+    $main = uib_sebra__sws_get("hoveduid?uid=$name");
+    if ($main->uid != 'No data') {
+      $name = $main->uid;
+    }
+  }
+  return $name;
 }
 
 /**
