@@ -207,6 +207,9 @@ function uib_sebra__sync_areas() {
           $usernames[$uname] = uib_sebra_get_main_user($uname);
         }
         if ($usernames[$uname]) {
+          if ($uname != $usernames[$uname]) {
+            uibx_log("Using $usernames[$uname] instead of non-main username [$uname]", 'warning');
+          }
           $uname = $usernames[$uname];
           $account = user_load_by_name($uname);
           if (!$account) {
