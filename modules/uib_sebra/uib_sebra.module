@@ -164,7 +164,6 @@ function uib_sebra__update_uib_ou($place_id) {
  * Sync the 'field_uib_staff' of all areas that define a 'field_uib_sebra_id'.
  */
 function uib_sebra__sync_areas() {
-  $usernames = array();
   // fetch all roles for all areas
   $all_area_roles = uib_sebra__sws_get('omraaderoller');
   if (empty($all_area_roles)) {
@@ -183,9 +182,13 @@ function uib_sebra__sync_areas() {
   $staff_unchanged = 0;
   $content_manager_unchanged = 0;
   $seen_sebra_id = array();
+  $usernames = array();
+  $seen_sebra_users = array();
+
   foreach (array_keys($result['node']) as $nid) {
     $edit_p = FALSE;
     $area = node_load($nid);
+    $problem_user_list = array();
 
     $sebra_id = $area->field_uib_sebra_id['und'][0]['value'];
     if (isset($seen_sebra_id[$sebra_id])) {
@@ -203,22 +206,37 @@ function uib_sebra__sync_areas() {
     $staff = array();
     if (isset($area_doc->omraade->visninger->uibid)) {
       foreach ((array)$area_doc->omraade->visninger->uibid as $uname) {
+        // Check user in Sebra
+        if (!isset($seen_sebra_users[$uname])) {
+          $user_exists = uib_sebra__sws_get("person?id=$uname");
+          $seen_sebra_users[$uname] = ($user_exists) ? 1 : 0;
+        }
+        if (!$seen_sebra_users[$uname]) {
+          uibx_log("Staff user not in Sebra [$uname]. Area $sebra_id, node/$nid $area->title", 'warning');
+          $problem_user_list[] = $uname;
+        }
         if (!isset($usernames[$uname])) {
           $usernames[$uname] = uib_sebra_get_main_user($uname);
         }
         if ($usernames[$uname]) {
           if ($uname != $usernames[$uname]) {
-            uibx_log("Using $usernames[$uname] instead of non-main username [$uname]", 'warning');
+            $problem_user_list[] = $uname;
+            uibx_log("Using $usernames[$uname] instead of non-main username [$uname] for staff. Area $sebra_id, node/$nid $area->title", 'warning');
           }
           $uname = $usernames[$uname];
           $account = user_load_by_name($uname);
           if (!$account) {
             $account = uib_sebra__sync_user($uname, FALSE, "area $sebra_id staff");
-            if (!$account) {
+            if (!$account || $account->status == 0) {
+              uibx_log("Staff user missing or blocked [$uname]. Area $sebra_id, node/$nid $area->title", 'warning');
+              $problem_user_list[] = $uname;
               continue;
             }
           }
           $staff['und'][]['target_id'] = $account->uid;
+        }
+        else {
+          $problem_user_list[] = $uname;
         }
       }
     }
@@ -240,14 +258,38 @@ function uib_sebra__sync_areas() {
     $content_manager = array();
     $area_roles = uib_sebra__get_area_roles($all_area_roles, $sebra_id);
     foreach ($area_roles as $uname) {
-      $account = user_load_by_name($uname);
-      if (!$account) {
-        $account = uib_sebra__sync_user($uname, FALSE, "area $sebra_id roles");
-        if (!$account) {
-          continue;
-        }
+      // Check user in Sebra
+      if (!isset($seen_sebra_users[$uname])) {
+        $user_exists = uib_sebra__sws_get("person?id=$uname");
+        $seen_sebra_users[$uname] = ($user_exists) ? 1 : 0;
       }
-      $content_manager['und'][]['target_id'] = $account->uid;
+      if (!$seen_sebra_users[$uname]) {
+        uibx_log("Content manager not in Sebra [$uname]. Area $sebra_id, node/$nid $area->title", 'warning');
+        $problem_user_list[] = $uname;
+      }
+      if (!isset($usernames[$uname])) {
+        $usernames[$uname] = uib_sebra_get_main_user($uname);
+      }
+      if ($usernames[$uname]) {
+        if ($uname != $usernames[$uname]) {
+          $problem_user_list[] = $uname;
+          uibx_log("Using $usernames[$uname] instead of non-main username [$uname] for content manager. Area $sebra_id, node/$nid $area->title", 'warning');
+        }
+        $uname = $usernames[$uname];
+        $account = user_load_by_name($uname);
+        if (!$account) {
+          $account = uib_sebra__sync_user($uname, FALSE, "area $sebra_id roles");
+          if (!$account || $account->status == 0) {
+            uibx_log("Content manager missing or blocked [$uname]. Area $sebra_id, node/$nid $area->title", 'warning');
+            $problem_user_list[] = $uname;
+            continue;
+          }
+        }
+        $content_manager['und'][]['target_id'] = $account->uid;
+      }
+      else {
+        $problem_user_list[] = $uname;
+      }
     }
     if (!isset($area->field_uib_content_manager) || $area->field_uib_content_manager != $content_manager) {
       $area->field_uib_content_manager = $content_manager;
@@ -256,6 +298,14 @@ function uib_sebra__sync_areas() {
     }
     else {
       $content_manager_unchanged++;
+    }
+
+    $problem_user_list = array_unique($problem_user_list);
+    sort($problem_user_list);
+    $problem_user_list = implode(',', $problem_user_list);
+    if (empty($area->field_uib_staff_status['und'][0]['value']) || $problem_user_list != $area->field_uib_staff_status['und'][0]['value']) {
+      $edit_p = TRUE;
+      $area->field_uib_staff_status['und'][0]['value'] = $problem_user_list;
     }
 
     if ($edit_p)
@@ -500,7 +550,16 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
   catch (Exception $e) {
     uibx_log($e->getMessage(), 'warning');
     if ($e->getCode() == 404)
-      // Should we block the user before we return it then?
+      // Block the user before we return it
+      if ($account) {
+        if (!$dry_run) {
+          user_save($account, array('status' => 0));
+          uibx_log("$username blocked");
+        }
+        else {
+          uibx_log("$username would be blocked");
+        }
+      }
       return $account;
     throw $e;
   }
@@ -658,61 +717,6 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
     }
   }
 
-  // Add user path aliases according to slug.
-  // Note that changed names may result in adding new aliases:
-  //   old aliases will not be changed or pruned.
-  $source = 'user/' . $account->uid;
-  if (uib_sebra_user_is_main($account->name)) {
-    if ($account->uid) {
-      $languages = array(
-        'nb' => 'personer',
-        'en' => 'persons',
-      );
-      foreach ($languages as $lang => $prefix) {
-        $alias = $prefix . '/' . $slug;
-        if (isset($edit)) {
-          if ($path_list = uibx_path_load($source, $lang)) {
-            foreach ($path_list as $path) {
-              if ($path->alias == $alias) {
-                // no need up update the alias for this language
-                uibx_log("No change in '$lang' path alias $alias for $username");
-                continue 2;
-              }
-            }
-          }
-        }
-        $path = array(
-          'source' => $source,
-          'alias' => $alias,
-          'language' => $lang,
-        );
-        if (!$dry_run) {
-          path_save($path);
-          uibx_log("Added '$lang' path alias $alias for $username");
-        }
-        else {
-          uibx_log("Would have added '$lang' path alias $alias for $username");
-        }
-      }
-    }
-  }
-  else {
-    // Remove aliases if this is not the person's main account
-    if (isset($edit)) {
-      if ($path_list = uibx_path_load($source)) {
-        foreach ($path_list as $path) {
-          if (!$dry_run) {
-            path_delete($path->pid);
-            uibx_log("Removed path alias $path->alias for $username (non-main account)");
-          }
-          else {
-            uibx_log("Would have removed path alias $path->alias for $username (non-main account)");
-          }
-        }
-      }
-    }
-  }
-
   // Just add uid to content_manager on areas.
   // A full run of sync_users will remove stale uids from content_manager
   if (!$dry_run) {
@@ -723,6 +727,56 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
   }
 
   return $account;
+}
+
+/**
+ * Add aliases for a user
+ */
+function uib_sebra__add_user_aliases($account) {
+  if ($account->uid) {
+    if (!empty($account->field_uib_first_name['und'][0]['value']) && !empty($account->field_uib_last_name['und'][0]['value'])) {
+      $slug = uib_sebra_slug($account->field_uib_first_name['und'][0]['value'], $account->field_uib_last_name['und'][0]['value']);
+      $source = 'user/' . $account->uid;
+      $languages = array(
+        'nb' => 'personer',
+        'en' => 'persons',
+      );
+      foreach ($languages as $lang => $prefix) {
+        $alias = $prefix . '/' . $slug;
+        if ($path_list = uibx_path_load($source, $lang)) {
+          foreach ($path_list as $path) {
+            if ($path->alias == $alias) {
+              // no need up update the alias for this language
+              uibx_log("No change in '$lang' path alias $alias for $account->name");
+              continue 2;
+            }
+          }
+        }
+        $path = array(
+          'source' => $source,
+          'alias' => $alias,
+          'language' => $lang,
+        );
+        path_save($path);
+        uibx_log("Added '$lang' path alias $alias for $account->name");
+      }
+    }
+    else {
+      uibx_log("Did not add user aliases for user/$account->uid due to missing real names.", 'warning');
+    }
+  }
+}
+
+/**
+ * Remove aliases for a user
+ */
+function uib_sebra__remove_user_aliases($source) {
+  if ($path_list = uibx_path_load($source)) {
+    foreach ($path_list as $path) {
+      path_delete($path->pid);
+      uibx_log("Removed path alias $path->alias [$path->source]");
+    }
+  }
 }
 
 /**
@@ -750,6 +804,34 @@ function uib_sebra_get_main_user($name = NULL) {
     }
   }
   return $name;
+}
+
+/**
+ * Implements hook_user_update().
+ */
+function uib_sebra_user_update(&$edit, $account, $category) {
+  // Add or remove user path aliases
+  $source = 'user/' . $account->uid;
+  if (uib_sebra_user_is_main($account->name)) {
+    if ($account->status == 1) {
+      uib_sebra__add_user_aliases($account);
+    }
+    else {
+      // Remove aliases for blocked accounts
+      uib_sebra__remove_user_aliases($source);
+    }
+  }
+  else {
+    // Remove aliases if this is not the person's main account
+    uib_sebra__remove_user_aliases($source);
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function uib_sebra_user_insert(&$edit, $account, $category) {
+  uib_sebra__add_user_aliases($account);
 }
 
 /**
