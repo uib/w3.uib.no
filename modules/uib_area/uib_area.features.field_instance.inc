@@ -895,7 +895,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1602,6 +1602,78 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-area-field_uib_staff_status'
+  $field_instances['node-area-field_uib_staff_status'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Lists area staff and content manager users that were problematical in previous Sebra area synchronisation.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 25,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_staff_status',
+    'label' => 'Staff sync status',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 16,
+    ),
+  );
+
   // Exported field_instance: 'node-area-field_uib_tertiary_text'
   $field_instances['node-area-field_uib_tertiary_text'] = array(
     'bundle' => 'area',
@@ -1801,10 +1873,16 @@ function uib_area_field_default_field_instances() {
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
           'geofield_map_baselayers_satellite' => 1,
+          'geofield_map_center' => array(
+            'lat' => 0,
+            'lon' => 0,
+          ),
           'geofield_map_controltype' => 'default',
           'geofield_map_draggable' => 1,
           'geofield_map_height' => '300px',
           'geofield_map_maptype' => 'map',
+          'geofield_map_max_zoom' => 0,
+          'geofield_map_min_zoom' => 0,
           'geofield_map_mtc' => 'menu',
           'geofield_map_overview' => 0,
           'geofield_map_overview_opened' => 0,
@@ -3544,10 +3622,16 @@ function uib_area_field_default_field_instances() {
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
           'geofield_map_baselayers_satellite' => 1,
+          'geofield_map_center' => array(
+            'lat' => 0,
+            'lon' => 0,
+          ),
           'geofield_map_controltype' => 'default',
           'geofield_map_draggable' => 1,
           'geofield_map_height' => '300px',
           'geofield_map_maptype' => 'map',
+          'geofield_map_max_zoom' => 0,
+          'geofield_map_min_zoom' => 0,
           'geofield_map_mtc' => 'standard',
           'geofield_map_overview' => 0,
           'geofield_map_overview_opened' => 0,
@@ -3577,10 +3661,16 @@ function uib_area_field_default_field_instances() {
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
           'geofield_map_baselayers_satellite' => 0,
+          'geofield_map_center' => array(
+            'lat' => 0,
+            'lon' => 0,
+          ),
           'geofield_map_controltype' => 'small',
           'geofield_map_draggable' => 1,
           'geofield_map_height' => '250px',
           'geofield_map_maptype' => 'map',
+          'geofield_map_max_zoom' => 0,
+          'geofield_map_min_zoom' => 0,
           'geofield_map_mtc' => 'none',
           'geofield_map_overview' => 0,
           'geofield_map_overview_opened' => 0,
@@ -4258,6 +4348,7 @@ function uib_area_field_default_field_instances() {
   t('Link for even registration/sign up.');
   t('Links');
   t('List of users that can manage content for this area. This list is managed from SEBRA and new users need to added there. ');
+  t('Lists area staff and content manager users that were problematical in previous Sebra area synchronisation.');
   t('Location');
   t('Logo');
   t('Mail domain');
@@ -4291,6 +4382,7 @@ function uib_area_field_default_field_instances() {
   t('Slideshow');
   t('Small images');
   t('Staff');
+  t('Staff sync status');
   t('Tertiary text');
   t('Text');
   t('The address for the location of the event. ');
