@@ -1714,6 +1714,15 @@ function uib_area_menu() {
     'access callback' => 'uib_area__ties_access_check',
     'type' => MENU_LOCAL_TASK,
   );
+
+  $items['node/%node/staff_status'] = array(
+    'title' => 'Staff status',
+    'page callback' => 'uib_area__staff_status',
+    'page arguments' => array(1),
+    'access callback' => 'uib_area__staff_status_access_check',
+    'type' => MENU_LOCAL_TASK,
+  );
+
   return $items;
 }
 
@@ -1727,6 +1736,238 @@ function uib_area__jobbnorge_positions() {
     $feed .= '&langid=2';
   }
   return uib_feed__format($feed, t('Open Positions at UiB'), $limit = 999, array('uib_area__feed_format_post_render'));
+}
+
+/*
+ * Check access to the staff status local task
+ */
+function uib_area__staff_status_access_check() {
+  global $user;
+  if ($user->uid == 1) {
+    return TRUE;
+  }
+  if (in_array('level 1', $user->roles) || in_array('admin', $user->roles)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Setup contents of the staff status local task tab
+ */
+function uib_area__staff_status($area_node) {
+  if (empty($area_node) || $area_node->type != 'area') {
+    return array();
+  }
+  $area = entity_metadata_wrapper('node', $area_node);
+  $staff = array();
+  $staff[] = array(
+    'title' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'h1',
+      '#value' => t('Staff and content manager synchronisation problems'),
+      ),
+    );
+
+  // Status from previous synchronisation
+  $staff_status = $area->field_uib_staff_status->value();
+  $user_list = array();
+  if ($staff_status) {
+    $usernames = explode(',', $staff_status);
+    foreach ($usernames as $user) {
+      if ($entity = user_load_by_name($user)) {
+        $user_list[] = l($user, 'user/' . $entity->uid);
+      }
+      else {
+        $user_list[] = $user . ' (' . t('Not currently a user') . ')';
+      }
+    }
+    $user_list = implode('<br>', $user_list);
+  }
+  else {
+  }
+
+  $staff['last'] = array(
+    '#prefix' => '<div>',
+    '#suffix' => '</div>',
+  );
+  $staff['last'] = array(
+    'header' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => t('Users problematical in last area synchronisation'),
+    ),
+  );
+  if ($user_list) {
+    $staff['last']['info'] = array(
+      '#markup' => '<p>' . $user_list . '</p>',
+    );
+  }
+  else {
+    $staff['last']['info'] = array(
+      '#markup' => '<p>' . t('No synchronisation problems found') . '.</p>',
+    );
+  }
+
+  // Current staff and content manager status
+  $staff['current'] = array(
+    '#prefix' => '<div>',
+    '#suffix' => '</div>',
+  );
+  $staff['current'] = array(
+    'header' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => t('Current staff status'),
+    ),
+  );
+
+  $markup = array();
+  // Assemble info on staff and content managers
+  $area_sebra_id = $area->field_uib_sebra_id->value();
+  $all_area_roles = uib_sebra__sws_get('omraaderoller');
+
+  if ($area_sebra_id) {
+    $area_doc = uib_sebra__sws_get("omraader?omraadekode=$area_sebra_id");
+    // Check staff
+    if (isset($area_doc->omraade->visninger->uibid)) {
+      $staff_list = array_unique((array)$area_doc->omraade->visninger->uibid);
+      sort($staff_list);
+      $staff_table = uib_area__staff_table($staff_list);
+    }
+    $staff['current']['staff'] = array(
+      '#prefix' => '<div id="staff-list">',
+      '#suffix' => '</div>',
+      'title' => array(
+        '#type' => 'html_tag',
+        '#tag' => 'h4',
+        '#value' => t('Staff'),
+      ),
+    );
+    if (!empty($staff_table['#rows'])) {
+      $staff['current']['staff']['staff_table'] = $staff_table;
+    }
+    else {
+      $staff['current']['staff']['ok']['#markup'] = t('No problems found in staff list') . '.';
+    }
+
+    // Check content managers
+    $area_roles = uib_sebra__get_area_roles($all_area_roles, $area_sebra_id);
+    if (!empty($area_roles)) {
+      $content_manager_list = array_unique($area_roles);
+      sort($content_manager_list);
+      $content_manager_table = uib_area__staff_table($content_manager_list);
+    }
+    $staff['current']['content_managers'] = array(
+      '#prefix' => '<div id="content-manager-list">',
+      '#suffix' => '</div>',
+      'title' => array(
+        '#type' => 'html_tag',
+        '#tag' => 'h4',
+        '#value' => t('Content managers'),
+      ),
+    );
+    if (!empty($content_manager_table['#rows'])) {
+      $staff['current']['content_managers']['content_manager_table'] = $content_manager_table;
+    }
+    else {
+      $staff['current']['content_managers']['ok']['#markup'] = t('No problems found in content manager list') . '.';
+    }
+  }
+  else {
+    $markup[] = t('No sebra id present for the area') . '.';
+  }
+  if ($markup) {
+    $staff['current']['info']['#markup'] = '<p>' . implode('<br>', $markup) . '</p>';
+  }
+
+  return $staff;
+}
+
+/**
+ * Setup a staff table
+ */
+function uib_area__staff_table($staff_list) {
+  $staff_table = array(
+    '#theme' => 'table',
+    '#header' => array(t('User'), t('Name'), t('Main account'), t('Message')),
+  );
+  $rows = array();
+  foreach ($staff_list as $uname) {
+    $report = uib_area__staff_check($uname);
+    if ($report['msgs']) {
+      $row = array();
+      if ($report['user']) {
+        $row[0] = ($report['uid']) ? l($report['user'], 'user/' . $report['uid']) : $report['user'];
+      }
+      $row[1] = ($report['name']) ? $report['name'] : '';
+      if ($report['main']) {
+        $row[2] = ($report['main_uid']) ? l($report['main'], 'user/' . $report['main_uid']) : $report['main'];
+      }
+      else {
+        $row[2] = '';
+      }
+      $row[3] = ($report['msgs']) ? implode(', ', $report['msgs']) : '';
+      $rows[] = $row;
+    }
+  }
+  $staff_table['#rows'] = $rows;
+
+  return $staff_table;
+}
+
+/**
+ * Check and report status for a user
+ */
+function uib_area__staff_check($username) {
+  $msgs = array();
+  $name = '';
+  $uid = 0;
+  $main = '';
+  $main_uid = 0;
+
+  // Check that user has an account in w3
+  if ($u = user_load_by_name($username)) {
+    $uid = $u->uid;
+    $name = $u->field_uib_first_name['und'][0]['value'] . ' ' . $u->field_uib_last_name['und'][0]['value'];
+  }
+  else {
+    $msgs[] = t('Not a user');
+  }
+
+  // Check if user has an account in Sebra
+  if (! uib_sebra__sws_get("person?id=$username")) {
+    $msgs[] = t('No active account in Sebra');
+  }
+
+  // Check Sebra main account
+  $main = uib_sebra_get_main_user($username);
+  $main = (string)$main;
+  if (empty($main)) {
+    $msgs[] = t('No main account in Sebra');
+  }
+
+  // Check if this is the user's main Sebra account
+  if ($main == $username) {
+    $main = '';
+  }
+  else {
+    $msgs[] = t('Non-main account used');
+    if ($main) {
+      if ($main_user = user_load_by_name($main)) {
+        $main_uid = $main_user->uid;
+      }
+    }
+  }
+
+  return array(
+    'user' => $username,
+    'name' => $name,
+    'uid' => $uid,
+    'main' => $main,
+    'main_uid' => $main_uid,
+    'msgs' => $msgs,
+  );
 }
 
 /**
