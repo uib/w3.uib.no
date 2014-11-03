@@ -2486,6 +2486,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['filters']['filename']['table'] = 'file_managed';
   $handler->display->display_options['filters']['filename']['field'] = 'filename';
   $handler->display->display_options['filters']['filename']['operator'] = 'contains';
+  $handler->display->display_options['filters']['filename']['group'] = 1;
   $handler->display->display_options['filters']['filename']['exposed'] = TRUE;
   $handler->display->display_options['filters']['filename']['expose']['operator_id'] = 'filename_op';
   $handler->display->display_options['filters']['filename']['expose']['label'] = 'File name';
@@ -2506,6 +2507,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'document' => 'document',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
@@ -2520,18 +2522,19 @@ function uib_webdesk_views_default_views() {
     74573517 => 0,
     176168899 => 0,
   );
-  /* Filter criterion: User: Current */
-  $handler->display->display_options['filters']['uid_current']['id'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['table'] = 'users';
-  $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
-  $handler->display->display_options['filters']['uid_current']['value'] = 'All';
-  $handler->display->display_options['filters']['uid_current']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['uid_current']['expose']['operator_id'] = '';
-  $handler->display->display_options['filters']['uid_current']['expose']['label'] = 'The logged in user is author';
-  $handler->display->display_options['filters']['uid_current']['expose']['operator'] = 'uid_current_op';
-  $handler->display->display_options['filters']['uid_current']['expose']['identifier'] = 'uid_current';
-  $handler->display->display_options['filters']['uid_current']['expose']['remember_roles'] = array(
+  /* Filter criterion: User: Name */
+  $handler->display->display_options['filters']['uid']['id'] = 'uid';
+  $handler->display->display_options['filters']['uid']['table'] = 'users';
+  $handler->display->display_options['filters']['uid']['field'] = 'uid';
+  $handler->display->display_options['filters']['uid']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['uid']['value'] = '';
+  $handler->display->display_options['filters']['uid']['group'] = 1;
+  $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
+  $handler->display->display_options['filters']['uid']['expose']['label'] = 'Username';
+  $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
+  $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
+  $handler->display->display_options['filters']['uid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     64272948 => 0,
@@ -2576,7 +2579,7 @@ function uib_webdesk_views_default_views() {
     t('Author'),
     t('<a href="/user/[uid]">[field_uib_first_name] [field_uib_last_name]</a>'),
     t('Upload date'),
-    t('The logged in user is author'),
+    t('Username'),
     t('Page'),
   );
   $export['webdesk_files'] = $view;
