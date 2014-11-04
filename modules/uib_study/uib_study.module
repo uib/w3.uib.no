@@ -387,7 +387,7 @@ function uib_study_block_view($delta = '') {
 
         $render = array();
         uib_study__infotyper_render($render, $data, function ($group) {
-          return $group != 'ba_kontakt' && substr($group, -11) != '_studieplan';
+          return substr($group, -8) != '_kontakt' && substr($group, -11) != '_studieplan';
         });
 
         $type = $node->field_uib_study_type->value();
