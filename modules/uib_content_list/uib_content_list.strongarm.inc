@@ -65,8 +65,31 @@ function uib_content_list_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'language_content_type_uib_content_list';
+  $strongarm->name = 'i18n_node_extended_uib_content_list';
   $strongarm->value = '1';
+  $export['i18n_node_extended_uib_content_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_options_uib_content_list';
+  $strongarm->value = array(
+    0 => 'current',
+  );
+  $export['i18n_node_options_uib_content_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_sync_node_type_uib_content_list';
+  $strongarm->value = array();
+  $export['i18n_sync_node_type_uib_content_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'language_content_type_uib_content_list';
+  $strongarm->value = '2';
   $export['language_content_type_uib_content_list'] = $strongarm;
 
   $strongarm = new stdClass();
