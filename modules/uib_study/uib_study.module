@@ -1492,12 +1492,7 @@ function uib_study__is_course() {
   $is_course = FALSE;
   $node = menu_get_object();
   if ($node) {
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'uib_study')
-      ->entityCondition('entity_id', $node->nid)
-      ->fieldCondition('field_uib_study_type', 'value', 'course', '=');
-    $is_course = $query->execute();
+    $is_course = $node->field_uib_study_type['und'][0]['value'] == 'course';
   }
   return $is_course;
 }
