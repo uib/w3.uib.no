@@ -1,0 +1,54 @@
+.node-uib-content-list {
+  .field-collection-container {
+    @include zen-clear();
+    div {
+      display: inline-block;
+    }
+    :not(:first-child) a,
+    :not(:first-child) span {
+      padding-left: 20px;
+    }
+  }
+  .field-collection-view {
+    border-bottom: 0 none;
+  }
+}
+.uib-step__not-current {
+  @include insert_arrow(1px, #333, right, $light-grey, outside);
+  background: $light-grey;
+}
+.uib-step__current {
+  @include insert_arrow(1px, #333, right, #333, outside);
+  background: #333;
+  color: #fff;
+}
+.uib-step {
+  border: solid 1px #333;
+  padding: 0.5em 1em;
+  position: relative;
+}
+@media all and (max-width: 719px) {
+  .list__previous,
+  .list__next {
+    margin-top: 20px;
+    padding: 20px 0;
+  }
+  .list__previous {
+    float: left;
+    &:before {
+      content: "\2190";
+    }
+  }
+  .list__next {
+    float: right;
+    &:after {
+      content: "\2192";
+    }
+  }
+}
+@media all and (min-width: 720px) {
+  .list__previous,
+  .list__next {
+    display: none;
+  }
+}

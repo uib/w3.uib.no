@@ -67,7 +67,7 @@
     width: 100%;
   }
   .ui-tabs-selected {
-    @include insert_arrow(1, #666, right, #fff);
+    @include insert_arrow(1, #666, right, #fff, inside);
   }
 }
 

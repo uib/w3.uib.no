@@ -248,42 +248,57 @@
 }
 
 /////////////
-// Mixin to insert an arrow inside a box on the right or left side
+// Mixin and extend to insert an arrow inside or outside a box on
+// the right or left side
 //
 // $border-width: border width of parent
 // $border-color: border color of parent
 // $box-side: left/right
 // $background-color: color of the parents parent
+// $position: inside/outside
 /////////////
-@mixin insert_arrow($border-width, $border-color, $box-side, $background-color) {
+@mixin insert_arrow($border-width, $border-color, $box-side, $background-color, $position) {
+  $direction: left;
+  $x-coordinate: 0;
+  @if $position == outside {
+    @if $box-side == left {
+      $direction: right;
+    }
+    $x-coordinate: 100%;
+  }
+  @if $position == inside {
+    @if $box-side == right {
+      $direction: right;
+    }
+    $x-coordinate: -#{$border-width}px ;
+  }
   &:after {
-    border: transparent solid;
-    content: ' ';
-    height: 0;
-    width: 0;
-    position: absolute;
-    border-width: 10px;
-    border-#{$box-side}-color: $background-color;
-    top: 50%;
-    margin-top: -10px;
-    #{$box-side}: -#{$border-width}px;
+    @extend %arrow;
+    border-width: 12px;
+    border-#{$direction}-color: $background-color;
+    margin-top: -12px;
+    #{$direction}: $x-coordinate;
+    z-index: 20;
   }
   @if $border-width > 0 {
     &:before {
-      border: transparent solid;
-      content: ' ';
-      height: 0;
-      width: 0;
-      position: absolute;
-      border-width: 10px + $border-width;
-      border-#{$box-side}-color: $border-color;
-      top: 50%;
-      margin-top: -10px - $border-width;
-      #{$box-side}: -#{$border-width}px;
+      @extend %arrow;
+      border-width: 12px + $border-width;
+      border-#{$direction}-color: $border-color;
+      margin-top: -12px - $border-width;
+      #{$direction}: $x-coordinate;
+      z-index: 10;
     }
   }
 }
-
+%arrow {
+  border: transparent solid;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 50%;
+}
 /////////////
 // Clearfix extendable
 /////////////

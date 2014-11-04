@@ -142,8 +142,10 @@
 }
 
 .field-collection-container {
-  .field-item {
-    margin-bottom: 7px !important;
+  .field-items {
+    .field-item {
+      margin-bottom: 7px;
+    }
   }
   .field-collection-view {
     width: 100%;
