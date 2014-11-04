@@ -1,0 +1,104 @@
+<?php
+/**
+ * @file
+ * Code for the UiB Content List feature.
+ */
+
+include_once 'uib_content_list.features.inc';
+
+/*
+ * Implements hook_preprocess_node()
+ */
+function uib_content_list_preprocess_node(&$variables, $hook) {
+  if ($variables['page']) {
+    if ($variables['type'] == 'uib_content_list') {
+      $metadata = entity_metadata_wrapper('node', $variables['nid']);
+      $title = check_plain($metadata->label());
+      $variables['content']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $title,
+        '#weight' => -45,
+      );
+      $steps = ($metadata->field_uib_step->value());
+      if (!empty($steps)) {
+        $query_string = drupal_get_query_parameters();
+        $list_current_step = 0;
+        if (!empty($query_string)) {
+          $list_current_step = $query_string['step'] - 1;
+        }
+        foreach ($steps as $key => $step) {
+          $classes = array('uib-step');
+          if ($key == $list_current_step) {
+            $classes[] = 'uib-step__current';
+            $list_step_content = '<span class="' . implode(' ', $classes) . '"> '. $step->field_uib_title['und'][0]['value'] . '</span>';
+          }
+          else {
+            $classes[] = 'uib-step__not-current';
+            $list_step_content = l($step->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $key + 1), 'attributes' => array('class' => $classes),));
+          }
+          $variables['content']['field_uib_step'][$key]['entity']['field_collection_item'][$step->item_id]['field_uib_title'][0]['#markup'] = $list_step_content;
+          unset($variables['content']['field_uib_step'][$key]['links']);
+        }
+        if ($list_current_step > 0) {
+          $sp = $steps[$list_current_step - 1];
+          $variables['content']['list_previous_step'] = array(
+            '#markup' => l($sp->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $list_current_step), 'attributes' => array('class' => array('list__previous')))),
+            '#weight' => '45',
+          );
+        }
+        if ($list_current_step < (count($steps) - 1)) {
+          $ns = $steps[$list_current_step + 1];
+          $variables['content']['list_next_step'] = array(
+            '#markup' => l($ns->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $list_current_step + 2), 'attributes' => array('class' => array('list__next')))),
+            '#weight' => '46',
+          );
+        }
+        $list_current_nid = $steps[$list_current_step]->field_step_content['und'][0]['target_id'];
+        $list_current_node = node_view(node_load($list_current_nid));
+        $variables['content']['list_current_step'] = array(
+          '#markup' => drupal_render($list_current_node),
+          '#weight' => 40,
+        );
+      }
+    }
+  }
+}
+
+/*
+ * Implements hook_form_alter()
+ */
+function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'uib_content_list_node_form') {
+    hide($form['language']);
+  }
+}
+
+/*
+ * Implements hook_node_submit()
+ */
+function uib_content_list_node_submit($node, $form, &$form_state) {
+  if ($form["#form_id"] == "uib_content_list_node_form") {
+    if(isset($_GET['destination'])) {
+      unset($_GET['destination']);
+    }
+    $areanid = $node->field_uib_area['und'][0]['target_id'];
+    if (isset($areanid)) {
+      $area = node_load($areanid);
+      if (isset($area->language))
+        $node->language = $area->language;
+        if (strstr($form['#action'], 'uib-content-list?translation')) {
+          $translatesets = translation_node_get_translations($area->tnid);
+          if ($area->language == 'en') {
+            $translatedid = $translatesets['nb']->nid;
+            $node->language = 'nb';
+          }
+          else if ($area->language == 'nb') {
+            $translatedid = $translatesets['en']->nid;
+            $node->language = 'en';
+          }
+        $node->field_uib_area['und'][0]['target_id'] = $translatedid;
+      }
+    }
+  }
+}
