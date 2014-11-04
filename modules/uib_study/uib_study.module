@@ -152,6 +152,7 @@ function uib_study__infotyper_render(&$page, $render, $filter) {
   $wrong_chars = array(' ', 'æ', 'ø' ,'å');
   $count = 0;
   $is_course = uib_study__is_course();
+  $is_evu_course = uib_study__is_course('evu');
   foreach ($render as $group) {
     if ($filter && !$filter($group['#group']))
       continue;
@@ -167,6 +168,9 @@ function uib_study__infotyper_render(&$page, $render, $filter) {
       '#prefix' => '<div id="uib-tabs-'. $group_title_html_id . '">',
       '#suffix' => '</div>',
     );
+    if ($is_evu_course) {
+      hide($page[$group['#group']]['header']);
+    }
     foreach ($group['#items'] as $item) {
       $page[$group['#group']][$item['#type']] = array(
         '#markup' => uib_study__text_markup($item, $is_course),
@@ -1488,11 +1492,14 @@ function uib_study_views_pre_render(&$view) {
  * Function to check if current node's study_type is course
  * @return [bool]
  */
-function uib_study__is_course() {
+function uib_study__is_course($category=FALSE) {
   $is_course = FALSE;
   $node = menu_get_object();
   if ($node) {
     $is_course = $node->field_uib_study_type['und'][0]['value'] == 'course';
+    if ($is_course && $category) {
+      $is_course = ($node->field_uib_study_category['und'][0]['value'] == $category);
+    }
   }
   return $is_course;
 }
