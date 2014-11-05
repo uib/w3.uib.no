@@ -71,6 +71,9 @@ $zen-column-count: 5;
   .link-url{
     word-break: break-all;
   }
+  .field-name-field-uib-user-projects ul {
+    list-style: initial;
+  }
 }
 
 
@@ -201,6 +204,15 @@ $zen-column-count: 5;
   }
   .uib-user-edit-button {
     padding: 10px;
+  }
+  #user_user_full_group_user_work_1 {
+    ul {
+      list-style: initial;
+    }
+    .uib-user-selected-publications ul,
+    .uib-cristin-publications ul {
+        list-style: none;
+    }
   }
   #user_user_full_group_user_ci_1 .field-label,
   #user_user_full_group_user_ci_2 .field-label,
