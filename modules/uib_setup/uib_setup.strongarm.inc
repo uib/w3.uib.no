@@ -729,6 +729,34 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_content_list_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_content_list_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_content_list_nb_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_content_list_nb_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_content_list_pattern';
+  $strongarm->value = '[node:field-uib-area:0:url:path]/[node:nid]/[node:title]';
+  $export['pathauto_node_uib_content_list_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_content_list_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_content_list_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_uib_ou_pattern';
   $strongarm->value = '';
   $export['pathauto_node_uib_ou_pattern'] = $strongarm;

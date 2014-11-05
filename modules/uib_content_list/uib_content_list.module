@@ -12,6 +12,7 @@ include_once 'uib_content_list.features.inc';
 function uib_content_list_preprocess_node(&$variables, $hook) {
   if ($variables['page']) {
     if ($variables['type'] == 'uib_content_list') {
+      dpm($variables);
       $metadata = entity_metadata_wrapper('node', $variables['nid']);
       $title = check_plain($metadata->label());
       $variables['content']['title'] = array(
@@ -54,7 +55,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
             '#weight' => '46',
           );
         }
-        $list_current_nid = $steps[$list_current_step]->field_step_content['und'][0]['target_id'];
+        $list_current_nid = $steps[$list_current_step]->field_uib_step_content['und'][0]['target_id'];
         $list_current_node = node_view(node_load($list_current_nid));
         $variables['content']['list_current_step'] = array(
           '#markup' => drupal_render($list_current_node),
