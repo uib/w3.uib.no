@@ -146,22 +146,26 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
  * Implements hook_page_alter().
  */
 function uib_breadcrumb_page_alter(&$page) {
-  if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
-    $home = t('Home');
-    $breadcrumb = array();
-    $breadcrumb[] = l($home, '<front>');
-    $current_area = uib_area__get_current();
-    if ($current_area)
-      $breadcrumb[] = l($current_area->title, 'node/' . $current_area->nid);
-    $parent_term = taxonomy_get_parents(arg(2));
-    if ($parent_term) {
-      $parent_term_keys = array_keys($parent_term);
-      global $language;
-      $lang = $language->language;
-      $parent_term_title = $parent_term[$parent_term_keys[0]]->field_uib_term_title[$lang][0]['safe_value'];
-      $breadcrumb[] = l($parent_term_title, 'taxonomy/term/' . $parent_term_keys[0]);
+  if (!path_is_admin(current_path())) {
+    if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+      $home = t('Home');
+      $breadcrumb = array();
+      $breadcrumb[] = l($home, '<front>');
+      $current_area = uib_area__get_current();
+      if ($current_area)
+        $breadcrumb[] = l($current_area->title, 'node/' . $current_area->nid);
+      $parent_term = taxonomy_get_parents(arg(2));
+      if ($parent_term) {
+        $parent_term_keys = array_keys($parent_term);
+        global $language;
+        $lang = $language->language;
+        if (isset($parent_term[$parent_term_keys[0]]->field_uib_term_title[$lang])) {
+          $parent_term_title = $parent_term[$parent_term_keys[0]]->field_uib_term_title[$lang][0]['safe_value'];
+          $breadcrumb[] = l($parent_term_title, 'taxonomy/term/' . $parent_term_keys[0]);
+        }
+      }
+      drupal_set_breadcrumb($breadcrumb);
     }
-    drupal_set_breadcrumb($breadcrumb);
   }
 }
 
