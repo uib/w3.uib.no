@@ -114,3 +114,10 @@ function uib_setup_update_7008() {
 function uib_setup_update_7009() {
   module_enable(array('uib_filter'));
 }
+
+/**
+ * Enable new module: uib_content_list
+ */
+function uib_setup_update_7010() {
+  module_enable(array('uib_content_list'));
+}

@@ -47,6 +47,7 @@ dependencies[] = taxonomy
 dependencies[] = token
 dependencies[] = transliteration
 dependencies[] = uib_breadcrumb
+dependencies[] = uib_content_list
 dependencies[] = uib_cristin
 dependencies[] = uib_dbh
 dependencies[] = uib_field
