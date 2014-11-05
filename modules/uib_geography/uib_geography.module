@@ -1,0 +1,191 @@
+<?php
+/**
+ * Fetch country data from FS and update country taxonomy
+ */
+function uib_geography_sync() {
+  $vocab_name = 'uib_geography';
+  $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
+  $countries = array();
+  $remove_unused_countries = TRUE;
+
+  // Add new entries to country taxonomy from FS
+  $url = variable_get('uib_fs_countries', 'https://fs.fd.uib.no/srdb/land');
+  $res = drupal_http_request($url);
+  if ($res->code == 200) {
+    $data = preg_replace('/[\r\n]/', '', $res->data);
+    $xml = simplexml_load_string($data);
+
+    // Get ISO 3166 Country codes
+    $iso_countries = country_get_list();
+    $expected_countries = $iso_countries;
+    $iso_codes = array_flip($iso_countries);
+
+    // Get existing terms
+    $pre_existing = array();
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $vocab->vid)
+      ->execute();
+    if (!empty($result['taxonomy_term'])) {
+      $pre_existing = $result['taxonomy_term'];
+    }
+
+    foreach ($xml->Land as $key => $value) {
+      $continent_nb = strval($value->verdensdel_norsk);
+      $continent_en = strval($value->verdensdel_engelsk);
+      $country_nb = strval($value->landnavn_norsk);
+      $country_en = strval($value->landnavn_engelsk);
+      $code = strval($value->landkode);
+      $fs_country_code = intval($value->landnr);
+      // Continent
+      $query = new EntityFieldQuery();
+      $result = $query->entityCondition('entity_type', 'taxonomy_term')
+        ->propertyCondition('vid', $vocab->vid)
+        ->propertyCondition('name', $continent_en)
+        ->execute();
+      if (empty($result['taxonomy_term'])) {
+        $parent_term = entity_create('taxonomy_term', array(
+          'vid' => $vocab->vid,
+          'name' => $continent_en,
+          'vocabulary_machine_name' => $vocab_name,
+          )
+        );
+        $parent_term->field_fs_country_code = array();
+        $parent_term->field_uib_iso_country = array();
+        $parent_term->field_uib_geographic_name['en'][0]['value'] = $continent_en;
+        $parent_term->field_uib_geographic_name['nb'][0]['value'] = $continent_nb;
+        // Initiate entity translation
+        $trans_handler = entity_translation_get_handler('taxonomy_term', $parent_term);
+        $translation = array(
+          'status' => 1,
+          'language' => 'en',
+        );
+        $trans_handler->setTranslation($translation);
+        $translation = array(
+          'status' => 1,
+          'language' => 'nb',
+          'source' => 'en',
+        );
+        $trans_handler->setTranslation($translation);
+        taxonomy_term_save($parent_term);
+      }
+      else {
+        $parent_term = current($result['taxonomy_term']);
+        $parent_term = taxonomy_term_load($parent_term->tid);
+        $edited = FALSE;
+        if ($parent_term->field_uib_geographic_name['en'][0]['value'] != $continent_en) {
+          $parent_term->field_uib_geographic_name['en'][0]['value'] = $continent_en;
+          $edited = TRUE;
+        }
+        if ($parent_term->field_uib_geographic_name['nb'][0]['value'] != $continent_nb) {
+          $parent_term->field_uib_geographic_name['nb'][0]['value'] = $continent_nb;
+          $edited = TRUE;
+        }
+        if ($edited) {
+          taxonomy_term_save($parent_term);
+        }
+        unset($pre_existing[$parent_term->tid]);
+      }
+      $parent_tid = intval($parent_term->tid);
+
+      // Country
+      $query = new EntityFieldQuery();
+      $result = $query->entityCondition('entity_type', 'taxonomy_term')
+        ->propertyCondition('vid', $vocab->vid)
+        ->fieldCondition('field_uib_iso_country', 'value', $code)
+        ->execute();
+      if (empty($result['taxonomy_term'])) {
+        $term = entity_create('taxonomy_term', array(
+          'vid' => $vocab->vid,
+          'name' => $country_en,
+          'vocabulary_machine_name' => $vocab_name,
+          'parent' => $parent_tid,
+          )
+        );
+        $term->field_uib_iso_country['und'][0]['value'] = $code;
+        $term->field_fs_country_code['und'][0]['value'] = $fs_country_code;
+        $term->field_uib_geographic_name['en'][0]['value'] = $country_en;
+        if (!in_array($code, $iso_codes)) {
+          uibx_log("Imported non-ISO country code $code from FS for $country_en.", "warning");
+        }
+        if (isset($iso_countries[$code]) && ($country_en != $iso_countries[$code])) {
+          uibx_log('Imported country name ' . $country_en .
+            ' from FS, but expected ' . $iso_countries[$code] .
+            ' for ' . $code . '.', "warning");
+        }
+        $term->field_uib_geographic_name['nb'][0]['value'] = $country_nb;
+        // Initiate entity translation
+        $trans_handler = entity_translation_get_handler('taxonomy_term', $term);
+        $translation = array(
+          'status' => 1,
+          'language' => 'en',
+        );
+        $trans_handler->setTranslation($translation);
+        $translation = array(
+          'status' => 1,
+          'language' => 'nb',
+          'source' => 'en',
+        );
+        $trans_handler->setTranslation($translation);
+        taxonomy_term_save($term);
+        if (isset($expected_countries[$code])) {
+          unset($expected_countries[$code]);
+        }
+      }
+      else {
+        $term = current($result['taxonomy_term']);
+        $term = taxonomy_term_load($term->tid);
+        $edited = FALSE;
+        $parents = taxonomy_get_parents($term->tid);
+        $parent = current($parents);
+        if ($parent->tid != $parent_tid) {
+          $term->parent = $parent_tid;
+          $edited = TRUE;
+        }
+        if (empty($term->field_uib_iso_country['und'][0]['value'])) {
+          $term->field_uib_iso_country['und'][0]['value'] = $code;
+          $edited = TRUE;
+        }
+        if ($term->field_fs_country_code['und'][0]['value'] != $fs_country_code) {
+          $term->field_fs_country_code['und'][0]['value'] = $fs_country_code;
+          $edited = TRUE;
+        }
+        if ($term->field_uib_geographic_name['en'][0]['value'] != $country_en) {
+          $term->field_uib_geographic_name['en'][0]['value'] = $country_en;
+          $edited = TRUE;
+          if (isset($iso_countries[$code]) && ($country_en != $iso_countries[$code])) {
+            uibx_log('Updated country name ' . $country_en .
+              ' from FS, but expected ' . $iso_countries[$code] .
+              ' for ' . $code . '.', "warning");
+            }
+        }
+        if ($term->field_uib_geographic_name['nb'][0]['value'] != $country_nb) {
+          $term->field_uib_geographic_name['nb'][0]['value'] = $country_nb;
+          $edited = TRUE;
+        }
+        if ($edited) {
+          taxonomy_term_save($term);
+        }
+        unset($pre_existing[$term->tid]);
+        if (isset($expected_countries[$code])) {
+          unset($expected_countries[$code]);
+        }
+      }
+    }
+    if (!empty($expected_countries)) {
+      $tmp = implode(', ', array_keys($expected_countries));
+      uibx_log("ISO Countries not present in FS country list: $tmp");
+    }
+    if ($remove_unused_countries && !empty($pre_existing)) {
+      // remove pre-existing terms for countries that are not in FS
+      foreach ($pre_existing as $tid => $term) {
+        taxonomy_term_delete($tid);
+        uibx_log("Deleted unused uib_geography country term: $tid", "warning");
+      }
+    }
+  }
+  else {
+    uibx_log("Could not fetch country data from FS. Error code = $res->code", "warning");
+  }
+}
+
