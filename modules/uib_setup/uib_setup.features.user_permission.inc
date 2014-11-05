@@ -522,6 +522,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create uib_content_list content'.
+  $permissions['create uib_content_list content'] = array(
+    'name' => 'create uib_content_list content',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create uib_external_content content'.
   $permissions['create uib_external_content content'] = array(
     'name' => 'create uib_external_content content',
@@ -607,6 +619,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete any uib_content_list content'.
+  $permissions['delete any uib_content_list content'] = array(
+    'name' => 'delete any uib_content_list content',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any uib_external_content content'.
   $permissions['delete any uib_external_content content'] = array(
     'name' => 'delete any uib_external_content content',
@@ -676,6 +700,18 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'delete own uib_article content'.
   $permissions['delete own uib_article content'] = array(
     'name' => 'delete own uib_article content',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own uib_content_list content'.
+  $permissions['delete own uib_content_list content'] = array(
+    'name' => 'delete own uib_content_list content',
     'roles' => array(
       'admin' => 'admin',
       'level 1' => 'level 1',
@@ -798,6 +834,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit any uib_content_list content'.
+  $permissions['edit any uib_content_list content'] = array(
+    'name' => 'edit any uib_content_list content',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any uib_external_content content'.
   $permissions['edit any uib_external_content content'] = array(
     'name' => 'edit any uib_external_content content',
@@ -881,6 +929,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own uib_content_list content'.
+  $permissions['edit own uib_content_list content'] = array(
+    'name' => 'edit own uib_content_list content',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit own uib_external_content content'.
   $permissions['edit own uib_external_content content'] = array(
     'name' => 'edit own uib_external_content content',
@@ -946,6 +1006,13 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'enter uib_article revision log entry'.
   $permissions['enter uib_article revision log entry'] = array(
     'name' => 'enter uib_article revision log entry',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'enter uib_content_list revision log entry'.
+  $permissions['enter uib_content_list revision log entry'] = array(
+    'name' => 'enter uib_content_list revision log entry',
     'roles' => array(),
     'module' => 'override_node_options',
   );
@@ -1170,6 +1237,48 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_article sticky option'.
   $permissions['override uib_article sticky option'] = array(
     'name' => 'override uib_article sticky option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list authored by option'.
+  $permissions['override uib_content_list authored by option'] = array(
+    'name' => 'override uib_content_list authored by option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list authored on option'.
+  $permissions['override uib_content_list authored on option'] = array(
+    'name' => 'override uib_content_list authored on option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list promote to front page option'.
+  $permissions['override uib_content_list promote to front page option'] = array(
+    'name' => 'override uib_content_list promote to front page option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list published option'.
+  $permissions['override uib_content_list published option'] = array(
+    'name' => 'override uib_content_list published option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list revision option'.
+  $permissions['override uib_content_list revision option'] = array(
+    'name' => 'override uib_content_list revision option',
+    'roles' => array(),
+    'module' => 'override_node_options',
+  );
+
+  // Exported permission: 'override uib_content_list sticky option'.
+  $permissions['override uib_content_list sticky option'] = array(
+    'name' => 'override uib_content_list sticky option',
     'roles' => array(),
     'module' => 'override_node_options',
   );
@@ -1644,6 +1753,13 @@ function uib_setup_user_default_permissions() {
       'level 2' => 'level 2',
       'level 3' => 'level 3',
     ),
+    'module' => 'view_unpublished',
+  );
+
+  // Exported permission: 'view any unpublished uib_content_list content'.
+  $permissions['view any unpublished uib_content_list content'] = array(
+    'name' => 'view any unpublished uib_content_list content',
+    'roles' => array(),
     'module' => 'view_unpublished',
   );
 
