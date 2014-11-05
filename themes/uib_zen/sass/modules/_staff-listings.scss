@@ -11,6 +11,7 @@
   line-height: 2em*4/3;
 }
 .view-ansatte {
+  @include zen-clear();
   .view-filters {
     background: $light-grey;
   }
