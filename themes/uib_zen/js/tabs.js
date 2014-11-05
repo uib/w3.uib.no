@@ -10,6 +10,7 @@
             $('#page').scrollTop(0);
           }
           else {
+            window.location.hash = "";
             $('html, body').animate({ scrollTop: 0 }, 20);
           }
         }
