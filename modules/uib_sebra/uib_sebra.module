@@ -75,8 +75,8 @@ function uib_sebra__update_uib_ou($place_id) {
     $node->field_uib_ou_shortname['und'][0]['value'] = $place->alias;
     $node->field_uib_mail_domain['und'][0]['value'] = $place->maildomain;
 
-    $node->field_uib_postal_address['und'][0]['thoroughfare'] = isset($place->postbox) ? 'Postboks ' . $place->postbox
-                                                                                       : $place->address;
+    $node->field_uib_postal_address['und'][0]['thoroughfare'] = !empty($place->postbox) ? "Postboks $place->postbox"
+                                                                                        : $place->address;
     $node->field_uib_postal_address['und'][0]['postal_code'] = $place->postcode;
     $node->field_uib_postal_address['und'][0]['locality'] = $place->postarea;
     $node->field_uib_postal_address['und'][0]['country'] = 'NO';
@@ -123,7 +123,7 @@ function uib_sebra__update_uib_ou($place_id) {
 
     $old = $ou->field_uib_postal_address->value();
     $new = $old;
-    $new['thoroughfare'] = isset($place->postbox) ? 'Postboks ' . $place->postbox : $place->address;
+    $new['thoroughfare'] = !empty($place->postbox) ? "Postboks $place->postbox" : $place->address;
     $new['postal_code'] = $place->postcode;
     $new['locality'] = $place->postarea;
     $new['country'] = 'NO';
