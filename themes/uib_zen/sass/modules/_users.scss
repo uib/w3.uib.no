@@ -255,7 +255,7 @@ $zen-column-count: 5;
   .field-item {
     display: inline;
   }
-  a {
+  a:not([class='autocomplete-deluxe-item-delete']) {
     display: inline-block;
     background: #FAEEED;
     padding: 5px 10px;
