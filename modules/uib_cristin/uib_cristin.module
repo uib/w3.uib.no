@@ -534,7 +534,11 @@ function uib_cristin__ws_url($cristin_command) {
  * Implements hook_field_attach_view_alter().
  */
 function uib_cristin_field_attach_view_alter(&$output, $context) {
-  if ($context['entity_type'] != 'user' || $context['view_mode'] != 'full') {
+  $limit = 200;
+  if (!empty($context['entity']->field_uib_user_cristin_nr) && $context['entity']->field_uib_position_category['und'][0]['value'] == 'staff') {
+    $limit = $context['entity']->field_uib_user_cristin_nr['und'][0]['value'];
+  }
+  if ($context['entity_type'] != 'user' || $context['view_mode'] != 'full' || $limit == 0) {
     return;
   }
   $user = $context['entity'];
