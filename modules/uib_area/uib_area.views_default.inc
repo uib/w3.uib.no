@@ -2368,6 +2368,17 @@ return !empty($handler->argument);';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Published */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['label'] = '';
+  $handler->display->display_options['fields']['status']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['status']['alter']['text'] = '([status])';
+  $handler->display->display_options['fields']['status']['element_type'] = 'span';
+  $handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
+  $handler->display->display_options['fields']['status']['not'] = 0;
   /* Field: Content: ID */
   $handler->display->display_options['fields']['field_uib_study_code']['id'] = 'field_uib_study_code';
   $handler->display->display_options['fields']['field_uib_study_code']['table'] = 'field_data_field_uib_study_code';
@@ -2405,19 +2416,13 @@ return !empty($handler->argument);';
     1 => 'AND',
     2 => 'AND',
   );
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
+    'uib_external_content' => 'uib_external_content',
     'uib_testimonial' => 'uib_testimonial',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
@@ -2440,7 +2445,6 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
   $handler->display->display_options['filters']['type_1']['value'] = array(
-    'uib_external_content' => 'uib_external_content',
     'uib_study' => 'uib_study',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
@@ -2478,6 +2482,7 @@ return !empty($handler->argument);';
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('([status])'),
     t('Entity Reference'),
   );
   $export['newslist'] = $view;
