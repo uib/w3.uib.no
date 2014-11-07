@@ -1,3 +1,26 @@
+# Release 14 _2014-11-06_
+
+Vi gjør generelle justeringer og feilrettinger på uib.no i denne releasen.
+
+- Det er nå mulig å finne eksternt innhold og vitnesbyrd ved hjelp av “Finn Innhold” på webdesken #4377
+- Vi har startet arbeidet med en ny prosesstype som er bestilt fra ansattsidene #7694
+- Alle listene som viser personer på uib.no har nå fått samme stil hvilket betyr at “tilknyttede personer” nå ser ut som ansattlistene på områder #7850
+- Vi har gjort endringer på åpningstider-boksen på ub-forsiden #7888
+- Level 1 har nå utvidete søkemuligheter etter filer #7902
+- Feil i utlistingen av EVU-kurs er nå rettet #7985
+- Små endringer inne på EVU-kursene #8177
+- Vi har oppdatert Google Analyticskoden til Universal Analytics #7987
+- Feil som oppstod etter oversettelse er rettet #8080
+- Fjernet emne som ikke skal vise i emneoversikten #8120
+- Fjernet en ekstra linje som dukket opp under studieretninger #8145
+- Endret visning av studieprogram i “tilknyttet innhold” slik at disse ble mer lik vanlig innhold #8156
+- Lagt til Linkedin på personsidene #8158
+- Vi har oppdatert en del moduler #8181
+- Endringer i datoformatene i drupal #8194
+- Fikset feil hvor eksternt innhold ikke lenger var mulig å søke etter i tilknyttet innhold #8202
+- Fikset en feil som gjorde at brukerne kom til feilside hvis de glemte å legge til område på en artikkel. De får nå beskjed om å fylle inn dette feltet uten å bli tatt vekk fra innholdet #8294
+- Vi har gjort det mulig for områder å ha en annen postadresse enn postboks. Hvis postboks er satt til null i sebra blir besøksadressen også gjort til postadressen #8345
+
 # Release 13.1 _2014-10-23_
 
 Hovedfagsoppgaver som ble listet på veilederens side måtte fjernes før vi offentliggjør de nye personsidene. #8132
