@@ -352,7 +352,9 @@ function uib_zen_preprocess_node(&$variables, $hook) {
 
   if ($variables['view_mode'] == 'short_teaser') {
     if ($variables['type'] != 'uib_ou') {
-      if($variables['unpublished'])$variables['title_attributes_array'] = array ('class' => 'node-unpublished node__title node-title');
+      if ($variables['unpublished']) {
+        $variables['title_attributes_array'] = array('class' => 'node-unpublished node__title node-title');
+      }
       $variables['theme_hook_suggestions'][] = 'node__children';
       $variables['content']['title'] = array(
         '#theme' => 'link',
