@@ -12,7 +12,6 @@ include_once 'uib_content_list.features.inc';
 function uib_content_list_preprocess_node(&$variables, $hook) {
   if ($variables['page']) {
     if ($variables['type'] == 'uib_content_list') {
-      dpm($variables);
       $metadata = entity_metadata_wrapper('node', $variables['nid']);
       $title = check_plain($metadata->label());
       $variables['content']['title'] = array(
