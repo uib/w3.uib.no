@@ -145,12 +145,13 @@ function uib_external_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'file',
+        'module' => 'file_entity',
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'file_view_mode' => 'default',
         ),
-        'type' => 'file_default',
+        'type' => 'file_rendered',
         'weight' => 2,
       ),
       'short_teaser' => array(
