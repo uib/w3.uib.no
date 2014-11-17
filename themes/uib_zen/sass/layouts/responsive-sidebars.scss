@@ -685,6 +685,9 @@ $zen-auto-include-item-base: false;
     max-width: 708px;
   }
   .slidecontent {
+    width: 88%;
+  }
+  .slidecontent.event {
     width: 60%;
   }
 
@@ -765,7 +768,7 @@ $zen-auto-include-item-base: false;
     left: 6%;
     h3 {
       color: #fff;
-      margin-bottom: 20px !important;
+      margin-bottom: 10px !important;
       font-size: 1.5em !important;
       font-weight: normal !important;
     }
@@ -1273,15 +1276,17 @@ $zen-auto-include-item-base: false;
   .slidecontent {
     bottom: 8%;
     left: 6%;
-    width: 60%;
+    width: 88%;
     h3 {
       color: #fff;
-      margin-bottom: 15px !important;
+      margin-bottom: 10px !important;
       font-size: 1.5em !important;
       font-weight: normal !important;
     }
   }
-
+  .slidecontent.event {
+    width: 60%;
+  }
   /* Courses */
   .view-courses {
     @include zen-grid-item(4, 1);

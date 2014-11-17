@@ -162,6 +162,9 @@ function uib_area_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_tags'] = array(
+    0 => 'slideshow_area',
+  );
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -277,23 +280,24 @@ function uib_area_views_default_views() {
   $handler->display->display_options['fields']['field_uib_location']['table'] = 'field_data_field_uib_location';
   $handler->display->display_options['fields']['field_uib_location']['field'] = 'field_uib_location';
   $handler->display->display_options['fields']['field_uib_location']['exclude'] = TRUE;
-  /* Field: Content: Event type */
-  $handler->display->display_options['fields']['field_uib_event_type']['id'] = 'field_uib_event_type';
-  $handler->display->display_options['fields']['field_uib_event_type']['table'] = 'field_data_field_uib_event_type';
-  $handler->display->display_options['fields']['field_uib_event_type']['field'] = 'field_uib_event_type';
-  $handler->display->display_options['fields']['field_uib_event_type']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_event_type']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_event_type']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_event_type']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_event_type']['type'] = 'i18n_list_default';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '<div class="transparent">
-<div class="slidecontent">
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Event type */
+  $handler->display->display_options['fields']['field_uib_event_type']['id'] = 'field_uib_event_type';
+  $handler->display->display_options['fields']['field_uib_event_type']['table'] = 'field_data_field_uib_event_type';
+  $handler->display->display_options['fields']['field_uib_event_type']['field'] = 'field_uib_event_type';
+  $handler->display->display_options['fields']['field_uib_event_type']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_event_type']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_event_type']['alter']['text'] = '<div class="transparent">
+<div class="slidecontent event">
 <h3>[title]</h3>
 <p class="lead">[field_uib_lead]</p>
 </div>
@@ -303,9 +307,16 @@ function uib_area_views_default_views() {
 <p>[field_uib_location]</p>
 </div>
 </div>';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_event_type']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_event_type']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['field_uib_event_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_event_type']['empty'] = '<div class="transparent">
+<div class="slidecontent">
+<h3>[title]</h3>
+<p class="lead">[field_uib_lead]</p>
+</div>
+</div>';
+  $handler->display->display_options['fields']['field_uib_event_type']['type'] = 'i18n_list_default';
   /* Sort criterion: Content: Slideshow (field_uib_profiled_article:delta) */
   $handler->display->display_options['sorts']['delta']['id'] = 'delta';
   $handler->display->display_options['sorts']['delta']['table'] = 'field_data_field_uib_profiled_article';
@@ -368,7 +379,7 @@ function uib_area_views_default_views() {
     t('<span class="ciclepager"></span>'),
     t('Location'),
     t('<div class="transparent">
-<div class="slidecontent">
+<div class="slidecontent event">
 <h3>[title]</h3>
 <p class="lead">[field_uib_lead]</p>
 </div>
@@ -376,6 +387,12 @@ function uib_area_views_default_views() {
 <p>[field_uib_event_type]</p>
 <p>[field_uib_date]</p>
 <p>[field_uib_location]</p>
+</div>
+</div>'),
+    t('<div class="transparent">
+<div class="slidecontent">
+<h3>[title]</h3>
+<p class="lead">[field_uib_lead]</p>
 </div>
 </div>'),
     t('All'),
