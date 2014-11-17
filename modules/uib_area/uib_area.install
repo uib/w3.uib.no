@@ -385,3 +385,15 @@ function uib_area_update_7010() {
     }
   }
 }
+
+/**
+ * Set up Norwegian alias for the positions page
+ */
+function uib_area_update_7011() {
+  $new_alias = array(
+    'source' => 'positions',
+    'alias' => 'stilling',
+    'language' => 'nb',
+  );
+  path_save($new_alias);
+}
