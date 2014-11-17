@@ -11,6 +11,6 @@ function uib_geography_drush_command() {
  return $items;
 }
 
-function drush_uib_fs_geo_sync() {
+function drush_uib_geography_uib_fs_geo_sync() {
   uib_geography_sync();
 }
