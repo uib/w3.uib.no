@@ -136,6 +136,20 @@ body {
   }
 }
 
+.page-webdesk {
+  .panel-2col {
+    .panel-col-first {
+      width: 25%;
+    }
+    .panel-col-last {
+      width: 75%;
+    }
+  }
+  .panel-pane {
+    clear: both;
+  }
+}
+
 .page-node-add.sidebar-second #content {
   float: none;
   margin: 0;
