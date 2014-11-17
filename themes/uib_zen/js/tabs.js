@@ -11,7 +11,9 @@
           }
           else {
             window.location.hash = "";
-            $('html, body').animate({ scrollTop: 0 }, 20);
+            $(window).scrollTop(0);
+            $('#page').scrollTop(0);
+            $('html, body').animate({ scrollTop: 0 }, 1);
           }
         }
       });
