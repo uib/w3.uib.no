@@ -735,7 +735,7 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
 function uib_sebra__add_user_aliases($account) {
   if ($account->uid) {
     if (!empty($account->field_uib_first_name['und'][0]['value']) && !empty($account->field_uib_last_name['und'][0]['value'])) {
-      $slug = uib_sebra_slug($account->field_uib_first_name['und'][0]['value'], $account->field_uib_last_name['und'][0]['value']);
+      $slug = uib_sebra_slug($account->field_uib_first_name['und'][0]['value'], $account->field_uib_last_name['und'][0]['value'], $account->uid);
       $source = 'user/' . $account->uid;
       $languages = array(
         'nb' => 'personer',
@@ -838,8 +838,8 @@ function uib_sebra_user_insert(&$edit, $account, $category) {
  * Creates and returns a personal name string, a.k.a. "slug" based on the supplied
  *   name of the user.
  * If a user id is supplied and it matches an existing slug, that slug will be returned.
- * If the slug is already in use by other user, a suffix will be added: an underscore
- *   and a serial number starting at 2.
+ * If the slug is already in use by other user, or used as an active alias,
+ * a suffix will be added: an underscore and a serial number starting at 1.
  *
  * Returns a user slug string
  */
@@ -853,7 +853,7 @@ function uib_sebra_slug($first, $last, $uid = NULL) {
     $last = preg_replace('/[\s]+/', '.', $last);
     $slug = $first . '.' . $last;
 
-    $suffix_cnt = 1;
+    $suffix_cnt = 0;
     $searching = TRUE;
     $query = new EntityFieldQuery();
     while ($searching) {
@@ -861,7 +861,17 @@ function uib_sebra_slug($first, $last, $uid = NULL) {
         ->fieldCondition('field_uib_slug', 'value', $slug . $suffix, '=')
         ->execute();
       if (empty($result['user'])) {
-        $searching = FALSE;
+        // Do not use if used as user alias for another user
+        $alias = path_load(array('alias' => 'personer/' . $slug . $suffix));
+        if (empty($alias)) {
+          $searching = FALSE;
+        }
+        else {
+          $tmp = explode('/', $alias['source']);
+          if ($tmp[1] == $uid) {
+            $searching = FALSE;
+          }
+        }
       }
       else {
         $list = array_keys($result['user']);
@@ -872,9 +882,9 @@ function uib_sebra_slug($first, $last, $uid = NULL) {
             }
           }
         }
-        if ($searching) {
-          $suffix = '_' . ++$suffix_cnt;
-        }
+      }
+      if ($searching) {
+        $suffix = '_' . ++$suffix_cnt;
       }
     }
   }
