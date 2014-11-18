@@ -213,3 +213,17 @@ function uib_user_update_7009() {
     uibx_log('Deleted ' . $i . ' user redirects!', 'notice');
   }
 }
+
+/**
+ * Fix two unwanted aliases, slugs
+ */
+function uib_user_update_7010() {
+  // Remove the aliases
+  path_delete(150344);
+  path_delete(150343);
+  // Update person's slug
+  $who = user_load(8618); // The less important Heidi Espedal
+  $edit = array();
+  $edit['field_uib_slug']['und'][0]['value'] = 'Heidi.Espedal_1';
+  user_save($who, $edit);
+}
