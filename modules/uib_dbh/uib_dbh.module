@@ -22,11 +22,13 @@ function uib_dbh_block_info() {
  * Implements hook_menu().
  */
 function uib_dbh_menu() {
-  $items["about/nsd/%"] = array(
-    'page callback' => 'uib_dbh__page',
-    'access callback' => TRUE,
-    'page arguments' => array(2),
-  );
+  foreach (array('about', 'om') as $prefix) {
+    $items["$prefix/nsd/%"] = array(
+      'page callback' => 'uib_dbh__page',
+      'access callback' => TRUE,
+      'page arguments' => array(2),
+    );
+  }
   return $items;
 }
 
@@ -71,7 +73,8 @@ function uib_dbh_block_view($delta) {
       foreach ($t_row as $idx => $value) {
         $t_row[$idx] = round($value);
       }
-      array_unshift($t_row, l($row['title'], 'about/nsd/' . $row['linked_section']));
+      $prefix = ($data['lang'] == 'no') ? 'om' : 'about';
+      array_unshift($t_row, l($row['title'], "$prefix/nsd/" . $row['linked_section']));
       $table['#rows'][] = $t_row;
     }
 
