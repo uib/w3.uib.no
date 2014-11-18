@@ -1,0 +1,28 @@
+/////////////
+// Styling for the google search page
+/////////////
+.page-search {
+  .gsc-resultsHeader,
+  .gcsc-branding {
+    display: none;
+  }
+  .gs-result{
+    .gs-title,
+    .gs-title * {
+      color: $link-blue;
+    }
+  }
+  .gsc-table-result,
+  .gsc-thumbnail-inside,
+  .gsc-url-top {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gsc-table-result {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .gs-result .gs-visibleUrl {
+    color: #d95900;
+  }
+}
