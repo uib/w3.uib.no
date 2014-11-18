@@ -11,7 +11,7 @@ api = 2
 ;translations[] = nb
 
 ; core
-projects[drupal][version] = 7.32
+projects[drupal][version] = 7.33
 
 ; themes
 projects[zen][version] = 5.5
