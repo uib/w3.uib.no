@@ -122,14 +122,14 @@ function uib_setup_update_7010() {
   module_enable(array('uib_content_list'));
 }
 
-/*
+/**
  * Enable new module: uib_geography
  */
 function uib_setup_update_7011() {
   module_enable(array('uib_geography'));
 }
 
-/*
+/**
  * Enable new module: uib_search
  */
 function uib_setup_update_7012() {
