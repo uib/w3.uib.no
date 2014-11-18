@@ -1156,6 +1156,18 @@ function uib_zen_preprocess_views_view(&$variables) {
     // Force education as current area
     uib_area__get_current(variable_get('uib_study_area_nid'));
   }
+  $language_challenged_views = array('my_content', 'user_areas', 'scheduled_content');
+  if (in_array($variables['view']->name, $language_challenged_views)) {
+    $view = $variables['view'];
+    foreach ($view->result as $key => $item) {
+      if ($item->node_language == 'nb') {
+        $variables['rows'] = str_replace('en/node/' . $item->nid, 'nb/node/' . $item->nid, $variables['rows']);
+      }
+      if ($item->node_language == 'en') {
+        $variables['rows'] = str_replace('nb/node/' . $item->nid, 'en/node/' . $item->nid, $variables['rows']);
+      }
+    }
+  }
 }
 
 /**
