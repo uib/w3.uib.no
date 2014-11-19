@@ -1743,11 +1743,14 @@ function uib_area__jobbnorge_positions() {
  */
 function uib_area__staff_status_access_check() {
   global $user;
-  if ($user->uid == 1) {
-    return TRUE;
-  }
-  if (in_array('level 1', $user->roles) || in_array('admin', $user->roles)) {
-    return TRUE;
+  $node = node_load(arg(1));
+  if ($node && $node->type == 'area') {
+    if ($user->uid == 1) {
+      return TRUE;
+    }
+    if (in_array('level 1', $user->roles) || in_array('admin', $user->roles)) {
+      return TRUE;
+    }
   }
   return FALSE;
 }
@@ -1756,9 +1759,6 @@ function uib_area__staff_status_access_check() {
  * Setup contents of the staff status local task tab
  */
 function uib_area__staff_status($area_node) {
-  if (empty($area_node) || $area_node->type != 'area') {
-    return array();
-  }
   $area = entity_metadata_wrapper('node', $area_node);
   $staff = array();
   $staff[] = array(

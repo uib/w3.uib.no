@@ -205,7 +205,8 @@ function uib_sebra__sync_areas() {
     uib_sebra__sync_jobbnorge_id($area, $area_doc);
     $staff = array();
     if (isset($area_doc->omraade->visninger->uibid)) {
-      foreach ((array)$area_doc->omraade->visninger->uibid as $uname) {
+      $visninger = (array)$area_doc->omraade->visninger;
+      foreach ($visninger['uibid'] as $uname) {
         // Check user in Sebra
         if (!isset($seen_sebra_users[$uname])) {
           $user_exists = uib_sebra__sws_get("person?id=$uname");
