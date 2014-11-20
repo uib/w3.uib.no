@@ -1,3 +1,27 @@
+# Release 15 _2014-11-21_
+
+R15 retter en del feil, introduserer en ny innholdstype (Innholdsliste) og gjør en del generelle endringer.
+
+- Flytter google søket (grunnlag for søk på uib.no) til w3 fra w2 og styler dette #6486 #8613
+- Gjør det mulig å legge upublisert innhold som tilknyttet innhold #6923
+- Retter en stylingsak knyttet til slideshowet #7224
+- Introduserer den nye innholdstypen "Innholdsliste". Denne innholdstypen kan brukes til å gi grafisk fremstilling av feks en arbeidsprosess. NB! Ikke klar til bruk enda! #7693
+- Retter feil som gjorde at kulpunkt ikke fungerte på personsidene #8272
+- Fjerner publikasjons-fanen for administrativt ansatte som setter antall publikasjoner i Cristin til 0 #8376
+- Endrer til små bokstaver i navn på personsider #8509
+- Endrer på plassering av elementer på webdesken #8510
+- Oppgradering av Drupal kjerne #8616
+- Retter synkronisering med sebra for at ansatte med ansettelseforhold i UNI, bare viser tittel for stilling ved UiB #7922
+- Retter feil som har ført til at ansatte med to kontoer i sebra, har vist feil profil ut på ansattlister #7922
+- Retter bug som gjorde at en side "hoppet" når man navigerte mellom faner #8197
+- Retter feil som gjorde at Adressefelt 2 ikke vistes ut på personsider #8356
+- Retter feil som gjorde at visning av data fra DBH ikke fungerte på norske sider #8381
+- Retter feil som gjorde at toppen av siden ikke vistes når man navigerte via faner #8385
+- Treff i autocomplete-feltet for oversettelser til en sak ble skjult av kolofon-feltet. Dette er rettet #8501
+- Retter feil som gjorde at to personer med nesten likt navn hadde byttet alias fra w2 til w3 #8540
+- Legger til uib.no/stillinger til w3. Skal gjøres noe mer med før den erstatter tilsvarende side på w2 #6819
+- Legger til taksonomi for land/verdensdel som klargjøring til visning av utvekslingsavtaler #8387
+
 # Release 14 _2014-11-06_
 
 Vi gjør generelle justeringer og feilrettinger på uib.no i denne releasen.
