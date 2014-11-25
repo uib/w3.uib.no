@@ -157,6 +157,24 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     hide($form['language']);
     if (strstr($form['#action'], 'uib-article?translation')) {
       hide($form['field_uib_area']);
+
+      // Remove field_uib_relation instances
+      // Get total textboxes and the key for the higher
+      $last_numeric = 0;
+      foreach ($form['field_uib_relation']['und'] as $key => $value) {
+        if(is_numeric($key)) {
+          if ($last_numeric < intval($key)){
+            $last_numeric = intval($key);
+          }
+        }
+      }
+      // Put the last one (empty one) in the first position and delet the rest
+      if ($last_numeric > 0) {
+        $form['field_uib_relation']['und'][0] = $form['field_uib_relation']['und'][$last_numeric];
+        for ($key = 1; $key <= $last_numeric; $key++){
+          unset($form['field_uib_relation']['und'][$key]);
+        }
+      }
     }
 
     //Fields to be hidden/required if event is not chosen
