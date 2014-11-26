@@ -328,6 +328,58 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_study_country'
+  $field_instances['node-uib_study-field_uib_study_country'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_study_country',
+    'label' => 'Country',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+        'taxonomy-index' => array(
+          'status' => TRUE,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 17,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_study_image'
   $field_instances['node-uib_study-field_uib_study_image'] = array(
     'bundle' => 'uib_study',
@@ -968,6 +1020,7 @@ function uib_study_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Category');
+  t('Country');
   t('Descriptive text');
   t('Entity translated term title.');
   t('ID');

@@ -209,6 +209,51 @@ function uib_study_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_uib_study_country'
+  $field_bases['field_uib_study_country'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_study_country',
+    'foreign keys' => array(
+      'taxonomy_term_data' => array(
+        'columns' => array(
+          'target_id' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'handler' => 'base',
+      'handler_settings' => array(
+        'autocomplete_items_limit' => 10,
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'uib_geography' => 'uib_geography',
+        ),
+      ),
+      'target_type' => 'taxonomy_term',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_uib_study_image'
   $field_bases['field_uib_study_image'] = array(
     'active' => 1,
@@ -409,6 +454,7 @@ function uib_study_field_default_field_bases() {
         'course' => 'Course',
         'program' => 'Study programme',
         'specialization' => 'Specialization',
+        'exchange' => 'Exchange agreement',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
