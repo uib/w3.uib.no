@@ -20,7 +20,6 @@ function drush_uib_study_uib_sync_fs() {
     WHERE n.nid = c.entity_id';
   $result = db_query($query);
   foreach ($result as $row) {
-    $unused_codes[$row->field_uib_study_code_value] = $row->entity_id;
     $studies_all[$row->field_uib_study_code_value] = $row->entity_id;
     $study_status[$row->field_uib_study_code_value] = $row->status;
   }
@@ -136,18 +135,11 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
   static $uib_nus_list;
   if (!isset($uib_nus_list)) {
     $uib_nus_list = array();
-    $vocabs = taxonomy_get_vocabularies();
-    $uib_nus_vid = 1;
-    foreach ($vocabs as $vocab) {
-      if ($vocab->machine_name == 'uib_nus') {
-        $uib_nus_vid = $vocab->vid;
-        break;
-      }
-    }
+    $uib_nus_vocab = taxonomy_vocabulary_machine_name_load('uib_nus');
     $query = new EntityFieldQuery;
     $tax_result = $query
       ->entityCondition('entity_type', 'taxonomy_term')
-      ->propertyCondition('vid', $uib_nus_vid)
+      ->propertyCondition('vid', $uib_nus_vocab->vid)
       ->execute();
     if ($tax_result) {
       $taxonomy_terms = taxonomy_term_load_multiple(array_keys($tax_result['taxonomy_term']));
@@ -293,177 +285,170 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     uibx_log("Created $type " . $study['id']);
     return $refs_incomplete;
   }
+  else {
+    // Study exists
+    $nodes = node_load_multiple(array_keys($result['node']));
 
-  // save the nodes to process
-  $nodes = node_load_multiple(array_keys($result['node']));
-
-  // handle specializations
-  if (!empty($study['specializations'])) {
-    foreach ($study['specializations'] as $spec) {
-      $spec['nuskode'] = $study['nuskode'];
-      $spec['ref_programs'] = array($study['id']);
-      uib_study__update_study('specialization', $spec, $ou_nid, $existing);
-    }
-  }
-
-  $uib_nus = taxonomy_vocabulary_machine_name_load('uib_nus');
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $uib_nus->vid)
-    ->execute();
-  $ids = array_keys($result['taxonomy_term']);
-  $terms = entity_load('taxonomy_term', $ids);
-
-  $uib_study_labels = taxonomy_vocabulary_machine_name_load('uib_study_labels');
-  $query = new EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('vid', $uib_study_labels->vid)
-    ->execute();
-  $labels = array();
-  if (!empty($result)) {
-    $ids = array_keys($result['taxonomy_term']);
-    $label_terms = entity_load('taxonomy_term', $ids);
-    foreach ($label_terms as $term) {
-      $labels[$term->name] = $term->tid;
-    }
-  }
-
-  foreach ($nodes as $node) {
-    $wrapper = entity_metadata_wrapper('node', $node);
-    $edit = array();
-    $severity = 'notice';
-
-    if (isset($uib_nus_list[$nusId]) && $wrapper->field_uib_nus->raw() != $uib_nus_list[$nusId]) {
-      $wrapper->field_uib_nus->set($uib_nus_list[$nusId]);
-      $edit[] = 'nuscode';
-    }
-
-    // update uib_study_labels
-    {
-      $existing_labels = array();
-      foreach ($wrapper->field_uib_study_label->getIterator() as $delta => $target) {
-        $existing_labels[] = $target->raw();
+    // handle specializations
+    if (!empty($study['specializations'])) {
+      foreach ($study['specializations'] as $spec) {
+        $spec['nuskode'] = $study['nuskode'];
+        $spec['ref_programs'] = array($study['id']);
+        uib_study__update_study('specialization', $spec, $ou_nid, $existing);
       }
-      $new_labels = array();
-      if (isset($study['labels'])) {
-        foreach ($study['labels'] as $sl) {
-          if (!array_key_exists($sl, $labels)) {
-            $new_term_tid = uib_study__create_taxonomy_term($sl, 'uib_study_labels');
-            uibx_log('Created taxonomy_term "' . $sl . '" with $tid ' . $new_tellrm_tid);
-            $labels[$new_term_tid] = $sl;
-            $new_labels[] = $new_term_tid;
+    }
+
+    $uib_study_labels = taxonomy_vocabulary_machine_name_load('uib_study_labels');
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $uib_study_labels->vid)
+      ->execute();
+    $labels = array();
+    if (!empty($result)) {
+      $ids = array_keys($result['taxonomy_term']);
+      $label_terms = entity_load('taxonomy_term', $ids);
+      foreach ($label_terms as $term) {
+        $labels[$term->name] = $term->tid;
+      }
+    }
+
+    foreach ($nodes as $node) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $edit = array();
+      $severity = 'notice';
+
+      if (isset($uib_nus_list[$nusId]) && $wrapper->field_uib_nus->raw() != $uib_nus_list[$nusId]) {
+        $wrapper->field_uib_nus->set($uib_nus_list[$nusId]);
+        $edit[] = 'nuscode';
+      }
+
+      // update uib_study_labels
+      {
+        $existing_labels = array();
+        foreach ($wrapper->field_uib_study_label->getIterator() as $delta => $target) {
+          $existing_labels[] = $target->raw();
+        }
+        $new_labels = array();
+        if (isset($study['labels'])) {
+          foreach ($study['labels'] as $sl) {
+            if (!array_key_exists($sl, $labels)) {
+              $new_term_tid = uib_study__create_taxonomy_term($sl, 'uib_study_labels');
+              uibx_log('Created taxonomy_term "' . $sl . '" with $tid ' . $new_tellrm_tid);
+              $labels[$new_term_tid] = $sl;
+              $new_labels[] = $new_term_tid;
+            }
+            else {
+              $new_labels[] = $labels[$sl];
+            }
+          }
+        }
+        sort($existing_labels);
+        sort($new_labels);
+        if ($existing_labels != $new_labels) {
+          $wrapper->field_uib_study_label->set($new_labels);
+          $edit[] = 'labels';
+        }
+      }
+
+      if (!empty($study['unpublished'])) {
+        // ensure unpublished
+        if ($wrapper->status->value() != 0) {
+          $wrapper->status->set(0);
+          $edit[] = "status=0";
+        }
+      }
+      else {
+        // ensure published
+        if ($wrapper->status->value() == 0) {
+          $wrapper->status->set(1);
+          $edit[] = "status=1";
+        }
+      }
+
+      if (empty($study['title_no']) && empty($study['title_en'])) {
+        $title = $study['id'];
+      }
+      else {
+        $title = $study['title_no'] . ' / ' . $study['title_en'];
+      }
+      if ($wrapper->title->value() != $title) {
+        $wrapper->title->set($title);
+        $edit[] = 'node title';
+      }
+
+      if ($wrapper->language('nb')->field_uib_study_title->value() != $study['title_no']) {
+        $wrapper->language('nb')->field_uib_study_title->set($study['title_no']);
+        $edit[] = 'no title';
+      }
+      if ($wrapper->language('en')->field_uib_study_title->value() != $study['title_en']) {
+        $wrapper->language('en')->field_uib_study_title->set($study['title_en']);
+        $edit[] = 'en title';
+      }
+
+      if ($wrapper->field_uib_ou->raw() != $ou_nid) {
+        $wrapper->field_uib_ou->set($ou_nid);
+        $edit[] = 'ou';
+      }
+
+      if (isset($study['category'])) {
+        if ($wrapper->field_uib_study_category->value() != $study['category']) {
+          $wrapper->field_uib_study_category->set($study['category']);
+          $edit[] = 'category';
+        }
+      }
+      elseif (!is_null($wrapper->field_uib_study_category->value())) {
+        $wrapper->field_uib_study_category->set(NULL);
+        $edit[] = 'removed category';
+      }
+
+      // Check if any change in referenced programs
+      $prev_refs = array();
+      foreach ($wrapper->field_uib_study_part_of->getIterator() as $delta => $term) {
+        $prev_refs[] = $term->raw();
+      }
+      $new_refs = array();
+      if (!empty($study['ref_programs'])) {
+        foreach ($study['ref_programs'] as $ref_code) {
+          if (!empty($existing[$ref_code])) {
+            $new_refs[] = $existing[$ref_code];
+          }
+        }
+      }
+      sort($prev_refs);
+      sort($new_refs);
+      if ($prev_refs != $new_refs) {
+        $wrapper->field_uib_study_part_of = array();
+        $delta = 0;
+        foreach ($study['ref_programs'] as $ref_code) {
+          if (!empty($existing[$ref_code])) {
+            $wrapper->field_uib_study_part_of[$delta]->set($existing[$ref_code]);
+            $delta++;
           }
           else {
-            $new_labels[] = $labels[$sl];
+            $refs_incomplete[] = $ref_code;
           }
         }
+        $edit[] = 'part_of';
       }
-      sort($existing_labels);
-      sort($new_labels);
-      if ($existing_labels != $new_labels) {
-        $wrapper->field_uib_study_label->set($new_labels);
-        $edit[] = 'labels';
-      }
-    }
 
-    if (!empty($study['unpublished'])) {
-      // ensure unpublished
-      if ($wrapper->status->value() != 0) {
-        $wrapper->status->set(0);
-        $edit[] = "status=0";
-      }
-    }
-    else {
-      // ensure published
-      if ($wrapper->status->value() == 0) {
-        $wrapper->status->set(1);
-        $edit[] = "status=1";
-      }
-    }
-
-    if (empty($study['title_no']) && empty($study['title_en'])) {
-      $title = $study['id'];
-    }
-    else {
-      $title = $study['title_no'] . ' / ' . $study['title_en'];
-    }
-    if ($wrapper->title->value() != $title) {
-      $wrapper->title->set($title);
-      $edit[] = 'node title';
-    }
-
-    if ($wrapper->language('nb')->field_uib_study_title->value() != $study['title_no']) {
-      $wrapper->language('nb')->field_uib_study_title->set($study['title_no']);
-      $edit[] = 'no title';
-    }
-    if ($wrapper->language('en')->field_uib_study_title->value() != $study['title_en']) {
-      $wrapper->language('en')->field_uib_study_title->set($study['title_en']);
-      $edit[] = 'en title';
-    }
-
-    if ($wrapper->field_uib_ou->raw() != $ou_nid) {
-      $wrapper->field_uib_ou->set($ou_nid);
-      $edit[] = 'ou';
-    }
-
-    if (isset($study['category'])) {
-      if ($wrapper->field_uib_study_category->value() != $study['category']) {
-        $wrapper->field_uib_study_category->set($study['category']);
-        $edit[] = 'category';
-      }
-    }
-    elseif (!is_null($wrapper->field_uib_study_category->value())) {
-      $wrapper->field_uib_study_category->set(NULL);
-      $edit[] = 'removed category';
-    }
-
-    // Check if any change in referenced programs
-    $prev_refs = array();
-    foreach ($wrapper->field_uib_study_part_of->getIterator() as $delta => $term) {
-      $prev_refs[] = $term->raw();
-    }
-    $new_refs = array();
-    if (!empty($study['ref_programs'])) {
-      foreach ($study['ref_programs'] as $ref_code) {
-        if (!empty($existing[$ref_code])) {
-          $new_refs[] = $existing[$ref_code];
+      // Study point rank
+      if ($type == 'course') {
+        $sp_rank = _uib_study__sp_rank($study['studiepoeng'], $studypoints_ranks);
+        if ($sp_rank === FALSE) {
+          $wrapper->field_uib_study_points_rank->set('');
+          $edit[] = 'study points rank [empty]';
+          $severity = 'warning';
+        }
+        elseif ($wrapper->field_uib_study_points_rank->value() != $sp_rank) {
+          $wrapper->field_uib_study_points_rank->set($sp_rank);
+          $edit[] = 'study points rank';
         }
       }
-    }
-    sort($prev_refs);
-    sort($new_refs);
-    if ($prev_refs != $new_refs) {
-      $wrapper->field_uib_study_part_of = array();
-      $delta = 0;
-      foreach ($study['ref_programs'] as $ref_code) {
-        if (!empty($existing[$ref_code])) {
-          $wrapper->field_uib_study_part_of[$delta]->set($existing[$ref_code]);
-          $delta++;
-        }
-        else {
-          $refs_incomplete[] = $ref_code;
-        }
-      }
-      $edit[] = 'part_of';
-    }
 
-    // Study point rank
-    if ($type == 'course') {
-      $sp_rank = _uib_study__sp_rank($study['studiepoeng'], $studypoints_ranks);
-      if ($sp_rank === FALSE) {
-        $wrapper->field_uib_study_points_rank->set('');
-        $edit[] = 'study points rank [empty]';
-        $severity = 'warning';
+      if ($edit) {
+        $wrapper->save();
+        uibx_log(ucfirst($type) . ' ' . $study['id'] . " updated " . implode(', ', $edit), $severity);
       }
-      elseif ($wrapper->field_uib_study_points_rank->value() != $sp_rank) {
-        $wrapper->field_uib_study_points_rank->set($sp_rank);
-        $edit[] = 'study points rank';
-      }
-    }
-
-    if ($edit) {
-      $wrapper->save();
-      uibx_log(ucfirst($type) . ' ' . $study['id'] . " updated " . implode(', ', $edit), $severity);
     }
   }
   return $refs_incomplete;
