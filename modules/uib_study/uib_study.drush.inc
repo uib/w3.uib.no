@@ -150,10 +150,27 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     }
   }
 
-  $nusId_temp = str_split(substr($study['nuskode'], 1, 2));
-  $nusId = $nusId_temp[0];
-  if (isset($nusId_temp[1])) {
-    $nusId .= '.' . $nusId_temp[1];
+  $nusId = '';
+  if (isset($study['nuskode'])) {
+    $nusId_temp = str_split(substr($study['nuskode'], 1, 2));
+    $nusId = $nusId_temp[0];
+    if (isset($nusId_temp[1])) {
+      $nusId .= '.' . $nusId_temp[1];
+    }
+  }
+
+  $uib_study_labels = taxonomy_vocabulary_machine_name_load('uib_study_labels');
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $uib_study_labels->vid)
+    ->execute();
+  $labels = array();
+  if (!empty($result)) {
+    $ids = array_keys($result['taxonomy_term']);
+    $label_terms = entity_load('taxonomy_term', $ids);
+    foreach ($label_terms as $term) {
+      $labels[$term->name] = $term->tid;
+    }
   }
 
   $refs_incomplete = array();
@@ -211,6 +228,25 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $metadata->language('en')->field_uib_study_title->set($study['title_en']);
     if (!$metadata->language('en')->field_uib_study_title->value()) {
       $metadata->language('en')->field_uib_study_title->set($study['id']);
+    }
+
+    // labels
+    if (!empty($study['labels'])) {
+      $new_labels = array();
+      foreach ($study['labels'] as $sl) {
+        if (!array_key_exists($sl, $labels)) {
+          $new_term_tid = uib_study__create_taxonomy_term($sl, 'uib_study_labels');
+          uibx_log('Created taxonomy_term "' . $sl . '" with tid ' . $new_term_tid);
+          $labels[$new_term_tid] = $sl;
+          $new_labels[] = $new_term_tid;
+        }
+        else {
+          $new_labels[] = $labels[$sl];
+        }
+      }
+      if (!empty($new_labels)) {
+        $metadata->field_uib_study_label->set($new_labels);
+      }
     }
 
     // program references
@@ -298,20 +334,6 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
       }
     }
 
-    $uib_study_labels = taxonomy_vocabulary_machine_name_load('uib_study_labels');
-    $query = new EntityFieldQuery();
-    $result = $query->entityCondition('entity_type', 'taxonomy_term')
-      ->propertyCondition('vid', $uib_study_labels->vid)
-      ->execute();
-    $labels = array();
-    if (!empty($result)) {
-      $ids = array_keys($result['taxonomy_term']);
-      $label_terms = entity_load('taxonomy_term', $ids);
-      foreach ($label_terms as $term) {
-        $labels[$term->name] = $term->tid;
-      }
-    }
-
     foreach ($nodes as $node) {
       $wrapper = entity_metadata_wrapper('node', $node);
       $edit = array();
@@ -333,7 +355,7 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
           foreach ($study['labels'] as $sl) {
             if (!array_key_exists($sl, $labels)) {
               $new_term_tid = uib_study__create_taxonomy_term($sl, 'uib_study_labels');
-              uibx_log('Created taxonomy_term "' . $sl . '" with $tid ' . $new_tellrm_tid);
+              uibx_log('Created taxonomy_term "' . $sl . '" with tid ' . $new_term_tid);
               $labels[$new_term_tid] = $sl;
               $new_labels[] = $new_term_tid;
             }
