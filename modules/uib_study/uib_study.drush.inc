@@ -223,8 +223,8 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
 
     // program references
     if (!empty($study['ref_programs'])) {
+      $delta = 0;
       foreach ($study['ref_programs'] as $ref_code) {
-        $delta = 0;
         if (!empty($existing[$ref_code])) {
           $metadata->field_uib_study_part_of[$delta]->set($existing[$ref_code]);
           $delta++;
