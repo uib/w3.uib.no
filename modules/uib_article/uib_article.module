@@ -137,7 +137,8 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == "uib_article_node_form") {
     // Disable possibility for changing main area if node has connection to menu
     if (isset($form_state['node']->field_uib_area['und'])) {
-      $menu_name = 'menu-area-' . $form_state['node']->field_uib_area['und'][0]['target_id'];
+      $area_id = $form_state['node']->field_uib_area['und'][0]['target_id'];
+      $menu_name = 'menu-area-' . $area_id;
       if (!empty($form_state['node']->nid)) {
         $curr_nid = $form_state['node']->nid;
       }
@@ -173,6 +174,39 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
         $form['field_uib_relation']['und'][0] = $form['field_uib_relation']['und'][$last_numeric];
         for ($key = 1; $key <= $last_numeric; $key++){
           unset($form['field_uib_relation']['und'][$key]);
+        }
+      }
+
+      //Add a message that lets the user know that they are working on a translation
+      $params = drupal_get_query_parameters();
+      if(isset($params['translation']) && isset($params['target'])) {
+        global $language;
+        $langs = language_list();
+        $target = $params['target'];
+        $target_language = ($language->language == $target ? $langs[$target]->native : $langs[$target]->name);
+        if($language->language == 'nb' && $target == 'en') $target_language = 'Engelsk';
+
+        $original = node_load($params['translation']);
+        if ($original){
+          $msg = t('Currently creating the @target_language translation of <a href=@original_url>@original_title</a>.',
+            array(
+              '@target_language' => $target_language,
+              '@original_url' => url('node/' . $original->nid),
+              '@original_title' => $original->title,
+          ));
+          if (isset($area_id)) {
+            // Get the area that will be assigned to the new article
+            $area = node_load($area_id);
+            $area_trans = translation_node_get_translations($area->tnid);
+            if(isset($area_trans[$target]))
+              $area = $area_trans[$target];
+            $msg .= t('<br />This translation will be added to the <a href=@area_url>@area_name</a> area.',
+              array(
+                '@area_url' => url('node/' . $area->nid),
+                '@area_name' => $area->title,
+            ));
+          }
+          drupal_set_message($msg, 'warning');
         }
       }
     }
@@ -287,6 +321,19 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
         $form['field_uib_show_global_calendar']['#access'] = FALSE;
       }
     }
+  }
+}
+
+/*
+ * Implements hook_preprocess_page
+ * - Changes the title of the form when it is creating a trasnlation
+ */
+function uib_article_preprocess_page(&$variables) {
+if (!empty($variables['page']['content']['system_main']['#form_id'])
+      && $variables['page']['content']['system_main']['#form_id'] == 'uib_article_node_form'
+      && !empty($variables['page']['content']['system_main']['#action'])
+      && strstr($variables['page']['content']['system_main']['#action'], 'uib-article?translation')) {
+  drupal_set_title(t('Create article translation'));
   }
 }
 
