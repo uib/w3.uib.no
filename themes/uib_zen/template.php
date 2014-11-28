@@ -802,7 +802,8 @@ function uib_zen_preprocess_node(&$variables, $hook) {
         '#weight' => 10,
         '#attributes' => array('class' => array('uib-study-second-block')),
       );
-      if ($metadata->field_uib_study_type->value() == 'program' || $metadata->field_uib_study_type->value() == 'specialization') {
+      $study_type = $metadata->field_uib_study_type->value();
+      if ($study_type == 'program' || $study_type == 'specialization' || $study_type == 'exchange') {
         $variables['content']['uib_study_content']['#prefix'] = '<div class="uib-tabs-container">';
         $variables['content']['uib_study_content']['#suffix'] = '</div>';
         drupal_add_library('system' , 'ui.tabs');
