@@ -190,6 +190,33 @@ function uib_geography_sync() {
 }
 
 /**
+ * Get name of country in your preferred language
+ */
+function uib_geography_get_country($code, $lang = 'nb', $iso = FALSE) {
+  $name = NULL;
+  if (!empty($code)) {
+    $vocab_name = 'uib_geography';
+    $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $vocab->vid);
+    if ($iso) {
+      $query->fieldCondition('field_uib_iso_country', 'value', $code);
+    }
+    else {
+      $query->fieldCondition('field_fs_country_code', 'value', intval($code));
+    }
+    $result = $query->execute();
+    if (!empty($result['taxonomy_term'])) {
+      $list = array_keys($result['taxonomy_term']);
+      $term = taxonomy_term_load($list[0]);
+      $name = $term->field_uib_geographic_name[$lang][0]['value'];
+    }
+  }
+  return $name;
+}
+
+/**
  * Get term id for a specified FS country code
  */
 function uib_geography_term($fs_country_code = NULL) {
