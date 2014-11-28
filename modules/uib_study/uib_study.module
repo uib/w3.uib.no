@@ -318,6 +318,9 @@ function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
   elseif ($type == 'program' || $type == 'specialization') {
     $path .= 'studieprogram/';
   }
+  elseif ($type == 'exchange') {
+    $path .= 'utvekslingsavtale/';
+  }
   else {
     uibx_log("Unknown study type; '$type'", 'error');
   }
@@ -562,7 +565,7 @@ function uib_study_block_view($delta = '') {
     case 'study_contact':
       $node = menu_get_object();
       if ($node) {
-        $category = $node->field_uib_study_category['und'][0]['value'];
+        $category = (!empty($node->field_uib_study_category['und'])) ? $node->field_uib_study_category['und'][0]['value'] : '';
         $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
         $render = array();
         if ($category == 'evu') {
@@ -590,6 +593,7 @@ function uib_study_block_view($delta = '') {
       if ($node) {
         $type = $node->field_uib_study_type['und'][0]['value'];
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
+        global $language;
         if (empty($data))
           break;
         $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
@@ -654,7 +658,6 @@ function uib_study_block_view($delta = '') {
           $rows[] = array(t('Study programme code'), $data['studieprogramkode']);
           $rows[] = array(t('ECTS credits'), $data['studiepoeng']);
           // calculate duration of programme, based on 60 credits per year
-          global $language;
           $duration = number_format(round($data['studiepoeng'] / (60 * $data['heltidsprosent'] / 100), 1) , 1, ',', ' ');
           if (substr($duration, -2) == ',0')      // Simplify with even years
             $duration = substr($duration, 0, -2);
@@ -685,16 +688,100 @@ function uib_study_block_view($delta = '') {
             $rows[] = array(t('Resources'), $study_plan_url);
           }
         }
+        elseif ($type == 'exchange') {
+          if (!empty($data['betingelse'])) {
+            foreach ($data['betingelse'] as $key => $betingelse) {
+              if ($betingelse['personkategori'] == 'STUDENT') {
+                if (!empty($node->field_uib_study_part_of['und'])) {
+                  $study_level = array();
+                  $study_categories = uib_study__get_categories();
+                  $removals = array('courses', 'programmes', 'studies');
+                  foreach ($study_categories as $key => $value) {
+                    $tmp = explode(' ', $value);
+                    if (in_array(end($tmp), $removals)) {
+                      array_pop($tmp);
+                    }
+                    $study_categories[$key] = implode(' ', $tmp);
+                  }
+                  $connected_programs_list = array();
+                  foreach ($node->field_uib_study_part_of['und'] as $item) {
+                    $connected_programs_list[] = $item['target_id'];
+                  }
+                  $connected_programs = entity_load('node', $connected_programs_list);
+                  foreach ($connected_programs as $cp) {
+                    if (!in_array($study_categories[$cp->field_uib_study_category['und'][0]['value']], $study_level)) {
+                      $study_level[] = t($study_categories[$cp->field_uib_study_category['und'][0]['value']]);
+                    }
+                  }
+                  $rows[] = array(t('Study level'), implode(', ', $study_level));
+                }
+                $rows[] = array(t('Exchange programme'), check_plain(drupal_ucfirst(drupal_strtolower($data['utvprogramkode']))));
+                if (!empty($data['dato-til'])) {
+                  // The FS date is in ISO 8601 format
+                  $rows[] = array(t('Valid to'), format_date(strtotime($data['dato-til'])));
+                }
+                if (!empty($data['restinfo']['varighet_ut']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                  $exchange_duration = check_plain($data['restinfo']['varighet_ut'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
+                  $rows[] = array(t('Exchange duration'), $exchange_duration);
+                }
+                $fs_study_type_nr = 'Not available';
+                if (!empty($data['restinfo']['studietynr'])) {
+                  $fs_study_type_nr = check_plain($data['restinfo']['studietynr']);
+                }
+                $rows[] = array('* ' . t('Application code'), $fs_study_type_nr);
+                $belongs_to = uib_study__area($node, $language->language);
+                if ($belongs_to) {
+                  $rows[] = array(t('Belongs to'), $belongs_to);
+                }
 
-        $belongs_to = uib_study__area($node, $language->language);
-        if ($belongs_to) {
-          $rows[] = array(t('Belongs to'), $belongs_to);
+                foreach ($betingelse['sted'] as $place) {
+                  if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
+                    $rows[] = array(
+                      'data' => array(
+                        t('Country'),
+                        uib_geography_get_country($place['landnr'], $language->language),
+                        ),
+                      'class' => array('study-place'),
+                    );
+                    if (!empty($data['restinfo']['bynavn']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                      // Note: it is not clear what language the town name is in
+                      // Note: there seems to be only a single town name available
+                      $rows[] = array(t('Town'), check_plain($data['restinfo']['bynavn']));
+                    }
+                    if (!empty($place['antall_ut'])) {
+                      $rows[] = array(t('Number of exchange places'), check_plain($place['antall_ut']));
+                    }
+                    elseif (!empty($betingelse['antall_ut'])) {
+                      $rows[] = array(t('Number of exchange places'), check_plain($betingelse['antall_ut']));
+                    }
+                    if (!empty($place['url'])) {
+                      $rows[] = array(t('Web site'), l($place['url'], $place['url']));
+                    }
+                    // ** missing ** Visum info
+                  }
+                }
+                // ** missing ** How to apply / Korleis søkje
+                // Table footnote
+                $rows[] = array(
+                  'data' => array(array(
+                    'data' => '* On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.',
+                    'colspan' => 2,
+                    )),
+                  'class' => array('study-table-footnote'),
+                );
+              }
+            }
+          }
         }
 
-        //$rows[] = array(t('Study type'), $type);
-
-        foreach ($rows as $i => $row) {
-          if (empty($row[1])) $rows[$i] = array();
+        if ($type != 'exchange') {
+          $belongs_to = uib_study__area($node, $language->language);
+          if ($belongs_to) {
+            $rows[] = array(t('Belongs to'), $belongs_to);
+          }
+          foreach ($rows as $i => $row) {
+            if (empty($row[1])) $rows[$i] = array();
+          }
         }
 
         $render = array(
@@ -1555,4 +1642,12 @@ function uib_study__translate_exposed_filter(&$view, $taxonomy_tree, $max_depth,
       $view->exposed_widgets = str_replace($t->name, $term, $view->exposed_widgets);
     }
   }
+}
+
+/**
+ * Returns defined study categories
+ */
+function uib_study__get_categories() {
+  $field_info = field_info_field('field_uib_study_category');
+  return $field_info['settings']['allowed_values'];
 }
