@@ -2551,7 +2551,6 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
-    'uib_external_content' => 'uib_external_content',
     'uib_testimonial' => 'uib_testimonial',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
@@ -2574,6 +2573,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type_1']['table'] = 'node';
   $handler->display->display_options['filters']['type_1']['field'] = 'type';
   $handler->display->display_options['filters']['type_1']['value'] = array(
+    'uib_external_content' => 'uib_external_content',
     'uib_study' => 'uib_study',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
