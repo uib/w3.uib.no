@@ -1098,20 +1098,22 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       '#weight' => -3,
     );
 
-    // hide all fields that are fs-pres synchronised
-    hide($form['title']);
-    hide($form['field_uib_ou']);
-    hide($form['field_uib_study_title']);
-    hide($form['field_uib_study_category']);
-    hide($form['field_uib_study_type']);
-    hide($form['field_uib_study_code']);
-    hide($form['field_uib_study_part_of']);
-    hide($form['field_uib_nus']);
-    // hide language selector
-    hide($form['language']);
-    // hide additional settings
-    hide($form['path']);
-    hide($form['author']);
+    if ($GLOBALS['user']->uid != 1) {
+      // hide all fields that are fs-pres synchronised
+      hide($form['title']);
+      hide($form['field_uib_ou']);
+      hide($form['field_uib_study_title']);
+      hide($form['field_uib_study_category']);
+      hide($form['field_uib_study_type']);
+      hide($form['field_uib_study_code']);
+      hide($form['field_uib_study_part_of']);
+      hide($form['field_uib_nus']);
+      // hide language selector
+      hide($form['language']);
+      // hide additional settings
+      hide($form['path']);
+      hide($form['author']);
+    }
   }
   elseif ($form_id == 'taxonomy_form_term' && $form['#vocabulary']->name == 'uib_nus') {
     // hide fields that are synchronised (except for user 1)
