@@ -572,7 +572,7 @@ function uib_area__get_current($area_nid = NULL) {
           $current_area = $node;
         }
         elseif ($node->type == 'uib_study') {
-          if ($node->field_uib_study_category['und'][0]['value'] == 'evu') {
+          if (!empty($node->field_uib_study_category['und']) && $node->field_uib_study_category['und'][0]['value'] == 'evu') {
               $current_area = node_load(77320);  # utdanning/evu
           }
           else {

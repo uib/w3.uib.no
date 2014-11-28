@@ -36,7 +36,12 @@ function drush_uib_study_uib_sync_fs() {
     $ou_id[$row->entity_id] = $row->field_uib_ou_id_value;
   }
 
-  $study_count = 0;
+  $exchange_agreement_categories = array(
+    'ERASMUS',
+    'BILATERAL',
+    'NORDPLUS',
+  );
+$study_count = 0;
 
   // let's process these then
   foreach ($ou_id as $nid => $oid) {
@@ -77,6 +82,18 @@ function drush_uib_study_uib_sync_fs() {
           }
         }
       }
+      if (!empty($data['utvekslingsavtaler'])) {
+        foreach ($data['utvekslingsavtaler'] as $avtale) {
+          if (in_array($avtale['category'], $exchange_agreement_categories) && in_array('STUDENT', $avtale['category_persons'])) {
+            $study_count++;
+            $missing_refs = uib_study__update_study('exchange', $avtale, $nid, $studies_all);
+            if ($missing_refs) {
+              $incomplete_refs[$avtale['id']] = $missing_refs;
+            }
+            unset($unused_codes[$avtale['id']]);
+          }
+        }
+      }
     }
     elseif (is_null($data)) {
       uibx_log("Failed to fetch sted/$fspres_oid/info.json from fs-pres, aborting", "error");
@@ -92,7 +109,7 @@ function drush_uib_study_uib_sync_fs() {
       $delta = isset($study_node->field_uib_study_part_of['und']) ? count($study_node->field_uib_study_part_of['und']) : 0;
       $found = 0;
       foreach ($missing_refs as $missing) {
-        if ($studies_all[$missing]) {
+        if (!empty($studies_all[$missing])) {
           $incomplete->field_uib_study_part_of[$delta]->set($studies_all[$missing]);
           $delta++;
           $found++;
@@ -117,15 +134,30 @@ function drush_uib_study_uib_sync_fs() {
         $unused = node_load($study_nid);
         $unused->status = 0;
         node_save($unused);
-        uibx_log('Unpublished study: ' . $study_code);
+        if ($unused->field_uib_study_type['und'][0]['value'] == 'exchange') {
+          uibx_log('Unpublished exchange agreement: ' . $study_code);
+        }
+        else {
+          uibx_log('Unpublished study: ' . $study_code);
+        }
       }
     }
   }
 }
 
 function uib_study__update_study($type, $study, $ou_nid, &$existing) {
-  $no_path_prefix = $type == 'course' ? 'emne' : 'studieprogram';
-  $en_path_prefix = $type == 'course' ? $type : 'studyprogramme';
+  if ($type == 'course') {
+    $no_path_prefix = 'emne';
+    $en_path_prefix = 'course';
+  }
+  elseif ($type == 'program') {
+    $no_path_prefix = 'studieprogram';
+    $en_path_prefix = 'studyprogramme';
+  }
+  elseif ($type == 'exchange') {
+    $no_path_prefix = 'utvekslingsstudent';
+    $en_path_prefix = 'exchangestudent';
+  }
 
   $admin_user = &drupal_static(__FUNCTION__);
   if (!isset($admin_user)) {
@@ -173,6 +205,7 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     }
   }
 
+  $max_title_length = 250;
   $refs_incomplete = array();
   $studypoints_ranks = _uib_study__get_sp_ranks();
 
@@ -208,12 +241,12 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
       $metadata->title->set($study['id']);
     }
     else {
-      $metadata->title->set($study['title_no'] . ' / ' . $study['title_en']);
+      $metadata->title->set(drupal_substr($study['title_no'] . ' / ' . $study['title_en'], 0, $max_title_length));
     }
 
     // Populate Norwegian version
     $metadata->language->set('nb');
-    $metadata->language('nb')->field_uib_study_title->set($study['title_no']);
+    $metadata->language('nb')->field_uib_study_title->set(drupal_substr($study['title_no'], 0, $max_title_length));
     if (!$metadata->language('nb')->field_uib_study_title->value()) {
       $metadata->language('nb')->field_uib_study_title->set($study['id']);
     }
@@ -225,7 +258,7 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     }
 
     // Populate English version
-    $metadata->language('en')->field_uib_study_title->set($study['title_en']);
+    $metadata->language('en')->field_uib_study_title->set(drupal_substr($study['title_en'], 0, $max_title_length));
     if (!$metadata->language('en')->field_uib_study_title->value()) {
       $metadata->language('en')->field_uib_study_title->set($study['id']);
     }
@@ -274,6 +307,17 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     // NUS code
     if (isset($uib_nus_list[$nusId])) {
       $metadata->field_uib_nus->set($uib_nus_list[$nusId]);
+    }
+
+    // Country references
+    if (!empty($study['ref_countries'])) {
+      $delta = 0;
+      foreach ($study['ref_countries'] as $fs_country) {
+        if ($tid = uib_geography_term($fs_country)) {
+          $metadata->field_uib_study_country[$delta]->set($tid);
+          $delta++;
+        }
+      }
     }
 
     $metadata->save();
@@ -391,19 +435,19 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
         $title = $study['id'];
       }
       else {
-        $title = $study['title_no'] . ' / ' . $study['title_en'];
+        $title = drupal_substr($study['title_no'] . ' / ' . $study['title_en'], 0, $max_title_length);
       }
       if ($wrapper->title->value() != $title) {
         $wrapper->title->set($title);
         $edit[] = 'node title';
       }
 
-      if ($wrapper->language('nb')->field_uib_study_title->value() != $study['title_no']) {
-        $wrapper->language('nb')->field_uib_study_title->set($study['title_no']);
+      if ($wrapper->language('nb')->field_uib_study_title->value() != drupal_substr($study['title_no'], 0, $max_title_length)) {
+        $wrapper->language('nb')->field_uib_study_title->set(drupal_substr($study['title_no'], 0, $max_title_length));
         $edit[] = 'no title';
       }
-      if ($wrapper->language('en')->field_uib_study_title->value() != $study['title_en']) {
-        $wrapper->language('en')->field_uib_study_title->set($study['title_en']);
+      if ($wrapper->language('en')->field_uib_study_title->value() != drupal_substr($study['title_en'], 0, $max_title_length)) {
+        $wrapper->language('en')->field_uib_study_title->set(drupal_substr($study['title_en'], 0, $max_title_length));
         $edit[] = 'en title';
       }
 
@@ -451,6 +495,33 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
           }
         }
         $edit[] = 'part_of';
+      }
+
+      // Country references changes
+      $prev_refs = array();
+      foreach ($wrapper->field_uib_study_country->getIterator() as $delta => $term) {
+        $prev_refs[] = $term->raw();
+      }
+      $new_refs = array();
+      if (!empty($study['ref_countries'])) {
+        foreach ($study['ref_countries'] as $ref_code) {
+          $new_refs[] = uib_geography_term($ref_code);
+        }
+      }
+      sort($prev_refs);
+      sort($new_refs);
+      if ($prev_refs != $new_refs) {
+        $prev_max = count($prev_refs) - 1;
+        $delta = 0;
+        foreach ($new_refs as $ref_tid) {
+          $wrapper->field_uib_study_country[$delta]->set($ref_tid);
+          $delta++;
+        }
+        while ($prev_max >= $delta) {
+          $wrapper->field_uib_study_country[$delta]->set(NULL);
+          $delta++;
+        }
+        $edit[] = 'countries';
       }
 
       // Study point rank

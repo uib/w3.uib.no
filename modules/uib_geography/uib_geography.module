@@ -189,3 +189,34 @@ function uib_geography_sync() {
   }
 }
 
+/**
+ * Get term id for a specified FS country code
+ */
+function uib_geography_term($fs_country_code = NULL) {
+  static $codelist = array();
+  $tid = NULL;
+  if (is_numeric($fs_country_code) && $fs_country_code >= 0) {
+    if (isset($codelist[$fs_country_code])) {
+      $tid = $codelist[$fs_country_code];
+    }
+    else {
+      $fs_country_code = intval($fs_country_code);
+      $vocab_name = 'uib_geography';
+      $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'taxonomy_term')
+        ->propertyCondition('vid', $vocab->vid)
+        ->fieldCondition('field_fs_country_code', 'value', $fs_country_code);
+      $result = $query->execute();
+      if (!empty($result['taxonomy_term'])) {
+        $list = array_keys($result['taxonomy_term']);
+        $tid = $list[0];
+        $codelist[$fs_country_code] = $tid;
+      }
+      else {
+        uibx_log("Unable to find Taxonomy term for FS country code $fs_country_code", "warning");
+      }
+    }
+  }
+  return $tid;
+}
