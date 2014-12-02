@@ -10,6 +10,7 @@ include_once 'uib_content_list.features.inc';
  * Implements hook_preprocess_node()
  */
 function uib_content_list_preprocess_node(&$variables, $hook) {
+  global $user;
   if ($variables['page']) {
     if ($variables['type'] == 'uib_content_list') {
       $metadata = entity_metadata_wrapper('node', $variables['nid']);
@@ -20,7 +21,28 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         '#value' => $title,
         '#weight' => -45,
       );
-      $steps = ($metadata->field_uib_step->value());
+      $steps = array();
+      $all_steps = ($metadata->field_uib_step->value());
+      $allowed_user_roles = array('level 1', 'level 2', 'level 3');
+      if (count(array_intersect($user->roles, $allowed_user_roles)) > 0) {
+        $steps = $all_steps;
+      }
+      else {
+        $all_content_steps = array();
+        foreach($variables['content']['field_uib_step'] as $key => $step) {
+          if (is_numeric($key)) {
+            $all_content_steps[] = $step;
+            unset($variables['content']['field_uib_step'][$key]);
+          }
+        }
+        foreach($all_steps as $key => $step) {
+          $s = entity_load_single('node', $step->field_uib_step_content['und'][0]['target_id']);
+          if ($s->status == 1) {
+            $steps[] = $step;
+            $variables['content']['field_uib_step'][] = $all_content_steps[$key];
+          }
+        }
+      }
       if (!empty($steps)) {
         $query_string = drupal_get_query_parameters();
         $list_current_step = 0;
