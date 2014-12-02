@@ -4,7 +4,7 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-REL=15
+REL=16
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
