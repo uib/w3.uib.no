@@ -56,6 +56,10 @@ function uib_content_list_strongarm() {
             'weight' => '0',
             'visible' => FALSE,
           ),
+          'short_teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),
