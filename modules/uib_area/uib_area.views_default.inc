@@ -2551,6 +2551,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
+    'uib_content_list' => 'uib_content_list',
     'uib_testimonial' => 'uib_testimonial',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
