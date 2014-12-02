@@ -21,6 +21,7 @@ features[field_instance][] = field_collection_item-field_uib_step-field_uib_titl
 features[field_instance][] = node-uib_content_list-field_uib_area
 features[field_instance][] = node-uib_content_list-field_uib_display_style
 features[field_instance][] = node-uib_content_list-field_uib_lead
+features[field_instance][] = node-uib_content_list-field_uib_main_media
 features[field_instance][] = node-uib_content_list-field_uib_step
 features[node][] = uib_content_list
 features[variable][] = field_bundle_settings_node__uib_content_list

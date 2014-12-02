@@ -386,6 +386,19 @@ function uib_zen_preprocess_node(&$variables, $hook) {
     if ($variables['type'] == 'uib_external_content') {
       $variables['content']['title']['#path'] = $variables['field_uib_links']['und'][0]['url'];
     }
+    if ($variables['type'] == 'uib_content_list') {
+      if ($variables['field_uib_display_style']['und'][0]['value'] == 'workflow') {
+        $variables['node']->field_uib_main_media['und'][0] = array(
+          'uri' => '/sites/all/themes/uib/uib_zen/images/workflow-placeholder.png',
+        );
+        $variables['content']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media',array(
+            'type' => 'image',
+            'label' => 'hidden',
+            'settings' => array(),
+          )
+        );
+      }
+    }
     $variables['title'] = '';
   }
 

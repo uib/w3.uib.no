@@ -71,6 +71,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
 function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'uib_content_list_node_form') {
     hide($form['language']);
+    hide($form['field_uib_main_media']);
   }
 }
 
