@@ -116,9 +116,26 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         if (!empty($item['page_arguments'][0]->field_uib_study_category)) {
           $study_category = $item['page_arguments'][0]->field_uib_study_category['und'][0]['value'];
         }
+        if ($study_type == 'course') {
+          $study_type_title = t('Course');
+          if ($study_category != 'evu') {
+            $study_type_href = 'course';
+          }
+          else {
+            $study_type_href ='utdanning/evu/courses';
+          }
+        }
+        elseif ($study_type == 'exchange') {
+          $study_type_title = t('Exchange programme');
+          $study_type_href = 'exchangestudent';
+        }
+        else {
+          $study_type_title = t('Studyprogramme');
+          $study_type_href = 'studyprogramme';
+        }
         $uib_active_trail[2] = array(
-          'title' => ($study_type == 'course') ? t('Course') : t('Studyprogramme'),
-          'href' => ($study_type == 'course') ? ($study_category == 'evu' ? 'utdanning/evu/courses' : 'course') : 'studyprogramme',
+          'title' => $study_type_title,
+          'href' => $study_type_href,
           'link_path' => '',
           'localized_options' => array(),
           'type' => 0,
