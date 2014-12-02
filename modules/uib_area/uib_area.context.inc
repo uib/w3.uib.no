@@ -57,6 +57,7 @@ function uib_area_context_default_contexts() {
       'values' => array(
         'area' => 'area',
         'uib_article' => 'uib_article',
+        'uib_content_list' => 'uib_content_list',
         'uib_testimonial' => 'uib_testimonial',
       ),
       'options' => array(
