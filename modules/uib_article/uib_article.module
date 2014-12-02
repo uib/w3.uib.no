@@ -181,12 +181,25 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       $params = drupal_get_query_parameters();
       if(isset($params['translation']) && isset($params['target'])) {
         global $language;
+        global $base_url;
         $langs = language_list();
         $target = $params['target'];
+        $translation = $params['translation'];
+
+        //Redirecting user to the language of the translation
+        if($language->language != $target) {
+          $get = $_GET;
+          //Drupal adds a q parameter that is removed before creating the new GET string
+          if(isset($get['q'])) unset($get['q']);
+          $get = http_build_query($get);
+          header("Location: $base_url/$target/node/add/uib-article?$get");
+          exit();
+        }
+
         $target_language = ($language->language == $target ? $langs[$target]->native : $langs[$target]->name);
         if($language->language == 'nb' && $target == 'en') $target_language = 'Engelsk';
 
-        $original = node_load($params['translation']);
+        $original = node_load($translation);
         if ($original){
           $msg = t('Currently creating the @target_language translation of <a href=@original_url>@original_title</a>.',
             array(
