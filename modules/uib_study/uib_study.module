@@ -728,7 +728,7 @@ function uib_study_block_view($delta = '') {
                 if (!empty($data['restinfo']['studietynr'])) {
                   $fs_study_type_nr = check_plain($data['restinfo']['studietynr']);
                 }
-                $rows[] = array('* ' . t('Application code'), $fs_study_type_nr);
+                $rows[] = array(t('Application code') . '*', $fs_study_type_nr);
                 $belongs_to = uib_study__area($node, $language->language);
                 if ($belongs_to) {
                   $rows[] = array(t('Belongs to'), $belongs_to);
