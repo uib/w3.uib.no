@@ -1195,6 +1195,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_study_code']);
       hide($form['field_uib_study_part_of']);
       hide($form['field_uib_nus']);
+      hide($form['field_uib_study_country']);
       // hide language selector
       hide($form['language']);
       // hide additional settings
