@@ -745,10 +745,11 @@ function uib_zen_preprocess_node(&$variables, $hook) {
       hide($variables['content']['field_uib_study_image']);
 
       $uib_study_links = '';
-      if (isset($variables['content']['field_uib_link_section'])) {
+      $uib_study_exchange_links = __uib_render_block('uib_study', 'study_static_links', 4);
+     if (isset($variables['content']['field_uib_link_section'])) {
         $uib_study_links = $variables['content']['field_uib_link_section'];
+        hide($variables['content']['field_uib_link_section']);
       }
-      hide($variables['content']['field_uib_link_section']);
 
       $uib_study_feed = '';
       if (isset($variables['content']['field_uib_feed'])) {
@@ -797,6 +798,7 @@ function uib_zen_preprocess_node(&$variables, $hook) {
                     render($uib_study_testimonial) .
                     render($uib_study_related) .
                     render($uib_study_links) .
+                    render($uib_study_exchange_links) .
                     render($uib_study_feed) .
                     render($uib_service_links),
         '#weight' => 10,

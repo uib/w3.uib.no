@@ -39,6 +39,10 @@ function uib_study_block_info() {
       'info' => t('EVU facts'),
       'status' => TRUE,
     ),
+    'study_static_links' => array(
+      'info' => t('A set of static links for exchange agreements'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -896,7 +900,20 @@ function uib_study_block_view($delta = '') {
           $block = uib_study__evu_courses_block($node);
         }
       }
+      break;
 
+    case 'study_static_links':
+      $node = menu_get_object();
+      if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
+        $markup = array();
+        $markup[] = l(t('How to apply for exchange'), 'utdanning/49395/søknadsweb-instruksjonar');
+        $markup[] = l(t('Online exchange application form'), 'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib');
+        $markup[] = l(t('Norwegian state educational loan fund'), 'http://www.lanekassen.no/');
+        $markup[] = l(t('Diplomatic relations'), 'http://www.regjeringen.no/nb/dep/ud/dep/forbindelser.html?id=447053');
+        $markup[] = l(t('Association for Norwegian students abroad'), 'http://www.ansa.no/');
+        $block['title'] = t('Relevant links');
+        $block['content'] = '<ul><li>' . implode('</li><li>', $markup) . '</li></ul>';
+       }
       break;
   }
 
