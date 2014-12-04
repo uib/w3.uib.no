@@ -1,3 +1,18 @@
+# Release 16 _2014-12-04_
+
+I denne releasen har vi hatt fokus på arbeidet med utvekslingsavtaler, jobbet videre med innholdsliste og har begynt arbeidet med ny kalender. I tillegg har vi gjort enkelte feilrettinger.
+
+- Vi har begynt arbeidet med ny kalender #8159
+- Utvekslingsavtalene skal få ny layout og visning på w3 og vi har hatt flere saker som handler om dette #8800 #8793 #8711 #8853 
+- Det har blitt gjort endringer med integrasjonen mot FS på grunn av utvekslingsavtalene #8853 #8763
+- Webdesk har fått noen små forbedringer #8632
+- Upublisert innhold viste i innholdslisten selv når man var logget ut, dette er nå skjult for alle som ikke har en rolle i systemet #8532
+- Sidebar er nå lagt til på innholdslister #8531
+- Det er nå mulig å legge innholdslister inn i tilknyttet innhold #8371
+- Tilknyttet innhold blir nå ikke kopiert over til en sak som blir oversatt på grunn av språkproblemer #8580
+- Det har blitt gjort slik at brukere blir sendt til riktig språkversjon av webdesken når de oversetter en sak #8488
+- I tillegg har det blitt lagt til litt ekstra hjelpetekst for brukere som oversetter saker #8489 
+
 # Release 15 _2014-11-21_
 
 R15 retter en del feil, introduserer en ny innholdstype (Innholdsliste) og gjør en del generelle endringer.
