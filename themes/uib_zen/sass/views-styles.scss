@@ -292,7 +292,8 @@ table.cols-6 {
 
 .view-courses,
 .view-special-study-listings,
-.view-uib-taxonomy-term .view-content {
+.view-uib-taxonomy-term .view-content,
+.view-exchange-agreements {
   @include study-list();
   li:nth-child(odd) {
     @extend %odd-study-item;
@@ -304,6 +305,34 @@ table.cols-6 {
     li:nth-child(odd) {
       @extend %odd-study-item;
     }
+  }
+}
+
+.view-exchange-agreements {
+  .views-field-field-uib-study-title {
+    .field-content {
+      width: 100%;
+      display: table;
+    }
+    .agreement-title {
+      display: table-cell;
+      width: 75%;
+      text-align: left;
+    }
+    .studentreport-ref {
+      display: table-cell;
+      width: 25%;
+      text-align: right;
+      padding-right: 5px;
+      a {
+        font-size: 1em;
+      }
+    }
+  }
+  .attachment-before {
+    border-top: 2px solid $font-color-dark;
+    padding-top: 5px;
+    font-weight: bold;
   }
 }
 

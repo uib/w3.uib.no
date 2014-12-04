@@ -250,3 +250,15 @@ function uib_study_update_7015() {
   db_query("UPDATE url_alias SET alias = replace(alias, 'exchangestudent', 'exchange-agreement') WHERE alias like 'exchangestudent/%'");
   drupal_path_alias_whitelist_rebuild();
 }
+
+/**
+ * Add Norwegian path alias for exchange areement view page
+ */
+function uib_study_update_7016() {
+  $path = array(
+    'source' => 'exchange-agreement',
+    'alias' => 'utvekslingsavtale',
+    'language' => 'nb',
+  );
+  path_save($path);
+}

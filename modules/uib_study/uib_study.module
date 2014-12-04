@@ -1655,6 +1655,39 @@ function uib_study_views_pre_render(&$view) {
     ksort($sort_array);
     $view->result = $sort_array;
   }
+
+  if ($view->name == 'exchange_agreements') {
+    $msg = array();
+    $msg[] = t('Displaying') . ' ' . count($view->result) . ' ' . t('exchange agreements');
+    $glue = t('for');
+
+    if (!empty($view->filter['field_uib_study_code_value']->value)) {
+      $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_study_code_value']->value . '" ' . t('study programme');
+      $glue = '';
+    }
+    if (!empty($view->filter['field_uib_ou_title_value']->value)) {
+      $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_ou_title_value']->value . '" ' . t('faculty/department');
+      $glue = '';
+    }
+    if (!empty($view->filter['field_uib_geographic_name_value']->value)) {
+      $msg[] = t('with') . ' "' . $view->filter['field_uib_geographic_name_value']->value . '"';
+    }
+    $view->attachment_before = implode(' ', $msg);
+
+    // add numbers to group names
+    $groups = array();
+    foreach ($view->result as $row) {
+      if (!isset($groups[$row->name])) {
+        $groups[$row->name] = 1;
+      }
+      else {
+        $groups[$row->name]++;
+      }
+    }
+    foreach ($view->result as $delta => $row) {
+      $view->result[$delta]->field_field_uib_geographic_name[0]['rendered']['#markup'] .= ' (' . $groups[$view->result[$delta]->name] . ')';
+    }
+  }
 }
 
 /**
