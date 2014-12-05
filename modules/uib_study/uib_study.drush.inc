@@ -55,6 +55,8 @@ $study_count = 0;
 
     // look for fag belonging to this ou
     $fspres_oid = implode('.', array('184', (int)$o1, (int)$o2));
+    if ($fspres_oid == '184.0.0')
+      $fspres_oid = '184';
     $data = uib_study__fspres_get_json("sted/$fspres_oid/info.json");
     if (!empty($data)) {
       if (isset($data['emner_fag'])) {
