@@ -142,3 +142,10 @@ function uib_setup_update_7012() {
 function uib_setup_update_7013() {
   module_enable(array('datepicker', 'uib_calendar2'));
 }
+
+/**
+ * Enable new module: imagemagick
+ */
+function uib_setup_update_7014() {
+  module_enable(array('imagemagick'));
+}
