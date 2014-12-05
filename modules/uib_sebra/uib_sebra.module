@@ -1,6 +1,8 @@
 <?php
 
 function uib_sebra__sync_places($limit) {
+  uib_sebra__update_uib_ou('000000');
+
   $places = uib_sebra__sws_get('places?status=aktiv');
   if (empty($places)) {
     uibx_log('Sebra claims no active places', 'error');

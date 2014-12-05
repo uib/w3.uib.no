@@ -19,6 +19,18 @@ class SebraPlace extends stdClass {
     if (strlen($id) != 6) {
       throw new Exception("Place id $id is invalid (needs to be 6 digits)");
     }
+    if ($id == '000000') {
+      $this->id = $id;
+      $this->name = "Universitetet i Bergen";
+      $this->address = '';
+      $this->postbox = '7800';
+      $this->postcode = '5020';
+      $this->phone = '+47 55580000';
+      $this->fax = NULL;
+      $this->alias = 'UiB';
+      $this->maildomain = 'uib.no';
+      return;
+    }
     $place = uib_sebra__sws_get('place?code=' . $id);
     if (empty($place)) {
       throw new Exception("Place $id not found");
