@@ -110,7 +110,7 @@ sub do_update {
     my @closed_issues = $OPT{full} ? () : (grep !$_->{open}, eval { _get_issues() });
 
     my @all_issues;
-    for my $project (qw(w3 w3-ideas)) {
+    for my $project (qw(w3f w3 w3-ideas)) {
 	for my $status (qw(open closed)) {
 	    next if $status eq "closed" && @closed_issues;
 
