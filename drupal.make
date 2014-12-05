@@ -27,7 +27,7 @@ projects[better_formats][patch][] = https://www.drupal.org/files/issues/better_f
 projects[better_formats][patch][] = http://cgit.drupalcode.org/better_formats/patch/?id=ca0822a94fc79a3b3b69ae96d1e3cb43c61aaa15
 projects[bot][revision] = d0e10c65616f267543e717addc17422979f83bd2
 projects[calendar][version] = 3.5
-projects[coder][version] = 2.2
+projects[coder][version] = 2.3
 projects[context][version] = 3.3
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.4
@@ -60,6 +60,7 @@ projects[geofield][version] = 2.3
 projects[geophp][version] = 1.7
 projects[google_analytics][version] = 2.0
 projects[i18n][version] = 1.11
+projects[imagemagick][version] = 1.0
 projects[job_scheduler][version] = 2.0-alpha3
 projects[l10n_client][version] = 1.3
 projects[l10n_update][version] = 1.0
