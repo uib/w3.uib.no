@@ -305,7 +305,7 @@ function uib_user_block_view($delta = '') {
                 $limit = explode('#', $url);
               }
               $limit = (isset($limit[1]) && is_numeric($limit[1])) ? $limit[1] : 5;
-              $elements[$delta] = uib_feed__format($url, $item['title'], $limit, array('uib_user__feed_format_post_render'));
+              $elements[$delta] = uib_feed__format($url, $item['title'], $limit, array('uib_feed__format_pre_render'), array('uib_user__feed_format_post_render'));
             }
           }
           $block['content'] = $elements;

@@ -70,6 +70,9 @@ function uib_filter__process($text, $filter) {
           return '<div class="ltfl_bookdisplay_widget" id="ltfl_widget_' . $arg . '"></div>
 <script type="text/javascript" src="https://ltfl.librarything.com/forlibraries/widget.js?id=2175-2558198918"></script>';
         }
+      case 'positions':
+        $positions = uib_area__jobbnorge_positions($arg);
+        return render($positions);
       }
       return '(' . check_plain($matches[1]) . ' ' . t('unrecognized') . ')';
     },

@@ -11,13 +11,13 @@
  * @param array  $post_render Array with names of functions to be used in post render to
  *                            format output. By default empty.
  */
-function uib_feed__format($url, $title = '', $limit = 5, $post_render = array()) {
+function uib_feed__format($url, $title = '', $limit = 5, $pre_render = array() ,$post_render = array()) {
   return array(
     '#cache' => array(
       'keys' => array($url, $title, $limit),
       'expire' => time() + 30*60,
     ),
-    '#pre_render' => array('uib_feed__format_pre_render'),
+    '#pre_render' => $pre_render,
     '#post_render' => $post_render,
   );
 }
@@ -60,4 +60,57 @@ function uib_feed__format_pre_render($element) {
     $element = array();
   }
   return $element;
+}
+
+/**
+ * Pre render formatting for global posistions page in full page view mode
+ */
+function uib_feed__format_positions_pre_render($element) {
+  global $language;
+  $app_dead = $language->language == 'en' ? ' - Application deadline: ' : ' - Søknadsfrist: ';
+  list($url, $title, $limit) = $element['#cache']['keys'];
+  $content = @file_get_contents($url);
+  if (!$content) {
+    return $element;
+  }
+  $content = str_replace($app_dead,' ]]> </title><deadline>', $content);
+  $content = str_replace(' ]]> </title><link>', '</deadline><link>', $content);
+  $xml = @simplexml_load_string($content);
+  if ($xml === FALSE) {
+    return $element;
+  }
+  if ($xml->channel->item) {
+    $element['list'] = array(
+      '#items' => array(),
+      '#theme' => 'item_list',
+      '#attributes' => array(
+        'class' => 'uib-vacancies',
+      ),
+    );
+    if ($title != '') {
+      $element['list']['#title'] = $title;
+    }
+    foreach ($xml->channel->item as $item) {
+      $place = '';
+      $description = (string) $item->description;
+      if (strpos($description, ' - ') !== FALSE) {
+        $description = explode(' - ', $description);
+        $place = trim(array_pop($description)) . ' - ';
+      }
+      $entry = '<h2>' . l($item->title, $item->link) . '</h2>';
+      $entry .= '<p>' . $place . t('Application deadline') . ': ' . $item->deadline . '</p>';
+
+      $element['list']['#items'][] = $entry;
+    }
+  }
+  return $element;
+}
+
+/**
+ * Post render formatting for global positions page in full page view mode
+ */
+function uib_feed__format_positions_post_render($markup) {
+  $markup = str_replace(array('<h3>', '</h3>'), array('<h1>', '</h1>'), $markup);
+  $markup = str_replace(array('<h2>', '</h2>'), array('<h3>', '</h3>'), $markup);
+  return $markup;
 }

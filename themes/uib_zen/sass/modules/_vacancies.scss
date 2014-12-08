@@ -1,0 +1,13 @@
+.uib-vacancies {
+  article .item-list & {
+    list-style: none;
+  }
+  li {
+    .item-list & {
+      margin-bottom: 1.5em;
+    }
+  }
+  h3 {
+    font-size: 1.2em;
+  }
+}

@@ -163,7 +163,7 @@ function uib_area_block_view($delta='') {
         if ($area->language == 'en') {
           $feed .= '&langid=2';
         }
-        $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_area__feed_format_post_render'));
+        $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_feed__format_pre_render'), array('uib_area__feed_format_post_render'));
       }
     break;
     case 'feed':
@@ -176,7 +176,7 @@ function uib_area_block_view($delta='') {
               $limit = explode('#', $url);
             }
             $limit = (isset($limit[1]) && is_numeric($limit[1])) ? $limit[1] : 5;
-            $elements[$delta] = uib_feed__format($url, $item['title'], $limit, array('uib_area__feed_format_post_render'));
+            $elements[$delta] = uib_feed__format($url, $item['title'], $limit, array('uib_feed__format_pre_render') ,array('uib_area__feed_format_post_render'));
           }
         }
         $block['content'] = $elements;
@@ -1703,10 +1703,6 @@ function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $
  * Implements hook_menu().
  */
 function uib_area_menu() {
-  $items['positions'] = array(
-    'page callback' => 'uib_area__jobbnorge_positions',
-    'access callback' => TRUE,
-  );
   $items['node/%node/ties'] = array(
     'title' => 'Ties',
     'page callback' => 'uib_area__ties',
@@ -1729,13 +1725,16 @@ function uib_area_menu() {
 /**
  * Render the positions page
  */
-function uib_area__jobbnorge_positions() {
+function uib_area__jobbnorge_positions($jobbnorge_id = FALSE) {
   global $language;
   $feed = 'http://www.jobbnorge.no/joblist/joblistbuilder.ashx?id=821a69c9-7674-4e36-90f8-41e443b99064';
+  if ($jobbnorge_id) {
+    $feed .= '&depid=' . $jobbnorge_id;
+  }
   if ($language->language == 'en') {
     $feed .= '&langid=2';
   }
-  return uib_feed__format($feed, t('Open Positions at UiB'), $limit = 999, array('uib_area__feed_format_post_render'));
+  return uib_feed__format($feed, $title = '', $limit = 999, array('uib_feed__format_positions_pre_render'), array('uib_feed__format_positions_post_render'));
 }
 
 /*
