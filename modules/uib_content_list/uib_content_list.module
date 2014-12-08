@@ -77,9 +77,13 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
           );
         }
         $list_current_nid = $steps[$list_current_step]->field_uib_step_content['und'][0]['target_id'];
-        $list_current_node = node_view(node_load($list_current_nid));
+        $node = node_load($list_current_nid);
+        if (empty($node->field_uib_related_persons)) {
+          unset($node->field_related_persons_label);
+        }
+        $node_view = node_view($node);
         $variables['content']['list_current_step'] = array(
-          '#markup' => drupal_render($list_current_node),
+          '#markup' => drupal_render($node_view),
           '#weight' => 40,
         );
       }
