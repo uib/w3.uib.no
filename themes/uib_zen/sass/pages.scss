@@ -113,8 +113,12 @@ body {
   position: relative;
   overflow: hidden;
 }
-.page-node-translate #page {
-  overflow: visible;
+.page-node-translate,
+.page-node-edit,
+.page-node-add {
+  #page {
+    overflow: visible;
+  }
 }
 /* Header: Styling for Webdesk */
 .page-node-add,
