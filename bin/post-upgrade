@@ -4,7 +4,7 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-REL=16
+REL=17
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -14,6 +14,7 @@ fi
 set -x
 
 date +%FT%T
-bin/site-drush uib-fs-geo-sync --verbose
+bin/site-drush uib-sebra-places --verbose
+bin/site-drush uib-sync-fs --verbose
 bin/site-drush cc all
 date +%FT%T
