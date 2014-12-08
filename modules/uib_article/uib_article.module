@@ -201,23 +201,17 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
 
         $original = node_load($translation);
         if ($original){
-          $msg = t('Currently creating the @target_language translation of <a href=@original_url>@original_title</a>.',
-            array(
-              '@target_language' => $target_language,
-              '@original_url' => url('node/' . $original->nid),
-              '@original_title' => $original->title,
-          ));
+          $msg = t('Currently creating the @language translation of: ', array('@language' => $target_language));
+          $msg .= l($original->title, 'node/'. $original->nid);
           if (isset($area_id)) {
             // Get the area that will be assigned to the new article
             $area = node_load($area_id);
             $area_trans = translation_node_get_translations($area->tnid);
             if(isset($area_trans[$target]))
               $area = $area_trans[$target];
-            $msg .= t('<br />This translation will be added to the <a href=@area_url>@area_name</a> area.',
-              array(
-                '@area_url' => url('node/' . $area->nid),
-                '@area_name' => $area->title,
-            ));
+            $msg .= '<br />';
+            $msg .= t('This translation will be added to the area: ');
+            $msg .= l($area->title, 'node/' . $area->nid);
           }
           drupal_set_message($msg, 'warning');
         }
