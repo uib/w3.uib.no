@@ -48,91 +48,16 @@ function uib_calendar2_block_view($delta='') {
 /**
  * Generates the render array for the top level calendar page.
  */
-function uib_calendar2__index_page($limit=20) {
+function uib_calendar2__index_page() {
   $page = array();
   $page['header'] = array('#markup' => "<h1>Calendar Test " . date('Y-m-d H:i:s') . "</h1>");
 
   $form = drupal_get_form('uib_calendar2_form');
-
-  $offset = $limit - 20;
-  if ($offset < 0) {
-    $offset = 0;
-  }
-  $event_types = array();
   $event_types = $form['event']['type']['#value'];
-  $sql_event_types = "";
-
-  $dayOfYear = strftime('%Y-%m-%d');
-  $multiOverlap = strftime('%d %m %Y');
-  if (isset($form['datepicker']['#value']) && $form['datepicker']['#value']['date'] != 0) {
-    $dayOfYear = strftime('%Y-%m-%d',strtotime($form['datepicker']['#value']['date']));
-    $multiOverlap = strftime('%d %m %Y',strtotime($form['datepicker']['#value']['date']));
-  }
-
-  // adding language variable to query*/
+  $dayOfYear = $form['datepicker']['#value']['date'];
   $langVal = $form['language']['#value'];
-  if (is_numeric($langVal)) {
-    if ($langVal == 0) {
-      $langVal = '%n%';
-    } else if ($langVal == 1){
-      $langVal = 'en';
-    } else {
-      $langVal = 'nb';
-    }
-  }
-  $sqlOptions[':lang'] = $langVal;
 
-  // adding event types selected to query
-  $i = 0;
-  if (!in_array("any",$event_types) && !in_array("Hva som helst",$event_types)) {
-    foreach ($event_types as $event_type) {
-      $i++;
-      if ($i == 1)
-        $sql_event_types = "AND ( ";
-      else
-        $sql_event_types .= " OR ";
-      $sql_event_types .= "( field_data_field_uib_event_type.field_uib_event_type_value like :$i )";
-      $sqlOptions[":$i"] = $event_type;
-      if ($i == count($event_types))
-        $sql_event_types .= " ) ";
-    }
-  }
-
-  // adding day variable to query
-  $sqlOptions[':day'] = array(':day' => $dayOfYear);
-
-  $query = db_query_range("
-      SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
-      FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
-      WHERE field_uib_article_type_value like 'event'
-      AND field_data_field_uib_article_type.entity_id = node.nid
-      AND field_data_field_uib_date.entity_id = node.nid
-      AND field_data_field_uib_event_type.entity_id=node.nid
-      AND substring(cast (field_uib_date_value as text) from 1 for 10) like substring(cast (field_uib_date_value2 as text) from 1 for 10)
-      AND node.language like :lang
-      $sql_event_types
-      AND field_data_field_uib_date.field_uib_date_value >= :day
-      ORDER BY field_uib_date_value ASC
-    ", $offset, $limit, $sqlOptions);
-
-  $sqlMultiOptions = array();
-  $sqlMultiOptions[':lang'] = $langVal;
-  $sqlMultiOptions[':day'] = $dayOfYear;
-  $queryMultiDay = db_query("
-      SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
-      FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
-      WHERE field_uib_article_type_value like 'event'
-      AND field_data_field_uib_article_type.entity_id = node.nid
-      AND field_data_field_uib_date.entity_id = node.nid
-      AND field_data_field_uib_event_type.entity_id=node.nid
-      AND substring(cast (field_uib_date_value as text) from 1 for 10) not like substring(cast (field_uib_date_value2 as text) from 1 for 10)
-      AND node.language like :lang
-      AND field_data_field_uib_date.field_uib_date_value2 >= :day
-      AND :day >= field_data_field_uib_date.field_uib_date_value
-      ORDER BY field_uib_date_value2 ASC
-      ", $sqlMultiOptions);
-
-  $nodes = $query->fetchAll();
+  $nodes = get_event_nodes($event_types, $dayOfYear, $langVal, 0, 0);
   $printDate = date('Y-m-00');
   $lastItemPrintDate = "";
   $lastItemPrintTime = "";
@@ -150,23 +75,7 @@ function uib_calendar2__index_page($limit=20) {
   }
 
   if ($lastItemPrintDate != "" && $lastItemPrintTime != "") {
-    $sqlOptions[':lastPrintTime'] = $lastItemPrintTime;
-    $sqlOptions[':day'] = $lastItemPrintDate;
-    $queryLastDay = db_query("
-        SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
-        FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
-        WHERE field_uib_article_type_value like 'event'
-        AND field_data_field_uib_article_type.entity_id = node.nid
-        AND field_data_field_uib_date.entity_id = node.nid
-        AND field_data_field_uib_event_type.entity_id=node.nid
-        AND substring(cast (field_uib_date_value as text) from 1 for 10) like substring(cast (field_uib_date_value2 as text) from 1 for 10)
-        AND node.language like :lang
-        $sql_event_types
-        AND substring(cast (field_uib_date_value as text) from 1 for 10) = :day
-        AND field_uib_date_value > :lastPrintTime
-        ORDER BY field_uib_date_value ASC
-        ",$sqlOptions);
-    $nodesLastDay = $queryLastDay->fetchAll();
+    $nodesLastDay = get_event_nodes($event_types, $lastItemPrintTime, $langVal, 0, 1);
     foreach ($nodesLastDay as $node) {
       $time = date('H.i',strtotime($node->date1.'GMT'));
       $page[$node->nid] = array('#markup' => '<li>' . $time . ' : ' . l($node->title, "node/$node->nid") . '</li>');
@@ -175,9 +84,9 @@ function uib_calendar2__index_page($limit=20) {
   $page['multiday'] = array('#markup' =>
     '<h2 style=clear:both>'
     . t('Multiday events running ')
-    . t($multiOverlap)
+    . t($dayOfYear)
     . '</h2>');
-  $nodesMulti = $queryMultiDay->fetchAll();
+  $nodesMulti = get_event_nodes($event_types, $dayOfYear, $langVal, 1, 0);
   foreach ($nodesMulti as $node) {
     $page[$node->nid] = array('#markup' => '<li>' . l($node->title, "node/$node->nid") . '</li>');
   }
@@ -196,6 +105,7 @@ function uib_calendar2_form($form, &$form_state) {
   $form['datepicker'] = array(
     '#type' => 'datepicker',
     '#date_format' => 'Y-m-d',
+    '#default_value' => date('Y-m-d'),
   );
   $form['language'] = array(
     '#type' => 'radios',
@@ -248,4 +158,55 @@ function uib_calendar2_form_submit($form, &$form_state){
  */
 function uib_calendar2_form_validate($form, &$form_state) {
   // not implemented
+}
+
+function get_event_nodes($event_types, $date, $language, $multidayevent, $lastday) {
+  $sqlOptions = array();
+  $day_not = "";
+  if ($multidayevent)
+    $day_not = "NOT";
+
+  $langVal = "nb";
+  if (is_numeric($language) && $language==1) {
+    $langVal = "en";
+  }
+
+  $sql = "SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
+        FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
+        WHERE field_uib_article_type_value like 'event'
+        AND field_data_field_uib_article_type.entity_id = node.nid
+        AND field_data_field_uib_date.entity_id = node.nid
+        AND field_data_field_uib_event_type.entity_id = node.nid
+        AND substring(cast (field_uib_date_value as text) from 1 for 10) $day_not LIKE substring(cast (field_uib_date_value2 as text) from 1 for 10)";
+
+  if ($language != 0) {
+    $sql .= " AND node.language like :lang ";
+    $sqlOptions[":lang"] = $langVal;
+  }
+
+  $sqlOptions[":day"] = substr($date,0,10);
+  if (!$multidayevent && !$lastday) {
+    $sql .= " AND field_data_field_uib_date.field_uib_date_value >= :day ";
+  }
+  elseif ($multidayevent && !$lastday) {
+    $sql .= " AND field_data_field_uib_date.field_uib_date_value2 >= :day AND :day >= field_data_field_uib_date.field_uib_date_value ";
+  }
+  elseif (!$multidayevent && $lastday) {
+    $sql .= " AND substring(cast (field_uib_date_value as text) from 1 for 10) = :day AND field_uib_date_value > :lastPrintTime ";
+    $sqlOptions[":lastPrintTime"] = $date;
+  }
+
+  if (!empty($event_types) && !in_array("any", $event_types)) {
+    $sql .= " AND field_data_field_uib_event_type.field_uib_event_type_value IN (:eventtypes)";
+    $sqlOptions[":eventtypes"] = array_values($event_types);
+  }
+
+  if ($multidayevent) {
+    $sql .= " ORDER BY field_uib_date_value2 ASC";
+  }
+  else {
+    $sql .= " ORDER BY field_uib_date_value ASC LIMIT 20";
+  }
+
+  return db_query($sql, $sqlOptions)->fetchAll();
 }
