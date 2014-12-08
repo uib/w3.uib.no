@@ -157,8 +157,8 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $en_path_prefix = 'studyprogramme';
   }
   elseif ($type == 'exchange') {
-    $no_path_prefix = 'utvekslingsstudent';
-    $en_path_prefix = 'exchangestudent';
+    $no_path_prefix = 'utvekslingsavtale';
+    $en_path_prefix = 'exchange-agreement';
   }
 
   $admin_user = &drupal_static(__FUNCTION__);
