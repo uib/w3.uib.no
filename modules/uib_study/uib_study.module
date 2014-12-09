@@ -792,7 +792,7 @@ Tredje dagen ville Askeladden i vei.'
                 // Table footnote
                 $rows[] = array(
                   'data' => array(array(
-                    'data' => '* On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.',
+                    'data' => '* ' . t('On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.'),
                     'colspan' => 2,
                     )),
                   'class' => array('study-table-footnote'),
