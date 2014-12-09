@@ -117,7 +117,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
   }
 }
 
-/*
+/**
  * Implements hook_form_alter()
  */
 function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
@@ -127,7 +127,7 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-/*
+/**
  * Implements hook_node_submit()
  */
 function uib_content_list_node_submit($node, $form, &$form_state) {
@@ -414,6 +414,37 @@ function uib_content_list_menu_local_task_submit($form, &$form_state, $uib_conte
       // Delete action
       menu_link_delete($form_state[$uib_content_type]['menu_link']['mlid']);
       drupal_set_message(t('Menu link deleted.'), 'status', FALSE);
+    }
+  }
+}
+
+/**
+ * Implements hook_node_validate()
+ */
+function uib_content_list_node_validate($node, $form, &$form_state) {
+  if ($form["#form_id"] == "uib_content_list_node_form") {
+    global $user;
+    if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
+      $area_id = $form_state['values']['field_uib_area']['und'][0]['target_id'];
+      if ($area_id != "") {
+        $area_node = node_load($area_id);
+        if (!uib_area__is_content_manager($area_node, $user)) {
+          $number_of_areas = 0;
+          foreach ($form_state['values']['field_uib_area']['und'] as $key => $target) {
+            if (is_numeric($key) && !empty($target['target_id'])) {
+              $number_of_areas++;
+            }
+          }
+          $message = t('You must be content manager of ');
+          if ($number_of_areas > 1) {
+            $message .= t('the first area');
+          }
+          else {
+            $message .= t('the area');
+          }
+          form_set_error('field_uib_area][und][0', $message . ': ' . $area_node->title);
+        }
+      }
     }
   }
 }
