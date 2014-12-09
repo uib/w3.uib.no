@@ -100,9 +100,7 @@ function uib_content_list_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_uib_content_list';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
+  $strongarm->value = array();
   $export['menu_options_uib_content_list'] = $strongarm;
 
   $strongarm = new stdClass();
