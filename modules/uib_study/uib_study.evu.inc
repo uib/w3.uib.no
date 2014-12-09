@@ -5,25 +5,40 @@
  */
 function uib_study__evu_courses_page(){
   $page = array(
-    'form' => drupal_get_form('uib_study__evu_courses_page_form'),
+    'form' => uib_study__evu_courses_get_form(),
     'list' => uib_study__evu_courses_page_list(),
   );
   return $page;
 }
 
 /**
+ *  Builds the uib_study__evu_courses_page_form as a get from
+ */
+function uib_study__evu_courses_get_form() {
+  $state = array('method' => 'get');
+  $form = drupal_build_form('uib_study__evu_courses_page_form', $state);
+  unset($form['form_build_id']);
+  return $form;
+}
+
+/**
  * Creates the form to filter evu courses
  */
 function uib_study__evu_courses_page_form($form, &$form_state){
-  $form['semesters'] = array(
-    '#type' => 'checkboxes',
-    '#options' => array('autumn' => t('Autumn'),'spring'=> t('Spring')),
-    '#title' => t('Filter by Semester'),
+  $form['autumn'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Autumn'),
+  );
+  $form['spring'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Spring'),
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Apply'),
   );
+  $form['#method'] = 'get';
+  $form['#token'] = FALSE;
   return $form;
 }
 
@@ -31,18 +46,20 @@ function uib_study__evu_courses_page_form($form, &$form_state){
  * Processes the submitted form, updates the $semester global variable
  */
 function uib_study__evu_courses_page_form_submit ($form, &$form_state){
-  $form_semesters = $form_state['values']['semesters'];
-  $form_state['storage']['semesters'] = $form_semesters;
+  foreach (array('spring', 'autumn') as $key){
+    $form_state['storage'][$key] = $form_state['values'][$key];
+    $$key = $form_state['values'][$key];
+  }
   $form_state['rebuild'] = TRUE;
 
   global $semester;
-  if ($form_semesters['autumn'] && !$form_semesters['spring']){
+  if ($autumn && !$spring){
     $semester = 'H';
   }
-  elseif(!$form_semesters['autumn'] && $form_semesters['spring']){
+  elseif (!$autumn && $spring){
     $semester = 'V';
   }
-  elseif($form_semesters['autumn'] && $form_semesters['spring']){
+  elseif ($autumn && $spring){
     $semester = 'HV';
   }
   else {
