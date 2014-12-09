@@ -241,3 +241,12 @@ function uib_study_update_7013() {
 function uib_study_update_7014() {
   path_delete(array('alias' => 'utdanning/evu/courses',));
 }
+
+/**
+ * Replace exchange agreement aliases
+ */
+function uib_study_update_7015() {
+  db_query("UPDATE url_alias SET alias = replace(alias, 'utvekslingsstudent', 'utvekslingsavtale') WHERE alias like 'utvekslingsstudent/%'");
+  db_query("UPDATE url_alias SET alias = replace(alias, 'exchangestudent', 'exchange-agreement') WHERE alias like 'exchangestudent/%'");
+  drupal_path_alias_whitelist_rebuild();
+}
