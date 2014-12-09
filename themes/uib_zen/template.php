@@ -741,6 +741,14 @@ function uib_zen_preprocess_node(&$variables, $hook) {
       $uib_study_image = '';
       if (isset($variables['content']['field_uib_study_image'])) {
         $uib_study_image = $variables['content']['field_uib_study_image'];
+        $uib_study_photographer = '';
+        if (!empty($variables['content']['field_uib_study_image'][0]['#item']['field_uib_owner'])) {
+          $uib_study_photographer =  array(
+            '#type' => 'html_tag',
+            '#tag' => 'div',
+            '#value' => t('Photo') . ': ' . $variables['content']['field_uib_study_image'][0]['#item']['field_uib_owner']['und'][0]['safe_value'],
+          );
+        }
       }
       hide($variables['content']['field_uib_study_image']);
 
@@ -779,6 +787,7 @@ function uib_zen_preprocess_node(&$variables, $hook) {
         '#type' => 'html_tag',
         '#tag' => 'div',
         '#value' => render($uib_study_image) .
+                    render($uib_study_photographer).
                     render($uib_study_facts) .
                     $specializations .
                     render($uib_study_evu) .
