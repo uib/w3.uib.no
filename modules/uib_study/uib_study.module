@@ -786,8 +786,8 @@ Tredje dagen ville Askeladden i vei.'
                   // The FS date is in ISO 8601 format
                   $rows[] = array(t('Valid to'), format_date(strtotime($data['dato-til'])));
                 }
-                if (!empty($data['restinfo']['varighet_ut']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
-                  $exchange_duration = check_plain($data['restinfo']['varighet_ut'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
+                if (!empty($data['restinfo']['varighet']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                  $exchange_duration = check_plain($data['restinfo']['varighet'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
                   $rows[] = array(t('Exchange duration'), $exchange_duration);
                 }
                 $fs_study_type_nr = 'Not available';
