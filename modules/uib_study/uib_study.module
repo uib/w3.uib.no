@@ -384,6 +384,28 @@ function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
   return uib_study__fspres_get_json($path);
 }
 
+function uib_study__published_student_reports($code) {
+  $url = variable_get('uib_studentrapport_root', 'http://studentrapport.app.uib.no');
+  $url .= "/api/reports/$code/done";
+
+  $before = microtime(true);
+  $res = drupal_http_request($url);
+
+  $log_message = "GET $url => ";
+  $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
+  $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
+
+  $severity = ($res->code == 200 || $res->code == 404) ? 'notice' : 'error';
+  uibx_log($log_message, $severity);
+
+  if ($res->code != 200 || $res->headers['content-type'] != 'application/json') {
+    return NULL;
+  }
+
+  $data = drupal_json_decode($res->data);
+  return $data['reports'];
+}
+
 function uib_study__area($study_node, $lang) {
   $ou_nid = $study_node->field_uib_ou['und'][0]['target_id'];
   $query = new EntityFieldQuery;
@@ -592,26 +614,23 @@ function uib_study_block_view($delta = '') {
             }
           }
           elseif ($type == 'exchange') {
-            $group_title = t('Student reports');
-            $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
-            $render['student reports'] = array(
-              '#type' => 'html_tag',
-              '#tag' => 'h2',
-              '#value' => t("Student reports"),
-            );
-            $render['student reports text'] = array(
-              '#type' => 'container',
-              '#attributes' => array('id' => 'uib-tabs-student-reports'),
-              'report 1' => array(
-                '#markup' => '<h3>Espen Askeladd</h3>Det var engang en bonde som hadde tre sønner; han var i små kår og gammel og skrøpelig, og sønnene ville ikke ta seg noe til. Til gården hørte en stor, god skog, og den ville faren at guttene skulle hugge i, og se å få betalt unna noe på gjelden.
-<p>
-Langt om lenge fikk han dem også på det travet, og den eldste skulle ut og hugge først. Da han var kommet bort i skogen og hadde tatt til å hugge på en skjegget gran, kom det et stort, digert troll til ham. "Dersom du hugger i min skog, skal jeg drepe deg!" sa trollet. Da gutten hørte det, kastet han øksen og la hjem igjen det beste han kunne. Han kom rent andpusten hjem og fortalte det som hadde hendt ham; men faren sa han var et harehjerte; trollene hadde aldri skremt ham fra å hugge da han var ung, mente han.
-<p>
-Dagen etter skulle den andre sønnen avsted, og da gikk det nettopp like ens. Da han vel hadde hugget noen hugg i granen, kom trollet til ham med og sa: "Dersom du hugger i min skog, skal jeg drepe deg!" Gutten torde snaut se på ham, han kastet øksen og tok til sprangs likesom broren og vel så fort. Da han kom hjem igjen, ble faren sint, og sa at aldri hadde trollene skremt ham, da han var ung.
-<p>
-Tredje dagen ville Askeladden i vei.'
-              ),
-            );
+            if ($language->language == 'nb') {
+              $reports = uib_study__published_student_reports($node->field_uib_study_code->value());
+              if (!empty($reports)) {
+                $group_title = t('Student reports');
+                $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
+                $render['student reports'] = array(
+                  '#type' => 'html_tag',
+                  '#tag' => 'h2',
+                  '#value' => t("Student reports"),
+                );
+                $render['student reports text'] = array(
+                  '#type' => 'container',
+                  '#attributes' => array('id' => 'uib-tabs-student-reports'),
+                  'reports' => $reports,
+                );
+              }
+            }
           }
 
           $toc = array(
