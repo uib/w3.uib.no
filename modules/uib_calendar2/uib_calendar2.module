@@ -50,8 +50,7 @@ function uib_calendar2_block_view($delta='') {
  */
 function uib_calendar2__index_page() {
   $page = array();
-  $formatted_date = format_date(time(), 'day_and_month');
-  $page['header'] = array('#markup' => "<h1>Calendar for UIB - " . $formatted_date . "</h1>");
+  $page['header'] = array('#markup' => "<h1>" . t("Calendar for UIB") . "</h1>");
 
   $form = drupal_get_form('uib_calendar2_form');
   $event_types = $form['event']['type']['#value'];
@@ -59,41 +58,33 @@ function uib_calendar2__index_page() {
   $langVal = $form['language']['#value'];
 
   $nodes = get_event_nodes($event_types, $dayOfYear, $langVal, 0, 0);
-  $printDate = date('Y-m-00');
-  $lastItemPrintDate = "";
+  $printDate = "";
   $lastItemPrintTime = "";
 
-  $j = date('j',strtotime($dayOfYear));
-  $n = date('n',strtotime($dayOfYear));
-  $y = date('Y',strtotime($dayOfYear));
-  $selectedDate = mktime(0,0,0,$n,$j,$y);
-
   foreach ($nodes as $node) {
-    $date = date('M d Y',strtotime($node->date1));
-    $time = date('H.i',strtotime($node->date1.'GMT'));
+    $timestamp = strtotime($node->date1);
+    $pretty_date = format_date($timestamp, 'day_and_month');
 
-    $createdTime = mktime(intval(date('HisjnY',strtotime($node->date1.'GMT'))));
-
-    if ($date != $printDate) {
-      $page[$node->date1] = array('#markup' => '<h2 style=clear:both>' . format_date($createdTime, 'day_and_month') . '</h2>');
-      $printDate = $date;
+    if ($pretty_date != $printDate) {
+      $page[$node->date1] = array('#markup' => '<h2 style=clear:both>' . $pretty_date . '</h2>');
+      $printDate = $pretty_date;
     }
-    $page[$node->nid] = array('#markup' => '<li>' . format_date($createdTime,'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
-    $lastItemPrintDate = substr($node->date1,0,10);
+    $page[$node->nid] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
     $lastItemPrintTime = $node->date1;
   }
 
-  if ($lastItemPrintDate != "" && $lastItemPrintTime != "") {
+  if ($lastItemPrintTime != "") {
     $nodesLastDay = get_event_nodes($event_types, $lastItemPrintTime, $langVal, 0, 1);
     foreach ($nodesLastDay as $node) {
-      $time = date('H.i',strtotime($node->date1.'GMT'));
-      $page[$node->nid] = array('#markup' => '<li>' . format_date($createdTime,'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+      $timestamp = strtotime($node->date1);
+      $page[$node->nid] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
     }
   }
+
   $page['multiday'] = array('#markup' =>
     '<h2 style=clear:both>'
     . t('Multiday events running ')
-    . format_date($selectedDate, 'day_and_month') 
+    . format_date(strtotime($dayOfYear), 'day_and_month')
     . '</h2>');
   $nodesMulti = get_event_nodes($event_types, $dayOfYear, $langVal, 1, 0);
   foreach ($nodesMulti as $node) {
