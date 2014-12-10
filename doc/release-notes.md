@@ -1,6 +1,6 @@
 # Release 16.1 _2014-12-10_
 
-Fikset problem som førte til at søknadsfrister for EVU-kurs utløp en dag for tidlig.
+Fikset problem som førte til at søknadsfrister for EVU-kurs utløp en dag for tidlig. #8972
 
 # Release 16 _2014-12-04_
 
