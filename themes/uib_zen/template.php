@@ -1176,6 +1176,7 @@ function uib_zen_preprocess_views_view(&$variables) {
   $forced_education_area_names = array(
     'uib_nus_overview',
     'special_study_listings',
+    'exchange_agreements',
   );
   if (in_array($variables['name'], $forced_education_area_names)) {
     // Force education as current area
