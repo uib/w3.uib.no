@@ -150,7 +150,7 @@ function uib_study__infopage($code, $code2 = NULL) {
   return $page;
 }
 
-function uib_study__infotyper_render(&$page, $render, $filter) {
+function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
   if (empty($render))
     return FALSE;
   $wrong_chars = array(' ', 'æ', 'ø' ,'å');
@@ -180,7 +180,11 @@ function uib_study__infotyper_render(&$page, $render, $filter) {
         '#markup' => uib_study__text_markup($item, $is_course),
       );
     }
-
+    if ($group['#group'] == 'ba_utveksling' && $nid) {
+      $page[$group['#group']]['exag'] = array(
+        '#markup' => uib_study__get_exchange_agreements($nid),
+      );
+    }
     // some infotype categegory headers that we don't want to display because
     // in the context we use them it's obvious what the content below is
     foreach (array('em-emnebeskrivelse', 'ku_kursinformasjon') as $category) {
@@ -189,6 +193,39 @@ function uib_study__infotyper_render(&$page, $render, $filter) {
     }
   }
   return $count;
+}
+
+function uib_study__get_exchange_agreements($nid) {
+  $markup = '';
+  global $language;
+  $query = new EntityFieldQuery;
+  $results = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'uib_study')
+    ->propertyCondition('language', $language->language)
+    ->fieldCondition('field_uib_study_part_of', 'target_id', $nid)
+    ->execute();
+  if (!empty($results['node'])) {
+    $nids = array_keys($results['node']);
+    $part_ofs = entity_load('node', $nids);
+    $agreements = array();
+    foreach ($part_ofs as $key => $part_of) {
+      if ($part_of->field_uib_study_type['und'][0]['value'] == 'exchange') {
+        $agreements[] = $part_of;
+      }
+    }
+    if (!empty($agreements)) {
+      $markup = '<div class="uib_exchange_agreements"><h3>' . t('Facilitated exchange agreements') . '</h3>';
+      $markup .= '<ul>';
+      foreach ($agreements as $agreement) {
+        $markup .= '<li><h4>' . $agreement->title . '</h4>';
+        $linktext = t('Read student report');
+        $markup .= l($linktext, 'node/' . $agreement->nid, array('fragment' => 'uib-tabs-student-reports')) . '</li>';
+      }
+      $markup .= '</ul></div>';
+    }
+  }
+  return $markup;
 }
 
 /**
@@ -397,9 +434,10 @@ function uib_study_block_view($delta = '') {
         }
 
         $render = array();
+        $nid = $node->nid->value();
         uib_study__infotyper_render($render, $data, function ($group) {
           return substr($group, -8) != '_kontakt' && substr($group, -11) != '_studieplan';
-        });
+        }, $nid);
 
         $type = $node->field_uib_study_type->value();
         $study_code = $node->field_uib_study_code->value();
