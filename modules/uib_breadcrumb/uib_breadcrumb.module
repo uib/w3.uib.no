@@ -126,8 +126,8 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           }
         }
         elseif ($study_type == 'exchange') {
-          $study_type_title = t('Exchange programme');
-          $study_type_href = 'exchangestudent';
+          $study_type_title = t('Exchange agreement');
+          $study_type_href = 'exchange-agreement';
         }
         else {
           $study_type_title = t('Studyprogramme');
