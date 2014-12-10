@@ -1265,7 +1265,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_content_list published option'.
   $permissions['override uib_content_list published option'] = array(
     'name' => 'override uib_content_list published option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1759,7 +1764,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'view any unpublished uib_content_list content'.
   $permissions['view any unpublished uib_content_list content'] = array(
     'name' => 'view any unpublished uib_content_list content',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'view_unpublished',
   );
 
