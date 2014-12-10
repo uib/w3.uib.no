@@ -313,7 +313,7 @@ function uib_study__evu_instance_data($instance) {
   $data = array();
 
   // Semester
-  $today = date("c");
+  $today = substr(date("c"), 0, 10);
   $timecode = $instance['kursid']['tidkode'];
   $sem = (substr($timecode, 0, 1) == 'H' ? t('Autumn') : t('Spring'));
   $year = substr($timecode, 2);
