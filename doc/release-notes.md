@@ -1,3 +1,7 @@
+# Release 16.1 _2014-12-10_
+
+Fikset problem som førte til at søknadsfrister for EVU-kurs utløp en dag for tidlig.
+
 # Release 16 _2014-12-04_
 
 I denne releasen har vi hatt fokus på arbeidet med utvekslingsavtaler, jobbet videre med innholdsliste og har begynt arbeidet med ny kalender. I tillegg har vi gjort enkelte feilrettinger.
