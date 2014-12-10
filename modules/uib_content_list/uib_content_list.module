@@ -107,7 +107,10 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         if (empty($node->field_uib_related_persons)) {
           unset($node->field_related_persons_label);
         }
+        $created = $node->created;
+        $changed = $node->changed;
         $node_view = node_view($node);
+        $node_view['article_info'] = uib_article__get_article_info($created, $changed);
         $variables['content']['list_current_step'] = array(
           '#markup' => drupal_render($node_view),
           '#weight' => 40,

@@ -558,23 +558,7 @@ function uib_zen_preprocess_node(&$variables, $hook) {
       /**
        * Content publish information as time, etc.
        */
-      $article_info = array(
-        '#prefix' => '<div class="article-info clearfix">',
-        '#suffix' => '</div>',
-        '#weight' => -20,
-        'created' => array(
-          '#prefix' => '<div class="uib-news-byline-created uib-publish-info">',
-          '#markup' => t('Created') . ' ' . format_date($created, 'long'),
-          '#suffix' => '</div>',
-          '#weight' => 10,
-        ),
-        'changed' => array(
-          '#prefix' => '<div class="uib-news-byline-last-updated uib-publish-info">',
-          '#markup' => t('Last updated') . ' ' . format_date($changed, 'long'),
-          '#suffix' => '</div>',
-          '#weight' => 11,
-        ),
-      );
+      $article_info = uib_article__get_article_info($created, $changed);
 
       /**
        * Slideshow thingy.

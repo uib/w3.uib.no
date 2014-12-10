@@ -881,3 +881,24 @@ function _get_weights($tree) {
   }
   return $weightset;
 }
+
+function uib_article__get_article_info($created, $updated) {
+  $article_info = array(
+    '#prefix' => '<div class="article-info clearfix">',
+    '#suffix' => '</div>',
+    '#weight' => -20,
+    'created' => array(
+      '#prefix' => '<div class="uib-news-byline-created uib-publish-info">',
+      '#markup' => t('Created') . ' ' . format_date($created, 'long'),
+      '#suffix' => '</div>',
+      '#weight' => 10,
+    ),
+    'changed' => array(
+      '#prefix' => '<div class="uib-news-byline-last-updated uib-publish-info">',
+      '#markup' => t('Last updated') . ' ' . format_date($updated, 'long'),
+      '#suffix' => '</div>',
+      '#weight' => 11,
+    ),
+  );
+  return $article_info;
+}
