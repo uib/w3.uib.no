@@ -309,6 +309,12 @@ table.cols-6 {
 }
 
 .view-exchange-agreements {
+  .view-header {
+    background-color: #fff;
+    padding: 0.5rem;
+    border: 1px solid silver;
+    font-weight: normal;
+  }
   .views-field-field-uib-study-title {
     .field-content {
       width: 100%;
@@ -329,8 +335,30 @@ table.cols-6 {
       }
     }
   }
+  .views-exposed-widgets {
+    @media all and (min-width: 600px) {
+      $zen-column-count: 10;
+      .views-widget-filter-field_uib_study_code_value {
+        @include zen-grid-item(3,1);
+      }
+      .views-widget-filter-field_uib_ou_title_value {
+        @include zen-grid-item(3,4);
+      }
+      .views-widget-filter-field_uib_geographic_name_value {
+        @include zen-grid-item(3,7);
+      }
+      .views-submit-button {
+        @include zen-grid-item(1,10);
+        input {
+          padding-left: 1.5em;
+          padding-right: 1.5em;
+        }
+      }
+      $zen-column-count: 5;
+    }
+  }
   .attachment-before {
-    border-top: 2px solid $font-color-dark;
+    border-top: 1px solid $font-color-dark;
     padding-top: 5px;
     font-weight: bold;
   }
