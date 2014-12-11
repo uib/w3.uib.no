@@ -616,6 +616,17 @@ function uib_study_block_view($delta = '') {
           elseif ($type == 'exchange') {
             if ($language->language == 'nb') {
               $reports = uib_study__published_student_reports($node->field_uib_study_code->value());
+              $collapsed = count($reports) > 1 ? TRUE : FALSE;
+              foreach ($reports as $key => $report) {
+                $author = $report['author']['#value'];
+                $report = array(
+                  '#theme' => 'ctools_collapsible',
+                  '#handle' => $author,
+                  '#content' => render($report),
+                  '#collapsed' => $collapsed,
+                );
+                $reports[$key] = $report;
+              }
               if (!empty($reports)) {
                 $group_title = t('Student reports');
                 $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
@@ -624,10 +635,10 @@ function uib_study_block_view($delta = '') {
                   '#tag' => 'h2',
                   '#value' => t("Student reports"),
                 );
+
                 $render['student reports text'] = array(
-                  '#type' => 'container',
-                  '#attributes' => array('id' => 'uib-tabs-student-reports'),
-                  'reports' => $reports,
+                  '#type' => 'markup',
+                  '#markup' => '<div id="uib-tabs-student-reports">' . render($reports) . '</div>',
                 );
               }
             }
