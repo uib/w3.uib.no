@@ -1269,6 +1269,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_study_points_rank']);
       hide($form['field_uib_nus']);
       hide($form['field_uib_study_country']);
+      hide($form['field_uib_study_label']);
       // hide language selector
       hide($form['language']);
       // hide additional settings
