@@ -10,7 +10,7 @@ include_once 'uib_content_list.features.inc';
  * Implements hook_menu().
  */
 function uib_content_list_menu() {
-  $items['node/%node/menu'] = array(
+  $items['node/%node/clmenu'] = array(
     'title' => 'Menu',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('uib_content_list_menu_form', 1),
