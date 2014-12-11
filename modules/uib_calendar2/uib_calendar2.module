@@ -180,9 +180,11 @@ function uib_calendar2_form($form, &$form_state) {
     '#default_value' => date('Y-m-d'),
   );
   $form['area'] = array(
-    '#title' => t('Area'),
     '#type' => 'textfield',
+    '#title' => t('Area'),
+    '#size' => 20,
     '#autocomplete_path' => 'autocomplete/calendar2/area',
+    '#default_value' => $area,
   );
   $form['language'] = array(
     '#type' => 'radios',
