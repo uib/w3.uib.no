@@ -157,12 +157,7 @@ function uib_area_block_view($delta='') {
         if (empty($place->field_uib_jobbnorge_id['und'])) {
           continue;
         }
-        else {
-          $feed = 'http://www.jobbnorge.no/joblist/joblistbuilder.ashx?id=821a69c9-7674-4e36-90f8-41e443b99064&depid=' . $place->field_uib_jobbnorge_id['und'][0]['value'];
-        }
-        if ($area->language == 'en') {
-          $feed .= '&langid=2';
-        }
+        $feed = uib_feed__jobbnorge_url($place->field_uib_jobbnorge_id['und'][0]['value'], $area->language);
         $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_feed__format_pre_render'), array('uib_area__feed_format_post_render'));
       }
     break;
@@ -1720,21 +1715,6 @@ function uib_area_menu() {
   );
 
   return $items;
-}
-
-/**
- * Render the positions page
- */
-function uib_area__jobbnorge_positions($jobbnorge_id = FALSE) {
-  global $language;
-  $feed = 'http://www.jobbnorge.no/joblist/joblistbuilder.ashx?id=821a69c9-7674-4e36-90f8-41e443b99064';
-  if ($jobbnorge_id) {
-    $feed .= '&depid=' . $jobbnorge_id;
-  }
-  if ($language->language == 'en') {
-    $feed .= '&langid=2';
-  }
-  return uib_feed__format($feed, $title = '', $limit = 999, array('uib_feed__format_positions_pre_render'), array('uib_feed__format_positions_post_render'));
 }
 
 /*
