@@ -762,28 +762,9 @@ Tredje dagen ville Askeladden i vei.'
           if (!empty($data['betingelse'])) {
             foreach ($data['betingelse'] as $key => $betingelse) {
               if ($betingelse['personkategori'] == 'STUDENT') {
-                if (!empty($node->field_uib_study_part_of['und'])) {
-                  $study_level = array();
-                  $study_categories = uib_study__get_categories();
-                  $removals = array('courses', 'programmes', 'studies');
-                  foreach ($study_categories as $key => $value) {
-                    $tmp = explode(' ', $value);
-                    if (in_array(end($tmp), $removals)) {
-                      array_pop($tmp);
-                    }
-                    $study_categories[$key] = implode(' ', $tmp);
-                  }
-                  $connected_programs_list = array();
-                  foreach ($node->field_uib_study_part_of['und'] as $item) {
-                    $connected_programs_list[] = $item['target_id'];
-                  }
-                  $connected_programs = entity_load('node', $connected_programs_list);
-                  foreach ($connected_programs as $cp) {
-                    if (!in_array($study_categories[$cp->field_uib_study_category['und'][0]['value']], $study_level)) {
-                      $study_level[] = t($study_categories[$cp->field_uib_study_category['und'][0]['value']]);
-                    }
-                  }
-                  $rows[] = array(t('Study level'), implode(', ', $study_level));
+                if (!empty($data['studienivaintervallnavn'])) {
+                  $study_level = str_replace('-', '&ndash;', check_plain($data['studienivaintervallnavn']));
+                  $rows[] = array(t('Study level'), $study_level);
                 }
                 $rows[] = array(t('Exchange programme'), check_plain(drupal_ucfirst(drupal_strtolower($data['utvprogramkode']))));
                 if (!empty($data['dato-til'])) {
