@@ -85,11 +85,24 @@ function uib_calendar2__index_page() {
     $timestamp = strtotime($node->date1);
     $pretty_date = format_date($timestamp, 'day_and_month');
 
-    if ($pretty_date != $printDate) {
+    $node_print = $node->title;
+    $signup_deadline = strtotime($node->deadline);
+    if($node->deadline != "") {
+      $node_print .= "(". t("Registration deadline") . ": "
+        . format_date($signup_deadline, 'day_and_month') . " "
+        . format_date($signup_deadline, 'time')
+        . ")";
+    }
+
+      if ($pretty_date != $printDate) {
       $page[$node->date1] = array('#markup' => '<h2 style=clear:both>' . $pretty_date . '</h2>');
       $printDate = $pretty_date;
     }
-    $page[$node->nid] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+    $page[$node->nid] = array('#markup' => '<li>'
+      . format_date($timestamp, 'time')
+      . ' : '
+      . l($node_print, "node/$node->nid")
+      . '</li>');
     $lastItemPrintTime = $node->date1;
   }
 
@@ -212,25 +225,25 @@ function get_event_nodes($event_types, $date, $language, $multidayevent, $lastda
     $langVal = "en";
   }
 
-  $sql = "SELECT node.title,node.nid,field_uib_date_value as date1, field_uib_date_value2 as date2
-        FROM field_data_field_uib_article_type,field_data_field_uib_date,node,field_data_field_uib_event_type
-        WHERE field_uib_article_type_value like 'event'
-        AND field_data_field_uib_article_type.entity_id = node.nid
-        AND field_data_field_uib_date.entity_id = node.nid
-        AND field_data_field_uib_event_type.entity_id = node.nid
-        AND substring(cast (field_uib_date_value as text) from 1 for 10) $day_not LIKE substring(cast (field_uib_date_value2 as text) from 1 for 10)";
+  $sql = "SELECT n.title,n.nid,field_uib_date_value as date1, field_uib_date_value2 as date2, dl.field_uib_deadline_value as deadline
+          FROM node n
+          JOIN field_data_field_uib_article_type at ON (at.entity_id = n.nid AND field_uib_article_type_value like 'event')
+          JOIN field_data_field_uib_date d ON d.entity_id = n.nid
+          JOIN field_data_field_uib_event_type et ON et.entity_id = n.nid
+          LEFT OUTER JOIN field_data_field_uib_deadline dl ON dl.entity_id = n.nid
+          WHERE substring(cast (field_uib_date_value as text) from 1 for 10) $day_not LIKE substring(cast (field_uib_date_value2 as text) from 1 for 10)";
 
   if ($language != 0) {
-    $sql .= " AND node.language like :lang ";
+    $sql .= " AND n.language like :lang ";
     $sqlOptions[":lang"] = $langVal;
   }
 
   $sqlOptions[":day"] = substr($date,0,10);
   if (!$multidayevent && !$lastday) {
-    $sql .= " AND field_data_field_uib_date.field_uib_date_value >= :day ";
+    $sql .= " AND d.field_uib_date_value >= :day ";
   }
   elseif ($multidayevent && !$lastday) {
-    $sql .= " AND field_data_field_uib_date.field_uib_date_value2 >= :day AND :day >= field_data_field_uib_date.field_uib_date_value ";
+    $sql .= " AND d.field_uib_date_value2 >= :day AND :day >= d.field_uib_date_value ";
   }
   elseif (!$multidayevent && $lastday) {
     $sql .= " AND substring(cast (field_uib_date_value as text) from 1 for 10) = :day AND field_uib_date_value > :lastPrintTime ";
@@ -238,7 +251,7 @@ function get_event_nodes($event_types, $date, $language, $multidayevent, $lastda
   }
 
   if (!empty($event_types) && !in_array("any", $event_types)) {
-    $sql .= " AND field_data_field_uib_event_type.field_uib_event_type_value IN (:eventtypes)";
+    $sql .= " AND et.field_uib_event_type_value IN (:eventtypes)";
     $sqlOptions[":eventtypes"] = array_values($event_types);
   }
 
