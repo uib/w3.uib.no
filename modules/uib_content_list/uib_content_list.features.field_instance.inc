@@ -145,7 +145,7 @@ function uib_content_list_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_uib_area',
     'label' => 'Area',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'behaviors' => array(
         'prepopulate' => array(
