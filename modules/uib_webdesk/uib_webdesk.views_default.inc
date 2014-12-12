@@ -1835,6 +1835,11 @@ function uib_webdesk_views_default_views() {
       'operator' => 'starts',
       'value' => 'uib_external_content',
     ),
+    8 => array(
+      'title' => 'Content list',
+      'operator' => 'starts',
+      'value' => 'uib_content_list',
+    ),
   );
   $handler->display->display_options['filters']['combine']['fields'] = array(
     'type' => 'type',
