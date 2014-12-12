@@ -554,13 +554,16 @@ h1 {
     }
   }
 }
+#uib-tabs-utveksling {
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
 .uib_exchange_agreements {
   h4 {
     font-weight: normal;
     margin-bottom: 0.25em;
-  }
-  ul {
-    padding-left: 1.5em;
   }
   li {
     margin-bottom: 1em;
