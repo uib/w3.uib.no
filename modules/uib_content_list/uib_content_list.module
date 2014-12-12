@@ -110,6 +110,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         $created = $node->created;
         $changed = $node->changed;
         $node_view = node_view($node);
+        unset($node_view['field_uib_byline']);
         $node_view['article_info'] = uib_article__get_article_info($created, $changed);
         $variables['content']['list_current_step'] = array(
           '#markup' => drupal_render($node_view),
