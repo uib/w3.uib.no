@@ -466,6 +466,7 @@ features[variable][] = googleanalytics_visibility_roles
 features[variable][] = i18n_hide_translation_links
 features[variable][] = i18n_node_default_language_none
 features[variable][] = image_toolkit
+features[variable][] = imagemagick_convert
 features[variable][] = l10n_update_check_disabled
 features[variable][] = l10n_update_check_frequency
 features[variable][] = l10n_update_check_mode
