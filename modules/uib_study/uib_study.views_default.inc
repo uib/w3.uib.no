@@ -40,7 +40,23 @@ function uib_study_views_default_views() {
       'more_options' => array(
         'is_secondary' => 0,
         'any_label' => '',
-        'bef_filter_description' => '',
+        'bef_filter_description' => 'Display recommended exchange agreements available for your <a class="uib-study-filter-link" href="studyprogramme">study programme</a>. Use the programme code.',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_uib_ou_title_value' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => 'Display exchange agreements for faculty or department.',
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
@@ -56,7 +72,7 @@ function uib_study_views_default_views() {
       'more_options' => array(
         'is_secondary' => 0,
         'any_label' => '',
-        'bef_filter_description' => '',
+        'bef_filter_description' => 'Display exchange agreements with one or more countries.',
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
@@ -210,7 +226,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['field_uib_study_code_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator_id'] = 'field_uib_study_code_value_op';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Filter by study programmes';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['description'] = 'Display exchange agreements available for your study programme. Use the programme code.';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator'] = 'field_uib_study_code_value_op';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['identifier'] = 'field_uib_study_code_value';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember_roles'] = array(
@@ -231,7 +246,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['field_uib_ou_title_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['operator_id'] = 'field_uib_ou_title_value_op';
   $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['label'] = 'Filter by faculty/department';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['description'] = 'Display exchange agreements for faculty or department';
   $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['operator'] = 'field_uib_ou_title_value_op';
   $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['identifier'] = 'field_uib_ou_title_value';
   $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['multiple'] = TRUE;
@@ -261,7 +275,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['operator_id'] = 'field_uib_geographic_name_value_op';
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['label'] = 'Filter by country';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['description'] = 'Display exchange agreements with one or more countries.';
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['operator'] = 'field_uib_geographic_name_value_op';
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['identifier'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['remember_roles'] = array(
@@ -302,12 +315,9 @@ function uib_study_views_default_views() {
     t('<span class="agreement-title"><a href="/node/[nid]" title="[field_uib_study_code]">[field_uib_study_title]</a></span><span class="studentreport-ref"><a href="/node/[nid]#uib-tabs-student-reports">Read student report</a></span>'),
     t('Geographic name (field_uib_geographic_name:language)'),
     t('Filter by study programmes'),
-    t('Display exchange agreements available for your study programme. Use the programme code.'),
     t('Filter by faculty/department'),
-    t('Display exchange agreements for faculty or department'),
     t('Name (field_uib_ou_title)'),
     t('Filter by country'),
-    t('Display exchange agreements with one or more countries.'),
     t('Geographic name (field_uib_geographic_name)'),
     t('Page'),
   );
