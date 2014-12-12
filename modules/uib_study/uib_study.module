@@ -619,9 +619,13 @@ function uib_study_block_view($delta = '') {
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
               foreach ($reports as $key => $report) {
                 $author = $report['author']['#value'];
+                $open_text = t('Read student report');
+                $close_text = t('Close');
+                $toggle_text = '<span class="open-report">' . $open_text . '</span>';
+                $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
                 $report = array(
                   '#theme' => 'ctools_collapsible',
-                  '#handle' => $author,
+                  '#handle' => $author . $toggle_text,
                   '#content' => render($report),
                   '#collapsed' => $collapsed,
                 );

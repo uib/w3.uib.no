@@ -573,8 +573,37 @@ h1 {
   .ctools-collapsible-handle {
     font-size: 1.5em;
   }
+  .ctools-toggle {
+    float: right;
+    background: inline-image("arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: contain;
+    margin-left: 1em;
+    @include transform(rotate(180deg));
+  }
+  .ctools-toggle-collapsed {
+    @include transform(rotate(0deg));
+  }
   h3 {
     font-size: 1.5em;
+  }
+  .open-report,
+  .close-report {
+    color: $link-blue;
+    float: right;
+    display: none;
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+  .ctools-collapsed .open-report {
+    display: block;
+  }
+  :not(.ctools-collapsed) .close-report {
+    display: block;
+  }
+  .ctools-collapsed .close-report {
+    display: none;
   }
 }
 
