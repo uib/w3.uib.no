@@ -12,7 +12,7 @@ function uib_calendar2_menu() {
   );
   $items['autocomplete/calendar2/area'] = array(
     'title' => 'Autocomplete for area',
-    'page callback' => 'calendar2_form__autocomplete',
+    'page callback' => 'uib_calendar2_form__autocomplete',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK
   );
@@ -50,14 +50,34 @@ function uib_calendar2_block_view($delta='') {
  */
 function uib_calendar2__index_page() {
   $page = array();
-  $page['header'] = array('#markup' => "<h1>" . t("Calendar for UIB") . "</h1>");
 
   $form = drupal_get_form('uib_calendar2_form');
   $event_types = $form['event']['type']['#value'];
   $dayOfYear = $form['datepicker']['#value']['date'];
   $langVal = $form['language']['#value'];
+  $area = (isset($form['area']['#value']) && $form['area']['#value']!='') ? $form['area']['#value'] : 'UiB';
+  $area_code = 0;
+  if ($area != 'UiB') {
+    $area_explode = explode(" : (", $area);
+    $area = $area_explode[0];
+    $area_code = str_replace(")","",$area_explode[1]);
+  }
 
-  $nodes = get_event_nodes($event_types, $dayOfYear, $langVal, 0, 0);
+  $events = '';
+  $i = 1;
+  foreach ($event_types as $event) {
+    if ($i == count($event_types) && count($event_types) != 1 && $i != 1)
+      $events .= t("and") . " ";
+    $events .= t($event);
+    if ($i != count($event_types))
+      $events .= ", ";
+    $i++;
+  }
+
+  $page['header'] = array('#markup' => "<h2>" . t("Calendar for !area",array('!area' => $area)) . "</h2>");
+  $page['ingress'] = array('#markup' => "<p>" . t("Selection: !events from ", array('!events' => $events)) . format_date(strtotime($dayOfYear),'medium') . "</p>");
+
+  $nodes = get_event_nodes($event_types, $dayOfYear, $langVal, 0, 0, $area_code);
   $printDate = "";
   $lastItemPrintTime = "";
 
@@ -74,7 +94,7 @@ function uib_calendar2__index_page() {
   }
 
   if ($lastItemPrintTime != "") {
-    $nodesLastDay = get_event_nodes($event_types, $lastItemPrintTime, $langVal, 0, 1);
+    $nodesLastDay = get_event_nodes($event_types, $lastItemPrintTime, $langVal, 0, 1, $area_code);
     foreach ($nodesLastDay as $node) {
       $timestamp = strtotime($node->date1);
       $page[$node->nid] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
@@ -86,11 +106,27 @@ function uib_calendar2__index_page() {
     . t('Multiday events running ')
     . format_date(strtotime($dayOfYear), 'day_and_month')
     . '</h2>');
-  $nodesMulti = get_event_nodes($event_types, $dayOfYear, $langVal, 1, 0);
+  $nodesMulti = get_event_nodes($event_types, $dayOfYear, $langVal, 1, 0, $area_code);
   foreach ($nodesMulti as $node) {
     $page[$node->nid] = array('#markup' => '<li>' . l($node->title, "node/$node->nid") . '</li>');
   }
   return $page;
+}
+
+function uib_calendar2_form__autocomplete($string='') {
+  $matches = array();
+  $low_string = strtolower(check_plain($string));
+  $options[":string"] = $string;
+  $sql = "SELECT DISTINCT(field_uib_ou_title_value) AS area, field_uib_ou_target_id as code FROM field_data_field_uib_ou_title out, field_data_field_uib_ou ou WHERE out.entity_id=ou.field_uib_ou_target_id AND lower(field_uib_ou_title_value) like '%' || :string || '%'";
+  $result = db_query($sql, $options)->fetchAll();
+
+
+  foreach ($result as $row) {
+    $matches[$row->area." : (".$row->code.")"] = check_plain($row->area);
+  }
+
+  // Return the result to the form in json
+  drupal_json_output($matches);
 }
 
 /**
@@ -106,6 +142,11 @@ function uib_calendar2_form($form, &$form_state) {
     '#type' => 'datepicker',
     '#date_format' => 'Y-m-d',
     '#default_value' => date('Y-m-d'),
+  );
+  $form['area'] = array(
+    '#title' => t('Area'),
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'autocomplete/calendar2/area',
   );
   $form['language'] = array(
     '#type' => 'radios',
@@ -160,7 +201,7 @@ function uib_calendar2_form_validate($form, &$form_state) {
   // not implemented
 }
 
-function get_event_nodes($event_types, $date, $language, $multidayevent, $lastday) {
+function get_event_nodes($event_types, $date, $language, $multidayevent, $lastday, $area_code=0) {
   $sqlOptions = array();
   $day_not = "";
   if ($multidayevent)
