@@ -38,7 +38,11 @@ function uib_study__evu_courses_page_form($form, &$form_state){
     '#value' => t('Apply'),
   );
   $form['#method'] = 'get';
-  $form['#token'] = FALSE;
+  // To clean url the token is taken out but this triggers an error
+  // when no user is logged in so it is first cecked.
+  // https://www.drupal.org/node/1617918
+  global $user;
+  if ($user->uid > 0) $form['#token'] = FALSE;
   return $form;
 }
 
