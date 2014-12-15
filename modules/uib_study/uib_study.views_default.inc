@@ -142,15 +142,30 @@ function uib_study_views_default_views() {
   $handler->display->display_options['fields']['field_uib_study_code']['field'] = 'field_uib_study_code';
   $handler->display->display_options['fields']['field_uib_study_code']['label'] = '';
   $handler->display->display_options['fields']['field_uib_study_code']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_code']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_code']['alter']['text'] = 'Read student report';
+  $handler->display->display_options['fields']['field_uib_study_code']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_code']['alter']['path'] = 'node/[nid]#uib-tabs-student-reports';
   $handler->display->display_options['fields']['field_uib_study_code']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['field_uib_study_title']['id'] = 'field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['table'] = 'field_data_field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['field'] = 'field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_study_title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_study_title']['alter']['text'] = '<span class="agreement-title"><a href="/node/[nid]" title="[field_uib_study_code]">[field_uib_study_title]</a></span><span class="studentreport-ref"><a href="/node/[nid]#uib-tabs-student-reports">Read student report</a></span>';
+  $handler->display->display_options['fields']['field_uib_study_title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_title']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['field_uib_study_title']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<span class="agreement-title">[field_uib_study_title]</span><span class="studentreport-ref">[field_uib_study_code]</span>';
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_class'] = 'views-field views-field-field-uib-study-title';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   /* Sort criterion: Taxonomy term: Geographic name (field_uib_geographic_name) */
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['id'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
@@ -312,7 +327,8 @@ function uib_study_views_default_views() {
     t('Study referenced from field_uib_study_part_of'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
     t('Content entity referenced from field_uib_ou'),
-    t('<span class="agreement-title"><a href="/node/[nid]" title="[field_uib_study_code]">[field_uib_study_title]</a></span><span class="studentreport-ref"><a href="/node/[nid]#uib-tabs-student-reports">Read student report</a></span>'),
+    t('Read student report'),
+    t('<span class="agreement-title">[field_uib_study_title]</span><span class="studentreport-ref">[field_uib_study_code]</span>'),
     t('Geographic name (field_uib_geographic_name:language)'),
     t('Filter by study programmes'),
     t('Filter by faculty/department'),
