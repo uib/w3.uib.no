@@ -218,9 +218,8 @@ function uib_study__get_exchange_agreements($nid) {
       $markup = '<div class="uib_exchange_agreements"><h3>' . t('Facilitated exchange agreements') . '</h3>';
       $markup .= '<ul>';
       foreach ($agreements as $agreement) {
-        $markup .= '<li><h4>' . $agreement->title . '</h4>';
-        $linktext = t('Read student report');
-        $markup .= l($linktext, 'node/' . $agreement->nid, array('fragment' => 'uib-tabs-student-reports')) . '</li>';
+        $link = l($agreement->title, 'node/' . $agreement->nid);
+        $markup .= '<li><h4>' . $link . '</h4></li>';
       }
       $markup .= '</ul></div>';
     }
