@@ -72,8 +72,9 @@ function uib_urlfilter_field_formatter_view($entity_type, $entity, $field, $inst
   if ($display['type'] == 'uiblink_formatter') {
     $elements = array();
     foreach ($items as $delta => $item) {
-      $link = _uib_urlfilter__replace($item['url']);
-      $elements[$delta]['#markup'] = '<a href="' . $link . '">' . check_plain($item['title']) . '</a>'; // Assign it to the #markup of the element
+      $item['url'] = _uib_urlfilter__replace($item['url']);
+      $url = field_view_value($entity_type, $entity, 'field_uib_links', $item);
+      $elements[$delta]['#markup'] = render($url); // Assign it to the #markup of the element
     }
     return $elements;
   }
