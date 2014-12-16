@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /var/www/w3.uib.no
+date +'%H:%M ----------------------------------------------' >>/tmp/fs-import.$(date -I).log
+echo "-----Synchronising with FS geography" >>/tmp/fs-import.$(date -I).log
+nice -n 20 su w3-drupal -c 'bin/site-drush uib-fs-geo-sync --verbose' 1>>/tmp/fs-import.$(date -I).log 2>&1
