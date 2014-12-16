@@ -102,17 +102,13 @@ function uib_study_views_default_views() {
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['content'] = '<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by your study programme to get an overview of recommended exchange agreements. Alternatively, you may filter by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>';
+  $handler->display->display_options['header']['area']['empty'] = TRUE;
+  $handler->display->display_options['header']['area']['content'] = '<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "Universitetet i Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
   $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
   $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['id'] = 'field_uib_study_part_of_target_id';
-  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['table'] = 'field_data_field_uib_study_part_of';
-  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['field'] = 'field_uib_study_part_of_target_id';
-  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['label'] = 'Study referenced from field_uib_study_part_of';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_uib_study_country_target_id']['id'] = 'field_uib_study_country_target_id';
   $handler->display->display_options['relationships']['field_uib_study_country_target_id']['table'] = 'field_data_field_uib_study_country';
@@ -231,26 +227,6 @@ function uib_study_views_default_views() {
     2 => array(),
     3 => array(),
   );
-  /* Filter criterion: Content: ID (field_uib_study_code) */
-  $handler->display->display_options['filters']['field_uib_study_code_value']['id'] = 'field_uib_study_code_value';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['table'] = 'field_data_field_uib_study_code';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['field'] = 'field_uib_study_code_value';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['relationship'] = 'field_uib_study_part_of_target_id';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['operator'] = 'word';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_study_code_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator_id'] = 'field_uib_study_code_value_op';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Filter by study programmes';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator'] = 'field_uib_study_code_value_op';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['identifier'] = 'field_uib_study_code_value';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
   /* Filter criterion: Content: Name (field_uib_ou_title) */
   $handler->display->display_options['filters']['field_uib_ou_title_value']['id'] = 'field_uib_ou_title_value';
   $handler->display->display_options['filters']['field_uib_ou_title_value']['table'] = 'field_data_field_uib_ou_title';
@@ -322,15 +298,13 @@ function uib_study_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Select any filter and click on Apply to see results'),
-    t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by your study programme to get an overview of recommended exchange agreements. Alternatively, you may filter by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
+    t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "Universitetet i Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
     t('Translations'),
-    t('Study referenced from field_uib_study_part_of'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
     t('Content entity referenced from field_uib_ou'),
     t('Read student report'),
     t('<span class="agreement-title">[field_uib_study_title]</span><span class="studentreport-ref">[field_uib_study_code]</span>'),
     t('Geographic name (field_uib_geographic_name:language)'),
-    t('Filter by study programmes'),
     t('Filter by faculty/department'),
     t('Name (field_uib_ou_title)'),
     t('Filter by country'),
