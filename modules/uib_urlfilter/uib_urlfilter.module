@@ -73,8 +73,15 @@ function uib_urlfilter_field_formatter_view($entity_type, $entity, $field, $inst
     $elements = array();
     foreach ($items as $delta => $item) {
       $item['url'] = _uib_urlfilter__replace($item['url']);
-      $url = field_view_value($entity_type, $entity, 'field_uib_links', $item);
-      $elements[$delta]['#markup'] = render($url); // Assign it to the #markup of the element
+      $is_internal = $item['url'][0] == '/' ? TRUE : FALSE;
+      $url = field_view_value($entity_type, $entity, $field['field_name'], $item);
+      $url = render($url);
+      if ($is_internal) {
+        $url = explode('/', $url);
+        array_splice($url, 3, 2);
+        $url = implode('/', $url);
+      }
+      $elements[$delta]['#markup'] = $url; // Assign it to the #markup of the element
     }
     return $elements;
   }
