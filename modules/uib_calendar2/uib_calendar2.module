@@ -80,40 +80,63 @@ function uib_calendar2__index_page() {
   $nodes = get_event_nodes($event_types, $dayOfYear, $langVal, 0, 0, $area_code);
   $printDate = "";
   $lastItemPrintTime = "";
+  $eventsarray;
+  $datesarray;
 
   foreach ($nodes as $node) {
     $timestamp = strtotime($node->date1);
     $pretty_date = format_date($timestamp, 'day_and_month');
 
-    $node_print = $node->title;
-    $signup_deadline = strtotime($node->deadline);
-    if($node->deadline != "") {
-      $node_print .= "(". t("Registration deadline") . ": "
-        . format_date($signup_deadline, 'day_and_month') . " "
-        . format_date($signup_deadline, 'time')
-        . ")";
-    }
+    $event = array();
+    $event['nid'] = $node->nid;
+    $event['content'] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
 
-      if ($pretty_date != $printDate) {
-      $page[$node->date1] = array('#markup' => '<h2 style=clear:both>' . $pretty_date . '</h2>');
+    $eventsarray[substr($node->date1,0,10)]['event'][] = $event;
+
+    if ($pretty_date != $printDate) {
       $printDate = $pretty_date;
+      $datesarray[] = substr($node->date1,0,10);
     }
-    $page[$node->nid] = array('#markup' => '<li>'
-      . format_date($timestamp, 'time')
-      . ' : '
-      . l($node_print, "node/$node->nid")
-      . '</li>');
-    $lastItemPrintTime = $node->date1;
   }
 
   if ($lastItemPrintTime != "") {
     $nodesLastDay = get_event_nodes($event_types, $lastItemPrintTime, $langVal, 0, 1, $area_code);
     foreach ($nodesLastDay as $node) {
       $timestamp = strtotime($node->date1);
-      $page[$node->nid] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+      $event = array();
+      $event['nid'] = $node->nid;
+      $event['content'] = array('#markup' => '<li>' . format_date($timestamp, 'time') . ' : ' . l($node->title, "node/$node->nid") . '</li>');
+
+      $eventsarray[substr($node->date1,0,10)]['event'][] = $event;
+
     }
   }
 
+  $deadlines = db_query("SELECT n.nid, n.title, dl.field_uib_deadline_value as deadline FROM node n, field_data_field_uib_deadline dl WHERE :enddate > substring(cast (field_uib_deadline_value as text) from 1 for 10) AND substring(cast (field_uib_deadline_value as text) from 1 for 10) > :startdate AND n.nid=dl.entity_id;", array(':enddate'=>end($datesarray), ':startdate'=>$dayOfYear))->fetchAll();
+
+  foreach ($deadlines as $deadline) {
+    $event = array();
+    $event['nid'] = $deadline->nid;
+    $event['content'] = array('#markup' => '<li>' . format_date(strtotime($deadline->deadline), 'time') . ' : ' . l($deadline->title, "node/$deadline->nid") . '</li>');
+    $eventsarray[substr($deadline->deadline,0,10)]['deadline'][] = $event;
+    if(!in_array(substr($deadline->deadline,0,10),$datesarray)) $datesarray[] = substr($deadline->deadline,0,10);
+  }
+
+  sort($datesarray);
+  foreach ($datesarray as $arr) {
+    $page[$arr] = array('#markup' => '<h2 style=clear:both>' . format_date(strtotime($arr), 'day_and_month') . '</h2>');
+    if(isset($eventsarray[$arr]['event'])) {
+      foreach ($eventsarray[$arr]['event'] as $event) {
+        $page['event:'.$event['nid']] = $event['content'];
+      }
+    }
+    if (isset($eventsarray[$arr]['deadline'])) {
+      $page['deadlines'.$arr] = array('#markup' => '<h4 style=clear:both>' . t('Deadlines:') . '</h4>');
+      foreach ($eventsarray[$arr]['deadline'] as $deadline) {
+        $page['deadline:'.$deadline['nid']] = $deadline['content'];
+      }
+    }
+  }
   $page['multiday'] = array('#markup' =>
     '<h2 style=clear:both>'
     . t('Multiday events running ')
