@@ -28,6 +28,10 @@ function uib_webdesk__stats_page() {
   foreach ($result as $row) {
     $articles[$row->entity_id]->type = $row->field_uib_article_type_value;
   }
+  $result = db_query("SELECT * from {field_data_field_uib_event_type} WHERE bundle='uib_article' ORDER BY entity_id");
+  foreach ($result as $row) {
+    $articles[$row->entity_id]->type = 'event.' . $row->field_uib_event_type_value;
+  }
 
   $result = db_query("SELECT * from {field_data_field_uib_area} WHERE bundle='uib_article' ORDER BY entity_id");
   foreach ($result as $row) {
@@ -77,6 +81,7 @@ function uib_webdesk__stats_page() {
       $counters['area'][2]++;
     }
   }
+  arsort($counters);
   arsort($active);
 
   # build page
