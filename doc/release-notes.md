@@ -3,6 +3,7 @@
 I denne releasen har fokuset vært på utvekslingsavtaler og innholdslisten. Dette er siste releasen før jul og vi har fått inn mange saker i denne releasen. Neste release vil komme torsdag 15. januar. Den vil i stor grad inneholde fikser til utvekslingsavtalene, innholdsliste og arbeidet med ny kalender.
 
 Diverse feilrettinger:
+
 - Vi har skiftet toolkit for behandling av bilder som gjør at bildekvaliteten ikke skal forringes så mye som den gjorde tidligere #6787
 - Det er nå mulig å legge inn ledige stillinger ved uib som et filter i brødteksten, og dermed kan uib.no/stilling nå lages på w3 #8677
 - Problemer med filtrering på evu-kurslisten er nå rettet #8790
@@ -10,7 +11,8 @@ Diverse feilrettinger:
 - Gjøre det mulig å oversette diverse tekster #8910 #8956
 - Lenker som inneholdt query-strenger ble kuttet i "relevante lenker"-feltet på artikler, dette har vi fikset #9026
 
-Utvekslingsavtaler
+Utvekslingsavtaler:
+
 - Utvekslingsavtaler har nå fått en filterside hvor brukere kan søke etter spesifikke avtaler #8803
 - Filtersiden lenker nå til korrekt avtaleside #9013
 - Filtersiden har problemer med å vise alle utvekslingsavtalene så derfor har muligheten til å filtrere på studieprogram blitt fjernet. Denne vil bli lagt til igjen når problemet med visning av avtalene er løst #9031
@@ -26,7 +28,8 @@ Utvekslingsavtaler
 - Gjort endringer på visningen av studienivå som vises på avtalesiden #8981
 - Varighet vises nå på avtalesiden #8982
 
-Innholdslister
+Innholdslister:
+
 - Gjøre innholdslister synlige i innholdsvisningene i webdesken #8928
 - Begrense mulighetene til å publisere innholdslister til å gjelde bare områder man er innholdsprodusent for #8929
 - Gitt tilknyttet innhold i innholdslister samme funksjonalitet som tilknyttet innhold i vanlige artikler #8935
@@ -35,7 +38,8 @@ Innholdslister
 - Fjernet at tittelen til tilknyttede personer vises med mindre det finnes en tilknyttet person #8944
 - Gjøre område et påkrevd felt på innholdslister #9006
 
-Kalender
+Kalender:
+
 - Endret datoformat på kalenderen #8938
 - Gjort sql-endringer i kalender-modulen #8942
 
