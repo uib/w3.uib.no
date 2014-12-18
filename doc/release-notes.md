@@ -1,3 +1,44 @@
+#Release 17 _2014-12-18_
+
+I denne releasen har fokuset vært på utvekslingsavtaler og innholdslisten. Dette er siste releasen før jul og vi har fått inn mange saker i denne releasen. Neste release vil komme torsdag 15. januar. Den vil i stor grad inneholde fikser til utvekslingsavtalene, innholdsliste og arbeidet med ny kalender.
+
+Diverse feilrettinger:
+- Vi har skiftet toolkit for behandling av bilder som gjør at bildekvaliteten ikke skal forringes så mye som den gjorde tidligere #6787
+- Det er nå mulig å legge inn ledige stillinger ved uib som et filter i brødteksten, og dermed kan uib.no/stilling nå lages på w3 #8677
+- Problemer med filtrering på evu-kurslisten er nå rettet #8790
+- Fjernet globalmenyen fra features slik at endringer i globalmenyen ikke blir endret ved hver oppdatering #8947
+- Gjøre det mulig å oversette diverse tekster #8910 #8956
+- Lenker som inneholdt query-strenger ble kuttet i "relevante lenker"-feltet på artikler, dette har vi fikset #9026
+
+Utvekslingsavtaler
+- Utvekslingsavtaler har nå fått en filterside hvor brukere kan søke etter spesifikke avtaler #8803
+- Filtersiden lenker nå til korrekt avtaleside #9013
+- Filtersiden har problemer med å vise alle utvekslingsavtalene så derfor har muligheten til å filtrere på studieprogram blitt fjernet. Denne vil bli lagt til igjen når problemet med visning av avtalene er løst #9031
+- Alle studieprogram har fått en fane som viser hvilke utvekslingsavtaler som er tilknyttet det spesifikke studieprogrammet #8805 #9018
+- Studentrapporter fra utvekslinger er nå synlige på utvekslingsavtalesiden #8808
+- FS-geo-sync blir lagt til cronjobben slik at den syncer landene fra FS med jevne mellomrom #8854
+- Noen endringer i redigeringsvinduet til utvekslingsavtalene #8859 #8889
+- Noen utvekslingsavtaler skal ikke vise samme informasjon som alle de andre avtalene #8968
+- Vise fotograffeltet på bilder på utvekslings- og studieprogramsiden #8926
+- Lagt til en OU som representerer hele UiB #8933
+- Skiftet url for utvekslingsavtalene #8945
+- Fikset brødsmulestien for utvekslingsavtalene #8980
+- Gjort endringer på visningen av studienivå som vises på avtalesiden #8981
+- Varighet vises nå på avtalesiden #8982
+
+Innholdslister
+- Gjøre innholdslister synlige i innholdsvisningene i webdesken #8928
+- Begrense mulighetene til å publisere innholdslister til å gjelde bare områder man er innholdsprodusent for #8929
+- Gitt tilknyttet innhold i innholdslister samme funksjonalitet som tilknyttet innhold i vanlige artikler #8935
+- Gjort det mulig å legge innholdslister i menyen #8936
+- Fikset bylineinfo på artikler som er tilknyttet en innholdsliste #8943
+- Fjernet at tittelen til tilknyttede personer vises med mindre det finnes en tilknyttet person #8944
+- Gjøre område et påkrevd felt på innholdslister #9006
+
+Kalender
+- Endret datoformat på kalenderen #8938
+- Gjort sql-endringer i kalender-modulen #8942
+
 # Release 16.1 _2014-12-10_
 
 Fikset problem som førte til at søknadsfrister for EVU-kurs utløp en dag for tidlig. #8972
