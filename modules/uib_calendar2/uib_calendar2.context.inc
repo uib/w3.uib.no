@@ -20,6 +20,8 @@ function uib_calendar2_context_default_contexts() {
     'path' => array(
       'values' => array(
         'calendar2' => 'calendar2',
+        'calendar2/*' => 'calendar2/*',
+        'node/*/calendar2' => 'node/*/calendar2',
       ),
     ),
   );

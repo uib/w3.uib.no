@@ -10,6 +10,11 @@ function uib_calendar2_menu() {
     'page callback' => 'uib_calendar2__index_page',
     'access callback' => TRUE,
   );
+  $items["node/%/calendar2"] = array(
+    'page callback' => 'uib_calendar2__index_page',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
+  );
   $items['autocomplete/calendar2/area'] = array(
     'title' => 'Autocomplete for area',
     'page callback' => 'uib_calendar2_form__autocomplete',
@@ -48,7 +53,7 @@ function uib_calendar2_block_view($delta='') {
 /**
  * Generates the render array for the top level calendar page.
  */
-function uib_calendar2__index_page() {
+function uib_calendar2__index_page($area_nid=NULL) {
   $page = array();
 
   $form = drupal_get_form('uib_calendar2_form');
@@ -63,14 +68,22 @@ function uib_calendar2__index_page() {
     $area_code = str_replace(")","",$area_explode[1]);
   }
 
+  elseif ($area_nid) {
+    $area_code = $area_nid;
+    $area_node = node_load($area_code);
+    if (!$area_node || $area_node->type != 'area') {
+      return MENU_NOT_FOUND;
+    }
+    $area = $area_node->title;
+  }
+
+
   $events = '';
-  $i = 1;
+  $i=1;
   foreach ($event_types as $event) {
-    if ($i == count($event_types) && count($event_types) != 1 && $i != 1)
-      $events .= t("and") . " ";
+    if ($i == count($event_types) && count($event_types) != 1 && $i != 1) $events .= t("and")." ";
     $events .= t($event);
-    if ($i != count($event_types))
-      $events .= ", ";
+    if ($i != count($event_types)) $events .= ", ";
     $i++;
   }
 
@@ -179,13 +192,13 @@ function uib_calendar2_form($form, &$form_state) {
     '#date_format' => 'Y-m-d',
     '#default_value' => date('Y-m-d'),
   );
-  $form['area'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Area'),
-    '#size' => 20,
-    '#autocomplete_path' => 'autocomplete/calendar2/area',
-    '#default_value' => $area,
-  );
+  if (arg(0) != 'node') {
+    $form['area'] = array(
+      '#title' => t('Area'),
+      '#type' => 'textfield',
+      '#autocomplete_path' => 'autocomplete/calendar2/area',
+    );
+  }
   $form['language'] = array(
     '#type' => 'radios',
     '#title' => 'Language',
