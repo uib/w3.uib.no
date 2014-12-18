@@ -117,7 +117,9 @@ $study_count = 0;
           $found++;
         }
         else {
-          uibx_log("Referenced program [from $study_code] $missing is missing", 'warning');
+          if ($study_code != 'NORUT' && substr($study_code, 0, 5) != 'INTL-') {
+            uibx_log("Referenced program [from $study_code] $missing is missing", 'warning');
+          }
         }
       }
       if ($found) {
