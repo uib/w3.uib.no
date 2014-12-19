@@ -1295,14 +1295,14 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['title']);
       hide($form['field_uib_ou']);
       hide($form['field_uib_study_title']);
-      hide($form['field_uib_study_category']);
+      $form['field_uib_study_category']['#access'] = FALSE;
       hide($form['field_uib_study_type']);
       hide($form['field_uib_study_code']);
-      hide($form['field_uib_study_part_of']);
-      hide($form['field_uib_study_points_rank']);
-      hide($form['field_uib_nus']);
-      hide($form['field_uib_study_country']);
-      hide($form['field_uib_study_label']);
+      $form['field_uib_study_part_of']['#access'] = FALSE;
+      $form['field_uib_study_points_rank']['#access'] = FALSE;
+      $form['field_uib_nus']['#access'] = FALSE;
+      $form['field_uib_study_country']['#access'] = FALSE;
+      $form['field_uib_study_label']['#access'] = FALSE;
       // hide language selector
       hide($form['language']);
       // hide additional settings
