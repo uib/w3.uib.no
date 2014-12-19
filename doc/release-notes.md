@@ -1,3 +1,9 @@
+# Release 17.1 _2014-12-19_
+
+Fikset problem hvor utvekslingsavtaler mistet koblingen til land og
+studieprogram når de ble redigert av brukere som ikke er administrator. Dette
+førte til at avtalene forsvant fra oversikten. #9098
+
 #Release 17 _2014-12-18_
 
 I denne releasen har fokuset vært på utvekslingsavtaler og innholdslisten. Dette er siste releasen før jul og vi har fått inn mange saker i denne releasen. Neste release vil komme torsdag 15. januar. Den vil i stor grad inneholde fikser til utvekslingsavtalene, innholdsliste og arbeidet med ny kalender.
