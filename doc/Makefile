@@ -2,7 +2,6 @@ HTML = \
   area.html \
   course_site-w3-kurs.uib.no.html \
   development-setup.html \
-  drupal-deploy.html \
   drupal-sync-course-site.html \
   drupal-update.html \
   fs-pres.html \

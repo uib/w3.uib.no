@@ -115,7 +115,6 @@ site itself.
 
 ## Operational concerns
 
-* [Deploy Drupal into production](drupal-deploy.html)
 * [How to upgrade Drupal on w3.uib.no](drupal-update.html)
 * [Production server layout](w3_server_layout.html)
 * [Production setup](server-setup.html)
