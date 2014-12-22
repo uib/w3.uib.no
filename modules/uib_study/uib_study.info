@@ -19,7 +19,6 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = uib_area
-dependencies[] = uib_migrate
 dependencies[] = uib_testimonial
 dependencies[] = uibx
 dependencies[] = views

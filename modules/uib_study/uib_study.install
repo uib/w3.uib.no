@@ -72,54 +72,6 @@ function uib_study_update_7004() {
 }
 
 /**
- * Migrate Study images from w2
- */
-function uib_study_update_7005() {
-  module_load_include('inc', 'uib_migrate');
-  // Get all study programmes
-  $query = new EntityFieldQuery;
-  $result = $query->entityCondition('entity_type', 'node')
-    ->propertyCondition('type', 'uib_study')
-    ->fieldCondition('field_uib_study_type', 'value', 'program')
-    ->execute();
-
-  $study_programmes = entity_load('node', array_keys($result['node']));
-
-  $cnt = 0;
-  $tot_cnt = 0;
-  foreach($study_programmes as $nid => $study_node) {
-    $tot_cnt++;
-    $study = entity_metadata_wrapper('node', $study_node);
-    $path = 'studieprogram/' . $study->field_uib_study_code->value() . '/xtopic';
-    try {
-      $w2_study_data = new XTopic($path, TRUE, 'studieprogram');
-    }
-    catch (Exception $e) {
-      if ($e->getCode() == 404 OR $e->getCode() == 301) {
-        uibx_log("Unable to find study programme " . $study->field_uib_study_code->value() . " in w2.", "warning");
-        continue;
-      }
-      throw $e;
-    }
-    if (empty($w2_study_data->media)) {
-      continue;
-    }
-    // Only a singe image is allowed with current field settings
-    $w2_id = $w2_study_data->media[0];
-    $migrated_file = xtopic_file($w2_id, $study->author->raw(), $study->language->value());
-    if (!empty($migrated_file)) {
-      $study->field_uib_study_image->set(array('fid' => $migrated_file->fid, 'display' => 1,));
-      $study->save();
-      $cnt++;
-    }
-    else {
-      uibx_log("Could not fetch image. id=$w2_id", "warning");
-    }
-  }
-  uibx_log("Migrated image for $cnt study programmes (out of $tot_cnt).");
-}
-
-/**
  * Remove field_uib_study_testimonial
  */
 function uib_study_update_7006() {

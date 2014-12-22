@@ -192,17 +192,8 @@ function uib_area_block_view($delta='') {
         $result = db_query($query, $nlist);
         // Setup each parental area node title on a separate line with link.
         foreach ($result as $record) {
-          $title = '';
-          if (substr($record->title, 0, 9) == 'Area stub') {
-            if ($stub_origin = uib_area__get_stub_info($record->title)) {
-              $title = $stub_origin['title'];
-              $url = $stub_origin['url'];
-            }
-          }
-          else {
-            $title = t($record->title);
-            $url = 'node/' . $record->nid;
-          }
+          $title = t($record->title);
+          $url = 'node/' . $record->nid;
           if ($title) {
             $block['content'][$title]['#markup'] = l($title, $url) . '<br>';
           }
@@ -1640,38 +1631,6 @@ function uib_zen_field__area($variables) {
   }
 
   return $output;
-}
-
-/**
- * Return some area information for an area stub before it is migrated
- * @param  string $stubtitle the stub title "Area stub for w2-id"
- * @return array of two strings: area title and its url.
- */
-function uib_area__get_stub_info($stubtitle) {
-  if (!module_exists('uib_migrate')) {
-    return FALSE;
-  }
-  $tmp = explode(' ', $stubtitle);
-  $w2_id = trim($tmp[3]);
-  if (!is_numeric($w2_id)) {
-    return FALSE;
-  }
-  try {
-    $w2 = new XTopic($w2_id, FALSE, 'stub lookup');
-    if ($w2) {
-      $url = 'http://www.uib.no/' . $w2->path;
-      if ($w2->site_lang == 'en') {
-        $url .= '/en';
-      }
-      return array(
-        'title' => $w2->title,
-        'url' => $url,
-        );
-    }
-  }
-  catch (Exception $e) {
-    return FALSE;
-  }
 }
 
 /**
