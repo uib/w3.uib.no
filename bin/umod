@@ -236,7 +236,8 @@ sub collect_info {
 	    my @refs = scan_file_php_refs("$modules_dir/$module/$file", \%DEF);
 	    $MODULES{$module}{file}{$file}{refs} = \@refs;
 	    for my $ref (@refs) {
-		push(@{$USE{$ref}}, $module);
+		push(@{$USE{$ref}}, $module)
+		  unless grep $_ eq $module, @{$USE{$ref} || []};
 		if ($module ne $DEF{$ref}) {
 		    $MODULES{$module}{deps}{$DEF{$ref}}++;
 		}
