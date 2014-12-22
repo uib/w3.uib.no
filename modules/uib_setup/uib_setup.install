@@ -149,3 +149,11 @@ function uib_setup_update_7013() {
 function uib_setup_update_7014() {
   module_enable(array('imagemagick'));
 }
+
+/**
+ * Uninstall uib_migrate
+ */
+function uib_setup_update_7015() {
+  module_disable(array('uib_migrate', 'migrate'));
+  drupal_uninstall_modules(array('uib_migrate', 'migrate'), FALSE);
+}

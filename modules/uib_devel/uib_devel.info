@@ -10,7 +10,6 @@ dependencies[] = devel
 dependencies[] = features
 dependencies[] = field_ui
 dependencies[] = help
-dependencies[] = migrate_ui
 dependencies[] = strongarm
 dependencies[] = styleguide
 dependencies[] = uib_setup
