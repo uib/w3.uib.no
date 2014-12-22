@@ -3100,7 +3100,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['arguments']['field_uib_date_value']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_uib_date_value']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_uib_date_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_uib_date_value']['year_range'] = '2014:2014';
+  $handler->display->display_options['arguments']['field_uib_date_value']['year_range'] = '2014:+1';
   $handler->display->display_options['arguments']['field_uib_date_value']['granularity'] = 'year';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
