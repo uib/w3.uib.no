@@ -809,7 +809,7 @@ function uib_study_block_view($delta = '') {
                   $rows[] = array(t('Exchange duration'), $exchange_duration);
                 }
                 if (!$network) {
-                  $fs_study_type_nr = 'Not available';
+                  $fs_study_type_nr = t('Not available');
                   if (!empty($data['restinfo']['studietypenr'])) {
                     $fs_study_type_nr = check_plain($data['restinfo']['studietypenr']);
                   }
