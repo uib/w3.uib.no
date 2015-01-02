@@ -821,6 +821,9 @@ function uib_study_block_view($delta = '') {
                   $rows[] = array(t('Belongs to'), $belongs_to);
                 }
 
+                $rows[] = array(t('How do I apply?'), l(t('Instruction on Søknadsweb'), 'utdanning/49395/søknadsweb-instruksjonar'));
+                $rows[] = array(t('Submit your application here'), l(t('Søknadsweb'), 'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib'));
+
                 if (!$network) {
                   foreach ($betingelse['sted'] as $place) {
                     if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
@@ -845,12 +848,10 @@ function uib_study_block_view($delta = '') {
                       if (!empty($place['url'])) {
                         $rows[] = array(t('Web site'), l($place['url'], $place['url']));
                       }
-                      // ** missing ** Visum info
                     }
                   }
                 }
 
-                // ** missing ** How to apply / Korleis søkje
                 // Table footnote
                 if (!$network) {
                   $rows[] = array(
@@ -994,8 +995,6 @@ function uib_study_block_view($delta = '') {
       $node = menu_get_object();
       if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
         $markup = array();
-        $markup[] = l(t('How to apply for exchange'), 'utdanning/49395/søknadsweb-instruksjonar');
-        $markup[] = l(t('Online exchange application form'), 'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib');
         $markup[] = l(t('Norwegian state educational loan fund'), 'http://www.lanekassen.no/');
         $markup[] = l(t('Diplomatic relations'), 'http://www.regjeringen.no/nb/dep/ud/dep/forbindelser.html?id=447053');
         $markup[] = l(t('Association for Norwegian students abroad'), 'http://www.ansa.no/');
