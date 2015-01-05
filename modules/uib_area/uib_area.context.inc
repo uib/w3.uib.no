@@ -84,6 +84,12 @@ function uib_area_context_default_contexts() {
           'region' => 'above_content',
           'weight' => '0',
         ),
+        'uib_area-ouprosjektet_logo' => array(
+          'module' => 'uib_area',
+          'delta' => 'ouprosjektet_logo',
+          'region' => 'sidebar_second',
+          'weight' => '-11',
+        ),
         'uib_area-area_parents' => array(
           'module' => 'uib_area',
           'delta' => 'area_parents',
@@ -114,23 +120,11 @@ function uib_area_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-6',
         ),
-        'uib_area-ub_special_logo' => array(
-          'module' => 'uib_area',
-          'delta' => 'ub_special_logo',
-          'region' => 'sidebar_second',
-          'weight' => '-12',
-        ),
         'uib_area-paahoyden_logo' => array(
           'module' => 'uib_area',
           'delta' => 'paahoyden_logo',
           'region' => 'sidebar_second',
           'weight' => '-5',
-        ),
-        'uib_area-ouprosjektet_logo' => array(
-          'module' => 'uib_area',
-          'delta' => 'ouprosjektet_logo',
-          'region' => 'sidebar_second',
-          'weight' => '-11',
         ),
         'uib_area-jobbnorge' => array(
           'module' => 'uib_area',

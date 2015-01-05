@@ -41,10 +41,6 @@ function uib_area_block_info() {
       'info' => t('Paa hoyden logo on newspage'),
       'status' => TRUE,
     ),
-    'ub_special_logo' => array(
-      'info' => t('Special collection'),
-      'status' => TRUE,
-    ),
     'ouprosjektet_logo' => array(
       'info' => t('OU-prosjektet logo on for-employees'),
       'status' => TRUE,
@@ -276,27 +272,6 @@ function uib_area_block_view($delta='') {
             </div>
           ';
         }
-      }
-    break;
-    case 'ub_special_logo':
-      //71396 Bibliotek nid in Norwegian
-      //71388 Bibliotek nid in English
-      if(!empty($area) && ($area->nid == 71396 || $area->nid == 71388)) {
-        $logo_lang = $url_lang = '';
-        if ($area->language == 'en') {
-          $logo_lang = '-en';
-          $url_lang = '?lang=en';
-        }
-        global $base_url;
-        global $theme_path;
-        $logo = $base_url . '/' . $theme_path . '/images/ub-spesial-logo';
-        $block['content'] = '
-          <div>
-            <a title="' . t("Special Collections") . '" href="http://spesial.b.uib.no/' . $url_lang . '">
-              <img alt="' . t("Special Collections") . '" src="' . $logo . $logo_lang . '.jpg"/>
-            </a>
-          </div>
-        ';
       }
     break;
     case 'ouprosjektet_logo':
