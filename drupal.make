@@ -18,7 +18,7 @@ projects[zen][version] = 5.5
 
 ; modules
 projects[addressfield][version] = 1.0-beta5
-projects[admin_menu][version] = 3.0-rc4
+projects[admin_menu][version] = 3.0-rc5
 projects[advanced_help][version] = 1.1
 projects[autocomplete_deluxe][version] = 2.0-beta3
 projects[better_exposed_filters][version] = 3.0
