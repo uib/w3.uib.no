@@ -72,7 +72,7 @@ function uib_urlfilter_field_formatter_view($entity_type, $entity, $field, $inst
   if ($display['type'] == 'uiblink_formatter') {
     $elements = array();
     foreach ($items as $delta => $item) {
-      $item['url'] = _uib_urlfilter__replace($item['url']);
+      $item['url'] = urldecode(_uib_urlfilter__replace($item['url']));
       $is_internal = $item['url'][0] == '/' ? TRUE : FALSE;
       $url = field_view_value($entity_type, $entity, $field['field_name'], $item);
       $url = render($url);
