@@ -397,3 +397,16 @@ function uib_area_update_7011() {
   );
   path_save($new_alias);
 }
+
+/**
+ * Update banner field for ub in norwegian and english
+ */
+function uib_area_update_7012() {
+  require_once('ub_banner_content.inc');
+  $ub = node_load(71388);
+  $ub->field_uib_area_banner['und'][0]['value'] = $new_banner_value;
+  node_save($ub);
+  $ub_en = node_load(71396);
+  $ub_en->field_uib_area_banner['und'][0]['value'] = $new_banner_value_en;
+  node_save($ub_en);
+}
