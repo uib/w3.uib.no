@@ -21,17 +21,20 @@
       margin: 10px auto;
       border-radius: 0;
       padding: 20px;
-      background: #F1F1EF;
+      background: #026f9c;
     }
-    #search a { font-size: 14px; }
+    #search a {
+      font-size: 14px;
+      color: #fff;
+    }
     #search input {
       width: 75%;
       font-size: 15px;
       box-sizing: border-box;
+      border: 0 none;
       height: 3em;
       padding-left: 1.8%;
       float: left;
-      border: solid 1px #D0D0D0;
       background: #fff;
     }
     #search button {
@@ -54,15 +57,10 @@
       clear: left;
       margin: 0;
       padding: 20px 0 0;
-      text-align: justify;
     }
     #search .alt-options li{
       display: inline-block;
-    }
-    #search .alt-options:after {
-      content: '';
-      display: inline-block;
-      width: 100%;
+      margin-right: 2em;
     }
   </style>
 EOT;
@@ -88,7 +86,7 @@ EOT;
         <a href="http://bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?mode=Advanced&vid=UBB&tab=default_tab&lang=nor&prefLang=no_NO">Avansert søk</a>
       </li>
       <li>
-        <a href="http:// bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=UBB&vid=UBB&openFdb=true&prefLang = no_NO">Finn databaser</a>
+        <a href="http:// bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=UBB&vid=UBB&openFdb=true&prefLang=no_NO">Finn databaser</a>
       </li>
       <li>
         <a href="http://www.uib.no/ub/82586/forny-dine-lån">Forny dine lån</a>
