@@ -417,3 +417,20 @@ table.cols-6 {
     background-color: white;
   }
 }
+
+.section-nye-doktorgrader {
+  .view-recent-phds {
+    .date-prev {
+      left: 0;
+      right: auto;
+      a {
+        margin-right: 10px;
+      }
+    }
+    .date-next {
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
+}
