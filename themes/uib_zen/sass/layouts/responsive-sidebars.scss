@@ -803,7 +803,7 @@ $zen-auto-include-item-base: false;
     float: none;
   }
 
-  .node-uib-article .field-name-field-uib-text {
+  body:not(.no-sidebar) .node-uib-article .field-name-field-uib-text {
     @include zen-grid-item(3, 1);
     width: 72%;
   }
@@ -1045,7 +1045,7 @@ $zen-auto-include-item-base: false;
 
   /* uib_article nodes */
   #node_uib_testimonial_full_group_article_main,
-  .node-uib-article .field-name-field-uib-text {
+  body:not(.no-sidebar) .node-uib-article .field-name-field-uib-text {
     @include zen-grid-item(3, 1);
     width: 73%;
   }

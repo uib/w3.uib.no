@@ -150,6 +150,10 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       }
     }
 
+    global $user;
+    if (!(in_array('level 1', $user->roles) or $user->uid == 1)) {
+      unset($form['field_uib_article_type']['und']['#options']['no_sidebar']);
+    }
     // Extra save button
     $form['extra_save'] = $form['actions']['submit'];
     $form['extra_save']['#weight'] = -1;
@@ -284,6 +288,26 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
         ),
       ),
     );
+
+    $hide_in_no_sidebar = array(
+      'field_uib_kicker',
+      'field_uib_main_media',
+      'field_uib_byline',
+      'field_uib_external_author',
+      'field_uib_fact_box',
+      'field_uib_media',
+      'field_uib_files',
+      'field_uib_links',
+    );
+    foreach($hide_in_no_sidebar as $hidden) {
+      $form[$hidden]['#states'] = array(
+        'invisible' => array(
+          ':input[name="field_uib_article_type[und]"]' => array(
+            array('value' => 'no_sidebar'),
+          ),
+        ),
+      );
+    }
 
     // Hide all fields with "w2" in name
     foreach ($form as $field_key => $field_value) {

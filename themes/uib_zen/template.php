@@ -143,6 +143,19 @@ function uib_zen_preprocess_html(&$variables, $hook) {
     $menu_style = field_get_items('node', $current_area, 'field_uib_menu_style');
     $variables['classes_array'][] = $menu_style[0]['value'];
   }
+  $path_items = explode('/', current_path());
+  $nid = $path_items[1];
+  if (is_numeric($nid)) {
+    $current_node = node_load($nid);
+    if (isset($current_node->field_uib_article_type)) {
+      if ($current_node->field_uib_article_type['und'][0]['value'] == 'no_sidebar') {
+        $key = array_search('one-sidebar sidebar-second', $variables['classes_array']);
+        if ($key && in_array('one-sidebar sidebar-second', $variables['classes_array'])) {
+          $variables['classes_array'][$key] = 'no-sidebar';
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -163,6 +176,9 @@ function uib_zen_preprocess_page(&$variables, $hook) {
       if ($variables['node']->language != $variables['language']->language) {
         drupal_set_message($not_translated_txt, 'warning');
         drupal_set_breadcrumb(array());
+      }
+      if ($variables['node']->field_uib_article_type['und'][0]['value'] == 'no_sidebar') {
+        unset($variables['page']['sidebar_second']);
       }
     }
     elseif ($variables['node']->type == 'uib_study') {
