@@ -86,7 +86,7 @@ EOT;
         <a href="http://bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?mode=Advanced&vid=UBB&tab=default_tab&lang=nor&prefLang=no_NO">Avansert søk</a>
       </li>
       <li>
-        <a href="http:// bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=UBB&vid=UBB&openFdb=true&prefLang=no_NO">Finn databaser</a>
+        <a href="http://bibsys-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/dlSearch.do?institution=UBB&vid=UBB&openFdb=true&prefLang = no_NO">Finn databaser</a>
       </li>
       <li>
         <a href="http://www.uib.no/ub/82586/forny-dine-lån">Forny dine lån</a>
