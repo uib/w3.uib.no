@@ -869,7 +869,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -882,10 +881,6 @@ function uib_study_views_default_views() {
     ),
   );
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Entity translation: translations */
-  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
-  $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
-  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
   /* Field: Content: Category */
   $handler->display->display_options['fields']['field_uib_study_category']['id'] = 'field_uib_study_category';
   $handler->display->display_options['fields']['field_uib_study_category']['table'] = 'field_data_field_uib_study_category';
@@ -1008,7 +1003,6 @@ function uib_study_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Translations'),
     t('<a href="[path]">[field_uib_study_title]</a>'),
     t('All'),
     t('%1'),
