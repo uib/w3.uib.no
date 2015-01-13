@@ -430,6 +430,12 @@ function uib_zen_preprocess_node(&$variables, $hook) {
     $variables['theme_hook_suggestions'][] = 'node__uib_study__teaser';
   }
 
+  // RTS-9274
+  if (isset($variables)) {
+    drupal_add_js(drupal_get_path('theme', 'uib_zen') . '/js/survey.js',
+      array('group' => JS_DEFAULT, )
+    );
+  }
 
   /**
    * Only run this when nodes are rendered on a page.
