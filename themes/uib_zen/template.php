@@ -483,6 +483,11 @@ function uib_zen_preprocess_node(&$variables, $hook) {
           drupal_add_js(drupal_get_path('theme', 'uib_zen') . '/js/mobile_menu_fix.js',
             array('group' => JS_THEME, )
           );
+
+          // RTS-9274
+          drupal_add_js(drupal_get_path('theme', 'uib_zen') . '/js/survey.js',
+            array('group' => JS_DEFAULT, )
+          );
           break;
         case 'phdpresspage':
           $variables['classes_array'][] = 'phdpresspage_node';
