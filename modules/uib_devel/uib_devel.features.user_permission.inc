@@ -30,15 +30,6 @@ function uib_devel_user_default_permissions() {
     'module' => 'devel',
   );
 
-  // Exported permission: 'migration information'.
-  $permissions['migration information'] = array(
-    'name' => 'migration information',
-    'roles' => array(
-      'admin' => 'admin',
-    ),
-    'module' => 'migrate_ui',
-  );
-
   // Exported permission: 'switch users'.
   $permissions['switch users'] = array(
     'name' => 'switch users',
