@@ -153,7 +153,6 @@ function uib_study__infopage($code, $code2 = NULL) {
 function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
   if (empty($render))
     return FALSE;
-  $wrong_chars = array(' ', 'æ', 'ø' ,'å');
   $count = 0;
   $is_course = uib_study__is_course();
   $is_evu_course = uib_study__is_course('evu');
@@ -161,7 +160,7 @@ function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
     if ($filter && !$filter($group['#group']))
       continue;
     $group_title = check_plain($group['#title']);
-    $group_title_html_id = str_replace($wrong_chars, '-', strtolower($group_title));
+    $group_title_html_id = uib_study__clean_id_string($group_title);
     $count++;
     $page[$group['#group']] = array(
       'header' => array(
@@ -424,6 +423,15 @@ function uib_study__area($study_node, $lang) {
 }
 
 /**
+ * Replace characters for use in css id string
+ */
+function uib_study__clean_id_string($unclean) {
+  $replacements = array('æ' => 'a', 'ä' => 'a', 'ø' => 'o', 'ö' => 'o', 'ü' => 'u', 'é' => 'e', 'è' => 'e');
+  $cleaner = strtr(drupal_strtolower($unclean), $replacements);
+  return mb_ereg_replace('[^0-9A-Za-z\_\-]', '-', $cleaner);
+}
+
+/**
  * Implements hook_block_view().
  */
 function uib_study_block_view($delta = '') {
@@ -431,6 +439,7 @@ function uib_study_block_view($delta = '') {
   $block = array();
   $data = FALSE;
   $is_course = uib_study__is_course();
+  $is_exchange = uib_study__is_exchange();
   switch ($delta) {
     case 'study_content':
       $splice_list = array(
@@ -456,20 +465,32 @@ function uib_study_block_view($delta = '') {
 
         $render = array();
         $nid = $node->nid->value();
-        uib_study__infotyper_render($render, $data, function ($group) {
-          return substr($group, -8) != '_kontakt' && substr($group, -11) != '_studieplan';
-        }, $nid);
+        if ($is_exchange) {
+          $info_data = uib_study__fspres_get_node_json($node->getIdentifier(), 'info.json', FALSE);
+          if (uib_study__exchange_is_network($info_data)) {
+            uib_study__infotyper_render($render, $data, function ($group) {
+              return $group != 'avt_sted';
+            }, $nid);
+          }
+          else {
+            uib_study__infotyper_render($render, $data, NULL, $nid);
+          }
+        }
+        else {
+          uib_study__infotyper_render($render, $data, function ($group) {
+            return substr($group, -8) != '_kontakt' && substr($group, -11) != '_studieplan';
+          }, $nid);
+        }
 
         $type = $node->field_uib_study_type->value();
         $study_code = $node->field_uib_study_code->value();
         if ($type == 'program' || $type == 'specialization' || $type == 'exchange') {
           $tab_items = array();
-          $wrong_chars = array(' ', 'æ', 'ø' ,'å');
           foreach ($data as $group) {
             $group_title = check_plain($group['#title']);
-            if (substr($group['#group'], -11) == '_studieplan')
+            if (substr($group['#group'], -11) == '_studieplan' || (uib_study__exchange_is_network($info_data) && $group['#group'] == 'avt_sted'))
               continue;
-            $group_title_html_id = str_replace($wrong_chars, '-', strtolower($group_title));
+            $group_title_html_id = uib_study__clean_id_string($group_title);
             $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
           }
           if ($type == 'program' || $type == 'specialization') {
@@ -1718,7 +1739,7 @@ function uib_study_views_pre_render(&$view) {
 }
 
 /**
- * Function to check if current node's study_type is course
+ * Determine if current node's study_type is course
  * @return [bool]
  */
 function uib_study__is_course($category=FALSE) {
@@ -1731,6 +1752,34 @@ function uib_study__is_course($category=FALSE) {
     }
   }
   return $is_course;
+}
+
+/**
+ * Determine if current node's study_type is exchange agreement
+ * @return [bool]
+ */
+function uib_study__is_exchange($node = FALSE) {
+  $is_exchange = FALSE;
+  if (!$node) {
+    $node = menu_get_object();
+  }
+  if ($node) {
+    if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
+      $is_exchange = TRUE;
+    }
+  }
+  return $is_exchange;
+}
+
+/**
+ * Determine if exchange agreement is a network
+ */
+function uib_study__exchange_is_network(&$info) {
+  $is_network = FALSE;
+  if ($info['utvprogramkode'] == 'NORDPLUS' || count($info['sted']) > 2) {
+    $is_network = TRUE;
+  }
+  return $is_network;
 }
 
 function uib_study__has_study_plan(&$data) {
