@@ -112,7 +112,7 @@ function uib_calendar2__index_page() {
     }
   }
 
-  $deadlines = db_query("SELECT n.nid, n.title, dl.field_uib_deadline_value as deadline FROM node n, field_data_field_uib_deadline dl WHERE :enddate > substring(cast (field_uib_deadline_value as text) from 1 for 10) AND substring(cast (field_uib_deadline_value as text) from 1 for 10) > :startdate AND n.nid=dl.entity_id;", array(':enddate'=>end($datesarray), ':startdate'=>$dayOfYear))->fetchAll();
+  $deadlines = db_query("SELECT n.nid, n.title, dl.field_uib_deadline_value as deadline FROM node n, field_data_field_uib_deadline dl WHERE :enddate >= substring(cast (field_uib_deadline_value as text) from 1 for 10) AND substring(cast (field_uib_deadline_value as text) from 1 for 10) >= :startdate AND n.nid=dl.entity_id;", array(':enddate'=>end($datesarray), ':startdate'=>$dayOfYear))->fetchAll();
 
   foreach ($deadlines as $deadline) {
     $event = array();
