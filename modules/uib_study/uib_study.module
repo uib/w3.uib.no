@@ -179,7 +179,7 @@ function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
         '#markup' => uib_study__text_markup($item, $is_course),
       );
     }
-    if ($group['#group'] == 'ba_utveksling' && $nid) {
+    if (substr($group['#group'], (strlen($group['#group']) -11)) == '_utveksling' && $nid) {
       $page[$group['#group']]['exag'] = array(
         '#markup' => uib_study__get_exchange_agreements($nid),
       );
