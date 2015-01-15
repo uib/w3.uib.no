@@ -1,3 +1,34 @@
+# Release 18 _2015-01-15_
+
+Vi starter 2015 med en liten release hvor vi fortsetter arbeidet med utvekslingsavtaler, kalenderen og gjør et par endringer for UB i tillegg til generell bugfiksing.
+
+Utvekslingsavtaler:
+
+- Vi legger to lenker tilbake i faktaboksen #8991
+- Vi har gjort det mulig å oversette søknadskoden #9101
+- Lenken til studentrapporter på utvekslingssiden har midlertidig blitt fjernet #9168
+- Vi har fjernet informasjon om lærerstedet fra Nordplus avtaler #9172
+
+Kalender:
+
+- Det er nå mulig å filtrere på område og tittel og ingress forandrer basert på filtrering fra bruker #8937
+
+UB:
+
+- Vi fjerner logo som ligget i sidebar hos UB #8807
+- Søkeboksen til UB har nå blitt gjort om til bare et søk #9115
+
+Generell bugfiksing:
+
+- Det er nå mulig å legge eksternt innhold i slideshow #9378
+- Doktogradssiden fungerte ikke etter overgang til 2015, dette er nå fikset #9104
+- Relevante lenker la på ekstra tegn i visse lenker, dette er nå ordnet #9119
+- Skjuler advarsler om manglende studieprogram #9036
+- Har begynt arbeidet med å fjerne uib\_migrate modulen #8924
+- Moduloppgradering av context #9231
+
+
+
 # Release 17.1 _2014-12-19_
 
 Fikset problem hvor utvekslingsavtaler mistet koblingen til land og
