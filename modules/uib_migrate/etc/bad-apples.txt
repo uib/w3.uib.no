@@ -1,7 +1,0 @@
-# In this file you might list the xtopic ids of objects that are to be skipped
-# during migration.
-
-6814973371863746852  # RTS-167 /rektoratet/konferanse/2008/11/Internseminar
-116910409108054109   # Empty XML tree
-7576678447532242041  # User "Topic not found"
-8341364957436130899  # User "Topic not found"
