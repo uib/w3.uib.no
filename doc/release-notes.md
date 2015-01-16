@@ -1,3 +1,7 @@
+# Release 18.1 _2015-01-16_
+
+Lenkene ut fra slideshowet ble plukket opp fra relevante lenker selv for innhold som ikke var eksternt innhold. #9321
+
 # Release 18 _2015-01-15_
 
 Vi starter 2015 med en liten release hvor vi fortsetter arbeidet med utvekslingsavtaler, kalenderen og gjør et par endringer for UB i tillegg til generell bugfiksing.
