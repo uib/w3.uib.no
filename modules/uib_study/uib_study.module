@@ -382,13 +382,12 @@ function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
   return uib_study__fspres_get_json($path);
 }
 
-function uib_study__published_student_reports($code) {
+function uib_study__published_student_reports($code, $instcodes) {
   $url = variable_get('uib_studentrapport_root', 'http://studentrapport.app.uib.no');
-  $url .= "/api/reports/$code/done";
-
+  $instcodes = implode(',', $instcodes);
+  $url .= "/api/reports/$code/$instcodes/done";
   $before = microtime(true);
   $res = drupal_http_request($url);
-
   $log_message = "GET $url => ";
   $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
   $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
@@ -635,7 +634,8 @@ function uib_study_block_view($delta = '') {
           }
           elseif ($type == 'exchange') {
             if ($language->language == 'nb') {
-              $reports = uib_study__published_student_reports($node->field_uib_study_code->value());
+              $external_institution_codes = uib_study__external_inst_code($info_data);
+              $reports = uib_study__published_student_reports($study_code, $external_institution_codes);
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
               foreach ($reports as $key => $report) {
                 $report_title = $report['title']['#value'];
@@ -1040,6 +1040,24 @@ function uib_study_block_view($delta = '') {
   }
 
   return $block;
+}
+
+/**
+ * Returns an array of external institution codes
+ * connected to a student exchange agreement
+ */
+function uib_study__external_inst_code(&$info) {
+   $codes = array();
+  foreach ($info['betingelse'] as $category) {
+    if ($category['personkategori'] == 'STUDENT') {
+      foreach ($category['sted'] as $part) {
+        if ($part['institusjonsnr'] != 184) {
+          $codes[] = $part['institusjonsnr'];
+        }
+      }
+    }
+  }
+  return $codes;
 }
 
 /**
