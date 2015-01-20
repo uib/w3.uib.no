@@ -161,6 +161,8 @@ function uib_setup_strongarm() {
     'popup_delay' => '1',
     'popup_bg_hex' => '006b9a',
     'popup_text_hex' => 'ffffff',
+    'popup_agree_button_message' => 'Yes, I agree',
+    'popup_disagree_button_message' => 'No, I want to find out more',
   );
   $export['eu_cookie_compliance_en'] = $strongarm;
 
@@ -188,6 +190,8 @@ function uib_setup_strongarm() {
     'popup_delay' => '1',
     'popup_bg_hex' => '006b9a',
     'popup_text_hex' => 'ffffff',
+    'popup_agree_button_message' => 'Ok',
+    'popup_disagree_button_message' => 'Nei, jeg ønsker mer informasjon',
   );
   $export['eu_cookie_compliance_nb'] = $strongarm;
 
