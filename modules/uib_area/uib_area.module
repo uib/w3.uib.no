@@ -811,6 +811,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_area_banner', // Banner
       'field_uib_colophone_logos', // Colophone logos
       'field_uib_offices',
+      'field_uib_image_map',
       );
     // list of fields that should be hidden from
     // level 3 users
@@ -1586,7 +1587,15 @@ function uib_zen_field__area($variables) {
   if (!$variables['label_hidden']) {
     $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
   }
-
+  $imagemap_prefix = '';
+  if ($variables['element']['#field_name'] == 'field_uib_primary_media') {
+    if (!empty($variables['element']['#object']->field_uib_image_map)) {
+      if (count($variables['items']) == 1) {
+        $imagemap_prefix = $variables['element']['#object']->field_uib_image_map['und'][0]['safe_value'];
+        $variables['classes'] .= ' imageMap';
+      }
+    }
+  }
   // Render the items.
   $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
   foreach ($variables['items'] as $delta => $item) {
@@ -1595,7 +1604,7 @@ function uib_zen_field__area($variables) {
   }
   $output .= '</div>';
 
-  $prefix = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>';
+  $prefix = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $imagemap_prefix;
   if (!empty($variables['element']['#field_name']) && uib_area__has_bg_box($variables['element']['#field_name'])) {
     if (!empty($variables['element']['#object']->$variables['element']['#field_name'])) {
       $output = $prefix . '<div class="opaque-box">' . $output . '</div></div>';

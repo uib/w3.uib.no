@@ -831,6 +831,35 @@ function uib_area_field_default_field_bases() {
     'type' => 'office_hours',
   );
 
+  // Exported field_base: 'field_uib_image_map'
+  $field_bases['field_uib_image_map'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_image_map',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_uib_important_message'
   $field_bases['field_uib_important_message'] = array(
     'active' => 1,

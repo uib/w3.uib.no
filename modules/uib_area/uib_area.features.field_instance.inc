@@ -575,6 +575,78 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-area-field_uib_image_map'
+  $field_instances['node-area-field_uib_image_map'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This is a field level 1 users may use to add an image map to main media in an area.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 26,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_image_map',
+    'label' => 'Image map',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 0,
+          'full_html' => 'full_html',
+          'plain_text' => 0,
+          'restricted_html' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-area-field_uib_important_message'
   $field_instances['node-area-field_uib_important_message'] = array(
     'bundle' => 'area',
@@ -4340,6 +4412,7 @@ function uib_area_field_default_field_instances() {
   t('Hours');
   t('ID w2');
   t('Illustration that goes together with the bottom text.');
+  t('Image map');
   t('Important message');
   t('Information put in this field will be shown in the middle of the area front page. ');
   t('Jobbnorge ID');
@@ -4391,6 +4464,7 @@ function uib_area_field_default_field_instances() {
   t('These are the small images in the sidebar. You can add several.');
   t('This field contains the text that was known as "profiltekster" in the old version and was shown on the left side of the area page. ');
   t('This field is shown at the bottom of the area front page. ');
+  t('This is a field level 1 users may use to add an image map to main media in an area.');
   t('This is a short category title which highlights the subject of the article. ');
   t('This is the large image/video at the top.');
   t('This is the primary profile text on the page. Keep it short and focus on useful information like a basic description and contact info.');
