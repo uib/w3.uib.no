@@ -394,7 +394,6 @@ function uib_study__published_student_reports($code, $instcodes) {
 
   $severity = ($res->code == 200 || $res->code == 404) ? 'notice' : 'error';
   uibx_log($log_message, $severity);
-
   if ($res->code != 200 || $res->headers['content-type'] != 'application/json') {
     return NULL;
   }
@@ -637,32 +636,32 @@ function uib_study_block_view($delta = '') {
               $external_institution_codes = uib_study__external_inst_code($info_data);
               $reports = uib_study__published_student_reports($study_code, $external_institution_codes);
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
-              foreach ($reports as $key => $report) {
-                $report_title = $report['title']['#value'];
-                $open_text = t('Read student report');
-                $close_text = t('Close');
-                $toggle_text = '<span class="open-report">' . $open_text . '</span>';
-                $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
-                if (isset($report['author'])) {
-                  hide($report['author']);
-                }
-                // convert ISO 8601 to Norwegian date format
-                if (!empty($report['date']['#value'])) {
-                  $report['date']['#value'] = format_date(strtotime($report['date']['#value']));
-                }
-                if (!empty($report['date2']['#value'])) {
-                  $report['date2']['#value'] = format_date(strtotime($report['date2']['#value']));
-                  $report['date2']['#prefix'] = ' - ';
-                }
-                $report = array(
-                  '#theme' => 'ctools_collapsible',
-                  '#handle' => $report_title . $toggle_text,
-                  '#content' => render($report),
-                  '#collapsed' => $collapsed,
-                );
-                $reports[$key] = $report;
-              }
               if (!empty($reports)) {
+                foreach ($reports as $key => $report) {
+                  $report_title = $report['title']['#value'];
+                  $open_text = t('Read student report');
+                  $close_text = t('Close');
+                  $toggle_text = '<span class="open-report">' . $open_text . '</span>';
+                  $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
+                  if (isset($report['author'])) {
+                    hide($report['author']);
+                  }
+                  // convert ISO 8601 to Norwegian date format
+                  if (!empty($report['date']['#value'])) {
+                    $report['date']['#value'] = format_date(strtotime($report['date']['#value']));
+                  }
+                  if (!empty($report['date2']['#value'])) {
+                    $report['date2']['#value'] = format_date(strtotime($report['date2']['#value']));
+                    $report['date2']['#prefix'] = ' - ';
+                  }
+                  $report = array(
+                    '#theme' => 'ctools_collapsible',
+                    '#handle' => $report_title . $toggle_text,
+                    '#content' => render($report),
+                    '#collapsed' => $collapsed,
+                  );
+                  $reports[$key] = $report;
+                }
                 $group_title = t('Student reports');
                 $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
                 $render['student reports'] = array(
