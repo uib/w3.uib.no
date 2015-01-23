@@ -446,6 +446,7 @@ function uib_study_block_view($delta = '') {
         'B_RE_PLASS',
         'EB_KONTAKT',
         'B_RE_INFO',
+        'M_RE_INFO',
       );
 
       $node = menu_get_object();
@@ -706,6 +707,9 @@ function uib_study_block_view($delta = '') {
         }
         if (!$tmp) {
           $tmp = uib_study__extract_study_info($data, 'B_RE_INFO');
+        }
+        if (!$tmp) {
+          $tmp = uib_study__extract_study_info($data, 'M_RE_INFO');
         }
         if ($tmp) {
           $render = array(
