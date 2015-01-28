@@ -2327,3 +2327,61 @@ function uib_area__cleanup($area_node) {
     }
   }
 }
+
+/**
+ * Implements hook_node_view().
+ *
+ * For related content in Employee pages show the images of the ou if
+ * the content does not belong to the emplyoee area.
+ */
+function uib_area_node_view($node, $view_mode, $langcode) {
+  $EMPLOYEE_AREA_NID = array('nb'=>1, 'en'=>2);
+
+  //If the view mode of the current article is short_teaser it is
+  //safeish to assume that it is being shown as related content.
+  if ($view_mode == 'short_teaser') {
+    $cur_area = uib_area__get_current();
+    $cur_area_parents = array();
+    uib_area__get_parentage($cur_area->nid, $cur_area_parents);
+
+    //Check that the current area is Employee or a child of Employee
+    if(uib_area__have_common_element($EMPLOYEE_AREA_NID, $cur_area_parents)) {
+      // Check that the area of the current related content is not Employee or a
+      // child of employee
+      if (isset($node->field_uib_area['und'][0]['target_id'])){
+        $node_area_id = $node->field_uib_area['und'][0]['target_id'];
+        $node_area_parents = array();
+        uib_area__get_parentage($node_area_id, $node_area_parents);
+        if (!uib_area__have_common_element($EMPLOYEE_AREA_NID, $node_area_parents)) {
+
+          // Search for the image of the corresponding ou to add
+          $ou = uib_area__get_ou_nid(node_load($node_area_id));
+          if (isset($ou)){
+            $ou = node_load($ou);
+            if (count($ou->field_uib_main_media) > 0) {
+              // Remove all previously associated media
+              $node->field_uib_main_media = $node->field_uib_media = array();
+              $node->content['field_uib_media'] = $node->content['field_uib_main_media'] = array();
+
+              // Assign the ou main media as the node main media
+              $node->field_uib_main_media = $ou->field_uib_main_media;
+              // Since at this point in the execution the view render array has
+              // already been created, generate it for the new media
+              $new_image = field_view_field('node', $node, 'field_uib_main_media', $view_mode);
+              $node->content['field_uib_main_media'] = $new_image;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function uib_area__have_common_element($array_a, $array_b) {
+  foreach($array_a as $a){
+    if (in_array($a, $array_b)){
+      return TRUE;
+    }
+  }
+  return FALSE;
+}

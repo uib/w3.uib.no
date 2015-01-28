@@ -187,6 +187,7 @@ features[field_instance][] = node-uib_ou-field_uib_geolocation
 features[field_instance][] = node-uib_ou-field_uib_hours
 features[field_instance][] = node-uib_ou-field_uib_jobbnorge_id
 features[field_instance][] = node-uib_ou-field_uib_mail_domain
+features[field_instance][] = node-uib_ou-field_uib_main_media
 features[field_instance][] = node-uib_ou-field_uib_ou_id
 features[field_instance][] = node-uib_ou-field_uib_ou_shortname
 features[field_instance][] = node-uib_ou-field_uib_ou_title
