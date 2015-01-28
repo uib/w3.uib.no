@@ -641,8 +641,8 @@ function uib_study_block_view($delta = '') {
                   $report_title = $report['title']['#value'];
                   $open_text = t('Read student report');
                   $close_text = t('Close');
-                  $toggle_text = '<span class="open-report">' . $open_text . '</span>';
-                  $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
+                  // $toggle_text = '<span class="open-report"></span>';
+                  // $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
                   if (isset($report['author'])) {
                     hide($report['author']);
                   }
@@ -656,7 +656,7 @@ function uib_study_block_view($delta = '') {
                   }
                   $report = array(
                     '#theme' => 'ctools_collapsible',
-                    '#handle' => $report_title . $toggle_text,
+                    '#handle' => $report_title,
                     '#content' => render($report),
                     '#collapsed' => $collapsed,
                   );
