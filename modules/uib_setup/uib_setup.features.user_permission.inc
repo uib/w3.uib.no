@@ -776,6 +776,13 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete terms in uib_organisation'.
+  $permissions['delete terms in uib_organisation'] = array(
+    'name' => 'delete terms in uib_organisation',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'display EU Cookie Compliance popup'.
   $permissions['display EU Cookie Compliance popup'] = array(
     'name' => 'display EU Cookie Compliance popup',
@@ -993,6 +1000,13 @@ function uib_setup_user_default_permissions() {
       'level 1' => 'level 1',
       'level 2' => 'level 2',
     ),
+    'module' => 'taxonomy',
+  );
+
+  // Exported permission: 'edit terms in uib_organisation'.
+  $permissions['edit terms in uib_organisation'] = array(
+    'name' => 'edit terms in uib_organisation',
+    'roles' => array(),
     'module' => 'taxonomy',
   );
 

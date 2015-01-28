@@ -518,6 +518,52 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_study_organisation'
+  $field_instances['node-uib_study-field_uib_study_organisation'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_study_organisation',
+    'label' => 'Organisation',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_study_part_of'
   $field_instances['node-uib_study-field_uib_study_part_of'] = array(
     'bundle' => 'uib_study',
@@ -1028,6 +1074,7 @@ function uib_study_field_default_field_instances() {
   t('Local short form of NUS code.');
   t('NUS');
   t('NUS ID');
+  t('Organisation');
   t('Part of study');
   t('Relevant links');
   t('Responsible');
