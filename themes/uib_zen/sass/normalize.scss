@@ -648,6 +648,7 @@ table {
   /* Add vertical rhythm margins. */
   @include leader(1);
   @include trailer(1);
+  table-layout: fixed;
 }
 
 /*
