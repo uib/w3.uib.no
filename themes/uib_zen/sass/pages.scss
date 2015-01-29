@@ -115,7 +115,8 @@ body {
 }
 .page-node-translate,
 .page-node-edit,
-.page-node-add {
+.page-node-add,
+[class*="field-uib-step-add"]{
   #page {
     overflow: visible;
   }
