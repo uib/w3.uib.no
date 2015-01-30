@@ -34,4 +34,3 @@ features[variable][] = menu_parent_uib_content_list
 features[variable][] = node_options_uib_content_list
 features[variable][] = node_preview_uib_content_list
 features[variable][] = node_submitted_uib_content_list
-mtime = 1418129216

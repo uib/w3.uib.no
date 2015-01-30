@@ -569,4 +569,3 @@ features[wysiwyg][] = advanced_editor
 features[wysiwyg][] = basic_html
 features[wysiwyg][] = restricted_html
 features[wysiwyg][] = simple_editor
-mtime = 1418119616
