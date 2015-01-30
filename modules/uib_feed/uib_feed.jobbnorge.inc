@@ -29,15 +29,15 @@ function uib_feed__jobbnorge_positions_full($jobbnorge_id=0) {
  * Pre render formatting for jobbnorge posistions page in full view mode
  */
 function uib_feed__format_jobbnorge_pre_render($element) {
-  global $language;
-  $app_dead = $language->language == 'en' ? ' - Application deadline: ' : ' - Søknadsfrist: ';
   list($url, $title, $limit) = $element['#cache']['keys'];
   $content = @file_get_contents($url);
   if (!$content) {
     return $element;
   }
-  $content = str_replace($app_dead,' ]]> </title><deadline>', $content);
-  $content = str_replace(' ]]> </title><link>', '</deadline><link>', $content);
+
+  $content = str_replace('jn:', '', $content);  // make namespaced element regular elements
+  $content = preg_replace('/\s*-\s*(?:Søknadsfrist|Deadline):\s*[\d\.]+/', '', $content);
+
   $xml = @simplexml_load_string($content);
   if ($xml === FALSE) {
     return $element;
