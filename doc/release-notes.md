@@ -2,19 +2,23 @@
 
 Vi fortsetter arbeidet med utvekslingsavtaler, utvikler ny innholdstype for spesialutviklede sider, lagt til muligheten for bildekart på områder og generell bugfiksing.
 
-Utvekslingsavtaler
+Utvekslingsavtaler:
+
 - Bare vis et språk i tittelen til utvekslingsavtaler på studieprogram #9271
 - Muligheten til å vise studentrapporter på flere avtaler #9269
 - Vis tittelen på studentrapport istedenfor navnet på studenten som har skrevet rapporten #9268
 
-Nye funksjoner
+Nye funksjoner:
+
 - Lagt til muligheten for å legge til bildekart på hovedmediet på en områdeside #9176
 - Ny innholdstype som bare er tilgjengelig for level 1, som er en ren html-type #8824
 
-Kalender
+Kalender:
+
 - Gjort det mulig å filtere kalenderen basert på område #8939
 
-Generell bugfiksing
+Generell bugfiksing:
+
 - Kontaktfanen på masterprogram var ikke mulig å klikke på, vi har nå flyttet kontaktinfo til samme sted som på bachelorprogram #9347
 - Lagt til script for å kjøre en brukervennlighetstest på nettsidene #9247
 - Noen studieprogram vistes dobbelt opp i lister, dette er nå fikset #9220
