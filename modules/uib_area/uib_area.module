@@ -2486,3 +2486,70 @@ function uib_area__have_common_element($array_a, $array_b) {
   }
   return FALSE;
 }
+
+/**
+ * Determine organisational level based on ou id
+ */
+function uib_area__org_type($sebra_id = NULL) {
+  if ($sebra_id) {
+    if ($sebra_id == '000000') {
+      return 'university';
+    }
+    elseif (substr($sebra_id, 2) == '0000') {
+      return 'faculty';
+    }
+    elseif (substr($sebra_id, 4) == '00') {
+      return 'institute';
+    }
+    else {
+      return 'other';
+    }
+  }
+}
+
+/**
+ * Find the the most relevant area(s) for an ou
+ */
+function uib_area__ou_area($ou_nid, $level = array()) {
+  if (empty($level)) {
+    $level = array('faculty', 'institute', 'unit');
+  }
+  $area = NULL;
+  // Get area (certain types) connected to ou
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'area')
+    ->fieldCondition('field_uib_ou', 'target_id', $ou_nid)
+    ->fieldCondition('field_uib_area_type', 'value', $level)
+    ->execute();
+  if (!empty($result['node'])) {
+    $area = entity_load('node', array_keys($result['node']));
+  }
+  return $area;
+}
+
+/**
+ * Infer a parental ou id from ou id
+ */
+function uib_area__inferred_ou_parent(&$known_ids, $org_type, $ou_id) {
+  if ($org_type == 'university') {
+    return NULL;
+  }
+  elseif ($org_type == 'faculty') {
+    $parent_id = '000000';
+  }
+  elseif ($org_type == 'institute' || $org_type == 'unit') {
+    $parent_id = substr($ou_id, 0, 2) . '0000';
+  }
+  else {
+    // $parent_id = substr($ou_id, 0, 4) . '00';
+    // We currently (for the purpose of the uib_organisation taxonomy)
+    // do not deal with these ous.
+    return FALSE;
+  }
+  if (!isset($known_ids[$parent_id])) {
+    $parent_id = '000000';
+  }
+  return $parent_id;
+}

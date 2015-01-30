@@ -35,6 +35,13 @@ function uib_area_drush_command() {
       'area' => 'The node id of the area',
     ),
   );
+  $items['uib-area-sync-organisation'] = array(
+    'description' => 'Synchronise uib_organisation taxonomy',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(),
+    'options' => array(),
+  );
+
   return $items;
 }
 
@@ -502,5 +509,170 @@ function drush_uib_area_area_cleanup($area) {
       node_save($rnode);
       uibx_log("Disconnected node $rnid ($rnode->title) from area $area");
     }
+  }
+}
+
+/**
+ * Synchronise the uib_organisation taxonomy
+ */
+function drush_uib_area_sync_organisation() {
+  $vocab_name = 'uib_organisation';
+  $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
+  $seen_terms = array();
+
+  // Get all existing terms
+  $existing = array();
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('vid', $vocab->vid)
+    ->execute();
+  if (!empty($result['taxonomy_term'])) {
+    $existing = array_flip(array_keys($result['taxonomy_term']));
+  }
+
+  // Get data for all organisational units
+  // Ordered by ou id to ensure parents will be created before children
+  $query = 'SELECT n.nid, f.field_uib_ou_id_value
+    FROM node n, field_data_field_uib_ou_id f
+    WHERE n.status = :act AND n.type = :nty AND n.nid = f.entity_id
+    ORDER BY f.field_uib_ou_id_value';
+  $result = db_query($query, array(':act' => 1, ':nty' => 'uib_ou'));
+  foreach ($result as $record) {
+    $ou_nid = $record->nid;
+    $ou_id = $record->field_uib_ou_id_value;
+    $org_type = uib_area__org_type($ou_id);
+
+    $parent_id = uib_area__inferred_ou_parent($seen_terms, $org_type, $ou_id);
+    if ($parent_id === FALSE) {
+      // This avoids adding any orgs lower than intitute/unit to the vocab
+      continue;
+    }
+
+    // Get corresponding area and names
+    $areas = uib_area__ou_area($ou_nid);
+    $area_nid = NULL;
+    $area_name = array();
+    if ($areas) {
+      foreach($areas as $area) {
+        if ($area->nid == $area->tnid) {
+          $area_nid = $area->nid;
+        }
+        $area_name[$area->language] = $area->title;
+        if ($area->field_uib_area_type['und'][0]['value'] != $org_type) {
+          uibx_log('Expected area type ' . $org_type . ' but found ' .
+            $area->field_uib_area_type['und'][0]['value'] . " for ou $ou_nid [id $ou_id] (using)", 'notice');
+          $org_type = $area->field_uib_area_type['und'][0]['value'];
+        }
+      }
+    }
+    else {
+      uibx_log("No area found for ou $ou_nid [id $ou_id]. Using ou name as fallback.", 'notice');
+      // Special handling of the area-less University of Bergen ou
+      if ($org_type == 'university') {
+        $area_name['nb'] = 'Universitetet i Bergen';
+        $area_name['en'] = 'University of Bergen';
+      }
+      else {
+        $ou = node_load($ou_nid);
+        foreach ($ou->field_uib_ou_title as $lang => $outitle) {
+          $area_name[$lang] = $outitle[0]['value'];
+        }
+      }
+    }
+
+    // create taxonomy term if it does not exist
+    $query = new EntityFieldQuery();
+    $result = $query->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $vocab->vid)
+      ->fieldCondition('field_uib_org_ou', 'target_id', $ou_nid)
+      ->execute();
+    if (empty($result['taxonomy_term'])) {
+      $tmp_name = (empty($area_name['nb'])) ? $area_name['en'] : $area_name['nb'];
+      if ($parent_id) {
+        $term = entity_create('taxonomy_term', array(
+          'vid' => $vocab->vid,
+          'name' => $tmp_name,
+          'parent' => $seen_terms[$parent_id],
+          'vocabulary_machine_name' => $vocab_name,
+          )
+        );
+      }
+      else {
+        $term = entity_create('taxonomy_term', array(
+          'vid' => $vocab->vid,
+          'name' => $tmp_name,
+          'vocabulary_machine_name' => $vocab_name,
+          )
+        );
+      }
+      if ($area_nid) {
+        $term->field_uib_org_area['und'][0]['target_id'] = $area_nid;
+      }
+      $term->field_uib_org_ou['und'][0]['target_id'] = $ou_nid;
+      $term->field_uib_org_type['und'][0]['value'] = $org_type;
+      foreach ($area_name as $lang => $tname) {
+        $term->field_uib_org_name[$lang][0]['value'] = $tname;
+      }
+      // Initiate entity translation
+      $trans_handler = entity_translation_get_handler('taxonomy_term', $term);
+      $translation = array(
+        'status' => 1,
+        'language' => 'nb',
+      );
+      $trans_handler->setTranslation($translation);
+      $translation = array(
+        'status' => 1,
+        'language' => 'en',
+        'source' => 'nb',
+      );
+      $trans_handler->setTranslation($translation);
+      taxonomy_term_save($term);
+      $tid = $term->tid;
+      uibx_log("Created new uib_organisation term: $term->name");
+    }
+    else {
+      $tid = current(array_keys($result['taxonomy_term']));
+      $term = taxonomy_term_load($tid);
+      $wrapped_term = entity_metadata_wrapper('taxonomy_term', $term);
+      $edited = array();
+      if ($wrapped_term->name->value() != $area_name['nb']) {
+        $wrapped_term->name->set($area_name['nb']);
+        $edited[] = 'term name';
+      }
+      $existing_area_nid = $wrapped_term->field_uib_org_area->raw();
+      if (current($existing_area_nid) != $area_nid) {
+        $wrapped_term->field_uib_org_area->set(array($area_nid));
+        $edited[] = 'area';
+      }
+       if ($wrapped_term->field_uib_org_type->value() != $org_type) {
+        $wrapped_term->field_uib_org_type->set($org_type);
+        $edited[] = 'type';
+      }
+      foreach ($area_name as $lang => $tname) {
+        if ($wrapped_term->language($lang)->field_uib_org_name->value() != $tname) {
+          $wrapped_term->language($lang)->field_uib_org_name->set($tname);
+          $edited[] = "translated name ($lang)";
+        }
+      }
+      if ($edited) {
+        $wrapped_term->save();
+        uibx_log("Updated uib_organisation term $term->name: " . implode(', ', $edited));
+      }
+    }
+    $seen_terms[$ou_id] = $tid;
+    if (isset($existing[$tid])){
+      unset($existing[$tid]);
+    }
+  }
+
+  // Remove any surplus terms (ou may have been inactivated)
+  if ($existing) {
+    $existing = array_flip($existing);
+    print_r($existing);
+    uibx_log('Preexisting terms existed that were not treated', 'warning');
+
+    // foreach ($existing as $tid) {
+    //   taxonomy_term_delete($tid);
+    // }
   }
 }

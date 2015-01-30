@@ -410,3 +410,11 @@ function uib_area_update_7012() {
   $ub_en->field_uib_area_banner['und'][0]['value'] = $new_banner_value_en;
   node_save($ub_en);
 }
+
+/**
+ * Create contents of uib_organisation vocabulary
+ */
+function uib_area_update_7013() {
+  // Get all ous sorted by ou id
+
+}
