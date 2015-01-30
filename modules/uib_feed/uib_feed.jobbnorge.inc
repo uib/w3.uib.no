@@ -13,7 +13,7 @@ function uib_feed__jobbnorge_url($jobbnorge_id=0, $lang=NULL) {
     $lang = $language->language;
   }
   if ($lang == 'en') {
-    $feed_url .= '&langid=2';
+    $feed_url .= '&langid=2&trid=2';
   }
   return $feed_url;
 }
