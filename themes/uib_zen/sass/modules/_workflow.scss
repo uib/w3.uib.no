@@ -1,12 +1,35 @@
+@mixin workflow_arrow($border-width, $border-color, $background) {
+  &:before {
+    width:0px;
+    height:0px;
+    border-top: $border-width solid $background;
+    border-bottom: $border-width solid $background;
+    border-left: $border-width solid transparent;
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: -#{$border-width};
+  }
+  &:after {
+    width:0px;
+    height:0px;
+    border-top: $border-width solid transparent;
+    border-bottom: $border-width solid transparent;
+    border-left: $border-width solid $background;
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: 100%;
+  }
+}
+
 .node-uib-content-list {
   .field-collection-container {
+    padding-left: 13px;
     @include zen-clear();
     div {
-      display: inline-block;
-    }
-    :not(:first-child) a,
-    :not(:first-child) span {
-      padding-left: 20px;
+      margin-top: 8px;
+      float: left;
     }
   }
   .field-collection-view {
@@ -14,18 +37,24 @@
   }
 }
 .uib-step__not-current {
-  @include insert_arrow(1px, #333, right, $light-grey, outside);
+  @include workflow_arrow(13px, #333, $light-grey);
   background: $light-grey;
 }
 .uib-step__current {
-  @include insert_arrow(1px, #333, right, #333, outside);
-  background: #333;
+  @include workflow_arrow(13px, #333, $blue);
+  background: $blue;
   color: #fff;
 }
 .uib-step {
-  border: solid 1px #333;
-  padding: 0.5em 1em;
+  margin-right: 20px;
+  padding: 5px 10px 6px;
   position: relative;
+  .field-item:first-child & {
+    margin-left: -13px;
+    &:before {
+      display: none;
+    }
+  }
 }
 @media all and (max-width: 719px) {
   .list__previous,
@@ -52,3 +81,5 @@
     display: none;
   }
 }
+
+
