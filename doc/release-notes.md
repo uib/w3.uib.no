@@ -1,3 +1,8 @@
+# Release 19.1 _2015-02-03_
+
+Kompensere for endringer i APIene mot Jobbnorge.  Dette sørger for at engelske stillingslister igjen vises.
+
+
 # Release 19 _2015-01-29_
 
 Vi fortsetter arbeidet med utvekslingsavtaler, utvikler ny innholdstype for spesialutviklede sider, lagt til muligheten for bildekart på områder og generell bugfiksing.
