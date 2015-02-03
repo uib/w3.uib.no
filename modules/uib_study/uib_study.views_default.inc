@@ -28,6 +28,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
@@ -35,25 +36,12 @@ function uib_study_views_default_views() {
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
     ),
-    'field_uib_study_code_value' => array(
-      'bef_format' => 'default',
+    'tid' => array(
+      'bef_format' => 'bef_ul',
       'more_options' => array(
-        'is_secondary' => 0,
-        'any_label' => '',
-        'bef_filter_description' => 'Display recommended exchange agreements available for your <a class="uib-study-filter-link" href="studyprogramme">study programme</a>. Use the programme code.',
-        'tokens' => array(
-          'available' => array(
-            0 => 'global_types',
-          ),
-        ),
-        'rewrite' => array(
-          'filter_rewrite_values' => '',
-        ),
-      ),
-    ),
-    'field_uib_ou_title_value' => array(
-      'bef_format' => 'default',
-      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_select_all_none_nested' => 0,
+        'bef_collapsible' => 1,
         'is_secondary' => 0,
         'any_label' => '',
         'bef_filter_description' => 'Display exchange agreements for faculty or department.',
@@ -113,10 +101,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['relationships']['field_uib_study_country_target_id']['id'] = 'field_uib_study_country_target_id';
   $handler->display->display_options['relationships']['field_uib_study_country_target_id']['table'] = 'field_data_field_uib_study_country';
   $handler->display->display_options['relationships']['field_uib_study_country_target_id']['field'] = 'field_uib_study_country_target_id';
-  /* Relationship: Entity Reference: Referenced Entity */
-  $handler->display->display_options['relationships']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
-  $handler->display->display_options['relationships']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
-  $handler->display->display_options['relationships']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
   /* Field: Taxonomy term: Geographic name */
   $handler->display->display_options['fields']['field_uib_geographic_name']['id'] = 'field_uib_geographic_name';
   $handler->display->display_options['fields']['field_uib_geographic_name']['table'] = 'field_data_field_uib_geographic_name';
@@ -190,28 +174,65 @@ function uib_study_views_default_views() {
     'exchange' => 'exchange',
   );
   $handler->display->display_options['filters']['field_uib_study_type_value']['group'] = 1;
-  /* Filter criterion: Content: Title (field_uib_study_title:language) */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    2141 => '2141',
+    2143 => '2143',
+    2149 => '2149',
+    2147 => '2147',
+    2148 => '2148',
+    2145 => '2145',
+    2146 => '2146',
+    2150 => '2150',
+    2152 => '2152',
+    2151 => '2151',
+    2187 => '2187',
+    2153 => '2153',
+    2159 => '2159',
+    2161 => '2161',
+    2156 => '2156',
+    2160 => '2160',
+    2155 => '2155',
+    2157 => '2157',
+    2154 => '2154',
+    2158 => '2158',
+    2164 => '2164',
+    2175 => '2175',
+    2166 => '2166',
+    2174 => '2174',
+    2169 => '2169',
+    2168 => '2168',
+    2170 => '2170',
+    2171 => '2171',
+    2177 => '2177',
+    2172 => '2172',
+    2173 => '2173',
+    2188 => '2188',
+    2190 => '2190',
+    2189 => '2189',
+    2191 => '2191',
+    2193 => '2193',
+    2192 => '2192',
+    2178 => '2178',
+    2181 => '2181',
+    2186 => '2186',
+    2184 => '2184',
+    2183 => '2183',
+    2182 => '2182',
+    2185 => '2185',
+    2180 => '2180',
   );
-  $handler->display->display_options['filters']['language']['group'] = 1;
-  /* Filter criterion: Taxonomy term: Geographic name (field_uib_geographic_name:language) */
-  $handler->display->display_options['filters']['language_1']['id'] = 'language_1';
-  $handler->display->display_options['filters']['language_1']['table'] = 'field_data_field_uib_geographic_name';
-  $handler->display->display_options['filters']['language_1']['field'] = 'language';
-  $handler->display->display_options['filters']['language_1']['relationship'] = 'field_uib_study_country_target_id';
-  $handler->display->display_options['filters']['language_1']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
-  $handler->display->display_options['filters']['language_1']['group'] = 1;
-  $handler->display->display_options['filters']['language_1']['expose']['operator_id'] = 'language_1_op';
-  $handler->display->display_options['filters']['language_1']['expose']['label'] = 'Geographic name (field_uib_geographic_name:language)';
-  $handler->display->display_options['filters']['language_1']['expose']['operator'] = 'language_1_op';
-  $handler->display->display_options['filters']['language_1']['expose']['identifier'] = 'language_1';
-  $handler->display->display_options['filters']['language_1']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['tid']['group'] = 1;
+  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Filter by faculty/department';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     64272948 => 0,
@@ -219,43 +240,11 @@ function uib_study_views_default_views() {
     74573517 => 0,
     176168899 => 0,
   );
-  $handler->display->display_options['filters']['language_1']['group_info']['label'] = 'Geographic name (field_uib_geographic_name:language)';
-  $handler->display->display_options['filters']['language_1']['group_info']['identifier'] = 'language_1';
-  $handler->display->display_options['filters']['language_1']['group_info']['remember'] = FALSE;
-  $handler->display->display_options['filters']['language_1']['group_info']['group_items'] = array(
-    1 => array(),
-    2 => array(),
-    3 => array(),
-  );
-  /* Filter criterion: Content: Name (field_uib_ou_title) */
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['id'] = 'field_uib_ou_title_value';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['table'] = 'field_data_field_uib_ou_title';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['field'] = 'field_uib_ou_title_value';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['relationship'] = 'field_uib_ou_target_id';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['operator'] = 'contains';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['operator_id'] = 'field_uib_ou_title_value_op';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['label'] = 'Filter by faculty/department';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['operator'] = 'field_uib_ou_title_value_op';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['identifier'] = 'field_uib_ou_title_value';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['group_info']['label'] = 'Name (field_uib_ou_title)';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['group_info']['identifier'] = 'field_uib_ou_title_value';
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['group_info']['remember'] = FALSE;
-  $handler->display->display_options['filters']['field_uib_ou_title_value']['group_info']['group_items'] = array(
-    1 => array(),
-    2 => array(),
-    3 => array(),
-  );
+  $handler->display->display_options['filters']['tid']['expose']['reduce'] = TRUE;
+  $handler->display->display_options['filters']['tid']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['tid']['type'] = 'select';
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'uib_organisation';
+  $handler->display->display_options['filters']['tid']['hierarchy'] = 1;
   /* Filter criterion: Taxonomy term: Geographic name (field_uib_geographic_name) */
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['id'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['filters']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
@@ -284,6 +273,22 @@ function uib_study_views_default_views() {
     2 => array(),
     3 => array(),
   );
+  /* Filter criterion: Content: Title (field_uib_study_title:language) */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  $handler->display->display_options['filters']['language']['group'] = 1;
+  /* Filter criterion: Taxonomy term: Geographic name (field_uib_geographic_name:language) */
+  $handler->display->display_options['filters']['language_1']['id'] = 'language_1';
+  $handler->display->display_options['filters']['language_1']['table'] = 'field_data_field_uib_geographic_name';
+  $handler->display->display_options['filters']['language_1']['field'] = 'language';
+  $handler->display->display_options['filters']['language_1']['relationship'] = 'field_uib_study_country_target_id';
+  $handler->display->display_options['filters']['language_1']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -301,12 +306,9 @@ function uib_study_views_default_views() {
     t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "Universitetet i Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
     t('Translations'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
-    t('Content entity referenced from field_uib_ou'),
     t('Read student report'),
     t('[field_uib_study_title] <!-- [field_uib_study_code] -->'),
-    t('Geographic name (field_uib_geographic_name:language)'),
     t('Filter by faculty/department'),
-    t('Name (field_uib_ou_title)'),
     t('Filter by country'),
     t('Geographic name (field_uib_geographic_name)'),
     t('Page'),

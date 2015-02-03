@@ -1753,6 +1753,9 @@ function uib_study_views_pre_render(&$view) {
   }
 
   if ($view->name == 'exchange_agreements') {
+    $vocab_name = 'uib_organisation';
+    $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
+    uib_study__translate_exposed_filter($view, $vocab->vid, 3, NULL);
     $msg = array();
     $msg[] = t('Displaying') . ' ' . count($view->result) . ' ' . t('exchange agreements');
     $glue = t('for');
@@ -1873,10 +1876,23 @@ function uib_study__translate_exposed_filter(&$view, $taxonomy_tree, $max_depth,
   $taxonomy_tree = taxonomy_get_tree($taxonomy_tree, 0, $max_depth);
   global $language;
   foreach ($taxonomy_tree as $key => $t) {
-    if (strpos($view->exposed_widgets, $t->name)) {
-      list($nb, $en) = explode('/', substr($t->name, $number_of_chars_to_remove));
-      $term = $language->language == 'nb' ? $nb : $en;
-      $view->exposed_widgets = str_replace($t->name, $term, $view->exposed_widgets);
+    if ($view->name == 'exchange_agreements') {
+      $search = $t->name;
+      if (strpos($view->exposed_widgets, $search)) {
+        $entity = taxonomy_term_load($t->tid);
+        $term = entity_metadata_wrapper('taxonomy_term', $entity);
+        if ($term->language($language->language)->field_uib_org_name->value()) {
+          $replace = $term->language($language->language)->field_uib_org_name->value();
+          $view->exposed_widgets = str_replace($search, $replace, $view->exposed_widgets);
+        }
+      }
+    }
+    else {
+      if (strpos($view->exposed_widgets, $t->name)) {
+        list($nb, $en) = explode('/', substr($t->name, $number_of_chars_to_remove));
+        $term = $language->language == 'nb' ? $nb : $en;
+        $view->exposed_widgets = str_replace($t->name, $term, $view->exposed_widgets);
+      }
     }
   }
 }
