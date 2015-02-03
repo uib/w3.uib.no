@@ -53,6 +53,7 @@ function uib_sebra_drush_command() {
 function drush_uib_sebra_places() {
   $limit = (int)drush_get_option('limit', 0);
   uib_sebra__sync_places($limit);
+  drush_uib_area_sync_organisation();
 }
 
 function drush_uib_sebra_uib_dump_place($place_id) {

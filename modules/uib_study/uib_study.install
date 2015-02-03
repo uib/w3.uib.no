@@ -13,17 +13,6 @@ function uib_study_schema() {
 }
 
 /**
- * Implements hook_update_dependencies().
- */
-function uib_study_update_dependencies() {
-  $dependencies['uib_study'][7017] = array(
-    'uib_area' => 7013,
-    );
-  return $dependencies;
-}
-
-
-/**
  * Remove all existing uib_study nodes from the system.
  */
 function uib_study_update_7001() {
@@ -224,10 +213,4 @@ function uib_study_update_7016() {
     'language' => 'nb',
   );
   path_save($path);
-}
-
-/**
- * Add uib_organisation taxonomy to study
- */
-function uib_study_update_7017() {
 }

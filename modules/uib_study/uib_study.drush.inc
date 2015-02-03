@@ -209,6 +209,23 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     }
   }
 
+  static $uib_org_list;
+  if (!isset($uib_org_list)) {
+    $uib_org_vocab = taxonomy_vocabulary_machine_name_load('uib_organisation');
+    $query = new EntityFieldQuery;
+    $tax_result = $query
+      ->entityCondition('entity_type', 'taxonomy_term')
+      ->propertyCondition('vid', $uib_org_vocab->vid)
+      ->execute();
+    if ($tax_result) {
+      $taxonomy_terms = taxonomy_term_load_multiple(array_keys($tax_result['taxonomy_term']));
+      foreach($taxonomy_terms as $term) {
+        $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+        $uib_org_list[$term_wrapper->field_uib_org_ou->raw()] = $term_wrapper->getIdentifier();
+      }
+    }
+  }
+
   $max_title_length = 250;
   $refs_incomplete = array();
   $studypoints_ranks = _uib_study__get_sp_ranks();
@@ -311,6 +328,11 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     // NUS code
     if (isset($uib_nus_list[$nusId])) {
       $metadata->field_uib_nus->set($uib_nus_list[$nusId]);
+    }
+
+    // Connection to uib_organisation taxonomy vocab
+    if (isset($uib_org_list[$ou_nid])) {
+      $metadata->field_uib_study_organisation->set($uib_org_list[$ou_nid]);
     }
 
     // Country references
@@ -458,6 +480,13 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
       if ($wrapper->field_uib_ou->raw() != $ou_nid) {
         $wrapper->field_uib_ou->set($ou_nid);
         $edit[] = 'ou';
+      }
+
+      if (isset($uib_org_list[$ou_nid])) {
+        if ($wrapper->field_uib_study_organisation->raw() != $uib_org_list[$ou_nid]) {
+          $wrapper->field_uib_study_organisation->set($uib_org_list[$ou_nid]);
+          $edit[] = 'org';
+        }
       }
 
       if (isset($study['category'])) {
