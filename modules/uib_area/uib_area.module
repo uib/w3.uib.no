@@ -703,6 +703,38 @@ function uib_area__get_ou_nids_recursive($nid) {
 }
 
 /**
+ * Finds the faculty OU of an OU or area.
+ */
+function uib_area__get_faculty_ou_nid ($area_or_ou_id) {
+  $node = node_load($area_or_ou_id);
+  if (!$node) return NULL;
+
+  if ($node->type == "area") {
+    $nid = uib_area__get_ou_nid($node);
+    if (!$nid) return NULL;
+    $node = node_load($nid);
+  }
+
+  $code = $node->field_uib_ou_id['und'][0]['value'];
+  if (substr($code, 2) =='0000')
+    return $node->nid;
+  $code = substr($code, 0, -4) . '0000';
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'uib_ou')
+    ->fieldCondition('field_uib_ou_id', 'value', $code);
+  $result = $query->execute();
+
+  if (count($result) == 1)
+    foreach($result['node'] as $key => $value)
+      return $key;
+
+  return NULL;
+}
+
+
+/**
  * Find the node id of the current uib_area.
  *
  * @return int
@@ -2355,20 +2387,35 @@ function uib_area_node_view($node, $view_mode, $langcode) {
         if (!uib_area__have_common_element($EMPLOYEE_AREA_NID, $node_area_parents)) {
 
           // Search for the image of the corresponding ou to add
-          $ou = uib_area__get_ou_nid(node_load($node_area_id));
+          $ou = uib_area__get_faculty_ou_nid($node_area_id);
           if (isset($ou)){
             $ou = node_load($ou);
             if (count($ou->field_uib_main_media) > 0) {
-              // Remove all previously associated media
-              $node->field_uib_main_media = $node->field_uib_media = array();
-              $node->content['field_uib_media'] = $node->content['field_uib_main_media'] = array();
 
-              // Assign the ou main media as the node main media
-              $node->field_uib_main_media = $ou->field_uib_main_media;
-              // Since at this point in the execution the view render array has
-              // already been created, generate it for the new media
-              $new_image = field_view_field('node', $node, 'field_uib_main_media', $view_mode);
-              $node->content['field_uib_main_media'] = $new_image;
+              switch ($node->type) {
+                case 'uib_testimonial':
+                case 'uib_external_content':
+                  $field = 'field_uib_media';
+                  break;
+                case 'uib_article':
+                case 'uib_study':
+                case 'uib_content_list':
+                  $field = 'field_uib_main_media';
+                  break;
+                default:
+              }
+              if (isset($field)) {
+                // Assign the ou main media as the node main media
+                // Remove all previously associated media
+                $node->field_uib_main_media = $node->field_uib_media = array();
+                $node->content['field_uib_media'] = $node->content['field_uib_main_media'] = array();
+
+                $node->{$field} = $ou->field_uib_main_media;
+                // Since at this point in the execution the view render array has
+                // already been created, generate it for the new media
+                $new_image = field_view_field('node', $node, $field, $view_mode);
+                $node->content[$field] = $new_image;
+              }
             }
           }
         }
