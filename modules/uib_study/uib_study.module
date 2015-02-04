@@ -213,6 +213,7 @@ function uib_study__get_exchange_agreements($nid) {
         $agreements[] = $part_of;
       }
     }
+    usort($agreements, 'uib_study__exc_name_compare');
     if (!empty($agreements)) {
       $markup = '<div class="uib_exchange_agreements"><h3>' . t('Facilitated exchange agreements') . '</h3>';
       $markup .= '<ul>';
@@ -224,6 +225,19 @@ function uib_study__get_exchange_agreements($nid) {
     }
   }
   return $markup;
+}
+
+/**
+ * Comparison of exchange agreement titles for use in usort
+ */
+function uib_study__exc_name_compare($a, $b) {
+  global $language;
+  $a = iconv('utf-8', 'ascii//TRANSLIT', $a->field_uib_study_title[$language->language][0]['value']);
+  $b = iconv('utf-8', 'ascii//TRANSLIT', $b->field_uib_study_title[$language->language][0]['value']);
+  if ($a == $b) {
+    return 0;
+  }
+  return ($a < $b) ? -1 : 1;
 }
 
 /**
