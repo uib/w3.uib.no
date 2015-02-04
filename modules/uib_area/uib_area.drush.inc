@@ -559,8 +559,8 @@ function drush_uib_area_sync_organisation() {
         }
         $area_name[$area->language] = $area->title;
         if ($area->field_uib_area_type['und'][0]['value'] != $org_type) {
-          uibx_log('Expected area type ' . $org_type . ' but found ' .
-            $area->field_uib_area_type['und'][0]['value'] . " for ou $ou_nid [id $ou_id] (using)", 'notice');
+          uibx_log('Expected area type ' . $org_type . ' but found (and using) ' .
+            $area->field_uib_area_type['und'][0]['value'] . " for ou $ou_nid [id $ou_id]", 'notice');
           $org_type = $area->field_uib_area_type['und'][0]['value'];
         }
       }
@@ -668,11 +668,10 @@ function drush_uib_area_sync_organisation() {
   // Remove any surplus terms (ou may have been inactivated)
   if ($existing) {
     $existing = array_flip($existing);
+    foreach ($existing as $tid) {
+      taxonomy_term_delete($tid);
+    }
+    uibx_log('Some pre-existing terms were removed', 'warning');
     print_r($existing);
-    uibx_log('Preexisting terms existed that were not treated', 'warning');
-
-    // foreach ($existing as $tid) {
-    //   taxonomy_term_delete($tid);
-    // }
   }
 }
