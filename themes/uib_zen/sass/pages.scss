@@ -696,3 +696,8 @@ $uib-study-construction-zebra-light-color: #f2f2f2;
 .user-competence a.active {
   color: $link-blue;
 }
+
+#search #simple button {
+  background: inline-image("svg-icons/search_white.svg") no-repeat scroll 0.1em 0.1em / 2.5em auto #026F9C;
+  border: 2px solid;
+}
