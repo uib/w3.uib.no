@@ -25,7 +25,7 @@
 
 .node-uib-content-list {
   .field-collection-container {
-    padding-left: 13px;
+    padding-left: 14px;
     @include zen-clear();
     div {
       margin-top: 8px;
@@ -37,20 +37,24 @@
   }
 }
 .uib-step__not-current {
-  @include workflow_arrow(13px, #333, $light-grey);
+  @include workflow_arrow(14px, #333, $light-grey);
   background: $light-grey;
 }
 .uib-step__current {
-  @include workflow_arrow(13px, #333, $blue);
+  @include workflow_arrow(14px, #333, $blue);
   background: $blue;
   color: #fff;
 }
 .uib-step {
+  box-sizing: border-box;
+  display: block;
+  height: 28px;
   margin-right: 20px;
-  padding: 5px 10px 6px;
+  padding: 5px 10px 0;
   position: relative;
+  vertical-align: middle;
   .field-item:first-child & {
-    margin-left: -13px;
+    margin-left: -14px;
     &:before {
       display: none;
     }
