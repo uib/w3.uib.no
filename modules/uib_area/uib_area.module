@@ -2399,11 +2399,11 @@ function uib_area_node_view($node, $view_mode, $langcode) {
                 case 'uib_external_content':
                   $field = 'field_uib_media';
                   break;
+
                 case 'uib_article':
                 case 'uib_study':
                   $field = 'field_uib_main_media';
                   break;
-                default:
               }
               if (isset($field)) {
                 // Assign the ou main media as the node main media
