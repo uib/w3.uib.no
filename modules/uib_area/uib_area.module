@@ -726,9 +726,11 @@ function uib_area__get_faculty_ou_nid ($area_or_ou_id) {
     ->fieldCondition('field_uib_ou_id', 'value', $code);
   $result = $query->execute();
 
-  if (count($result) == 1)
-    foreach($result['node'] as $key => $value)
+  if (count($result) == 1) {
+    foreach($result['node'] as $key => $value) {
       return $key;
+    }
+  }
 
   return NULL;
 }
