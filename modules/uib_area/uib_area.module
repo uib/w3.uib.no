@@ -997,33 +997,86 @@ function uib_area_field_uib_area_banner_css_validation_handler(&$form, &$form_st
  * @return array List of aliases to be added or removed for this node
  */
 function uib_area__list_area_aliases($node_alias = NULL) {
-  if (!empty($node_alias) && (stripos($node_alias, 'foransatte') || stripos($node_alias, 'foremployees'))) {
+  if (!empty($node_alias) && (stripos($node_alias, 'foransatte') !== FALSE || stripos($node_alias, 'foremployees') !== FALSE)) {
     return array(
-      '/rss.xml',
-      '/calrss.xml',
+      'rss.xml' => array('en' => 'rss.xml', 'nb' => 'rss.xml'),
+      'calrss.xml' => array('en' => 'calrss.xml', 'nb' => 'calrss.xml'),
     );
   }
   else {
     return array(
-      '/persons',
-      '/persons/faculty',
-      '/persons/staff',
-      '/map',
-      '/news-archive',
-      '/rss.xml',
-      '/calrss.xml',
-      '/calendar',
-      '/courses',
-      '/study-programmes',
-      '/bachelor-programmes',
-      '/master-programmes',
-      '/one-year-programmes',
-      '/research-groups',
-      '/research-schools',
-      '/disciplines',
-      '/calendar',
-      '/calendar/year',
-      '/calendar/day',
+      'persons' => array(
+        'en' => 'persons',
+        'nb' => 'personer',
+      ),
+      'persons/faculty' => array(
+        'en' => 'persons/faculty',
+        'nb' => 'personer/vit',
+      ),
+      'persons/staff' => array(
+        'en' => 'persons/staff',
+        'nb' => 'personer/adm',
+      ),
+      'map' => array(
+        'en' => 'map',
+        'nb' => 'kart',
+      ),
+      'news-archive' => array(
+        'en' => 'news-archive',
+        'nb' => 'nyhetsarkiv',
+      ),
+      'rss.xml' => array(
+        'en' => 'rss.xml',
+        'nb' => 'rss.xml',
+      ),
+      'calrss.xml' => array(
+        'en' => 'calrss.xml',
+        'nb' => 'calrss.xml',
+      ),
+      'calendar' => array(
+        'en' => 'calendar',
+        'nb' => 'kalender',
+      ),
+      'calendar/year' => array(
+        'en' => 'calendar/year',
+        'nb' => 'kalender/år',
+      ),
+      'calendar/day' => array(
+        'en' => 'calendar/day',
+        'nb' => 'kalender/dag',
+      ),
+      'courses' => array(
+        'en' => 'courses',
+        'nb' => 'emner',
+      ),
+      'study-programmes' => array(
+        'en' => 'study-programmes',
+        'nb' => 'studieprogram',
+      ),
+      'bachelor-programmes' => array(
+        'en' => 'bachelor-programmes',
+        'nb' => 'bachelorprogram',
+      ),
+      'master-programmes' => array(
+        'en' => 'master-programmes',
+        'nb' => 'masterprogram',
+      ),
+      'one-year-programmes' => array(
+        'en' => 'one-year-programmes',
+        'nb' => 'årsstudium',
+      ),
+      'research-groups' => array(
+        'en' => 'research-groups',
+        'nb' => 'forskergrupper',
+      ),
+      'research-schools' => array(
+        'en' => 'research-schools',
+        'nb' => 'forskerskoler',
+      ),
+      'disciplines' => array(
+        'en' => 'disciplines',
+        'nb' => 'fag',
+      ),
     );
   }
 }
@@ -1045,15 +1098,13 @@ function uib_area__create_area_aliases($node_nid, $node_alias, $language = NULL)
   if (!empty($node_nid) AND !empty($node_alias)) {
     $uib_area_aliases = uib_area__list_area_aliases($node_alias);
     $node_url = 'node/' . intval($node_nid);
-    foreach ($uib_area_aliases as $pa) {
-      $source_url = $node_url . $pa;
-      $new_alias_url = $node_alias . $pa;
-      if (empty($language)) {
-        $new_path = array('source' => $source_url, 'alias' => $new_alias_url); // will create alias for all languages
-      }
-      else {
-        $new_path = array('source' => $source_url, 'alias' => $new_alias_url, 'language' => $language);
-      }
+    $default_lang = language_default('language');
+    foreach ($uib_area_aliases as $key => $pa) {
+      $source_url = $node_url . '/' . $key;
+      $new_alias_url = ($language) ? $node_alias . '/' . $pa[$language] : $node_alias . '/' . $pa[$default_lang];
+      $new_path = ($language) ?
+        array('source' => $source_url, 'alias' => $new_alias_url, 'language' => $language) :
+        array('source' => $source_url, 'alias' => $new_alias_url);
       if ($existing_alias = uibx_path_load($source_url)) { // get existing alias
         if ($existing_alias[0]->alias != $new_alias_url) {
           // Alias exists for the source, but different one than this
@@ -1145,11 +1196,13 @@ function uib_area__remove_area_aliases($node_nid) {
   if (!empty($node_nid)) {
     $node_url = 'node/' . intval($node_nid);
     $uib_area_aliases = uib_area__list_area_aliases();
-    foreach ($uib_area_aliases as $pa) {
-      $source_url = $node_url . $pa;
-      if ($existing = uibx_path_load($source_url)) { // Check if alias exists
-        foreach ($existing as $path) {
-          path_delete($path->pid); // remove it
+    foreach ($uib_area_aliases as $key => $pa) {
+      foreach ($pa as $language => $path) {
+        $source_url = $node_url . '/' . $path;
+        if ($existing = uibx_path_load($source_url, $language)) { // Check if alias exists
+          foreach ($existing as $path) {
+            path_delete($path->pid); // remove it
+          }
         }
       }
     }
