@@ -30,7 +30,7 @@ if [ "$RELEASE" != "" ]; then
 else
     COMMIT=origin/prod
     DUMP_DIR=/prod_nettapp_w3/pg_dump
-    DUMP=$($PGDUMP_HOST_RUN "ls -t $DUMP_DIR/w3.uib.no*.sql | head -n 1")
+    DUMP=$($PGDUMP_HOST_RUN "ls -t $DUMP_DIR/w3.uib.no*.sql* | head -n 1")
 fi
 
 if [ "$USE_STAGE_FILE_PROXY" = yes ]; then
