@@ -33,20 +33,22 @@ function uib_geography_sync() {
     foreach ($xml->Land as $key => $value) {
       $continent_nb = strval($value->verdensdel_norsk);
       $continent_en = strval($value->verdensdel_engelsk);
+      $continent_name = $continent_nb . ' / ' . $continent_en;
       $country_nb = strval($value->landnavn_norsk);
       $country_en = strval($value->landnavn_engelsk);
+      $country_name = $country_nb . ' / ' . $country_en;
       $code = strval($value->landkode);
       $fs_country_code = intval($value->landnr);
       // Continent
       $query = new EntityFieldQuery();
       $result = $query->entityCondition('entity_type', 'taxonomy_term')
         ->propertyCondition('vid', $vocab->vid)
-        ->propertyCondition('name', $continent_en)
+        ->propertyCondition('name', $continent_name)
         ->execute();
       if (empty($result['taxonomy_term'])) {
         $parent_term = entity_create('taxonomy_term', array(
           'vid' => $vocab->vid,
-          'name' => $continent_en,
+          'name' => $continent_name,
           'vocabulary_machine_name' => $vocab_name,
           )
         );
@@ -97,7 +99,7 @@ function uib_geography_sync() {
       if (empty($result['taxonomy_term'])) {
         $term = entity_create('taxonomy_term', array(
           'vid' => $vocab->vid,
-          'name' => $country_en,
+          'name' => $country_name,
           'vocabulary_machine_name' => $vocab_name,
           'parent' => $parent_tid,
           )

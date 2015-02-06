@@ -17,5 +17,6 @@ date +%FT%T
 bin/site-drush scr area-aliases.php
 bin/site-drush uib-sebra-places --verbose
 bin/site-drush uib-sync-fs --verbose
+bin/site-drush scr new_geography_term_names.php
 bin/site-drush cc all
 date +%FT%T
