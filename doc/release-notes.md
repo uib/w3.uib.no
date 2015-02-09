@@ -1,3 +1,8 @@
+# Release 19.2 _2015-02-09_
+
+Forberedelse for release 20. Klassifiseringer som må på plass først for å implementere filtrering
+av utvekslingsavtaler. #9316
+
 # Release 19.1 _2015-02-03_
 
 Kompensere for endringer i APIene mot Jobbnorge.  Dette sørger for at engelske stillingslister igjen vises.
