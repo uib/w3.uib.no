@@ -53,7 +53,7 @@
   padding: 5px 10px 0;
   position: relative;
   vertical-align: middle;
-  .field-item:first-child & {
+  .field-item:first-child:not(:last-child) & {
     margin-left: -14px;
     &:before {
       display: none;
