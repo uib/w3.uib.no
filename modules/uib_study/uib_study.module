@@ -210,16 +210,42 @@ function uib_study__get_exchange_agreements($nid) {
     $agreements = array();
     foreach ($part_ofs as $key => $part_of) {
       if ($part_of->field_uib_study_type['und'][0]['value'] == 'exchange') {
-        $agreements[] = $part_of;
+        // Handle agreements, also those connected to more than one country
+        $country_tids = array();
+        foreach ($part_of->field_uib_study_country['und'] as $tmp) {
+          if (!in_array($tmp['target_id'], $country_tids)) {
+            $country_tids[] = $tmp['target_id'];
+          }
+        }
+        foreach ($country_tids as $ctid) {
+          $agreements[$ctid][] = $part_of;
+        }
       }
     }
-    usort($agreements, 'uib_study__exc_name_compare');
+    // Get country names (current language) from country taxonomy
+    $countries = array();
+    $terms = taxonomy_term_load_multiple(array_keys($agreements));
+    foreach ($terms as $tid => $term) {
+      $countries[$tid] = $term->field_uib_geographic_name[$language->language][0]['value'];
+    }
+    // Regroup the agreements according to country names
+    $tmp = array();
+    foreach ($agreements as $key => $value) {
+      usort($value, 'uib_study__exc_name_compare');
+      $tmp[$countries[$key]] = $value;
+    }
+    $agreements = $tmp;
+    ksort($agreements);
     if (!empty($agreements)) {
       $markup = '<div class="uib_exchange_agreements"><h3>' . t('Facilitated exchange agreements') . '</h3>';
       $markup .= '<ul>';
-      foreach ($agreements as $agreement) {
-        $link = l($agreement->field_uib_study_title[$language->language][0]['value'], 'node/' . $agreement->nid);
-        $markup .= '<li><h4>' . $link . '</h4></li>';
+      foreach ($agreements as $country => $agreement_set) {
+        $markup .= '<li><h4>' . $country . '</h4><ul>';
+        foreach ($agreement_set as $agreement) {
+          $link = l($agreement->field_uib_study_title[$language->language][0]['value'], 'node/' . $agreement->nid);
+          $markup .= '<li><h4>' . $link . '</h4></li>';
+        }
+        $markup .= '</ul></li>';
       }
       $markup .= '</ul></div>';
     }
