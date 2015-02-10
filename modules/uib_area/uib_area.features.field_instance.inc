@@ -3968,6 +3968,78 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_ou-field_uib_main_media'
+  $field_instances['node-uib_ou-field_uib_main_media'] = array(
+    'bundle' => 'uib_ou',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file_entity',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'file_view_mode' => 'default',
+        ),
+        'type' => 'file_rendered',
+        'weight' => 13,
+      ),
+      'short_teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_main_media',
+    'label' => 'Media',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'jpeg jpg png',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+          'vimeo' => 0,
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 'media_internet',
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'media_generic',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_ou-field_uib_ou_id'
   $field_instances['node-uib_ou-field_uib_ou_id'] = array(
     'bundle' => 'uib_ou',
@@ -4211,16 +4283,7 @@ function uib_area_field_default_field_instances() {
   // Exported field_instance: 'node-uib_ou-field_uib_postal_address'
   $field_instances['node-uib_ou-field_uib_postal_address'] = array(
     'bundle' => 'uib_ou',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'node|uib_ou|field_uib_postal_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'NO',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4275,6 +4338,7 @@ function uib_area_field_default_field_instances() {
         'available_countries' => array(
           'NO' => 'NO',
         ),
+        'default_country' => '',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
@@ -4291,16 +4355,7 @@ function uib_area_field_default_field_instances() {
   // Exported field_instance: 'node-uib_ou-field_uib_visit_address'
   $field_instances['node-uib_ou-field_uib_visit_address'] = array(
     'bundle' => 'uib_ou',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'node|uib_ou|field_uib_visit_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'NO',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -4363,6 +4418,7 @@ function uib_area_field_default_field_instances() {
         'available_countries' => array(
           'NO' => 'NO',
         ),
+        'default_country' => '',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
@@ -4373,78 +4429,6 @@ function uib_area_field_default_field_instances() {
       ),
       'type' => 'addressfield_standard',
       'weight' => 10,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_ou-field_uib_main_media'
-  $field_instances['node-uib_ou-field_uib_main_media'] = array(
-    'bundle' => 'uib_ou',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'file_entity',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'file_view_mode' => 'default',
-        ),
-        'type' => 'file_rendered',
-        'weight' => 13,
-      ),
-      'short_teaser' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_main_media',
-    'label' => 'Media',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 0,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'jpeg jpg png',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'private' => 0,
-          'public' => 'public',
-          'vimeo' => 0,
-          'youtube' => 0,
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'media_internet' => 'media_internet',
-          'upload' => 'upload',
-          'youtube' => 0,
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 18,
     ),
   );
 

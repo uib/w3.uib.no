@@ -431,16 +431,7 @@ function uib_user_field_default_field_instances() {
   // Exported field_instance: 'user-user-field_uib_user_alt_address'
   $field_instances['user-user-field_uib_user_alt_address'] = array(
     'bundle' => 'user',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'user|user|field_uib_user_alt_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'postal_code' => '',
-        'locality' => '',
-        'country' => 'NO',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => 'This will override the institution address on your profile.',
     'display' => array(
@@ -470,8 +461,12 @@ function uib_user_field_default_field_instances() {
       'module' => 'addressfield',
       'settings' => array(
         'available_countries' => array(),
+        'default_country' => 'NO',
         'format_handlers' => array(
           'address' => 'address',
+          'address-optional' => 'address-optional',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
           'address-hide-country' => 0,
           'organisation' => 0,
           'name-full' => 0,
