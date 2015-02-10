@@ -340,16 +340,10 @@ table.cols-6 {
   .views-exposed-widgets {
     @media all and (min-width: 960px) {
       $zen-column-count: 10;
-      // .views-widget-filter-field_uib_study_code_value {
-      //   @include zen-grid-item(3, 1);
-      // }
-      // .views-widget-filter-field_uib_ou_title_value {
-      //   @include zen-grid-item(3, 1);
-      // }
       .views-widget-filter-tid {
         @include zen-grid-item(5, 1);
       }
-      .views-widget-filter-field_uib_geographic_name_value {
+      .views-widget-filter-term_node_tid_depth {
         @include zen-grid-item(3, 6);
       }
       .views-submit-button {
@@ -368,7 +362,8 @@ table.cols-6 {
       line-height: 1.5em;
     }
   }
-  .views-widget-filter-tid {
+  .views-widget-filter-tid,
+  .views-widget-filter-term_node_tid_depth {
     ul {
       padding: 0;
       ul {

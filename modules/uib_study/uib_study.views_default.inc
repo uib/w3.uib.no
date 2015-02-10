@@ -245,19 +245,18 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['tid']['type'] = 'select';
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'uib_organisation';
   $handler->display->display_options['filters']['tid']['hierarchy'] = 1;
-  /* Filter criterion: Taxonomy term: Geographic name (field_uib_geographic_name) */
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['id'] = 'field_uib_geographic_name_value';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['field'] = 'field_uib_geographic_name_value';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['relationship'] = 'field_uib_study_country_target_id';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['operator'] = 'word';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['operator_id'] = 'field_uib_geographic_name_value_op';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['label'] = 'Filter by country';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['operator'] = 'field_uib_geographic_name_value_op';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['identifier'] = 'field_uib_geographic_name_value';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['value'] = '';
+  $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     64272948 => 0,
@@ -265,14 +264,8 @@ function uib_study_views_default_views() {
     74573517 => 0,
     176168899 => 0,
   );
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['group_info']['label'] = 'Geographic name (field_uib_geographic_name)';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['group_info']['identifier'] = 'field_uib_geographic_name_value';
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['group_info']['remember'] = FALSE;
-  $handler->display->display_options['filters']['field_uib_geographic_name_value']['group_info']['group_items'] = array(
-    1 => array(),
-    2 => array(),
-    3 => array(),
-  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_geography';
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '1';
   /* Filter criterion: Content: Title (field_uib_study_title:language) */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
@@ -289,6 +282,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['language_1']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
+  $handler->display->display_options['filters']['language_1']['group'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -309,8 +303,7 @@ function uib_study_views_default_views() {
     t('Read student report'),
     t('[field_uib_study_title] <!-- [field_uib_study_code] -->'),
     t('Filter by faculty/department'),
-    t('Filter by country'),
-    t('Geographic name (field_uib_geographic_name)'),
+    t('Filter by country or continent'),
     t('Page'),
   );
   $export['exchange_agreements'] = $view;
