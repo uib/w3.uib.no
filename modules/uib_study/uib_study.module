@@ -1753,6 +1753,20 @@ function uib_study_views_pre_render(&$view) {
   }
 
   if ($view->name == 'exchange_agreements') {
+    // Extra filter for exposed country filter and the extra unwanted hits
+    // occuring when agreements are connected to several countries.
+    if ($view->exposed_input['term_node_tid_depth']) {
+      $term_id = $view->filter['term_node_tid_depth']->value;
+      $parent = taxonomy_get_parents($term_id);
+      if ($parent) {
+        foreach ($view->result as $delta => $hit) {
+          // Remove hits from unwanted countries
+          if ($hit->name != $view->exposed_input['term_node_tid_depth']) {
+            unset($view->result[$delta]);
+          }
+        }
+      }
+    }
     $vocab_name = 'uib_organisation';
     $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
     uib_study__translate_exposed_filter($view, $vocab->vid, 3, NULL);
