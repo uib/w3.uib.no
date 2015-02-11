@@ -154,7 +154,7 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $no_path_prefix = 'emne';
     $en_path_prefix = 'course';
   }
-  elseif ($type == 'program') {
+  elseif ($type == 'program' || $type == 'specialization') {
     $no_path_prefix = 'studieprogram';
     $en_path_prefix = 'studyprogramme';
   }
