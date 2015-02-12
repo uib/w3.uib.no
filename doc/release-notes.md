@@ -1,3 +1,29 @@
+# Release 20 _2014-02-12_
+
+I denne releasen har hovedfokuset vært på utvekslingsavtaler, generell bugfiksing og moduloppgraderinger.
+
+Utvekslingsavtaler
+
+- Rekkefølgen på faktaboksen i utvekslingsavtaler #9394
+- Landsøk er nå autocomplete-felt #9416
+- Land som overskrift på listen over utvekslingsavtaler på studieprogramsiden #9409
+- Filtersiden til utvekslingsavtaler har nå avkrysningsboks #9316
+- Utvekslingsavtaler i alfabetisk rekkefølge på studieprogramsiden #9399
+
+Generelle endringer
+
+- Søkeboksen til biblioteket #9248
+- Lokalt tilknyttet innhold viser fakultetsikonet på alle underliggende områder #9459
+- Forbedret utseende på pilene til innholdslister #9342
+- Fler norske urler #9122
+
+Feilretting
+
+- Url-oppsett for studiespesialiseringer #9728
+- Autocomplete feltet var gjemt bak kolofonfeltet #9416
+- Moduloppdateringer #9305, #9480, #9482, #7887
+
+
 # Release 19.2 _2015-02-09_
 
 Forberedelse for release 20. Klassifiseringer som må på plass først for å implementere filtrering
@@ -123,7 +149,7 @@ Fikset problem som førte til at søknadsfrister for EVU-kurs utløp en dag for 
 I denne releasen har vi hatt fokus på arbeidet med utvekslingsavtaler, jobbet videre med innholdsliste og har begynt arbeidet med ny kalender. I tillegg har vi gjort enkelte feilrettinger.
 
 - Vi har begynt arbeidet med ny kalender #8159
-- Utvekslingsavtalene skal få ny layout og visning på w3 og vi har hatt flere saker som handler om dette #8800 #8793 #8711 #8853 
+- Utvekslingsavtalene skal få ny layout og visning på w3 og vi har hatt flere saker som handler om dette #8800 #8793 #8711 #8853
 - Det har blitt gjort endringer med integrasjonen mot FS på grunn av utvekslingsavtalene #8853 #8763
 - Webdesk har fått noen små forbedringer #8632
 - Upublisert innhold viste i innholdslisten selv når man var logget ut, dette er nå skjult for alle som ikke har en rolle i systemet #8532
@@ -131,7 +157,7 @@ I denne releasen har vi hatt fokus på arbeidet med utvekslingsavtaler, jobbet v
 - Det er nå mulig å legge innholdslister inn i tilknyttet innhold #8371
 - Tilknyttet innhold blir nå ikke kopiert over til en sak som blir oversatt på grunn av språkproblemer #8580
 - Det har blitt gjort slik at brukere blir sendt til riktig språkversjon av webdesken når de oversetter en sak #8488
-- I tillegg har det blitt lagt til litt ekstra hjelpetekst for brukere som oversetter saker #8489 
+- I tillegg har det blitt lagt til litt ekstra hjelpetekst for brukere som oversetter saker #8489
 
 # Release 15 _2014-11-21_
 
@@ -220,7 +246,7 @@ Personsider, EVU og mindre fix og bugfix
 
 # Release 12.1 _2014-10-09_
 
-Liten release for å fikse kritiske problemer i forhold til lanseringen av nye personsider. 
+Liten release for å fikse kritiske problemer i forhold til lanseringen av nye personsider.
 
 - Fiks for publikasjonsfane som ikke viste riktig språk #7978
 - Fiks for å hindre at level 2,3 og brukere uten rolle kan se passord, brukernavn, tilgangsgrupper og annen kontoinformasjon i redigeringsbildet til personsiden #7975
@@ -359,7 +385,7 @@ Denne oppdateringen gjør først og fremst ytterligere justeringer for nye perso
 
 # Release 8 _2014-08-11_
 
-Mindre oppdatering som primært retter noen mindre feil og gjør noen oppdateringer knyttet til uib.no/ub og person-sidene. 
+Mindre oppdatering som primært retter noen mindre feil og gjør noen oppdateringer knyttet til uib.no/ub og person-sidene.
 
 - Gjør e-postadressen klikkbar på OU (steder) #7060
 - Gjør OU-feltene for tittel og "Custom hours" oversettbare #7059
@@ -757,7 +783,7 @@ Releasen inneholder funksjonalitet for visning av studieprogram og emner, samt s
 * Retter på utseende på utskrift av sider som bruker faner #4145
 * Retter kolofon, slik at den viser adresse til området, ikke bare sentral adresse #3902
 * Retter opp feil som har oppstått med ujevne mellomrom der faner på infosider har forsvunnet #2542
-* Fjerner understreking på lenker i brødsmulesti og faner #4945 
+* Fjerner understreking på lenker i brødsmulesti og faner #4945
 * Diverse styling knyttet til studieprogram og emner #5111 #5131 #5110 #5109 #5058 #4967 #4965 #4963 #4962 #4959 #4952 #4964
 * Diverse funksjonalitet knyttet til studieprogram og emner #4991 #4724 #4306 #4622 #4941 #4699 #4943 #4609 #4950 #4966
 * Legger til BSRS logoen til forsiden #4989
@@ -979,7 +1005,7 @@ Release mandag 24. juni. Justeringer etter forrige release, noen tekniske ryddes
 
 # Release 1.6 _2013-06-10_
 
-Release mandag 6. juni inneholdt både justeringer og feilrettinger. Dette ble gjort: 
+Release mandag 6. juni inneholdt både justeringer og feilrettinger. Dette ble gjort:
 
 * Print av sider fra uib.no har fått et godt og konsistent oppsett. - #2459
 * Man kan nå liste opp administrativt og vitenskapelig ansatte ved enhetene separat. - #2706
@@ -1050,12 +1076,12 @@ Generelt:
 * Nyhetssaker, kalendersaker og infosider får publisert-dato + sist-endretdato under byline. Blir stylet til neste release.
 * Ser også ut til at vi får på plass en fiks som gjør at uansett hva slags intern lenke du limer inn i tekst i en sak, vil den bli rettet til en relativ lenke og dermed funke (rensker bort w3 og https-lenker
 * Ser ut til at vi får på plass saken som fikser språktilhørighet for bildetekstene - vi må snakke om om dere ønsker at vi skal pushe en flytting til fra Alternativ tekst til Description (dette vil overskrive evt endringer gjort). Jeg kan forklare denne saken litt nærmere på tirsdag.
- 
+
 Spesifikt for Ansattsidene:
 
 * Menyen på ansattesidene virker nå i responsiv design (små brett/mobil)
 * Lenker videre-menyen på Ansattesidene er nå flyttet opp til høyre for teksten i artikkelen
- 
+
 samt en del tekniske saker som rydder og effektiviserer
 
 # Release 1.2 _2013-04-12_
