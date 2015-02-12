@@ -267,6 +267,22 @@ function uib_study__exc_name_compare($a, $b) {
 }
 
 /**
+ * Comparison of exchange duration end dates for use in usort (reverse sort)
+ */
+function uib_study__exc_date_compare($a, $b) {
+  if (empty($a['date2']['#value'])) {
+    $a['date2']['#value'] = $a['date']['#value'];
+  }
+  if (empty($b['date2']['#value'])) {
+    $b['date2']['#value'] = $b['date']['#value'];
+  }
+  if ($a['date2']['#value'] == $b['date2']['#value']) {
+    return 0;
+  }
+  return ($a['date2']['#value'] > $b['date2']['#value']) ? -1 : 1;
+}
+
+/**
  * Check if a course has a current description (em-emnebeskrivelse)
  */
 function uib_study__course_description_exists($fspres_code) {
@@ -675,6 +691,7 @@ function uib_study_block_view($delta = '') {
             if ($language->language == 'nb') {
               $external_institution_codes = uib_study__external_inst_code($info_data);
               $reports = uib_study__published_student_reports($study_code, $external_institution_codes);
+              usort($reports, 'uib_study__exc_date_compare');
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
               if (!empty($reports)) {
                 foreach ($reports as $key => $report) {
