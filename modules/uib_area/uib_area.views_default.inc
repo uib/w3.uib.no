@@ -2307,7 +2307,21 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_main_media']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 1,
+      'destination' => '[node:url]',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
   /* Field: Content: Kicker */
   $handler->display->display_options['fields']['field_uib_kicker']['id'] = 'field_uib_kicker';
   $handler->display->display_options['fields']['field_uib_kicker']['table'] = 'field_data_field_uib_kicker';
@@ -2394,7 +2408,21 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_main_media']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 1,
+      'destination' => '[node:url]',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
   /* Field: Content: Kicker */
   $handler->display->display_options['fields']['field_uib_kicker']['id'] = 'field_uib_kicker';
   $handler->display->display_options['fields']['field_uib_kicker']['table'] = 'field_data_field_uib_kicker';
@@ -2481,7 +2509,21 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_main_media']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 1,
+      'destination' => '[node:url]',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
   /* Field: Content: Kicker */
   $handler->display->display_options['fields']['field_uib_kicker']['id'] = 'field_uib_kicker';
   $handler->display->display_options['fields']['field_uib_kicker']['table'] = 'field_data_field_uib_kicker';

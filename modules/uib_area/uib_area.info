@@ -19,6 +19,7 @@ dependencies[] = geocoder
 dependencies[] = geofield_map
 dependencies[] = i18n_field
 dependencies[] = link
+dependencies[] = linked_field
 dependencies[] = list
 dependencies[] = media
 dependencies[] = media_vimeo

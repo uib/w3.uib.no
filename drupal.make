@@ -67,6 +67,7 @@ projects[l10n_update][version] = 2.0
 projects[ldap][version] = 1.0-beta12
 projects[libraries][version] = 2.2
 projects[link][version] = 1.3
+projects[linked_field][version] = 1.10
 projects[login_destination][version] = 1.1
 projects[markdown][version] = 1.2
 projects[media][version] = 2.0-unstable7
