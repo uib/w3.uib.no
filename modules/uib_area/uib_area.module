@@ -827,6 +827,50 @@ function uib_area__get_menustart() {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Changes the path used for the autocomplete in %node/translate.
+ */
+function uib_area_form_i18n_node_select_translation_alter(&$form, &$form_state, $form_id) {
+  $node = $form['node']['#value'];
+  $fields = field_info_instances('node', $node->type);
+  //Only overwrite the autocomplete of type of nodes (bundle) that have area
+  if (isset($fields['field_uib_area'])) {
+    if (isset($form['translations']['node'])) {
+      foreach ($form['translations']['node'] as $langcode => $settings) {
+        $form['translations']['node'][$langcode]['#autocomplete_path'] = 'uib_area/node/autocomplete/' . $node->type . '/' . $langcode;
+      }
+    }
+  }
+}
+
+/**
+ * Node title autocomplete callback for %node/translate.
+ * Based on i18n_node_autocomplete and _i18n_node_references.
+ */
+function uib_area__node_autocomplete($type, $langcode, $string = '') {
+  $query = db_select('node', 'n');
+  $query->join('field_data_field_uib_area','a','a.entity_id = n.nid');
+  $query->join('node','na','a.field_uib_area_target_id = na.nid');
+  $query->addField('a', 'field_uib_area_target_id', 'area_id');
+  $query->addField('na', 'title', 'area_title');
+  $query->fields('n', array('nid', 'title'))
+    ->condition('n.title', '%' . $string . '%', 'LIKE')
+    ->condition('n.type', $type)
+    ->condition('n.language', $langcode)
+    ->condition('n.tnid', 0)
+    ->condition('a.bundle', $type)
+    ->orderBy('n.title')
+    ->range(0, 10);
+  $matches = array();
+  foreach ($query->execute() as $node) {
+    $matches[$node->title . " [nid:$node->nid]"] =
+      '<div class="reference-autocomplete">' . check_plain($node->title) . ' - ' . check_plain($node->area_title) . '</div>';
+  }
+  drupal_json_output($matches);
+}
+
+/**
  * Implements hook_form_alter().
  */
 function uib_area_form_alter(&$form, &$form_state, $form_id) {
@@ -1742,6 +1786,13 @@ function uib_area_menu() {
     'page arguments' => array(1),
     'access callback' => 'uib_area__staff_status_access_check',
     'type' => MENU_LOCAL_TASK,
+  );
+
+  $items['uib_area/node/autocomplete'] = array(
+    'page callback' => 'uib_area__node_autocomplete',
+    'file' => 'uib_area.module',
+    'access arguments' => array('administer content translations'),
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
