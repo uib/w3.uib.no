@@ -438,23 +438,46 @@ function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
   return uib_study__fspres_get_json($path);
 }
 
+/**
+ * Get student reports
+ */
 function uib_study__published_student_reports($code, $instcodes) {
   $url = variable_get('uib_studentrapport_root', 'http://studentrapport.app.uib.no');
   $instcodes = implode(',', $instcodes);
   $url .= "/api/reports/$code/$instcodes/done";
-  $before = microtime(true);
-  $res = drupal_http_request($url);
-  $log_message = "GET $url => ";
-  $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
-  $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
-
-  $severity = ($res->code == 200 || $res->code == 404) ? 'notice' : 'error';
-  uibx_log($log_message, $severity);
-  if ($res->code != 200 || $res->headers['content-type'] != 'application/json') {
-    return NULL;
-  }
-  $data = drupal_json_decode($res->data);
+  $data = uib_study__access_student_reports($url);
   return $data['reports'];
+}
+
+/**
+ * Get a list of exchange agreements that have published student reports
+ * @return  array           Exchange agreements as keys, student user names as values
+ */
+function uib_study__student_reports_list() {
+  $url = variable_get('uib_studentrapport_root', 'http://studentrapport.app.uib.no');
+  $url .= "/api/reports/list";
+  $data = uib_study__access_student_reports($url);
+  return $data;
+}
+
+/**
+ * Access the student report site api
+ */
+function uib_study__access_student_reports($url = NULL) {
+  if ($url) {
+    $before = microtime(true);
+    $res = drupal_http_request($url);
+    $log_message = "GET $url => ";
+    $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
+    $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
+
+    $severity = ($res->code == 200 || $res->code == 404) ? 'notice' : 'error';
+    uibx_log($log_message, $severity);
+    if ($res->code != 200 || $res->headers['content-type'] != 'application/json') {
+      return NULL;
+    }
+    return drupal_json_decode($res->data);
+  }
 }
 
 function uib_study__area($study_node, $lang) {
@@ -1721,6 +1744,7 @@ function uib_study_entity_info_alter(&$entity_info) {
  * Implements hook_views_pre_render().
  */
 function uib_study_views_pre_render(&$view) {
+  global $language;
   if (in_array($view->name, array('courses', 'special_study_listings'))) {
     $current_displays = array(
       'study_programmes_all_page',
@@ -1798,7 +1822,7 @@ function uib_study_views_pre_render(&$view) {
   if ($view->name == 'exchange_agreements') {
     // Extra filter for exposed country filter and the extra unwanted hits
     // occuring when agreements are connected to several countries.
-    if ($view->exposed_input['term_node_tid_depth']) {
+    if (!empty($view->exposed_input['term_node_tid_depth'])) {
       $term_id = $view->filter['term_node_tid_depth']->value;
       $parent = taxonomy_get_parents($term_id);
       if ($parent) {
@@ -1840,8 +1864,16 @@ function uib_study_views_pre_render(&$view) {
         $groups[$row->name]++;
       }
     }
+    $agreements_with_reports = array_keys(uib_study__student_reports_list());
     foreach ($view->result as $delta => $row) {
       $view->result[$delta]->field_field_uib_geographic_name[0]['rendered']['#markup'] .= ' (' . $groups[$view->result[$delta]->name] . ')';
+      if ($language->language == 'nb' &&
+        in_array($view->result[$delta]->field_field_uib_study_code[0]['raw']['value'], $agreements_with_reports)) {
+        continue;
+      }
+      else {
+        $view->result[$delta]->field_field_uib_study_code[0]['rendered']['#access'] = FALSE;
+      }
     }
   }
 }
