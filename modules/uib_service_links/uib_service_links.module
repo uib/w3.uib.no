@@ -42,7 +42,7 @@ function theme_uib_service_links_build_link($variables) {
   if(strpos($url[0],'facebook'))$network='Facebook';
   else if(strpos($url[0],'twitter'))$network='Twitter';
   else if(strpos($url[0],'linkedin'))$network='Linkedin';
-  $attributes['onClick'][0] = "_gaq.push(['_trackSocial', '$network', 'Share', '".current_path()."'])";
+  $attributes['onClick'][0] = "ga('send',{'hitType':'$network','eventCategory':'SocialMediaButtons', 'eventAction':'Share', 'eventLabel':'".current_path()."'})";
   global $theme_path;
 
   // Hardcode shared hostname to be www.uib.no.

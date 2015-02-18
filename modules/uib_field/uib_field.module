@@ -75,6 +75,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
           $title = t('Follow us on @network', array('@network' => ucfirst($sm_name)));
         }
         $options['attributes']['title'] = $title;
+        $options['attributes']['onClick'] = "ga('send',{'hitType':'$sm_name','eventCategory':'SocialMediaButtons','eventAction':'Follow','eventLabel':'".current_path()."'})";
       }
       $element[]['#markup'] = l($sm_name, $sm_url, $options);
     }
