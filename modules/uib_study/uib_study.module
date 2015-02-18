@@ -562,153 +562,58 @@ function uib_study_block_view($delta = '') {
         $type = $node->field_uib_study_type->value();
         $study_code = $node->field_uib_study_code->value();
         if ($type == 'program' || $type == 'specialization' || $type == 'exchange') {
-          $tab_items = array();
+          $pre_tab_items = array();
           foreach ($data as $group) {
             $group_title = check_plain($group['#title']);
             if (substr($group['#group'], -11) == '_studieplan' || (uib_study__exchange_is_network($info_data) && $group['#group'] == 'avt_sted'))
               continue;
             $group_title_html_id = uib_study__clean_id_string($group_title);
-            $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
+            $pre_tab_items[] = array(
+              'value' => '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>',
+              'name' => $group_title_html_id,
+            );
           }
           if ($type == 'program' || $type == 'specialization') {
             $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
             if (!empty($plan['rows'])) {
               $group_title = t('Construction');
-              $tab_items[] = '<a href="#uib-tabs-construction">' . $group_title . '</a>';
+              $pre_tab_items[] = array(
+                'value' => '<a href="#uib-tabs-construction">' . $group_title . '</a>',
+                'name' => 'construction',
+              );
               $render['construction'] = array(
-                  '#type' => 'html_tag',
-                  '#tag' => 'h2',
-                  '#value' => t("Construction"),
+                '#type' => 'html_tag',
+                '#tag' => 'h2',
+                '#value' => t("Construction"),
               );
 
-              $t_rows = array();
-              $max_depth = 0;
-              $strip = FALSE;
-              $strip_depth = 0;
-              $strip_list = array();
-              foreach ($plan['rows'] as $key => $row) {
-                if ($type == 'specialization') {
-                  // scan for irrelevant specializations
-                  if (isset($row['specialization']) && $row['specialization'] != $study_code) {
-                    $strip = TRUE;
-                    $strip_depth = $row['depth'];
-                    $strip_list[] = $key;
-                    continue;
-                  }
-                  if ($strip && $row['depth'] > $strip_depth) {
-                    $strip_list[] = $key;
-                    continue;
-                  }
-                  if ($strip && $row['depth'] <= $strip_depth) {
-                    $strip = FALSE;
-                  }
-                }
-                if ($row['depth'] > $max_depth) $max_depth = $row['depth'];
-              }
-              if (!empty($strip_list)) {
-                // remove any irrelevant specializations found
-                for ($i = (count($strip_list) - 1); $i >= 0; $i--) {
-                  unset($plan['rows'][$strip_list[$i]]);
-                }
-              }
-              foreach ($plan['rows'] as $s_row) {
-                $t_row = array();
-                if ($s_row['depth'] > 1) {
-                  if (!empty($s_row['emneheader'])) {
-                    $t_row[] = uib_study__insert_t_row($max_depth);
-                    $headers = array(t('Course code'), t('Course title'), t('SP'), t('S'), t('R'));
-                    $header_titles = array('', '', t('ECTS credits'), t('Semester'), t('Recommended semester'),);
-                    foreach ($headers as $key => $title) {
-                      $t_row[] = array(
-                        'data' => $title,
-                        'header' => TRUE,
-                        'title' => $header_titles[$key],
-                      );
-                    }
-                  }
-                  elseif (!empty($s_row['emnekode'])) {
-                    $t_row[] = uib_study__insert_t_row($max_depth);
-                    $emnenavn = $s_row['name'];
-                    if (!$emnenavn)
-                      $emnenavn = '<title>';  # will be expanded
-                    $cells = array(
-                      uib_study__study_link($s_row['emnekode']),
-                      uib_study__study_link($s_row['emnekode'], $emnenavn),
-                      $s_row['sp'],
-                      $s_row['s'],
-                      strcmp($s_row['a'], $s_row['s']) ? $s_row['a'] : '',
-                    );
-                    foreach ($cells as $cell) {
-                      $t_row[] = array(
-                        'data' => $cell,
-                        'class' => 'uib-study-data',
-                      );
-                    }
-                  }
-                  else {
-                    $t_row[] = uib_study__insert_t_row($s_row['depth']);
-                    $td = array(
-                      'data' => check_plain($s_row['name']),
-                      'colspan' => 5 + $max_depth - $s_row['depth'],
-                    );
-                    if (isset($s_row['specialization'])) {
-                      $spec_path = uib_study__study_path($s_row['specialization']);
-                      // avoid linking specialization to itself
-                      if ($spec_path && $type != 'specialization') {
-                        $td['data'] = l($td['data'], $spec_path);
-                      }
-                      $td['class'] = 'uib-study-specialization';
-                    }
-                    if ($type == 'specialization' && isset($s_row['name']) && $s_row['name'] == 'Studieretning') {
-                      unset($s_row['description']);
-                    }
-                    if (isset($s_row['description'])) {
-                      # fake another row then
-                      $tmp = $t_row;
-                      $tmp[] = $td;
-                      $t_rows[] = $tmp;
-
-                      # and make the current row display the description
-                      $td['data'] = uib_study__filter_text($s_row['description']);
-                      $td['class'] = 'uib-study-description';
-                    }
-                    $t_row[] = $td;
-                  }
-                }
-                else {
-                  $caption = $s_row['name'];
-                }
-                //$t_row[] = check_plain(drupal_json_encode($s_row));
-                $t_rows[] = $t_row;
-              }
-              // Add explanation of abbreviated headers at end of table
-              if (!empty($header_titles)) {
-                $tmp = '';
-                $glue = '';
-                foreach ($header_titles as $key => $title_text) {
-                  if ($title_text) {
-                    $tmp .= $glue . $headers[$key] . ' = ' . $title_text;
-                    $glue = ', ';
-                  }
-                }
-                $t_rows[] = array(
-                  array(
-                    'data' => $tmp,
-                    'colspan' => 5 + $max_depth - 1,
-                    'class' => 'uib-study-abbrev-explanation',
-                    ),
-                  );
-              }
+              $table = uib_study__construction_table($plan, $type, $study_code);
 
               $render['construction table'] = array(
                 '#theme' => 'table',
-                '#caption' => $caption,
-                '#rows' => $t_rows,
+                '#caption' => $table['caption'],
+                '#rows' => $table['t_rows'],
                 '#attributes' => array('class' => 'uib-study-construction'),
                 '#prefix' => '<div id="uib-tabs-construction">',
                 '#suffix' => '</div>',
               );
             }
+
+            //RTS-9835 Move "studieløp" tab next to/after "oppbygging" tab.
+            foreach ($pre_tab_items as $key => $item) {
+              if ($item['name'] == 'oppbygging') $opp = $key;
+              if ($item['name'] == 'construction') $con = $key;
+            }
+            if (isset($opp) && isset($con)){
+              $out = array_splice($pre_tab_items, $con);
+              if ($opp < count($pre_tab_items)-1) {
+                array_splice($pre_tab_items, $opp + 1, 0, $out);
+              }
+              else {
+                $pre_tab_item[] = $out;
+              }
+            }
+
           }
           elseif ($type == 'exchange') {
             if ($language->language == 'nb') {
@@ -743,7 +648,10 @@ function uib_study_block_view($delta = '') {
                   $reports[$key] = $report;
                 }
                 $group_title = t('Student reports');
-                $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
+                $pre_tab_items[] = array(
+                  'value' => '<a href="#uib-tabs-student-reports">' . $group_title . '</a>',
+                  'name' => 'student-reports',
+                );
                 $render['student reports'] = array(
                   '#type' => 'html_tag',
                   '#tag' => 'h2',
@@ -756,6 +664,13 @@ function uib_study_block_view($delta = '') {
                 );
               }
             }
+          }
+
+          // The tab_items are placed in an aux array so they can be resorted
+          // before they are added to the render array.
+          $tab_items = array();
+          foreach($pre_tab_items as $item) {
+            $tab_items[] = $item['value'];
           }
 
           $toc = array(
@@ -1122,6 +1037,132 @@ function uib_study_block_view($delta = '') {
   }
 
   return $block;
+}
+
+/*
+ * Creates the render array for the Construction plan of a Study
+ * program.
+ */
+function uib_study__construction_table($plan, $type, $study_code) {
+  $t_rows = array();
+  $max_depth = 0;
+  $strip = FALSE;
+  $strip_depth = 0;
+  $strip_list = array();
+  foreach ($plan['rows'] as $key => $row) {
+    if ($type == 'specialization') {
+      // scan for irrelevant specializations
+      if (isset($row['specialization']) && $row['specialization'] != $study_code) {
+        $strip = TRUE;
+        $strip_depth = $row['depth'];
+        $strip_list[] = $key;
+        continue;
+      }
+      if ($strip && $row['depth'] > $strip_depth) {
+        $strip_list[] = $key;
+        continue;
+      }
+      if ($strip && $row['depth'] <= $strip_depth) {
+        $strip = FALSE;
+      }
+    }
+    if ($row['depth'] > $max_depth) $max_depth = $row['depth'];
+  }
+  if (!empty($strip_list)) {
+    // remove any irrelevant specializations found
+    for ($i = (count($strip_list) - 1); $i >= 0; $i--) {
+      unset($plan['rows'][$strip_list[$i]]);
+    }
+  }
+  foreach ($plan['rows'] as $s_row) {
+    $t_row = array();
+    if ($s_row['depth'] > 1) {
+      if (!empty($s_row['emneheader'])) {
+        $t_row[] = uib_study__insert_t_row($max_depth);
+        $headers = array(t('Course code'), t('Course title'), t('SP'), t('S'), t('R'));
+        $header_titles = array('', '', t('ECTS credits'), t('Semester'), t('Recommended semester'),);
+        foreach ($headers as $key => $title) {
+          $t_row[] = array(
+            'data' => $title,
+            'header' => TRUE,
+            'title' => $header_titles[$key],
+          );
+        }
+      }
+      elseif (!empty($s_row['emnekode'])) {
+        $t_row[] = uib_study__insert_t_row($max_depth);
+        $emnenavn = $s_row['name'];
+        if (!$emnenavn)
+          $emnenavn = '<title>';  # will be expanded
+        $cells = array(
+          uib_study__study_link($s_row['emnekode']),
+          uib_study__study_link($s_row['emnekode'], $emnenavn),
+          $s_row['sp'],
+          $s_row['s'],
+          strcmp($s_row['a'], $s_row['s']) ? $s_row['a'] : '',
+        );
+        foreach ($cells as $cell) {
+          $t_row[] = array(
+            'data' => $cell,
+            'class' => 'uib-study-data',
+          );
+        }
+      }
+      else {
+        $t_row[] = uib_study__insert_t_row($s_row['depth']);
+        $td = array(
+          'data' => check_plain($s_row['name']),
+          'colspan' => 5 + $max_depth - $s_row['depth'],
+        );
+        if (isset($s_row['specialization'])) {
+          $spec_path = uib_study__study_path($s_row['specialization']);
+          // avoid linking specialization to itself
+          if ($spec_path && $type != 'specialization') {
+            $td['data'] = l($td['data'], $spec_path);
+          }
+          $td['class'] = 'uib-study-specialization';
+        }
+        if ($type == 'specialization' && isset($s_row['name']) && $s_row['name'] == 'Studieretning') {
+          unset($s_row['description']);
+        }
+        if (isset($s_row['description'])) {
+          # fake another row then
+          $tmp = $t_row;
+          $tmp[] = $td;
+          $t_rows[] = $tmp;
+
+          # and make the current row display the description
+          $td['data'] = uib_study__filter_text($s_row['description']);
+          $td['class'] = 'uib-study-description';
+        }
+        $t_row[] = $td;
+      }
+    }
+    else {
+      $caption = $s_row['name'];
+    }
+    //$t_row[] = check_plain(drupal_json_encode($s_row));
+    $t_rows[] = $t_row;
+  }
+  // Add explanation of abbreviated headers at end of table
+  if (!empty($header_titles)) {
+    $tmp = '';
+    $glue = '';
+    foreach ($header_titles as $key => $title_text) {
+      if ($title_text) {
+        $tmp .= $glue . $headers[$key] . ' = ' . $title_text;
+        $glue = ', ';
+      }
+    }
+    $t_rows[] = array(
+      array(
+        'data' => $tmp,
+        'colspan' => 5 + $max_depth - 1,
+        'class' => 'uib-study-abbrev-explanation',
+      ),
+    );
+  }
+  return array('t_rows' => $t_rows, 'caption' => $caption);
 }
 
 /**
