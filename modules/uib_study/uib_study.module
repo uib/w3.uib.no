@@ -570,7 +570,7 @@ function uib_study_block_view($delta = '') {
             $group_title_html_id = uib_study__clean_id_string($group_title);
             $pre_tab_items[] = array(
               'value' => '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>',
-              'name' => $group_title_html_id,
+              'name' => substr($group['#group'], strpos($group['#group'], '_') + 1),
             );
           }
           if ($type == 'program' || $type == 'specialization') {
@@ -579,7 +579,7 @@ function uib_study_block_view($delta = '') {
               $group_title = t('Construction');
               $pre_tab_items[] = array(
                 'value' => '<a href="#uib-tabs-construction">' . $group_title . '</a>',
-                'name' => 'construction',
+                'name' => 'studieplan',
               );
               $render['construction'] = array(
                 '#type' => 'html_tag',
@@ -602,7 +602,7 @@ function uib_study_block_view($delta = '') {
             //RTS-9835 Move "studieløp" tab next to/after "oppbygging" tab.
             foreach ($pre_tab_items as $key => $item) {
               if ($item['name'] == 'oppbygging') $opp = $key;
-              if ($item['name'] == 'construction') $con = $key;
+              if ($item['name'] == 'studieplan') $con = $key;
             }
             if (isset($opp) && isset($con)){
               $out = array_splice($pre_tab_items, $con);
