@@ -65,6 +65,7 @@ projects[job_scheduler][version] = 2.0-alpha3
 projects[l10n_client][version] = 1.3
 projects[l10n_update][version] = 2.0
 projects[ldap][version] = 1.0-beta12
+projects[ldap][patch][] = https://www.drupal.org/files/ldap_server_init-1775658-1.patch
 projects[libraries][version] = 2.2
 projects[link][version] = 1.3
 projects[linked_field][version] = 1.10
