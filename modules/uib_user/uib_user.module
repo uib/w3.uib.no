@@ -703,7 +703,7 @@ function uib_user__uname_lookup($uname) {
  */
 function uib_user__vcard_page($user_entity = NULL) {
   if (!empty($user_entity)) {
-    drupal_add_http_header('Content-Type', 'application/vcard');
+    drupal_add_http_header('Content-Type', 'application/vcard; charset=utf-8;');
     $vcard = uib_user__vcard($user_entity);
     echo $vcard;
     return;
@@ -748,10 +748,10 @@ function uib_user__vcard($user_entity) {
   $vcard = array();
   $vcard[] = 'BEGIN:VCARD';
   $vcard[] = 'VERSION:3.0';
-  $vcard[] = "N:$last_name;$first_name;";
-  $vcard[] = "FN:$full_name";
-  $vcard[] = 'ORG:University of Bergen, ' . $vc_user->field_uib_user_ou->label();
-  $vcard[] = "TITLE:$title";
+  $vcard[] = "N;CHARSET=utf-8:$last_name;$first_name;";
+  $vcard[] = "FN;CHARSET=utf-8:$full_name";
+  $vcard[] = 'ORG;CHARSET=utf-8:University of Bergen, ' . $vc_user->field_uib_user_ou->label();
+  $vcard[] = "TITLE;CHARSET=utf-8:$title";
   // $vcard[] = 'TEL;TYPE=WORK,VOICE:' . $vc_user->field_uib_phone->value();
   $vcard[] = 'TEL;TYPE=WORK,VOICE:' . $user_entity->field_uib_phone['und'][0]['value'];
 
@@ -768,7 +768,7 @@ function uib_user__vcard($user_entity) {
   if ($ou_address['country'] == 'NO') {
     $adr[] = t('Norway');
   }
-  $vcard[] = 'ADR;TYPE=WORK:;;' . implode(';', $adr);
+  $vcard[] = 'ADR;TYPE=WORK;CHARSET=utf-8:;;' . implode(';', $adr);
 
   $vcard[] = 'EMAIL;TYPE=PREF,INTERNET:' . $vc_user->mail->value();
   $vcard[] = 'REV:' . date('c');
