@@ -44,7 +44,7 @@ function uib_study_views_default_views() {
         'bef_collapsible' => 1,
         'is_secondary' => 0,
         'any_label' => '',
-        'bef_filter_description' => 'Display exchange agreements for faculty or department.',
+        'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
@@ -55,12 +55,12 @@ function uib_study_views_default_views() {
         ),
       ),
     ),
-    'field_uib_geographic_name_value' => array(
+    'term_node_tid_depth' => array(
       'bef_format' => 'default',
       'more_options' => array(
         'is_secondary' => 0,
         'any_label' => '',
-        'bef_filter_description' => 'Display exchange agreements with one or more countries.',
+        'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
@@ -229,6 +229,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Filter by faculty/department';
+  $handler->display->display_options['filters']['tid']['expose']['description'] = 'Display exchange agreements for faculty or department.';
   $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
   $handler->display->display_options['filters']['tid']['expose']['multiple'] = TRUE;
@@ -254,6 +255,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['description'] = 'Display exchange agreements with one or more countries.';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
@@ -303,7 +305,9 @@ function uib_study_views_default_views() {
     t('Read student report'),
     t('<span class="agreement-title">[field_uib_study_title]</span><span class="studentreport-ref">[field_uib_study_code]</span>'),
     t('Filter by faculty/department'),
+    t('Display exchange agreements for faculty or department.'),
     t('Filter by country or continent'),
+    t('Display exchange agreements with one or more countries.'),
     t('Page'),
   );
   $export['exchange_agreements'] = $view;
