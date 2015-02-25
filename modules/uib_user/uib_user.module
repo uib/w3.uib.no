@@ -409,9 +409,11 @@ function uib_user_user_view_alter(&$build) {
     $ou_nid = $build['field_uib_user_ou']['#items'][0]['target_id'];
     unset($build['field_uib_user_ou'][0]['node'][$ou_nid]['#contextual_links']);
     $altered_address_fields = array();
-    foreach ($build['#account']->field_uib_user_alt_address[$language->language][0] as $key => $value) {
-      if (!empty($value)) {
-        $altered_address_fields[] = $key;
+    if (!empty($build['#account']->field_uib_user_alt_address[$language->language][0])) {
+      foreach ($build['#account']->field_uib_user_alt_address[$language->language][0] as $key => $value) {
+        if (!empty($value)) {
+          $altered_address_fields[] = $key;
+        }
       }
     }
     if (count($altered_address_fields) > 1) {
@@ -811,12 +813,22 @@ function uib_user__teaser_markup($user = NULL) {
     }
     $phone = $user_wrapper->field_uib_phone->value();
     $mail = $user_wrapper->mail->value();
-    $ou = $user_wrapper->field_uib_user_ou->value();
-    $user_area_nid = uib_user__ou_area($ou->nid, $user_wrapper->uid->value());
-    $user_area = entity_load_single('node', $user_area_nid);
     $markup['#markup'] .= '<h3>' . l($full_name, $user_url) . '</h3>';
     $markup['#markup'] .= '<p class="uib-user-position">' . $position . '</p>';
-    $markup['#markup'] .= '<p class="uib-user-ou">' . $user_area->title . '</p>';
+    if (!empty($user_wrapper->field_uib_user_ou->value())) {
+      $ou = $user_wrapper->field_uib_user_ou->value();
+      $user_area_nid = uib_user__ou_area($ou->nid, $user_wrapper->uid->value());
+      if ($user_area_nid) {
+        $user_area = entity_load_single('node', $user_area_nid);
+        $markup['#markup'] .= '<p class="uib-user-ou">' . $user_area->title . '</p>';
+      }
+      else {
+        uibx_log("User $user->name ($user->uid) has no relevant area", 'warning');
+      }
+    }
+    else {
+      uibx_log("User $user->name ($user->uid) has no connection to ou", 'warning');
+    }
     if (!empty($phone)) $markup['#markup'] .= theme('item_list', array('items' => $phone, 'attributes' => array('class' => 'uib-user-phone')));
     $markup['#markup'] .= '<p class="uib-user-email">' . l($mail, 'mailto:' . $mail, array('absolute' => TRUE)) . '</p>';
     $markup['#markup'] .= '</div>';

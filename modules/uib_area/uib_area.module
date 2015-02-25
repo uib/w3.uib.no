@@ -2474,16 +2474,15 @@ function uib_area__cleanup($area_node) {
  */
 function uib_area_node_view($node, $view_mode, $langcode) {
   $EMPLOYEE_AREA_NID = array('nb'=>1, 'en'=>2);
-
-  //If the view mode of the current article is short_teaser it is
-  //safeish to assume that it is being shown as related content.
-  if ($view_mode == 'short_teaser') {
+  // If the view mode of the current article is short_teaser it is
+  // safeish to assume that it is being shown as related content.
+  if ($view_mode == 'short_teaser' && $node->type != 'area' && $node->type != 'uib_ou') {
     $cur_area = uib_area__get_current();
     $cur_area_parents = array();
     uib_area__get_parentage($cur_area->nid, $cur_area_parents);
 
     //Check that the current area is Employee or a child of Employee
-    if(uib_area__have_common_element($EMPLOYEE_AREA_NID, $cur_area_parents)) {
+    if (uib_area__have_common_element($EMPLOYEE_AREA_NID, $cur_area_parents)) {
       // Check that the area of the current related content is not Employee or a
       // child of employee
       if (isset($node->field_uib_area['und'][0]['target_id'])){
