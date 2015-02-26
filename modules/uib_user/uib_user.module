@@ -815,7 +815,7 @@ function uib_user__teaser_markup($user = NULL) {
     $mail = $user_wrapper->mail->value();
     $markup['#markup'] .= '<h3>' . l($full_name, $user_url) . '</h3>';
     $markup['#markup'] .= '<p class="uib-user-position">' . $position . '</p>';
-    if (!empty($user_wrapper->field_uib_user_ou->value())) {
+    if (!empty($user->field_uib_user_ou)) {
       $ou = $user_wrapper->field_uib_user_ou->value();
       $user_area_nid = uib_user__ou_area($ou->nid, $user_wrapper->uid->value());
       if ($user_area_nid) {
