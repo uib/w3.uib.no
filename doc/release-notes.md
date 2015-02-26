@@ -1,5 +1,35 @@
 # Release 20 _2014-02-12_
 
+Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
+
+Utvekslingsavtaler
+
+- Det ble gitt litt mer rom mellom avkrysningsboksene og teksten på utvekslingssiden #9872
+- Moduler som ikke ble brukt har blitt slått av på studentrapportsiden #9811
+- Tekst som ikke ville bli oversatt er nå mulig å oversette #9809
+- Nyeste studentrapport vises på øverst på listen over studentrapporter #9397
+- Bare utvekslingsavtaler med studentrapporer viser "les studentrapport" på utvekslingssiden #9283
+- Vi har endret statusenmeldingene på studentrapportsiden for å gjør det mer forståelig for brukerne #8961
+
+Generelle endringer
+
+- Vi har lagt på et script på sosiale medier-knappene for å se om de blir brukt #7256
+- Studieløpstabellen på studieprogram har blitt flyttet slik at den er ved siden av oppbygningsfanen #9835
+- Det er nå mulig å klikke på bildene på områder som uib.no/aktuelt for å komme til nyhetssaken #3311
+- Autocomplete-feltet på oversettelsesfanen viser nå hvilket området innholdet tilhører #5611
+
+Feilretting
+
+- Personer som ikke er tilknyttet en OU gir feilmeldinger - vi registrerer nå feilmeldingene slik at vi kan feilsøke #9597
+- Feilmelding på søkesiden er nå fjernet #9820
+- Vcards med spesielle tegn vistes feil i outlook på windowsmaskiner. Vi har nå gjort det slik at tegnsettet blir riktig for outlook for windows #9135
+
+Moduloppgraderinger
+
+- Oppdatert Views-modulen #9787
+
+# Release 20 _2014-02-12_
+
 I denne releasen har hovedfokuset vært på utvekslingsavtaler, generell bugfiksing og moduloppgraderinger.
 
 Utvekslingsavtaler
