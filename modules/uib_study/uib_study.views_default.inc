@@ -346,15 +346,39 @@ function uib_study_views_default_views() {
         'bef_select_all_none' => 0,
         'bef_collapsible' => 0,
         'is_secondary' => 0,
+        'any_label' => '',
         'bef_filter_description' => '',
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
           ),
         ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'tid' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
       ),
     ),
   );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
@@ -436,15 +460,16 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
   $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['value'] = array(
-    1 => '1',
-    8 => '8',
-    13 => '13',
-    23 => '23',
-    30 => '30',
+    2273 => '2273',
+    2317 => '2317',
+    2283 => '2283',
+    2294 => '2294',
+    2318 => '2318',
+    2308 => '2308',
   );
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by subject';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by faculty';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
@@ -466,7 +491,7 @@ function uib_study_views_default_views() {
     3 => array(),
   );
   $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
-  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_nus';
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_organisation';
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
 
   /* Display: Exchange */
@@ -504,150 +529,110 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
   $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
   $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'uib_study' => 'uib_study',
+  );
+  /* Filter criterion: Taxonomy term: Name */
+  $handler->display->display_options['filters']['name']['id'] = 'name';
+  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['name']['field'] = 'name';
+  $handler->display->display_options['filters']['name']['relationship'] = 'term_node_tid';
+  $handler->display->display_options['filters']['name']['value'] = 'english';
+  /* Filter criterion: Content: Title (field_uib_study_title:language) */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['value'] = array(
+    2273 => '2273',
+    2317 => '2317',
+    2283 => '2283',
+    2294 => '2294',
+    2318 => '2318',
+    2308 => '2308',
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by faculty';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['reduce'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['label'] = 'Has taxonomy terms (with depth)';
+  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
+  );
+  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_organisation';
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
+  /* Filter criterion: Content: Has taxonomy term */
+  $handler->display->display_options['filters']['tid']['id'] = 'tid';
+  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
+  $handler->display->display_options['filters']['tid']['field'] = 'tid';
+  $handler->display->display_options['filters']['tid']['value'] = array(
+    2687 => '2687',
+    2686 => '2686',
+  );
+  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Filter by semester';
+  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
+  $handler->display->display_options['filters']['tid']['expose']['reduce'] = TRUE;
+  $handler->display->display_options['filters']['tid']['type'] = 'select';
+  $handler->display->display_options['filters']['tid']['vocabulary'] = 'uib_study_labels';
   $handler->display->display_options['path'] = 'education/exchange';
 
   /* Display: Quota */
   $handler = $view->new_display('page', 'Quota', 'quota');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Master\'s Programmes - Quota';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'uib_study' => 'uib_study',
-  );
-  /* Filter criterion: Taxonomy term: Name */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['filters']['name']['value'] = 'kvote';
-  /* Filter criterion: Content: Title (field_uib_study_title:language) */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
-  /* Filter criterion: Content: Has taxonomy terms (with depth) */
-  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
-  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['value'] = array(
-    1 => '1',
-    8 => '8',
-    13 => '13',
-    23 => '23',
-    30 => '30',
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by subject';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['reduce'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['label'] = 'Has taxonomy terms (with depth)';
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['identifier'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['remember'] = FALSE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['group_items'] = array(
-    1 => array(),
-    2 => array(),
-    3 => array(),
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
-  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_nus';
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
   $handler->display->display_options['path'] = 'education/quota';
 
   /* Display: Self-financing */
   $handler = $view->new_display('page', 'Self-financing', 'self_financing');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Master\'s Programmes - Self-financing';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'uib_study' => 'uib_study',
-  );
-  /* Filter criterion: Taxonomy term: Name */
-  $handler->display->display_options['filters']['name']['id'] = 'name';
-  $handler->display->display_options['filters']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['filters']['name']['field'] = 'name';
-  $handler->display->display_options['filters']['name']['relationship'] = 'term_node_tid';
-  $handler->display->display_options['filters']['name']['value'] = 'intgrad';
-  /* Filter criterion: Content: Title (field_uib_study_title:language) */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
-  /* Filter criterion: Content: Has taxonomy terms (with depth) */
-  $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
-  $handler->display->display_options['filters']['term_node_tid_depth']['field'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['value'] = array(
-    1 => '1',
-    8 => '8',
-    13 => '13',
-    23 => '23',
-    30 => '30',
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by subject';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['reduce'] = TRUE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['label'] = 'Has taxonomy terms (with depth)';
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['identifier'] = 'term_node_tid_depth';
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['remember'] = FALSE;
-  $handler->display->display_options['filters']['term_node_tid_depth']['group_info']['group_items'] = array(
-    1 => array(),
-    2 => array(),
-    3 => array(),
-  );
-  $handler->display->display_options['filters']['term_node_tid_depth']['type'] = 'select';
-  $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_nus';
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
   $handler->display->display_options['path'] = 'education/self-financing';
   $translatables['special_study_listings'] = array(
     t('Master'),
@@ -662,10 +647,11 @@ function uib_study_views_default_views() {
     t('term'),
     t('Translations'),
     t('<a href="[path]">[field_uib_study_title]</a>'),
-    t('Filter by subject'),
+    t('Filter by faculty'),
     t('Has taxonomy terms (with depth)'),
     t('Exchange'),
     t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
+    t('Filter by semester'),
     t('Quota'),
     t('Master\'s Programmes - Quota'),
     t('Self-financing'),

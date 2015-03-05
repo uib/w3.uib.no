@@ -1368,6 +1368,17 @@ $zen-auto-include-item-base: false;
     }
   }
 
+  /* Special courses page filters */
+  #views-exposed-form-special-study-listings-exchange {
+    $zen-column-count: 4;
+    .views-widget-filter-term_node_tid_depth {
+      @include zen-grid-item (2, 1);
+    }
+    .views-widget-filter-tid {
+      @include zen-grid-item (2, 3);
+    }
+  }
+
   /* Study filters */
   #views-exposed-form-courses-study-programmes-all-page {
     $zen-column-count: 4;
@@ -1378,6 +1389,7 @@ $zen-auto-include-item-base: false;
       @include zen-grid-item (2, 3);
     }
   }
+
   .view-courses,
   .view-special-study-listings,
   .view-uib-taxonomy-term .view-content {

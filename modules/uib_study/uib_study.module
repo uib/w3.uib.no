@@ -1788,16 +1788,23 @@ function uib_study_views_pre_render(&$view) {
   global $language;
   if (in_array($view->name, array('courses', 'special_study_listings'))) {
     $current_displays = array(
-      'study_programmes_all_page',
       'exchange',
       'quota',
       'self_financing',
     );
     if (in_array($view->current_display, $current_displays)) {
-      uib_study__translate_exposed_filter($view, 1, 1, 2);
+      $vocab = taxonomy_vocabulary_machine_name_load('uib_organisation');
+      uib_study__translate_exposed_filter($view, $vocab->vid, 3, NULL);
+    }
+    if ($view->current_display == 'exchange') {
+      $vocab = taxonomy_vocabulary_machine_name_load('uib_study_labels');
+      uib_study__translate_exposed_filter($view, $vocab->vid, 1, NULL);
     }
     if ($view->current_display == 'study_courses_all_page') {
       uib_study__translate_exposed_filter($view, 1, 2, 4);
+    }
+    if ($view->current_display == 'study_programmes_all_page') {
+      uib_study__translate_exposed_filter($view, 1, 1, 2);
     }
   }
 
@@ -1998,15 +2005,16 @@ function uib_study__title_and_text($title, $text) {
  *  Function to translate exposed filter in study views
  *
  *  @param object   $view   the view
- *  @param array    $taxonomy_tree
+ *  @param int      $taxonomy_vocabulary_id
  *  @param int      $max_depth  number of levels of the taxonomy
  *  @param int      $number_of_chars_to_remove  the number of chars that makes the nuscode
  */
-function uib_study__translate_exposed_filter(&$view, $taxonomy_tree, $max_depth, $number_of_chars_to_remove) {
-  $taxonomy_tree = taxonomy_get_tree($taxonomy_tree, 0, $max_depth);
+function uib_study__translate_exposed_filter(&$view, $taxonomy_vocabulary_id, $max_depth, $number_of_chars_to_remove) {
+  $vocab = taxonomy_vocabulary_load($taxonomy_vocabulary_id);
+  $taxonomy_tree = taxonomy_get_tree($taxonomy_vocabulary_id, 0, $max_depth);
   global $language;
   foreach ($taxonomy_tree as $key => $t) {
-    if ($view->name == 'exchange_agreements') {
+    if ($vocab->name == 'uib_organisation') {
       $search = $t->name;
       if (strpos($view->exposed_widgets, $search)) {
         $entity = taxonomy_term_load($t->tid);
@@ -2015,6 +2023,13 @@ function uib_study__translate_exposed_filter(&$view, $taxonomy_tree, $max_depth,
           $replace = $term->language($language->language)->field_uib_org_name->value();
           $view->exposed_widgets = str_replace($search, $replace, $view->exposed_widgets);
         }
+      }
+    }
+    elseif ($vocab->name == 'uib_study_labels') {
+      $search = $t->name;
+      if ($language->language == 'nb' && strpos($view->exposed_widgets, $search)) {
+        $replace = t(check_plain($search));
+        $view->exposed_widgets = str_replace($search, $replace, $view->exposed_widgets);
       }
     }
     else {
