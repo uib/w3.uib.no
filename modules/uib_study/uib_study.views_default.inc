@@ -30,18 +30,20 @@ function uib_study_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Nullstill';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Synkende';
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
     ),
-    'tid' => array(
-      'bef_format' => 'bef_ul',
+    'term_node_tid_depth_1' => array(
+      'bef_format' => 'bef',
       'more_options' => array(
         'bef_select_all_none' => 0,
-        'bef_select_all_none_nested' => 0,
-        'bef_collapsible' => 1,
+        'bef_collapsible' => 0,
         'is_secondary' => 0,
         'any_label' => '',
         'bef_filter_description' => '',
@@ -91,7 +93,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "Universitetet i Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>';
+  $handler->display->display_options['header']['area']['content'] = '<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Search for faculty to obtain a list of exchange agreements that belong to your faculty. If you search for "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
@@ -151,10 +153,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['field'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['relationship'] = 'field_uib_study_country_target_id';
-  /* Sort criterion: Content: Title (field_uib_study_title) */
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -178,66 +176,27 @@ function uib_study_views_default_views() {
     'exchange' => 'exchange',
   );
   $handler->display->display_options['filters']['field_uib_study_type_value']['group'] = 1;
-  /* Filter criterion: Content: Has taxonomy term */
-  $handler->display->display_options['filters']['tid']['id'] = 'tid';
-  $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
-  $handler->display->display_options['filters']['tid']['field'] = 'tid';
-  $handler->display->display_options['filters']['tid']['value'] = array(
-    2271 => '2271',
+  /* Filter criterion: Content: Has taxonomy terms (with depth) */
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['id'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['table'] = 'node';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['field'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['value'] = array(
     2273 => '2273',
-    2279 => '2279',
-    2277 => '2277',
-    2278 => '2278',
-    2275 => '2275',
-    2276 => '2276',
-    2280 => '2280',
-    2282 => '2282',
-    2281 => '2281',
     2317 => '2317',
     2283 => '2283',
-    2289 => '2289',
-    2291 => '2291',
-    2286 => '2286',
-    2290 => '2290',
-    2285 => '2285',
-    2287 => '2287',
-    2284 => '2284',
-    2288 => '2288',
     2294 => '2294',
-    2305 => '2305',
-    2296 => '2296',
-    2304 => '2304',
-    2299 => '2299',
-    2298 => '2298',
-    2300 => '2300',
-    2301 => '2301',
-    2307 => '2307',
-    2302 => '2302',
-    2303 => '2303',
     2318 => '2318',
-    2320 => '2320',
-    2319 => '2319',
-    2321 => '2321',
-    2323 => '2323',
-    2322 => '2322',
     2308 => '2308',
-    2311 => '2311',
-    2316 => '2316',
-    2314 => '2314',
-    2313 => '2313',
-    2312 => '2312',
-    2315 => '2315',
-    2310 => '2310',
+    2271 => '2271',
   );
-  $handler->display->display_options['filters']['tid']['group'] = 1;
-  $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
-  $handler->display->display_options['filters']['tid']['expose']['label'] = 'Filter by faculty/department';
-  $handler->display->display_options['filters']['tid']['expose']['description'] = 'Display exchange agreements for faculty or department.';
-  $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
-  $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
-  $handler->display->display_options['filters']['tid']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Search for faculty';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     64272948 => 0,
@@ -245,11 +204,10 @@ function uib_study_views_default_views() {
     74573517 => 0,
     176168899 => 0,
   );
-  $handler->display->display_options['filters']['tid']['expose']['reduce'] = TRUE;
-  $handler->display->display_options['filters']['tid']['reduce_duplicates'] = TRUE;
-  $handler->display->display_options['filters']['tid']['type'] = 'select';
-  $handler->display->display_options['filters']['tid']['vocabulary'] = 'uib_organisation';
-  $handler->display->display_options['filters']['tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['reduce'] = TRUE;
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['type'] = 'select';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['vocabulary'] = 'uib_organisation';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['depth'] = '3';
   /* Filter criterion: Content: Has taxonomy terms (with depth) */
   $handler->display->display_options['filters']['term_node_tid_depth']['id'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['table'] = 'node';
@@ -258,7 +216,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Search for country or continent';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['description'] = 'Display exchange agreements with one or more countries.';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
@@ -298,19 +256,18 @@ function uib_study_views_default_views() {
     t('Find exchange agreements'),
     t('more'),
     t('Apply'),
-    t('Reset'),
+    t('Nullstill'),
     t('Sort by'),
-    t('Asc'),
-    t('Desc'),
+    t('Stigende'),
+    t('Synkende'),
     t('Select any filter and click on Apply to see results'),
-    t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Filter by by faculty/department to obtain a list of exchange agreements that belong to your faculty/department. If you filter by "Universitetet i Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
+    t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Search for faculty to obtain a list of exchange agreements that belong to your faculty. If you search for "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
     t('Translations'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
     t('Read student report'),
     t('<span class="agreement-title">[field_uib_study_title]</span><span class="studentreport-ref">[field_uib_study_code]</span>'),
-    t('Filter by faculty/department'),
-    t('Display exchange agreements for faculty or department.'),
-    t('Filter by country or continent'),
+    t('Search for faculty'),
+    t('Search for country or continent'),
     t('Display exchange agreements with one or more countries.'),
     t('Page'),
   );

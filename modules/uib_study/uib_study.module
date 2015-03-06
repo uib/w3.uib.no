@@ -1868,6 +1868,13 @@ function uib_study_views_pre_render(&$view) {
   }
 
   if ($view->name == 'exchange_agreements') {
+    // Remove ALL hits if no filter has been used
+    $force_no_hits = FALSE;
+    if (empty($view->exposed_input['term_node_tid_depth_1']) &&
+      empty($view->exposed_input['term_node_tid_depth'])) {
+      $view->result = array();
+      $force_no_hits = TRUE;
+    }
     // Extra filter for exposed country filter and the extra unwanted hits
     // occuring when agreements are connected to several countries.
     if (!empty($view->exposed_input['term_node_tid_depth'])) {
@@ -1882,23 +1889,36 @@ function uib_study_views_pre_render(&$view) {
         }
       }
     }
+    // Extra filter in order to use "without depth" for a particular
+    // exchange agreement owner: uib
+    $uib_tid = 2271;
+    if (isset($view->exposed_input['term_node_tid_depth_1']) && $view->exposed_input['term_node_tid_depth_1'][0] == $uib_tid) {
+      foreach ($view->result as $delta => $hit) {
+        if ($hit->_field_data['nid']['entity']->field_uib_study_organisation['und'][0]['target_id'] != $uib_tid) {
+          unset($view->result[$delta]);
+        }
+      }
+    }
+
     $vocab_name = 'uib_organisation';
     $vocab = taxonomy_vocabulary_machine_name_load($vocab_name);
     uib_study__translate_exposed_filter($view, $vocab->vid, 3, NULL);
     $msg = array();
-    $msg[] = t('Displaying') . ' ' . count($view->result) . ' ' . t('exchange agreements');
-    $glue = t('for');
+    if (!$force_no_hits) {
+      $msg[] = t('Displaying') . ' ' . count($view->result) . ' ' . t('exchange agreements');
+      $glue = t('for');
 
-    if (!empty($view->filter['field_uib_study_code_value']->value)) {
-      $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_study_code_value']->value . '" ' . t('study programme');
-      $glue = '';
-    }
-    if (!empty($view->filter['field_uib_ou_title_value']->value)) {
-      $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_ou_title_value']->value . '" ' . t('faculty/department');
-      $glue = '';
-    }
-    if (!empty($view->filter['field_uib_geographic_name_value']->value)) {
-      $msg[] = t('with') . ' "' . $view->filter['field_uib_geographic_name_value']->value . '"';
+      if (!empty($view->filter['field_uib_study_code_value']->value)) {
+        $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_study_code_value']->value . '" ' . t('study programme');
+        $glue = '';
+      }
+      if (!empty($view->filter['field_uib_ou_title_value']->value)) {
+        $msg[] = ' ' . $glue . ' "' . $view->filter['field_uib_ou_title_value']->value . '" ' . t('faculty/department');
+        $glue = '';
+      }
+      if (!empty($view->filter['field_uib_geographic_name_value']->value)) {
+        $msg[] = t('with') . ' "' . $view->filter['field_uib_geographic_name_value']->value . '"';
+      }
     }
     $view->attachment_before = implode(' ', $msg);
 

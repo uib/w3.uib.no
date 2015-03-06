@@ -340,7 +340,7 @@ table.cols-6 {
   .views-exposed-widgets {
     @media all and (min-width: 960px) {
       $zen-column-count: 10;
-      .views-widget-filter-tid {
+      .views-widget-filter-term_node_tid_depth_1 {
         @include zen-grid-item(5, 1);
       }
       .views-widget-filter-term_node_tid_depth {
@@ -362,7 +362,7 @@ table.cols-6 {
       line-height: 1.5em;
     }
   }
-  .views-widget-filter-tid,
+  .views-widget-filter-term_node_tid_depth_1,
   .views-widget-filter-term_node_tid_depth {
     ul {
       padding: 0;
