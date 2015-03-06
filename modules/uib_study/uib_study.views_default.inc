@@ -151,6 +151,10 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['field'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['relationship'] = 'field_uib_study_country_target_id';
+  /* Sort criterion: Content: Title (field_uib_study_title) */
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
