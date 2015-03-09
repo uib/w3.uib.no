@@ -623,6 +623,27 @@ function uib_study_block_view($delta = '') {
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
               if (!empty($reports)) {
                 foreach ($reports as $key => $report) {
+                  if (isset($report['text']['preparations']['body']['#markup'])) {
+                    $report['text']['preparations']['body']['#markup'] = nl2br($report['text']['preparations']['body']['#markup']);
+                  }
+                  if (isset($report['text']['teaching metods']['body']['#markup'])) {
+                    $report['text']['teaching metods']['body']['#markup'] = nl2br($report['text']['teaching metods']['body']['#markup']);
+                  }
+                  if (isset($report['text']['review']['body']['#markup'])) {
+                    $report['text']['review']['body']['#markup'] = nl2br($report['text']['review']['body']['#markup']);
+                  }
+                  if (isset($report['text']['merit']['body']['#markup'])) {
+                    $report['text']['merit']['body']['#markup'] = nl2br($report['text']['merit']['body']['#markup']);
+                  }
+                  if (isset($report['text']['campus']['body']['#markup'])) {
+                    $report['text']['campus']['body']['#markup'] = nl2br($report['text']['campus']['body']['#markup']);
+                  }
+                  if (isset($report['text']['accommodation']['body']['#markup'])) {
+                    $report['text']['accommodation']['body']['#markup'] = nl2br($report['text']['accommodation']['body']['#markup']);
+                  }
+                  if (isset($report['text']['social life']['body']['#markup'])) {
+                    $report['text']['social life']['body']['#markup'] = nl2br($report['text']['social life']['body']['#markup']);
+                  }
                   $report_title = $report['title']['#value'];
                   $open_text = t('Read student report');
                   $close_text = t('Close');
