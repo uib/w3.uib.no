@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the UiB Views overrides feature.
+ */
+
+include_once 'uib_views.features.inc';
 
 /**
  * Implements hook_views_query_alter().
@@ -49,6 +55,27 @@ function uib_views_block_view_alter(&$data, $block) {
     if ($data['subject'] == 'Recent news') {
       if (uib_area__is_employee_page()) {
         $data['subject'] = 'Messages';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function uib_views_node_view($node, $view_mode, $langcode) {
+  if (!path_is_admin(current_path())) {
+    if ($node->type == 'uib_views_page' && $view_mode == 'full') {
+      // Title
+      $node->content['field_uib_node_title'][0]['#markup'] =
+        '<h1 class="title">' . $node->content['field_uib_node_title'][0]['#markup'] . '</h1>';
+      // Display a view in a block
+      if (!empty($node->field_uib_view_block_name['und'])) {
+        $block = block_load('views', $node->field_uib_view_block_name['und'][0]['safe_value']);
+        $block_content = _block_render_blocks(array($block));
+        $render = _block_get_renderable_array($block_content);
+        $render['#weight'] = 99;
+        $node->content['uib_views_block'] = $render;
       }
     }
   }
