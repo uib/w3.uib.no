@@ -1,3 +1,24 @@
+# Release 22 _2014-03-12_
+
+Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
+
+Utvekslingsavtaler
+
+- FS hadde gjennomgått en oppdatering som gjorde at informasjon ble levert i et annet format. Dette gjorde igjen at informasjon på utvekslingsavtaler forsvant. Det er nå rettet #10013
+- Endringer av begrep gjort på studentrapportsiden var ikke beskrevet i den generelle informasjonen, denne informasjonen er nå oppdatert #10016
+- Vi har fjernet institutter fra filtermuligheten på utvekslingsavtalesiden da listen ble altfor lang #9797
+- Linjeskift vistes ikke på studentrapporter, noe som gjorde at tekstene ble vanskelige å lese. Dette er nå fikset #10017
+- Studentrapportsiden har hastighetsproblemer og caching har blitt aktivert for å prøve å bøte på problemet #9014
+
+Generelle endringer
+
+- Filtersidene til utvekslingsstudenter til UiB har blitt filtrert på fakultet istedenfor fagområder #7927
+- Vi har fjernet scriptet som ble brukt til brukerundersøkelsen #9982
+
+Feilretting
+
+- Webdeskmenyen var lagt til i features og ble oppdatert i hver release. Den er nå fjernet fra features slik at den ikke overskriver endringer gjort i w3 #9981
+
 # Release 20 _2014-02-12_
 
 Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
