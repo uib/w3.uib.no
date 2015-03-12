@@ -248,12 +248,9 @@ function uib_study_views_default_views() {
   );
   $handler->display->display_options['filters']['language_1']['group'] = 1;
 
-  /* Display: Blokk */
-  $handler = $view->new_display('block', 'Blokk', 'b1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
-  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'exchange-agreement';
   $translatables['exchange_agreements'] = array(
     t('Master'),
     t('Find exchange agreements'),
@@ -272,7 +269,7 @@ function uib_study_views_default_views() {
     t('Search for faculty'),
     t('Search for country or continent'),
     t('Display exchange agreements with one or more countries.'),
-    t('Blokk'),
+    t('Page'),
   );
   $export['exchange_agreements'] = $view;
 
