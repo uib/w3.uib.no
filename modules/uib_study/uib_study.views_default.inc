@@ -22,7 +22,7 @@ function uib_study_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Find exchange agreements';
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -88,13 +88,6 @@ function uib_study_views_default_views() {
   );
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['empty'] = TRUE;
-  $handler->display->display_options['header']['area']['content'] = '<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Search for faculty to obtain a list of exchange agreements that belong to your faculty. If you search for "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>';
-  $handler->display->display_options['header']['area']['format'] = 'full_html';
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
   $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
@@ -153,6 +146,10 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['field'] = 'field_uib_geographic_name_value';
   $handler->display->display_options['sorts']['field_uib_geographic_name_value']['relationship'] = 'field_uib_study_country_target_id';
+  /* Sort criterion: Content: Title (field_uib_study_title) */
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -248,12 +245,10 @@ function uib_study_views_default_views() {
   );
   $handler->display->display_options['filters']['language_1']['group'] = 1;
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'exchange-agreement';
+  /* Display: Blokk */
+  $handler = $view->new_display('block', 'Blokk', 'b1');
   $translatables['exchange_agreements'] = array(
     t('Master'),
-    t('Find exchange agreements'),
     t('more'),
     t('Apply'),
     t('Nullstill'),
@@ -261,7 +256,6 @@ function uib_study_views_default_views() {
     t('Stigende'),
     t('Synkende'),
     t('Select any filter and click on Apply to see results'),
-    t('<p>The University of Bergen has bilateral agreements, Erasmus agreements, and other network agreements with approximately 450 renowned universities around the world. This search page makes it easier for you to find the agreement most suitable for you. Search for faculty to obtain a list of exchange agreements that belong to your faculty. If you search for "University of Bergen" (university-wide agreements) you will get an overview of exchange agreements through which most UiB students may apply for exchange.</p>'),
     t('Translations'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
     t('Read student report'),
@@ -269,7 +263,7 @@ function uib_study_views_default_views() {
     t('Search for faculty'),
     t('Search for country or continent'),
     t('Display exchange agreements with one or more countries.'),
-    t('Page'),
+    t('Blokk'),
   );
   $export['exchange_agreements'] = $view;
 
