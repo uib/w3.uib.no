@@ -80,3 +80,28 @@ function uib_views_node_view($node, $view_mode, $langcode) {
     }
   }
 }
+
+/**
+ * Implements hook_node_access().
+ *
+ * Control access to edit view page content.
+ */
+function uib_views_node_access($node, $op, $user) {
+  if ($op == 'view') {
+    return NODE_ACCESS_IGNORE;
+  }
+  // $op is one of 'create', 'update', 'delete'
+  if (is_object($node) && $node->type == 'uib_views_page') {
+    if (isset($node->field_uib_area['und'][0]['target_id'])) {
+      // Node is attached to an area
+      $area = node_load($node->field_uib_area['und'][0]['target_id']);
+      if (!uib_area__is_content_manager($area, $user)) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+    else {
+      return NODE_ACCESS_DENY;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}

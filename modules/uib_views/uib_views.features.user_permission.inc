@@ -46,6 +46,7 @@ function uib_views_user_default_permissions() {
     'roles' => array(
       'admin' => 'admin',
       'level 1' => 'level 1',
+      'level 2' => 'level 2',
     ),
     'module' => 'node',
   );
@@ -56,6 +57,7 @@ function uib_views_user_default_permissions() {
     'roles' => array(
       'admin' => 'admin',
       'level 1' => 'level 1',
+      'level 2' => 'level 2',
     ),
     'module' => 'node',
   );
