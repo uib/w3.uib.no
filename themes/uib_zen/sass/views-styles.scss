@@ -382,6 +382,27 @@ table.cols-6 {
   }
 }
 
+#views-exposed-form-special-study-listings-b1 {
+  @media all and (min-width: 960px) {
+    $zen-column-count: 10;
+    .views-widget-filter-term_node_tid_depth {
+      @include zen-grid-item(5, 1);
+    }
+    .views-widget-filter-tid {
+      @include zen-grid-item(3, 6);
+    }
+    .views-submit-button {
+      @include zen-grid-item(1, 9);
+      clear: none;
+      input {
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+      }
+    }
+    $zen-column-count: 5;
+  }
+}
+
 .view-id-uib_taxonomy_term {
   img {
     display: block;

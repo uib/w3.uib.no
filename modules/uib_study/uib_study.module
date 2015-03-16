@@ -1809,7 +1809,7 @@ function uib_study_views_pre_render(&$view) {
   global $language;
   if (in_array($view->name, array('courses', 'special_study_listings'))) {
     $current_displays = array(
-      'exchange',
+      'b1',
       'quota',
       'self_financing',
     );
@@ -1817,7 +1817,7 @@ function uib_study_views_pre_render(&$view) {
       $vocab = taxonomy_vocabulary_machine_name_load('uib_organisation');
       uib_study__translate_exposed_filter($view, $vocab->vid, 3, NULL);
     }
-    if ($view->current_display == 'exchange') {
+    if ($view->current_display == 'b1') {
       $vocab = taxonomy_vocabulary_machine_name_load('uib_study_labels');
       uib_study__translate_exposed_filter($view, $vocab->vid, 1, NULL);
     }

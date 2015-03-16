@@ -445,32 +445,23 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_organisation';
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
 
+  /* Display: Quota */
+  $handler = $view->new_display('page', 'Quota', 'quota');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Master\'s Programmes - Quota';
+  $handler->display->display_options['path'] = 'education/quota';
+
+  /* Display: Self-financing */
+  $handler = $view->new_display('page', 'Self-financing', 'self_financing');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Master\'s Programmes - Self-financing';
+  $handler->display->display_options['path'] = 'education/self-financing';
+
   /* Display: Exchange */
-  $handler = $view->new_display('page', 'Exchange', 'exchange');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: ID */
-  $handler->display->display_options['fields']['field_uib_study_code']['id'] = 'field_uib_study_code';
-  $handler->display->display_options['fields']['field_uib_study_code']['table'] = 'field_data_field_uib_study_code';
-  $handler->display->display_options['fields']['field_uib_study_code']['field'] = 'field_uib_study_code';
-  $handler->display->display_options['fields']['field_uib_study_code']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_study_code']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_study_code']['element_label_colon'] = FALSE;
-  /* Field: Content: Path */
-  $handler->display->display_options['fields']['path']['id'] = 'path';
-  $handler->display->display_options['fields']['path']['table'] = 'node';
-  $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['label'] = '';
-  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['field_uib_study_title']['id'] = 'field_uib_study_title';
-  $handler->display->display_options['fields']['field_uib_study_title']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['fields']['field_uib_study_title']['field'] = 'field_uib_study_title';
-  $handler->display->display_options['fields']['field_uib_study_title']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_study_title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_study_title']['alter']['text'] = '<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>';
-  $handler->display->display_options['fields']['field_uib_study_title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_study_title']['element_default_classes'] = FALSE;
+  $handler = $view->new_display('block', 'Exchange', 'b1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: ID (field_uib_study_code) */
   $handler->display->display_options['sorts']['field_uib_study_code_value']['id'] = 'field_uib_study_code_value';
@@ -572,19 +563,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['tid']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['tid']['type'] = 'select';
   $handler->display->display_options['filters']['tid']['vocabulary'] = 'uib_study_labels';
-  $handler->display->display_options['path'] = 'education/exchange';
-
-  /* Display: Quota */
-  $handler = $view->new_display('page', 'Quota', 'quota');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Master\'s Programmes - Quota';
-  $handler->display->display_options['path'] = 'education/quota';
-
-  /* Display: Self-financing */
-  $handler = $view->new_display('page', 'Self-financing', 'self_financing');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Master\'s Programmes - Self-financing';
-  $handler->display->display_options['path'] = 'education/self-financing';
   $translatables['special_study_listings'] = array(
     t('Master'),
     t('Courses for exchange students'),
@@ -600,13 +578,12 @@ function uib_study_views_default_views() {
     t('<a href="[path]">[field_uib_study_title]</a>'),
     t('Filter by faculty'),
     t('Has taxonomy terms (with depth)'),
-    t('Exchange'),
-    t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
-    t('Filter by semester'),
     t('Quota'),
     t('Master\'s Programmes - Quota'),
     t('Self-financing'),
     t('Master\'s Programmes - Self-financing'),
+    t('Exchange'),
+    t('Filter by semester'),
   );
   $export['special_study_listings'] = $view;
 
