@@ -1355,7 +1355,8 @@ $zen-auto-include-item-base: false;
   }
 
   /* Course filters */
-  #views-exposed-form-courses-study-courses-all-page {
+  #views-exposed-form-study-blocks-courses-all-b1
+   {
     $zen-column-count: 4;
     .views-widget-filter-field_uib_study_points_rank_value {
       @include zen-grid-item (2, 1);
@@ -1380,7 +1381,7 @@ $zen-auto-include-item-base: false;
   }
 
   /* Study filters */
-  #views-exposed-form-courses-study-programmes-all-page {
+  #views-exposed-form-study-blocks-studypr-all-b1 {
     $zen-column-count: 4;
     .views-widget-filter-term_node_tid_depth {
       @include zen-grid-item (2, 1);
@@ -1391,6 +1392,7 @@ $zen-auto-include-item-base: false;
   }
 
   .view-courses,
+  .view-study-blocks,
   .view-special-study-listings,
   .view-uib-taxonomy-term .view-content {
     .views-submit-button {

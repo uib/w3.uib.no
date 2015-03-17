@@ -608,7 +608,7 @@ h1 {
 }
 
 // Course
-#views-exposed-form-courses-study-courses-all-page {
+#views-exposed-form-study-blocks-courses-all-b1 {
   input#edit-submit-courses {
     margin: 10px 0 10px  20px;
   }
@@ -620,16 +620,17 @@ h1 {
     text-decoration: underline;
     color: $link-blue;
   }
-  .views-exposed-widgets{
-    padding:10px;
+  .views-exposed-widgets {
+    padding: 10px;
   }
   .views-widget-filter-tid,
   div[class*=' views-widget-filter-tid_'],
-  div[class^='views-widget-filter-tid_']{
-    margin-left:-18px;
+  div[class^='views-widget-filter-tid_'] {
+    margin-left: -18px;
   }
 }
-.view-id-courses .bef-select-as-checkboxes-fieldset {
+.view-id-courses .bef-select-as-checkboxes-fieldset,
+.view-display-id-courses_all_b1 .bef-select-as-checkboxes-fieldset {
   .bef-toggle {
     font-size: 1.2em;
   }
@@ -642,7 +643,7 @@ h1 {
 
 // Study program
 #views-exposed-form-courses-study-programmes-all-page,
-.view-special-study-listings form{
+.view-special-study-listings form {
   padding: 10px;
 }
 .view-display-id-study_programmes_all_page,

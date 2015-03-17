@@ -293,14 +293,15 @@ table.cols-6 {
 .view-courses,
 .view-special-study-listings,
 .view-uib-taxonomy-term .view-content,
-.view-exchange-agreements {
+.view-exchange-agreements,
+.view-study-blocks {
   @include study-list();
   li:nth-child(odd) {
     @extend %odd-study-item;
   }
 }
 .page-views {
-  .view-uib-study-specialization{
+  .view-uib-study-specialization {
     @include study-sub-list();
     li:nth-child(odd) {
       @extend %odd-study-item;
@@ -472,5 +473,5 @@ table.cols-6 {
 
 /* views-exchange-agreements */
 .views-exposed-form .bef-tree label {
-  padding-left:0.2em;
+  padding-left: 0.2em;
 }

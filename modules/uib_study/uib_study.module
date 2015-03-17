@@ -1807,7 +1807,11 @@ function uib_study_entity_info_alter(&$entity_info) {
  */
 function uib_study_views_pre_render(&$view) {
   global $language;
-  if (in_array($view->name, array('courses', 'special_study_listings'))) {
+  if (in_array($view->name, array(
+      'courses',
+      'special_study_listings',
+      'study_blocks',
+    ))) {
     $current_displays = array(
       'b1',
       'quota',
@@ -1821,10 +1825,11 @@ function uib_study_views_pre_render(&$view) {
       $vocab = taxonomy_vocabulary_machine_name_load('uib_study_labels');
       uib_study__translate_exposed_filter($view, $vocab->vid, 1, NULL);
     }
-    if ($view->current_display == 'study_courses_all_page') {
+    if ($view->current_display == 'courses_all_b1') {
       uib_study__translate_exposed_filter($view, 1, 2, 4);
     }
-    if ($view->current_display == 'study_programmes_all_page') {
+    if ($view->current_display == 'studypr_all_b1'
+      ) {
       uib_study__translate_exposed_filter($view, 1, 1, 2);
     }
   }
@@ -1863,7 +1868,7 @@ function uib_study_views_pre_render(&$view) {
       }
     }
   }
-  if (($view->name == 'courses' && ($view->current_display == 'study_programmes' || $view->current_display == 'study_programmes_all_page')) || $view->name == 'uib_taxonomy_term') {
+  if (($view->name == 'courses' && ($view->current_display == 'study_programmes' || $view->current_display == 'study_programmes_all_page')) ||($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1') || $view->name == 'uib_taxonomy_term') {
     // Re-sorting views results when grouping on study category
     // It will probably not work as expected if a pager is used with the view
     $category_weight = array(
