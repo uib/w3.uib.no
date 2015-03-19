@@ -560,10 +560,8 @@ function uib_study_block_view($delta = '') {
         $iterate = count($data[0]['#items']);
         for($i=0;$i<$iterate;$i++) {
           if (isset($data[0]['#items'][$i]['#variants'])) {
+            $data[0]['#items'][$i]['#text'] = NULL;
             if ($semesterQQ == $prevSemQQ) {
-              if (isset($data[0]['#items'][$i]['#variants'][$prevSemQQ])) {
-                $data[0]['#items'][$i]['#text'] = $data[0]['#items'][$i]['#variants'][$prevSemQQ];
-              }
               if (isset($data[0]['#items'][$i]['#variants'][$currSemQQ])) {
                 unset($data[0]['#items'][$i]['#variants'][$currSemQQ]);
               }
@@ -572,9 +570,6 @@ function uib_study_block_view($delta = '') {
               }
             }
             elseif ($semesterQQ == $nextSemQQ) {
-              if (isset($data[0]['#items'][$i]['#variants'][$nextSemQQ])) {
-                $date[0]['#items'][$i]['#text'] = $data[0]['#items'][$i]['#variants'][$nextSemQQ];
-              }
               if (isset($data[0]['#items'][$i]['#variants'][$prevSemQQ])) {
                 unset($data[0]['#items'][$i]['#variants'][$prevSemQQ]);
               }
@@ -584,9 +579,6 @@ function uib_study_block_view($delta = '') {
 
             }
             else {
-              if (isset($data[0]['#items'][$i]['#variants'][$currSemQQ])) {
-                $data[0]['#items'][$i]['#text'] = $data[0]['#items'][$i]['#variants'][$currSemQQ];
-              }
               if (isset($data[0]['#items'][$i]['#variants'][$nextSemQQ])) {
                 unset($data[0]['#items'][$i]['#variants'][$nextSemQQ]);
               }
@@ -594,7 +586,6 @@ function uib_study_block_view($delta = '') {
                 unset($data[0]['#items'][$i]['#variants'][$prevSemQQ]);
               }
             }
-            //dpm($group['#items'][$i]['#variants']);
           }
         }
         foreach ($splice_list as $splice_item) {
@@ -1702,18 +1693,6 @@ function uib_study__get_adjacent_semesters() {
     $next_semester = ($year + 1) . $spring;
   }
   return array($previous_semester, $current_semester, $next_semester);
-}
-
-/**
- * Implements hook_preprocess_HOOK.
- *
- */
-function uib_study_preprocess_page(&$variables) {
-  if (isset($variables['node'])) {
-    if ($variables['node']->type == 'uib_study') {
-      drupal_add_js(drupal_get_path('module', 'uib_study') . '/js/uib_study.js', array('group' => JS_THEME));
-    }
-  }
 }
 
 /**
