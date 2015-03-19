@@ -273,26 +273,26 @@ For example, if the view "calendar" has a display "block_1", the views block nam
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
         ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
-              'weight' => -9,
+              'weight' => -48,
             ),
             'full_html' => array(
-              'weight' => -7,
+              'weight' => -47,
             ),
             'plain_text' => array(
-              'weight' => -10,
+              'weight' => -49,
             ),
             'restricted_html' => array(
-              'weight' => -8,
+              'weight' => -50,
             ),
           ),
         ),
