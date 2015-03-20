@@ -214,3 +214,45 @@ function uib_study_update_7016() {
   );
   path_save($path);
 }
+
+/**
+ * Add content for teacher exchange agreements
+ */
+function uib_study_update_7017() {
+  $utdanning = array(node_load(48591));
+  $new_node = entity_create('node', array(
+    'type' => 'uib_views_page',
+    'uid' => 1,
+    'status' => 1,
+    'revision' => 0,
+    )
+  );
+  $metadata = entity_metadata_wrapper('node', $new_node);
+  $handler = entity_translation_get_handler('node', $new_node, TRUE);
+  $translation = array(
+    'translate' => 0,
+    'status' => 1,
+    'language' => 'en',
+    'source' => 'nb',
+  );
+  $handler->setTranslation($translation, $new_node);
+  $metadata->title->set('undervisningsmobilitet');
+  $metadata->field_uib_area->set($utdanning);
+  $metadata->language->set('nb');
+  $metadata->language('nb')->field_uib_node_title->set('Erasmus-avtaler med undervisningsmobilitet');
+  $metadata->language('en')->field_uib_node_title->set('Erasmus agreements covering staff mobility for teaching');
+  $metadata->field_uib_view_block_name->set('exchange_agreements-b2');
+  $metadata->save();
+  $path = array(
+    'source' => 'node/' . $new_node->nid,
+    'alias' => 'staff-mobility-for-teaching',
+    'language' => 'en',
+  );
+  path_save($path);
+  $path = array(
+    'source' => 'node/' . $new_node->nid,
+    'alias' => 'undervisningsmobilitet',
+    'language' => 'nb',
+  );
+  path_save($path);
+}
