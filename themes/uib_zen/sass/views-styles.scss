@@ -383,6 +383,25 @@ table.cols-6 {
   }
 }
 
+#views-exposed-form-exchange-agreements-b1 {
+  @media all and (min-width: 960px) {
+    $zen-column-count: 10;
+    .views-widget-filter-term_node_tid_depth_1 {
+      @include zen-grid-item(5, 1);
+    }
+    .views-widget-filter-term_node_tid_depth {
+      @include zen-grid-item(5, 1, right);
+    }
+    .views-widget-filter-field_uib_study_title_value {
+      @include zen-clear(right);
+      @include zen-grid-item(5, 1, right);
+    }
+    .views-submit-button {
+      @include zen-grid-item(1, 9);
+    }
+  }
+}
+
 #views-exposed-form-special-study-listings-b1 {
   @media all and (min-width: 960px) {
     $zen-column-count: 10;

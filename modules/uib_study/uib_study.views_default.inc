@@ -353,6 +353,24 @@ function uib_study_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language_1']['group'] = 1;
+  /* Filter criterion: Content: Title (field_uib_study_title) */
+  $handler->display->display_options['filters']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['operator_id'] = 'field_uib_study_title_value_op';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['label'] = 'Title';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['operator'] = 'field_uib_study_title_value_op';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['identifier'] = 'field_uib_study_title_value';
+  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
 
   /* Display: Teacher exchange block */
   $handler = $view->new_display('block', 'Teacher exchange block', 'b2');
@@ -527,6 +545,7 @@ function uib_study_views_default_views() {
     t('Search for country or continent'),
     t('Display exchange agreements with one or more countries.'),
     t('Blokk'),
+    t('Title'),
     t('Teacher exchange block'),
   );
   $export['exchange_agreements'] = $view;
@@ -901,7 +920,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Content: Responsible (field_uib_ou) */
+  /* Contextual filter: Content: Place (field_uib_ou) */
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
