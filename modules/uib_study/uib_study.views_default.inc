@@ -247,6 +247,20 @@ function uib_study_views_default_views() {
 
   /* Display: Blokk */
   $handler = $view->new_display('block', 'Blokk', 'b1');
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Entity translation: translations */
+  $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
+  $handler->display->display_options['relationships']['entity_translations']['table'] = 'node';
+  $handler->display->display_options['relationships']['entity_translations']['field'] = 'entity_translations';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_uib_study_country_target_id']['id'] = 'field_uib_study_country_target_id';
+  $handler->display->display_options['relationships']['field_uib_study_country_target_id']['table'] = 'field_data_field_uib_study_country';
+  $handler->display->display_options['relationships']['field_uib_study_country_target_id']['field'] = 'field_uib_study_country_target_id';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['id'] = 'field_uib_study_part_of_target_id';
+  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['table'] = 'field_data_field_uib_study_part_of';
+  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['field'] = 'field_uib_study_part_of_target_id';
+  $handler->display->display_options['relationships']['field_uib_study_part_of_target_id']['label'] = 'Innhold entity referenced from field_uib_study_part_of';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -353,17 +367,18 @@ function uib_study_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language_1']['group'] = 1;
-  /* Filter criterion: Content: Title (field_uib_study_title) */
-  $handler->display->display_options['filters']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['operator'] = 'contains';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['operator_id'] = 'field_uib_study_title_value_op';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['label'] = 'Title';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['operator'] = 'field_uib_study_title_value_op';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['identifier'] = 'field_uib_study_title_value';
-  $handler->display->display_options['filters']['field_uib_study_title_value']['expose']['remember_roles'] = array(
+  /* Filter criterion: Content: ID (field_uib_study_code) */
+  $handler->display->display_options['filters']['field_uib_study_code_value']['id'] = 'field_uib_study_code_value';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['table'] = 'field_data_field_uib_study_code';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['field'] = 'field_uib_study_code_value';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['relationship'] = 'field_uib_study_part_of_target_id';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator_id'] = 'field_uib_study_code_value_op';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Study programme code';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator'] = 'field_uib_study_code_value_op';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['identifier'] = 'field_uib_study_code_value';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     64272948 => 0,
@@ -545,7 +560,8 @@ function uib_study_views_default_views() {
     t('Search for country or continent'),
     t('Display exchange agreements with one or more countries.'),
     t('Blokk'),
-    t('Title'),
+    t('Innhold entity referenced from field_uib_study_part_of'),
+    t('Study programme code'),
     t('Teacher exchange block'),
   );
   $export['exchange_agreements'] = $view;
@@ -920,7 +936,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Content: Place (field_uib_ou) */
+  /* Contextual filter: Content: Responsible (field_uib_ou) */
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
