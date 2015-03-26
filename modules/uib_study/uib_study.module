@@ -512,24 +512,6 @@ function uib_study__clean_id_string($unclean) {
  */
 function uib_study_block_view($delta = '') {
   global $language;
-  if (isset($_GET['sem']))
-  {
-    $semesterQQ = $_GET['sem'];
-  } else {
-    $semesterQQ = "";
-  }
-  $prev = "";
-  $next = "";
-  $curr = "";
-  if($semesterQQ == 'prev') {
-    $prev = "previous is-active";
-  }
-  else if($semesterQQ == 'next') {
-    $next = "next is-active";
-  }
-  else {
-    $curr = "current is-active";
-  }
   $block = array();
   $data = FALSE;
   $is_course = uib_study__is_course();
@@ -1032,15 +1014,15 @@ function uib_study_block_view($delta = '') {
         {
           $markup = "";
           if (!$is_empty[$previous_semester]) {
-            $markup .= '<li><a href="?sem=prev" class="'.$prev.'">' . uib_study__semester_name($previous_semester);
+            $markup .= '<li><a href="#" class="previous">' . uib_study__semester_name($previous_semester);
             $markup .= ' (' . t('Previous semester') . ')' . '</a></li>';
           }
           if (!$is_empty[$current_semester]) {
-            $markup .= '<li><a href="?sem=curr" class="'.$curr.'">' . uib_study__semester_name($current_semester);
+            $markup .= '<li><a href="#" class="current is-active">' . uib_study__semester_name($current_semester);
             $markup .= ' (' . t('Current semester') . ')' . '</a></li>';
           }
           if (!$is_empty[$next_semester]) {
-            $markup .= '<li><a href="?sem=next" class="'.$next.'">' . uib_study__semester_name($next_semester);
+            $markup .= '<li><a href="#" class="next">' . uib_study__semester_name($next_semester);
             $markup .= ' (' . t('Next semester') . ')' . '</a></li>';
           }
           if ($markup) {
