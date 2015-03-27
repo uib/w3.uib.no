@@ -1,3 +1,12 @@
+# Release 23 _2014-03-26_
+
+Vi jobber videre med utvekslingsavtaler og gjør noen moduloppgradering.
+
+- Vi har laget en ny innholdstype som henter inn spesifikke views. Dette gjør det mulig for level 2 brukere å oppdatere tittel og et tekstfelt på toppen av sider som f.eks /utvekslingsavtaler #7225
+- Vi har lagt til en visning av utvekslingsavtaler for lærere #9272
+- Oppdatering av Drupal Core #10243
+- Sikkerthetsoppdatering av ctools-modulen #10244
+
 # Release 22 _2014-03-12_
 
 Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
