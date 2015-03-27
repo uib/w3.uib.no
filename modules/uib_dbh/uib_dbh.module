@@ -82,7 +82,7 @@ function uib_dbh_block_view($delta) {
       $block['subject'] = t('Key figures UiB');
       $block['content'] = array(
         'table' => $table,
-        'source' => array('#markup' => t('Source') . ' ' . l('NSD DBH', $data['nsd_link'])),
+        'source' => array('#markup' => t('Source') . ' ' . l('NSD', $data['nsd_link'])),
       );
     }
     break;
