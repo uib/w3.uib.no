@@ -266,7 +266,19 @@ function uib_area_views_default_views() {
     'file_view_mode' => 'full_width_image',
     'field_multiple_limit' => '-1',
     'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
   /* Field: Content: Main media */
   $handler->display->display_options['fields']['field_uib_main_media_1']['id'] = 'field_uib_main_media_1';
@@ -279,7 +291,22 @@ function uib_area_views_default_views() {
   $handler->display->display_options['fields']['field_uib_main_media_1']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media_1']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media_1']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_uib_main_media_1']['delta_offset'] = '0';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
