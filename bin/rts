@@ -341,7 +341,7 @@ sub do_branches {
     my %all = (%local, %remote);
     my $conflicts;
 
-    for (sort keys %all) {
+    for (sort { branch_num($a) <=> branch_num($b) } keys %all) {
 	my $suffix;
 	if ($local{$_} && !$remote{$_}) {
 	    print "L";
@@ -377,6 +377,12 @@ sub do_branches {
     if ($conflicts) {
 	print "\n  *** Run 'run 'rts merge-status <branch>' for details on merge conflicts ***\n";
     }
+}
+
+sub branch_num {
+    my $branch = shift;
+    $branch =~ s,.*/,,;
+    return int($branch);
 }
 
 sub do_merge_status {
