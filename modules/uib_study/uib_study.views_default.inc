@@ -667,17 +667,30 @@ function uib_study_views_default_views() {
   $handler->display->display_options['fields']['field_uib_study_title']['field'] = 'field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['label'] = '';
   $handler->display->display_options['fields']['field_uib_study_title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_study_title']['alter']['text'] = '<a href="[path]">[field_uib_study_title]</a>';
+  $handler->display->display_options['fields']['field_uib_study_title']['alter']['text'] = '<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>';
   $handler->display->display_options['fields']['field_uib_study_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_study_title']['element_default_classes'] = FALSE;
-  /* Sort criterion: Content: Title (field_uib_study_title) */
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
+  $handler->display->display_options['fields']['field_uib_study_title']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
   /* Sort criterion: Content: ID (field_uib_study_code) */
   $handler->display->display_options['sorts']['field_uib_study_code_value']['id'] = 'field_uib_study_code_value';
   $handler->display->display_options['sorts']['field_uib_study_code_value']['table'] = 'field_data_field_uib_study_code';
   $handler->display->display_options['sorts']['field_uib_study_code_value']['field'] = 'field_uib_study_code_value';
+  /* Sort criterion: Content: Title (field_uib_study_title) */
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -874,7 +887,7 @@ function uib_study_views_default_views() {
     t('Select any filter and click on Apply to see results'),
     t('term'),
     t('Translations'),
-    t('<a href="[path]">[field_uib_study_title]</a>'),
+    t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
     t('Filter by faculty'),
     t('Has taxonomy terms (with depth)'),
     t('Quota'),
