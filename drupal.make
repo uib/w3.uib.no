@@ -12,6 +12,7 @@ api = 2
 
 ; core
 projects[drupal][version] = 7.36
+projects[drupal][patch][] = https://drupal.org/files/issues/node-sql-rewrite-1969208-28.patch
 
 ; themes
 projects[zen][version] = 5.5
