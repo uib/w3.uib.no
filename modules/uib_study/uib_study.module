@@ -2077,6 +2077,21 @@ function uib_study__translate_exposed_filter(&$view, $taxonomy_vocabulary_id, $m
       }
     }
   }
+  // field_uib_study_category filter
+  if ($language->language != 'en') {
+    if (strpos($view->exposed_widgets, 'edit-field-uib-study-category-value-wrapper') ||
+        strpos($view->exposed_widgets, 'edit-category-wrapper')) {
+      $field_info = field_info_field('field_uib_study_category');
+      foreach ($field_info['settings']['allowed_values'] as $akey => $atext) {
+        $replace = i18n_string_translate(
+          "field:field_uib_study_category:#allowed_values:$akey",
+          $atext,
+          array('langcode' => $language->language)
+        );
+        $view->exposed_widgets = str_replace($atext, $replace, $view->exposed_widgets);
+      }
+    }
+  }
 }
 
 /**
