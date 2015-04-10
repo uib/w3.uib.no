@@ -1,3 +1,11 @@
+# Release 23.1 _2014-04-09_
+
+Mini-release for å få fikset et problem som oppstod i R23 med at halvparten av utvekslingsavtalene ikke vistes på filtersiden.
+
+- Det var et problem knyttet opp mot et "entity reference"-felt på filtersiden til utvekslingsavtalene som gjorde at rolletilganger styrte hvilke avtaler man fikk se. Vanlige brukere fikk derfor bare se halvparten av avtalene, mens kun privilegerte brukere så alle. Dette er nå fikset. #10351
+- Vi erstattet "Kilde: NSD DBH" med "Kilde: NSD" på siden som viser data fra NSD #10329
+- Oppdatert Drupal til 7.36 #10407
+
 # Release 23 _2014-03-26_
 
 Vi jobber videre med utvekslingsavtaler og gjør noen moduloppgradering.
