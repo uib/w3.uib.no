@@ -356,7 +356,8 @@ table.cols-6 {
       }
       $zen-column-count: 5;
     }
-    .uib-study-filter-link {
+    .uib-study-filter-link,
+    .views-widget .description a {
       display: inline;
       font-size: 1em;
       padding: 0;
@@ -397,7 +398,8 @@ table.cols-6 {
       @include zen-grid-item(5, 1, right);
     }
     .views-submit-button {
-      @include zen-grid-item(1, 9);
+      @include zen-clear();
+      @include zen-grid-item(1, 10);
     }
   }
 }

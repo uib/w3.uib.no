@@ -247,6 +247,70 @@ function uib_study_views_default_views() {
 
   /* Display: Blokk */
   $handler = $view->new_display('block', 'Blokk', 'b1');
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Nullstill';
+  $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Synkende';
+  $handler->display->display_options['exposed_form']['options']['bef'] = array(
+    'general' => array(
+      'allow_secondary' => 0,
+      'secondary_label' => 'Advanced options',
+    ),
+    'term_node_tid_depth_1' => array(
+      'bef_format' => 'bef',
+      'more_options' => array(
+        'bef_select_all_none' => 0,
+        'bef_collapsible' => 0,
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'term_node_tid_depth' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+    'field_uib_study_code_value' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 0,
+        'any_label' => '',
+        'bef_filter_description' => 'Display exchange agreements that are connected to a study programme. Use the <a href="node/87342">study programme code</a>.',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+          ),
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+        ),
+      ),
+    ),
+  );
+  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
+  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Content: Entity translation: translations */
   $handler->display->display_options['relationships']['entity_translations']['id'] = 'entity_translations';
@@ -312,7 +376,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
-  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Search for faculty';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Filter by faculty';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
@@ -336,7 +400,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['group'] = 1;
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Search for country or continent';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['description'] = 'Display exchange agreements with one or more countries.';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
@@ -375,7 +439,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['field_uib_study_code_value']['operator'] = 'contains';
   $handler->display->display_options['filters']['field_uib_study_code_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator_id'] = 'field_uib_study_code_value_op';
-  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Study programme code';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Filter by study programme';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator'] = 'field_uib_study_code_value_op';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['identifier'] = 'field_uib_study_code_value';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember_roles'] = array(
@@ -561,7 +625,9 @@ function uib_study_views_default_views() {
     t('Display exchange agreements with one or more countries.'),
     t('Blokk'),
     t('Innhold entity referenced from field_uib_study_part_of'),
-    t('Study programme code'),
+    t('Filter by faculty'),
+    t('Filter by country or continent'),
+    t('Filter by study programme'),
     t('Teacher exchange block'),
   );
   $export['exchange_agreements'] = $view;
