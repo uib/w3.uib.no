@@ -113,13 +113,17 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
       case 'uib_study':
         $study_type = $item['page_arguments'][0]->field_uib_study_type['und'][0]['value'];
         $study_category = '';
+        $courses_view_page_nid = variable_get('uib_courses_nid', 87343);
+        $exchanges_view_page_nid = variable_get('uib_exchanges_nid', 87341);
+        $programmes_view_page_nid = variable_get('uib_programmes_nid', 87342);
+
         if (!empty($item['page_arguments'][0]->field_uib_study_category)) {
           $study_category = $item['page_arguments'][0]->field_uib_study_category['und'][0]['value'];
         }
         if ($study_type == 'course') {
           $study_type_title = t('Course');
           if ($study_category != 'evu') {
-            $study_type_href = 'course';
+            $study_type_href = "node/$courses_view_page_nid";
           }
           else {
             $study_type_href ='utdanning/evu/courses';
@@ -127,11 +131,11 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         }
         elseif ($study_type == 'exchange') {
           $study_type_title = t('Exchange agreement');
-          $study_type_href = 'exchange-agreement';
+          $study_type_href = "node/$exchanges_view_page_nid";
         }
         else {
           $study_type_title = t('Studyprogramme');
-          $study_type_href = 'studyprogramme';
+          $study_type_href = "node/$programmes_view_page_nid";
         }
         $uib_active_trail[2] = array(
           'title' => $study_type_title,
