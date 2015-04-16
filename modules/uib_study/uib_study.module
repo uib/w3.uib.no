@@ -518,9 +518,7 @@ function uib_study_block_view($delta = '') {
   } else {
     $semesterQQ = "";
   }
-  $currSemQQ = uib_study__get_current_semester();
-  $prevSemQQ = uib_study__get_previous_semester();
-  $nextSemQQ = uib_study__get_next_semester();
+  list($prevSemQQ, $currSemQQ,  $nextSemQQ) = uib_study__get_adjacent_semesters();
   $prev = "";
   $next = "";
   $curr = "";
@@ -1462,22 +1460,6 @@ function uib_study__get_current_semester() {
 }
 
 /**
- * Determine previous semester - brief format
- */
-function uib_study__get_previous_semester() {
-  $current = date('Y') . (date('n') > 6 ? 'h' : 'v');
-  $previous = substr($current, -1) == 'v' ? substr($current,0,4) - 1 . 'h' : substr($current,0,4) . 'v';
-  return $previous;
-}
-/**
- * Determine next semester - brief format
- */
-function uib_study__get_next_semester() {
-  $current = date('Y') . (date('n') > 6 ? 'h' : 'v');
-  $next = substr($current, -1) == 'v' ? substr($current,0,4) . 'h' : substr($current,0,4) + 1 . 'v';
-  return $next;
-}
-/**
  * Determine current semester - longer format
  */
 function uib_study__get_current_semester_long() {
@@ -1500,10 +1482,11 @@ function uib_study__get_resource_links($type, $study_code) {
     $current_semester = uib_study__get_reading_list_link($study_code, $current, array('current', 'previous-exists', 'next-exists', 'variants-exist'));
     $next_semester = uib_study__get_reading_list_link($study_code, $next, array('next-semester'));
   }
-  if (isset($_GET['sem']) && $_GET['sem'] == uib_study__get_previous_semester()) {
+  list ($prev, $cur, $next) = uib_study__get_adjacent_semesters();
+  if (isset($_GET['sem']) && $_GET['sem'] == $prev) {
     $renderedSemester = $previous_semester;
   }
-  elseif (isset($_GET['sem']) && $_GET['sem'] == uib_study__get_next_semester()) {
+  elseif (isset($_GET['sem']) && $_GET['sem'] == $next) {
     $renderedSemester = $next_semester;
   }
   else {
