@@ -1,102 +1,102 @@
 {
   "sections" : [ {
-    "lang" : "en",
     "title" : "Publication points",
-    "slug" : "publications",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=en"
+    "lang" : "en",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=en",
+    "slug" : "publications"
   }, {
-    "lang" : "no",
     "title" : "Studenter",
-    "slug" : "studenter",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=no"
-  }, {
     "lang" : "no",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=no",
+    "slug" : "studenter"
+  }, {
     "title" : "Tilsatte",
-    "slug" : "tilsatte",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=no"
-  }, {
     "lang" : "no",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=no",
+    "slug" : "tilsatte"
+  }, {
     "title" : "Økonomi",
-    "slug" : "økonomi",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=no"
+    "lang" : "no",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=no",
+    "slug" : "økonomi"
   }, {
-    "lang" : "en",
     "title" : "Finances",
-    "slug" : "finances",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=en"
+    "lang" : "en",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=en",
+    "slug" : "finances"
   }, {
-    "lang" : "no",
     "title" : "Publikasjonspoeng",
-    "slug" : "publikasjoner",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=no"
-  }, {
-    "lang" : "en",
-    "title" : "Staff",
-    "slug" : "staff",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=en"
-  }, {
     "lang" : "no",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=no",
+    "slug" : "publikasjoner"
+  }, {
+    "title" : "Staff",
+    "lang" : "en",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=en",
+    "slug" : "staff"
+  }, {
     "title" : "Doktorgrader",
-    "slug" : "doktorgrader",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=no"
+    "lang" : "no",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=no",
+    "slug" : "doktorgrader"
   }, {
-    "lang" : "en",
     "title" : "Doctorates",
-    "slug" : "doctorates",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=en"
-  }, {
     "lang" : "en",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=en",
+    "slug" : "doctorates"
+  }, {
     "title" : "Students",
-    "slug" : "students",
-    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=en"
+    "lang" : "en",
+    "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=en",
+    "slug" : "students"
   } ],
   "highlighted_figures" : {
     "columns" : {
-      "no" : [ "2013" ],
-      "en" : [ "2013" ]
+      "en" : [ "2014" ],
+      "no" : [ "2014" ]
     },
     "rows" : {
-      "no" : [ {
-        "columns" : [ "14451.6" ],
-        "title" : "Studenter",
-        "linked_section" : "studenter"
-      }, {
-        "columns" : [ "2048.2" ],
-        "title" : "Publikasjonspoeng",
-        "linked_section" : "publikasjoner"
-      }, {
-        "columns" : [ "265" ],
-        "title" : "Doktorgrader",
-        "linked_section" : "doktorgrader"
-      }, {
-        "columns" : [ "3463.3" ],
-        "title" : "Tilsatte",
-        "linked_section" : "tilsatte"
-      }, {
-        "columns" : [ "3753.6" ],
-        "title" : "Omsetning (MNOK)",
-        "linked_section" : "økonomi"
-      } ],
       "en" : [ {
-        "columns" : [ "14451.6" ],
         "title" : "Students",
+        "columns" : [ "14790" ],
         "linked_section" : "students"
       }, {
-        "columns" : [ "2048.2" ],
         "title" : "Publication points",
+        "columns" : [ "1957.7" ],
         "linked_section" : "publications"
       }, {
-        "columns" : [ "265" ],
         "title" : "PhDs awarded",
+        "columns" : [ "216" ],
         "linked_section" : "doctorates"
       }, {
-        "columns" : [ "3463.3" ],
         "title" : "Staff",
+        "columns" : [ "3565.6" ],
         "linked_section" : "staff"
       }, {
-        "columns" : [ "3753.6" ],
         "title" : "Annual turnover (MNOK)",
+        "columns" : [ "3920.8" ],
         "linked_section" : "finances"
+      } ],
+      "no" : [ {
+        "title" : "Studenter",
+        "columns" : [ "14790" ],
+        "linked_section" : "studenter"
+      }, {
+        "title" : "Publikasjonspoeng",
+        "columns" : [ "1957.7" ],
+        "linked_section" : "publikasjoner"
+      }, {
+        "title" : "Doktorgrader",
+        "columns" : [ "216" ],
+        "linked_section" : "doktorgrader"
+      }, {
+        "title" : "Tilsatte",
+        "columns" : [ "3565.6" ],
+        "linked_section" : "tilsatte"
+      }, {
+        "title" : "Omsetning (MNOK)",
+        "columns" : [ "3920.8" ],
+        "linked_section" : "økonomi"
       } ]
     }
   },
