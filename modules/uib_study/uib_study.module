@@ -1950,20 +1950,6 @@ function uib_study_views_pre_render(&$view) {
   }
 
   if ($view->name == 'exchange_agreements') {
-    // Extra filter for exposed country filter and the extra unwanted hits
-    // occuring when agreements are connected to several countries.
-    if (!empty($view->exposed_input['term_node_tid_depth'])) {
-      $term_id = $view->filter['term_node_tid_depth']->value;
-      $parent = taxonomy_get_parents($term_id);
-      if ($parent) {
-        foreach ($view->result as $delta => $hit) {
-          // Remove hits from unwanted countries
-          if ($hit->name != $view->exposed_input['term_node_tid_depth']) {
-            unset($view->result[$delta]);
-          }
-        }
-      }
-    }
     // Extra filter in order to use "without depth" for a particular
     // exchange agreement owner: uib
     $uib_tid = 2271;
@@ -1997,17 +1983,18 @@ function uib_study_views_pre_render(&$view) {
 
     // add numbers to group names
     $groups = array();
+    $tax_item = 'taxonomy_term_data_field_data_field_uib_study_organisation_t';
     foreach ($view->result as $row) {
-      if (!isset($groups[$row->name])) {
-        $groups[$row->name] = 1;
+      if (!isset($groups[$row->{$tax_item}])) {
+        $groups[$row->{$tax_item}] = 1;
       }
       else {
-        $groups[$row->name]++;
+        $groups[$row->{$tax_item}]++;
       }
     }
     $agreements_with_reports = array_keys(uib_study__student_reports_list());
     foreach ($view->result as $delta => $row) {
-      $view->result[$delta]->field_field_uib_geographic_name[0]['rendered']['#markup'] .= ' (' . $groups[$view->result[$delta]->name] . ')';
+      $view->result[$delta]->field_field_uib_org_name[0]['rendered']['#markup'] .= ' (' . $groups[$view->result[$delta]->{$tax_item}] . ')';
       if ($language->language == 'nb' &&
         in_array($view->result[$delta]->field_field_uib_study_code[0]['raw']['value'], $agreements_with_reports)) {
         continue;

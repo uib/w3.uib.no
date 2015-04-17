@@ -843,7 +843,10 @@ function uib_user__teaser_markup($user = NULL) {
  * taxonomy terms in fields of competence ordered by name
  */
 function uib_user_query_term_access_alter(QueryAlterableInterface $query) {
-  $query->orderBy('name');
+  $url = current_path();
+   if (stripos($url, 'user') !== FALSE && stripos($url, 'edit')) {
+    $query->orderBy('name');
+  }
 }
 
 /**
