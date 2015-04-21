@@ -77,12 +77,35 @@ function uib_urlfilter_field_formatter_view($entity_type, $entity, $field, $inst
       $url = field_view_value($entity_type, $entity, $field['field_name'], $item);
       $url = render($url);
       if ($is_internal) {
-        $url = explode('/', $url);
-        array_splice($url, 3, 2);
-        $url = implode('/', $url);
+        $url = _uib_urlfilter_fix_language($url);
       }
       $elements[$delta]['#markup'] = $url; // Assign it to the #markup of the element
     }
     return $elements;
   }
+}
+
+/**
+ * Attempts to fix the language indicators in the url
+ */
+function _uib_urlfilter_fix_language($url) {
+  static $installed_languages;
+  if (empty($installed_languages)) {
+    $installed_languages = language_list('language');
+  }
+  $lang = array_keys($installed_languages);
+  $no_language = array(
+    'sites',
+    );
+  $url = explode('/', $url);
+  if (in_array($url[3], $lang)) {
+    if (in_array($url[4], $lang)) {
+      array_splice($url, 3, 1);
+    }
+    if (in_array($url[4], $no_language)) {
+      array_splice($url, 3, 1);
+    }
+  }
+  $url = implode('/', $url);
+  return $url;
 }
