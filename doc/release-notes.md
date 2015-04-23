@@ -1,3 +1,22 @@
+# Release 24 _2015-04-23_
+
+Vi ferdigstiller i stor grad utvekslingsavtalesiden og gjør et par bugfikser på systemet
+
+utvekslingsavtaler
+- Vi har gjort det slik at listen på utvekslingsavtaler blir sortert på organisasjonsenhet istedenfor land #10191
+- Vi har introdusert et felt for å kunne filtere på studiekode på utvekslingssiden. Dette feltet har nå fått en skikkelig tittel og en hjelpetekst #10453
+
+Diverse bugfikser
+- Vi har omgjort semestervelgeren på emner slik at den ikke er avhengig av javascript og også gjør det mulig å lenke til de spesielle semestrene #8802
+- Vi har oppdatert dataene som kommer fra DBH på uib.no/om til å vise tallene for 2014 #10052
+- Artikler som inneholdt mer enn ett hovedbilde fungerte ikke å putte i slideshowet på områdeforsider. Nå har vi gjort det slik at slideshowet alltid viser første bilde #10298
+- Filtersidene til uib skiftet fra å være en side til å bli en block på en side. Dette gjorde at det ble endringer i hvordan dataene ble sendt til Drupal. Tidligere ble de sendt som vanlige spørringer ved bruk av GET, mens nå benyttet siden seg av AJAX. Denne endringen taklet ikke nginx på www.uib.no, og spørringene kom derfor aldri frem til Drupal. Problemet ble fikset med å fjerne en redirect slik at spørringene kom igjennom #10344
+- Studienivå på filtersidene ble ikke oversettbare etter at filtersiden ble endret. Disse er nå manuelt oversatt #10408
+- Studiekoden forsvant fra flere filtersidene er etter at filtersidene ble endret. Disse er nå lagt tilbake igjen #10409
+- Lenker som ikke var satt opp med en skikkelig pathauto fungerte ikke skikkelig etter at w2 ble skrudd av. Det problemet er nå rettet #10427
+- Filtersidene sin brødsmulesi lenket til feile sider. Dette har nå blitt rettet opp i #10454
+- w3-lenker i relevante lenker fungerte ikke helt optimalt. Filteret som gjør w3 om til www.uib.no fjernet for mye av lenken. Dette er nå ordnet #10503
+
 # Release 23.1 _2014-04-09_
 
 Mini-release for å få fikset et problem som oppstod i R23 med at halvparten av utvekslingsavtalene ikke vistes på filtersiden.
