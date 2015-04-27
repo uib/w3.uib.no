@@ -2,11 +2,13 @@
 
 Vi ferdigstiller i stor grad utvekslingsavtalesiden og gjør et par bugfikser på systemet
 
-utvekslingsavtaler
+Utvekslingsavtaler:
+
 - Vi har gjort det slik at listen på utvekslingsavtaler blir sortert på organisasjonsenhet istedenfor land #10191
 - Vi har introdusert et felt for å kunne filtere på studiekode på utvekslingssiden. Dette feltet har nå fått en skikkelig tittel og en hjelpetekst #10453
 
-Diverse bugfikser
+Diverse bugfikser:
+
 - Vi har omgjort semestervelgeren på emner slik at den ikke er avhengig av javascript og også gjør det mulig å lenke til de spesielle semestrene #8802
 - Vi har oppdatert dataene som kommer fra DBH på uib.no/om til å vise tallene for 2014 #10052
 - Artikler som inneholdt mer enn ett hovedbilde fungerte ikke å putte i slideshowet på områdeforsider. Nå har vi gjort det slik at slideshowet alltid viser første bilde #10298
