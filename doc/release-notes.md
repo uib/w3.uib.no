@@ -1,3 +1,11 @@
+# Release 24.1 _2015-05-04_
+
+Workflowmodulen som ble brukt på studentrapporter.app.uib.no vil ikke bli brukt mer.
+
+- Workflowmodulen forårsaket problemer under oppdateringer. Vi har istedet
+lagt til funksjonalitet for håndtering av arbeidsflyt og vil fjerne workflowmodulen
+helt i en senere release. #10598
+
 # Release 24 _2015-04-23_
 
 Vi ferdigstiller i stor grad utvekslingsavtalesiden og gjør et par bugfikser på systemet
