@@ -10,7 +10,8 @@
 function uib_area_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'field_collection_item-field_uib_link_section-field_uib_links'
+  // Exported field_instance:
+  // 'field_collection_item-field_uib_link_section-field_uib_links'
   $field_instances['field_collection_item-field_uib_link_section-field_uib_links'] = array(
     'bundle' => 'field_uib_link_section',
     'default_value' => NULL,
@@ -74,7 +75,8 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_uib_link_section-field_uib_title'
+  // Exported field_instance:
+  // 'field_collection_item-field_uib_link_section-field_uib_title'
   $field_instances['field_collection_item-field_uib_link_section-field_uib_title'] = array(
     'bundle' => 'field_uib_link_section',
     'default_value' => NULL,
@@ -5125,7 +5127,8 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_organisation-field_uib_org_area'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_organisation-field_uib_org_area'
   $field_instances['taxonomy_term-uib_organisation-field_uib_org_area'] = array(
     'bundle' => 'uib_organisation',
     'default_value' => NULL,
@@ -5184,7 +5187,8 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_organisation-field_uib_org_name'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_organisation-field_uib_org_name'
   $field_instances['taxonomy_term-uib_organisation-field_uib_org_name'] = array(
     'bundle' => 'uib_organisation',
     'default_value' => NULL,
@@ -5324,7 +5328,8 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_organisation-field_uib_org_type'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_organisation-field_uib_org_type'
   $field_instances['taxonomy_term-uib_organisation-field_uib_org_type'] = array(
     'bundle' => 'uib_organisation',
     'default_value' => NULL,
