@@ -73,6 +73,28 @@ function uib_filter__process($text, $filter) {
       case 'jobbnorge':
         $positions = uib_feed__jobbnorge_positions_full($arg);
         return render($positions);
+      case 'offjournal':
+        $data = drupal_json_decode(file_get_contents('http://webber.uib.no/api/offjournal.php'));
+        $block = array();
+        if (isset($data['journal'])) {
+          krsort($data['journal']);
+          $limit = date('Y-m-d', time() - 92 * 24 * 3600); // max 3 months old stuff
+          foreach ($data['journal'] as $date => $href) {
+            if ($date < $limit)
+              break;
+            $block[$date] = array(
+              '#markup' => "<li>" . l($date, $href) . "</li>",
+            );
+          }
+          $block['#prefix'] = '<ul class="offjournal">';
+          $block['#suffix'] = '</ul>';
+        }
+        else {
+          $block['error'] = array(
+            '#markup' => '<p><i>' . t('Public journal data not currently available') . '</i></p>',
+          );
+        }
+        return render($block);
       }
       return '(' . check_plain($matches[1]) . ' ' . t('unrecognized') . ')';
     },
