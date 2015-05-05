@@ -345,13 +345,6 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       );
       $form['#group_children']['anti_bubbling'] = 'group_information';
     }
-
-    if (isset($form['field_uib_show_global_calendar'])) {
-      if ( (in_array('level 2', $GLOBALS['user']->roles, TRUE) OR in_array('level 3', $GLOBALS['user']->roles, TRUE)) AND (!in_array('level 1', $GLOBALS['user']->roles, TRUE)) ) {
-        // Hide from level 2 and level 3 users
-        $form['field_uib_show_global_calendar']['#access'] = FALSE;
-      }
-    }
   }
 }
 
