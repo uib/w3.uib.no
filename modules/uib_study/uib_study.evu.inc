@@ -235,7 +235,7 @@ function uib_study__evu_courses_block($node) {
     $result[] = uib_study__evu_div_clear();
   }
   else {
-    $result[] = uib_study__evu_html_tag('span', t('Sorry! There are no evu-courses available at this moment'));
+    $result[] = uib_study__evu_html_tag('span', t('There are currently no scheduled courses of this subject'));
   }
 
   $block = array(
@@ -349,7 +349,7 @@ function uib_study__evu_instance_data($instance) {
   $data['price'] = t('Not set');
   if (isset($instance['kostnad'])) {
     if ($instance['kostnad'] === 0) {
-      $data['price'] = t('Free');
+      $data['price'] = t('No tuition fee');
    }
    elseif ($instance['kostnad'] > 0) {
       $data['price'] = t('NOK ' . $instance['kostnad']);
@@ -357,7 +357,7 @@ function uib_study__evu_instance_data($instance) {
   }
 
   // Deadline && sing up
-  $data['expires'] = t('Expired');
+  $data['expires'] = t('Not set');
   if (isset($instance['dato_frist_soknad'])) {
     if ($instance['dato_frist_soknad'] >= $today) {
       $data['expires'] = uib_study__evu_date($instance['dato_frist_soknad']);
