@@ -253,6 +253,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -264,10 +267,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -424,6 +447,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -435,10 +461,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -1014,6 +1060,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -1025,10 +1074,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -1276,6 +1345,7 @@ function uib_calendar_views_default_views() {
     t('View full calendar'),
     t('[field_uib_date] - [title] ([field_uib_event_type])'),
     t('Month'),
+    t('Advanced options'),
     t('Select any filter and click on Apply to see results'),
     t('Day'),
     t('Mini calendar'),
@@ -1444,6 +1514,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -1455,10 +1528,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -1609,6 +1702,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -1620,10 +1716,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -2060,6 +2176,9 @@ function uib_calendar_views_default_views() {
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'field_uib_event_type_value' => array(
       'bef_format' => 'bef',
@@ -2071,10 +2190,30 @@ function uib_calendar_views_default_views() {
         'tokens' => array(
           'available' => array(
             0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
           ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
         ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
@@ -2302,6 +2441,7 @@ function uib_calendar_views_default_views() {
     t('<h2>[field_uib_event_type]</h2>'),
     t('All'),
     t('Month'),
+    t('Advanced options'),
     t('Select any filter and click on Apply to see results'),
     t('[field_uib_date] - [title] ([field_uib_event_type])'),
     t('Day'),

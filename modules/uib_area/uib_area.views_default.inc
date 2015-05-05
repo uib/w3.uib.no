@@ -2449,6 +2449,9 @@ return !empty($handler->argument);';
     'general' => array(
       'allow_secondary' => 0,
       'secondary_label' => 'Advanced options',
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
     'sort' => array(
       'bef_format' => 'default',
@@ -2460,8 +2463,17 @@ return !empty($handler->argument);';
         'reset' => 0,
         'reset_label' => '',
         'is_secondary' => 0,
+        'secondary_label' => NULL,
       ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
     ),
+    'secondary_label' => NULL,
+    'collapsible_label' => NULL,
+    'combine_rewrite' => NULL,
+    'reset_label' => NULL,
   );
   $handler->display->display_options['pager']['type'] = 'date_views_pager';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -2591,6 +2603,8 @@ return !empty($handler->argument);';
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Advanced options'),
+    t('Sort options'),
     t('Select any filter and click on Apply to see results'),
     t('[title] ([field_uib_date])'),
     t('<div class="phd-lead-title-wrapper">
