@@ -22,7 +22,7 @@ projects[addressfield][version] = 1.0-rc1
 projects[admin_menu][version] = 3.0-rc5
 projects[advanced_help][version] = 1.2
 projects[autocomplete_deluxe][version] = 2.1
-projects[better_exposed_filters][version] = 3.0
+projects[better_exposed_filters][version] = 3.2
 projects[better_formats][version] = 1.0-beta1
 projects[better_formats][patch][] = https://www.drupal.org/files/issues/better_formats-default-text-format-override-2272385-6.patch
 projects[better_formats][patch][] = http://cgit.drupalcode.org/better_formats/patch/?id=ca0822a94fc79a3b3b69ae96d1e3cb43c61aaa15
