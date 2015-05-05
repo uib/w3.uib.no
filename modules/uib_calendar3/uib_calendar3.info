@@ -1,0 +1,4 @@
+name = UiB Calendar v3
+description = Listings of events in various forms
+core = 7.x
+package = UiB

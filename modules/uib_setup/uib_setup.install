@@ -157,3 +157,10 @@ function uib_setup_update_7015() {
   module_disable(array('uib_migrate', 'migrate'));
   drupal_uninstall_modules(array('uib_migrate', 'migrate'), FALSE);
 }
+
+/**
+ * Enable new module: uib_calendar3
+ */
+function uib_setup_update_7016() {
+  module_enable(array('uib_calendar3'));
+}

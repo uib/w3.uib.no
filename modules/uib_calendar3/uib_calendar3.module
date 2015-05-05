@@ -1,0 +1,397 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function uib_calendar3_menu() {
+  $items["calendar3"] = array(
+    'page callback' => 'uib_calendar3__index_page',
+    'access callback' => TRUE,
+  );
+  $items["node/%/calendar3"] = array(
+    'page callback' => 'uib_calendar3__index_page',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
+  );
+  return $items;
+}
+
+
+
+function uib_calendar3__fa_icon($event_type) {
+  static $EVENT_FA_ICON = array(
+    'event' => 'umbrella',
+    'workshop' => 'wrench',
+    'disputation' => 'graduation-cap',
+    'lecture' => 'plug',
+    'deadline' => 'lock',
+    'guest_lecturer' => 'plane',
+    'conference' => 'microphone',
+    'consert' => 'music',
+    'course' => 'line-chart',
+    'course_economy' => 'line-chart',
+    'course_leadership' => 'line-chart',
+    'course_language' => 'line-chart',
+    'course_research_management' => 'line-chart',
+    'course_communication' => 'line-chart',
+    'course_student_affairs' => 'line-chart',
+    'course_human_resources' => 'line-chart',
+    'course_faculty_development' => 'line-chart',
+    'course_it' => 'line-chart',
+    'course_hms' => 'line-chart',
+    'grant' => 'trophy',
+    'trial_lecture' => 'pencil',
+    'seminar' => 'car',
+    'exhibition' => 'eye',
+    'meeting' => 'users',
+    'book_release' => 'book',
+    'guided_tour' => 'university',
+    'presentation' => 'image',
+  );
+  $icon = $EVENT_FA_ICON[$event_type];
+  if (!$icon)
+    $icon = 'star';
+  return '<i class="fa fa-' . $icon . '"></i>';
+}
+
+/**
+ * Generate main page
+ */
+function uib_calendar3__index_page($area_nid=NULL) {
+  global $language;
+  $param = drupal_get_query_parameters();
+  if (isset($param['d'])) {
+    $from_date = $param['d'];
+    while (strlen($from_date) < 10) {
+      $from_date .= '-01';
+    }
+  }
+  else {
+    $from_date = date('Y-m-d'); // today
+  }
+
+  $area = NULL;
+  if ($area_nid) {
+    $area = node_load($area_nid);
+    if (!$area || $area->type != 'area') {
+      return MENU_NOT_FOUND;
+    }
+  }
+
+  $select = db_select('node', 'n');
+  $select->fields('n', array('nid', 'title'));
+
+  // only published articles of type events
+  $select->where('n.status = 1');
+  $select->where('n.type = :type', array(':type' => 'uib_article'));
+  $select->join('field_data_field_uib_article_type', 'at', 'at.entity_id = n.nid AND at.field_uib_article_type_value = \'event\'');
+
+  // only current language
+  $select->where('n.language = :language', array(':language' => $language->language));
+
+  if ($area_nid) {
+    $select->join('field_data_field_uib_area', 'area', 'area.entity_id = n.nid AND area.field_uib_area_target_id = :area',
+      array(':area' => $area_nid));
+  }
+  else {
+    $select->join('field_data_field_uib_show_global_calendar', 'show', 'show.entity_id = n.nid AND show.field_uib_show_global_calendar_value = 1');
+  }
+
+  // include the event type
+  $select->leftJoin('field_data_field_uib_event_type', 'et', 'et.entity_id = n.nid');
+  $select->fields('et', array('field_uib_event_type_value'));
+
+  // include the date fields
+  $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
+  $select->fields('d', array('field_uib_date_value', 'field_uib_date_value2'));
+
+  // include deadlines
+  $select->leftJoin('field_data_field_uib_deadline', 'dead', 'dead.entity_id = n.nid');
+  $select->fields('dead', array('field_uib_deadline_value'));
+  //$select->where('field_uib_deadline_value is not null'); // XXX while debugging
+
+  // include location
+  $select->leftJoin('field_data_field_uib_location', 'loc', 'loc.entity_id = n.nid');
+  $select->fields('loc', array('field_uib_location_value'));
+
+  // filter and order by date
+  $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));
+  //$select->orderBy('field_uib_date_value');
+
+  //$select->range(0, 5); // XXX while debugging
+
+  // indexed by day
+  $events_by_day = array();
+  $ongoing_events = array();
+  $node = array();
+  $event_type_count = array();
+
+  // helper functions
+  $date = function ($isodatetime) { return substr($isodatetime, 0, 10); }; // XXX care about timezone?
+  $time = function ($isodatetime) {
+    // convert from UTC time to local time
+    return format_date(strtotime($isodatetime. 'Z'), 'custom', 'G:i');
+  };
+
+  foreach ($select->execute() as $row) {
+    $node[$row->nid] = $row;
+    $type = $row->field_uib_event_type_value;
+    if (isset($event_type_count[$type])) {
+      $event_type_count[$type]++;
+    }
+    else {
+      $event_type_count[$type] = 1;
+    }
+    if ($date($row->field_uib_date_value) == $date($row->field_uib_date_value2)) {
+      // single day event
+      $events_by_day[$date($row->field_uib_date_value)][] = array(
+        'time' => $time($row->field_uib_date_value),
+        'end' => $time($row->field_uib_date_value2),
+        'nid' => $row->nid,
+      );
+    }
+    else {
+      // multiday event
+      $start_date = $date($row->field_uib_date_value);
+      $end_date = $date($row->field_uib_date_value2);
+      if ($start_date < $from_date) {
+        if ($end_date != $from_date) {
+          $ongoing_events[] = $row->nid;
+        }
+      }
+      else {
+        $events_by_day[$date($row->field_uib_date_value)][] = array(
+          'suffix' => t('starts'),
+          'info' => array(t('Event ends at !date', array('!date' => $date($row->field_uib_date_value2)))),
+          'time' => $time($row->field_uib_date_value),
+          'nid' => $row->nid,
+        );
+      }
+      $events_by_day[$date($row->field_uib_date_value2)][] = array(
+        'suffix' => t('ends'),
+        'time' => $time($row->field_uib_date_value2),
+        'nid' => $row->nid,
+      );
+    }
+    if (isset($row->field_uib_deadline_value) && $date(($row->field_uib_deadline_value)) >= $from_date) {
+      $events_by_day[$date($row->field_uib_deadline_value)][] = array(
+        'suffix' => t('deadline'),
+        'info' => array(t('Event starts at !date', array('!date' => $date($row->field_uib_date_value)))),
+        'time' => $time($row->field_uib_deadline_value),
+        'nid' => $row->nid,
+      );
+    }
+  }
+
+  ksort($events_by_day);
+
+  //dpm($node);
+  //dpm($events_by_day);
+
+  // generate the render array for the page
+  $page = array();
+
+  $day_aka = array(
+    date('Y-m-d') => t('today'),
+    date('Y-m-d', time() + 24 * 3600) => t('tomorrow'),
+    date('Y-m-d', time() - 24 * 3600) => t('yesterday'),
+  );
+
+  for ($i = 2; $i < 7; $i++) {
+    $t = time() + $i * 24 * 3600;
+    $day_aka[date('Y-m-d', $t)] = strtolower(format_date($t, 'custom', 'l'));
+  }
+
+  $page['header'] = array(
+    '#type' => 'html_tag',
+    '#tag' => 'h2',
+    '#value' => t('Upcoming events at the university'),
+  );
+  if ($area) {
+    $page['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
+  }
+
+  /* event type table */
+  ksort($event_type_count);
+  $type_list_block = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('calendar-types'),
+      'style' => 'float: right; padding-left: 2ex;',
+    ),
+  );
+  foreach ($event_type_count as $type => $count) {
+    $icon = uib_calendar3__fa_icon($type);
+    $type_list_block[$type] = array(
+      '#markup' => "<div><input id='check-$type' type='checkbox' data-type='$type' checked> <label for='check-$type' class=option>$icon $type ($count)</label></div>",
+    );
+  }
+  $type_list_block['hide'] = array(
+    '#markup' => "<button id='hide-events'>hide all events</button>",
+  );
+
+  // datepicker
+  drupal_add_library('system', 'ui.datepicker');
+  $type_list_block['datepicker'] = array(
+    '#markup' => '<div id=datepicker><h3>Select another start date</h3></div>',
+  );
+
+  $page['types'] = $type_list_block;
+
+  $last_year = NULL;
+  $last_week = NULL;
+  $day_limit = 0; // set to 0 for no limit
+  foreach ($events_by_day as $day => $events) {
+    // insert entry for ongoing events (just after the initial date)
+    if ($ongoing_events && !isset($page['ongoing']) && $day > $from_date) {
+      $ongoing = array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('calendar-date ongoing')),
+      );
+      $ongoing['header'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => t('Still ongoing events') . ' (' . count($ongoing_events) . ')',
+      );
+      foreach ($ongoing_events as $nid) {
+        $event = $node[$nid];
+        $type = $event->field_uib_event_type_value;
+        // XXX would be better to tell how many days there are left
+        $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $date($event->field_uib_date_value2))) . '</div>';
+        $icon = uib_calendar3__fa_icon($type);
+        $ongoing[$nid] = array(
+          '#markup' => "<div class='event-entry event-entry-$type'>$icon " . l($event->title, "node/$nid") . $info . '</div>',
+        );
+      }
+
+      $page['ongoing'] = $ongoing;
+    }
+
+    $year = substr($day, 0, 4);
+    if ($year != $last_year) {
+      $page["year-$year"] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
+        '#value' => $year,
+        '#attributes' => array(
+          'class' => 'year',
+        ),
+      );
+      $last_year = $year;
+    }
+
+    $week = date('W', strtotime($day));
+    if ($week != $last_week) {
+      $page["week-$day"] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
+        '#value' => t('Week !week', array('!week' => $week)),
+        '#attributes' => array(
+          'class' => 'week',
+        ),
+      );
+      $last_week = $week;
+    }
+
+    // generate entry for this day
+    $this_day = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('calendar-date')),
+    );
+
+    $nice_day = format_date(strtotime($day), 'day_and_month');
+    if (isset($day_aka[$day])) {
+      $nice_day .= " — " . $day_aka[$day];
+    }
+
+    $nice_day .= ' (' . count($events) . ')';
+
+    $this_day['header'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => $nice_day,
+    );
+
+    usort($events, function($a, $b) {
+      if ($a['time'] == $b['time']) {
+        return 0;
+      }
+      return $a['time'] < $b['time'] ? -1 : 1;
+    });
+    foreach ($events as $event) {
+      $nid = $event['nid'];
+      $time = $event['time'];
+      $type = $node[$nid]->field_uib_event_type_value;
+      if (isset($event['end'])) {
+        $time .= '–' . $event['end'];
+      }
+
+      $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
+      $info = isset($event['info']) ? $event['info'] : array();
+      array_unshift($info, t('Time !time', array('!time' => $time)));
+      $location = $node[$nid]->field_uib_location_value;
+      if ($location) {
+        if (strlen($location) > 52) {
+          $location = substr($location, 0, 50) . '...';
+        }
+        $info[] = t('Location: !location', array('!location' => $location));
+      }
+      $info = "<div class='event-entry-info'>" . implode(', ', $info) . "</div>";
+      $icon = uib_calendar3__fa_icon($type);
+      $this_day[$nid] = array(
+        '#markup' => "<div class='event-entry event-entry-$type'>$icon" . l($node[$nid]->title, "node/$nid") . $suffix . $info . '</div>',
+      );
+    }
+
+    $page[$day] = $this_day;
+
+    if ($day_limit && --$day_limit == 0)
+      break;
+  }
+
+  drupal_add_js(drupal_get_path('module', 'uib_calendar3') . '/cal3.js');
+  drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(
+    'type' => 'external',
+  ));
+
+  //XXX remove -- style properly
+  drupal_add_css('
+    h2.year {
+      font-weight: normal;
+      font-size: 500%;
+      position: absolute;
+      margin-left: -2em;
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+    }
+    h2.week {
+      margin-top: 4em;
+      border-top: 1px solid #555;
+      font-weight: normal;
+      font-size: 50%;
+      width: 50%;
+    }
+    .calendar-date {
+      margin-top: 2em;
+    }
+    .event-entry {
+      margin-top: 1ex;
+      margin-left: 3em;
+    }
+    .event-entry > i {
+      font-size: 200%;
+      position: absolute;
+      margin-top: 0.2ex;
+      margin-left: -1.5em;
+    }
+    i.fa {
+      color: #aad;
+    }
+    #datepicker {
+      margin-top: 1em;
+    }
+  ', 'inline');
+
+  return $page;
+
+}
