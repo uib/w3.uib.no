@@ -50,15 +50,24 @@ function uib_api__calendar_json() {
   );
   foreach ($nodes as $nid => $node) {
     $row = array(
+      'id'        => $nid,
       'type'      => $node->field_uib_event_type['und'][0]['value'],
       'title'     => $node->title,
       'date_from' => $node->field_uib_date['und'][0]['value']."Z",
       'date_to'   => $node->field_uib_date['und'][0]['value2']."Z",
-      'location'  => $node->field_uib_location['und'][0]['value'],
-      'lead'      => $node->field_uib_lead['und'][0]['value'],
-      'id'   => $nid,
-      'path' => drupal_get_path_alias('node/' . $nid, $node->language),
+      'path'      => drupal_get_path_alias('node/' . $nid, $node->language),
+      'language'  => $node->language,
     );
+    if ($node->tnid && $nid != $node->tnid) {
+      $row['translation_of'] = (int)$node->tnid;
+    }
+
+    if (isset($node->field_uib_lead['und'])) {
+      $row['lead'] = $node->field_uib_lead['und'][0]['value'];
+    }
+    if (isset($node->field_uib_location['und'])) {
+      $row['location'] = $node->field_uib_location['und'][0]['value'];
+    }
 
     $data['events'][] = $row;
   }
