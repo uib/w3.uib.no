@@ -1,103 +1,103 @@
 {
   "sections" : [ {
     "title" : "Publication points",
-    "lang" : "en",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=en",
+    "lang" : "en",
     "slug" : "publications"
   }, {
     "title" : "Studenter",
-    "lang" : "no",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=no",
+    "lang" : "no",
     "slug" : "studenter"
   }, {
     "title" : "Tilsatte",
-    "lang" : "no",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=no",
+    "lang" : "no",
     "slug" : "tilsatte"
   }, {
     "title" : "Økonomi",
-    "lang" : "no",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=no",
+    "lang" : "no",
     "slug" : "økonomi"
   }, {
     "title" : "Finances",
-    "lang" : "en",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=gofogvcn&request_locale=en",
+    "lang" : "en",
     "slug" : "finances"
   }, {
     "title" : "Publikasjonspoeng",
-    "lang" : "no",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=eskjnlvt&request_locale=no",
+    "lang" : "no",
     "slug" : "publikasjoner"
   }, {
     "title" : "Staff",
-    "lang" : "en",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=bajcohvz&request_locale=en",
+    "lang" : "en",
     "slug" : "staff"
   }, {
     "title" : "Doktorgrader",
-    "lang" : "no",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=no",
+    "lang" : "no",
     "slug" : "doktorgrader"
   }, {
     "title" : "Doctorates",
-    "lang" : "en",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=raovsagd&request_locale=en",
+    "lang" : "en",
     "slug" : "doctorates"
   }, {
     "title" : "Students",
-    "lang" : "en",
     "html_fragment_url" : "http://dbh.nsd.uib.no/dbh-service/getPage.action?uid=zxgcxkfq&page=lycxqoqr&request_locale=en",
+    "lang" : "en",
     "slug" : "students"
   } ],
   "highlighted_figures" : {
-    "columns" : {
-      "en" : [ "2014" ],
-      "no" : [ "2014" ]
-    },
     "rows" : {
       "en" : [ {
         "title" : "Students",
-        "columns" : [ "14790" ],
-        "linked_section" : "students"
+        "linked_section" : "students",
+        "columns" : [ "14790" ]
       }, {
         "title" : "Publication points",
-        "columns" : [ "1957.7" ],
-        "linked_section" : "publications"
+        "linked_section" : "publications",
+        "columns" : [ "1956.4" ]
       }, {
         "title" : "PhDs awarded",
-        "columns" : [ "216" ],
-        "linked_section" : "doctorates"
+        "linked_section" : "doctorates",
+        "columns" : [ "216" ]
       }, {
         "title" : "Staff",
-        "columns" : [ "3565.6" ],
-        "linked_section" : "staff"
+        "linked_section" : "staff",
+        "columns" : [ "3565.6" ]
       }, {
         "title" : "Annual turnover (MNOK)",
-        "columns" : [ "3920.8" ],
-        "linked_section" : "finances"
+        "linked_section" : "finances",
+        "columns" : [ "3920.8" ]
       } ],
       "no" : [ {
         "title" : "Studenter",
-        "columns" : [ "14790" ],
-        "linked_section" : "studenter"
+        "linked_section" : "studenter",
+        "columns" : [ "14790" ]
       }, {
         "title" : "Publikasjonspoeng",
-        "columns" : [ "1957.7" ],
-        "linked_section" : "publikasjoner"
+        "linked_section" : "publikasjoner",
+        "columns" : [ "1956.4" ]
       }, {
         "title" : "Doktorgrader",
-        "columns" : [ "216" ],
-        "linked_section" : "doktorgrader"
+        "linked_section" : "doktorgrader",
+        "columns" : [ "216" ]
       }, {
         "title" : "Tilsatte",
-        "columns" : [ "3565.6" ],
-        "linked_section" : "tilsatte"
+        "linked_section" : "tilsatte",
+        "columns" : [ "3565.6" ]
       }, {
         "title" : "Omsetning (MNOK)",
-        "columns" : [ "3920.8" ],
-        "linked_section" : "økonomi"
+        "linked_section" : "økonomi",
+        "columns" : [ "3920.8" ]
       } ]
+    },
+    "columns" : {
+      "en" : [ "2014" ],
+      "no" : [ "2014" ]
     }
   },
   "nsd_link" : "http://dbh.nsd.uib.no"
