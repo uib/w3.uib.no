@@ -140,64 +140,6 @@ function uib_setup_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_en';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 1,
-    'popup_position' => 0,
-    'popup_info' => array(
-      'value' => '<p>The uib.no site uses cookies.</p><p>By continuing to browse the site, you are agreeing to our use of cookies.</p>',
-      'format' => 'basic_html',
-    ),
-    'popup_agreed_enabled' => 0,
-    'popup_hide_agreed' => 0,
-    'popup_agreed' => array(
-      'value' => 'Thank you for accepting cookies.',
-      'format' => 'plain_text',
-    ),
-    'popup_link' => 'https://www.uib.no/form/en/artikler/2013/09/cookiepolicy',
-    'popup_height' => '',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '006b9a',
-    'popup_text_hex' => 'ffffff',
-    'popup_agree_button_message' => 'Yes, I agree',
-    'popup_disagree_button_message' => 'No, I want to find out more',
-  );
-  $export['eu_cookie_compliance_en'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'eu_cookie_compliance_nb';
-  $strongarm->value = array(
-    'popup_enabled' => 1,
-    'popup_clicking_confirmation' => 1,
-    'popup_position' => 0,
-    'popup_info' => array(
-      'value' => '<p>Vi bruker cookies på uib.no for å kunne gi deg en best mulig brukeropplevelse.</p><p>Dersom du fortsetter uten å gjøre endringer, tillater du dette.</p>',
-      'format' => 'basic_html',
-    ),
-    'popup_agreed_enabled' => 0,
-    'popup_hide_agreed' => 0,
-    'popup_agreed' => array(
-      'value' => 'Foo',
-      'format' => 'plain_text',
-    ),
-    'popup_link' => 'https://www.uib.no/form/artikler/2013/09/cookiepolicy',
-    'popup_height' => '',
-    'popup_width' => '100%',
-    'popup_delay' => '1',
-    'popup_bg_hex' => '006b9a',
-    'popup_text_hex' => 'ffffff',
-    'popup_agree_button_message' => 'Ok',
-    'popup_disagree_button_message' => 'Nei, jeg ønsker mer informasjon',
-  );
-  $export['eu_cookie_compliance_nb'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'file_private_path';
   $strongarm->value = '../var/private';
   $export['file_private_path'] = $strongarm;

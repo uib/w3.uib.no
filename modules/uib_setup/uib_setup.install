@@ -164,3 +164,11 @@ function uib_setup_update_7015() {
 function uib_setup_update_7016() {
   module_enable(array('uib_calendar3'));
 }
+
+/**
+ * Disable EU Cookie compliance dialog
+ */
+function uib_setup_update_7017() {
+  module_disable(array('eu_cookie_compliance'));
+}
+

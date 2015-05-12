@@ -15,24 +15,6 @@ function uib_setup_menu_alter(&$items) {
 }
 
 /**
- * Implements hook_init().
- */
-function uib_setup_init() {
-  // RTS-6440 A way to disable the Disable the eu_cookie_compliance popup
-  // by requesting pages with ?cookies_accepted in the URL query parameters
-  drupal_add_js(
-    'if (window.location.search.search(/\\bcookies_accepted\\b/) >= 0) {
-       Drupal.settings.eu_cookie_compliance.popup_enabled = 0;
-     }',
-    array(
-      'type' => 'inline',
-      'scope' => 'footer',
-      'weight' => -1, // must run before the eu_cookie_compliance code
-    )
-  );
-}
-
-/**
  * Implements hook_block_view_MODULE_DELTA_alter().
  */
 function uib_setup_block_view_locale_language_alter(&$data, $block) {
