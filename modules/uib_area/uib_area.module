@@ -60,6 +60,7 @@ function uib_area_block_info() {
  * Implements hook_block_view().
  */
 function uib_area_block_view($delta='') {
+  global $language;
   $area = uib_area__get_current();
   $block = array();
   switch ($delta) {
@@ -104,6 +105,9 @@ function uib_area_block_view($delta='') {
           '#theme' => 'key_value',
           '#key' => t('Responsible'),
           '#value' => t('Director of Communications'),
+        ),
+        'cookies' => array(
+          '#markup' => '<p>' . l(t('About cookies'), ($language->language == 'nb' ? 'node/50897' : 'node/50970')) . '</p>',
         ),
       );
       if ($area && isset($area->field_uib_ou['und'])) {
