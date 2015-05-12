@@ -365,6 +365,9 @@ function uib_study__evu_instance_data($instance) {
         $data['sign_up'] = $instance['url_evuweb'];
       }
     }
+    else {
+      $data['expires'] = t('Expired');
+    }
   }
 
   return $data;
