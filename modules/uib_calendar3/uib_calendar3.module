@@ -311,9 +311,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
   }
 
   drupal_add_js(drupal_get_path('module', 'uib_calendar3') . '/cal3.js');
-  drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(
-    'type' => 'external',
-  ));
 
   //XXX remove -- style properly
   drupal_add_css('
