@@ -82,12 +82,27 @@ function uib_filter__process($text, $filter) {
           foreach ($data['journal'] as $date => $href) {
             if ($date < $limit)
               break;
-            $block[$date] = array(
-              '#markup' => "<li>" . l($date, $href) . "</li>",
+            $t = strtotime($date);
+            $m = substr($date, 5, 2);
+            if (!isset($block[$m])) {
+              $block[$m] = array(
+                'heading' => array(
+                  '#type' => 'html_tag',
+                  '#tag' => 'h3',
+                  '#value' => format_date($t, 'custom', 'F'),
+                ),
+                'list' => array(
+                  '#prefix' => '<ul>',
+                  '#suffix' => '</ul>',
+                ),
+              );
+            }
+            $block[$m]['list'][$date] = array(
+              '#markup' => "<li>" . l(format_date($t, 'medium'), $href) . "</li>",
             );
           }
-          $block['#prefix'] = '<ul class="offjournal">';
-          $block['#suffix'] = '</ul>';
+          $block['#prefix'] = '<section class="offjournal">';
+          $block['#suffix'] = '</section>';
         }
         else {
           $block['error'] = array(
