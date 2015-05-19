@@ -175,8 +175,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
     $page['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
   }
 
-  /* event type table */
-  ksort($event_type_count);
   $type_list_block = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -184,6 +182,17 @@ function uib_calendar3__index_page($area_nid=NULL) {
       'style' => 'float: right; padding-left: 2ex;',
     ),
   );
+
+  // datepicker
+  drupal_add_library('system', 'ui.datepicker');
+  $type_list_block['datepicker'] = array(
+    '#markup' => '<div id=datepicker><p>Select start date</p></div>',
+  );
+
+  // event type table
+  ksort($event_type_count);
+
+  // add checkboxes
   foreach ($event_type_count as $type => $count) {
     $type_list_block[$type] = array(
       '#markup' => "<div><input id='check-$type' type='checkbox' data-type='$type' checked> <label for='check-$type' class=option>$type ($count)</label></div>",
@@ -191,12 +200,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
   }
   $type_list_block['hide'] = array(
     '#markup' => "<button id='hide-events'>hide all events</button>",
-  );
-
-  // datepicker
-  drupal_add_library('system', 'ui.datepicker');
-  $type_list_block['datepicker'] = array(
-    '#markup' => '<div id=datepicker><h3>Select another start date</h3></div>',
   );
 
   $page['types'] = $type_list_block;
@@ -336,7 +339,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
       margin-top: 1ex;
     }
     #datepicker {
-      margin-top: 1em;
+      margin-bottom: 3em;
     }
   ', 'inline');
 
