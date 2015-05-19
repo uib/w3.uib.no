@@ -26,10 +26,23 @@ jQuery(document).ready(function($) {
       $(this).toggle(true);
     });
   });
+
+  var date = null;
+  var q = document.URL.split('?')[1];
+  if (q !== undefined) {
+    q = q.split('&');
+    for (var i=0; i < q.length; i++) {
+      if (q[i].substr(0, 2) == 'd=') {
+        date = q[i].substr(2);
+      }
+    }
+  }
+
   $('#datepicker').datepicker({
     'onSelect': function(date, inst) {
       document.location.href = "?d=" + date;
     },
     'dateFormat': 'yy-mm-dd',
+    'defaultDate': date,
   });
 });
