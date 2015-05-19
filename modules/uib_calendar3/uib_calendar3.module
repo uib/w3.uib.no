@@ -222,7 +222,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
         // XXX would be better to tell how many days there are left
         $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $date($event->field_uib_date_value2))) . '</div>';
         $ongoing[$nid] = array(
-          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . $info . '</div>',
+          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($type)" . $info . '</div>',
         );
       }
 
@@ -300,7 +300,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
       }
       $info = "<div class='event-entry-info'>" . implode(', ', $info) . "</div>";
       $this_day[$nid] = array(
-        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . $info . '</div>',
+        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . " ($type)" . $info . '</div>',
       );
     }
 
