@@ -208,6 +208,9 @@ function uib_sebra__sync_areas() {
     $staff = array();
     if (isset($area_doc->omraade->visninger->uibid)) {
       $visninger = (array)$area_doc->omraade->visninger;
+      if (!is_array($visninger['uibid'])) {
+        $visninger['uibid'] = array($visninger['uibid']);
+      }
       foreach ($visninger['uibid'] as $uname) {
         // Check user in Sebra
         if (!isset($seen_sebra_users[$uname])) {
