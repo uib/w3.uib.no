@@ -18,42 +18,6 @@ function uib_calendar3_menu() {
 
 
 
-function uib_calendar3__fa_icon($event_type) {
-  static $EVENT_FA_ICON = array(
-    'event' => 'umbrella',
-    'workshop' => 'wrench',
-    'disputation' => 'graduation-cap',
-    'lecture' => 'plug',
-    'deadline' => 'lock',
-    'guest_lecturer' => 'plane',
-    'conference' => 'microphone',
-    'consert' => 'music',
-    'course' => 'line-chart',
-    'course_economy' => 'line-chart',
-    'course_leadership' => 'line-chart',
-    'course_language' => 'line-chart',
-    'course_research_management' => 'line-chart',
-    'course_communication' => 'line-chart',
-    'course_student_affairs' => 'line-chart',
-    'course_human_resources' => 'line-chart',
-    'course_faculty_development' => 'line-chart',
-    'course_it' => 'line-chart',
-    'course_hms' => 'line-chart',
-    'grant' => 'trophy',
-    'trial_lecture' => 'pencil',
-    'seminar' => 'car',
-    'exhibition' => 'eye',
-    'meeting' => 'users',
-    'book_release' => 'book',
-    'guided_tour' => 'university',
-    'presentation' => 'image',
-  );
-  $icon = $EVENT_FA_ICON[$event_type];
-  if (!$icon)
-    $icon = 'star';
-  return '<i class="fa fa-' . $icon . '"></i>';
-}
-
 /**
  * Generate main page
  */
@@ -221,9 +185,8 @@ function uib_calendar3__index_page($area_nid=NULL) {
     ),
   );
   foreach ($event_type_count as $type => $count) {
-    $icon = uib_calendar3__fa_icon($type);
     $type_list_block[$type] = array(
-      '#markup' => "<div><input id='check-$type' type='checkbox' data-type='$type' checked> <label for='check-$type' class=option>$icon $type ($count)</label></div>",
+      '#markup' => "<div><input id='check-$type' type='checkbox' data-type='$type' checked> <label for='check-$type' class=option>$type ($count)</label></div>",
     );
   }
   $type_list_block['hide'] = array(
@@ -258,9 +221,8 @@ function uib_calendar3__index_page($area_nid=NULL) {
         $type = $event->field_uib_event_type_value;
         // XXX would be better to tell how many days there are left
         $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $date($event->field_uib_date_value2))) . '</div>';
-        $icon = uib_calendar3__fa_icon($type);
         $ongoing[$nid] = array(
-          '#markup' => "<div class='event-entry event-entry-$type'>$icon " . l($event->title, "node/$nid") . $info . '</div>',
+          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . $info . '</div>',
         );
       }
 
@@ -337,9 +299,8 @@ function uib_calendar3__index_page($area_nid=NULL) {
         $info[] = t('Location: !location', array('!location' => $location));
       }
       $info = "<div class='event-entry-info'>" . implode(', ', $info) . "</div>";
-      $icon = uib_calendar3__fa_icon($type);
       $this_day[$nid] = array(
-        '#markup' => "<div class='event-entry event-entry-$type'>$icon" . l($node[$nid]->title, "node/$nid") . $suffix . $info . '</div>',
+        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . $info . '</div>',
       );
     }
 
@@ -376,16 +337,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
     }
     .event-entry {
       margin-top: 1ex;
-      margin-left: 3em;
-    }
-    .event-entry > i {
-      font-size: 200%;
-      position: absolute;
-      margin-top: 0.2ex;
-      margin-left: -1.5em;
-    }
-    i.fa {
-      color: #aad;
     }
     #datepicker {
       margin-top: 1em;
