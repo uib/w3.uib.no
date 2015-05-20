@@ -27,7 +27,7 @@ Diverse bugfikser:
 - Filtersidene sin brødsmulesi lenket til feile sider. Dette har nå blitt rettet opp i #10454
 - w3-lenker i relevante lenker fungerte ikke helt optimalt. Filteret som gjør w3 om til www.uib.no fjernet for mye av lenken. Dette er nå ordnet #10503
 
-# Release 23.1 _2014-04-09_
+# Release 23.1 _2015-04-09_
 
 Mini-release for å få fikset et problem som oppstod i R23 med at halvparten av utvekslingsavtalene ikke vistes på filtersiden.
 
@@ -35,7 +35,7 @@ Mini-release for å få fikset et problem som oppstod i R23 med at halvparten av
 - Vi erstattet "Kilde: NSD DBH" med "Kilde: NSD" på siden som viser data fra NSD #10329
 - Oppdatert Drupal til 7.36 #10407
 
-# Release 23 _2014-03-26_
+# Release 23 _2015-03-26_
 
 Vi jobber videre med utvekslingsavtaler og gjør noen moduloppgradering.
 
@@ -44,7 +44,7 @@ Vi jobber videre med utvekslingsavtaler og gjør noen moduloppgradering.
 - Oppdatering av Drupal Core #10243
 - Sikkerthetsoppdatering av ctools-modulen #10244
 
-# Release 22 _2014-03-12_
+# Release 22 _2015-03-12_
 
 Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
 
@@ -65,7 +65,7 @@ Feilretting
 
 - Webdeskmenyen var lagt til i features og ble oppdatert i hver release. Den er nå fjernet fra features slik at den ikke overskriver endringer gjort i w3 #9981
 
-# Release 20 _2014-02-12_
+# Release 21 _2015-02-26_
 
 Vi jobber videre med utvekslingsavtaler og gjør generell bugfiksing.
 
@@ -95,7 +95,7 @@ Moduloppgraderinger
 
 - Oppdatert Views-modulen #9787
 
-# Release 20 _2014-02-12_
+# Release 20 _2015-02-12_
 
 I denne releasen har hovedfokuset vært på utvekslingsavtaler, generell bugfiksing og moduloppgraderinger.
 
