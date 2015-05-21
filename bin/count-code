@@ -11,8 +11,9 @@ if (@ARGV) {
 	my @tags;
 	while (my $tag = <$git>) {
 	    chomp($tag);
-	    push(@tags, $tag) if $tag =~ /^R/;
+	    push(@tags, $tag) if $tag =~ /^R(\d+)(\.\d+)*$/;
 	}
+	@tags = sort _compare_tags @tags;
 	push(@tags, "master");
 
 	for my $tag (@tags) {
@@ -110,6 +111,20 @@ find(sub {
 for (sort keys %{$COUNTERS{lines}}) {
     next if $_ eq "code";
     print "$_: $COUNTERS{lines}{$_}\n";
+}
+
+sub _compare_tags {
+    my @a = split(/\./, $a);
+    my @b = split(/\./, $b);
+    $a[0] =~ s/^R//;
+    $b[0] =~ s/^R//;
+    while (@a && @b) {
+	my $aa = shift(@a);
+	my $bb = shift(@b);
+	my $c = $aa <=> $bb;
+	return $c if $c;
+    }
+    return @a <=> @b;
 }
 
 sub count_php {
