@@ -7,7 +7,8 @@ $social-media: (
   instagram,
   vimeo,
   flickr,
-  github
+  github,
+  researchgate
 );
 
 @each $social in $social-media {
