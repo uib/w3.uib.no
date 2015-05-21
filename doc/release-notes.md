@@ -1,3 +1,36 @@
+# Release 25 _2015-05-21_
+
+I denne releasen har fokuset ligget på ny kalender, moduloppgraderinger og en del bugfikser for utdanningsavdelingen
+
+Kalender:
+
+- Vi har laget et helt ny ramme for kalenderen #10674
+- Kalenderen må vise hvilken type et arrangement er #10627
+- Utlistingen av arrangementene trengte litt forbedring #10630
+- Arrangement vistes med to timer feil, dette er nå fikset #10660
+- Språket til arrangementer ble ikke returnert fra /api/calender.json, dette har vi nå fikset #10720
+
+Studentrapportsiden-utveksling:
+
+- Vi har lagt til en adminrolle på studentrapportsiden #9029
+- Vi har fjernet workflowmodulen på studentrapportsiden #10681
+- Det har blitt gjort endringer på fs-syncen slik at utvekslingsavtaler følger samme semesterrytme som studieprogram og emner #10707
+
+Nye funksjoner og endringer:
+
+- Offentlig journal kan med hjelpe av et nytt filter bli flyttet fra webber til w3 #6901
+- Vi har nå gjort det mulig for brukere å styre om et kalenderinnlegg skal vises i globalkalenderen eller ikke #8346
+- Vi har fjernet cookies-advarselen og heller lagt en lenke om cookies i bunnen på alle sider #10696
+
+Diverse bugfikser:
+
+- Vi har gjort små justeringer på evu-kursene sine tekstfelt #10538
+- Studieprogram viste tomme faner hvis den fanen inneholdt informasjon på engelsk. Dette er nå fikset #10632
+- Studieløpsfanen har blitt flyttet på #10633
+- Publikasjonspoengene fra NSD har blitt justert etter det ble funnet en feil i rapporteringen fra Cristin #10771
+- Ansattlister med bare en ansatt i vistes ikke på områder, dette har nå blitt fikset #10906
+- Oppgradering av Drupal og diverse moduler
+
 # Release 24.1 _2015-05-04_
 
 Workflowmodulen som ble brukt på studentrapporter.app.uib.no vil ikke bli brukt mer.
