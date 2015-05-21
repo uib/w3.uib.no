@@ -13,7 +13,6 @@ if (@ARGV) {
 	    chomp($tag);
 	    push(@tags, $tag) if $tag =~ /^R(\d+)(\.\d+)*$/;
 	}
-	@tags = sort _compare_tags @tags;
 	push(@tags, "master");
 
 	for my $tag (@tags) {
@@ -47,7 +46,7 @@ if (@ARGV) {
 	my @lang = sort { churn($a) <=> churn($b) || $R{master}{$b} <=> $R{master}{$a} } keys %lang;
 
 	print join(", ", "release", @lang), "\n";
-	for my $r (sort(keys %R)) {
+	for my $r (sort _compare_versions keys %R) {
 	    print $r;
 	    for my $lang (@lang) {
 		print ", ", $R{$r}{$lang} || 0;
@@ -113,7 +112,7 @@ for (sort keys %{$COUNTERS{lines}}) {
     print "$_: $COUNTERS{lines}{$_}\n";
 }
 
-sub _compare_tags {
+sub _compare_versions {
     my @a = split(/\./, $a);
     my @b = split(/\./, $b);
     $a[0] =~ s/^R//;
