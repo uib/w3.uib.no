@@ -26,14 +26,30 @@ function uib_sebra__sws_url($path) {
 }
 
 function uib_sebra__sws_get($path) {
+  $tries = 0;
+  $limit = 3;
+  $snooze = 2;
   $url = uib_sebra__sws_url($path);
   uibx_log('GET ' . $url);
-  $contents = file_get_contents($url);
-  if ($contents === FALSE) {
-    throw new Exception("Can not get '$url'");
+  while ($tries <= $limit) {
+    $contents = file_get_contents($url);
+    if ($contents === FALSE) {
+      $tries++;
+      if ($tries > $limit) {
+        throw new Exception("Can not get \"$url\"");
+      }
+      $snooze_time = $tries * $snooze;
+      uibx_log("Failed to get '$url'. Retry attempt #$tries (of $limit) in $snooze_time seconds.", 'warning');
+      // Wait a few seconds
+      sleep($snooze_time);
+    }
+    else {
+      break;
+    }
   }
-  if (preg_match("/^\s*No data(?:\n|$)/i", $contents))
+  if (preg_match("/^\s*No data(?:\n|$)/i", $contents)) {
     return NULL;
+  }
   $object = simplexml_load_string($contents);
   return $object;
 }
@@ -805,7 +821,7 @@ function uib_sebra_user_is_main($name = NULL) {
 function uib_sebra_get_main_user($name = NULL) {
   if ($name) {
     $main = uib_sebra__sws_get("hoveduid?uid=$name");
-    if ($main->uid != 'No data') {
+    if ($main->uid != 'No data' && !empty($main->uid)) {
       $name = $main->uid;
     }
   }
