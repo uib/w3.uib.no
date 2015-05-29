@@ -663,34 +663,18 @@ function uib_study_block_view($delta = '') {
               $reports = uib_study__published_student_reports($study_code, $external_institution_codes);
               usort($reports, 'uib_study__exc_date_compare');
               $collapsed = count($reports) > 1 ? TRUE : FALSE;
+              $years = array();
               if (!empty($reports)) {
                 foreach ($reports as $key => $report) {
-                  if (isset($report['text']['preparations']['body']['#markup'])) {
-                    $report['text']['preparations']['body']['#markup'] = nl2br($report['text']['preparations']['body']['#markup']);
-                  }
-                  if (isset($report['text']['teaching metods']['body']['#markup'])) {
-                    $report['text']['teaching metods']['body']['#markup'] = nl2br($report['text']['teaching metods']['body']['#markup']);
-                  }
-                  if (isset($report['text']['review']['body']['#markup'])) {
-                    $report['text']['review']['body']['#markup'] = nl2br($report['text']['review']['body']['#markup']);
-                  }
-                  if (isset($report['text']['merit']['body']['#markup'])) {
-                    $report['text']['merit']['body']['#markup'] = nl2br($report['text']['merit']['body']['#markup']);
-                  }
-                  if (isset($report['text']['campus']['body']['#markup'])) {
-                    $report['text']['campus']['body']['#markup'] = nl2br($report['text']['campus']['body']['#markup']);
-                  }
-                  if (isset($report['text']['accommodation']['body']['#markup'])) {
-                    $report['text']['accommodation']['body']['#markup'] = nl2br($report['text']['accommodation']['body']['#markup']);
-                  }
-                  if (isset($report['text']['social life']['body']['#markup'])) {
-                    $report['text']['social life']['body']['#markup'] = nl2br($report['text']['social life']['body']['#markup']);
+                  $years[$key] = substr($report['date2']['#value'], 0, 4);
+                  if (!empty($report['text'])) {
+                    foreach($report['text'] as $item => $content) {
+                      if (!empty($content['body']['#markup'])) {
+                        $report['text'][$item]['body']['#markup'] = nl2br($content['body']['#markup']);
+                      }
+                    }
                   }
                   $report_title = $report['title']['#value'];
-                  $open_text = t('Read student report');
-                  $close_text = t('Close');
-                  // $toggle_text = '<span class="open-report"></span>';
-                  // $toggle_text .= '<span class="close-report">' . $close_text . '</span>';
                   if (isset($report['author'])) {
                     hide($report['author']);
                   }
@@ -710,12 +694,27 @@ function uib_study_block_view($delta = '') {
                   );
                   $reports[$key] = $report;
                 }
+                // Add year as header
+                $tmp = array();
+                $previous_year = '';
+                foreach ($reports as $key => $report) {
+                  if ($years[$key] != $previous_year) {
+                    $tmp[] = array(
+                      '#type' => 'html_tag',
+                      '#tag' => 'h3',
+                      '#value' => $years[$key],
+                    );
+                    $previous_year = $years[$key];
+                  }
+                  $tmp[] = $report;
+                }
+                $reports = $tmp;
                 $group_title = t('Student reports');
                 $tab_items[] = '<a href="#uib-tabs-student-reports">' . $group_title . '</a>';
                 $render['student reports'] = array(
                   '#type' => 'html_tag',
                   '#tag' => 'h2',
-                  '#value' => t("Student reports"),
+                  '#value' => $group_title,
                 );
 
                 $render['student reports text'] = array(
