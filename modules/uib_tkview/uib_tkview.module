@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function uib_tkview_menu() {
+  $items["foransatte/tk"] = array(
+    'page callback' => 'uib_tkview__page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Returns the homepage for the API section.
+ */
+function uib_tkview__page() {
+  $mod_dir = drupal_get_path('module', 'uib_tkview');
+
+  uib_area__get_current(1); // the Norwegian staff pages
+
+  //drupal_add_library('system', 'jquery');
+  drupal_add_js("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+
+  drupal_add_js("http://builds.emberjs.com/tags/v1.11.1/ember.prod.js");
+  drupal_add_js("http://builds.emberjs.com/tags/v1.11.1/ember-template-compiler.js");
+  drupal_add_js("$mod_dir/app.js");
+
+  drupal_add_css("$mod_dir/style.css");
+  drupal_add_css("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", array(
+    'type' => 'external',
+  ));
+
+  return file_get_contents("$mod_dir/page.html");
+}

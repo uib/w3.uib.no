@@ -1,0 +1,4 @@
+name = UiB Tk View
+description = Viewer for ITA's Service Catalog
+core = 7.x
+package = UiB

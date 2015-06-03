@@ -1,0 +1,141 @@
+<h1><a href="#/">Katalog for IT-tjenester</a></h1>
+
+<noscript>
+This viewer requires Javascript.
+If that's not available to you can browse the same information by visiting <a href="http://tk.app.uib.no">tk.app.uib.no</a>.
+</noscript>
+
+<div id="ember-app"></div>
+
+<script type="text/x-handlebars">
+{{outlet}}
+</script>
+
+<script type="text/x-handlebars" id="index">
+<div class="category-panel">
+{{#each cat in model}}
+  <div class="category">
+    <h3>{{#link-to 'category' cat}}<i {{bind-attr class=":fa cat.icon :fa-lg"}}></i> {{cat.title}}{{/link-to}}</h3>
+    <ul>
+    {{#each service in cat.promoted_services}}
+      <li>{{#link-to 'service' service}}{{service.title}}{{/link-to}}</li>
+    {{/each}}
+    </ul>
+    <div class='more'>
+      {{#link-to 'category' cat}}Flere tjenester...{{/link-to}}
+    </div>
+  </div>
+{{/each}}
+</div>
+<div id="services-link">{{#link-to 'services'}}Alfabetisk oversikt over alle tjenestene som tilbys.{{/link-to}}</div>
+{{outlet}}
+</script>
+
+<script type="text/x-handlebars" id="services">
+<div class="nav-container">
+  <nav>
+    {{input placeholder="Søk etter tjeneste" value=searchFor}}<i class="fa fa-search fa-lg"></i>
+    <ul>
+    {{#each item in filteredServices}}
+      <li>{{#link-to 'service' item}}{{item.title}}{{/link-to}}</li>
+    {{else}}
+      <p>Det er ingen tjenestenavn som inneholder "{{searchFor}}".</p>
+    {{/each}}
+    </ul>
+  </nav>
+
+  {{outlet}}
+</div>
+</script>
+
+<script type="text/x-handlebars" id="services/index">
+<div class="info">Velg en tjeneste for å se detaljene om denne.</div>
+</script>
+
+<script type="text/x-handlebars" id="service">
+<article class="service">
+  {{#if infolinks }}
+  <div class="infolinks">
+    {{#each info in infolinks }}
+    <a {{bind-attr href=info.link title=info.title}}><i {{bind-attr class=":fa info.icon"}}></i></a>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  {{#if link.home}}
+    <a {{bind-attr href=link.home}}>
+      <h2>{{title}}</h2>
+    </a>
+    <div class="service-link"><i class="fa fa-sign-in"></i> <a {{bind-attr href=link.home}}>{{link.home}}</a></div>
+  {{else}}
+    <h2>{{title}}</h2>
+  {{/if}}
+
+  <p class="lead">{{text.summary}}</p>
+  <p>{{text.description}}</p>
+
+  {{#if facts }}
+  <div class="facts">
+
+    {{#each fact in facts }}
+      <div class="fact"><span class="title">{{fact.title}}</span> {{fact.value}}</div>
+    {{/each}}
+
+    {{# if related.service_owner }}
+      <div class="owner fact">
+      <span class="title">Tjenesteeier</span>
+      {{related.service_owner.title}}
+      {{#if role.owner }}<a {{bind-attr href=role.owner_link title=role.owner_name class=:owner}}><i class="fa fa-user"></i></a>{{/if}}
+      </div>
+    {{/if}}
+
+  </div>
+  {{/if}}
+
+  {{#if categories }}
+    <ul class="categories">
+    {{#each category in categories}}
+      <li>{{#link-to 'category' category}}<i {{bind-attr title=category.title class=":fa category.icon"}}></i> {{category.title}}{{/link-to}}</li>
+    {{/each}}
+    </ul>
+  {{/if}}
+</article>
+</script>
+
+<script type="text/x-handlebars" id="categories">
+<div class="nav-container">
+  <nav>
+    <p>
+    Tjenestene er klassifisert i følgende kategorier.
+    En tjeneste kan være oppført i flere.
+    Velg en av kategoriene for å se tjenestene som
+    hører til.
+    </p>
+    <ul>
+    {{#each v in model }}
+      <li>{{#link-to 'category' v}}<i {{bind-attr class=":fa v.icon"}}></i> {{v.title}}{{/link-to}}</li>
+    {{/each}}
+    </ul>
+  </nav>
+
+  {{outlet}}
+
+  </div>
+</script>
+
+<script type="text/x-handlebars" id="categories/index">
+<div class="info">Velg en kategori for å se tjenestene som tilhører denne.</div>
+</script>
+
+
+<script type="text/x-handlebars" id="category">
+<article>
+  <h2><i {{bind-attr class=":fa icon"}}></i> {{title}}</h2>
+  <ul>
+  {{#each service in services}}
+    <li>{{#link-to 'service' service}}{{service.title}}{{/link-to}}</li>
+  {{/each}}
+  </ul>
+  {{outlet}}
+</article>
+</script>

@@ -14,6 +14,7 @@ fi
 set -x
 
 date +%FT%T
+bin/site-drush en uib_tkview
 bin/site-drush uib-sebra-places --verbose
 bin/site-drush uib-sebra-areas --verbose
 bin/site-drush uib-sebra-users --verbose

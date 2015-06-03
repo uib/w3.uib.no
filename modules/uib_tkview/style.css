@@ -1,0 +1,148 @@
+#ember-app {
+}
+
+#content h1 {
+  font-size: 300%;
+}
+
+#content h1 a {
+  text-decoration: none;
+}
+
+.category-panel {
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.category {
+  margin: 1em;
+  padding: 1.7ex 1.5ex;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-shadow: 3px 3px 5px #eee;
+  width: 20em;
+  height: 12em;
+  overflow: hidden;
+  position: relative;
+  background: #efefed;
+}
+
+.category h3 {
+  margin: 0;
+  font-size: 250%;
+}
+
+.category h3 {
+  margin: 0;
+  font-size: 120%;
+}
+
+#ember-app .category h3 a {
+  text-decoration: none;
+}
+
+.category div.more {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.nav-container {
+  display: -webkit-flex;
+  display: flex;
+  x-align-items: stretch;
+}
+
+nav .fa-search {
+  padding-left: 0.5ex;
+  color: #777;
+}
+
+.nav-container > nav {
+  overflow: auto;
+  font-size: 100%;
+  height: 50em;
+  min-width: 15em;
+  max-width: 20em;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  x-background: yellow;
+  margin-right: 2em;
+}
+
+.nav-container > article {
+  position: relative;
+  font-size: 120%;
+  line-height: 160%;
+  x-background: #efe;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.nav-container article h2 {
+  margin: 0;
+  line-height: 120%;
+  margin-right: 3em; /* leave room for infolinks */
+}
+
+.infolinks {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 150%;
+  max-width: 5em;
+  color: #777;
+}
+
+a.ember-view.active {
+  color: #9d2317;
+}
+
+.lead {
+  font-style: italic;
+}
+
+.facts {
+  margin: 2.5em 0;
+}
+.fact {
+  display: inline-block;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 4px #ddd;
+  padding: 0.3ex;
+  font-size: 140%;
+  min-width: 7ex;
+  margin-right: 1ex;
+  margin-bottom: 1ex;
+  text-align: center;
+}
+
+.fact > span {
+  display: block;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-size: 50%;
+}
+
+ul.categories li {
+  display: inline-block;
+  margin-right: 2ex;
+}
+
+#services-link {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 120%;
+}
+
+#ember-app ul {
+  padding: 0;
+  min-height: 30em;
+}
+
