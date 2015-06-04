@@ -1,3 +1,17 @@
+#Release 26 _2015-06-04_
+
+Liten release hvor vi har fikset noen sebraproblemer og problemer med studentrapportsiden
+
+Studentrapportsiden-utveksling
+- Gjort det mulig å filtrere studentrapportlisten på avtaleeier #9267
+- Studentrapportene på avtalesidene er nå gruppert på år #9270
+- Synkroniseringen med FS feilet på studentrapportsiden etter endret kodestruktur. Dette har nå blitt fikset #10995
+
+Nye funksjoner og endringer
+- Vi har lagt til "ResearchGate" som et sosialt medium på personsidene #10831
+- Vi har modifisert sebrasyncen for å prøve å gjøre slik at den ikke skal feile så ofte #9280
+- Vi har gjort det mulig å embedde Tjenestekatalogen på ansattsidene #10981
+
 # Release 25 _2015-05-21_
 
 I denne releasen har fokuset ligget på ny kalender, moduloppgraderinger og en del bugfikser for utdanningsavdelingen
