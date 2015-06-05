@@ -697,7 +697,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
-  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['description'] = 'Display exchange agreements with one or more countries.';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
