@@ -673,6 +673,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator_id'] = 'term_node_tid_depth_1_op';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['label'] = 'Filter by faculty';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['description'] = '- exchange agreements through which most UiB students may apply for exchange.';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
@@ -933,6 +934,7 @@ function uib_study_views_default_views() {
     t('Taksonomi-termer entity referenced from field_uib_study_country'),
     t('Innhold entity referenced from field_uib_study_part_of'),
     t('Filter by faculty'),
+    t('- exchange agreements through which most UiB students may apply for exchange.'),
     t('Filter by country or continent'),
     t('Has taxonomy terms (with depth)'),
     t('Filter by study programme'),
