@@ -104,8 +104,9 @@ Ember.$.getJSON('https://tk.app.uib.no/api/v1/service/all', function(data) {
     if (extended_view && s.info.cmdb_id) {
       s.facts.push({'title': 'CMDB#', 'value': s.info.cmdb_id});
     }
-    if (s.related && s.related.support_contact) {
-      s.facts.push({'title': 'Brukerstøtte', 'value': s.related.support_contact.title});
+
+    if (s.related.support_contact) {
+      s.related.support_contact.info = tkdata.support[s.related.support_contact.id];
     }
 
     if (s.role && s.role.owner) {

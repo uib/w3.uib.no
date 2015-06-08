@@ -130,6 +130,12 @@ a.ember-view.active {
   font-size: 50%;
 }
 
+.fact > .extra-info {
+  font-size: 70%;
+  text-align: left;
+  padding: 0.1ex 1ex;
+}
+
 ul.categories li {
   display: inline-block;
   margin-right: 2ex;

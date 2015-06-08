@@ -81,8 +81,8 @@ If that's not available to you can browse the same information by visiting <a hr
       <div class="fact"><span class="title">{{fact.title}}</span> {{fact.value}}</div>
     {{/each}}
 
-    {{# if related.service_owner }}
-      <div class="owner fact">
+    {{#if related.service_owner }}
+      <div class="fact">
       <span class="title">Tjenesteeier</span>
       {{related.service_owner.title}}
       {{#if role.owner }}<a {{bind-attr href=role.owner_link title=role.owner_name class=:owner}}><i class="fa fa-user"></i></a>{{/if}}
@@ -91,6 +91,20 @@ If that's not available to you can browse the same information by visiting <a hr
 
   </div>
   {{/if}}
+
+    {{#if related.support_contact }}
+      <div class="fact">
+      <span class="title">Brukerstøtte</span>
+	  {{related.support_contact.title}}
+	  <div class="extra-info">
+	  {{#if related.support_contact.info.hours}}Åpningstid: {{related.support_contact.info.hours}}<br>{{/if}}
+	  {{#if related.support_contact.info.phone}}Telefon: {{related.support_contact.info.phone}}<br>{{/if}}
+	  {{#if related.support_contact.info.visiting_address}}Besøksadresse: {{related.support_contact.info.visiting_address}}<br>{{/if}}
+	  {{#if related.support_contact.info.link.tracker}}<a href="{{related.support_contact.info.link.tracker}}">{{related.support_contact.info.link.tracker}}</a><br>{{/if}}
+	  </div>
+      </div>
+    {{/if }}
+
 
   {{#if categories }}
     <ul class="categories">
