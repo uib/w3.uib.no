@@ -97,6 +97,16 @@ function uib_calendar3__index_page($area_nid=NULL) {
     return format_date(strtotime($isodatetime. 'Z'), 'custom', 'G:i');
   };
 
+  // Real event type names
+  $event_types = array();
+  $field_info = field_info_field('field_uib_event_type');
+  if (isset($field_info['settings']['allowed_values'])) {
+    foreach($field_info['settings']['allowed_values'] as $type_key => $type_value) {
+      $event_types[$type_key] = t($type_value);
+    }
+  }
+  asort($event_types);
+
   foreach ($select->execute() as $row) {
     $node[$row->nid] = $row;
     $type = $row->field_uib_event_type_value;
@@ -189,15 +199,14 @@ function uib_calendar3__index_page($area_nid=NULL) {
     '#markup' => '<div id=datepicker><p>Select start date</p></div>',
   );
 
-  // event type table
-  ksort($event_type_count);
-
-  // add checkboxes
-  foreach ($event_type_count as $type => $count) {
-    $type_list_block[$type] = array(
-      '#markup' => "<div><input id='check-$type' type='checkbox' data-type='$type' checked> <label for='check-$type' class=option>$type ($count)</label></div>",
-    );
+  foreach ($event_types as $type_key => $type_value) {
+    if (!empty($event_type_count[$type_key])) {
+      $type_list_block[$type_key] = array(
+        '#markup' => "<div><input id='check-$type_key' type='checkbox' data-type='$type_key' checked> <label for='check-$type_key' class=option>$type_value ($event_type_count[$type_key])</label></div>",
+      );
+    }
   }
+
   $type_list_block['hide'] = array(
     '#markup' => "<button id='hide-events'>hide all events</button>",
   );
@@ -225,7 +234,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
         // XXX would be better to tell how many days there are left
         $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $date($event->field_uib_date_value2))) . '</div>';
         $ongoing[$nid] = array(
-          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($type)" . $info . '</div>',
+          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($event_types[$type])" . $info . '</div>',
         );
       }
 
@@ -303,7 +312,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
       }
       $info = "<div class='event-entry-info'>" . implode(', ', $info) . "</div>";
       $this_day[$nid] = array(
-        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . " ($type)" . $info . '</div>',
+        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . " ($event_types[$type])" . $info . '</div>',
       );
     }
 
