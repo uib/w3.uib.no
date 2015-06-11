@@ -555,45 +555,18 @@ function uib_study_block_view($delta = '') {
           );
           break;
         }
-        $iterate = count($data[0]['#items']);
-        for ($i=0; $i < $iterate; $i++) {
-          if (isset($data[0]['#items'][$i]['#variants'])) {
-            if ($semesterQQ == $prevSemQQ) {
-              if (isset($data[0]['#items'][$i]['#variants'][$currSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$currSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$nextSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$nextSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$prevSemQQ])) {
-                $data[0]['#items'][$i]['#text'] = NULL;
-              }
-            }
-            elseif ($semesterQQ == $nextSemQQ) {
-              if (isset($data[0]['#items'][$i]['#variants'][$prevSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$prevSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$currSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$currSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$nextSemQQ])) {
-                $data[0]['#items'][$i]['#text'] = NULL;
-              }
 
-            }
-            else {
-              if (isset($data[0]['#items'][$i]['#variants'][$nextSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$nextSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$prevSemQQ])) {
-                unset($data[0]['#items'][$i]['#variants'][$prevSemQQ]);
-              }
-              if (isset($data[0]['#items'][$i]['#variants'][$currSemQQ])) {
-                $data[0]['#items'][$i]['#text'] = NULL;
+        # promote the right variant
+        if ($semesterQQ) {
+          foreach (array_keys($data) as $i) {
+            foreach (array_keys($data[$i]['#items']) as $j) {
+              if (isset($data[$i]['#items'][$j]['#variants'][$semesterQQ])) {
+                $data[$i]['#items'][$j]['#text'] = $data[$i]['#items'][$j]['#variants'][$semesterQQ];
               }
             }
           }
         }
+
         foreach ($splice_list as $splice_item) {
           uib_study__extract_study_info($data, $splice_item);
         }
@@ -1592,46 +1565,7 @@ function uib_study__text_markup($item, $is_course, $plain = FALSE) {
   }
   $tmp_markup = '';
   if ($is_course) {
-    $variants = '';
-    $prev = FALSE;
-    $next = FALSE;
-    list($previous_semester, $current_semester, $next_semester) = uib_study__get_adjacent_semesters();
-    if (isset($item['#variants'])) {
-      foreach ($item['#variants'] as $sem_key => $sem_variant) {
-        if ($sem_key == $previous_semester) {
-          $css_semester = 'previous-semester';
-          $prev = TRUE;
-        }
-        elseif ($sem_key == $next_semester) {
-          $css_semester = 'next-semester';
-          $next = TRUE;
-        }
-        $tmp_markup .= '<div class="' . $css_semester . ' ' . check_plain($sem_key) . '">';
-        if ($plain) {
-          // no html tags
-          $tmp_markup .= check_plain(strip_tags($sem_variant));
-        }
-        else {
-          // keep html tags
-          $tmp_markup .= uib_study__title_and_text($item['#title'], $sem_variant);
-        }
-        $tmp_markup .= '</div>';
-      }
-    }
-    if ($prev) {
-      $variants .= 'previous-exists ';
-    }
-    if ($next) {
-      $variants .= 'next-exists ';
-    }
-    if (empty($variants)) {
-      $variants = 'no-variants';
-    }
-    else {
-      $variants .= 'variants-exist ';
-    }
-    $variants = trim($variants);
-    $tmp_markup .= '<div class="current-semester ' . $current_semester . ' ' . $variants . '">';
+    $tmp_markup .= '<div>';
   }
   if ($plain) {
     // no html tags
