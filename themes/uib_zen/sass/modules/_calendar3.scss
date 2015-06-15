@@ -39,5 +39,65 @@
 
   #datepicker {
     margin-bottom: 3em;
+
+    .ui-datepicker {
+      padding: 0;
+      border: 0;
+    }
+
+    .ui-corner-all {
+      border-radius: 0;
+    }
+
+    p {
+      font-size: $base-font-size;
+    }
+
+    .ui-datepicker-header {
+      background: #d95900;
+      border: 0;
+      color: white;
+      a:hover {
+        background-color: transparent;
+        background-image: none;
+      }
+    }
+
+    .ui-datepicker-calendar {
+      .ui-state-default {
+        background: #fff;
+        border: 0;
+        color: $font-color-dark;
+        font-size: $base-font-size;
+      }
+
+      .ui-state-hover {
+        background-color: $light-grey;
+      }
+
+      .ui-state-highlight {
+        // today
+        background-color: $light-grey;
+      }
+
+      .ui-state-active {
+        background-color: #000;
+        color: #fff;
+      }
+
+      th {
+        font-weight: normal;
+      }
+
+      tr {
+        border-bottom: 1px solid $light-grey;
+      }
+
+      td {
+        a {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
