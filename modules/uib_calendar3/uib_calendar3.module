@@ -91,7 +91,9 @@ function uib_calendar3__index_page($area_nid=NULL) {
   $event_type_count = array();
 
   // helper functions
-  $date = function ($isodatetime) { return substr($isodatetime, 0, 10); }; // XXX care about timezone?
+  $date = function ($isodatetime) {
+    return substr($isodatetime, 0, 10);
+  }; // XXX care about timezone?
   $time = function ($isodatetime) {
     // convert from UTC time to local time
     return format_date(strtotime($isodatetime. 'Z'), 'custom', 'G:i');
@@ -159,9 +161,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
 
   ksort($events_by_day);
 
-  //dpm($node);
-  //dpm($events_by_day);
-
   // generate the render array for the page
   $page = array();
 
@@ -176,49 +175,64 @@ function uib_calendar3__index_page($area_nid=NULL) {
     $day_aka[date('Y-m-d', $t)] = strtolower(format_date($t, 'custom', 'l'));
   }
 
-  $page['header'] = array(
-    '#type' => 'html_tag',
-    '#tag' => 'h2',
-    '#value' => t('Upcoming events at the university'),
-  );
-  if ($area) {
-    $page['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
-  }
-
   $type_list_block = array(
     '#type' => 'container',
     '#attributes' => array(
       'class' => array('calendar-types'),
-      'style' => 'float: right; padding-left: 2ex;',
     ),
   );
 
   // datepicker
   drupal_add_library('system', 'ui.datepicker');
   $type_list_block['datepicker'] = array(
-    '#markup' => '<div id=datepicker><p>Select start date</p></div>',
+    '#markup' => '<div id="datepicker"><p>' . t('Select start date') . '</p></div>',
   );
 
+  $type_list_block['event-types-filter'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('event-types-filter'),
+    ),
+  );
+  $type_list_block['event-types-filter']['lead'] = array(
+    '#markup' => '<p>' . t('Filter by event type') . '</p>',
+  );
   foreach ($event_types as $type_key => $type_value) {
     if (!empty($event_type_count[$type_key])) {
-      $type_list_block[$type_key] = array(
+      $type_list_block['event-types-filter'][$type_key] = array(
         '#markup' => "<div><input id='check-$type_key' type='checkbox' data-type='$type_key'> <label for='check-$type_key' class=option>$type_value ($event_type_count[$type_key])</label></div>",
       );
     }
   }
 
-  $type_list_block['hide'] = array(
-    '#markup' => "<button id='hide-events'>hide all events</button>",
+  $type_list_block['event-types-filter']['show-all'] = array(
+    '#markup' => '<button id="show-events">' .  t('Show all events') . '</button>',
   );
 
   $page['types'] = $type_list_block;
+
+  $page['calendar'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('calendar-content'),
+    ),
+  );
+
+  $page['calendar']['header'] = array(
+    '#type' => 'html_tag',
+    '#tag' => 'h1',
+    '#value' => t('Upcoming events at the university'),
+  );
+  if ($area) {
+    $page['calendar']['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
+  }
 
   $last_year = NULL;
   $last_week = NULL;
   $day_limit = 0; // set to 0 for no limit
   foreach ($events_by_day as $day => $events) {
     // insert entry for ongoing events (just after the initial date)
-    if ($ongoing_events && !isset($page['ongoing']) && $day > $from_date) {
+    if ($ongoing_events && !isset($page['calendar']['ongoing']) && $day > $from_date) {
       $ongoing = array(
         '#type' => 'container',
         '#attributes' => array('class' => array('calendar-date ongoing')),
@@ -238,12 +252,12 @@ function uib_calendar3__index_page($area_nid=NULL) {
         );
       }
 
-      $page['ongoing'] = $ongoing;
+      $page['calendar']['ongoing'] = $ongoing;
     }
 
     $year = substr($day, 0, 4);
     if ($year != $last_year) {
-      $page["year-$year"] = array(
+      $page['calendar']["year-$year"] = array(
         '#type' => 'html_tag',
         '#tag' => 'h2',
         '#value' => $year,
@@ -256,7 +270,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
 
     $week = date('W', strtotime($day));
     if ($week != $last_week) {
-      $page["week-$day"] = array(
+      $page['calendar']["week-$day"] = array(
         '#type' => 'html_tag',
         '#tag' => 'h2',
         '#value' => t('Week !week', array('!week' => $week)),
@@ -316,7 +330,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
       );
     }
 
-    $page[$day] = $this_day;
+    $page['calendar'][$day] = $this_day;
 
     if ($day_limit && --$day_limit == 0)
       break;

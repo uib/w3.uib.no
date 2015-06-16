@@ -26,9 +26,9 @@ jQuery(document).ready(function($) {
       v.toggleClass('collapsed', v.has('.event-entry:visible').length == 0);
     });
   });
-  $('#hide-events').click(function() {
-    $('.event-entry').toggle(false);
-    $('.calendar-date').addClass('collapsed');
+  $('#show-events').click(function() {
+    $('.event-entry').toggle(true);
+    $('.calendar-date').removeClass('collapsed');
     $('.calendar-types input').each(function() {
       this.checked = false;
     });

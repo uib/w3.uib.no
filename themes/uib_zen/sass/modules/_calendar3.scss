@@ -2,43 +2,98 @@
 // Styles for calendar3
 /////////////
 
-.page-calendar3 {
+$zen-column-count: 5;
+
+@media all and (min-width: 720px) {
+  .calendar-content {
+    @include zen-grid-item(3, 1);
+    h2.year {
+      font-weight: normal;
+      font-size: 500%;
+      position: absolute;
+      margin-left: -2.2em;
+      margin-top: 0.66em;
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+    }
+
+    h2.week {
+      font-weight: normal;
+      position: absolute;
+      margin-left: -3em;
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+    }
+  }
+  .calendar-types {
+    @include zen-grid-item(1, 4);
+    margin-top: 4.2em;
+  }
+}
+
+.page-calendar3,
+.page-node-calendar3 {
   h2.year {
-    font-weight: normal;
-    font-size: 500%;
-    position: absolute;
-    margin-left: -2em;
-    transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
+    color: #d95900;
   }
 
   h2.week {
-    margin-top: 4em;
-    border-top: 1px solid #555;
-    font-weight: normal;
-    font-size: 50%;
-    width: 50%;
+    margin-top: 2.5em;
+  }
+
+  .event-entry {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid $light-grey;
+    a {
+      font-size: $base-font-size;
+    }
+  }
+
+  .ongoing {
+    background-color: #ecdbcb;
+    .event-entry {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
   }
 
   .calendar-date {
     margin-top: 2em;
+    h3 {
+      background-color: #026f9c;
+      color: #fff;
+      padding: 0.5em;
+    }
+    h3:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
   }
 
   .calendar-date.collapsed h3 {
     opacity: 0.5;
   }
 
-  .calendar-date h3:hover {
-    opacity: 0.7;
-    cursor: pointer;
-  }
-
   .event-entry {
     margin-top: 1ex;
   }
 
+  .event-types-filter {
+    p {
+      font-size: $base-font-size;
+    }
+
+    #show-events {
+      margin-top: 0.5em;
+    }
+  }
+
   #datepicker {
     margin-bottom: 3em;
+    p {
+      font-size: $base-font-size;
+    }
 
     .ui-datepicker {
       padding: 0;
@@ -49,17 +104,15 @@
       border-radius: 0;
     }
 
-    p {
-      font-size: $base-font-size;
-    }
-
     .ui-datepicker-header {
       background: #d95900;
       border: 0;
       color: white;
+
       a:hover {
         background-color: transparent;
         background-image: none;
+        cursor: pointer;
       }
     }
 
