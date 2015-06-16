@@ -172,3 +172,10 @@ function uib_setup_update_7017() {
   module_disable(array('eu_cookie_compliance'));
 }
 
+/**
+ * Disable and uninstall the calendar2 module
+ */
+function uib_setup_update_7018() {
+  module_disable(array('uib_calendar2', 'datepicker'));
+  drupal_uninstall_modules(array('uib_calendar2', 'datepicker'), FALSE);
+}
