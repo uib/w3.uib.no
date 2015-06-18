@@ -889,3 +889,46 @@ function uib_user__feed_format_post_render($markup) {
   $markup = preg_replace('/<h3(.*?)>(.*?)<\/h3>/','<h2 class="block__title block-title">\2</h2>', $markup);
   return $markup;
 }
+
+/**
+ * Get node ids for areas a user is connected to
+ *
+ *  @param [string] $user_name
+ *
+ *  @return [associative array] list of area node ids
+ *                              for connections as staff and content_manager
+ */
+function uib_user_get_user_connections($user_name = NULL) {
+  $connected_to = array();
+  if ($user_name) {
+    $uname = array();
+    $uname[] = $user_name;
+    $main = uib_sebra_get_main_user($user_name);
+    if ($main != $user_name) {
+      $uname[] = $main;
+    }
+    foreach ($uname as $u) {
+      if ($user = user_load_by_name($u)) {
+        // Connections as staff
+        $sql = "SELECT f.entity_id, n.title FROM field_data_field_uib_staff f
+        INNER JOIN node n on (f.entity_id = n.nid)
+        WHERE  f.field_uib_staff_target_id = :gbe
+        ORDER BY n.title";
+        $result = db_query($sql, array(':gbe' => $user->uid));
+        foreach ($result as $record) {
+          $connected_to['staff'][$record->entity_id] = $record;
+        }
+        // Connections as content manager
+        $sql = "SELECT f.entity_id, n.title FROM field_data_field_uib_content_manager f
+        INNER JOIN node n on (f.entity_id = n.nid)
+        WHERE  f.field_uib_content_manager_target_id = :gbe
+        ORDER BY n.title";
+        $result = db_query($sql, array(':gbe' => $user->uid));
+        foreach ($result as $record) {
+          $connected_to['content_manager'][$record->entity_id] = $record;
+        }
+      }
+    }
+  }
+  return $connected_to;
+}

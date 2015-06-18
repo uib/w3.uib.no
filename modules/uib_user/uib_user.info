@@ -22,6 +22,7 @@ dependencies[] = text
 dependencies[] = uib_area
 dependencies[] = uib_feed
 dependencies[] = uib_field_bases
+dependencies[] = uib_sebra
 dependencies[] = uibx
 dependencies[] = user
 dependencies[] = views
