@@ -1,3 +1,31 @@
+# Release 27 _2015-06-18_
+
+I denne releasen har hovedfokuset vært å ferdigstille kalenderen.
+
+Studentrapportsiden-utveksling:
+
+- Vi har fjernet litt overflødig hjelpetekst på utvekslingssiden #10668
+- Vi har lagt til hjelpetekst på avkrysningsboksene på utvekslingssiden #10669
+- Avtaler viste feil eier og dermed ble filtreringen av avtaler ikke brukbar. Feilen er nå fikset og avtaler viser nå riktig eier #11100
+- Vi har endret hjelpeteksten på studentrapportsiden for å passe med endringene som ble gjort i tidligere releaser #11147
+- Vi har gjort det slik at cron-jobben går en gang for dagen på studentrapportsiden #11045
+
+Ny kalender:
+
+- Vi har gjort endringer på filtreringen på den nye kalenderen #10882
+- Generell styling av ny kalender #10902 #10903
+- Kalenderen widgeten på kalendersiden har fått forbedret brukeropplevelse og nytt design #10904
+- Eventtypene viser nå riktig versjon #11074
+- Vi har avinstalert calendar2-modulen #11161
+
+Tjenestekatalogen:
+
+- Informasjon om hvordan å nå brukerstøtte har blitt lagt til i tjenestekatalogen #11056
+
+Bugfiksing:
+
+- Emner viste innhold fra flere semestre, dette har vi nå fikset #10992
+
 #Release 26 _2015-06-04_
 
 Liten release hvor vi har fikset noen sebraproblemer og problemer med studentrapportsiden
