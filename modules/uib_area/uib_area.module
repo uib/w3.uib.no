@@ -1077,21 +1077,9 @@ function uib_area__list_area_aliases($node_alias = NULL) {
         'en' => 'rss.xml',
         'nb' => 'rss.xml',
       ),
-      'calrss.xml' => array(
-        'en' => 'calrss.xml',
-        'nb' => 'calrss.xml',
-      ),
       'calendar' => array(
         'en' => 'calendar',
         'nb' => 'kalender',
-      ),
-      'calendar/year' => array(
-        'en' => 'calendar/year',
-        'nb' => 'kalender/år',
-      ),
-      'calendar/day' => array(
-        'en' => 'calendar/day',
-        'nb' => 'kalender/dag',
       ),
       'courses' => array(
         'en' => 'courses',

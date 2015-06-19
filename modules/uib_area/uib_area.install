@@ -410,3 +410,15 @@ function uib_area_update_7012() {
   $ub_en->field_uib_area_banner['und'][0]['value'] = $new_banner_value_en;
   node_save($ub_en);
 }
+
+/**
+ * Remove calendar/day and calendar/year aliases
+ */
+function uib_area_update_7013() {
+  $q = db_query("SELECT pid, source FROM {url_alias} WHERE source LIKE '%/calendar/day' OR source LIKE '%/calendar/year'");
+  $paths = $q->fetchAllAssoc('pid');
+  foreach (array_keys($paths) as $pid) {
+    path_delete($pid);
+  }
+  uibx_log("Removed " . count($paths) . " path alias");
+}
