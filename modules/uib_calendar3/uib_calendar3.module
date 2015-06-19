@@ -4,11 +4,11 @@
  * Implements hook_menu().
  */
 function uib_calendar3_menu() {
-  $items["calendar3"] = array(
+  $items["calendar"] = array(
     'page callback' => 'uib_calendar3__index_page',
     'access callback' => TRUE,
   );
-  $items["node/%/calendar3"] = array(
+  $items["node/%/calendar"] = array(
     'page callback' => 'uib_calendar3__index_page',
     'access callback' => TRUE,
     'page arguments' => array(1),
