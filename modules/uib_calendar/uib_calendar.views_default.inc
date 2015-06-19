@@ -430,7 +430,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['language']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
-  $handler->display->display_options['path'] = 'node/%/calendar';
+  $handler->display->display_options['path'] = 'node/%/calendar0';
 
   /* Display: Day */
   $handler = $view->new_display('page', 'Day', 'page_4');
@@ -604,7 +604,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['language']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
-  $handler->display->display_options['path'] = 'node/%/calendar/day';
+  $handler->display->display_options['path'] = 'node/%/calendar0/day';
 
   /* Display: Mini calendar */
   $handler = $view->new_display('block', 'Mini calendar', 'block_2');
@@ -1042,7 +1042,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_uib_date_value']['field'] = 'field_uib_date_value';
   $handler->display->display_options['filters']['field_uib_date_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_uib_date_value']['default_date'] = 'now';
-  $handler->display->display_options['path'] = 'node/%/calrss.xml';
+  $handler->display->display_options['path'] = 'node/%/calendar0/rss.xml';
 
   /* Display: Year */
   $handler = $view->new_display('page', 'Year', 'page_1');
@@ -1238,7 +1238,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['language']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
-  $handler->display->display_options['path'] = 'node/%/calendar/year';
+  $handler->display->display_options['path'] = 'node/%/calendar0/year';
 
   /* Display: Event filter year */
   $handler = $view->new_display('block', 'Event filter year', 'block_5');
@@ -1682,7 +1682,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['language']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
-  $handler->display->display_options['path'] = 'calendar';
+  $handler->display->display_options['path'] = 'calendar0';
 
   /* Display: Day */
   $handler = $view->new_display('page', 'Day', 'page_4');
@@ -1850,7 +1850,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_uib_show_global_calendar_value']['value'] = array(
     1 => '1',
   );
-  $handler->display->display_options['path'] = 'calendar/day';
+  $handler->display->display_options['path'] = 'calendar0/day';
 
   /* Display: Mini calendar */
   $handler = $view->new_display('block', 'Mini calendar', 'block_2');
@@ -2155,7 +2155,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_uib_show_global_calendar_value']['value'] = array(
     1 => '1',
   );
-  $handler->display->display_options['path'] = 'calrss.xml';
+  $handler->display->display_options['path'] = 'calendar0/rss.xml';
 
   /* Display: Year */
   $handler = $view->new_display('page', 'Year', 'page_1');
@@ -2346,7 +2346,7 @@ function uib_calendar_views_default_views() {
   $handler->display->display_options['filters']['field_uib_show_global_calendar_value']['value'] = array(
     1 => '1',
   );
-  $handler->display->display_options['path'] = 'calendar/year';
+  $handler->display->display_options['path'] = 'calendar0/year';
 
   /* Display: Event filter year */
   $handler = $view->new_display('block', 'Event filter year', 'block_5');
