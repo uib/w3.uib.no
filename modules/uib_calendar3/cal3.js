@@ -24,25 +24,25 @@ jQuery(document).ready(function($) {
 
   /* click event-type checkbox */
   $('.calendar-types input').click(function() {
-    var $type = $(this).data('type');
-    var $checked = this.checked;
-    var $count_checked = 0;
+    var type = $(this).data('type');
+    var checked = this.checked;
+    var count_checked = 0;
     $('.calendar-types input').each(function() {
       if (this.checked) {
-        $count_checked++;
+        count_checked++;
       }
     });
-    if (!$count_checked) {
+    if (!count_checked) {
       // make them all visible
       $('.event-entry').toggle(true);
       $('.calendar-date').removeClass('collapsed');
       return;
     }
-    if ($checked && $count_checked == 1) {
+    if (checked && count_checked == 1) {
       // everyone was visible before
       $('.event-entry').toggle(false);
     }
-    $('.event-entry-' + $type).toggle($checked);
+    $('.event-entry-' + type).toggle(checked);
     history.replaceState({}, 'Click', '?' + query_state());
     recalculate_collapsed();
   });
