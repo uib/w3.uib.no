@@ -29,7 +29,7 @@ function uib_content_list_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_uib_step_content',
     'label' => 'Step content',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'behaviors' => array(
         'prepopulate' => array(
