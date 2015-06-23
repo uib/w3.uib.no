@@ -7,7 +7,7 @@ $zen-column-count: 5;
 @media all and (min-width: 720px) {
   .calendar-content {
     @include zen-grid-item(3, 1);
-    h2.year {
+    .calendar-year > h2 {
       font-weight: normal;
       font-size: 500%;
       position: absolute;
@@ -17,7 +17,7 @@ $zen-column-count: 5;
       -webkit-transform: rotate(-90deg);
     }
 
-    h2.week {
+    .calendar-week > h2 {
       font-weight: normal;
       position: absolute;
       margin-left: -3em;
@@ -33,11 +33,11 @@ $zen-column-count: 5;
 
 .page-calendar,
 .page-node-calendar {
-  h2.year {
+  .calendar-year > h2 {
     color: #d95900;
   }
 
-  h2.week {
+  .calendar-week > h2 {
     margin-top: 2.5em;
   }
 
