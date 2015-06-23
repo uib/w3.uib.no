@@ -13,21 +13,28 @@ $zen-column-count: 5;
         font-weight: normal;
         font-size: 500%;
         position: absolute;
-        margin-left: -2.2em;
-        margin-top: 0.66em;
-        -webkit-transform: rotate(-90deg);
-        transform: rotate(-90deg);
+        margin: 0;
+        width: 7ex;
+        text-align: right;
+        -webkit-transform: rotate(-90deg) translate(0,-10.8ex);
+        -webkit-transform-origin: 100% 0%;
+        transform: rotate(-90deg) translate(0,-10.8ex);
+        transform-origin: 100% 0%;
       }
     }
 
     .calendar-week {
       min-height: 5em;
       > h2 {
+        margin: 0;
         font-weight: normal;
         position: absolute;
-        margin-left: -3em;
-        -webkit-transform: rotate(-90deg);
-        -transform: rotate(-90deg);
+        width: 10ex;
+        text-align: right;
+        -webkit-transform: rotate(-90deg) translate(0,-14ex);
+        -webkit-transform-origin: 100% 0%;
+        transform: rotate(-90deg) translate(0,-14ex);
+        transform-origin: 100% 0%;
       }
     }
   }
@@ -44,7 +51,6 @@ $zen-column-count: 5;
   }
 
   .calendar-week > h2 {
-    margin-top: 2.5em;
   }
 
   .event-entry {
