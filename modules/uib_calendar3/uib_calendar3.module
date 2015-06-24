@@ -94,6 +94,9 @@ function uib_calendar3__index_page($area_nid=NULL) {
   $date = function ($isodatetime) {
     return substr($isodatetime, 0, 10);
   }; // XXX care about timezone?
+  $formatted_date = function ($isodatetime) {
+    return format_date(strtotime($isodatetime. 'Z'), 'medium');
+  };
   $time = function ($isodatetime) {
     // convert from UTC time to local time
     return format_date(strtotime($isodatetime. 'Z'), 'custom', 'H:i');
@@ -138,7 +141,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
       else {
         $events_by_day[$date($row->field_uib_date_value)][] = array(
           'suffix' => t('starts'),
-          'info' => array(t('Event ends at !date', array('!date' => $date($row->field_uib_date_value2)))),
+          'info' => array(t('Event ends at !date', array('!date' => $formatted_date($row->field_uib_date_value2)))),
           'time' => $time($row->field_uib_date_value),
           'nid' => $row->nid,
         );
@@ -152,7 +155,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
     if (isset($row->field_uib_deadline_value) && $date(($row->field_uib_deadline_value)) >= $from_date) {
       $events_by_day[$date($row->field_uib_deadline_value)][] = array(
         'suffix' => t('deadline'),
-        'info' => array(t('Event starts at !date', array('!date' => $date($row->field_uib_date_value)))),
+        'info' => array(t('Event starts at !date', array('!date' => $formatted_date($row->field_uib_date_value)))),
         'time' => $time($row->field_uib_deadline_value),
         'nid' => $row->nid,
       );
@@ -251,9 +254,9 @@ function uib_calendar3__index_page($area_nid=NULL) {
       foreach ($ongoing_events as $nid) {
         $event = $node[$nid];
         $type = $event->field_uib_event_type_value;
-        $ends = $date($event->field_uib_date_value2);
         // XXX would be better to tell how many days there are left
-        $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $ends)) . '</div>';
+        $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $formatted_date($event->field_uib_date_value2))) . '</div>';
+        $ends = $date($event->field_uib_date_value2);
         $ongoing["$ends $nid"] = array(
           '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($event_types[$type])" . $info . '</div>',
         );
