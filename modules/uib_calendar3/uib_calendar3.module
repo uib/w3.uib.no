@@ -159,6 +159,10 @@ function uib_calendar3__index_page($area_nid=NULL) {
     }
   }
 
+  if (!isset($events_by_day[$from_date])) {
+    $events_by_day[$from_date] = array();
+  }
+
   ksort($events_by_day);
 
   // generate the render array for the page
@@ -232,7 +236,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
   $day_limit = 0; // set to 0 for no limit
   foreach ($events_by_day as $day => $events) {
     // insert entry for ongoing events (just after the initial date)
-    if ($ongoing_events && !isset($page['calendar']['ongoing']) && $day > $from_date) {
+    if ($ongoing_events && $day > $from_date) {
       $ongoing = array(
         '#type' => 'container',
         '#attributes' => array('class' => array('calendar-date ongoing')),
@@ -252,7 +256,8 @@ function uib_calendar3__index_page($area_nid=NULL) {
         );
       }
 
-      $page['calendar']['ongoing'] = $ongoing;
+      $this_week['ongoing'] = $ongoing;
+      $ongoing_events = FALSE; // don't output this section again
     }
 
     $year = substr($day, 0, 4);
