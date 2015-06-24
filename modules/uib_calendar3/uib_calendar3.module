@@ -254,8 +254,22 @@ function uib_calendar3__index_page($area_nid=NULL) {
       foreach ($ongoing_events as $nid) {
         $event = $node[$nid];
         $type = $event->field_uib_event_type_value;
-        // XXX would be better to tell how many days there are left
-        $info = '<div class=event-entry-info>' . t('Ends at !date', array('!date' => $formatted_date($event->field_uib_date_value2))) . '</div>';
+
+        $days_left = round((strtotime($date($event->field_uib_date_value2)) - strtotime($from_date)) / (24*60*60));
+        if ($days_left == 1) {
+          $info = t('One more day');
+        }
+        elseif ($days_left < 14) {
+          $info = t('!days more days', array('!days' => $days_left));
+        }
+        elseif ($days_left < 7*10) {
+          $info = t('!weeks more weeks', array('!weeks' => round($days_left/7)));
+        }
+        else {
+          $info = t('Ends at !date', array('!date' => $formatted_date($event->field_uib_date_value2)));
+        }
+        $info = "<div class=event-entry-info>$info</div>";
+
         $ends = $date($event->field_uib_date_value2);
         $ongoing["$ends $nid"] = array(
           '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($event_types[$type])" . $info . '</div>',
