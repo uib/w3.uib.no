@@ -192,26 +192,28 @@ function uib_calendar3__index_page($area_nid=NULL) {
     '#markup' => '<div id="datepicker"><p>' . t('Select start date') . '</p></div>',
   );
 
-  $type_list_block['event-types-filter'] = array(
-    '#type' => 'container',
-    '#attributes' => array(
-      'class' => array('event-types-filter'),
-    ),
-  );
-  $type_list_block['event-types-filter']['lead'] = array(
-    '#markup' => '<p>' . t('Filter by event type') . '</p>',
-  );
-  foreach ($event_types as $type_key => $type_value) {
-    if (!empty($event_type_count[$type_key])) {
-      $type_list_block['event-types-filter'][$type_key] = array(
-        '#markup' => "<div><input id='check-$type_key' type='checkbox' data-type='$type_key'> <label for='check-$type_key' class=option>$type_value ($event_type_count[$type_key])</label></div>",
-      );
+  if (count($event_type_count) > 1) {
+    $type_list_block['event-types-filter'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('event-types-filter'),
+      ),
+    );
+    $type_list_block['event-types-filter']['lead'] = array(
+      '#markup' => '<p>' . t('Filter by event type') . '</p>',
+    );
+    foreach ($event_types as $type_key => $type_value) {
+      if (!empty($event_type_count[$type_key])) {
+        $type_list_block['event-types-filter'][$type_key] = array(
+          '#markup' => "<div><input id='check-$type_key' type='checkbox' data-type='$type_key'> <label for='check-$type_key' class=option>$type_value ($event_type_count[$type_key])</label></div>",
+        );
+      }
     }
-  }
 
-  $type_list_block['event-types-filter']['show-all'] = array(
-    '#markup' => '<button id="show-events">' .  t('Show all events') . '</button>',
-  );
+    $type_list_block['event-types-filter']['show-all'] = array(
+      '#markup' => '<button id="show-events">' .  t('Show all events') . '</button>',
+    );
+  }
 
   $page['types'] = $type_list_block;
 
