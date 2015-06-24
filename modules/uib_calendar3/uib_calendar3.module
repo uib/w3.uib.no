@@ -246,7 +246,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
         '#type' => 'container',
         '#attributes' => array('class' => array('calendar-date ongoing')),
       );
-      $ongoing['header'] = array(
+      $ongoing['0000 header'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h3',
         '#value' => t('Still ongoing events') . ' (' . count($ongoing_events) . ')',
