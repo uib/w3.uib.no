@@ -422,3 +422,18 @@ function uib_area_update_7013() {
   }
   uibx_log("Removed " . count($paths) . " path alias");
 }
+
+/**
+ * Fix up Norwegian <area>/calendar aliases
+ */
+function uib_area_update_7014() {
+  $q = db_query("SELECT pid FROM {url_alias} WHERE language = 'nb' AND source LIKE '%/calendar' AND alias LIKE '%/calendar'");
+  $paths = $q->fetchCol();
+  foreach ($paths as $pid) {
+    $path = path_load($pid);
+    $path['old_alias'] = $path['alias'];
+    $path['alias'] = substr($path['alias'], 0, -8) . "kalender";
+    path_save($path);
+    print_r($path);
+  }
+}
