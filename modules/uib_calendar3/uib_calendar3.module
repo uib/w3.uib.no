@@ -96,7 +96,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
   }; // XXX care about timezone?
   $time = function ($isodatetime) {
     // convert from UTC time to local time
-    return format_date(strtotime($isodatetime. 'Z'), 'custom', 'G:i');
+    return format_date(strtotime($isodatetime. 'Z'), 'custom', 'H:i');
   };
 
   // Real event type names
