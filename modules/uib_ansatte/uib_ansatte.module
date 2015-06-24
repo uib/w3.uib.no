@@ -5,3 +5,6 @@
  */
 
 include_once 'uib_ansatte.features.inc';
+
+variable_set('uib_ansatte_nb_nid', 1);
+variable_set('uib_ansatte_en_nid', 2);

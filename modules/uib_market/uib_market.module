@@ -5,3 +5,19 @@
  */
 
 include_once 'uib_market.features.inc';
+/**
+ * @file
+ * Code for the UiB internal market module and feature.
+ */
+
+/**
+ * Implements hook_node_view().
+ */
+function uib_market_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'uib_market') {
+    $nid = ($langcode == 'nb') ?
+      intval(variable_get('uib_ansatte_nb_nid')) :
+      intval(variable_get('uib_ansatte_en_nid'));
+    uib_area__get_current($nid);
+  }
+}
