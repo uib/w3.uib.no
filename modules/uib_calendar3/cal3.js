@@ -36,6 +36,7 @@ jQuery(document).ready(function($) {
       // make them all visible
       $('.event-entry').toggle(true);
       $('.calendar-date').removeClass('collapsed');
+      history.replaceState({}, 'Show all', '?' + query_state());
       return;
     }
     if (checked && count_checked == 1) {
