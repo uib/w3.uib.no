@@ -179,3 +179,10 @@ function uib_setup_update_7018() {
   module_disable(array('uib_calendar2', 'datepicker'));
   drupal_uninstall_modules(array('uib_calendar2', 'datepicker'), FALSE);
 }
+
+/**
+ * Enable new module: uib_market
+ */
+function uib_setup_update_7019() {
+  module_enable(array('uib_market'));
+}
