@@ -92,21 +92,6 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
               'localized_options' => array(),
               'type' => 0,
             );
-            $date = explode('-', $item['page_arguments'][0]->field_uib_date['und'][0]['value']);
-            $uib_active_trail[] = array(
-              'title' => (string)$date[0],
-              'href' => $uib_active_trail[1]['href'] . '/calendar/year?dateyear=' . $date[0],
-              'link_path' => '',
-              'localized_options' => array(),
-              'type' => 0,
-            );
-            $uib_active_trail[] = array(
-              'title' => t(date("F", mktime(0,0,0,$date[1],1,2013))),
-              'href' => $uib_active_trail[1]['href'] . '/calendar?date=' . $date[0] . '-' . $date[1],
-              'link_path' => '',
-              'localized_options' => array(),
-              'type' => 0,
-            );
             break;
         }
         break;
