@@ -8,9 +8,15 @@ $zen-column-count: 5;
 .page-node-calendar {
   .calendar-year > h2 {
     color: #d95900;
+    font-weight: normal;
+    font-size: 300%;
+    text-align: center;
+    margin-bottom: -2ex;
   }
 
   .calendar-week > h2 {
+    font-weight: normal;
+    text-align: center;
   }
 
   .event-entry {
@@ -133,7 +139,6 @@ $zen-column-count: 5;
     .calendar-year {
       min-height: 15em;
       > h2 {
-        font-weight: normal;
         font-size: 500%;
         position: absolute;
         margin: 0;
