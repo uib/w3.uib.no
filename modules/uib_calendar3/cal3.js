@@ -22,8 +22,12 @@ jQuery(document).ready(function($) {
     return q.join('&');
   };
 
+  $('.calendar-types').click(function() {
+    $(this).toggleClass('is-visible');
+  });
+
   /* click event-type checkbox */
-  $('.calendar-types input').click(function() {
+  $('.calendar-types input').click(function(e) {
     var type = $(this).data('type');
     var checked = this.checked;
     var count_checked = 0;
@@ -46,16 +50,18 @@ jQuery(document).ready(function($) {
     $('.event-entry-' + type).toggle(checked);
     history.replaceState({}, 'Click', '?' + query_state());
     recalculate_collapsed();
+    e.stopPropagation();
   });
 
   /* click show button */
-  $('#show-events').click(function() {
+  $('#show-events').click(function(e) {
     $('.event-entry').toggle(true);
     $('.calendar-date').removeClass('collapsed');
     $('.calendar-types input').each(function() {
       this.checked = false;
     });
     history.replaceState({}, 'Show all', '?' + query_state());
+    e.stopPropagation();
   });
 
   /* click date */

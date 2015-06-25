@@ -171,3 +171,21 @@ $zen-column-count: 5;
     margin-top: 4.2em;
   }
 }
+
+@media all and (max-width: 719.99px) {
+  .calendar-types {
+    position: absolute;
+    background: white;
+    padding: 1ex 2ex;
+    border: 1px solid #aaa;
+    width: 36ex;
+    right: -36ex;
+    transition: right 1s;
+    z-index: 10;
+    box-shadow: 0 4px 4px #B3B3B3;
+  }
+
+  .is-visible, :hover {
+    right: 2px;
+  }
+}
