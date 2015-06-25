@@ -294,7 +294,8 @@ table.cols-6 {
 .view-special-study-listings,
 .view-uib-taxonomy-term .view-content,
 .view-exchange-agreements,
-.view-study-blocks {
+.view-study-blocks,
+.view-internal-market {
   @include study-list();
   li:nth-child(odd) {
     @extend %odd-study-item;

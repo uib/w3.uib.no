@@ -15,9 +15,26 @@ include_once 'uib_market.features.inc';
  */
 function uib_market_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'uib_market') {
+    // Force employee pages area when displaying a uib_market node
     $nid = ($langcode == 'nb') ?
       intval(variable_get('uib_ansatte_nb_nid')) :
       intval(variable_get('uib_ansatte_en_nid'));
     uib_area__get_current($nid);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function uib_market_preprocess_views_view(&$variables) {
+  global $language;
+  if ($variables['name'] == 'internal_market') {
+    if ($variables['display_id'] == 'page') {
+      // Force employee pages area for the view page display
+      $nid = ($language->language == 'nb') ?
+        intval(variable_get('uib_ansatte_nb_nid')) :
+        intval(variable_get('uib_ansatte_en_nid'));
+      uib_area__get_current($nid);
+    }
   }
 }

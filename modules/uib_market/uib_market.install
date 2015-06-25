@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_enable().
+ */
+function uib_market_enable() {
+  $new_alias = array(
+    'source' => 'foremployees/market',
+    'alias' => 'foransatte/marked',
+    'language' => 'nb',
+  );
+  path_save($new_alias);
+}
