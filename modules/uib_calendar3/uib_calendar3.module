@@ -162,6 +162,10 @@ function uib_calendar3__index_page($area_nid=NULL) {
     }
   }
 
+  if (empty($events_by_day)) {
+    drupal_set_message(t('No events found starting from !date. Try to select an earlier start date.', array('!date' => $formatted_date($from_date))));
+  }
+
   if (!isset($events_by_day[$from_date])) {
     $events_by_day[$from_date] = array();
   }
