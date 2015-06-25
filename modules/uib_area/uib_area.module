@@ -225,16 +225,18 @@ function uib_area_block_view($delta='') {
           ->fieldCondition('field_uib_area','target_id', $area->nid, '=')
           ->propertyCondition('nid', $exludes_nodes, 'NOT IN');
         $result = $query->execute();
-        $nids = array_keys($result['node']);
-        $nodes = node_load_multiple($nids);
-        $block['content'] = node_view_multiple($nodes);
-        $node_keys = array_keys($block['content']['nodes']);
-        foreach ($node_keys as $key) {
-          if (is_numeric($key) && empty($block['content']['nodes'][$key]['field_uib_main_media'])) {
-            $block['content']['nodes'][$key]['field_uib_main_media']['#markup'] =
-              '<div class="field-name-field-uib-main-media"><div class="field-items"><img src="/' .
-              path_to_theme() .
-              '/images/Recent_High.png" alt=""></div></div>';
+        if ($result) {
+          $nids = array_keys($result['node']);
+          $nodes = node_load_multiple($nids);
+          $block['content'] = node_view_multiple($nodes);
+          $node_keys = array_keys($block['content']['nodes']);
+          foreach ($node_keys as $key) {
+            if (is_numeric($key) && empty($block['content']['nodes'][$key]['field_uib_main_media'])) {
+              $block['content']['nodes'][$key]['field_uib_main_media']['#markup'] =
+                '<div class="field-name-field-uib-main-media"><div class="field-items"><img src="/' .
+                path_to_theme() .
+                '/images/Recent_High.png" alt=""></div></div>';
+            }
           }
         }
       }
