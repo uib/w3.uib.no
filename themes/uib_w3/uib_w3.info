@@ -1,0 +1,4 @@
+name = UiB w3 theme
+description = Drupal theme for UiB w3
+core = 7.x
+engine = phptemplate
