@@ -1,7 +1,7 @@
 #!/bin/bash
-if ! [ $(pwd|egrep -v '^/var/www/w3(|-prestaging.test|-kurs).uib.no$'|wc -l) -lt 1 ];then 
+if ! [ $(pwd|egrep -v '^/var/www/w3(|-prestaging.test|-kurs|-testsrv.test).uib.no$'|wc -l) -lt 1 ];then 
     echo Not a valid path...
-    echo "Valid paths: /var/www/w3(|-prestaging.test|-kurs).uib.no"
+    echo "Valid paths: /var/www/w3(|-prestaging.test|-kurs|-testsrv.test).uib.no"
     exit
 fi
 lockfile="/tmp/drupal_reset$(pwd |sed 's:/:_:g').lock"
@@ -11,7 +11,7 @@ echo $lockfile exists
 exit 1
 fi
 #Creating lockfile
-w > /tmp/drupal_reset$(pwd |sed 's:/:_:g').lock
+w > $lockfile 
 
 if  [ $# -gt 0 ] && [ $1 == "--yes" ] ; then
 echo "Running unnattended!!!!!"
@@ -56,6 +56,14 @@ if [ $(pwd) == '/var/www/w3-kurs.uib.no' ] ;then
 fi
 if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then 
     rsync -rhH --delete /prod_nettapp_w3/sites/w3.uib.no/files/  /nettapp_w3/sites/w3-prestaging.test.uib.no/files/ || exit 7
+fi
+if [ $(pwd) == '/var/www/w3-testsrv.test.uib.no' ] ;then 
+    mkdir -p /nettapp_w3/sites/w3-testsrv.test.uib.no/files/ 2>/dev/null
+    if [ $(date +%H) -lt 9 ] ;then 
+      rsync -rhH --delete /prod_nettapp_w3/sites/w3.uib.no/files/  /nettapp_w3/sites/w3-testsrv.test.uib.no/files/ || exit 7
+    else 
+      rsync -rhH --delete --size-only /prod_nettapp_w3/sites/w3.uib.no/files/  /nettapp_w3/sites/w3-testsrv.test.uib.no/files/ || exit 7
+    fi
 fi
 
 bundle check || bundle install || exit
