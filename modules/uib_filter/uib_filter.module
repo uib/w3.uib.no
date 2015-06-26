@@ -110,6 +110,46 @@ function uib_filter__process($text, $filter) {
           );
         }
         return render($block);
+      case 'pressrelease':
+        $block = array();
+        // Get last press releases
+        $limit = 10;
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'node')
+          ->entityCondition('bundle', 'uib_article')
+          ->fieldCondition('field_uib_article_type', 'value', 'press_release', '=')
+          ->propertyOrderBy('created', 'DESC')
+          ->range(0, $limit);
+        $result = $query->execute();
+        if ($result) {
+          $block['#prefix'] = '<div class="press-releases">';
+          $block['#suffix'] = '</div>';
+          $query = 'SELECT nid, title, created FROM {node} WHERE nid IN (:nids)';
+          $node_result = db_query($query, array(':nids' => array_keys($result['node'])));
+          $previous_date = '';
+          foreach ($node_result as $node) {
+            $current_date = date('Ymd', $node->created);
+            if ($current_date != $previous_date) {
+              $previous_date = $current_date;
+              $block[$current_date] = array(
+                'heading' => array(
+                  '#type' => 'html_tag',
+                  '#tag' => 'h3',
+                  '#value' => format_date($node->created),
+                ),
+                'list' => array(
+                  '#prefix' => '<ul>',
+                  '#suffix' => '</ul>',
+                ),
+              );
+            }
+            $href = 'node/' . $node->nid;
+            $block[$current_date]['list'][] = array(
+              '#markup' => '<li>' . l($node->title, $href) . '</li>',
+            );
+          }
+        }
+        return render($block);
       }
       return '(' . check_plain($matches[1]) . ' ' . t('unrecognized') . ')';
     },
