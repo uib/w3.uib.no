@@ -1,5 +1,6 @@
 HTML = \
   area.html \
+  adding-article-type.html \
   course_site-w3-kurs.uib.no.html \
   development-setup.html \
   drupal-sync-course-site.html \
