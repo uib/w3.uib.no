@@ -252,6 +252,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
         ':input[name="field_uib_article_type[und]"]' => array(
           array('value' => 'event'),
           array('value' => 'phd_press_release'),
+          array('value' => 'press_release'),
         ),
       ),
     );
@@ -338,7 +339,8 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
         '#states' => array(
           'invisible' => array(
             ':input[name="field_uib_article_type[und]"]' => array(
-              'value' => 'infopage'
+              array('value' => 'infopage'),
+              array('value' => 'press_release'),
             ),
           ),
         ),

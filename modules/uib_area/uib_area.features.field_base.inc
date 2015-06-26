@@ -168,6 +168,7 @@ function uib_area_field_default_field_bases() {
         'phd_press_release' => 'PhD press release',
         'evu_study_offer' => 'EVU offer',
         'no_sidebar' => 'No sidebar',
+        'press_release' => 'Press release',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
