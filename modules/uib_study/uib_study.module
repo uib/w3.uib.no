@@ -743,7 +743,7 @@ function uib_study_block_view($delta = '') {
       break;
     case 'study_facts':
       $node = menu_get_object();
-      if ($node) {
+      if ($node && isset($node->field_uib_study_type)) {
         $type = $node->field_uib_study_type['und'][0]['value'];
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
         global $language;
@@ -1041,22 +1041,26 @@ function uib_study_block_view($delta = '') {
       $node = menu_get_object();
       if ($node) {
         $study_node = entity_metadata_wrapper('node', $node);
-        if ($study_node->field_uib_study_category->value() == 'evu') {
-          include_once 'uib_study.evu.inc';
-          $block = uib_study__evu_courses_block($node);
+        if (isset($node->field_uib_study_category)) {
+          if ($study_node->field_uib_study_category->value() == 'evu') {
+            include_once 'uib_study.evu.inc';
+            $block = uib_study__evu_courses_block($node);
+          }
         }
       }
       break;
 
     case 'study_static_links':
       $node = menu_get_object();
-      if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
-        $markup = array();
-        $markup[] = l(t('Norwegian state educational loan fund'), 'http://www.lanekassen.no/');
-        $markup[] = l(t('Diplomatic relations'), 'http://www.regjeringen.no/nb/dep/ud/dep/forbindelser.html?id=447053');
-        $markup[] = l(t('Association for Norwegian students abroad'), 'http://www.ansa.no/');
-        $block['title'] = t('Relevant links');
-        $block['content'] = '<ul><li>' . implode('</li><li>', $markup) . '</li></ul>';
+      if (isset($node->field_uib_study_type)) {
+        if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
+          $markup = array();
+          $markup[] = l(t('Norwegian state educational loan fund'), 'http://www.lanekassen.no/');
+          $markup[] = l(t('Diplomatic relations'), 'http://www.regjeringen.no/nb/dep/ud/dep/forbindelser.html?id=447053');
+          $markup[] = l(t('Association for Norwegian students abroad'), 'http://www.ansa.no/');
+          $block['title'] = t('Relevant links');
+          $block['content'] = '<ul><li>' . implode('</li><li>', $markup) . '</li></ul>';
+         }
        }
       break;
   }
@@ -1921,9 +1925,11 @@ function uib_study__is_course($category=FALSE) {
   $is_course = FALSE;
   $node = menu_get_object();
   if ($node) {
-    $is_course = $node->field_uib_study_type['und'][0]['value'] == 'course';
-    if ($is_course && $category) {
-      $is_course = ($node->field_uib_study_category['und'][0]['value'] == $category);
+    if (isset($node->field_uib_study_type)) {
+      $is_course = $node->field_uib_study_type['und'][0]['value'] == 'course';
+      if ($is_course && $category) {
+        $is_course = ($node->field_uib_study_category['und'][0]['value'] == $category);
+      }
     }
   }
   return $is_course;
@@ -1939,8 +1945,10 @@ function uib_study__is_exchange($node = FALSE) {
     $node = menu_get_object();
   }
   if ($node) {
-    if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
-      $is_exchange = TRUE;
+    if (isset($node->field_uib_study_type)) {
+      if ($node->field_uib_study_type['und'][0]['value'] == 'exchange') {
+        $is_exchange = TRUE;
+      }
     }
   }
   return $is_exchange;
