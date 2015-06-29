@@ -363,6 +363,11 @@ function uib_calendar3__index_page($area_nid=NULL) {
         '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . " ($event_types[$type])" . $info . '</div>',
       );
     }
+    if (empty($events)) {
+      $this_day['no events'] = array(
+        '#markup' => "<p>" . t("There are no events on this day") . "</p>",
+      );
+    }
 
     $this_week[$day] = $this_day;
 
