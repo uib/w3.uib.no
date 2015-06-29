@@ -87,6 +87,18 @@ jQuery(document).ready(function($) {
     for (var i=0; i < q.length; i++) {
       if (q[i].substr(0, 2) == 'd=') {
         date = q[i].substr(2);
+        if (date.match(/^\d\d\d\d$/)) {
+          date += '-01-01';
+        }
+        else if (date.match(/^\d\d\d\d-\d\d$/)) {
+          date += '-01';
+        }
+        else if (date.match(/^\d\d\d\d-\d\d-\d\d$/)) {
+          // ok
+        }
+        else {
+          date = null;
+        }
       }
       else {
         var m = q[i].match(/^(\w+)(?:=(0|1))?$/);
