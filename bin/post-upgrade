@@ -4,6 +4,11 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
+if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
+    bin/site-drush en --yes uib_w3
+    bin/site-drush vset theme_default uib_w3
+fi
+
 REL=26
 
 if git tag | grep -q R$REL; then
