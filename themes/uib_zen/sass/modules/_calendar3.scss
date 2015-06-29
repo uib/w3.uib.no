@@ -170,6 +170,10 @@ $zen-column-count: 5;
     @include zen-grid-item(1, 5);
     margin-top: 4.2em;
   }
+
+  #show-filter, #close-filter {
+    display: none;
+  }
 }
 
 @media all and (max-width: 719.99px) {
@@ -179,13 +183,25 @@ $zen-column-count: 5;
     padding: 1ex 2ex;
     border: 1px solid #aaa;
     width: 36ex;
-    right: -36ex;
+    right: -41ex;
     transition: right 1s;
     z-index: 10;
     box-shadow: 0 4px 4px #B3B3B3;
   }
 
+  #close-filter {
+    position: absolute;
+    right: 1ex;
+  }
+
+  #show-filter {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: -4ex;
+    display: block;
+  }
+
   .is-visible {
-    right: 2px;
+    right: 1ex;
   }
 }

@@ -191,6 +191,9 @@ function uib_calendar3__index_page($area_nid=NULL) {
     '#attributes' => array(
       'class' => array('calendar-types'),
     ),
+    'close' => array(
+      '#markup' => '<button id="close-filter">' . t('Close') . '</button>',
+    ),
   );
 
   // datepicker
@@ -239,6 +242,9 @@ function uib_calendar3__index_page($area_nid=NULL) {
   if ($area) {
     $page['calendar']['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
   }
+  $page['calendar']['filter button'] = array(
+    '#markup' => '<button id="show-filter">' . t('Filter or change date') . '</button>',
+  );
 
   $this_year = NULL;
   $this_week = NULL;
