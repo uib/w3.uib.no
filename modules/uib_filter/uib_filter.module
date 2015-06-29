@@ -117,6 +117,7 @@ function uib_filter__process($text, $filter) {
         $query = new EntityFieldQuery();
         $query->entityCondition('entity_type', 'node')
           ->entityCondition('bundle', 'uib_article')
+          ->propertyCondition('status', 1)
           ->fieldCondition('field_uib_article_type', 'value', 'press_release', '=')
           ->propertyOrderBy('created', 'DESC')
           ->range(0, $limit);
