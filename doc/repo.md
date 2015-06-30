@@ -99,10 +99,6 @@ It’s used when installing the site from scratch.
 It declares what modules need to be installed and some install code
 that set things up.
 
-### `proto/`
-
-Static HTML prototypes; responsive design, etc.
-
 ### `modules/`
 
 Our [custom modules](modules.html).  Many of these written by
