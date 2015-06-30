@@ -2,3 +2,6 @@ name = UiB w3 theme
 description = Drupal theme for UiB w3
 core = 7.x
 engine = phptemplate
+
+settings[default_logo] = 0
+settings[logo_path] = sites/all/themes/uib/uib_w3/logo.svg
