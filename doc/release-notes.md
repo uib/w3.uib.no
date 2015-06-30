@@ -1,3 +1,33 @@
+# Release 28 _2015-06-30_
+
+Generelle oppdateringer og feilrettinger
+
+- Vi har rettet en feil hvor man kunne lagre innholdslister uten å hente inn innhold #10912
+- Oppdatert Drupal til versjon 7.38 #11167
+- Startet arbeidet med nytt druapl theme (redesign) #11257
+
+Ny funksjonalitet
+
+- Ny innholdstype indre marked #11213
+- Ny innholdstype pressemelding #10980
+
+Kalender
+
+- Endre url for ny kalender slik at den nye kalenderen erstatter den gamle #11189
+- Satt minimumshøyde for ukenummer slik at uker uten hendelser ikke legger seg over hverandre #11202
+- Satt datoformat til norsk dato #11216
+- Rettet feil hvor sortering på tidspunkt var uriktig #11217
+- Rettet feil hvor sortering på pågående arrangement var uriktig #11220
+- Justering av årstall og ukenummer for bedre oppstilling #11223
+- Rettet feil hvor brødsmulesti linket til sider som ikke eksisterer lenger #11254
+- Oppdatert alias for kalender #11189
+- Områder med tom kalender får infomelding #11199
+- Alle kalender-lenker går til ny kalender #11210
+- Valgt dato (selv når den er tom) kommer alltid øverst #11222
+- Justert ny kalendervisning på mobil #11260
+- Filtrering på kalender vises i url #10628
+
+
 # Release 27 _2015-06-18_
 
 I denne releasen har hovedfokuset vært å ferdigstille kalenderen.
