@@ -186,6 +186,22 @@ function uib_calendar3__index_page($area_nid=NULL) {
     $day_aka[date('Y-m-d', $t)] = strtolower(format_date($t, 'custom', 'l'));
   }
 
+  // Calendar header
+  $page['calendar_header'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('calendar-header'),
+    ),
+  );
+  $page['calendar_header']['header'] = array(
+    '#type' => 'html_tag',
+    '#tag' => 'h1',
+    '#value' => t('Upcoming events at the university'),
+  );
+  if ($area) {
+    $page['calendar_header']['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
+  }
+
   $type_list_block = array(
     '#type' => 'container',
     '#attributes' => array(
@@ -234,14 +250,6 @@ function uib_calendar3__index_page($area_nid=NULL) {
     ),
   );
 
-  $page['calendar']['header'] = array(
-    '#type' => 'html_tag',
-    '#tag' => 'h1',
-    '#value' => t('Upcoming events at the university'),
-  );
-  if ($area) {
-    $page['calendar']['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
-  }
   $page['calendar']['filter button'] = array(
     '#markup' => '<button id="show-filter">' . t('Filter or change date') . '</button>',
   );

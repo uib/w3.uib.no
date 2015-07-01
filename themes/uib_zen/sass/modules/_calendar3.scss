@@ -134,6 +134,11 @@ $zen-column-count: 5;
 }
 
 @media all and (min-width: 720px) {
+  .calendar-header {
+    @include zen-grid-item(5, 1);
+    margin-left: 7.3em;
+  }
+
   .calendar-content {
     @include zen-grid-item(3, 1.5);
     .calendar-year {
@@ -167,6 +172,7 @@ $zen-column-count: 5;
     }
   }
   .calendar-types {
+    @include zen-clear();
     @include zen-grid-item(1, 5);
     margin-top: 4.2em;
   }
