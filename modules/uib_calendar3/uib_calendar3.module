@@ -140,23 +140,23 @@ function uib_calendar3__index_page($area_nid=NULL) {
       }
       else {
         $events_by_day[$date($row->field_uib_date_value)][] = array(
-          'suffix' => t('starts'),
-          'info' => array(t('Event ends at !date', array('!date' => $formatted_date($row->field_uib_date_value2)))),
+          'suffix' => drupal_ucfirst(t('starts')) . ' - ' . t('Event ends at !date', array('!date' => $formatted_date($row->field_uib_date_value2))),
+          'info' => array(),
           'time' => $time($row->field_uib_date_value),
           'nid' => $row->nid,
         );
       }
       $events_by_day[$date($row->field_uib_date_value2)][] = array(
-        'suffix' => t('ends'),
+        'suffix' => drupal_ucfirst(t('ends')),
         'time' => $time($row->field_uib_date_value2),
         'nid' => $row->nid,
       );
     }
     if (isset($row->field_uib_deadline_value) && $date(($row->field_uib_deadline_value)) >= $from_date) {
       $events_by_day[$date($row->field_uib_deadline_value)][] = array(
-        'suffix' => t('deadline'),
+        'suffix' => drupal_ucfirst(t('deadline')) . ' ' . $formatted_date($row->field_uib_deadline_value) . '. ' . t('Time') . ': ' . $time($row->field_uib_deadline_value),
         'info' => array(t('Event starts at !date', array('!date' => $formatted_date($row->field_uib_date_value)))),
-        'time' => $time($row->field_uib_deadline_value),
+        'time' => '',
         'nid' => $row->nid,
       );
     }
@@ -364,17 +364,24 @@ function uib_calendar3__index_page($area_nid=NULL) {
 
       $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
       $info = isset($event['info']) ? $event['info'] : array();
-      array_unshift($info, t('Time !time', array('!time' => $time)));
+      if (!empty($time)) {
+        array_unshift($info, t('Time') . ': ' . $time);
+      }
       $location = $node[$nid]->field_uib_location_value;
       if ($location) {
-        if (strlen($location) > 52) {
-          $location = substr($location, 0, 50) . '...';
+        if (strlen($location) > 75) {
+          $location = substr($location, 0, 73) . '...';
         }
         $info[] = t('Location: !location', array('!location' => $location));
       }
-      $info = "<div class='event-entry-info'>" . implode(', ', $info) . "</div>";
+      $info = "<div class='event-entry-info'>" . implode('<br>', $info) . "</div>";
+      $markup = "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . " ($event_types[$type])";
+      if (!empty($suffix)) {
+        $markup .= '<br>' . $suffix;
+      }
+      $markup .= '<br>' . $info . '</div>';
       $this_day[$nid] = array(
-        '#markup' => "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . $suffix . " ($event_types[$type])" . $info . '</div>',
+        '#markup' => $markup,
       );
     }
     if (empty($events)) {
