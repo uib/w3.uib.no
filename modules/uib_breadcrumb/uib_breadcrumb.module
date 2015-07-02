@@ -143,6 +143,15 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           );
         }
         break;
+      case 'uib_market':
+        $uib_active_trail[] = array(
+          'title' => t('Internal market'),
+          'href' => 'foremployees/market',
+          'link_path' => '',
+          'localized_options' => array(),
+          'type' => 0,
+        );
+        break;
     }
   }
   $active_trail = $uib_active_trail;
