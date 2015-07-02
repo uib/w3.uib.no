@@ -2,7 +2,7 @@
 // Styles for calendar3
 /////////////
 
-$zen-column-count: 5;
+$zen-column-count: 10;
 
 .page-calendar,
 .page-node-calendar {
@@ -58,12 +58,31 @@ $zen-column-count: 5;
   }
 
   .event-types-filter {
+    div {
+      background-color: #f1f2f2;
+      padding: 0.5em 0.5em 0 0.5em;
+      border-bottom: 1px solid #d8d8d8;
+      label.option {
+        vertical-align: top;
+      }
+    }
     p {
       font-size: $base-font-size;
     }
 
     #show-events {
+      width: 100%;
       margin-top: 0.5em;
+      color: #026f9c;
+      background-color: #fff;
+      padding: 0.5em;
+      border: 2px solid #026f9c;
+      font-size: $base-font-size;
+      &:hover {
+        color: #fff;
+        background-color: #026f9c;
+        text-decoration: underline;
+      }
     }
   }
 
@@ -76,6 +95,7 @@ $zen-column-count: 5;
     .ui-datepicker {
       padding: 0;
       border: 0;
+      width: 100%;
     }
 
     .ui-corner-all {
@@ -85,7 +105,8 @@ $zen-column-count: 5;
     .ui-datepicker-header {
       background: #d95900;
       border: 0;
-      color: white;
+      padding: 0.5rem 0;
+      color: black;
 
       a:hover {
         background-color: transparent;
@@ -133,13 +154,13 @@ $zen-column-count: 5;
   }
 }
 
-@media all and (min-width: 720px) {
+@media all and (min-width: 740px) {
   .calendar-header {
-    @include zen-grid-item(5, 1);
+    @include zen-grid-item(9, 2);
   }
 
   .calendar-content {
-    @include zen-grid-item(3, 1);
+    @include zen-grid-item(6, 2);
     .calendar-year {
       min-height: 15em;
       > h2 {
@@ -172,8 +193,8 @@ $zen-column-count: 5;
   }
   .calendar-types {
     @include zen-clear();
-    @include zen-grid-item(2, 4);
-    margin-top: 4.2em;
+    @include zen-grid-item(3, 8);
+    margin-top: 2em;
   }
 
   #show-filter, #close-filter {
@@ -181,11 +202,15 @@ $zen-column-count: 5;
   }
 }
 
-@media all and (max-width: 719.99px) {
+@media all and (max-width: 739.99px) {
+  .calendar-header {
+    text-align: center;
+  }
+
   .calendar-types {
     position: absolute;
     background: white;
-    padding: 1ex 2ex;
+    padding: 5ex 2ex;
     border: 1px solid #aaa;
     width: 36ex;
     right: -41ex;
@@ -197,6 +222,7 @@ $zen-column-count: 5;
   #close-filter {
     position: absolute;
     right: 1ex;
+    top: 1ex;
   }
 
   #show-filter {

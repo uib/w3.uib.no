@@ -215,7 +215,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
   // datepicker
   drupal_add_library('system', 'ui.datepicker');
   $type_list_block['datepicker'] = array(
-    '#markup' => '<div id="datepicker"><p>' . t('Select start date') . '</p></div>',
+    '#markup' => '<div id="datepicker"></div>',
   );
 
   if (count($event_type_count) > 1) {
