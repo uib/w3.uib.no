@@ -24,7 +24,7 @@ function uib_devel_uninstall() {
 function uib_devel_enable() {
   $roles = array_flip(user_roles());
   $uids = array();
-  foreach (array(1, 2, 3) as $level) {
+  foreach (array(1, 2, 3, 4) as $level) {
     $u = new stdClass;
     $u->name = "level$level";
     $u->mail = "w3+level$level@it.uib.no";
@@ -63,7 +63,7 @@ function uib_devel_enable() {
  */
 function uib_devel_disable() {
   $uids = array();
-  foreach (array(1, 2, 3) as $level) {
+  foreach (array(1, 2, 3, 4) as $level) {
     $u = user_load_by_name("level$level");
     if ($u)
       $uids[] = $u->uid;
