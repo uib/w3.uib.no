@@ -30,10 +30,10 @@ function uib_setup_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 0,
   );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Webdesk');
-
 
   return $menu_links;
 }
