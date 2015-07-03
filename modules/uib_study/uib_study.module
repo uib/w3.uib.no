@@ -948,7 +948,7 @@ function uib_study_block_view($delta = '') {
 
     case 'study_related':
       $node = menu_get_object();
-      if ($node) {
+      if ($node && $node->type == 'uib_study') {
         $display_settings = array(
           'label' => 'hidden',
           'type' => 'uib_study_title_formatter',
