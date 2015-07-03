@@ -360,6 +360,9 @@ function uib_zen_preprocess_node(&$variables, $hook) {
         $variables['content']['field_uib_name'][0]['#markup'] = '– ' . $variables['content']['field_uib_name'][0]['#markup'];
     } }
   }
+  if ($variables['type'] == 'uib_market') {
+    $variables['content']['title']['#markup'] = '<h1>' . $variables['title'] . '</h1>';
+  }
 
   // Add theme suggestion to nodes printed in view mode (newspage).
   if (($variables['type'] == 'uib_article') && ($variables['field_uib_article_type']['und'][0]['value'] == 'news')) {
