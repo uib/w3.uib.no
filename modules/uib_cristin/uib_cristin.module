@@ -518,7 +518,7 @@ function uib_cristin__get_json($cmd) {
   $url = uib_cristin__ws_url($cmd) . '&format=json';
 
   $before = microtime(true);
-  $res = drupal_http_request($url);
+  $res = drupal_http_request($url, array('timeout' => 5,));
 
   $log_message = "GET $url => ";
   $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
