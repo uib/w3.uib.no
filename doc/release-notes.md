@@ -1,3 +1,19 @@
+# Release 29 _2015-08-13_
+
+Første release etter sommerferien. Inneholder i stor grad moduloppgraderinger til Drupal,
+samt 3 små endringer i utsende og funksjonalitet:
+
+- Tittel på kalenderen tar nå full bredde på siden #11313
+- Vi har gjort slik at brødsmulestien til indre marked peker til samelsiden for indre marked #11367
+- Vi har hatt problemer med at Cristinintegrasjonen har kræsjet våre personsider. Vi har lagt til en timeout-funksjon som skal gjøre slik at våre sider fremdeles blir vist selv om Cristin ikke svarer #11068
+
+Noen små oppdateringer for å forberede grunnen for nytt utseende:
+
+- Vi har laget page.tpl.php og html.tpl.php for å få på plass basisstrukturen i det nye designet #11319
+- Vi har flyttet variabelen for tilpasset logo fra uib\_setup modulen til .info #11330
+
+
+
 # Release 28 _2015-06-30_
 
 Generelle oppdateringer og feilrettinger
