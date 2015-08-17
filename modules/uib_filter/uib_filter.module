@@ -54,22 +54,27 @@ function uib_filter__process($text, $filter) {
             return t('user') . ' ' . check_plain($arg);
           }
         }
+        break;
       case 'node':
-        if ($arg) {
-          $node = node_load($arg);
-          if ($node) {
+        if ($arg && is_numeric($arg)) {
+          /// Can't use node_load here since we might recurse if node_load triggers this filter
+          $node_result = db_query('SELECT nid, title FROM {node} WHERE nid = :nid', array(':nid' => $arg));
+          foreach ($node_result as $node) {
             return l($node->title, 'node/' . $node->nid);
           }
         }
+        break;
       case 'study':
         if ($arg) {
           return uib_study__study_link($arg, '<title>');
         }
+        break;
       case 'books':
         if ($arg) {
           return '<div class="ltfl_bookdisplay_widget" id="ltfl_widget_' . $arg . '"></div>
 <script type="text/javascript" src="https://ltfl.librarything.com/forlibraries/widget.js?id=2175-2558198918"></script>';
         }
+        break;
       case 'jobbnorge':
         $positions = uib_feed__jobbnorge_positions_full($arg);
         return render($positions);
