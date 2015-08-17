@@ -125,7 +125,7 @@ function uib_filter__process($text, $filter) {
         if ($result) {
           $block['#prefix'] = '<div class="press-releases">';
           $block['#suffix'] = '</div>';
-          $query = 'SELECT nid, title, created FROM {node} WHERE nid IN (:nids)';
+          $query = 'SELECT nid, title, created FROM {node} WHERE nid IN (:nids) ORDER BY created DESC';
           $node_result = db_query($query, array(':nids' => array_keys($result['node'])));
           $previous_date = '';
           foreach ($node_result as $node) {
