@@ -114,10 +114,9 @@ Then we create the file _/etc/apache2/other/w3.uib.no-vhosts.conf_ with this con
     </VirtualHost>
 
     <Directory "/tmp/w3.uib.no/drupal">
-        Options Indexes MultiViews
-        AllowOverride all
-        Order allow,deny
-        Allow from all
+        Options Indexes
+        AllowOverride All
+        Require all granted
     </Directory>
 
 Then run `sudo apachectl restart` and visit <http://w3.uib.local> to verify that it
