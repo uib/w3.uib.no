@@ -53,15 +53,12 @@ BOOTSTRAP_ARGS =
 .dot.svg:
 	$(DOT) -Tsvg $< >$@
 
-all: bin/python $(HTML) mockups/index.html man1/index.html
+all: bin/python $(HTML) man1/index.html
 
 svg: img/model.svg img/model-simple.svg img/model-study.svg img/module-dep.svg
 
 img/module-dep.dot:
 	(cd .. && bin/site-drush scr uib-mod-dep-in-dot) >$@
-
-mockups/index.html: mockups/mkindex
-	$(PERL) mockups/mkindex
 
 man1/index.html: man1/mkindex
 	$(PERL) man1/mkindex
@@ -81,7 +78,6 @@ makefile:
 clean:
 	rm -f $(HTML)
 	rm -f man1/index.html
-	rm -f mockups/index.html
 
 realclean: clean
 	rm -f bin/buildout bin/markdown2 bin/python

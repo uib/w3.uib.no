@@ -127,4 +127,3 @@ site itself.
 * [Initial spesification](spec.html) as of early 2012
 * [Release 1](release1.html) med [innspill fra pilotfakultetene](doc/pilot-ny-funksjonalitet.pdf)
 * [Area regions and fields](area.html)
-* [Mockups](mockups/)
