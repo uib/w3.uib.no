@@ -100,8 +100,6 @@ function uib_sebra__update_uib_ou($place_id) {
     $node->field_uib_postal_address['und'][0]['country'] = 'NO';
 
     $node->field_uib_visit_address['und'][0]['thoroughfare'] = $place->address;
-    $node->field_uib_visit_address['und'][0]['postal_code'] = $place->postcode;
-    $node->field_uib_visit_address['und'][0]['locality'] = $place->postarea;
     $node->field_uib_visit_address['und'][0]['country'] = 'NO';
 
     if (isset($place->phone))
@@ -153,8 +151,8 @@ function uib_sebra__update_uib_ou($place_id) {
     $old = $ou->field_uib_visit_address->value();
     $new = $old;
     $new['thoroughfare'] = $place->address;
-    $new['postal_code'] = $place->postcode;
-    $new['locality'] = $place->postarea;
+    $new['postal_code'] = '';
+    $new['locality'] = '';
     $new['country'] = 'NO';
     if ($new != $old) {
       $ou->field_uib_visit_address->set($new);

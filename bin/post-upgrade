@@ -19,6 +19,8 @@ fi
 set -x
 
 bin/site-drush uib-sync-fs --verbose
+date +%FT%T
+bin/site-drush uib-sebra-places --verbose
 
 bin/site-drush cc all
 date +%FT%T
