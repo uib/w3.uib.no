@@ -447,6 +447,7 @@ features[variable][] = googleanalytics_trackdoubleclick
 features[variable][] = googleanalytics_tracker_anonymizeip
 features[variable][] = googleanalytics_trackfiles
 features[variable][] = googleanalytics_trackfiles_extensions
+features[variable][] = googleanalytics_tracklinkid
 features[variable][] = googleanalytics_trackmailto
 features[variable][] = googleanalytics_trackmessages
 features[variable][] = googleanalytics_trackoutbound
