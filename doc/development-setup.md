@@ -91,7 +91,7 @@ Then run:
     $ git clone --recursive git@git.uib.no:site/w3.uib.no
     $ cd w3.uib.no
 
-This should give you our sourced user _/tmp/w3.uib.no_ and a Drupal instance
+This should give you the sources in the _/tmp/w3.uib.no_ directory and a Drupal instance
 for Apache to serve at _/tmp/w3.uib.no/drupal_.
 
 ### Set up w3.uib.local
