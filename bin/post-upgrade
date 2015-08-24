@@ -9,7 +9,7 @@ if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
     bin/site-drush vset theme_default uib_w3
 fi
 
-REL=30
+REL=31
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -18,13 +18,7 @@ fi
 
 set -x
 
-date +%FT%T
-bin/site-drush node-revision-delete --show-deleted --verbose uib_article 50
-date +%FT%T
-bin/site-drush node-revision-delete --show-deleted --verbose uib_testimonial 50
-date +%FT%T
-bin/site-drush node-revision-delete --show-deleted --verbose area 50
-date +%FT%T
+bin/site-drush uib-sync-fs --verbose
 
 bin/site-drush cc all
 date +%FT%T

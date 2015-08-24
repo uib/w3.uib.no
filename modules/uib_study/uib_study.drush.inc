@@ -38,6 +38,7 @@ function drush_uib_study_uib_sync_fs() {
 
   $exchange_agreement_categories = array(
     'ERASMUS',
+    'ERASMUS+',
     'BILATERAL',
     'NORDPLUS',
   );
