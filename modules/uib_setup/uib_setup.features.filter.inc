@@ -102,7 +102,13 @@ function uib_setup_filter_default_formats() {
     'cache' => 1,
     'status' => 1,
     'weight' => -7,
-    'filters' => array(),
+    'filters' => array(
+      'filter_h2' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(),
+      ),
+    ),
   );
 
   // Exported format: Plain text.
