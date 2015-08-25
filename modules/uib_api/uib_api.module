@@ -72,5 +72,6 @@ function uib_api__calendar_json() {
     $data['events'][] = $row;
   }
 
+  drupal_add_http_header('Access-Control-Allow-Origin', '*');
   return drupal_json_output($data);
 }
