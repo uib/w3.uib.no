@@ -1,3 +1,19 @@
+# Release 30 _2015-08-27_
+
+Vi har jobbet med kalenderen og gjort noen generelle bugfikser
+
+- Tidligere beholdt vi alle versjonene av innhold på uib.no, nå har vi satt en maksgrense slik at det kun er de 50 siste versjonene som er tilgjengelige #6609
+- Vi har forbedret stylingen på den nye kalenderen #11215 #11278 #11312 #11378
+- Indre marked viser nå tittel på siden #11368
+- Pressemeldingene blir nå sortert på dato #11397
+- Vi har gjort en endring på analyticskoden for bedre å vise lenketrafikk på siden #11569
+- En artikkel som er skrevet i formatet "full html" viser nå h2 som tabs #11656
+- Moduloppgradering av ctools og drupal core #11673 #11672
+- En filterfunksjon hvor en kunne enkelt referere til en annen side viste seg å skape en uendelig loop hvis en refererte til samme side. Dette har vi nå tatt høyde for #11322
+- Vi la til Access-Control-Allow-Origin til calender-APIen #11813
+
+
+
 # Release 29 _2015-08-13_
 
 Første release etter sommerferien. Inneholder i stor grad moduloppgraderinger til Drupal,
