@@ -76,9 +76,6 @@ function uib_feed__format_pre_render($element) {
         break;
     }
   }
-  if (!isset($element['list'])) {
-    $element = array();
-  }
   return $element;
 }
 

@@ -424,9 +424,11 @@ function uib_area__google_maps_link($item) {
  * Adds markup for blue square on feed block titles
  */
 function uib_area__feed_format_post_render($markup) {
-  $markup = preg_replace('/<h3(.*?)>(.*?)<\/h3>/','<h2\1>\2</h2>', $markup);
-  $markup = preg_replace('/<h2>/', '<h2><span></span>', $markup, 1);
-  $markup = '<div class="blue-block">' . $markup . '</div>';
+  if ($markup && strpos($markup, 'item-list') !== FALSE) {
+    $markup = preg_replace('/<h3(.*?)>(.*?)<\/h3>/','<h2\1>\2</h2>', $markup);
+    $markup = preg_replace('/<h2>/', '<h2><span></span>', $markup, 1);
+    $markup = '<div class="blue-block">' . $markup . '</div>';
+  }
   return $markup;
 }
 
