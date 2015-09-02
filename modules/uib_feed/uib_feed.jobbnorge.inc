@@ -4,7 +4,7 @@
  * Generates the feed URL for available UiB positions at jobbnorge.
  */
 function uib_feed__jobbnorge_url($jobbnorge_id=0, $lang=NULL) {
-  $feed_url = 'http://www.jobbnorge.no/joblist/joblistbuilder.ashx?id=821a69c9-7674-4e36-90f8-41e443b99064';
+  $feed_url = 'http://www.jobbnorge.no/apps/joblist/joblistbuilder.ashx?id=821a69c9-7674-4e36-90f8-41e443b99064';
   if ($jobbnorge_id) {
     $feed_url .= "&depid=$jobbnorge_id";
   }
