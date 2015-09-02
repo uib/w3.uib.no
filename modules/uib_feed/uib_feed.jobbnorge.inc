@@ -30,7 +30,7 @@ function uib_feed__jobbnorge_positions_full($jobbnorge_id=0) {
  */
 function uib_feed__format_jobbnorge_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
-  $content = @file_get_contents($url);
+  $content = uib_feed__get($url);
   if (!$content) {
     return $element;
   }

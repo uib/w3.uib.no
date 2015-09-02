@@ -23,11 +23,31 @@ function uib_feed__format($url, $title = '', $limit = 5, $pre_render = array() ,
 }
 
 /**
+ * Load remote feed content with timeout
+ */
+function uib_feed__get($url) {
+  $before = microtime(true);
+  $res = drupal_http_request($url, array('timeout' => 5));
+  $log_message = "FEED GET $url => ";
+  $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
+  $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
+  $severity = 'notice';
+  if ($res->code == 404) {
+    $severity = 'warning';
+  }
+  elseif ($res->code != 200) {
+    $severity = 'error';
+  }
+  uibx_log($log_message, $severity);
+  return $res->code == 200 ? $res->data : FALSE;
+}
+
+/**
  * The heavy stuff done during uib_feed_form()
  */
 function uib_feed__format_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
-  $content = @file_get_contents($url);
+  $content = uib_feed__get($url);
   if (!$content) {
     return $element;
   }
