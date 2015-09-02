@@ -27,7 +27,7 @@
   .field-collection-container {
     padding-left: 14px;
     @include zen-clear();
-    div {
+    div:not(:only-child) {
       margin-top: 8px;
       float: left;
     }
