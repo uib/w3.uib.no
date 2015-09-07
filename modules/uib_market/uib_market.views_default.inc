@@ -107,7 +107,7 @@ function uib_market_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'field_uib_market_category',
+      'field' => 'field_uib_market_category_et',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
@@ -121,14 +121,22 @@ function uib_market_views_default_views() {
   $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['header']['result']['empty'] = TRUE;
   $handler->display->display_options['header']['result']['content'] = 'Displaying @total notices';
-  /* Field: Content: Category */
-  $handler->display->display_options['fields']['field_uib_market_category']['id'] = 'field_uib_market_category';
-  $handler->display->display_options['fields']['field_uib_market_category']['table'] = 'field_data_field_uib_market_category';
-  $handler->display->display_options['fields']['field_uib_market_category']['field'] = 'field_uib_market_category';
-  $handler->display->display_options['fields']['field_uib_market_category']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_market_category']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_market_category']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_market_category']['settings'] = array(
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Entity translation: Category: translated */
+  $handler->display->display_options['fields']['field_uib_market_category_et']['id'] = 'field_uib_market_category_et';
+  $handler->display->display_options['fields']['field_uib_market_category_et']['table'] = 'field_data_field_uib_market_category';
+  $handler->display->display_options['fields']['field_uib_market_category_et']['field'] = 'field_uib_market_category_et';
+  $handler->display->display_options['fields']['field_uib_market_category_et']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_market_category_et']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_market_category_et']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_market_category_et']['type'] = 'i18n_list_default';
+  $handler->display->display_options['fields']['field_uib_market_category_et']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
       'destination' => '',
@@ -141,13 +149,6 @@ function uib_market_views_default_views() {
       ),
     ),
   );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Sort criterion: Content: Category (field_uib_market_category) */
   $handler->display->display_options['sorts']['field_uib_market_category_value']['id'] = 'field_uib_market_category_value';
   $handler->display->display_options['sorts']['field_uib_market_category_value']['table'] = 'field_data_field_uib_market_category';

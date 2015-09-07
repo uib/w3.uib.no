@@ -23,7 +23,7 @@ function uib_market_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
+        'module' => 'i18n_field',
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
@@ -39,7 +39,7 @@ function uib_market_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'list_default',
+        'type' => 'i18n_list_default',
         'weight' => 0,
       ),
       'short_teaser' => array(

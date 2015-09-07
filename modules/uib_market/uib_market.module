@@ -38,3 +38,19 @@ function uib_market_preprocess_views_view(&$variables) {
     }
   }
 }
+
+/**
+ *  * Implements hook_views_pre_render()
+ *   */
+function uib_market_views_pre_render($view) {
+  if ($view->name != 'internal_market')
+    return;
+  $field_info = field_info_field('field_uib_market_category');
+  foreach($field_info['settings']['allowed_values'] as $cat => $cat_value) {
+    $view->exposed_widgets = str_replace(
+      $cat_value,
+      i18n_string_translate("field:field_uib_market_category:#allowed_values:$cat", $cat_value),
+      $view->exposed_widgets
+    );
+  }
+}
