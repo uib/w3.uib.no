@@ -72,60 +72,68 @@
  * @ingroup themeable
  */
 ?>
-    <header>
+    <div class="header__wrapper">
+      <header class="header">
 <?php if ($logo): ?>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo__link">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logo__image" />
-      </a>
+        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo__link">
+          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logo__image" />
+        </a>
 <?php endif; ?>
 <?php if ($site_name || $site_slogan): ?>
-      <div class="name-and-slogan">
+        <div class="name-and-slogan">
 <?php if ($site_name): ?>
 <?php if ($title): ?>
-        <div class="site-name">
-          <strong><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a></strong>
-        </div>
+          <div class="site-name">
+            <strong><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a></strong>
+          </div>
 <?php else: /* Use h1 when the content title is empty */ ?>
-        <h1 id="site-name">
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-        </h1>
+          <h1 class="site-name">
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+          </h1>
 <?php endif; ?>
 <?php endif; ?>
 <?php if ($site_slogan): ?>
-        <div class="site-slogan"><?php print $site_slogan; ?></div>
+          <div class="site-slogan"><?php print $site_slogan; ?></div>
 <?php endif; ?>
-      </div> <!-- /#name-and-slogan -->
+        </div> <!-- /#name-and-slogan -->
 <?php endif; ?>
 <?php print render($page['header']); ?>
-    </header>
+      </header>
+    </div>
+<?php if ($page['subheader']): ?>
+    <div class="subheader__wrapper">
+<?php print render($page['subheader']); ?>
+    </div>
+<?php endif; ?>
 <?php if ($main_menu || $secondary_menu): ?>
     <nav class="site_nav">
 <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
 <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
     </nav>
 <?php endif; ?>
-<?php if ($breadcrumb): ?>
-    <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-<?php endif; ?>
 <?php print $messages; ?>
     <main>
-<?php if ($page['highlighted']): ?>
-      <div id="highlighted"><?php print render($page['highlighted']); ?></div>
-<?php endif; ?>
       <a id="main-content"></a>
 <?php print render($title_prefix); ?>
-<?php if ($title): ?>
+<?php /*if ($title): ?>
       <h1 class="title" id="page-title"><?php print $title; ?></h1>
-<?php endif; ?>
+<?php endif;*/ ?>
 <?php print render($title_suffix); ?>
 <?php if ($tabs): ?>
       <div class="tabs"><?php print render($tabs); ?></div>
 <?php endif; ?>
 <?php print render($page['help']); ?>
 <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+<?php if ($page['content_top']): ?>
+      <div class="content-top-wrapper">
+<?php print render($page['content_top']); ?>
+      </div>
+<?php endif; ?>
+      <div class="content-main-wrapper">
 <?php print render($page['content']); ?>
+      </div>
 <?php print $feed_icons; ?>
-<?php if ($page['sidebar_first']): ?>
+<?php /*if ($page['sidebar_first']): ?>
       <aside class="column sidebar sidebar-first">
 <?php print render($page['sidebar_first']); ?>
       </aside>
@@ -134,8 +142,11 @@
       <aside class="column sidebar sidebar-second">
 <?php print render($page['sidebar_second']); ?>
       </aside>
-<?php endif; ?>
+<?php endif; */ ?>
     </main>
     <footer>
+<?php if ($breadcrumb): ?>
+        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+<?php endif; ?>
       <?php print render($page['footer']); ?>
     </footer>

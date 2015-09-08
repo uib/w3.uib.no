@@ -3,5 +3,15 @@ description = Drupal theme for UiB w3
 core = 7.x
 engine = phptemplate
 
+regions[header] = Header
+regions[subheader] = Subheader
+regions[content_top] = Content top
+regions[content] = Content
+regions[footer] = Footer
+regions[help] = Help
+
+stylesheets[all][] = css/style.css
+stylesheets[print][] = css/print.css
+
 settings[default_logo] = 0
 settings[logo_path] = sites/all/themes/uib/uib_w3/logo.svg
