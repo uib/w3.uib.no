@@ -51,6 +51,17 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       'weight' => -30,
     ));
   }
+  $unset_blocks = array(
+    'uib_area_paahoyden_logo',
+    'uib_area_colophon',
+    'uib_area_feed',
+    'uib_area_newspage_recent_news',
+    'uib_dbh_dbh',
+    'uib_study_study_content',
+  );
+  foreach ($unset_blocks as $block) {
+    unset($variables['page']['header'][$block]);
+  }
 }
 
 /**
