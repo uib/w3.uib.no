@@ -177,6 +177,16 @@ function uib_sebra__update_uib_ou($place_id) {
 }
 
 /**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function uib_sebra_field_widget_addressfield_standard_form_alter(&$element, &$form_state, $context) {
+  if ($element['#field_name'] == 'field_uib_visit_address') {
+    $element['locality_block']['postal_code']['#required'] = false;
+    $element['locality_block']['locality']['#required'] = false;
+  }
+}
+
+/**
  * Sync the 'field_uib_staff' of all areas that define a 'field_uib_sebra_id'.
  */
 function uib_sebra__sync_areas() {
