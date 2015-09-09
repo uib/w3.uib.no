@@ -89,8 +89,8 @@ function uib_w3_preprocess_node(&$variables, $hook) {
 function __uib_w3__article_info(&$node) {
 
   $author = '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
-  $author .= $node->field_uib_byline['und'][0]['target_id'] . '</span></span>';
-  __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
+  $author .= __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
+  $author .= '</span></span>';
   $date_info = '<span class="uib-date-info">' . t('Date') . ': ';
   $date_info .= date('d.m.Y', $node->created);
   $date_info .= ' (' . t('Last updated') . ': ' . date('d.m.Y' , $node->changed) . ')';
@@ -111,5 +111,7 @@ function __uib_w3__article_info(&$node) {
  * Function returning markup for article author
  */
 function __uib_w3__author($uid) {
-  return $uid;
+  $user = user_load($uid);
+  $author = $user->field_uib_first_name['und'][0]['safe_value'] . ' ' . $user->field_uib_last_name['und'][0]['safe_value'];
+  return $author;
 }
