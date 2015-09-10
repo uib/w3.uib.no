@@ -54,3 +54,36 @@ function uib_market_views_pre_render($view) {
     );
   }
 }
+
+/**
+ * Implements hook_node_update()
+ */
+function uib_market_node_update($node) {
+  if ($node->type == 'uib_market') {
+    __uib_market__set_alias($node, 'nb');
+    __uib_market__set_alias($node, 'en');
+  }
+}
+
+/**
+ * Implements hook_node_insert()
+ */
+function uib_market_node_insert($node) {
+  if ($node->type == 'uib_market') {
+    __uib_market__set_alias($node, 'nb');
+    __uib_market__set_alias($node, 'en');
+  }
+}
+
+function __uib_market__set_alias($node, $language=null) {
+  $old_path = path_load('node/' . $node->nid);
+  $path_text = ($language == 'nb') ? 'foransatte/marked/' : 'foremployees/market/' ;
+  $path = array(
+    'source' => 'node/' . $node->nid,
+    'alias' => $path_text . $node->nid . '/' . str_replace(' ', '-', strtolower($node->title)),
+    'language' => $language,
+  );
+  if ($old_path['alias'] != $path['alias']) {
+    path_save($path);
+  }
+}
