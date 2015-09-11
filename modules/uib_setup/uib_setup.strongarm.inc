@@ -850,15 +850,36 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_allow_date_only';
+  $strongarm->value = 1;
+  $export['scheduler_allow_date_only'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_date_format';
-  $strongarm->value = 'd.m.Y H:i:s';
+  $strongarm->value = 'd.m.Y H:i';
   $export['scheduler_date_format'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_date_popup_minute_increment';
+  $strongarm->value = '60';
+  $export['scheduler_date_popup_minute_increment'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_default_time';
+  $strongarm->value = '00:00:00';
+  $export['scheduler_default_time'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_extra_info';
-  $strongarm->value = 'Use these fields to decide when to publish or unpublish an article. You must fill in both date and time. NB! It is only possible to publish on whole hours. I.e. The syntax 14:00:00 will publish an article at two o\'clock while 14:15:45 will publish at three o\'clock.';
+  $strongarm->value = 'Use these fields if you wish to set a specific time to publish or unpublish an article. It is possible to decide both date and time. It is only possible to publish on whole hours. ';
   $export['scheduler_extra_info'] = $strongarm;
 
   $strongarm = new stdClass();
