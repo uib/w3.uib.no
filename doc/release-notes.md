@@ -1,3 +1,19 @@
+# Release 31 _2015-09-10_
+
+Vi har gjort en del generelle bugfikser og har begynt å få inn saker tilknyttet redesign
+
+- Vi har gjort slik at ERASMUS+ avtaler vises som de skal på uib.no #11706
+- Vi har satt på en timout-funksjon som skal forhindre at områder krasjer fordi de ikke får kontakt med f.eks en treg rss #11536
+- Vi har fjernet postkode og poststed fra besøksadressene #11485
+- Vi har gjort feltene på indre marked oversettbare #11395
+- Fikset visning av innholdslister for innloggede brukere #10991
+
+Redesign
+
+- Arbeidet med å få inn stilene til det nye temaet er igang #11396
+- Fjernet uønskete bokser i headeren på det nye temaet #11954
+- Forfatter vises nå med navn istedenfor brukernavn #11951
+
 # Release 30 _2015-08-27_
 
 Vi har jobbet med kalenderen og gjort noen generelle bugfikser
