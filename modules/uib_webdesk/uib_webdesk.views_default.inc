@@ -105,8 +105,9 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
-    'uib_content_list' => 'uib_content_list',
     'uib_external_content' => 'uib_external_content',
+    'uib_market' => 'uib_market',
+    'uib_content_list' => 'uib_content_list',
     'uib_testimonial' => 'uib_testimonial',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
@@ -2061,8 +2062,9 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
-    'uib_content_list' => 'uib_content_list',
     'uib_external_content' => 'uib_external_content',
+    'uib_market' => 'uib_market',
+    'uib_content_list' => 'uib_content_list',
     'uib_testimonial' => 'uib_testimonial',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
