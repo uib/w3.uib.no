@@ -70,6 +70,9 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_area_newspage_recent_news',
     'uib_dbh_dbh',
     'uib_study_study_content',
+    'uib_area_jobbnorge',
+    'uib_area_area_parents',
+    'uib_area_colophon_logos',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
