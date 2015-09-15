@@ -22,7 +22,7 @@ function uib_market_field_default_field_instances() {
     'description' => 'Select the category of what you are offering or looking for.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'i18n_field',
         'settings' => array(
           'field_multiple_limit' => -1,
@@ -95,7 +95,7 @@ function uib_market_field_default_field_instances() {
     'description' => 'Describe what you offer or what you are looking for.',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
           'field_multiple_limit' => -1,
