@@ -921,3 +921,34 @@ function uib_article__get_article_info($created, $updated) {
   );
   return $article_info;
 }
+
+/**
+ * Implements hook_node_insert()
+ */
+function uib_article_node_insert($node) {
+  _uib_article__clear_field_cache($node, array('press_release'));
+}
+
+/**
+ * Implements hook_node_update()
+ */
+function uib_article_node_update($node) {
+  _uib_article__clear_field_cache($node, array('press_release'));
+}
+
+/**
+ * Function to clear a nodes field cache where we use filters to provide content
+ * @param   $node           the node object that is inserted or updated
+ * @param   $article_type   an array of article types we want to target
+ */
+function _uib_article__clear_field_cache($node, $article_type) {
+  if ($node->type == 'uib_article') {
+    if (in_array($node->field_uib_article_type['und'][0]['value'], $article_type)) {
+      $all_filters = variable_get('uib_text_filter_nids');
+      $nids = $all_filters[$node->field_uib_article_type['und'][0]['value']];
+      foreach ($nids as $nid) {
+        cache_clear_all('field:node:' . $nid, 'cache_field');
+      }
+    }
+  }
+}
