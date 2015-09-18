@@ -1,4 +1,16 @@
 <?php
+/**
+ * Override or insert variables into the html templates.
+ *
+ * @param $variables
+ *   An array of variables to pass to the theme template.
+ * @param $hook
+ *   The name of the template being rendered ("html" in this case.)
+ */
+function uib_w3_preprocess_html(&$variables) {
+  drupal_add_js('//use.typekit.net/yfr2tzw.js', 'external');
+  drupal_add_js('try{Typekit.load();}catch(e){}', 'inline');
+}
 
 /**
  * Override or insert variables into the page templates.
