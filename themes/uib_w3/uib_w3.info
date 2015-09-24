@@ -7,8 +7,11 @@ regions[header] = Header
 regions[subheader] = Subheader
 regions[content_top] = Content top
 regions[content] = Content
+regions[content_bottom] = Content bottom
+regions[footer_top] = Footer top
 regions[footer] = Footer
 regions[help] = Help
+regions[page_bottom] = Page bottom
 
 stylesheets[all][] = css/style.css
 stylesheets[print][] = css/print.css

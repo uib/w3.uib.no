@@ -132,6 +132,11 @@
       <div class="content-main-wrapper">
 <?php print render($page['content']); ?>
       </div>
+<?php if ($page['content_bottom']): ?>
+      <div class="content-bottom-wrapper">
+<?php print render($page['content_bottom']); ?>
+      </div>
+<?php endif; ?>
 <?php print $feed_icons; ?>
 <?php /*if ($page['sidebar_first']): ?>
       <aside class="column sidebar sidebar-first">
@@ -148,5 +153,10 @@
 <?php if ($breadcrumb): ?>
         <div id="breadcrumb"><?php print $breadcrumb; ?></div>
 <?php endif; ?>
-      <?php print render($page['footer']); ?>
+<?php if ($page['footer_top']): ?>
+        <div class="footer-top-wrapper">
+<?php print render($page['footer_top']); ?>
+        </div>
+<?php endif; ?>
+<?php print render($page['footer']); ?>
     </footer>
