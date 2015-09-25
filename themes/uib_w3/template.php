@@ -63,6 +63,34 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       'weight' => -30,
     ));
   }
+  if (in_array($variables['node']->type, array('area'))) {
+    $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
+      'type' => 'file_rendered',
+      'settings' => array('file_view_mode' => 'area_main'),
+      'label' => 'hidden',
+      'weight' => -30,
+    ));
+    $variables['page']['content_top']['field_uib_primary_text'] = field_view_field('node', $variables['node'], 'field_uib_primary_text', array(
+      'label' => 'hidden',
+      'weight' => -25,
+    ));
+    $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
+      'label' => 'hidden',
+      'weight' => -20,
+    ));
+    $calendar_block = block_load('views', 'calendar-block_1');
+    $variables['page']['content_bottom']['uib_area_calendar'] = _block_get_renderable_array(_block_render_blocks(array($calendar_block)));
+    $exhibitions_block = block_load('views', 'calendar-block_4');
+    $variables['page']['content_bottom']['uib_area_exibitions']['#prefix'] = '<div class="ex-and-news">';
+    $variables['page']['content_bottom']['uib_area_exibitions'] = _block_get_renderable_array(_block_render_blocks(array($exhibitions_block)));
+    $recent_news_block = block_load('views', 'recent_news-block');
+    $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = _block_get_renderable_array(_block_render_blocks(array($recent_news_block)));
+    $variables['page']['content_bottom']['uib_area_newspage_recent_news']['#suffix'] = '</div>';
+    $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+      'label' => 'hidden',
+      'weight' => 10,
+    ));
+  }
   $unset_blocks = array(
     'uib_area_paahoyden_logo',
     'uib_area_colophon',
@@ -91,10 +119,21 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
   if ($variables['page'])  {
-    unset($variables['content']['field_uib_byline']);
-    unset($variables['content']['field_uib_kicker']);
-    unset($variables['content']['field_uib_lead']);
-    unset($variables['content']['field_uib_main_media']);
+    $unset_vars = array(
+      'field_uib_byline',
+      'field_uib_kicker',
+      'field_uib_lead',
+      'field_uib_main_media',
+      'field_uib_primary_media',
+      'field_uib_primary_text',
+      'field_uib_secondary_text',
+      'field_uib_social_media',
+    );
+    foreach ($unset_vars as $var) {
+      unset($variables['content'][$var]);
+    }
+    hide($variables['content']['field_uib_link_section']);
+    hide($variables['content']['field_uib_profiled_testimonial']);
   }
 }
 

@@ -126,7 +126,9 @@
 <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
 <?php if ($page['content_top']): ?>
       <div class="content-top-wrapper">
+        <div class="content-top">
 <?php print render($page['content_top']); ?>
+        </div>
       </div>
 <?php endif; ?>
       <div class="content-main-wrapper">
@@ -134,7 +136,9 @@
       </div>
 <?php if ($page['content_bottom']): ?>
       <div class="content-bottom-wrapper">
+        <div class="content-bottom">
 <?php print render($page['content_bottom']); ?>
+        </div>
       </div>
 <?php endif; ?>
 <?php print $feed_icons; ?>
@@ -155,7 +159,9 @@
 <?php endif; ?>
 <?php if ($page['footer_top']): ?>
         <div class="footer-top-wrapper">
+          <div class="footer-top">
 <?php print render($page['footer_top']); ?>
+          </div>
         </div>
 <?php endif; ?>
 <?php print render($page['footer']); ?>
