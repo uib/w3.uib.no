@@ -79,6 +79,13 @@ For instance to run `compass compile` you have to run it as:
 
     $ bundle exec compass compile
 
+### ImageMagick
+
+The application  uses ImageMagick for converting between image files formats.
+Install imagemagick, and make sure the convert binary is available at
+`/usr/bin/convert` (for instance by creating a symlink).
+
+
 ## Set up the application
 
 ### Grab the sources
@@ -134,6 +141,9 @@ of the w3 application and you can [login](http://w3.uib.local/user) as _admin:ad
 Alternate recommendation is a use a name like <http://w3.uib.9zlhb.xip.io> as this
 doesn’t require you to mess with the _/etc/hosts_ file. Visit [xip.io](http://xip.io)
 to learn how this works.
+
+Review the file drupal/.htaccess. Modules mentioned in this file should be enabled in
+the Apache-configuration (mod\_rewrite etc.)
 
 ### Set up PostgreSQL
 
