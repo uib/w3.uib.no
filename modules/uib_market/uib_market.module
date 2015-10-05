@@ -40,8 +40,8 @@ function uib_market_preprocess_views_view(&$variables) {
 }
 
 /**
- *  * Implements hook_views_pre_render()
- *   */
+ * Implements hook_views_pre_render()
+ */
 function uib_market_views_pre_render($view) {
   if ($view->name != 'internal_market')
     return;
