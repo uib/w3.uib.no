@@ -74,7 +74,7 @@ Articles can be shared with other areas.
 
 ## Study
 
-The study nodes represent either courses, study programmes, or specializations.
+The study nodes represent either courses, study programmes, specializations, or exchange.
 They have a type field that says which one.
 
 A course is the smallest unit of education that students might attend. Courses
@@ -94,6 +94,11 @@ using the part\_of reference between the study nodes.
 Studies have a category field that encodes what level of degree they
 lead to.  The special category _evu_ marks certain courses as "EVU courses"
 (Continued education).  These have special rules for presentation.
+
+Oddly enough the exchange agreements that the university has with various partners are
+represented by study nodes of type _exchange_.  The fields and templates just happened
+to be similar enough for this to practical.  Model wise it seems strange to consider
+exchange agreements some kind of _study_.
 
 The study nodes are created and kept up to date with integration scripts that
 obtain information from FS via [fs-pres](fs-pres.html).
