@@ -91,7 +91,7 @@ site itself.
 * [Coding style](style.html)
 * [Terminology](terms.html)
 * [Development setup](development-setup.html)
-* [Reder Arrays](render-array.html)
+* [Render Arrays](render-array.html)
 * [Hints that’s good to know](hints.html)
 * [Git hints](git.html)
 * [fs-pres](fs-pres.html)
