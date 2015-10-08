@@ -1,3 +1,22 @@
+# Release 32 _2015-10-08_
+
+Liten release med en god blanding av redesignsaker og annet småplukk til w3.
+
+Redesign:
+
+- Områdemenyen har begynt å få styling #11953
+- Sidebaren til en artikkel har fått styling #11964
+- Sitat i tekst er lagt inn i styleguiden #11985
+- Styling til relevante lenker er lagt til i styleguiden #12008
+
+Småplukk til w3:
+
+- Vi har gitt indre marked en skikkelig url #11413
+- Indre marked vises nå i webdesken #11636
+- Det er ikke lenger mulig å velge annet enn hele timer når man tidstyrer innhold #11930
+- Indre marked har fått mindre stylingendringer #11931
+- Date-modulen har blitt oppgradert #11971
+
 # Release 31 _2015-09-10_
 
 Vi har gjort en del generelle bugfikser og har begynt å få inn saker tilknyttet redesign
@@ -8,7 +27,7 @@ Vi har gjort en del generelle bugfikser og har begynt å få inn saker tilknytte
 - Vi har gjort feltene på indre marked oversettbare #11395
 - Fikset visning av innholdslister for innloggede brukere #10991
 
-Redesign
+Redesign:
 
 - Arbeidet med å få inn stilene til det nye temaet er igang #11396
 - Fjernet uønskete bokser i headeren på det nye temaet #11954
