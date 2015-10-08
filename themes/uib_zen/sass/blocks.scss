@@ -155,6 +155,29 @@
       }
     }
   }
+  .block-uib-calendar3{
+    &>div{
+      margin-bottom: 8px
+    }
+    h3{
+      font-weight: bold;
+      font-size: 1em;
+      margin:0;
+      padding:0;
+    }
+    a{
+      color: #333;
+      span{
+        font-weight: bold;
+        color: #b8530c;
+      }
+    }
+    a.more-link{
+      font-weight: bold;
+      color: #b8530c;
+      margin: 5px 0 5px 0;
+    }
+  }
 }
 
 /* Sets a smaller font size for sidebar */

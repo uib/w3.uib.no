@@ -1,6 +1,120 @@
 <?php
 
 /**
+* Implements hook_block_info()
+**/
+function uib_calendar3_block_info() {
+  return array(
+    'calendar3' => array(
+      'info' => t('Block for displaying context aware calendar entries'),
+      'status' => TRUE,
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_calendar3_block_view($delta) {
+  global $language;
+
+  $block = array();
+  switch ($delta) {
+  case 'calendar3':
+    $area = uib_area__get_current_nid();
+    if (!$area) {
+      break;
+    }
+
+    $select = db_select('node', 'n');
+    $select->fields('n', array('nid', 'title'));
+
+    // only published articles of type events
+    $select->condition('n.status', 1);
+    $select->condition('n.type', 'uib_article');
+
+    // Join article type
+    $select->join('field_data_field_uib_article_type', 'at',
+      'at.entity_id = n.nid');
+    // Filter on event - type
+    $select->condition('at.field_uib_article_type_value', 'event');
+
+    // Join event type
+    $select->join('field_data_field_uib_event_type', 'et',
+      'et.entity_id = n.nid');
+    $select->fields('et', array('field_uib_event_type_value'));
+
+    // filter event type not like exhibition
+    $select->condition('et.field_uib_event_type_value', 'exhibition', '<>');
+
+    // include the date fields
+    $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
+    $select->fields('d', array('field_uib_date_value'));
+    $select->where('date(d.field_uib_date_value) >= date(now())');
+    $select->orderBy('d.field_uib_date_value', 'ASC');
+
+    // Join area
+    $select->join('field_data_field_uib_area', 'a', 'a.entity_id = n.nid');
+    $select->condition('a.field_uib_area_target_id', intval($area));
+
+    // only current language
+    $select->condition('n.language', $language->language);
+    $select->range(0, 5);
+
+    $result = $select->execute();
+
+    $current = NULL;
+    $ra = array();
+
+    foreach ($result as $key => $value) {
+      $nid = $value->nid;
+      $date = format_date(strtotime($value->field_uib_date_value . 'Z'),
+        'custom','d. F' );
+      $time = format_date(strtotime($value->field_uib_date_value . 'Z'),
+        'custom', 'H:i' );
+      $allowed_values = field_info_field('field_uib_event_type');
+      $allowed_values = $allowed_values['settings']['allowed_values'];
+      $type=$value->field_uib_event_type_value;
+      if(isset($allowed_values[$type])){
+        $type=t($allowed_values[$type]);
+      }
+
+
+      $title = $value->title;
+      if($current != $date){
+        $current = $date;
+        $ra['data'][$date]=array();
+        $ra['data'][$date]['date']['#type'] = 'html_tag';
+        $ra['data'][$date]['date']['#tag'] = 'h3';
+        $ra['data'][$date]['date']['#value'] = check_plain($date);
+      }
+      $r = array();
+      $r['#prefix'] = '<div><a href="' . url('node/' . intval($nid)) . '">';
+      $r['#suffix'] = '</a></div>';
+      $r['time'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#value' => check_plain($time),
+      );
+      $r['title'] = array( '#markup' => ' - ' . check_plain($title) . " ($type)");
+      $ra['data'][$date][] = $r;
+    }
+    if(!$current) return;
+    $ra['full calendar'] = array(
+      '#markup' => l(t('View full calendar'),
+        'node/' . intval($area) . '/calendar', array('attributes'=>array('class' => array('more-link')))
+      ),
+    );
+
+    $block['subject'] = t('Calendar');
+    $block['content'] = $ra;
+    break;
+  }
+  return $block;
+}
+
+/**
  * Implements hook_menu().
  */
 function uib_calendar3_menu() {

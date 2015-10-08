@@ -68,7 +68,6 @@ function uib_area_context_default_contexts() {
       'values' => array(
         'ansatte' => 'ansatte',
         'area_map' => 'area_map',
-        'calendar' => 'calendar',
         'courses' => 'courses',
         'recent_news:newsarchive' => 'recent_news:newsarchive',
         'recent_phds' => 'recent_phds',
@@ -88,23 +87,17 @@ function uib_area_context_default_contexts() {
           'module' => 'uib_area',
           'delta' => 'ouprosjektet_logo',
           'region' => 'sidebar_second',
-          'weight' => '-11',
+          'weight' => '-10',
         ),
         'uib_area-area_parents' => array(
           'module' => 'uib_area',
           'delta' => 'area_parents',
           'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
-        'views-calendar-block_1' => array(
-          'module' => 'views',
-          'delta' => 'calendar-block_1',
-          'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-calendar-block_4' => array(
-          'module' => 'views',
-          'delta' => 'calendar-block_4',
+        'uib_calendar3-calendar3' => array(
+          'module' => 'uib_calendar3',
+          'delta' => 'calendar3',
           'region' => 'sidebar_second',
           'weight' => '-8',
         ),

@@ -186,3 +186,11 @@ function uib_setup_update_7018() {
 function uib_setup_update_7019() {
   module_enable(array('uib_market'));
 }
+
+/**
+ * Disable and uninstall the calendar module
+ */
+function uib_setup_update_7020() {
+  module_disable(array('uib_calendar'), FALSE);
+  drupal_uninstall_modules(array('uib_calendar', 'calendar'), FALSE);
+}
