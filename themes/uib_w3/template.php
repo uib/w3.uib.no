@@ -62,6 +62,22 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       'label' => 'hidden',
       'weight' => -30,
     ));
+    $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
+      'weight' => '25',
+    ));
+    $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
+      'weight' => '30',
+      'type' => 'entityreference_entity_view',
+      'settings' => array('view_mode' => 'short_teaser'),
+    ));
+    $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
+      'weight' => '27',
+      'type' => 'entityreference_entity_view',
+      'settings' => array('view_mode' => 'uib_user_teaser'),
+    ));
+    $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
+      'weight' => '26',
+    ));
   }
   if (in_array($variables['node']->type, array('area'))) {
     $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
@@ -119,7 +135,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
   if ($variables['page'])  {
-    $unset_vars = array(
+    $hide_vars = array(
       'field_uib_byline',
       'field_uib_kicker',
       'field_uib_lead',
@@ -128,12 +144,17 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_primary_text',
       'field_uib_secondary_text',
       'field_uib_social_media',
+      'field_uib_relation',
+      'field_uib_link_section',
+      'field_uib_profiled_testimonial',
+      'field_uib_links',
+      'field_uib_related_persons',
+      'field_related_persons_label',
+      'field_uib_files',
     );
-    foreach ($unset_vars as $var) {
-      unset($variables['content'][$var]);
+    foreach ($hide_vars as $var) {
+      hide($variables['content'][$var]);
     }
-    hide($variables['content']['field_uib_link_section']);
-    hide($variables['content']['field_uib_profiled_testimonial']);
   }
 }
 
@@ -142,9 +163,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
  */
 function __uib_w3__article_info(&$node) {
 
-  $author = '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
-  $author .= __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
-  $author .= '</span></span>';
   $date_info = '<span class="uib-date-info">' . t('Date') . ': ';
   $date_info .= date('d.m.Y', $node->created);
   $date_info .= ' (' . t('Last updated') . ': ' . date('d.m.Y' , $node->changed) . ')';
@@ -155,7 +173,12 @@ function __uib_w3__article_info(&$node) {
     '#markup' => '<div class="article-info">',
     '#weight' => '-40',
   );
-  $article_info['#markup'] .= $author;
+  if ($node->field_uib_article_type['und'][0]['value'] != 'infopage') {
+    $author = '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
+    $author .= __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
+    $author .= '</span></span>';
+    $article_info['#markup'] .= $author;
+  }
   $article_info['#markup'] .= $date_info;
   $article_info['#markup'] .= '</div>';
   return $article_info;
