@@ -173,7 +173,7 @@ function __uib_w3__article_info(&$node) {
     '#markup' => '<div class="article-info">',
     '#weight' => '-40',
   );
-  if ($node->field_uib_article_type['und'][0]['value'] != 'infopage') {
+  if (!in_array($node->field_uib_article_type['und'][0]['value'], array('infopage', 'event'))) {
     $author = '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
     $author .= __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
     $author .= '</span></span>';
