@@ -23,6 +23,10 @@ function uib_study_block_info() {
       'info' => t('Study facts from FS'),
       'status' => TRUE,
     ),
+    'study_facts_2' => array(
+      'info' => t('New block for study facts from FS'),
+      'status' => TRUE,
+    ),
     'study_related' => array(
       'info' => t('Related study programs or courses from FS'),
       'status' => TRUE,
@@ -941,6 +945,59 @@ function uib_study_block_view($delta = '') {
         if (!empty($caption)) {
           $render['#caption'] = $caption;
         }
+        $block['title'] = t('Study facts');
+        $block['content']['fspres'][] = $render;
+      }
+      break;
+
+    case 'study_facts_2':
+      $node = menu_get_object();
+      if ($node && isset($node->field_uib_study_type)) {
+        $type = $node->field_uib_study_type['und'][0]['value'];
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
+        global $lamguage;
+        if (empty($data))
+          break;
+        $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $items = array();
+        if ($type == 'course') {
+          $category = $node->field_uib_study_category['und'][0]['value'];
+          if ($data['studieniva'] == 'FU') {
+
+          }
+          else {
+            $study_code = $data['emneid']['emnekode'];
+            $tmp = '<span class="study-facts__label">' . t('ECTS credits') . '</span>';
+            $tmp .= '<span class="study-facts__value">' . $data['studiepoeng'] . '</span>';
+            $items[] = $tmp;
+            $tmp = '<span class="study-facts__label">' . t('Teaching semester') . '</span>';
+            $tmp .= '<span class="study-facts__value">' . t($data['undervisningssemester:en']) . '</span>';
+            $items[] = $tmp;
+            $tmp = '<span class="study-facts__label">' . t('Course code') . '</span>';
+            $tmp .= '<span class="study-facts__value">' . $study_code. '</span>';
+            $items[] = $tmp;
+            $tmp = '<span class="study-facts__label">' . t('Number of semesters') . '</span>';
+            $tmp .= '<span class="study-facts__value">' . $data['antall-undsemester'] . '</span>';
+            $items[] = $tmp;
+            $tmp = '<span class="study-facts__label">' . t('Resources') . '</span>';
+            $resources = array(
+              '#theme' => 'item_list',
+              '#items' => array(),
+            );
+            $schedule = uib_study__get_resource_links('schedule', $study_code);
+            $resources['#items'][] = render($schedule);
+            $reading_list = uib_study__get_resource_links('reading_list', $study_code);
+            $resources['#items'][] = render($reading_list);
+            $tmp .= '<span class="study-facts__value">' . render($resources) . '</span>';
+            $items[] = $tmp;
+          }
+        }
+
+        $render = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+        );
+
         $block['title'] = t('Study facts');
         $block['content']['fspres'][] = $render;
       }

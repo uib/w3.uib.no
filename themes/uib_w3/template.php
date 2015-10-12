@@ -39,73 +39,96 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       '#value' => $current_area->title,
     );
   }
-  if (in_array($variables['node']->type, array('uib_article'))) {
-    $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
-      'label' => 'hidden',
-      'weight' => -50,
-    ));
-    $variables['page']['content_top']['title'] = array(
-      '#type' => 'html_tag',
-      '#tag' => 'h1',
-      '#value' => $variables['node']->title,
-      '#weight' => -45,
-    );
-    $article_info = __uib_w3__article_info($variables['node']);
-    $variables['page']['content_top']['article_info'] = $article_info;
-    $variables['page']['content_top']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_lead', array(
-      'label' => 'hidden',
-      'weight' => -35,
-    ));
-    $variables['page']['content_top']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media', array(
-      'type' => 'file_rendered',
-      'settings' => array('file_view_mode' => 'content_main'),
-      'label' => 'hidden',
-      'weight' => -30,
-    ));
-    $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
-      'weight' => '25',
-    ));
-    $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
-      'weight' => '30',
-      'type' => 'entityreference_entity_view',
-      'settings' => array('view_mode' => 'short_teaser'),
-    ));
-    $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
-      'weight' => '27',
-      'type' => 'entityreference_entity_view',
-      'settings' => array('view_mode' => 'uib_user_teaser'),
-    ));
-    $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
-      'weight' => '26',
-    ));
-  }
-  if (in_array($variables['node']->type, array('area'))) {
-    $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
-      'type' => 'file_rendered',
-      'settings' => array('file_view_mode' => 'area_main'),
-      'label' => 'hidden',
-      'weight' => -30,
-    ));
-    $variables['page']['content_top']['field_uib_primary_text'] = field_view_field('node', $variables['node'], 'field_uib_primary_text', array(
-      'label' => 'hidden',
-      'weight' => -25,
-    ));
-    $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
-      'label' => 'hidden',
-      'weight' => -20,
-    ));
-    $calendar_block = block_load('views', 'calendar-block_1');
-    $variables['page']['content_bottom']['uib_area_calendar'] = _block_get_renderable_array(_block_render_blocks(array($calendar_block)));
-    $exhibitions_block = block_load('views', 'calendar-block_4');
-    $variables['page']['content_bottom']['uib_area_exibitions']['#prefix'] = '<div class="ex-and-news">';
-    $variables['page']['content_bottom']['uib_area_exibitions'] = _block_get_renderable_array(_block_render_blocks(array($exhibitions_block)));
-    $recent_news_block = block_load('views', 'recent_news-block');
-    $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = _block_get_renderable_array(_block_render_blocks(array($recent_news_block)));
-    $variables['page']['content_bottom']['uib_area_newspage_recent_news']['#suffix'] = '</div>';
-    $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
-      'label' => 'hidden',
-      'weight' => 10,
-    ));
+
+  switch (true) {
+    case $variables['node']->type == 'uib_article':
+      $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
+        'label' => 'hidden',
+        'weight' => -50,
+      ));
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $variables['node']->title,
+        '#weight' => -45,
+      );
+      $article_info = __uib_w3__article_info($variables['node']);
+      $variables['page']['content_top']['article_info'] = $article_info;
+      $variables['page']['content_top']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_lead', array(
+        'label' => 'hidden',
+        'weight' => -35,
+      ));
+      $variables['page']['content_top']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media', array(
+        'type' => 'file_rendered',
+        'settings' => array('file_view_mode' => 'content_main'),
+        'label' => 'hidden',
+        'weight' => -30,
+      ));
+      $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
+        'weight' => '25',
+      ));
+      $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
+        'weight' => '30',
+        'type' => 'entityreference_entity_view',
+        'settings' => array('view_mode' => 'short_teaser'),
+      ));
+      $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
+        'weight' => '27',
+        'type' => 'entityreference_entity_view',
+        'settings' => array('view_mode' => 'uib_user_teaser'),
+      ));
+      $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
+        'weight' => '26',
+      ));
+      break;
+    case $variables['node']->type == 'area':
+      $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
+        'type' => 'file_rendered',
+        'settings' => array('file_view_mode' => 'area_main'),
+        'label' => 'hidden',
+        'weight' => -30,
+      ));
+      $variables['page']['content_top']['field_uib_primary_text'] = field_view_field('node', $variables['node'], 'field_uib_primary_text', array(
+        'label' => 'hidden',
+        'weight' => -25,
+      ));
+      $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
+        'label' => 'hidden',
+        'weight' => -20,
+      ));
+      $calendar_block = block_load('views', 'calendar-block_1');
+      $variables['page']['content_bottom']['uib_area_calendar'] = _block_get_renderable_array(_block_render_blocks(array($calendar_block)));
+      $exhibitions_block = block_load('views', 'calendar-block_4');
+      $variables['page']['content_bottom']['uib_area_exibitions']['#prefix'] = '<div class="ex-and-news">';
+      $variables['page']['content_bottom']['uib_area_exibitions'] = _block_get_renderable_array(_block_render_blocks(array($exhibitions_block)));
+      $recent_news_block = block_load('views', 'recent_news-block');
+      $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = _block_get_renderable_array(_block_render_blocks(array($recent_news_block)));
+      $variables['page']['content_bottom']['uib_area_newspage_recent_news']['#suffix'] = '</div>';
+      $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+        'label' => 'hidden',
+        'weight' => 10,
+      ));
+      break;
+    case $variables['node']->type == 'uib_study':
+      $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_type', array(
+        'label' => 'hidden',
+        'weight' => -50,
+      ), $variables['node']->language);
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $variables['node']->field_uib_study_title[$variables['node']->language][0]['safe_value'],
+        '#weight' => -45,
+
+      );
+      $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
+      $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
+      $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'course') {
+        $variables['page']['content']['study_toggle'] = __uib_w3__render_block('uib_study', 'study_semester_toggle', 10);
+        $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
+      }
+      break;
   }
   $unset_blocks = array(
     'uib_area_paahoyden_logo',
@@ -117,6 +140,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_area_jobbnorge',
     'uib_area_area_parents',
     'uib_area_colophon_logos',
+    'uib_study_study_related',
+    'uib_study_study_facts',
+    'uib_study_study_contact',
+    'uib_study_study_semester_toggle',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
@@ -151,6 +178,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_related_persons',
       'field_related_persons_label',
       'field_uib_files',
+      'field_uib_study_category',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);
@@ -191,4 +219,15 @@ function __uib_w3__author($uid) {
   $user = user_load($uid);
   $author = $user->field_uib_first_name['und'][0]['safe_value'] . ' ' . $user->field_uib_last_name['und'][0]['safe_value'];
   return $author;
+}
+
+/**
+ * Function for creating a renderable block
+ */
+function __uib_w3__render_block($module, $block_id, $weight) {
+  $block = block_load($module, $block_id);
+  $block_content = _block_render_blocks(array($block));
+  $render = _block_get_renderable_array($block_content);
+  $render['#weight'] = $weight;
+  return $render;
 }
