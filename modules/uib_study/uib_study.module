@@ -47,6 +47,10 @@ function uib_study_block_info() {
       'info' => t('A set of static links for exchange agreements'),
       'status' => TRUE,
     ),
+    'study_plan' => array(
+      'info' => t('Link to the study plan if it exists'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -992,6 +996,39 @@ function uib_study_block_view($delta = '') {
             $items[] = $tmp;
           }
         }
+        elseif ($type == 'program' or $type == 'specialization') {
+          $tmp = '<span class="study-facts__label">' . t('ECTS credits') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $data['studiepoeng'] . '</span>';
+          $items[] = $tmp;
+          $duration = number_format(round($data['studiepoeng'] / 60 * ($data['heltidsprosent'] / 100), 1), 1, ',', ' ');
+          if (substr($duration, -2) == ',0')
+            $duration = substr($duration, 0, -2);
+          $tmp = '<span class="study-facts__label">' . t('Duration') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $duration . '</span>';
+          $items[] = $tmp;
+          $tmp = '<span class="study-facts__label">' . t('Study programme code') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $data['studieprogramkode'] . '</span>';
+          $items[] = $tmp;
+          $seats = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
+          $tmp = '<span class="study-facts__label">' . t('Number of seats') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . uib_study__text_markup($seats, $is_course, TRUE) . '</span>';
+          $items[] = $tmp;
+          $start = uib_study__extract_study_info($data_2, 'SP_START');
+          $tmp = '<span class="study-facts__label">' . t('Study start') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $start['#text'] . '</span>';
+          $items[] = $tmp;
+          if (!empty($data['gradnavn'])) {
+            if (isset($data['gradnavn:en'])) {
+              $degree = $language->language == 'en' ? $data['gradnavn:en'] : $data['gradnavn'];
+            }
+            else {
+              $degree = $data['gradnavn'];
+            }
+          }
+          $tmp = '<span class="study-facts__label">' . t('Degree') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $degree . '</span>';
+          $items[] = $tmp;
+        }
 
         $render = array(
           '#theme' => 'item_list',
@@ -1119,6 +1156,20 @@ function uib_study_block_view($delta = '') {
           $block['content'] = '<ul><li>' . implode('</li><li>', $markup) . '</li></ul>';
          }
        }
+      break;
+    case 'study_plan':
+      $node = menu_get_object();
+      if (isset($node->field_uib_study_type)) {
+        if (in_array($node->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
+          $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+          if (uib_study__has_study_plan($data)) {
+            $block['title'] = t('Study plan');
+            $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
+            $tmp = l(t('See study plan'), (drupal_get_path_alias($study_path) . '/plan'));
+            $block['content'] = $tmp;
+          }
+        }
+      }
       break;
   }
 

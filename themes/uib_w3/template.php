@@ -133,9 +133,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         '#weight' => 20,
         '#attributes' => array('class' => array('uib-study-belongs-to')),
       );
+      $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'course') {
         $variables['page']['content']['study_toggle'] = __uib_w3__render_block('uib_study', 'study_semester_toggle', 10);
-        $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
+      }
+      if (in_array($variables['node']->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
+        $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => 'content_sidebar'),
+          'label' => 'hidden',
+          'weight' => 3,
+        ));
+        $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10);
+        $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
       }
 
       break;
@@ -152,8 +162,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_area_colophon_logos',
     'uib_study_study_related',
     'uib_study_study_facts',
+    'uib_study_study_facts_2',
     'uib_study_study_contact',
     'uib_study_study_semester_toggle',
+    'uib_study_study_testimonial',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
@@ -189,6 +201,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_related_persons_label',
       'field_uib_files',
       'field_uib_study_category',
+      'field_uib_study_image',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);
