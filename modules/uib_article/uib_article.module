@@ -926,59 +926,48 @@ function uib_article__get_article_info($created, $updated) {
  * Implements hook_node_insert()
  */
 function uib_article_node_insert($node) {
-  _uib_article__clear_field_cache($node, array('press_release'));
-  _uib_article__filter_check($node);
+  _uib_article__clear_field_cache($node);
 }
 
 /**
  * Implements hook_node_update()
  */
 function uib_article_node_update($node) {
-  _uib_article__clear_field_cache($node, array('press_release'));
-  _uib_article__filter_check($node);
+  _uib_article__clear_field_cache($node);
 }
 
 /**
- * Function to clear a nodes field cache where we use filters to provide content
- * @param   $node           the node object that is inserted or updated
- * @param   $article_type   an array of article types we want to target
+ * Function to clear dependent field caches when the given node is updated
+ *
+ * @param   $node           the node object that was inserted or updated
  */
-function _uib_article__clear_field_cache($node, $article_type) {
+function _uib_article__clear_field_cache($node) {
   if ($node->type == 'uib_article') {
-    if (in_array($node->field_uib_article_type['und'][0]['value'], $article_type)) {
-      $all_filters = variable_get('uib_text_filter_nids');
-      $nids = $all_filters[$node->field_uib_article_type['und'][0]['value']];
-      foreach ($nids as $nid) {
+    $article_type = $node->field_uib_article_type['und'][0]['value'];
+    $cache_invalidate = variable_get('uib_field_cache_invalidate_by_article_type');
+    if (!empty($cache_invalidate[$article_type])) {
+      $gone = array();
+      foreach ($cache_invalidate[$article_type] as $nid) {
+        uibx_log("Invalidating cache for /node/$nid", 'notice');
         cache_clear_all('field:node:' . $nid, 'cache_field');
+        if (!_uib_article__node_exists($nid)) {
+          $gone[] = $nid;
+        }
+      }
+      if ($gone) {
+        // remove those nids from future invalidations
+        $cache_invalidate[$article_type] = array_diff($cache_invalidate[$article_type], $gone);
+        variable_set('uib_field_cache_invalidate_by_article_type', $cache_invalidate);
       }
     }
   }
 }
 
 /**
- * Function to add a node containing a text filter to an array of nodes getting
- * their cache cleared on insert or update
+ *  Returns true if the node object with the given $nid exists
  */
-function _uib_article__filter_check($node) {
-  if (!empty($node->field_uib_text['und'])) {
-    preg_match('/\(\*\s*(\w+)\s*(?::(.*?))?\*\)/', $node->field_uib_text['und'][0]['value'], $matches);
-    if ($matches) {
-      switch($matches[1]) {
-        case 'pressrelease':
-          $filters = variable_get('uib_text_filter_nids');
-          if ($filters) {
-            if (array_key_exists('press_release', $filters)) {
-              if (!in_array($node->nid, $filters['press_release'])) {
-                $filters['press_release'][] = $node->nid;
-              }
-            }
-          }
-          else {
-            $filters['press_release'][] = $node->nid;
-          }
-          variable_set('uib_text_filter_nids', $filters);
-          break;
-      }
-    }
-  }
+function _uib_article__node_exists($nid) {
+  $q = db_query("SELECT COUNT(nid) AS count FROM {node} WHERE nid = :nid", array(':nid' => $nid));
+  $c = $q->fetchField();
+  return $c;
 }

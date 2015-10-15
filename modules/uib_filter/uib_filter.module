@@ -162,3 +162,53 @@ function uib_filter__process($text, $filter) {
     $text
   );
 }
+
+/**
+ * Implements hook_node_insert()
+ */
+function uib_filter_node_insert($node) {
+  _uib_filter__filter_check($node);
+}
+
+/**
+ * Implements hook_node_update()
+ */
+function uib_filter_node_update($node) {
+  _uib_filter__filter_check($node);
+}
+
+/**
+ * Determines if an article references the pressrelease filter.
+ * Returns a boolean value.
+ */
+function _uib_filter__text_references_pressrelease($node) {
+  return !empty($node->field_uib_text['und']) && preg_match('/\(\*\s*(pressrelease)\s*(?::(.*?))?\*\)/', $node->field_uib_text['und'][0]['value']);
+}
+
+/**
+ * Function to add a node containing a text filter to an array of nodes getting
+ * their cache cleared on insert or update
+ */
+function _uib_filter__filter_check($node) {
+  $cache_invalidate = $cache_invalidate_orig = variable_get('uib_field_cache_invalidate_by_article_type');
+
+  if (!isset($cache_invalidate['press_release']))
+    $cache_invalidate['press_release'] = array();
+  $nid = $node->nid;
+
+  if (_uib_filter__text_references_pressrelease($node)) {
+    if (!in_array($nid, $cache_invalidate['press_release'])) {
+      $cache_invalidate['press_release'][] = $nid;
+    }
+  }
+  else {
+    $key = array_search($nid, $cache_invalidate['press_release']);
+    if ($key !== FALSE) {
+      array_splice($cache_invalidate['press_release'], $key, 1);
+    }
+  }
+
+  if ($cache_invalidate != $cache_invalidate_orig) {
+    variable_set('uib_field_cache_invalidate_by_article_type', $cache_invalidate);
+  }
+}
