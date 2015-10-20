@@ -186,6 +186,14 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
   if ($variables['page'])  {
+    if ($variables['type'] == 'area') {
+     $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
+       'settings' => array('view_mode' => 'teaser'),
+       'weight' => 4,
+       'type' => 'entityreference_entity_view',
+       'settings' => array('view_mode' => 'teaser'),
+     ));
+    }
     $hide_vars = array(
       'field_uib_byline',
       'field_uib_kicker',
