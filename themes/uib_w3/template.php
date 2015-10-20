@@ -217,6 +217,11 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       hide($variables['content'][$var]);
     }
   }
+  else {
+    if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
+      $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
+    }
+  }
 }
 
 /**
