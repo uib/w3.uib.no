@@ -27,6 +27,7 @@ projects[better_formats][version] = 1.0-beta1
 projects[better_formats][patch][] = https://www.drupal.org/files/issues/better_formats-default-text-format-override-2272385-6.patch
 projects[better_formats][patch][] = http://cgit.drupalcode.org/better_formats/patch/?id=ca0822a94fc79a3b3b69ae96d1e3cb43c61aaa15
 projects[bot][revision] = d0e10c65616f267543e717addc17422979f83bd2
+projects[breakpoints][version] = 1.3
 projects[calendar][version] = 3.5
 projects[coder][version] = 2.5
 projects[context][version] = 3.6
@@ -85,6 +86,7 @@ projects[panels][version] = 3.5
 projects[pathauto][version] = 1.3
 projects[phone][version] = 1.0-beta1
 projects[phone][patch][] = https://www.drupal.org/files/issues/phone-norwegian-support-2292299-3.patch
+projects[picture][version] = 2.13
 projects[redirect][version] = 1.0-rc3
 projects[role_delegation][version] = 1.1
 projects[role_export][version] = 1.0
