@@ -1,3 +1,10 @@
+# Release 33 _2015-10-22_
+
+Denne releasen inkluderer ingen synlige endringer.
+
+Vi oppdaterer Drupal-kjernen og en modul (#12506, #12435).  Oppdateringene som
+er gjort for å forberede nytt utseende for webben er ikke aktivert enda.
+
 # Release 32 _2015-10-08_
 
 Liten release med en god blanding av redesignsaker og annet småplukk til w3.
