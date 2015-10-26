@@ -105,6 +105,54 @@ function uib_setup_image_default_styles() {
     ),
   );
 
+  // Exported image style: content_main_mobile_1x.
+  $styles['content_main_mobile_1x'] = array(
+    'label' => 'content_main_mobile_1x',
+    'effects' => array(
+      5 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 559,
+          'height' => 419,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: content_main_narrow_1x.
+  $styles['content_main_narrow_1x'] = array(
+    'label' => 'content_main_narrow_1x',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 859,
+          'height' => 644,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: content_main_wide_1x.
+  $styles['content_main_wide_1x'] = array(
+    'label' => 'content_main_wide_1x',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1260,
+          'height' => 945,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: content_sidebar.
   $styles['content_sidebar'] = array(
     'effects' => array(
