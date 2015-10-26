@@ -240,7 +240,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
  * Function returning render array for article info
  */
 function __uib_w3__article_info(&$node) {
-
   $date_info = '<span class="uib-date-info">' . t('Date') . ': ';
   $date_info .= date('d.m.Y', $node->created);
   $date_info .= ' (' . t('Last updated') . ': ' . date('d.m.Y' , $node->changed) . ')';
@@ -252,10 +251,12 @@ function __uib_w3__article_info(&$node) {
     '#weight' => '-40',
   );
   if (!in_array($node->field_uib_article_type['und'][0]['value'], array('infopage', 'event'))) {
-    $author = '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
-    $author .= __uib_w3__author($node->field_uib_byline['und'][0]['target_id']);
-    $author .= '</span></span>';
-    $article_info['#markup'] .= $author;
+    $author = __uib_w3__author($node);
+    if ($author) {
+      $article_info['#markup'] .= '<span class="uib-news-byline">' . t('By') . ' <span class="uib-author">';
+      $article_info['#markup'] .= $author;
+      $article_info['#markup'] .= '</span></span>';
+    }
   }
   $article_info['#markup'] .= $date_info;
   $article_info['#markup'] .= '</div>';
@@ -265,10 +266,29 @@ function __uib_w3__article_info(&$node) {
 /**
  * Function returning markup for article author
  */
-function __uib_w3__author($uid) {
-  $user = user_load($uid);
-  $author = $user->field_uib_first_name['und'][0]['safe_value'] . ' ' . $user->field_uib_last_name['und'][0]['safe_value'];
-  return $author;
+function __uib_w3__author(&$node) {
+  $authors = FALSE;
+  if (!empty($node->field_uib_byline)) {
+    $byline = field_view_field('node', $node, 'field_uib_byline', array(
+      'type' => 'entityreference_label',
+      'label' => 'hidden',
+      'settings' => array('link' => TRUE),
+    ));
+    $tmp = array();
+    foreach ($node->field_uib_byline['und'] as $key => $b) {
+      $tmp[] = $byline[$key]['#markup'];
+    }
+    if ($tmp) {
+      $last_author = array_pop($tmp);
+      if ($tmp) {
+        $authors = implode(', ', $tmp) . ' ' . t('and') . ' ' . $last_author;
+      }
+      else {
+        $authors = $last_author;
+      }
+    }
+  }
+  return $authors;
 }
 
 /**
