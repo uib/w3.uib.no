@@ -10,6 +10,11 @@
 function uib_w3_preprocess_html(&$variables) {
   drupal_add_js('//use.typekit.net/yfr2tzw.js', 'external');
   drupal_add_js('try{Typekit.load();}catch(e){}', 'inline');
+  if ($node = menu_get_object()) {
+    if ($node->type == 'uib_article') {
+      $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
+    }
+  }
 }
 
 /**
