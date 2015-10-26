@@ -88,6 +88,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       break;
 
     case $variables['node']->type == 'area':
+      $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $variables['node'], 'field_uib_area_banner', array(
+        'label' => 'hidden',
+        'weight' => -40,
+      ));
+      $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
       $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
         'type' => 'file_rendered',
         'settings' => array('file_view_mode' => 'area_main'),
@@ -173,6 +178,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_study_study_contact',
     'uib_study_study_semester_toggle',
     'uib_study_study_testimonial',
+    'uib_area_area_banner',
+    'uib_area_area_offices',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
