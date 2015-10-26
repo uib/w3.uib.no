@@ -57,7 +57,7 @@ DOTGZ=""
 case $DUMP in *.gz) DOTGZ=".gz";; esac
 rsync -avh $PGDUMP_HOST_PREFIX$DUMP site/w3.uib.no.sql$DOTGZ || exit 1
 if [ "$DOTGZ" != "" ]; then
-    gunzip -f site/w3.uib.no.sql$DOTGZ
+    gunzip -c site/w3.uib.no.sql$DOTGZ >site/w3.uib.no.sql
 fi
 
 bin/site-drush sql-drop --yes
