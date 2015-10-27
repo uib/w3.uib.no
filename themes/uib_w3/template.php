@@ -119,6 +119,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'label' => 'hidden',
         'weight' => 10,
       ));
+      $variables['page']['content_bottom']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
+
+      switch ($variables['node']->field_uib_area_type['und'][0]['value']) {
+        case 'newspage':
+          $variables['page']['content_top']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
+            'settings' => array('view_mode' => 'teaser'),
+            'weight' => 4,
+            'type' => 'entityreference_entity_view',
+            'settings' => array('view_mode' => 'teaser'),
+            'label' => 'hidden',
+          ));
+          break;
+        }
       break;
 
     case $variables['node']->type == 'uib_study':
@@ -199,13 +212,23 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   $current_language = $language->language;
   if ($variables['page'])  {
     if ($variables['type'] == 'area') {
-     $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
-       'settings' => array('view_mode' => 'teaser'),
-       'weight' => 4,
-       'type' => 'entityreference_entity_view',
-       'settings' => array('view_mode' => 'teaser'),
-       'label' => 'hidden',
-     ));
+      $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
+        'settings' => array('view_mode' => 'teaser'),
+        'weight' => 4,
+        'type' => 'entityreference_entity_view',
+        'settings' => array('view_mode' => 'teaser'),
+        'label' => 'hidden',
+      ));
+      if ($variables['field_uib_area_type']['und'][0]['value'] == 'newspage') {
+        $variables['content']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
+          'settings' => array('view_mode' => 'teaser'),
+          'weight' => 4,
+          'type' => 'entityreference_entity_view',
+          'settings' => array('view_mode' => 'teaser'),
+          'label' => 'hidden',
+        ));
+        hide($variables['content']['field_uib_profiled_article']);
+      }
     }
     $hide_vars = array(
       'field_uib_byline',
