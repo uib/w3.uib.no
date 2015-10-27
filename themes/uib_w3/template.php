@@ -204,6 +204,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
        'weight' => 4,
        'type' => 'entityreference_entity_view',
        'settings' => array('view_mode' => 'teaser'),
+       'label' => 'hidden',
      ));
     }
     $hide_vars = array(
