@@ -171,6 +171,27 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         ));
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10);
         $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
+        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+          'label' => 'hidden',
+          'weight' => 0,
+        ));
+        $specializations = '';
+        $view = views_get_view('uib_study_specialization');
+        $view->preview('block', array($variables['node']->nid));
+        if ($view->result) {
+          $specializations = '<div class="block block-uib-study"><h3>' . t('Specialization') . '</h3>' . $view->render() . '</div>';
+        }
+        $variables['page']['content_bottom']['field_uib_study'] = array(
+          '#type' => 'markup',
+          '#markup' => $specializations,
+          '#weight' => 30,
+        );
+        $variables['page']['content_bottom']['field_uib_feed'] = field_view_field('node', $variables['node'], 'field_uib_feed', array(
+          'type' => 'uib_area_link_feed',
+          'settings' => array('view_mode' => 'full'),
+          'label' => 'hidden',
+          'weight' => 40,
+        ));
       }
 
       break;
@@ -189,6 +210,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_study_study_facts',
     'uib_study_study_facts_2',
     'uib_study_study_contact',
+    'uib_study_study_plan',
     'uib_study_study_semester_toggle',
     'uib_study_study_testimonial',
     'uib_area_area_banner',

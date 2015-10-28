@@ -959,7 +959,7 @@ function uib_study_block_view($delta = '') {
       if ($node && isset($node->field_uib_study_type)) {
         $type = $node->field_uib_study_type['und'][0]['value'];
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
-        global $lamguage;
+        global $language;
         if (empty($data))
           break;
         $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
@@ -1000,6 +1000,12 @@ function uib_study_block_view($delta = '') {
           $tmp = '<span class="study-facts__label">' . t('ECTS credits') . '</span>';
           $tmp .= '<span class="study-facts__value">' . $data['studiepoeng'] . '</span>';
           $items[] = $tmp;
+          $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
+          if ($points && $language->language == 'nb') {
+            $tmp = '<span class="study-facts__label">Poenggrense</span>';
+            $tmp .= '<span class="study-facts__value">' . $points['#text'] . '</span>';
+            $items[] = $tmp;
+          }
           $duration = number_format(round($data['studiepoeng'] / 60 * ($data['heltidsprosent'] / 100), 1), 1, ',', ' ');
           if (substr($duration, -2) == ',0')
             $duration = substr($duration, 0, -2);
@@ -1017,16 +1023,9 @@ function uib_study_block_view($delta = '') {
           $tmp = '<span class="study-facts__label">' . t('Study start') . '</span>';
           $tmp .= '<span class="study-facts__value">' . $start['#text'] . '</span>';
           $items[] = $tmp;
-          if (!empty($data['gradnavn'])) {
-            if (isset($data['gradnavn:en'])) {
-              $degree = $language->language == 'en' ? $data['gradnavn:en'] : $data['gradnavn'];
-            }
-            else {
-              $degree = $data['gradnavn'];
-            }
-          }
-          $tmp = '<span class="study-facts__label">' . t('Degree') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $degree . '</span>';
+          $study_lang = uib_study__extract_study_info($data_2, 'SP_SPRAK');
+          $tmp = '<span class="study-facts__label">' . t('Language') . '</span>';
+          $tmp .= '<span class="study-facts__value">' . $study_lang['#text'] . '</span>';
           $items[] = $tmp;
         }
 
