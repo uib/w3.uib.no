@@ -193,6 +193,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_study_study_testimonial',
     'uib_area_area_banner',
     'uib_area_area_offices',
+    'uib_calendar3_calendar3',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
@@ -254,6 +255,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
   }
   else {
+    if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
+      $variables['theme_hook_suggestions'][] = 'node__article__teaser';
+    }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
     }
