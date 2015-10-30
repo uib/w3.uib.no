@@ -1035,7 +1035,6 @@ function uib_study_block_view($delta = '') {
           '#items' => $items,
         );
 
-        $block['title'] = t('Study facts');
         $block['content']['fspres'][] = $render;
       }
       break;
