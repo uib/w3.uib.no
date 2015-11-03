@@ -253,6 +253,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         '#theme' => 'item_list',
         '#items' => $items,
         '#weight' => 20,
+        '#attributes' => array('class' => array('user-contact-info')),
       );
       $variables['page']['content_bottom']['user_twitter'] = __uib_w3__render_block('uib_user', 'twitter', 10);
       $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);
