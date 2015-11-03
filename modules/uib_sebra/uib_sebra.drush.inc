@@ -62,6 +62,11 @@ function drush_uib_sebra_uib_dump_place($place_id) {
 }
 
 function drush_uib_sebra_areas() {
+  // we need to execute this admin for node translations sync to
+  // be able to update unpublished areas.
+  global $user;
+  $user = user_load(1);
+
   uib_sebra__sync_areas();
 }
 
