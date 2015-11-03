@@ -195,6 +195,93 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       }
 
       break;
+    case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user'):
+      $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
+      $user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
+      $variables['page']['content_top']['vcard_and_login'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#value' => $user_vcard . ' | ' . $user_login,
+        '#weight' => -50,
+      );
+      $variables['page']['content_top']['user_picture'] = $variables['page']['content']['system_main']['user_picture'];
+      $variables['page']['content_top']['user_picture']['#weight'] = -40;
+      $first_name = $variables['page']['content']['system_main']['field_uib_first_name'][0]['#markup'];
+      $last_name = $variables['page']['content']['system_main']['field_uib_last_name'][0]['#markup'];
+      $variables['page']['content_top']['user_name'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $first_name . ' ' . $last_name,
+        '#weight' => -30,
+      );
+      $variables['page']['content_top']['position'] = $variables['page']['content']['system_main']['field_uib_position'];
+      $variables['page']['content_top']['position']['#weight'] = -20;
+      $variables['page']['content_top']['user_ou'] = $variables['page']['content']['system_main']['field_uib_user_ou'][0]['node'][29]['field_uib_ou_title'];
+      $variables['page']['content_top']['user_ou']['#weight'] = -10;
+      $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
+      $variables['page']['content_top']['user_homepage']['#weight'] = 0;
+      $variables['page']['content_top']['social_media'] = $variables['page']['content']['system_main']['field_uib_user_social_media'];
+      $variables['page']['content_top']['social_media']['#weight'] = 10;
+      $items = array();
+      $account = $variables['page']['content']['system_main']['#account'];
+      $email = '<span class="user-contact__label">' . t('E-mail') . '</span>';
+      $email .= '<span class="user-contact__value"><a href="mailto:' . $account->mail . '">' . $account->mail . '</a></span>';
+      $items[] = $email;
+      $numbers = array();
+      foreach ($account->field_uib_phone['und'] as $number) {
+        $numbers[] = $number['value'];
+      }
+      $numbers = '<span class="phone-number">' . implode('</span><span class="phone-number">', $numbers) . '</span>';
+      $phone = '<span class="user-contact__label">' . t('Phone') . '</span>';
+      $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
+      $items[] = $phone;
+      $variables['page']['content']['system_main']['visit_address']['#label_display'] = 'hidden';
+      $visit_address = '<span class="user-contact__label">' . $variables['page']['content']['system_main']['visit_address']['#title'] . '</span>';
+      $visit_address .= '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['visit_address']);
+      if (!empty($variables['page']['content']['system_main']['field_uib_user_room'])) {
+        $user_room = render($variables['page']['content']['system_main']['field_uib_user_room']);
+        $visit_address .= $user_room;
+      }
+      $visit_address .= '</span>';
+      $items[] = $visit_address;
+      $variables['page']['content']['system_main']['postal_address']['#label_display'] = 'hidden';
+      $postal_address = '<span class="user-contact__label">' . $variables['page']['content']['system_main']['postal_address']['#title'] . '</span>';
+      $postal_address = '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['postal_address']);
+      $items[] = $postal_address;
+      $variables['page']['content_top']['user_contact_info'] = array(
+        '#theme' => 'item_list',
+        '#items' => $items,
+        '#weight' => 20,
+      );
+      $variables['page']['content_bottom']['user_twitter'] = __uib_w3__render_block('uib_user', 'twitter', 10);
+      $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);
+
+      $unset_variables = array(
+        'user_vcard_link',
+        'user_login_incard_link',
+        'user_picture',
+        'field_uib_first_name',
+        'field_uib_last_name',
+        'field_uib_position',
+        'field_uib_user_ou',
+        'field_uib_user_url',
+        'field_uib_user_social_media',
+        'field_uib_user_projects',
+        'field_uib_user_feed',
+        'field_uib_phone',
+        'user_email',
+      );
+      foreach ($unset_variables as $unset) {
+        unset($variables['page']['content']['system_main'][$unset]);
+      }
+      $unset_variables = array(
+        'uib_user_twitter',
+        'uib_user_feed',
+      );
+      foreach ($unset_variables as $unset) {
+        unset($variables['page']['content'][$unset]);
+      }
+      break;
   }
   $unset_blocks = array(
     'uib_area_paahoyden_logo',
@@ -216,6 +303,9 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_area_area_banner',
     'uib_area_area_offices',
     'uib_calendar3_calendar3',
+    'uib_user_feed',
+    'uib_user_twitter',
+    'uib_user_research_groups',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
