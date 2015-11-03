@@ -203,6 +203,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         '#tag' => 'div',
         '#value' => $user_vcard . ' | ' . $user_login,
         '#weight' => -50,
+        '#attributes' => array('class' => array('vcard-and-login')),
       );
       $variables['page']['content_top']['user_picture'] = $variables['page']['content']['system_main']['user_picture'];
       $variables['page']['content_top']['user_picture']['#weight'] = -40;
