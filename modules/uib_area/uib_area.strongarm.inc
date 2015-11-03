@@ -182,9 +182,11 @@ function uib_area_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_sync_node_type_area';
   $strongarm->value = array(
-    0 => 'field_uib_ou',
+    0 => 'field_uib_staff_status',
     1 => 'field_uib_sebra_id',
-    2 => 'field_uib_staff',
+    2 => 'field_uib_content_manager',
+    3 => 'field_uib_ou',
+    4 => 'field_uib_staff',
   );
   $export['i18n_sync_node_type_area'] = $strongarm;
 
