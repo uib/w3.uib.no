@@ -21,6 +21,7 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = uib_area
 dependencies[] = uib_external
+dependencies[] = uib_setup
 dependencies[] = uib_urlfilter
 dependencies[] = uibx
 dependencies[] = views
