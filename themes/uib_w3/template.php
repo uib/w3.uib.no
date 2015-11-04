@@ -247,7 +247,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $items[] = $visit_address;
       $variables['page']['content']['system_main']['postal_address']['#label_display'] = 'hidden';
       $postal_address = '<span class="user-contact__label">' . $variables['page']['content']['system_main']['postal_address']['#title'] . '</span>';
-      $postal_address = '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['postal_address']);
+      $postal_address .= '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['postal_address']);
       $items[] = $postal_address;
       $variables['page']['content_top']['user_contact_info'] = array(
         '#theme' => 'item_list',
