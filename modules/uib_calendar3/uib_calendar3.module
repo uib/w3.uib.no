@@ -9,6 +9,10 @@ function uib_calendar3_block_info() {
       'info' => t('Block for displaying context aware calendar entries'),
       'status' => TRUE,
     ),
+    'exhibitions3' => array(
+      'info' => t('Displaying exhibition events'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -20,54 +24,51 @@ function uib_calendar3_block_view($delta) {
   global $language;
 
   $block = array();
+  // if area is not set, these blocks are not executed
+  $area = uib_area__get_current_nid();
+  if (!$area) {
+    return;
+  }
+
+  $select = db_select('node', 'n');
+  $select->fields('n', array('nid', 'title'));
+
+  // only published articles of type events
+  $select->condition('n.status', 1);
+  $select->condition('n.type', 'uib_article');
+
+  // Join article type
+  $select->join('field_data_field_uib_article_type', 'at',
+    'at.entity_id = n.nid');
+  // Filter on event - type
+  $select->condition('at.field_uib_article_type_value', 'event');
+
+  // Join event type
+  $select->join('field_data_field_uib_event_type', 'et',
+    'et.entity_id = n.nid');
+  $select->fields('et', array('field_uib_event_type_value'));
+
+  // include the date fields
+  $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
+  $select->fields('d', array('field_uib_date_value'));
+  $select->orderBy('d.field_uib_date_value', 'ASC');
+
+  // Join area
+  $select->join('field_data_field_uib_area', 'a', 'a.entity_id = n.nid');
+  $select->condition('a.field_uib_area_target_id', intval($area));
+
+  // only current language
+  $select->condition('n.language', $language->language);
+  $select->range(0, 5);
+  $select_exhibition = clone $select;
+
   switch ($delta) {
   case 'calendar3':
-    $area = uib_area__get_current_nid();
-    if (!$area) {
-      break;
-    }
-
-    $select = db_select('node', 'n');
-    $select->fields('n', array('nid', 'title'));
-
-    // only published articles of type events
-    $select->condition('n.status', 1);
-    $select->condition('n.type', 'uib_article');
-
-    // Join article type
-    $select->join('field_data_field_uib_article_type', 'at',
-      'at.entity_id = n.nid');
-    // Filter on event - type
-    $select->condition('at.field_uib_article_type_value', 'event');
-
-    // Join event type
-    $select->join('field_data_field_uib_event_type', 'et',
-      'et.entity_id = n.nid');
-    $select->fields('et', array('field_uib_event_type_value'));
-
-    // include the date fields
-    $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
-    $select->fields('d', array('field_uib_date_value'));
-    $select->orderBy('d.field_uib_date_value', 'ASC');
-
-    // Join area
-    $select->join('field_data_field_uib_area', 'a', 'a.entity_id = n.nid');
-    $select->condition('a.field_uib_area_target_id', intval($area));
-
-    // only current language
-    $select->condition('n.language', $language->language);
-    $select->range(0, 5);
-
-    $select_exhibition = clone $select;
 
     // specific for event list
     $select->where('date(d.field_uib_date_value) >= date(now())');
     $select->condition('et.field_uib_event_type_value', 'exhibition', '<>');
 
-    // specific for exhibition list
-    $select_exhibition->fields('d', array('field_uib_date_value2'));
-    $select_exhibition->condition('et.field_uib_event_type_value', 'exhibition');
-    $select_exhibition->where('date(d.field_uib_date_value2) >= date(now())');
 
     // fetch the events
     $result = $select->execute();
@@ -113,7 +114,14 @@ function uib_calendar3_block_view($delta) {
         'node/' . intval($area) . '/calendar', array('attributes'=>array('class' => array('more-link')))
       ),
     );
-
+    $block['subject'] = t('Calendar');
+    $block['content'] = $ra;
+    break;
+  case 'exhibitions3':
+    // specific for exhibition list
+    $select_exhibition->fields('d', array('field_uib_date_value2'));
+    $select_exhibition->condition('et.field_uib_event_type_value', 'exhibition');
+    $select_exhibition->where('date(d.field_uib_date_value2) >= date(now())');
     // fetch the exhibitions
     $result = $select_exhibition->execute();
     $e = array();
@@ -129,15 +137,10 @@ function uib_calendar3_block_view($delta) {
       );
     }
     if (!empty($e)) {
-      $ra['exhibition']['header'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'h2',
-        '#value' => '<span></span>' . t('Exhibition'),
-      );
       $ra['exhibition']['entries'] = $e;
     }
 
-    $block['subject'] = t('Calendar');
+    $block['subject'] = t('Exhibitions');
     $block['content'] = $ra;
     break;
   }

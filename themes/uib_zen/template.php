@@ -947,6 +947,7 @@ function uib_zen_preprocess_block(&$variables, $hook) {
     'block-views-e35933dcbeaec830701d3e48e98f0046',
     'block-views-87d291272c77934f60566c1a5bccebdf',
     'block-uib-calendar3-calendar3',
+    'block-uib-calendar3-exhibitions3',
   );
   if (in_array ($variables['block_html_id'], $blue_block)) {
     if ($variables['block']->subject) {
