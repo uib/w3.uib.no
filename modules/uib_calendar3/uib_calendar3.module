@@ -118,6 +118,7 @@ function uib_calendar3_block_view($delta) {
     $block['content'] = $ra;
     break;
   case 'exhibitions3':
+    $ra = array();
     // specific for exhibition list
     $select_exhibition->fields('d', array('field_uib_date_value2'));
     $select_exhibition->condition('et.field_uib_event_type_value', 'exhibition');
