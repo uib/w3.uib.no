@@ -44,6 +44,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       '#value' => $current_area->title,
     );
   }
+  $variables['page']['header']['search'] =
+    __uib_w3__render_block('uib_search', 'global-searchform', -5);
 
   switch (true) {
     case $variables['node']->type == 'uib_article':

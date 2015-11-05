@@ -64,3 +64,107 @@ JS;
 </noscript>
 HTML;
 }
+
+
+/**
+* Implements hook_block_info()
+**/
+function uib_search_block_info() {
+  return array(
+    'global-searchform' => array(
+      'info' => t('Search form'),
+      'status' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_search_block_view($delta) {
+  global $language;
+  $retval=array();
+  $retval['subject']=t('Search');
+  switch ($delta) {
+  case 'global-searchform':
+    $action=$GLOBALS['base_path'] . $language->language . "/search";
+    $retval['content']=array(
+      '#type' => 'container',
+      '#weight' => -45,
+      '#attributes' => array(
+        'class' => array('global-search'),
+      ),
+      'form' => array(
+        '#type' => 'form',
+        '#name' => 'noscriptform',
+        '#action' => $action,
+        '#method' => "get",
+        '#attributes' => array(
+          'name' => 'noscriptform',
+        ),
+        'link' => array(
+          "#markup" => '<input class="search-button" type="submit" value="'
+          . t("Search") . '" />',
+        ),
+        'noscript' => array(
+          '#prefix' => '<noscript>',
+          '#suffix' => '</noscript>',
+          'qq' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'class' => array('search-field'),
+              'value' => check_plain($_GET['qq']),
+                  'name' => 'qq',
+            ),
+          ),
+        ),
+      ),
+      'lightbox-form' => array(
+        '#type' => 'form',
+        '#name' => 'lbform',
+        '#action' => $action,
+        '#method' => "get",
+        '#attributes' => array(
+          'name' => 'lbform',
+        ),
+        'lightbox' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('lightbox'),
+          ),
+          'close' => array(
+            '#type' => 'container',
+            'link' => array(
+              '#type' => 'link',
+              '#href' => '',
+              '#attributes' => array(
+                'class' => 'closeme',
+              ),
+              '#title' => t('Close'),
+            ),
+            '#attributes' => array(
+              'class' => array('close-lightbox'),
+            ),
+          ),
+          'search' => array(
+            '#type' => 'container',
+            'searchtext' => array(
+              '#type' => 'textfield',
+              '#value' => check_plain($_GET['qq']),
+              '#attributes' => array(
+                'class' => array('search-field'),
+                'name' => 'qq',
+              ),
+            ),
+            'submit' => array(
+              '#type' => 'submit',
+              '#value' => t('Search'),
+            ),
+          ),
+        ),
+      ),
+    );
+    break;
+  }
+  return $retval;
+}
