@@ -20,6 +20,7 @@ stylesheets[print][] = css/print.css
 settings[default_logo] = 0
 settings[logo_path] = sites/all/themes/uib/uib_w3/logo.svg
 
+breakpoints[full_width] = (min-width:1152px)
 breakpoints[wide] = (min-width: 860px)
 breakpoints[narrow] = (min-width: 560px)
 breakpoints[mobile] = (min-width: 0px)

@@ -521,6 +521,12 @@ function uib_setup_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'full_width_banner' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'full_width_image' => array(
         'label' => 'above',
         'settings' => array(),
@@ -634,6 +640,12 @@ function uib_setup_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'full_width_banner' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'full_width_image' => array(
         'label' => 'above',
@@ -794,6 +806,27 @@ function uib_setup_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'full_width_banner' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
       'full_width_image' => array(
         'label' => 'above',
         'settings' => array(),
@@ -913,6 +946,27 @@ function uib_setup_field_default_field_instances() {
         'weight' => 1,
       ),
       'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'full_width_banner' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(
@@ -1092,6 +1146,27 @@ function uib_setup_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'full_width_banner' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'full_width_image' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1217,6 +1292,12 @@ function uib_setup_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'full_width_banner' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'full_width_image' => array(
         'label' => 'above',

@@ -14,6 +14,9 @@ function uib_w3_preprocess_html(&$variables) {
     if ($node->type == 'uib_article') {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
     }
+    if ($node->type == 'area' && $node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+      $variables['classes_array'][] = 'banner-image';
+    }
   }
   if ($current_area = uib_area__get_current()) {
     if ($current_area->field_uib_menu_style['und'][0]['value'] == 'expanded') {
@@ -57,7 +60,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       '#tag' => 'h2',
       '#value' => $current_area->title,
     );
-
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
@@ -121,16 +123,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'weight' => -40,
       ));
       $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
-      $full_width = empty($variables['node']->field_uib_primary_text) ? TRUE : FALSE;
+      if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+        $view_mode = 'full_width_banner';
+      }
+      else {
+        $view_mode = empty($variables['node']->field_uib_primary_text) ? 'content_main' : 'area_main';
+      }
       $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
         'type' => 'file_rendered',
-        'settings' => array(
-          'file_view_mode' => $full_width ? 'content_main' : 'area_main',
-        ),
+        'settings' => array('file_view_mode' => $view_mode),
         'label' => 'hidden',
         'weight' => -30,
       ));
-      if ($full_width) {
+      if ($view_mode == 'content_main') {
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_copyright']);
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_owner']);
         $variables['page']['content_top']['field_uib_primary_media']['#prefix'] = '<div class="full-width">';
@@ -181,8 +186,23 @@ function uib_w3_preprocess_page(&$variables, $hook) {
           break;
         case 'frontpage':
           $variables['page']['content_bottom']['frontpage_links'] = __uib_w3__render_block('uib_area', 'frontpage_links', 0);
+          if (!empty($variables['page']['content_top']['field_uib_primary_media'])) {
+            if ($variables['language']->language == 'en') {
+              $find_studies = __uib_w3__get_renderable_menu('menu-uib-find-studies-en');
+            }
+            else {
+              $find_studies = __uib_w3__get_renderable_menu('menu-uib-find-studies');
+            }
+            $variables['page']['content_top']['find_studies'] = array(
+              '#type' => 'html_tag',
+              '#value' => render($find_studies),
+              '#weight' => 20,
+              '#attributes' => array('class' => array('uib-find-studies')),
+              '#tag' => 'nav',
+            );
+          }
           break;
-        }
+      }
       break;
 
     case $variables['node']->type == 'uib_study':
