@@ -1,3 +1,17 @@
+# Release 34 _2015-11-05_
+
+Vi har i hovedsak jobbet med redesign av uib.no, men har også fått inn noen endringer til dagens side
+
+- Upubliserte områder ble ikke synkronisert med SEBRA, vi har nå endret dette og passet på at alle områder nå er synkronisert #10978
+- Kalenderblokken på områdeforsider er byttet, slik at den gamle kalendermodulen kan fjernes #12344
+- Pressemeldingsfilteret blir nå oppdatert hver gang en ny pressemelding lages #11414
+- Vi har fjernet parantesene på utstillingsblokken #12176
+
+Redesign
+
+- De fleste malene er nå på plass, de som mangler er forsiden til uib, doktorgrader, pressemeldinger, indre marked og nus-sider.
+- Vi har begynt å style de ferdige malene.
+
 # Release 33 _2015-10-22_
 
 Denne releasen inkluderer ingen synlige endringer.
