@@ -51,6 +51,7 @@ function uib_search__page() {
 JS;
   drupal_add_js($script, array('type' => 'inline'));
 
+  $q = check_plain($q);
   return <<<"HTML"
 <div id=cse>Søker etter $q...</div>
 <noscript>
