@@ -119,7 +119,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'label' => 'hidden',
         'weight' => 10,
       ));
-      $variables['page']['content_bottom']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
+      $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
 
       switch ($variables['node']->field_uib_area_type['und'][0]['value']) {
         case 'newspage':
