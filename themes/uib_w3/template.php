@@ -109,8 +109,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'label' => 'hidden',
         'weight' => -20,
       ));
-      $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('views', 'calendar-block_1', 0);
-      $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('views', 'calendar-block_4', 5);
+      $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 0);
+      $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 5);
       $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 10);
       $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
         'weight' => 30,
