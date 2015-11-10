@@ -64,6 +64,73 @@ function uib_area_block_view($delta='') {
   $area = uib_area__get_current();
   $block = array();
   switch ($delta) {
+    case 'colophon_2':
+      $phone = '+47 55 58 00 00';
+      $mail_title = t('post@uib.no');
+      $mail_href = 'mailto:post@uib.no';
+      if(isset($area->field_uib_ou['und'])) {
+        $place = node_load($area->field_uib_ou['und'][0]['target_id']);
+        $mail_title = 'post@' . $place->field_uib_mail_domain['und'][0]['safe_value'];
+        $mail_href = 'mailto:post@' . $place->field_uib_mail_domain['und'][0]['safe_value'];
+        $phone = $place->field_uib_phone['und'][0]['value'];
+      }
+      else {
+        $parent = node_load($area->field_uib_area_parents['und'][0]['target_id']);
+        $place = node_load($parent->field_uib_ou['und'][0]['target_id']);
+      }
+      $postal_address = t('University of Bergen') .' '. uib_area__format_postal_address($place);
+      $visit_address = uib_area__format_visit_address($place);
+      $block['subject'] = NULL;
+      $block['content'] = array(
+        'contact' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => 'contact',
+          ),
+          'title' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'h3',
+            '#value' => t('Contact us'),
+          ),
+          'email' => array(
+            '#type' => 'link',
+            '#title' => $mail_title,
+            '#href' => $mail_href,
+          ),
+          'phone' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => $phone,
+          ),
+          'postal_address' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => $postal_address,
+          ),
+        ),
+        'visit' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => 'visit',
+          ),
+          'title' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'h3',
+            '#value' => t('Visit us'),
+          ),
+          'visit_address' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => $visit_address,
+          ),
+          'campus_map' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => t('View campus map'),
+          ),
+        ),
+      );
+    break;
     case 'colophon':
       $block['subject'] = NULL;
       $block['content'] = array(
