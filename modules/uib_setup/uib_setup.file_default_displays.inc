@@ -233,7 +233,7 @@ function uib_setup_file_default_displays() {
   $file_display->status = TRUE;
   $file_display->settings = array(
     'picture_group' => 'w3_content_main',
-    'fallback_image_style' => '',
+    'fallback_image_style' => 'content_main',
     'lazyload' => 0,
     'lazyload_aspect_ratio' => 0,
     'alt' => '[file:field_file_image_alt_text]',
