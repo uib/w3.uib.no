@@ -164,5 +164,11 @@
           </div>
         </div>
 <?php endif; ?>
+<?php if ($page['footer']): ?>
+        <div class="footer-wrapper">
+          <div class="footer">
 <?php print render($page['footer']); ?>
+          </div>
+        </div>
+<?php endif; ?>
     </footer>
