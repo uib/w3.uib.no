@@ -376,9 +376,15 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   }
   else {
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
+      if (count($variables['field_uib_main_media']) > 1) {
+        $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
+      }
       $variables['theme_hook_suggestions'][] = 'node__article__teaser';
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
+      if (count($variables['field_uib_main_media']) > 1) {
+        $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
+      }
       $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
     }
   }
@@ -448,4 +454,16 @@ function __uib_w3__render_block($module, $block_id, $weight) {
   $render = _block_get_renderable_array($block_content);
   $render['#weight'] = $weight;
   return $render;
+}
+
+/**
+ * Function for keeping just the first main media in article teaser mode
+ */
+function __uib_w3__keep_first_main_media($variables) {
+  $keep = $variables[0];
+  foreach($variables as $key => $value) {
+    if (is_numeric($key)) unset($variables[$key]);
+  }
+  $variables[0] = $keep;
+  return $variables;
 }
