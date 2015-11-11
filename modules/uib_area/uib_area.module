@@ -65,6 +65,7 @@ function uib_area_block_view($delta='') {
   $block = array();
   switch ($delta) {
     case 'colophon_2':
+      $place = "";
       $phone = '+47 55 58 00 00';
       $mail_title = t('post@uib.no');
       $mail_href = 'mailto:post@uib.no';
@@ -80,6 +81,8 @@ function uib_area_block_view($delta='') {
       }
       $postal_address = t('University of Bergen') .' '. uib_area__format_postal_address($place);
       $visit_address = uib_area__format_visit_address($place);
+      $block['title'] = '';
+      $block['region'] = 'none';
       $block['subject'] = NULL;
       $block['content'] = array(
         'contact' => array(

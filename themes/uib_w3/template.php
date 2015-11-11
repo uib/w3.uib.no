@@ -123,7 +123,13 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       ));
       $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
-      $variables['page']['footer']['uib_area_contact_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
+      $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
+      $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
+        'type' => 'socialmedia_formatter',
+        'label' => 'hidden',
+        'settings' => array('link' => TRUE),
+        'weight' => '20',
+      ));
 
       switch ($variables['node']->field_uib_area_type['und'][0]['value']) {
         case 'newspage':
