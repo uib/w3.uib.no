@@ -394,6 +394,20 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
       $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
     }
+    if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'teaser') {
+      $variables['theme_hook_suggestions'][] = 'node__external_content__teaser';
+      $variables['content']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_media', array(
+        'type' => 'file_rendered',
+        'settings' => array('view_mode' => 'teaser'),
+        'label' => 'hidden',
+        'weight' => 3,
+      ));
+      unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
+      $variables['content']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_teaser', array(
+        'label' => 'hidden',
+        'weight' => 5,
+      ));
+    }
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
     }
