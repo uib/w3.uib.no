@@ -1,3 +1,11 @@
+# Release 34.1 _2015-11-12_
+
+Moduleoppdateringene tilknyttet nytt theme i release 34 hadde som effekt at
+artiklene inkluderte orginalversjonen av bildene istedenfor nedskalerte versjoner.
+Det gjorde at sidene brukte mye mer data enn de skulle.  Det har vi nå fikset.
+
+Sikkerhetsoppdatering for søkesiden (XSS) #12959
+
 # Release 34 _2015-11-05_
 
 Vi har i hovedsak jobbet med redesign av uib.no, men har også fått inn noen endringer til dagens side
