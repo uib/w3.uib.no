@@ -113,7 +113,7 @@ function uib_search_block_view($delta) {
             '#type' => 'textfield',
             '#attributes' => array(
               'class' => array('search-field'),
-              'value' => check_plain($_GET['qq']),
+              'value' => check_plain(@$_GET['qq']),
                   'name' => 'qq',
             ),
           ),
@@ -150,7 +150,7 @@ function uib_search_block_view($delta) {
             '#type' => 'container',
             'searchtext' => array(
               '#type' => 'textfield',
-              '#value' => check_plain($_GET['qq']),
+              '#value' => check_plain(@$_GET['qq']),
               '#attributes' => array(
                 'class' => array('search-field'),
                 'name' => 'qq',
