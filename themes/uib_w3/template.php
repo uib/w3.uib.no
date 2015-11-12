@@ -330,6 +330,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_user_twitter',
     'uib_user_research_groups',
     'uib_calendar3_exhibitions3',
+    'uib_search_global-searchform',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
