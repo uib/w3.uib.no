@@ -55,6 +55,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
+  drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 
   switch (true) {
     case $variables['node']->type == 'uib_article':
