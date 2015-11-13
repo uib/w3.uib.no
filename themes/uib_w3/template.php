@@ -38,10 +38,12 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   $current_area = uib_area__get_current();
   $frontpage = $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
-  if ($area_menu_name = uib_area__get_current_menu() && $frontpage) {
-    $variables['area_menu'] = menu_tree_output(menu_tree_all_data($area_menu_name));
-    foreach ($variables['area_menu'] as $key => $value) {
-      if (is_numeric($key)) $variables['area_menu'][$key]['#attributes']['class'][] = 'menu__item';
+  if ($area_menu_name = uib_area__get_current_menu()) {
+    if (!$frontpage) {
+      $variables['area_menu'] = menu_tree_output(menu_tree_all_data($area_menu_name));
+      foreach ($variables['area_menu'] as $key => $value) {
+        if (is_numeric($key)) $variables['area_menu'][$key]['#attributes']['class'][] = 'menu__item';
+      }
     }
   }
   if ($current_area && !$variables['is_front']) {
