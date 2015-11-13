@@ -105,10 +105,9 @@
 <?php print render($page['subheader']); ?>
     </div>
 <?php endif; ?>
-<?php if ($main_menu || $secondary_menu): ?>
-    <nav class="site_nav">
-<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))); ?>
-<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))); ?>
+<?php if ($area_menu): ?>
+    <nav id="main-menu">
+<?php print render($area_menu); ?>
     </nav>
 <?php endif; ?>
 <?php print $messages; ?>

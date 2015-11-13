@@ -37,12 +37,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     }
   }
   $current_area = uib_area__get_current();
+  if ($area_menu_name = uib_area__get_current_menu()) {
+    $variables['area_menu'] = menu_tree_output(menu_tree_all_data($area_menu_name));
+    foreach ($variables['area_menu'] as $key => $value) {
+      if (is_numeric($key)) $variables['area_menu'][$key]['#attributes']['class'][] = 'menu__item';
+    }
+  }
   if ($current_area && !$variables['is_front']) {
     $variables['page']['subheader']['area'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h2',
       '#value' => $current_area->title,
     );
+
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
