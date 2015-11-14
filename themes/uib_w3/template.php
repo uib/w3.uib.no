@@ -15,6 +15,11 @@ function uib_w3_preprocess_html(&$variables) {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
     }
   }
+  if ($current_area = uib_area__get_current()) {
+    if ($current_area->field_uib_menu_style['und'][0]['value'] == 'expanded') {
+      $variables['classes_array'][] = 'uib-area-expanded-menu';
+    }
+  }
 }
 
 /**
@@ -332,6 +337,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     'uib_user_research_groups',
     'uib_calendar3_exhibitions3',
     'uib_search_global-searchform',
+    'uib_area_ouprosjektet_logo',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
