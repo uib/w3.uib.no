@@ -30,20 +30,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     if ($variables['language']->language == 'nb') {
-      $variables['global_menu'] = menu_navigation_links('menu-global-menu-no');
+      $variables['page']['header']['global_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
     }
     else {
-      $variables['global_menu'] = menu_navigation_links('menu-global-menu');
+      $variables['page']['header']['global_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
     }
+    $variables['page']['header']['global_menu']['#prefix'] = '<nav class="global-menu">';
+    $variables['page']['header']['global_menu']['#suffix'] = '</nav>';
   }
   $current_area = uib_area__get_current();
   $frontpage = $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     if (!$frontpage) {
-      $variables['area_menu'] = menu_tree_output(menu_tree_all_data($area_menu_name));
-      foreach ($variables['area_menu'] as $key => $value) {
-        if (is_numeric($key)) $variables['area_menu'][$key]['#attributes']['class'][] = 'menu__item';
-      }
+      $variables['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
     }
   }
   if ($current_area && !$variables['is_front']) {
@@ -500,4 +499,15 @@ function __uib_w3__keep_first_main_media($variables) {
   }
   $variables[0] = $keep;
   return $variables;
+}
+
+/**
+ * Function for formatting an uib_menu the way we want
+ */
+function __uib_w3__get_renderable_menu($menu_name) {
+  $menu = menu_tree_output(menu_tree_all_data($menu_name));
+  foreach ($menu as $key => $value) {
+    if (is_numeric($key)) $menu[$key]['#attributes']['class'][] = 'menu__item';
+  }
+  return $menu;
 }
