@@ -10,7 +10,7 @@
 function uib_setup_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: management_webdesk:webdesk
+  // Exported menu link: management_webdesk:webdesk.
   $menu_links['management_webdesk:webdesk'] = array(
     'menu_name' => 'management',
     'link_path' => 'webdesk',

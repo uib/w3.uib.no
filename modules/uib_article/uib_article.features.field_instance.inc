@@ -10,7 +10,7 @@
 function uib_article_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_article-field_related_persons_label'
+  // Exported field_instance: 'node-uib_article-field_related_persons_label'.
   $field_instances['node-uib_article-field_related_persons_label'] = array(
     'bundle' => 'uib_article',
     'default_value' => array(
@@ -101,7 +101,7 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_article-field_uib_related_persons'
+  // Exported field_instance: 'node-uib_article-field_uib_related_persons'.
   $field_instances['node-uib_article-field_uib_related_persons'] = array(
     'bundle' => 'uib_article',
     'default_value' => NULL,
@@ -172,7 +172,7 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_article-field_uib_show_global_calendar'
+  // Exported field_instance: 'node-uib_article-field_uib_show_global_calendar'.
   $field_instances['node-uib_article-field_uib_show_global_calendar'] = array(
     'bundle' => 'uib_article',
     'default_value' => array(

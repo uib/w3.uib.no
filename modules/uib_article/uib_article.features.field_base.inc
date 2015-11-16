@@ -10,7 +10,7 @@
 function uib_article_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_related_persons_label'
+  // Exported field_base: 'field_related_persons_label'.
   $field_bases['field_related_persons_label'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function uib_article_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_related_persons'
+  // Exported field_base: 'field_uib_related_persons'.
   $field_bases['field_uib_related_persons'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -68,7 +68,7 @@ function uib_article_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_show_global_calendar'
+  // Exported field_base: 'field_uib_show_global_calendar'.
   $field_bases['field_uib_show_global_calendar'] = array(
     'active' => 1,
     'cardinality' => 1,

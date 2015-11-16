@@ -10,7 +10,7 @@
 function uib_user_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'user-user-field_uib_first_name'
+  // Exported field_instance: 'user-user-field_uib_first_name'.
   $field_instances['user-user-field_uib_first_name'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -91,7 +91,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_last_name'
+  // Exported field_instance: 'user-user-field_uib_last_name'.
   $field_instances['user-user-field_uib_last_name'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -172,7 +172,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_phone'
+  // Exported field_instance: 'user-user-field_uib_phone'.
   $field_instances['user-user-field_uib_phone'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -229,7 +229,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_position'
+  // Exported field_instance: 'user-user-field_uib_position'.
   $field_instances['user-user-field_uib_position'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -284,7 +284,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_position_category'
+  // Exported field_instance: 'user-user-field_uib_position_category'.
   $field_instances['user-user-field_uib_position_category'] = array(
     'bundle' => 'user',
     'default_value' => array(
@@ -325,7 +325,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_position_code'
+  // Exported field_instance: 'user-user-field_uib_position_code'.
   $field_instances['user-user-field_uib_position_code'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -366,7 +366,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_slug'
+  // Exported field_instance: 'user-user-field_uib_slug'.
   $field_instances['user-user-field_uib_slug'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -406,7 +406,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_sort_name'
+  // Exported field_instance: 'user-user-field_uib_sort_name'.
   $field_instances['user-user-field_uib_sort_name'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -472,7 +472,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_alt_address'
+  // Exported field_instance: 'user-user-field_uib_user_alt_address'.
   $field_instances['user-user-field_uib_user_alt_address'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -522,7 +522,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_alt_firstname'
+  // Exported field_instance: 'user-user-field_uib_user_alt_firstname'.
   $field_instances['user-user-field_uib_user_alt_firstname'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -588,7 +588,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_alt_lastname'
+  // Exported field_instance: 'user-user-field_uib_user_alt_lastname'.
   $field_instances['user-user-field_uib_user_alt_lastname'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -654,7 +654,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_alt_position'
+  // Exported field_instance: 'user-user-field_uib_user_alt_position'.
   $field_instances['user-user-field_uib_user_alt_position'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -735,7 +735,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_communication'
+  // Exported field_instance: 'user-user-field_uib_user_communication'.
   $field_instances['user-user-field_uib_user_communication'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -816,7 +816,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_competence'
+  // Exported field_instance: 'user-user-field_uib_user_competence'.
   $field_instances['user-user-field_uib_user_competence'] = array(
     'bundle' => 'user',
     'default_value' => array(),
@@ -887,7 +887,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_cristin_nr'
+  // Exported field_instance: 'user-user-field_uib_user_cristin_nr'.
   $field_instances['user-user-field_uib_user_cristin_nr'] = array(
     'bundle' => 'user',
     'default_value' => array(
@@ -932,7 +932,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_cristin_place'
+  // Exported field_instance: 'user-user-field_uib_user_cristin_place'.
   $field_instances['user-user-field_uib_user_cristin_place'] = array(
     'bundle' => 'user',
     'default_value' => array(
@@ -973,7 +973,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_cristin_sort'
+  // Exported field_instance: 'user-user-field_uib_user_cristin_sort'.
   $field_instances['user-user-field_uib_user_cristin_sort'] = array(
     'bundle' => 'user',
     'default_value' => array(
@@ -1014,7 +1014,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_cv'
+  // Exported field_instance: 'user-user-field_uib_user_cv'.
   $field_instances['user-user-field_uib_user_cv'] = array(
     'bundle' => 'user',
     'deleted' => 0,
@@ -1071,7 +1071,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_docs'
+  // Exported field_instance: 'user-user-field_uib_user_docs'.
   $field_instances['user-user-field_uib_user_docs'] = array(
     'bundle' => 'user',
     'default_value' => array(),
@@ -1148,7 +1148,7 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_domain'
+  // Exported field_instance: 'user-user-field_uib_user_domain'.
   $field_instances['user-user-field_uib_user_domain'] = array(
     'bundle' => 'user',
     'default_value' => array(
@@ -1194,7 +1194,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_feed'
+  // Exported field_instance: 'user-user-field_uib_user_feed'.
   $field_instances['user-user-field_uib_user_feed'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1250,7 +1250,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_field'
+  // Exported field_instance: 'user-user-field_uib_user_field'.
   $field_instances['user-user-field_uib_user_field'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1331,7 +1331,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_opt_content'
+  // Exported field_instance: 'user-user-field_uib_user_opt_content'.
   $field_instances['user-user-field_uib_user_opt_content'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1412,7 +1412,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_opt_title'
+  // Exported field_instance: 'user-user-field_uib_user_opt_title'.
   $field_instances['user-user-field_uib_user_opt_title'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1493,7 +1493,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_ou'
+  // Exported field_instance: 'user-user-field_uib_user_ou'.
   $field_instances['user-user-field_uib_user_ou'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1558,7 +1558,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_projects'
+  // Exported field_instance: 'user-user-field_uib_user_projects'.
   $field_instances['user-user-field_uib_user_projects'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1639,7 +1639,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_publications'
+  // Exported field_instance: 'user-user-field_uib_user_publications'.
   $field_instances['user-user-field_uib_user_publications'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1720,7 +1720,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_room'
+  // Exported field_instance: 'user-user-field_uib_user_room'.
   $field_instances['user-user-field_uib_user_room'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1801,7 +1801,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_social_media'
+  // Exported field_instance: 'user-user-field_uib_user_social_media'.
   $field_instances['user-user-field_uib_user_social_media'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1882,7 +1882,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_teaching'
+  // Exported field_instance: 'user-user-field_uib_user_teaching'.
   $field_instances['user-user-field_uib_user_teaching'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -1963,7 +1963,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_user_url'
+  // Exported field_instance: 'user-user-field_uib_user_url'.
   $field_instances['user-user-field_uib_user_url'] = array(
     'bundle' => 'user',
     'default_value' => NULL,
@@ -2034,7 +2034,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_w2_id'
+  // Exported field_instance: 'user-user-field_uib_w2_id'.
   $field_instances['user-user-field_uib_w2_id'] = array(
     'bundle' => 'user',
     'default_value' => NULL,

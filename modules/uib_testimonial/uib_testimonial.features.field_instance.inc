@@ -10,7 +10,7 @@
 function uib_testimonial_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_area'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_area'.
   $field_instances['node-uib_testimonial-field_uib_area'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -71,7 +71,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_birth_year'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_birth_year'.
   $field_instances['node-uib_testimonial-field_uib_birth_year'] = array(
     'bundle' => 'uib_testimonial',
     'deleted' => 0,
@@ -145,7 +145,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_education'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_education'.
   $field_instances['node-uib_testimonial-field_uib_education'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -206,7 +206,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_exchange_place'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_exchange_place'.
   $field_instances['node-uib_testimonial-field_uib_exchange_place'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -267,7 +267,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_exchange_text'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_exchange_text'.
   $field_instances['node-uib_testimonial-field_uib_exchange_text'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -328,7 +328,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_lead'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_lead'.
   $field_instances['node-uib_testimonial-field_uib_lead'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -404,7 +404,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_media'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_media'.
   $field_instances['node-uib_testimonial-field_uib_media'] = array(
     'bundle' => 'uib_testimonial',
     'deleted' => 0,
@@ -519,7 +519,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_name'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_name'.
   $field_instances['node-uib_testimonial-field_uib_name'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -595,7 +595,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_organization'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_organization'.
   $field_instances['node-uib_testimonial-field_uib_organization'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -656,7 +656,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_position'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_position'.
   $field_instances['node-uib_testimonial-field_uib_position'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -717,7 +717,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_quote'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_quote'.
   $field_instances['node-uib_testimonial-field_uib_quote'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -819,7 +819,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_relation'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_relation'.
   $field_instances['node-uib_testimonial-field_uib_relation'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -884,7 +884,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_study_programmes'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_study_programmes'.
   $field_instances['node-uib_testimonial-field_uib_study_programmes'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -954,7 +954,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_text'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_text'.
   $field_instances['node-uib_testimonial-field_uib_text'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -1041,7 +1041,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_id'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_id'.
   $field_instances['node-uib_testimonial-field_uib_w2_id'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
@@ -1087,7 +1087,7 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_path'
+  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_path'.
   $field_instances['node-uib_testimonial-field_uib_w2_path'] = array(
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,

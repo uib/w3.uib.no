@@ -35,6 +35,5 @@ function uib_setup_menu_default_menu_custom() {
   t('Webdesk');
   t('Webdesk_no');
 
-
   return $menus;
 }

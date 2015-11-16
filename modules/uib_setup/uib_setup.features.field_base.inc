@@ -10,7 +10,7 @@
 function uib_setup_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_file_image_alt_text'
+  // Exported field_base: 'field_file_image_alt_text'.
   $field_bases['field_file_image_alt_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -32,7 +32,7 @@ function uib_setup_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_file_image_title_text'
+  // Exported field_base: 'field_file_image_title_text'.
   $field_bases['field_file_image_title_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -54,7 +54,7 @@ function uib_setup_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_copyright'
+  // Exported field_base: 'field_uib_copyright'.
   $field_bases['field_uib_copyright'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -76,7 +76,7 @@ function uib_setup_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_description'
+  // Exported field_base: 'field_uib_description'.
   $field_bases['field_uib_description'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -97,7 +97,7 @@ function uib_setup_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_owner'
+  // Exported field_base: 'field_uib_owner'.
   $field_bases['field_uib_owner'] = array(
     'active' => 1,
     'cardinality' => 1,

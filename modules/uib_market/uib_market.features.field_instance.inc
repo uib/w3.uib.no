@@ -10,7 +10,7 @@
 function uib_market_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_market-field_uib_market_category'
+  // Exported field_instance: 'node-uib_market-field_uib_market_category'.
   $field_instances['node-uib_market-field_uib_market_category'] = array(
     'bundle' => 'uib_market',
     'default_value' => array(
@@ -87,7 +87,7 @@ function uib_market_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_market-field_uib_market_text'
+  // Exported field_instance: 'node-uib_market-field_uib_market_text'.
   $field_instances['node-uib_market-field_uib_market_text'] = array(
     'bundle' => 'uib_market',
     'default_value' => NULL,

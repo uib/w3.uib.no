@@ -10,7 +10,7 @@
 function uib_market_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_market_category'
+  // Exported field_base: 'field_uib_market_category'.
   $field_bases['field_uib_market_category'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -37,7 +37,7 @@ function uib_market_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_market_text'
+  // Exported field_base: 'field_uib_market_text'.
   $field_bases['field_uib_market_text'] = array(
     'active' => 1,
     'cardinality' => 1,

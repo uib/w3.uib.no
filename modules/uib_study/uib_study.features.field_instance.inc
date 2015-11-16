@@ -10,7 +10,7 @@
 function uib_study_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_study-field_uib_feed'
+  // Exported field_instance: 'node-uib_study-field_uib_feed'.
   $field_instances['node-uib_study-field_uib_feed'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -87,7 +87,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_link_section'
+  // Exported field_instance: 'node-uib_study-field_uib_link_section'.
   $field_instances['node-uib_study-field_uib_link_section'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -150,7 +150,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_nus'
+  // Exported field_instance: 'node-uib_study-field_uib_nus'.
   $field_instances['node-uib_study-field_uib_nus'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -206,7 +206,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_ou'
+  // Exported field_instance: 'node-uib_study-field_uib_ou'.
   $field_instances['node-uib_study-field_uib_ou'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -253,7 +253,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_category'
+  // Exported field_instance: 'node-uib_study-field_uib_study_category'.
   $field_instances['node-uib_study-field_uib_study_category'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -311,7 +311,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_code'
+  // Exported field_instance: 'node-uib_study-field_uib_study_code'.
   $field_instances['node-uib_study-field_uib_study_code'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -372,7 +372,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_country'
+  // Exported field_instance: 'node-uib_study-field_uib_study_country'.
   $field_instances['node-uib_study-field_uib_study_country'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -424,7 +424,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_image'
+  // Exported field_instance: 'node-uib_study-field_uib_study_image'.
   $field_instances['node-uib_study-field_uib_study_image'] = array(
     'bundle' => 'uib_study',
     'deleted' => 0,
@@ -528,7 +528,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_label'
+  // Exported field_instance: 'node-uib_study-field_uib_study_label'.
   $field_instances['node-uib_study-field_uib_study_label'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -584,7 +584,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_organisation'
+  // Exported field_instance: 'node-uib_study-field_uib_study_organisation'.
   $field_instances['node-uib_study-field_uib_study_organisation'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -630,7 +630,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_part_of'
+  // Exported field_instance: 'node-uib_study-field_uib_study_part_of'.
   $field_instances['node-uib_study-field_uib_study_part_of'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -683,7 +683,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_points_rank'
+  // Exported field_instance: 'node-uib_study-field_uib_study_points_rank'.
   $field_instances['node-uib_study-field_uib_study_points_rank'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -726,7 +726,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_title'
+  // Exported field_instance: 'node-uib_study-field_uib_study_title'.
   $field_instances['node-uib_study-field_uib_study_title'] = array(
     'bundle' => 'uib_study',
     'default_value' => NULL,
@@ -813,7 +813,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_type'
+  // Exported field_instance: 'node-uib_study-field_uib_study_type'.
   $field_instances['node-uib_study-field_uib_study_type'] = array(
     'bundle' => 'uib_study',
     'default_value' => array(
@@ -875,7 +875,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_id'
+  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_id'.
   $field_instances['taxonomy_term-uib_nus-field_uib_nus_id'] = array(
     'bundle' => 'uib_nus',
     'default_value' => NULL,
@@ -920,7 +920,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_image'
+  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_image'.
   $field_instances['taxonomy_term-uib_nus-field_uib_nus_image'] = array(
     'bundle' => 'uib_nus',
     'deleted' => 0,
@@ -1042,7 +1042,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_text'
+  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_nus_text'.
   $field_instances['taxonomy_term-uib_nus-field_uib_nus_text'] = array(
     'bundle' => 'uib_nus',
     'default_value' => NULL,
@@ -1159,7 +1159,7 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_term_title'
+  // Exported field_instance: 'taxonomy_term-uib_nus-field_uib_term_title'.
   $field_instances['taxonomy_term-uib_nus-field_uib_term_title'] = array(
     'bundle' => 'uib_nus',
     'default_value' => NULL,

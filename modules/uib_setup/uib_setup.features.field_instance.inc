@@ -10,7 +10,7 @@
 function uib_setup_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'file-audio-field_uib_copyright'
+  // Exported field_instance: 'file-audio-field_uib_copyright'.
   $field_instances['file-audio-field_uib_copyright'] = array(
     'bundle' => 'audio',
     'default_value' => NULL,
@@ -125,7 +125,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-audio-field_uib_description'
+  // Exported field_instance: 'file-audio-field_uib_description'.
   $field_instances['file-audio-field_uib_description'] = array(
     'bundle' => 'audio',
     'default_value' => NULL,
@@ -248,7 +248,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-audio-field_uib_owner'
+  // Exported field_instance: 'file-audio-field_uib_owner'.
   $field_instances['file-audio-field_uib_owner'] = array(
     'bundle' => 'audio',
     'default_value' => NULL,
@@ -363,7 +363,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-audio-field_uib_w2_id'
+  // Exported field_instance: 'file-audio-field_uib_w2_id'.
   $field_instances['file-audio-field_uib_w2_id'] = array(
     'bundle' => 'audio',
     'default_value' => NULL,
@@ -478,7 +478,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_file_image_alt_text'
+  // Exported field_instance: 'file-image-field_file_image_alt_text'.
   $field_instances['file-image-field_file_image_alt_text'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -592,7 +592,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_file_image_title_text'
+  // Exported field_instance: 'file-image-field_file_image_title_text'.
   $field_instances['file-image-field_file_image_title_text'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -706,7 +706,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_uib_copyright'
+  // Exported field_instance: 'file-image-field_uib_copyright'.
   $field_instances['file-image-field_uib_copyright'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -851,7 +851,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_uib_description'
+  // Exported field_instance: 'file-image-field_uib_description'.
   $field_instances['file-image-field_uib_description'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -1004,7 +1004,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_uib_owner'
+  // Exported field_instance: 'file-image-field_uib_owner'.
   $field_instances['file-image-field_uib_owner'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -1175,7 +1175,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_uib_w2_id'
+  // Exported field_instance: 'file-image-field_uib_w2_id'.
   $field_instances['file-image-field_uib_w2_id'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -1275,7 +1275,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-video-field_uib_copyright'
+  // Exported field_instance: 'file-video-field_uib_copyright'.
   $field_instances['file-video-field_uib_copyright'] = array(
     'bundle' => 'video',
     'default_value' => NULL,
@@ -1390,7 +1390,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-video-field_uib_description'
+  // Exported field_instance: 'file-video-field_uib_description'.
   $field_instances['file-video-field_uib_description'] = array(
     'bundle' => 'video',
     'default_value' => NULL,
@@ -1528,7 +1528,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-video-field_uib_owner'
+  // Exported field_instance: 'file-video-field_uib_owner'.
   $field_instances['file-video-field_uib_owner'] = array(
     'bundle' => 'video',
     'default_value' => NULL,
@@ -1658,7 +1658,7 @@ function uib_setup_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-video-field_uib_w2_id'
+  // Exported field_instance: 'file-video-field_uib_w2_id'.
   $field_instances['file-video-field_uib_w2_id'] = array(
     'bundle' => 'video',
     'default_value' => NULL,

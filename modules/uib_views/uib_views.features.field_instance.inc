@@ -10,7 +10,7 @@
 function uib_views_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_views_page-field_uib_area'
+  // Exported field_instance: 'node-uib_views_page-field_uib_area'.
   $field_instances['node-uib_views_page-field_uib_area'] = array(
     'bundle' => 'uib_views_page',
     'default_value' => NULL,
@@ -63,7 +63,7 @@ function uib_views_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_views_page-field_uib_node_title'
+  // Exported field_instance: 'node-uib_views_page-field_uib_node_title'.
   $field_instances['node-uib_views_page-field_uib_node_title'] = array(
     'bundle' => 'uib_views_page',
     'default_value' => NULL,
@@ -150,7 +150,7 @@ function uib_views_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_views_page-field_uib_view_block_name'
+  // Exported field_instance: 'node-uib_views_page-field_uib_view_block_name'.
   $field_instances['node-uib_views_page-field_uib_view_block_name'] = array(
     'bundle' => 'uib_views_page',
     'default_value' => NULL,
@@ -225,7 +225,7 @@ For example, if the view "calendar" has a display "block_1", the views block nam
     ),
   );
 
-  // Exported field_instance: 'node-uib_views_page-field_uib_view_information'
+  // Exported field_instance: 'node-uib_views_page-field_uib_view_information'.
   $field_instances['node-uib_views_page-field_uib_view_information'] = array(
     'bundle' => 'uib_views_page',
     'default_value' => NULL,

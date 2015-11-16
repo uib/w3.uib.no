@@ -10,7 +10,7 @@
 function uib_external_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-uib_external_content-field_uib_area'
+  // Exported field_instance: 'node-uib_external_content-field_uib_area'.
   $field_instances['node-uib_external_content-field_uib_area'] = array(
     'bundle' => 'uib_external_content',
     'default_value' => NULL,
@@ -71,7 +71,7 @@ function uib_external_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_external_content-field_uib_links'
+  // Exported field_instance: 'node-uib_external_content-field_uib_links'.
   $field_instances['node-uib_external_content-field_uib_links'] = array(
     'bundle' => 'uib_external_content',
     'default_value' => NULL,
@@ -148,7 +148,7 @@ function uib_external_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_external_content-field_uib_media'
+  // Exported field_instance: 'node-uib_external_content-field_uib_media'.
   $field_instances['node-uib_external_content-field_uib_media'] = array(
     'bundle' => 'uib_external_content',
     'deleted' => 0,
@@ -247,7 +247,7 @@ function uib_external_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_external_content-field_uib_teaser'
+  // Exported field_instance: 'node-uib_external_content-field_uib_teaser'.
   $field_instances['node-uib_external_content-field_uib_teaser'] = array(
     'bundle' => 'uib_external_content',
     'default_value' => NULL,

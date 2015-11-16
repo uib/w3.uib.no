@@ -10,7 +10,7 @@
 function uib_testimonial_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_birth_year'
+  // Exported field_base: 'field_uib_birth_year'.
   $field_bases['field_uib_birth_year'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -40,7 +40,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_uib_education'
+  // Exported field_base: 'field_uib_education'.
   $field_bases['field_uib_education'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -62,7 +62,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_exchange_place'
+  // Exported field_base: 'field_uib_exchange_place'.
   $field_bases['field_uib_exchange_place'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -84,7 +84,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_exchange_text'
+  // Exported field_base: 'field_uib_exchange_text'.
   $field_bases['field_uib_exchange_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -106,7 +106,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_name'
+  // Exported field_base: 'field_uib_name'.
   $field_bases['field_uib_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -128,7 +128,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_organization'
+  // Exported field_base: 'field_uib_organization'.
   $field_bases['field_uib_organization'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -150,7 +150,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_quote'
+  // Exported field_base: 'field_uib_quote'.
   $field_bases['field_uib_quote'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -172,7 +172,7 @@ function uib_testimonial_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_study_programmes'
+  // Exported field_base: 'field_uib_study_programmes'.
   $field_bases['field_uib_study_programmes'] = array(
     'active' => 1,
     'cardinality' => -1,

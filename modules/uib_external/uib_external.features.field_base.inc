@@ -10,7 +10,7 @@
 function uib_external_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_teaser'
+  // Exported field_base: 'field_uib_teaser'.
   $field_bases['field_uib_teaser'] = array(
     'active' => 1,
     'cardinality' => 1,

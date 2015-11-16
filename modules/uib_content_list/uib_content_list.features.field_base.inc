@@ -10,7 +10,7 @@
 function uib_content_list_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_display_style'
+  // Exported field_base: 'field_uib_display_style'.
   $field_bases['field_uib_display_style'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -35,7 +35,7 @@ function uib_content_list_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_step'
+  // Exported field_base: 'field_uib_step'.
   $field_bases['field_uib_step'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -58,7 +58,7 @@ function uib_content_list_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_uib_step_content'
+  // Exported field_base: 'field_uib_step_content'.
   $field_bases['field_uib_step_content'] = array(
     'active' => 1,
     'cardinality' => 1,
