@@ -27,6 +27,10 @@ function uib_study_block_info() {
       'info' => t('New block for study facts from FS'),
       'status' => TRUE,
     ),
+    'study_facts_exchange' => array(
+      'info' => t('Block for additional study facts on exchange agreements'),
+      'status' => TRUE,
+    ),
     'study_related' => array(
       'info' => t('Related study programs or courses from FS'),
       'status' => TRUE,
@@ -971,19 +975,10 @@ function uib_study_block_view($delta = '') {
           }
           else {
             $study_code = $data['emneid']['emnekode'];
-            $tmp = '<span class="study-facts__label">' . t('ECTS credits') . '</span>';
-            $tmp .= '<span class="study-facts__value">' . $data['studiepoeng'] . '</span>';
-            $items[] = $tmp;
-            $tmp = '<span class="study-facts__label">' . t('Teaching semester') . '</span>';
-            $tmp .= '<span class="study-facts__value">' . t($data['undervisningssemester:en']) . '</span>';
-            $items[] = $tmp;
-            $tmp = '<span class="study-facts__label">' . t('Course code') . '</span>';
-            $tmp .= '<span class="study-facts__value">' . $study_code. '</span>';
-            $items[] = $tmp;
-            $tmp = '<span class="study-facts__label">' . t('Number of semesters') . '</span>';
-            $tmp .= '<span class="study-facts__value">' . $data['antall-undsemester'] . '</span>';
-            $items[] = $tmp;
-            $tmp = '<span class="study-facts__label">' . t('Resources') . '</span>';
+            $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
+            $items[] = uib_study__get_study_facts_markup(t('Teaching semester'), t($data['undervisningssemester:en']));
+            $items[] = uib_study__get_study_facts_markup(t('Course code'), $study_code);
+            $items[] = uib_study__get_study_facts_markup(t('Number of semesters'), $data['antall-undsemester']);
             $resources = array(
               '#theme' => 'item_list',
               '#items' => array(),
@@ -992,41 +987,66 @@ function uib_study_block_view($delta = '') {
             $resources['#items'][] = render($schedule);
             $reading_list = uib_study__get_resource_links('reading_list', $study_code);
             $resources['#items'][] = render($reading_list);
-            $tmp .= '<span class="study-facts__value">' . render($resources) . '</span>';
-            $items[] = $tmp;
+            $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
           }
         }
         elseif ($type == 'program' or $type == 'specialization') {
-          $tmp = '<span class="study-facts__label">' . t('ECTS credits') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $data['studiepoeng'] . '</span>';
-          $items[] = $tmp;
+          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
           $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
           if ($points && $language->language == 'nb') {
-            $tmp = '<span class="study-facts__label">Poenggrense</span>';
-            $tmp .= '<span class="study-facts__value">' . $points['#text'] . '</span>';
-            $items[] = $tmp;
+            $items[] = uib_study__get_study_facts_markup('Poenggrense', $points['#text']);
           }
           $duration = number_format(round($data['studiepoeng'] / 60 * ($data['heltidsprosent'] / 100), 1), 1, ',', ' ');
           if (substr($duration, -2) == ',0')
             $duration = substr($duration, 0, -2);
-          $tmp = '<span class="study-facts__label">' . t('Duration') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $duration . '</span>';
-          $items[] = $tmp;
-          $tmp = '<span class="study-facts__label">' . t('Study programme code') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $data['studieprogramkode'] . '</span>';
-          $items[] = $tmp;
+          $items[] = uib_study__get_study_facts_markup(t('Duration'), $duration);
+          $items[] = uib_study__get_study_facts_markup(t('Study programme code'), $data['studieprogramkode']);
           $seats = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
-          $tmp = '<span class="study-facts__label">' . t('Number of seats') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . uib_study__text_markup($seats, $is_course, TRUE) . '</span>';
-          $items[] = $tmp;
+          $items[] = uib_study__get_study_facts_markup(t('Number of seats'), uib_study__text_markup($seats, $is_course, TRUE));
           $start = uib_study__extract_study_info($data_2, 'SP_START');
-          $tmp = '<span class="study-facts__label">' . t('Study start') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $start['#text'] . '</span>';
-          $items[] = $tmp;
+          $items[] = uib_study__get_study_facts_markup(t('Study start'), $start['#text']);
           $study_lang = uib_study__extract_study_info($data_2, 'SP_SPRAK');
-          $tmp = '<span class="study-facts__label">' . t('Language') . '</span>';
-          $tmp .= '<span class="study-facts__value">' . $study_lang['#text'] . '</span>';
-          $items[] = $tmp;
+          $items[] = uib_study__get_study_facts_markup(t('Language'), $study_lang['#text']);
+        }
+        elseif ($type == 'exchange') {
+          $network = FALSE;
+          if ($data['utvprogramkode'] == 'NORDPLUS' || count($data['sted']) > 2) {
+            $network = TRUE;
+          }
+          if (!empty($data['betingelse'])) {
+            foreach ($data['betingelse'] as $key => $betingelse) {
+              if ($betingelse['personkategori'] == 'STUDENT') {
+                if (!$network) {
+                  foreach ($betingelse['sted'] as $place) {
+                    if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
+                      $items[] = uib_study__get_study_facts_markup(t('Country'),uib_geography_get_country($place['landnr'], $language->language));
+                      if (!empty($data['restinfo']['bynavn']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                        // Note: it is not clear what language the town name is in
+                        // Note: there seems to be only a single town name available
+                        $items[] = uib_study__get_study_facts_markup(t('Town'), check_plain($data['restinfo']['bynavn']));
+                      }
+                      if (!empty($place['antall_ut'])) {
+                        $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($place['antall_ut']));
+                      }
+                      elseif (!empty($betingelse['antall_ut'])) {
+                        $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($betingelse['antall_ut']));
+                      }
+                    }
+                  }
+                }
+                if (!empty($data['studienivaintervallnavn'])) {
+                  $study_level = str_replace('-', '&ndash;', check_plain($data['studienivaintervallnavn']));
+                  $items[] = uib_study__get_study_facts_markup(t('Study level'), $study_level);
+                }
+
+                $items[] = uib_study__get_study_facts_markup(t('Exchange programme'), check_plain(drupal_ucfirst(drupal_strtolower($data['utvprogramkode']))));
+                if (!empty($data['restinfo']['varighet']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                  $exchange_duration = check_plain($data['restinfo']['varighet'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
+                  $items[] = uib_study__get_study_facts_markup(t('Exchange duration'), $exchange_duration);
+                }
+              }
+            }
+          }
         }
 
         $render = array(
@@ -1037,7 +1057,36 @@ function uib_study_block_view($delta = '') {
         $block['content']['fspres'][] = $render;
       }
       break;
-
+    case 'study_facts_exchange':
+      $node = menu_get_object();
+      if ($node && isset($node->field_uib_study_type)) {
+        $type = $node->field_uib_study_type['und'][0]['value'];
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
+        global $language;
+        if (empty($data))
+          break;
+        $items = array();
+        foreach ($data['betingelse'] as $place) {
+          foreach ($place['sted'] as $key ) {
+            if ($key['_type'] == 'eksternt' && $key['institusjonsnr'] != 184) {
+              $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
+              $items[] = uib_study__get_study_facts_markup(t('How do I apply'), l(t('Instructions on Søknadsweb'),'utdanning/49395/søknadsweb-instruksjonar'));
+              $items[] = uib_study__get_study_facts_markup(t('Submit your application here'), l(t('Søknadsweb'),'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib'));
+              $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
+            }
+          }
+        }
+        if (!$network) {
+          $items[] = t('On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.');
+        }
+        $render = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+        );
+        $block['title'] = t('Information');
+        $block['content']['facts_exchange'][] = $render;
+      }
+      break;
     case 'study_related':
       $node = menu_get_object();
       if ($node && $node->type == 'uib_study') {
@@ -2164,4 +2213,13 @@ function uib_study__translate_exposed_filter(&$view, $taxonomy_vocabulary_id, $m
 function uib_study__get_categories() {
   $field_info = field_info_field('field_uib_study_category');
   return $field_info['settings']['allowed_values'];
+}
+
+/**
+ * Returns markup for a study facts item
+ */
+function uib_study__get_study_facts_markup($label, $value) {
+  $item = '<span class="study-facts__label">' . $label . '</span>';
+  $item .= '<span class="study-facts__value">' . $value . '</span>';
+  return $item;
 }
