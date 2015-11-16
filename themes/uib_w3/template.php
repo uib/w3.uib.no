@@ -42,6 +42,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     }
     $variables['page']['header']['global_menu']['#prefix'] = '<nav class="global-menu">';
     $variables['page']['header']['global_menu']['#suffix'] = '</nav>';
+    $variables['page']['header']['global_menu']['#weight'] = -10;
   }
   $current_area = uib_area__get_current();
   $frontpage = $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;

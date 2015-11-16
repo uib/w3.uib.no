@@ -80,23 +80,16 @@
           <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logo__image" />
         </a>
 <?php endif; ?>
-<?php if ($site_name || $site_slogan): ?>
-        <div class="name-and-slogan">
 <?php if ($site_name): ?>
-<?php if ($title): ?>
+  <?php if ($title): ?>
           <div class="site-name">
-            <strong><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a></strong>
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
           </div>
-<?php else: /* Use h1 when the content title is empty */ ?>
+  <?php else: /* Use h1 when the content title is empty */ ?>
           <h1 class="site-name">
             <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
           </h1>
-<?php endif; ?>
-<?php endif; ?>
-<?php if ($site_slogan): ?>
-          <div class="site-slogan"><?php print $site_slogan; ?></div>
-<?php endif; ?>
-        </div> <!-- /#name-and-slogan -->
+  <?php endif; ?>
 <?php endif; ?>
 <?php print render($page['header']); ?>
       </header>
