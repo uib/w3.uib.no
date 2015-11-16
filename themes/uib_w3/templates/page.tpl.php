@@ -72,6 +72,7 @@
  * @ingroup themeable
  */
 ?>
+<?php if ($logo || $site_name): ?>
     <div class="header__wrapper">
       <header class="header">
 <?php if ($logo): ?>
@@ -100,6 +101,7 @@
 <?php print render($page['header']); ?>
       </header>
     </div>
+<?php endif; ?>
 <?php if ($page['subheader']): ?>
     <div class="subheader__wrapper">
 <?php print render($page['subheader']); ?>

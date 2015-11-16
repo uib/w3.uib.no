@@ -62,6 +62,15 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
   drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 
+  $suggestions = $variables['theme_hook_suggestions'];
+  if(in_array('page__node__edit',$suggestions)) {
+    //in edit mode
+    unset($variables['node']);
+    unset($variables['page']['subheader']);
+    unset($variables['page']['header']);
+    unset($variables['logo']);
+    unset($variables['site_name']);
+  }
   switch (true) {
     case $variables['node']->type == 'uib_article':
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
