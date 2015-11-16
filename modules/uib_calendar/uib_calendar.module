@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the UiB calendar feature.
- */
-
-include_once 'uib_calendar.features.inc';
