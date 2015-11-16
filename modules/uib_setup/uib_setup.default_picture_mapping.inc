@@ -15,7 +15,7 @@ function uib_setup_default_picture_mapping() {
   $picture_mapping->api_version = 2;
   $picture_mapping->label = 'w3 content main';
   $picture_mapping->machine_name = 'w3_content_main';
-  $picture_mapping->breakpoint_group = 'uib_w3';
+  $picture_mapping->breakpoint_group = FALSE;
   $picture_mapping->mapping = array(
     'breakpoints.theme.uib_w3.wide' => array(
       '1x' => array(
