@@ -61,6 +61,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
+  $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
   drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 
   $suggestions = $variables['theme_hook_suggestions'];
@@ -148,7 +149,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       ));
       $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
-      $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
         'type' => 'socialmedia_formatter',
         'label' => 'hidden',
