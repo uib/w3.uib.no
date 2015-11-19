@@ -170,6 +170,15 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       break;
 
     case $variables['node']->type == 'uib_study':
+      drupal_add_library('system' , 'ui.tabs');
+      // set menu to appear as tabs
+      $jq = <<<'EOD'
+        jQuery( document ).ready( function($){
+          $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
+        });
+EOD;
+      drupal_add_js($jq, 'inline');
+
       $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_type', array(
         'label' => 'hidden',
         'weight' => -50,
