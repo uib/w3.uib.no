@@ -148,9 +148,6 @@
 <?php endif; */ ?>
     </main>
     <footer>
-<?php if ($breadcrumb): ?>
-        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-<?php endif; ?>
 <?php if ($page['footer_top']): ?>
         <div class="footer-top-wrapper">
           <div class="footer-top">

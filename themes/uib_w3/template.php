@@ -143,10 +143,12 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'type' => 'entityreference_entity_view',
         'settings' => array('view_mode' => 'teaser'),
       ));
-      $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
-        'label' => 'hidden',
-        'weight' => 10,
-      ));
+      if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
+        $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+          'label' => 'hidden',
+          'weight' => 10,
+        ));
+      }
       $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
@@ -394,6 +396,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           'label' => 'hidden',
         ));
         hide($variables['content']['field_uib_profiled_article']);
+      }
+      if ($variables['field_uib_area_type']['und'][0]['value'] == 'frontpage') {
+        hide($variables['content']['field_uib_profiled_message']);
       }
     }
     $hide_vars = array(
