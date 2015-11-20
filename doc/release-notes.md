@@ -1,3 +1,15 @@
+# Release 35 _2015-11-19_
+
+Vi har i hovedsak jobbet med redesign av uib.no, men har også gjort noen oppdateringer av moduler på uib.no.
+
+- Oppdatert views modulen #13101
+- Fjerne gammel og unødvendig kode knyttet til den gamle kalenderen #12949
+
+Redesign
+
+- Jobber med å ferdigstille de siste malene
+- Design og feilretting. Se oppdatert liste over hva det jobbes med på <https://w3docs.h.uib.no/status-redesign>
+
 # Release 34.1 _2015-11-12_
 
 Moduleoppdateringene tilknyttet nytt theme i release 34 hadde som effekt at
