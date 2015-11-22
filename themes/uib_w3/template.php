@@ -360,7 +360,8 @@ EOD;
     'uib_calendar3_exhibitions3',
     'uib_search_global-searchform',
     'uib_area_ouprosjektet_logo',
-    'uib_study_study_static_links'
+    'uib_study_study_static_links',
+    'uib_study_study_facts_exchange',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
