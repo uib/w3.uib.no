@@ -5,7 +5,7 @@
 # and configuration of the site.
 
 case $(pwd) in
-    /var/www/w3-prestaging.test.uib.no | /var/www/w3-nylayout.test.uib.no)
+    /var/www/w3.uib.no | /var/www/w3-nylayout.test.uib.no)
 	bin/site-drush en --yes uib_w3
 	bin/site-drush vset theme_default uib_w3
 	bin/site-drush vset page_cache_maximum_age 43200
