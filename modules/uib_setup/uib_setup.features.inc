@@ -59,18 +59,18 @@ function uib_setup_image_default_styles() {
 
   // Exported image style: area_main.
   $styles['area_main'] = array(
+    'label' => 'area_main',
     'effects' => array(
-      1 => array(
+      2 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 354,
-          'height' => 266,
-          'upscale' => 1,
+          'width' => 576,
+          'height' => 354,
+          'upscale' => 0,
         ),
         'weight' => 2,
       ),
     ),
-    'label' => 'area_main',
   );
 
   // Exported image style: colophone_logo.
