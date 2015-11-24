@@ -121,12 +121,21 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'weight' => -40,
       ));
       $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
+      $full_width = empty($variables['node']->field_uib_primary_text) ? TRUE : FALSE;
       $variables['page']['content_top']['field_uib_primary_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
         'type' => 'file_rendered',
-        'settings' => array('file_view_mode' => 'area_main'),
+        'settings' => array(
+          'file_view_mode' => $full_width ? 'content_main' : 'area_main',
+        ),
         'label' => 'hidden',
         'weight' => -30,
       ));
+      if ($full_width) {
+        unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_copyright']);
+        unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_owner']);
+        $variables['page']['content_top']['field_uib_primary_media']['#prefix'] = '<div class="full-width">';
+        $variables['page']['content_top']['field_uib_primary_media']['#suffix'] = '</div>';
+      }
       $variables['page']['content_top']['field_uib_primary_text'] = field_view_field('node', $variables['node'], 'field_uib_primary_text', array(
         'label' => 'hidden',
         'weight' => -25,
