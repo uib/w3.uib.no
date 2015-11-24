@@ -45,6 +45,9 @@
 ?><!doctype html>
 <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
   <head profile="<?php print $grddl_profile; ?>">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width">
 <?php print $head; ?>
     <title><?php print $head_title; ?></title>
 <?php print $styles; ?>
