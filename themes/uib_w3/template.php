@@ -177,6 +177,9 @@ function uib_w3_preprocess_page(&$variables, $hook) {
             'label' => 'hidden',
           ));
           break;
+        case 'frontpage':
+          $variables['page']['content_bottom']['frontpage_links'] = __uib_w3__render_block('uib_area', 'frontpage_links', 0);
+          break;
         }
       break;
 
@@ -371,6 +374,7 @@ EOD;
     'uib_area_ouprosjektet_logo',
     'uib_study_study_static_links',
     'uib_study_study_facts_exchange',
+    'uib_area_frontpage_links',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);

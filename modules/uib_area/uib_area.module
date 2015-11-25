@@ -53,6 +53,10 @@ function uib_area_block_info() {
       'info' => t('Area offices in different locations'),
       'status' => TRUE,
     ),
+    'frontpage_links' => array(
+      'info' => t('Graphic links used only in the frontpage'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -382,6 +386,40 @@ function uib_area_block_view($delta='') {
           $block['content'] = uib_area__display_offices_as_tabs($wrapped_area->field_uib_offices->value(), 'offices');
         }
       }
+    break;
+    case 'frontpage_links':
+      if(!empty($area)) {
+        $links = array(
+          'nb' => array(
+            array('Fakultet, institutt og sentre', '/om/73841/fakulteter-og-institutter', 'uib-frontpage-organization'),
+            array('Biblioteket', '/ub', 'uib-frontpage-ub'),
+            array('Museet', '/universitetsmuseeet', 'uib-frontpage-museum'),
+            array('Rektoratets blogg', 'http://rektor.b.uib.no', 'uib-frontpage-principal'),
+          ),
+          'en' => array(
+            array('Faculties, departments and centres', '/about/79596/faculties-and-departments', 'uib-frontpage-organization'),
+            array('Library', '/ub', 'uib-frontpage-ub'),
+            array('Museum', '/universitymuseum', 'uib-frontpage-museum'),
+          ),
+        );
+        $items = array();
+        foreach($links[$area->language] as $item) {
+          list($title, $href, $class) = $item;
+          $item = array(
+            '#type' => 'link',
+            '#title' => $title,
+            '#href' => $href,
+            '#attributes' => array('class' => array($class)),
+          );
+          $items[] = render($item);
+        }
+        $block['subject'] = NULL;
+        $block['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+        );
+      }
+    break;
   }
   return $block;
 }
