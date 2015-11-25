@@ -64,11 +64,11 @@ function uib_setup_image_default_styles() {
       2 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 576,
-          'height' => 354,
+          'width' => 600,
+          'height' => 450,
           'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => 0,
       ),
     ),
   );
