@@ -38,6 +38,7 @@ projects[devel][version] = 1.5
 projects[diff][version] = 3.2
 projects[entity][version] = 1.6
 projects[entity_translation][version] = 1.0-beta4
+projects[entity_view_mode][version] = 1.0-rc1
 projects[entityreference][version] = 1.1
 projects[entityreference][patch][] = https://drupal.org/files/issues/entityreference-autocomplete-items-limit-1700112-6.patch
 projects[entityreference][patch][] = https://www.drupal.org/files/issues/entityreference-rendered-entity-is-not-language-aware-1674792-45.patch
