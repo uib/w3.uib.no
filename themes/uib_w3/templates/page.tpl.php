@@ -91,6 +91,7 @@
           </h1>
   <?php endif; ?>
 <?php endif; ?>
+<?php print render($page['mobile']); ?>
 <?php print render($page['header']); ?>
       </header>
     </div>
