@@ -56,6 +56,25 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     }
     $variables['area_menu_footer'] = $area_menu;
   }
+  if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
+    if ($area_menu_name = uib_area__get_current_menu()) {
+      if (!$frontpage) {
+        $variables['page']['header']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
+        $variables['page']['header']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
+        $variables['page']['header']['area_menu']['#suffix'] = '</nav>';
+        $variables['page']['header']['area_menu']['#weight'] = -15;
+      }
+    }
+    if ($variables['language']->language == 'nb') {
+      $variables['page']['header']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
+    }
+    else {
+      $variables['page']['header']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
+    }
+    $variables['page']['header']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
+    $variables['page']['header']['global_mobile_menu']['#suffix'] = '</nav>';
+    $variables['page']['header']['global_mobile_menu']['#weight'] = -10;
+  }
   if ($current_area && !$variables['is_front']) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
