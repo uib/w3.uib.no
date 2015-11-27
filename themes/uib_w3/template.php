@@ -184,15 +184,16 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       break;
 
     case $variables['node']->type == 'uib_study':
-      drupal_add_library('system' , 'ui.tabs');
-      // set menu to appear as tabs
-      $jq = <<<'EOD'
-        jQuery( document ).ready( function($){
-          $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
-        });
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'course') {
+        drupal_add_library('system' , 'ui.tabs');
+        // set menu to appear as tabs
+        $jq = <<<'EOD'
+          jQuery( document ).ready( function($){
+            $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
+          });
 EOD;
-      drupal_add_js($jq, 'inline');
-
+        drupal_add_js($jq, 'inline');
+      }
       $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_type', array(
         'label' => 'hidden',
         'weight' => -50,
@@ -207,7 +208,9 @@ EOD;
       $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
       $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
-      $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange') {
+        $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
+      }
       global $language;
       $belongs_to = uib_study__area($variables['node'], $language->language);
       $variables['page']['content']['study_belongs_to'] = array(
