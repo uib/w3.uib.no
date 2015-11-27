@@ -288,6 +288,11 @@ EOD;
       );
       $variables['page']['content_top']['position'] = $variables['page']['content']['system_main']['field_uib_position'];
       $variables['page']['content_top']['position']['#weight'] = -20;
+      if (isset($variables['page']['content']['system_main']['field_uib_user_alt_position'])) {
+        $alt_position = $variables['page']['content']['system_main']['field_uib_user_alt_position'][0]['#markup'];
+        $variables['page']['content_top']['position'][0]['#markup'] .= $alt_position;
+        unset($variables['page']['content']['system_main']['field_uib_user_alt_position']);
+      }
       $variables['page']['content_top']['user_ou'] = $variables['page']['content']['system_main']['field_uib_user_ou'][0]['node'][29]['field_uib_ou_title'];
       $variables['page']['content_top']['user_ou']['#weight'] = -10;
       $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
