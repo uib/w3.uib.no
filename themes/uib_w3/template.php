@@ -257,7 +257,14 @@ EOD;
           'weight' => 40,
         ));
       }
-
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange') {
+        $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => 'content_sidebar'),
+          'label' => 'hidden',
+          'weight' => 3,
+        ));
+      }
       break;
     case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user'):
       $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
