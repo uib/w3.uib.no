@@ -155,18 +155,18 @@ function uib_setup_image_default_styles() {
 
   // Exported image style: content_sidebar.
   $styles['content_sidebar'] = array(
+    'label' => 'content_sidebar',
     'effects' => array(
-      2 => array(
+      7 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 177,
+          'width' => 400,
           'height' => '',
-          'upscale' => 1,
+          'upscale' => 0,
         ),
         'weight' => 1,
       ),
     ),
-    'label' => 'content_sidebar',
   );
 
   // Exported image style: custom_logo.
