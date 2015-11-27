@@ -1003,10 +1003,6 @@ function uib_study_block_view($delta = '') {
           $items[] = uib_study__get_study_facts_markup(t('Study programme code'), $data['studieprogramkode']);
           $seats = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
           $items[] = uib_study__get_study_facts_markup(t('Number of seats'), uib_study__text_markup($seats, $is_course, TRUE));
-          $start = uib_study__extract_study_info($data_2, 'SP_START');
-          $items[] = uib_study__get_study_facts_markup(t('Study start'), $start['#text']);
-          $study_lang = uib_study__extract_study_info($data_2, 'SP_SPRAK');
-          $items[] = uib_study__get_study_facts_markup(t('Language'), $study_lang['#text']);
         }
         elseif ($type == 'exchange') {
           $network = FALSE;
