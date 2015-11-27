@@ -220,7 +220,9 @@ EOD;
         '#weight' => 20,
         '#attributes' => array('class' => array('uib-study-belongs-to')),
       );
-      $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'exchange') {
+        $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
+      }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'course') {
         $variables['page']['content']['study_toggle'] = __uib_w3__render_block('uib_study', 'study_semester_toggle', 10);
       }
