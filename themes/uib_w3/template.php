@@ -223,6 +223,10 @@ EOD;
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'exchange') {
         $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
       }
+      $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
+      if ($variables['node']->field_uib_study_category['und'][0]['value'] == 'evu') {
+        $variables['page']['content']['study_evu_available'] = __uib_w3__render_block('uib_study', 'study_evu', 10);
+      }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'course') {
         $variables['page']['content']['study_toggle'] = __uib_w3__render_block('uib_study', 'study_semester_toggle', 10);
       }
@@ -380,6 +384,7 @@ EOD;
     'uib_study_study_plan',
     'uib_study_study_semester_toggle',
     'uib_study_study_testimonial',
+    'uib_study_study_evu',
     'uib_area_area_banner',
     'uib_area_area_offices',
     'uib_calendar3_calendar3',
