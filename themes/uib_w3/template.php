@@ -270,6 +270,18 @@ EOD;
         ));
       }
       break;
+    case ($variables['node']->type == 'uib_testimonial'):
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $variables['node']->title,
+        '#weight' => -30,
+      );
+      $variables['page']['content_top']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_lead', array(
+        'label' => 'hidden',
+        'weight' => -20,
+      ));
+      break;
     case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user'):
       $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
       $user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
