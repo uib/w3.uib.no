@@ -122,3 +122,9 @@
 .node-area-form .field-name-field-uib-primary-text {
   display: inline-block;
 }
+
+.content-main-wrapper .node-uib_article-form .field-name-field-uib-text {
+  float: none;
+  margin-right: 0;
+  width: 100%;
+}
