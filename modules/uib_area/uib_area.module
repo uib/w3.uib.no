@@ -57,6 +57,10 @@ function uib_area_block_info() {
       'info' => t('Graphic links used only in the frontpage'),
       'status' => TRUE,
     ),
+    'news_and_calendar' => array(
+      'info' => t('Links to an areas news archive and calendar'),
+      'status' => TRUE,
+    )
   );
 }
 
@@ -68,6 +72,33 @@ function uib_area_block_view($delta='') {
   $area = uib_area__get_current();
   $block = array();
   switch ($delta) {
+    case 'news_and_calendar':
+      $block['subject'] = NULL;
+      $items = array();
+      if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+        $calendar_url = $area->language == 'nb' ? 'kalender' : 'calendar';
+        $news_nid = $area->language == 'nb' ? 36363 : 36364;
+        $news_archive_url = 'node/' . $news_nid;
+      }
+      else {
+        $calendar_url = 'node/' . $area->nid . '/calendar';
+        $news_archive_url = 'node/' . $area->nid . '/news-archive';
+      }
+      $calendar_link = l(t('See the entire calendar'), $calendar_url, array(
+        'attributes' => array('class' => 'more-link__calendar'),
+      ));
+      $news_archive_link = l(t('News archive'), $news_archive_url, array(
+        'attributes' => array('class' => 'more-link__news'),
+      ));
+      $items[] = $calendar_link;
+      $items[] = $news_archive_link;
+      $block['content'] = theme_item_list(array(
+        'items' => $items,
+        'title' => NULL,
+        'type' => 'ul',
+        'attributes' => array('class' => array('news-and-calendar')),
+      ));
+      break;
     case 'colophon_2':
       $place = "";
       $phone = '+47 55 58 00 00';
