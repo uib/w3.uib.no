@@ -91,8 +91,11 @@
           </h1>
   <?php endif; ?>
 <?php endif; ?>
-<?php print render($page['mobile']); ?>
 <?php print render($page['header']); ?>
+    <div class="mobile-menu">
+      <span>Click</span>
+<?php print render($page['mobile']); ?>
+    </div>
       </header>
     </div>
 <?php endif; ?>

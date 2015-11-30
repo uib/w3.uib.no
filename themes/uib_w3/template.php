@@ -78,6 +78,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
     $variables['page']['header']['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['page']['header']['mobile']['global_mobile_menu']['#weight'] = 5;
+    $variables['page']['header']['mobile']['language'] = __uib_w3__render_block('locale','language',10);
   }
   if ($current_area && !$variables['is_front']) {
     global $base_path;
