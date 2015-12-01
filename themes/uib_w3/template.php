@@ -410,6 +410,7 @@ EOD;
     'uib_study_study_static_links',
     'uib_study_study_facts_exchange',
     'uib_area_frontpage_links',
+    'uib_area_news_and_calendar',
   );
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
