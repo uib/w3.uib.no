@@ -55,10 +55,14 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     }
   }
   if ($current_area && !$variables['is_front']) {
+    global $base_path;
     $variables['page']['subheader']['area'] = array(
-      '#type' => 'html_tag',
-      '#tag' => 'h2',
-      '#value' => $current_area->title,
+      '#type' => 'link',
+      '#prefix' => '<h2>',
+      '#suffix' => '</h2>',
+      '#title' => $current_area->title,
+      '#href' => $base_path . drupal_get_path_alias("node/{$current_area->nid}",
+        $variables['language']->language ),
     );
   }
   $variables['page']['header']['search'] =
