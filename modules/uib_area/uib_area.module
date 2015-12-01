@@ -84,10 +84,10 @@ function uib_area_block_view($delta='') {
         $calendar_url = 'node/' . $area->nid . '/calendar';
         $news_archive_url = 'node/' . $area->nid . '/news-archive';
       }
-      $calendar_link = l(t('See the entire calendar'), $calendar_url, array(
+      $calendar_link = l(t('See all events'), $calendar_url, array(
         'attributes' => array('class' => 'more-link__calendar'),
       ));
-      $news_archive_link = l(t('News archive'), $news_archive_url, array(
+      $news_archive_link = l(t('See all news'), $news_archive_url, array(
         'attributes' => array('class' => 'more-link__news'),
       ));
       $items[] = $calendar_link;
