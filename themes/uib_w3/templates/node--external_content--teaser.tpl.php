@@ -82,7 +82,7 @@
   <div class="content clearfix"<?php print $content_attributes; ?>>
     <?php print render($content['field_uib_main_media']); ?>
     <h2<?php print $title_attributes; ?>>
-      <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+      <a href="<?php print $variables['field_uib_links']['und'][0]['url']; ?>"><?php print $title; ?></a>
     </h2>
     <?php print render($content['field_uib_lead']); ?>
   </div>
