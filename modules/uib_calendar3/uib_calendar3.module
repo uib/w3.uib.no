@@ -73,13 +73,15 @@ function uib_calendar3_block_view($delta) {
     // fetch the events
     $result = $select->execute();
 
-    $current = NULL;
     $ra = array();
 
-    foreach ($result as $value) {
+    foreach ($result as $key => $value) {
       $nid = $value->nid;
-      $date = format_date(strtotime($value->field_uib_date_value . 'Z'),
-        'custom','d. F' );
+
+      $day = format_date(strtotime($value->field_uib_date_value . 'Z'),
+        'custom','d' );
+      $month = format_date(strtotime($value->field_uib_date_value . 'Z'),
+        'custom','M' );
       $time = format_date(strtotime($value->field_uib_date_value . 'Z'),
         'custom', 'H:i' );
       $allowed_values = field_info_field('field_uib_event_type');
@@ -90,15 +92,25 @@ function uib_calendar3_block_view($delta) {
       }
 
       $title = $value->title;
-      if($current != $date){
-        $current = $date;
-        $ra['data'][$date]=array();
-        $ra['data'][$date]['date']['#type'] = 'html_tag';
-        $ra['data'][$date]['date']['#tag'] = 'h3';
-        $ra['data'][$date]['date']['#value'] = check_plain($date);
-      }
+      $ra['data'][$key]=array();
+      $ra['data'][$key]['#type'] = 'container';
+      $ra['data'][$key]['#attributes'] = array('class' => array('event'));
+      $ra['data'][$key]['date']['#type'] = 'container';
+      $ra['data'][$key]['date']['#attributes'] = array('class' => array('cal-card'));
+      $ra['data'][$key]['date']['day'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#attributes' => array('class' => array('d')),
+        '#value' => $day,
+        );
+      $ra['data'][$key]['date']['month'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#attributes' => array('class' => array('m')),
+        '#value' => $month,
+        );
       $r = array();
-      $r['#prefix'] = '<div><a href="' . url('node/' . intval($nid)) . '">';
+      $r['#prefix'] = '<div class="cal-text"><a href="' . url('node/' . intval($nid)) . '">';
       $r['#suffix'] = '</a></div>';
       $r['time'] = array(
         '#type' => 'html_tag',
@@ -106,9 +118,8 @@ function uib_calendar3_block_view($delta) {
         '#value' => check_plain($time),
       );
       $r['title'] = array( '#markup' => ' - ' . check_plain($title) . " ($type)");
-      $ra['data'][$date][] = $r;
+      $ra['data'][$key][] = $r;
     }
-    if(!$current) return;
     $ra['full calendar'] = array(
       '#markup' => l(t('View full calendar'),
         'node/' . intval($area) . '/calendar', array('attributes'=>array('class' => array('more-link')))
