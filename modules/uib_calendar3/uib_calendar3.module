@@ -120,6 +120,7 @@ function uib_calendar3_block_view($delta) {
       $r['title'] = array( '#markup' => ' - ' . check_plain($title) . " ($type)");
       $ra['data'][$key][] = $r;
     }
+    if (empty($ra)) return;
     $ra['full calendar'] = array(
       '#markup' => l(t('View full calendar'),
         'node/' . intval($area) . '/calendar', array('attributes'=>array('class' => array('more-link')))
