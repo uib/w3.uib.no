@@ -157,6 +157,9 @@
 <?php endif; ?>
 <?php if ($page['footer']): ?>
         <div class="footer-wrapper">
+          <nav class="main-menu__expanded">
+<?php print render($area_menu_footer); ?>
+          </nav>
           <div class="footer">
 <?php print render($page['footer']); ?>
           </div>

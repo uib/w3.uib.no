@@ -50,9 +50,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $current_area = uib_area__get_current();
   $frontpage = $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
+    $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$frontpage) {
-      $variables['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
+      $variables['area_menu'] = $area_menu;
     }
+    $variables['area_menu_footer'] = $area_menu;
   }
   if ($current_area && !$variables['is_front']) {
     global $base_path;
