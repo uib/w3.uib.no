@@ -112,6 +112,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'weight' => '30',
         'type' => 'entityreference_entity_view',
         'settings' => array('view_mode' => 'short_teaser'),
+        'label' => 'hidden',
       ));
       $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
         'weight' => '27',
@@ -164,6 +165,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         'weight' => 30,
         'type' => 'entityreference_entity_view',
         'settings' => array('view_mode' => 'teaser'),
+        'label' => 'hidden',
       ));
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
         $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
@@ -476,6 +478,13 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       if ($variables['field_uib_area_type']['und'][0]['value'] == 'frontpage') {
         hide($variables['content']['field_uib_profiled_message']);
       }
+    }
+    if ($variables['type'] == 'uib_article') {
+      $variables['content']['field_uib_date']['#label_display'] = 'hidden';
+      $variables['content']['field_uib_registration_link']['#label_display'] = 'hidden';
+      $variables['content']['field_uib_location']['#label_display'] = 'hidden';
+      $variables['content']['field_uib_event_type']['#label_display'] = 'hidden';
+      $variables['content']['field_uib_contacts']['#label_display'] = 'hidden';
     }
     $hide_vars = array(
       'field_uib_byline',
