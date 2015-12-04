@@ -158,16 +158,16 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       ));
       $nid = $variables['node']->nid;
       $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 5);
-      $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 0);
-      $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 5);
-      $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 10);
-      $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
-        'weight' => 30,
-        'type' => 'entityreference_entity_view',
-        'settings' => array('view_mode' => 'teaser'),
-        'label' => 'hidden',
-      ));
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
+        $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 0);
+        $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 5);
+        $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 10);
+        $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
+          'weight' => 30,
+          'type' => 'entityreference_entity_view',
+          'settings' => array('view_mode' => 'teaser'),
+          'label' => 'hidden',
+        ));
         $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
           'weight' => 10,
