@@ -293,7 +293,7 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
-        $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10);
+        $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
         $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
@@ -627,9 +627,10 @@ function __uib_w3__author(&$node) {
 /**
  * Function for creating a renderable block
  */
-function __uib_w3__render_block($module, $block_id, $weight) {
+function __uib_w3__render_block($module, $block_id, $weight, $no_label=FALSE) {
   $block = block_load($module, $block_id);
   $block_content = _block_render_blocks(array($block));
+  if ($no_label) $block->subject = FALSE;
   $render = _block_get_renderable_array($block_content);
   $render['#weight'] = $weight;
   return $render;
