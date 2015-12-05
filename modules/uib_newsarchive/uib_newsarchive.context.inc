@@ -29,7 +29,7 @@ function uib_newsarchive_context_default_contexts() {
         'views-recent_news-block_date_selector' => array(
           'module' => 'views',
           'delta' => 'recent_news-block_date_selector',
-          'region' => 'content_top',
+          'region' => 'content',
           'weight' => '-10',
         ),
       ),
