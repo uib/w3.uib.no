@@ -38,12 +38,9 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
-    if ($variables['language']->language == 'nb') {
-      $variables['page']['header']['global_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
-    }
-    else {
-      $variables['page']['header']['global_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
-    }
+    $global_menu_lang = $variables['language']->language == 'nb' ? '-no' : '';
+    $global_menu = __uib_w3__get_renderable_menu('menu-global-menu' . $global_menu_lang . '-2');
+    $variables['page']['header']['global_menu'] = $global_menu;
     $variables['page']['header']['global_menu']['#prefix'] = '<nav class="global-menu">';
     $variables['page']['header']['global_menu']['#suffix'] = '</nav>';
     $variables['page']['header']['global_menu']['#weight'] = -10;
@@ -59,16 +56,13 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     if ($area_menu_name = uib_area__get_current_menu()) {
-      if (!$frontpage) {
-        $variables['page']['header']['mobile']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
-        $variables['page']['header']['mobile']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
-        $variables['page']['header']['mobile']['area_menu']['#suffix'] = '</nav>';
-        $variables['page']['header']['mobile']['area_menu']['#weight'] = -15;
-
-        $variables['page']['header']['mobile']['#prefix'] = '<nav class="mobile">';
-        $variables['page']['header']['mobile']['#suffix'] = '</nav>';
-        $variables['page']['header']['mobile']['#weight'] = 0;
-      }
+      $variables['page']['header']['mobile']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
+      $variables['page']['header']['mobile']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
+      $variables['page']['header']['mobile']['area_menu']['#suffix'] = '</nav>';
+      $variables['page']['header']['mobile']['area_menu']['#weight'] = -15;
+      $variables['page']['header']['mobile']['#prefix'] = '<nav class="mobile">';
+      $variables['page']['header']['mobile']['#suffix'] = '</nav>';
+      $variables['page']['header']['mobile']['#weight'] = 0;
     }
     if ($variables['language']->language == 'nb') {
       $variables['page']['header']['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
