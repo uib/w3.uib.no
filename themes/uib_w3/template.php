@@ -552,6 +552,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           'weight' => 3,
         ));
         $variables['content']['field_uib_main_media'] = $uib_media;
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
       }
       if (count($variables['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
