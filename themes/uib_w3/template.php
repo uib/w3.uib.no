@@ -578,6 +578,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
     }
+    if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'short_teaser') {
+      $variables['theme_hook_suggestions'][] = 'node__testimonial__short_teaser';
+    }
   }
 }
 
