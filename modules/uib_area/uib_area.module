@@ -422,13 +422,13 @@ function uib_area_block_view($delta='') {
       if(!empty($area)) {
         $links = array(
           'nb' => array(
-            array('Fakultet, institutt og sentre', '/om/73841/fakulteter-og-institutter', 'uib-frontpage-organization'),
+            array('Fakultet, institutt og sentre', '/om/organisasjonskart', 'uib-frontpage-organization'),
             array('Biblioteket', '/ub', 'uib-frontpage-ub'),
-            array('Museet', '/universitetsmuseeet', 'uib-frontpage-museum'),
+            array('Museet', '/universitetsmuseet', 'uib-frontpage-museum'),
             array('Rektoratets blogg', 'http://rektor.b.uib.no', 'uib-frontpage-principal'),
           ),
           'en' => array(
-            array('Faculties, departments and centres', '/about/79596/faculties-and-departments', 'uib-frontpage-organization'),
+            array('Faculties, departments and centres', '/about/organisationchart', 'uib-frontpage-organization'),
             array('Library', '/ub', 'uib-frontpage-ub'),
             array('Museum', '/universitymuseum', 'uib-frontpage-museum'),
           ),
