@@ -10,6 +10,7 @@ case $(pwd) in
 	bin/site-drush vset theme_default uib_w3
 	bin/site-drush vset page_cache_maximum_age 43200
   bin/site-drush image-flush area_main
+  bin/site-drush image-flush content_sidebar
 	;;
 esac
 
