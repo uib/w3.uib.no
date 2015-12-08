@@ -195,6 +195,10 @@ EOD;
           'settings' => array('view_mode' => 'teaser'),
           'label' => 'hidden',
         ));
+        if (isset($variables['page']['content_bottom']['uib_area_exhibitions']['uib_calendar3_exhibitions3']) && isset($variables['page']['content_bottom']['uib_area_newspage_recent_news']['views_recent_news-block'])) {
+          $variables['page']['content_bottom']['uib_area_exhibitions']['#prefix'] = '<div class="news-and-exhibitions">';
+          $variables['page']['content_bottom']['uib_area_newspage_recent_news']['#suffix'] = '</div>';
+        }
         $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
           'weight' => 10,
