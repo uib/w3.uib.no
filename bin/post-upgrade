@@ -4,17 +4,7 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-case $(pwd) in
-    /var/www/w3.uib.no | /var/www/w3-nylayout.test.uib.no)
-	bin/site-drush en --yes uib_w3
-	bin/site-drush vset theme_default uib_w3
-	bin/site-drush vset page_cache_maximum_age 43200
-  bin/site-drush image-flush area_main
-  bin/site-drush image-flush content_sidebar
-	;;
-esac
-
-REL=34
+REL=36
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -22,7 +12,11 @@ if git tag | grep -q R$REL; then
 fi
 
 set -x
-
 date +%FT%T
-bin/site-drush php-script area-trans-sync-fixup --user=1 --verbose
+
+bin/site-drush en --yes uib_w3
+bin/site-drush vset theme_default uib_w3
+bin/site-drush image-flush area_main
+bin/site-drush image-flush content_sidebar
+
 date +%FT%T
