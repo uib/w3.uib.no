@@ -237,7 +237,7 @@ function uib_user_custom_theme() {
   $arg = arg();
   if (isset($arg[2])) {
     if ($arg[0] == 'user' && $arg[2] == 'edit') {
-      return 'uib_zen';
+      return variable_get('theme_default');
     }
   }
 }
