@@ -25,6 +25,15 @@
         }
       }
     });
+    $('#main-menu .menu .menu__item').hover(
+      function(e){
+        $(this).children('ul').first().clearQueue();
+        $(this).children('ul').first().stop().delay(200).animate(
+          {height: $(this).children('ul').first().get(0).scrollHeight}, 500 );
+    }, function(e){
+      $(this).children('ul').first().clearQueue();
+      $(this).children('ul').first().stop().animate({height: 0}, 300 );
+    });
   });
   function uibSearchClose(){
       $('.block-uib-search .lightbox').css('display','none');
