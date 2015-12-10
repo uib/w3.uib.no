@@ -1,3 +1,7 @@
+# Release 36 _2015-12-10_
+
+Vi på lufta med nytt design.  Yeah!
+
 # Release 35 _2015-11-19_
 
 Vi har i hovedsak jobbet med redesign av uib.no, men har også gjort noen oppdateringer av moduler på uib.no.
