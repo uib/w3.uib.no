@@ -294,7 +294,7 @@ EOD;
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
-        '#value' => $variables['node']->field_uib_study_title[$variables['node']->language][0]['safe_value'],
+        '#value' => $variables['node']->field_uib_study_title[$variables['language']->language][0]['safe_value'],
         '#weight' => -45,
 
       );
