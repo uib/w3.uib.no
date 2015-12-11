@@ -100,8 +100,16 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     unset($variables['logo']);
     unset($variables['site_name']);
   }
+
+  if(is_array($current_area->field_uib_area_banner)){
+    $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $current_area, 'field_uib_area_banner', array(
+      'label' => 'hidden',
+      'weight' => -240,
+    ));
+  }
+
   switch (true) {
-    
+
     case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
@@ -184,10 +192,6 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
-      $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $variables['node'], 'field_uib_area_banner', array(
-        'label' => 'hidden',
-        'weight' => -40,
-      ));
       $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
       if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
         $view_mode = 'full_width_banner';
