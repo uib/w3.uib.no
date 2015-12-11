@@ -1,3 +1,15 @@
+# Release 36.2 _2015-12-11_
+
+Unngå problemer med forsidebanneret #13539 #13533
+
+Mobilversjonen av personsidene trengte litt mer justering #13532
+
+# Release 36.1 _2015-12-10_
+
+De engelske emne- og studieprogramsidene viste norske titler #13529
+
+Problemer med mobilmenyen #13538
+
 # Release 36 _2015-12-10_
 
 Vi på lufta med nytt design.  Yeah!
