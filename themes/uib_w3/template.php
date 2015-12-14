@@ -102,7 +102,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   switch (true) {
     
-    case $variables['page']['content']['views_recent_news-block_date_selector']:
+    case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
         var current=null;
