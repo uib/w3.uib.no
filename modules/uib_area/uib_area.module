@@ -73,31 +73,33 @@ function uib_area_block_view($delta='') {
   $block = array();
   switch ($delta) {
     case 'news_and_calendar':
-      $block['subject'] = NULL;
-      $items = array();
-      if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
-        $calendar_url = $area->language == 'nb' ? 'kalender' : 'calendar';
-        $news_nid = $area->language == 'nb' ? 36363 : 36364;
-        $news_archive_url = 'node/' . $news_nid;
+      if (!empty($area)) {
+        $block['subject'] = NULL;
+        $items = array();
+        if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+          $calendar_url = $area->language == 'nb' ? 'kalender' : 'calendar';
+          $news_nid = $area->language == 'nb' ? 36363 : 36364;
+          $news_archive_url = 'node/' . $news_nid;
+        }
+        else {
+          $calendar_url = 'node/' . $area->nid . '/calendar';
+          $news_archive_url = 'node/' . $area->nid . '/news-archive';
+        }
+        $calendar_link = l(t('See all events'), $calendar_url, array(
+          'attributes' => array('class' => array('more-link__calendar')),
+        ));
+        $news_archive_link = l(t('See all news'), $news_archive_url, array(
+          'attributes' => array('class' => array('more-link__news')),
+        ));
+        $items[] = $calendar_link;
+        $items[] = $news_archive_link;
+        $block['content'] = theme_item_list(array(
+          'items' => $items,
+          'title' => NULL,
+          'type' => 'ul',
+          'attributes' => array('class' => array('news-and-calendar')),
+        ));
       }
-      else {
-        $calendar_url = 'node/' . $area->nid . '/calendar';
-        $news_archive_url = 'node/' . $area->nid . '/news-archive';
-      }
-      $calendar_link = l(t('See all events'), $calendar_url, array(
-        'attributes' => array('class' => array('more-link__calendar')),
-      ));
-      $news_archive_link = l(t('See all news'), $news_archive_url, array(
-        'attributes' => array('class' => array('more-link__news')),
-      ));
-      $items[] = $calendar_link;
-      $items[] = $news_archive_link;
-      $block['content'] = theme_item_list(array(
-        'items' => $items,
-        'title' => NULL,
-        'type' => 'ul',
-        'attributes' => array('class' => array('news-and-calendar')),
-      ));
       break;
     case 'colophon_2':
       $place = "";
@@ -110,7 +112,7 @@ function uib_area_block_view($delta='') {
         $mail_href = 'mailto:post@' . $place->field_uib_mail_domain['und'][0]['safe_value'];
         $phone = $place->field_uib_phone['und'][0]['value'];
       }
-      else {
+      elseif (isset($area->field_uib_area_parents['und'])) {
         $parent = node_load($area->field_uib_area_parents['und'][0]['target_id']);
         $place = node_load($parent->field_uib_ou['und'][0]['target_id']);
       }
@@ -306,41 +308,43 @@ function uib_area_block_view($delta='') {
       }
     break;
     case 'newspage_recent_news':
-      $slideshow = db_select('field_data_field_uib_profiled_article', 'f')
-        ->fields('f', array('field_uib_profiled_article_target_id'))
-        ->condition('entity_id', $area->nid)
-        ->execute()
-        ->fetchCol();
+      if (!empty($area)) {
+        $slideshow = db_select('field_data_field_uib_profiled_article', 'f')
+          ->fields('f', array('field_uib_profiled_article_target_id'))
+          ->condition('entity_id', $area->nid)
+          ->execute()
+          ->fetchCol();
 
-      $profiled_messages = db_select('field_data_field_uib_profiled_message', 'f')
-        ->fields('f', array('field_uib_profiled_message_target_id'))
-        ->condition('entity_id', $area->nid)
-        ->execute()
-        ->fetchCol();
+        $profiled_messages = db_select('field_data_field_uib_profiled_message', 'f')
+          ->fields('f', array('field_uib_profiled_message_target_id'))
+          ->condition('entity_id', $area->nid)
+          ->execute()
+          ->fetchCol();
 
-      $exludes_nodes = array_merge($slideshow, $profiled_messages);
-      if ($exludes_nodes) {
-        $query = new EntityFieldQuery;
-        $query = $query
-          ->entityCondition('entity_type', 'node')
-          ->range(0, 5)
-          ->propertyCondition('status', 1)
-          ->propertyOrderBy('created', 'DESC')
-          ->fieldCondition('field_uib_article_type','value', 'news', '=')
-          ->fieldCondition('field_uib_area','target_id', $area->nid, '=')
-          ->propertyCondition('nid', $exludes_nodes, 'NOT IN');
-        $result = $query->execute();
-        if ($result) {
-          $nids = array_keys($result['node']);
-          $nodes = node_load_multiple($nids);
-          $block['content'] = node_view_multiple($nodes);
-          $node_keys = array_keys($block['content']['nodes']);
-          foreach ($node_keys as $key) {
-            if (is_numeric($key) && empty($block['content']['nodes'][$key]['field_uib_main_media'])) {
-              $block['content']['nodes'][$key]['field_uib_main_media']['#markup'] =
-                '<div class="field-name-field-uib-main-media"><div class="field-items"><img src="/' .
-                path_to_theme() .
-                '/images/Recent_High.png" alt=""></div></div>';
+        $exludes_nodes = array_merge($slideshow, $profiled_messages);
+        if ($exludes_nodes) {
+          $query = new EntityFieldQuery;
+          $query = $query
+            ->entityCondition('entity_type', 'node')
+            ->range(0, 5)
+            ->propertyCondition('status', 1)
+            ->propertyOrderBy('created', 'DESC')
+            ->fieldCondition('field_uib_article_type','value', 'news', '=')
+            ->fieldCondition('field_uib_area','target_id', $area->nid, '=')
+            ->propertyCondition('nid', $exludes_nodes, 'NOT IN');
+          $result = $query->execute();
+          if ($result) {
+            $nids = array_keys($result['node']);
+            $nodes = node_load_multiple($nids);
+            $block['content'] = node_view_multiple($nodes);
+            $node_keys = array_keys($block['content']['nodes']);
+            foreach ($node_keys as $key) {
+              if (is_numeric($key) && empty($block['content']['nodes'][$key]['field_uib_main_media'])) {
+                $block['content']['nodes'][$key]['field_uib_main_media']['#markup'] =
+                  '<div class="field-name-field-uib-main-media"><div class="field-items"><img src="/' .
+                  path_to_theme() .
+                  '/images/Recent_High.png" alt=""></div></div>';
+              }
             }
           }
         }
