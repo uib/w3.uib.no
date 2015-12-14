@@ -104,7 +104,7 @@
 <?php print render($page['subheader']); ?>
     </div>
 <?php endif; ?>
-<?php if ($area_menu): ?>
+<?php if (!empty($area_menu)): ?>
     <nav id="main-menu">
 <?php print render($area_menu); ?>
     </nav>
