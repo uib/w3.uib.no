@@ -220,7 +220,9 @@ EOD;
         'weight' => -20,
       ));
       $nid = $variables['node']->nid;
-      $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 5);
+      if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'phdpresspage') {
+        $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 5);
+      }
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
         $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 0);
         $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 5);
@@ -544,6 +546,13 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
       if ($variables['field_uib_area_type']['und'][0]['value'] == 'frontpage') {
         hide($variables['content']['field_uib_profiled_message']);
+      }
+      if ($variables['field_uib_area_type']['und'][0]['value'] == 'phdpresspage') {
+        $phds = views_embed_view('recent_phds', 'page', $variables['nid']);
+        $variables['content']['field_uib_recent_phds'] = array(
+          '#weight' => '50',
+          '#markup' => $phds,
+        );
       }
     }
     if ($variables['type'] == 'uib_article') {
