@@ -46,7 +46,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['global_menu']['#weight'] = -10;
   }
   $current_area = uib_area__get_current();
-  $frontpage = $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
+  $frontpage = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$frontpage) {
@@ -133,7 +133,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
 EOD;
       drupal_add_js($jq, 'inline');
       break;
-    case $variables['node']->type == 'uib_article':
+    case isset($variables['node']) && $variables['node']->type == 'uib_article':
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
         $jq = <<<'EOD'
@@ -183,7 +183,7 @@ EOD;
       ));
       break;
 
-    case $variables['node']->type == 'area':
+    case isset($variables['node']) && $variables['node']->type == 'area':
       $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $variables['node'], 'field_uib_area_banner', array(
         'label' => 'hidden',
         'weight' => -40,
@@ -276,7 +276,7 @@ EOD;
       }
       break;
 
-    case $variables['node']->type == 'uib_study':
+    case isset($variables['node']) && $variables['node']->type == 'uib_study':
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'course') {
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
@@ -362,7 +362,7 @@ EOD;
         ));
       }
       break;
-    case ($variables['node']->type == 'uib_testimonial'):
+    case (isset($variables['node']) && $variables['node']->type == 'uib_testimonial'):
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
