@@ -4,6 +4,14 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
+case $(pwd) in
+    /var/www/w3-prestaging.test.uib.no )
+       bin/site-drush en --yes uib_zen
+       bin/site-drush vset theme_default uib_zen
+       bin/site-drush cc all
+       ;;
+esac
+
 REL=36
 
 if git tag | grep -q R$REL; then
