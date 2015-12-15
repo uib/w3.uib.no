@@ -426,7 +426,8 @@ EOD;
         $variables['page']['content_top']['position'][0]['#markup'] .= $alt_position;
         unset($variables['page']['content']['system_main']['field_uib_user_alt_position']);
       }
-      $variables['page']['content_top']['user_ou'] = $variables['page']['content']['system_main']['field_uib_user_ou'][0]['node'][29]['field_uib_ou_title'];
+      $user_ou = $variables['page']['content']['system_main']['field_uib_user_ou']['#object']->field_uib_user_ou['und'][0]['target_id'];
+      $variables['page']['content_top']['user_ou'] = $variables['page']['content']['system_main']['field_uib_user_ou'][0]['node'][$user_ou]['field_uib_ou_title'];
       $variables['page']['content_top']['user_ou']['#weight'] = -10;
       $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
       $variables['page']['content_top']['user_homepage']['#weight'] = 0;
