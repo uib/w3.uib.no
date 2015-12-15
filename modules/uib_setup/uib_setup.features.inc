@@ -200,9 +200,9 @@ function uib_setup_image_default_styles() {
     'label' => 'full_width_16_9',
   );
 
-  // Exported image style: full_width_banner.
-  $styles['full_width_banner'] = array(
-    'label' => 'Full width banner',
+  // Exported image style: full_width_image.
+  $styles['full_width_image'] = array(
+    'label' => 'Full width image',
     'effects' => array(
       1 => array(
         'name' => 'image_scale',
@@ -216,11 +216,11 @@ function uib_setup_image_default_styles() {
     ),
   );
 
-  // Exported image style: full_width_banner_full_width_1x.
-  $styles['full_width_banner_full_width_1x'] = array(
-    'label' => 'full_width_banner_full_width_1x',
+  // Exported image style: full_width_image_full_width_1x.
+  $styles['full_width_image_full_width_1x'] = array(
+    'label' => 'full_width_image_full_width_1x',
     'effects' => array(
-      3 => array(
+      2 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 2667,
@@ -232,11 +232,11 @@ function uib_setup_image_default_styles() {
     ),
   );
 
-  // Exported image style: full_width_banner_mobile_1x.
-  $styles['full_width_banner_mobile_1x'] = array(
-    'label' => 'full_width_banner_mobile_1x',
+  // Exported image style: full_width_image_mobile_1x.
+  $styles['full_width_image_mobile_1x'] = array(
+    'label' => 'full_width_image_mobile_1x',
     'effects' => array(
-      6 => array(
+      3 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 559,
@@ -248,11 +248,11 @@ function uib_setup_image_default_styles() {
     ),
   );
 
-  // Exported image style: full_width_banner_narrow_1x.
-  $styles['full_width_banner_narrow_1x'] = array(
-    'label' => 'full_width_banner_narrow_1x',
+  // Exported image style: full_width_image_narrow_1x.
+  $styles['full_width_image_narrow_1x'] = array(
+    'label' => 'full_width_image_narrow_1x',
     'effects' => array(
-      5 => array(
+      4 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 859,
@@ -264,11 +264,11 @@ function uib_setup_image_default_styles() {
     ),
   );
 
-  // Exported image style: full_width_banner_wide_1x.
-  $styles['full_width_banner_wide_1x'] = array(
-    'label' => 'full_width_banner_wide_1x',
+  // Exported image style: full_width_image_wide_1x.
+  $styles['full_width_image_wide_1x'] = array(
+    'label' => 'full_width_image_wide_1x',
     'effects' => array(
-      4 => array(
+      5 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 1260,

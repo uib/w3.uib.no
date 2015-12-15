@@ -20,25 +20,25 @@ function uib_setup_default_picture_mapping() {
     'breakpoints.theme.uib_w3.full_width' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'full_width_banner_full_width_1x',
+        'image_style' => 'full_width_image_full_width_1x',
       ),
     ),
     'breakpoints.theme.uib_w3.wide' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'full_width_banner_wide_1x',
+        'image_style' => 'full_width_image_wide_1x',
       ),
     ),
     'breakpoints.theme.uib_w3.narrow' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'full_width_banner_narrow_1x',
+        'image_style' => 'full_width_image_narrow_1x',
       ),
     ),
     'breakpoints.theme.uib_w3.mobile' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'full_width_banner_mobile_1x',
+        'image_style' => 'full_width_image_mobile_1x',
       ),
       '2x' => array(
         'mapping_type' => '_none',
