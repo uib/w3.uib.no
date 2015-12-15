@@ -189,6 +189,25 @@ EOD;
       $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
         'weight' => '26',
       ));
+
+      /**
+       * Slideshow thingy.
+       */
+      $slideshow = @$variables['page']['content']['system_main']['nodes'][$variables['node']->nid]['field_uib_main_media'][1];
+      if (!is_null($slideshow)) {
+        $cycle_path = libraries_get_path('jquery.cycle');
+        drupal_add_js($cycle_path . '/jquery.cycle.all.js');
+        drupal_add_js('jQuery(function($) {
+          $( ".field-name-field-uib-main-media .field-items" ).cycle(
+            {
+              containerResize: 1,
+              fit: 1,
+              fx: "scrollHorz",
+            }
+          );
+        }); ', 'inline');
+      }
+
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
