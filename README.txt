@@ -13,8 +13,7 @@ to grab the rest of the code.
 To set up a test site, configure Apache to serve the 'drupal' directory at the
 root of some virtual host.
 
-Make sure you have 'drush' (version 5 or better) and Ruby's 'bundler' installed
-before you proceed.
+Make sure you have 'composer' and Ruby's 'bundler' installed before you proceed.
 
 Then set up the Drupal site by invoking:
 

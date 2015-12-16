@@ -37,20 +37,10 @@ Verify that it works by running:
 
 and then visit <http://localhost/phpinfo.php>.
 
-### Drush
+### Composer
 
-Download the latest 7.x-version from <http://drupal.org/project/drush>.  Unpack
-it and either add the directory to the PATH or set up a symbolic link to
-_drush-7.x-*/drush_ from somewhere in your PATH.  Run `drush version` to verify
-that it works.
-
-Alternative clone the sources with git, and check out the latest 7.x-release:
-
-    $ cd ~
-    $ git clone http://git.drupal.org/project/drush.git
-    $ git checkout $(git tag | grep 7.x-5 | tail -1)
-    $ cd ~/bin
-    $ ln -s ~/drush/drush
+Download the latest version from <https://getcomposer.org/download/>.
+Users of Homebrew on Mac can install it simply with `brew install composer`.
 
 ### Bundler
 
