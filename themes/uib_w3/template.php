@@ -639,6 +639,8 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         'weight' => 3,
       ));
       unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
+      unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
+      unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
       $variables['content']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_teaser', array(
         'label' => 'hidden',
         'weight' => 5,
