@@ -76,6 +76,10 @@
 .content-main-wrapper .region-content .group-sidebar .text-format-wrapper .form-wrapper {
   border: 0;
 }
+.content-main-wrapper .region-content .form-submit {
+  float: left;
+  clear: left;
+}
 
 .content-main-wrapper .region-content .group-sidebar .text-format-wrapper .filter-help {
   display: none;
@@ -96,6 +100,7 @@
 
 .content-main-wrapper .region-content .vertical-tabs {
   display: inline-block;
+  float: left;
 }
 
 .content-main-wrapper .region-content .group-information label {
