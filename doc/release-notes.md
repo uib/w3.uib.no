@@ -1,3 +1,26 @@
+# Release 37 _2015-12-17_
+
+Første release etter lansering. Fokus på å fikse de grove feilene.
+
+- Linker i H2-tabber i artikler hadde ikke fått styling, de har nå vanlig lenke-stil #13631
+- Vi har hatt en gjennomgang av avstander og fikset litt unødvendige avstander en del steder #13628 #13497 #13654
+- Vi har fjernet bildeteksten på eksternt innhold på områdeforsider #13617
+- Publiseringsboksen i innlogget modus hoppet til topps når den ble klikket på, nå ligger den på plass #13616
+- Vi har gjort slik at forsidebildet også vises på nettlesere med AdBlock #13588
+- Personsidene manglet tilhørighet, den er nå tilbake på plass, i tillegg har vi gjort noen stylingendringer på personsidene #13587 #13496 #13483
+- Studieprogrammene ser nå bedre ut på mobil #13586
+- Søkeresultatet klippet bildene, den viser nå fult bilde #13537
+- Data fra FS viser nå titler i større størrelse #13531
+- UB har fått tilbake bannerfeltet sitt på alle artikler #13512
+- Små bilder i tilknyttet innhold har fått litt luft mellom seg og teksten #13509
+- Vi har gjort litt endringer på mobilmenyen #13504
+- Telefonnummer viser nå under hverandre på personsiden
+- Editsiden til personer viser ikke lenger gammel styling #13487
+- Diverse endringer på mobilheaderen #13463 #13464
+- Vi har lagt inn igjen funksjonen med en slider på artikler med flere hovedbilder #13329
+- Nye-doktorgrader er på plass igjen #13202
+- Vi har lagt på en forsinkelse på hovedmenyen slik at den ikke kommer opp med en gang #13445
+
 # Release 36.2 _2015-12-11_
 
 Unngå problemer med forsidebanneret #13539 #13533
