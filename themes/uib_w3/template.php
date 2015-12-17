@@ -208,6 +208,24 @@ EOD;
         }); ', 'inline');
       }
 
+      $stubborn_bastards = array(
+        'field_uib_relation',
+        'field_related_persons_label',
+        'field_uib_related_persons',
+        'field_uib_main_media',
+        'field_uib_kicker',
+        'field_uib_lead',
+        'field_uib_byline',
+        'links',
+        'language',
+      );
+      $empty = TRUE;
+      foreach($variables['page']['content']['system_main']['nodes'][$variables['node']->nid] as $key => $value) {
+        if (!in_array($key, $stubborn_bastards) && !(substr($key, 0, 1) == '#')) {
+          $empty = FALSE;
+        }
+      }
+      if ($empty) $variables['page']['content'] = array();
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':

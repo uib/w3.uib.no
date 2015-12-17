@@ -129,9 +129,11 @@
         </div>
       </div>
 <?php endif; ?>
+<?php if ($page['content']): ?>
       <div class="content-main-wrapper">
 <?php print render($page['content']); ?>
       </div>
+<?php endif; ?>
 <?php if ($page['content_bottom']): ?>
       <div class="content-bottom-wrapper">
         <div class="content-bottom">
