@@ -101,7 +101,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     unset($variables['site_name']);
   }
 
-  if(is_array($current_area->field_uib_area_banner)){
+  if(!empty($current_area->field_uib_area_banner)){
     $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $current_area, 'field_uib_area_banner', array(
       'label' => 'hidden',
       'weight' => -240,
