@@ -159,44 +159,18 @@ exit;
 EOT
 }
 
-my $sqlsh = qx(bin/site-drush sql-connect --verbose=0);
-chomp($sqlsh);
-
 if ($DB{driver} eq "pgsql") {
-    # Is there a suitable entry in .pgpass
-    my $pgpass_file = "$ENV{HOME}/.pgpass";
-    my $pgpass_line = "$DB{host}:$DB{port}:*:$DB{username}:$DB{password}";
-
-    # Can we find an existing matching entry in ~/.pgpass
-    if (open(my $fh, $pgpass_file)) {
-	while (<$fh>) {
-	    chomp;
-	    s/\*/[^:]+/g;
-	    if ($pgpass_line =~ /^$_$/) {
-		undef($pgpass_line);
-		last;
-	    }
-	}
-    }
-
-    if ($pgpass_line) {
-	open(my $fh, ">>", $pgpass_file) || die "Can't append to $pgpass_file: $!";
-	print $fh "$pgpass_line\n";
-	close($fh) || die;
-	chmod(0600, $pgpass_file);
-	print "Appended '$pgpass_line' to your $pgpass_file\n";
-    }
-
     # Can we connect to the database
-    my $out = qx(echo "SELECT 'yup!'" | $sqlsh -t -w 2>&1);
-    if ($?) {
-	chomp($out);
-	die "Failed to connect to the database with '$sqlsh'\n$out" unless $out =~ /database \"$DB{database}\" does not exist/;
-	(my $psql_postgres = $sqlsh) =~ s/--dbname=\Q$DB{database}/--dbname=postgres/ || die;
+    my $out = qx(echo "SELECT 'yup'" | bin/site-drush sqlc 2>&1);
+    if ($out =~ /yup/) {
+	print "The database connection works!\n";
+    }
+    else {
+	die "Failed to connect to the database\n$out" unless $out =~ /database \"$DB{database}\" does not exist/;
+	my $psql_postgres = "psql --dbname=postgres";
 	open(my $fh, "| $psql_postgres -e -w") || die;
 	print $fh qq(CREATE DATABASE "$DB{database}" TEMPLATE template0 ENCODING 'UTF-8';\n);
 	close($fh);
     }
 }
-print "Connect with '$sqlsh'\n";
-print "http://$SITE\n";
+print "Site: http://$SITE\n";
