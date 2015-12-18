@@ -1001,8 +1001,21 @@ function uib_study_block_view($delta = '') {
             $duration = substr($duration, 0, -2);
           $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
           $items[] = uib_study__get_study_facts_markup(t('Study programme code'), $data['studieprogramkode']);
-          $seats = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
-          $items[] = uib_study__get_study_facts_markup(t('Intake'), uib_study__text_markup($seats, $is_course, TRUE));
+          $seats_info = $data['infocategory'] == 'bachelorprogram' ? 'B_RE_PLASS' : 'M_RE_PLASS';
+          $seats = uib_study__extract_study_info($data_2, $seats_info);
+          if ($seats) {
+            $items[] = uib_study__get_study_facts_markup(t('Intake'), uib_study__text_markup($seats, $is_course, TRUE));
+          }
+          $start_info = $data['infocategory'] == 'bachelorprogram' ? 'B_RE_START' : 'M_RE_START';
+          $start = uib_study__extract_study_info($data_2, $start_info);
+          if ($start) {
+            $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__text_markup($start, $is_course, TRUE));
+          }
+          $sprak_info = $data['infocategory'] == 'bachelorprogram' ? 'B_RE_SPRAK' : 'M_RE_SPRAK';
+          $sprak = uib_study__extract_study_info($data_2, $sprak_info);
+          if ($sprak) {
+            $items[] = uib_study__get_study_facts_markup(t('Language'), uib_study__text_markup($sprak, $is_course, TRUE));
+          }
         }
         elseif ($type == 'exchange') {
           $network = FALSE;
