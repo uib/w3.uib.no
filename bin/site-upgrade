@@ -2,8 +2,6 @@
 
 set -x
 
-bundle check || bundle install || exit
-
 bin/site-drush cc all
 
 COMMIT=${1:-$(git rev-parse --abbrev-ref HEAD)}
@@ -18,7 +16,6 @@ if [ -x bin/pre-upgrade ]; then
     bin/pre-upgrade
 fi
 
-bundle exec compass compile --force themes/uib_zen || exit 3
 find site/files/{css,js,languages} -type f -print | xargs rm
 
 bin/site-drush features-revert-all --yes
@@ -27,3 +24,8 @@ bin/site-drush updatedb --yes
 bin/site-drush cc all
 bin/site-drush features-revert-all --yes
 bin/site-drush cc all
+
+if bin/site-drush vget theme_default | grep uib_zen; then
+    bundle check || bundle install || exit 3
+    bundle exec compass compile --force themes/uib_zen || exit 3
+fi

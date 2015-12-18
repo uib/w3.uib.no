@@ -15,8 +15,6 @@ fi
 test -L site || exit 1
 SITE=$(basename $(readlink site))
 
-bundle check || bundle install || exit
-
 RELEASE=$1
 if [ "$RELEASE" != "" ]; then
     set -- $(bin/release-dumps $RELEASE)
@@ -71,12 +69,15 @@ git fetch
 git checkout $COMMIT || exit 2
 git submodule update
 
-if test -f Gemfile; then
-    bundle exec compass compile --force themes/uib_zen || exit 3
-else
-    # We have gone back to a release before 'bundle' was introduced (RTS-7147),
-    # so attempt to invoke compass the old way.
-    compass compile --force themes/uib_zen || exit 3
+if bin/site-drush vget theme_default | grep uib_zen; then
+    if test -f Gemfile; then
+	bundle check || bundle install || exit 3
+	bundle exec compass compile --force themes/uib_zen || exit 3
+    else
+	# We have gone back to a release before 'bundle' was introduced (RTS-7147),
+	# so attempt to invoke compass the old way.
+	compass compile --force themes/uib_zen || exit 3
+    fi
 fi
 
 bin/site-drush cc all
