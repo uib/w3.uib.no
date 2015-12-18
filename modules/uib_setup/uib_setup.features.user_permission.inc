@@ -75,17 +75,6 @@ function uib_setup_user_default_permissions() {
     'module' => 'contextual',
   );
 
-  // Exported permission: 'access service links'.
-  $permissions['access service links'] = array(
-    'name' => 'access service links',
-    'roles' => array(
-      'admin' => 'admin',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'service_links',
-  );
-
   // Exported permission: 'access site in maintenance mode'.
   $permissions['access site in maintenance mode'] = array(
     'name' => 'access site in maintenance mode',
@@ -1641,13 +1630,6 @@ function uib_setup_user_default_permissions() {
       'level 1' => 'level 1',
     ),
     'module' => 'i18n_string',
-  );
-
-  // Exported permission: 'use PHP for service visibility'.
-  $permissions['use PHP for service visibility'] = array(
-    'name' => 'use PHP for service visibility',
-    'roles' => array(),
-    'module' => 'service_links',
   );
 
   // Exported permission: 'use page manager'.
