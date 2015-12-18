@@ -670,6 +670,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__testimonial__short_teaser';
     }
+    if ($variables['type'] == 'uib_study' && $variables['view_mode'] == 'short_teaser') {
+      $variables['theme_hook_suggestions'][] = 'node__uib_study__short_teaser';
+    }
   }
 }
 
