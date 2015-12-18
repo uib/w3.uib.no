@@ -100,6 +100,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     unset($variables['logo']);
     unset($variables['site_name']);
   }
+  $variables['page']['footer_bottom']['bottom_links'] = __uib_w3__render_block('uib_area', 'bottom_links', 100);
 
   if(!empty($current_area->field_uib_area_banner)){
     $variables['page']['content_top']['uib_area_banner'] = field_view_field('node', $current_area, 'field_uib_area_banner', array(

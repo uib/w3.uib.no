@@ -60,7 +60,12 @@ function uib_area_block_info() {
     'news_and_calendar' => array(
       'info' => t('Links to an areas news archive and calendar'),
       'status' => TRUE,
-    )
+    ),
+    'bottom_links' => array(
+      'info' => t('Links to some basic areas - Contact / open positions ' .
+        '/ Press / About cookies'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -435,6 +440,40 @@ function uib_area_block_view($delta='') {
             array('Faculties, departments and centres', '/about/organisationchart', 'uib-frontpage-organization'),
             array('Library', '/ub', 'uib-frontpage-ub'),
             array('Museum', '/universitymuseum', 'uib-frontpage-museum'),
+          ),
+        );
+        $items = array();
+        foreach($links[$area->language] as $item) {
+          list($title, $href, $class) = $item;
+          $item = array(
+            '#type' => 'link',
+            '#title' => $title,
+            '#href' => $href,
+            '#attributes' => array('class' => array($class)),
+          );
+          $items[] = render($item);
+        }
+        $block['subject'] = NULL;
+        $block['content'] = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+        );
+      }
+    break;
+    case 'bottom_links':
+      if(!empty($area)) {
+        $links = array(
+          'nb' => array(
+            array('Kontakt UIB', '/nb/om/74847/sentral-kontaktinformasjon', 'link-contact-info'),
+            array('Ledige stilinger', 'nb/om/84775/ledige-stillinger-ved-uib', 'link-vacant-positions'),
+            array('Presse', '/nb/form/50664/presserom', 'link-press'),
+            array('Om informasjonskapsler', '/nb/form/50897/informasjonskapsler-og-personvern', 'link-info-cookies'),
+          ),
+          'en' => array(
+            array('Contact UIB', '/en/about/74388/contact-information', 'link-contact-info'),
+            array('Available positions', '/en/about/84777/vacant-positions-uib', 'link-vacant-positions'),
+            array('Press', '/en/form/50857/media-contact', 'link-press'),
+            array('About cookies', '/en/form/50970/cookiepolicy', 'link-info-cookies'),
           ),
         );
         $items = array();

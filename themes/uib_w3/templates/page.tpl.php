@@ -171,4 +171,11 @@
           </div>
         </div>
 <?php endif; ?>
+<?php if ($page['footer_bottom']): ?>
+        <div class="footer-bottom-wrapper">
+          <div class="footer-bottom">
+<?php print render($page['footer_bottom']); ?>
+          </div>
+        </div>
+<?php endif; ?>
     </footer>
