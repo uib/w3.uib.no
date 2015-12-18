@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="235px" height="274px" viewBox="0 0 235 274" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.1 (15681) - http://www.bohemiancoding.com/sketch -->
+    <title>Placeholderbilde 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="235" height="274"></rect>
+        <path id="path-3" d="M34,43 L201.533407,43 L201.533407,226.766154 L34,226.766154"></path>
+    </defs>
+    <g id="Skisser-sidemaler" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Personside-2" sketch:type="MSArtboardGroup" transform="translate(-221.000000, -358.000000)">
+            <g id="Placeholderbilde-2" sketch:type="MSLayerGroup" transform="translate(221.000000, 358.000000)">
+                <mask id="mask-2" sketch:name="Bildemal" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Bildemal" fill="#F5F5F5" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <mask id="mask-4" sketch:name="Clip 2" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M118.813235,226.766154 C77.6791598,226.775649 34,220.708347 34,214.346699 C34,204.253519 42.9814965,175.227315 49.4179081,169.644258 C55.8444932,164.0612 78.6225117,158.335717 89.6381108,154.756104 C97.9120934,150.749216 98.2363706,149.942141 98.2363706,144.814843 L98.2363706,137.361271 C83.5751093,126.299601 75.1242483,105.970814 75.1242483,87.7024416 C75.1242483,64.4871761 94.5219224,43 118.813235,43 C143.104547,43 162.492394,64.4871761 162.492394,87.7024416 C162.492394,105.970814 151.968124,128.303045 137.297037,139.37421 L137.297037,146.818287 C137.297037,151.945585 137.601661,152.75266 145.875643,156.750053 C156.910895,160.348657 179.688914,166.064644 186.125326,171.647702 C192.571564,177.240255 201.533407,206.256963 201.533407,216.350144 C201.533407,222.711791 159.937483,226.775649 118.813235,226.766154" id="Fill-1" fill="#E3E3E3" sketch:type="MSShapeGroup" mask="url(#mask-4)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

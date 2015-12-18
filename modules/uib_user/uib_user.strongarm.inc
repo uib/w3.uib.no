@@ -73,7 +73,7 @@ function uib_user_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_picture_default';
-  $strongarm->value = '/sites/all/themes/uib/uib_zen/images/person-164.png';
+  $strongarm->value = '/sites/all/modules/uib/uib_user/default.svg';
   $export['user_picture_default'] = $strongarm;
 
   $strongarm = new stdClass();
