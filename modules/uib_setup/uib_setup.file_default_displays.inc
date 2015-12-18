@@ -648,8 +648,8 @@ function uib_setup_file_default_displays() {
   $file_display->weight = -49;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'width' => '334',
-    'height' => '188',
+    'width' => '798',
+    'height' => '398',
     'color' => '',
     'protocol' => '//',
     'autoplay' => 0,
@@ -677,8 +677,8 @@ function uib_setup_file_default_displays() {
   $file_display->weight = -50;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'width' => '334',
-    'height' => '188',
+    'width' => '708',
+    'height' => '398',
     'theme' => 'dark',
     'color' => 'red',
     'autohide' => '2',

@@ -246,6 +246,7 @@ EOD;
       if ($view_mode == 'content_main') {
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_copyright']);
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_owner']);
+        unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_description']);
         $variables['page']['content_top']['field_uib_primary_media']['#prefix'] = '<div class="full-width">';
         $variables['page']['content_top']['field_uib_primary_media']['#suffix'] = '</div>';
       }
