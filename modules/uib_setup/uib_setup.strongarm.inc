@@ -369,13 +369,6 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'imagemagick_convert';
-  $strongarm->value = '/usr/bin/convert';
-  $export['imagemagick_convert'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'l10n_update_check_disabled';
   $strongarm->value = 0;
   $export['l10n_update_check_disabled'] = $strongarm;

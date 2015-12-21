@@ -80,6 +80,11 @@ if bin/site-drush vget theme_default | grep uib_zen; then
     fi
 fi
 
+CONVERT=$(type --path convert)
+if [ "$CONVERT" != "/usr/bin/convert" ]; then
+    bin/site-drush variable-set imagemagick_convert "$CONVERT"
+fi
+
 bin/site-drush cc all
 
 if [ "$USE_STAGE_FILE_PROXY" = yes ]; then
