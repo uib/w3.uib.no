@@ -25,6 +25,7 @@ while (<>) {
     }
     s/\bw3_(?:user|admin)\b/$map_user/g if $map_user;
     s/^CREATE TABLE/CREATE UNLOGGED TABLE/ if $unlogged;
+    s/\b(pg_catalog\.)"nb_NO"/$1"no_NO"/ if $^O eq "darwin";
     if (/^COPY (\w+).* FROM stdin;$/ && skip_data($1)) {
 	$skipping_data++;
 	print "-- Data for $1 removed by filter\n";
