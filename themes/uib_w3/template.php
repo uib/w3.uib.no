@@ -646,6 +646,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       if (count($variables['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
       }
+      if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
+        $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
+      }
       $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
     }
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'teaser') {
