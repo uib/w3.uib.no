@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PGUSER=$(php --run 'include "site/settings.php"; print($databases["default"]["default"]["username"]);')
+PSQL=$(bin/site-drush --verbose=0 sql-connect)
 PGDUMP_HOST=${PGDUMP_HOST:-vengeance.uib.no}
 PGDUMP_HOST_PREFIX=$PGDUMP_HOST:
 PGDUMP_HOST_RUN="ssh $PGDUMP_HOST"
@@ -58,7 +59,7 @@ if [ "$DOTGZ" != "" ]; then
 fi
 
 bin/site-drush sql-drop --yes
-bin/filter-prod-dump --map-user $PGUSER --unlogged --skip-revision-data site/w3.uib.no.sql | bin/site-drush sql-cli --extra=--echo-queries >site/pg.out 2>&1
+bin/filter-prod-dump --map-user $PGUSER --unlogged --skip-revision-data site/w3.uib.no.sql | $PSQL --echo-queries >site/pg.out 2>&1
 bin/pg_error_report --ignore-drop site/pg.out
 
 # Need to set up w3.uib.no as site alias since it's hardcoded a few places in the database dump
