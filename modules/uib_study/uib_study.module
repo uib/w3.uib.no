@@ -999,7 +999,7 @@ function uib_study_block_view($delta = '') {
           $duration = number_format(round($data['studiepoeng'] / 60 * ($data['heltidsprosent'] / 100), 1), 1, ',', ' ');
           if (substr($duration, -2) == ',0')
             $duration = substr($duration, 0, -2);
-          $items[] = uib_study__get_study_facts_markup(t('Duration'), $duration);
+          $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
           $items[] = uib_study__get_study_facts_markup(t('Study programme code'), $data['studieprogramkode']);
           $seats = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
           $items[] = uib_study__get_study_facts_markup(t('Intake'), uib_study__text_markup($seats, $is_course, TRUE));
