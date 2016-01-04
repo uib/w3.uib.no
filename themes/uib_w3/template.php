@@ -417,7 +417,7 @@ EOD;
         'weight' => -20,
       ));
       break;
-    case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user'):
+    case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user' && !in_array('page__user__edit', $variables['theme_hook_suggestions'])):
       $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
       $user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
       $variables['page']['content_top']['vcard_and_login'] = array(
