@@ -55,6 +55,10 @@ function uib_study_block_info() {
       'info' => t('Link to the study plan if it exists'),
       'status' => TRUE,
     ),
+    'study_trivia' => array(
+      'info' => t('Trivia regarding this study'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -1223,6 +1227,19 @@ function uib_study_block_view($delta = '') {
             $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
             $tmp = l(t('See study plan'), (drupal_get_path_alias($study_path) . '/plan'));
             $block['content'] = $tmp;
+          }
+        }
+      }
+      break;
+    case 'study_trivia':
+      $node = menu_get_object();
+      if (isset($node->field_uib_study_type)) {
+        if (in_array($node->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
+          $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+          $trivia = uib_study__extract_study_info($data, 'B_RE_VISST');
+          if ($trivia['#text']) {
+            $block['title'] = t('Did you know') . '...';
+            $block['content'] = $trivia['#text'];
           }
         }
       }

@@ -372,6 +372,7 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
+        $variables['page']['content']['study_did_you_know'] = __uib_w3__render_block('uib_study', 'study_trivia', 8);
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
         $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
@@ -533,6 +534,7 @@ EOD;
     'uib_study_study_semester_toggle',
     'uib_study_study_testimonial',
     'uib_study_study_evu',
+    'uib_study_study_trivia',
     'uib_area_area_banner',
     'uib_area_area_offices',
     'uib_calendar3_calendar3',
