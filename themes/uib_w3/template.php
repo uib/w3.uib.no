@@ -373,7 +373,7 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
-        $variables['page']['content']['study_did_you_know'] = __uib_w3__render_block('uib_study', 'study_trivia', 8);
+        $variables['page']['content']['study_did_you_know'] = __uib_w3__render_block('uib_study', 'study_trivia', 7);
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
         $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
@@ -384,12 +384,12 @@ EOD;
         $view = views_get_view('uib_study_specialization');
         $view->preview('block', array($variables['node']->nid));
         if ($view->result) {
-          $specializations = '<div class="block block-uib-study"><h3>' . t('Specialization') . '</h3>' . $view->render() . '</div>';
+          $specializations = '<div class="block block-uib-study uib-study-specialization"><h3>' . t('Specialization') . '</h3>' . $view->render() . '</div>';
         }
-        $variables['page']['content_bottom']['field_uib_study'] = array(
+        $variables['page']['content']['field_uib_study'] = array(
           '#type' => 'markup',
           '#markup' => $specializations,
-          '#weight' => 30,
+          '#weight' => 8,
         );
         $variables['page']['content_bottom']['field_uib_feed'] = field_view_field('node', $variables['node'], 'field_uib_feed', array(
           'type' => 'uib_area_link_feed',
