@@ -1080,12 +1080,14 @@ function uib_study_block_view($delta = '') {
           break;
         $items = array();
         foreach ($data['betingelse'] as $place) {
-          foreach ($place['sted'] as $key ) {
-            if ($key['_type'] == 'eksternt' && $key['institusjonsnr'] != 184) {
-              $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
-              $items[] = uib_study__get_study_facts_markup(t('How do I apply'), l(t('Instructions on Søknadsweb'),'utdanning/49395/søknadsweb-instruksjonar'));
-              $items[] = uib_study__get_study_facts_markup(t('Submit your application here'), l(t('Søknadsweb'),'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib'));
-              $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
+          if ($place['personkategori'] == 'STUDENT') {
+            foreach ($place['sted'] as $key ) {
+              if ($key['_type'] == 'eksternt' && $key['institusjonsnr'] != 184) {
+                $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
+                $items[] = uib_study__get_study_facts_markup(t('How do I apply'), l(t('Instructions on Søknadsweb'),'utdanning/49395/søknadsweb-instruksjonar'));
+                $items[] = uib_study__get_study_facts_markup(t('Submit your application here'), l(t('Søknadsweb'),'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib'));
+                $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
+              }
             }
           }
         }
