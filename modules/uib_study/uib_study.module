@@ -983,6 +983,10 @@ function uib_study_block_view($delta = '') {
             $items[] = uib_study__get_study_facts_markup(t('Teaching semester'), t($data['undervisningssemester:en']));
             $items[] = uib_study__get_study_facts_markup(t('Course code'), $study_code);
             $items[] = uib_study__get_study_facts_markup(t('Number of semesters'), $data['antall-undsemester']);
+            $sprak = uib_study__extract_study_info($data_2, 'EB_SPRAK');
+            if ($sprak) {
+              $items[] = uib_study__get_study_facts_markup(t('Language'), $sprak['#text']);
+            }
             $resources = array(
               '#theme' => 'item_list',
               '#items' => array(),
