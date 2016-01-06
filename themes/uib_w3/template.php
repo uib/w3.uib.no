@@ -405,6 +405,10 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
+        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+          'label' => 'hidden',
+          'weight' => 0,
+        ));
       }
       break;
     case (isset($variables['node']) && $variables['node']->type == 'uib_testimonial'):
