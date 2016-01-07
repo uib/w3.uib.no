@@ -126,36 +126,34 @@ function uib_area_block_view($delta='') {
       $block['title'] = '';
       $block['region'] = 'none';
       $block['subject'] = NULL;
-      $block['content'] = array();
-      $block['content']['contact'] = array(
-        '#type' => 'container',
-        '#attributes' => array(
-          'class' => 'contact',
+      $block['content'] = array(
+        'contact' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => 'contact',
+          ),
+          'title' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'h3',
+            '#value' => t('Contact us'),
+          ),
+          'email' => array(
+            '#type' => 'link',
+            '#title' => $mail_title,
+            '#href' => $mail_href,
+          ),
+          'phone' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => $phone,
+          ),
+          'postal_address' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => $postal_address,
+          ),
         ),
-        'title' => array(
-          '#type' => 'html_tag',
-          '#tag' => 'h3',
-          '#value' => t('Contact us'),
-        ),
-        'email' => array(
-          '#type' => 'link',
-          '#title' => $mail_title,
-          '#href' => $mail_href,
-        ),
-        'phone' => array(
-          '#type' => 'html_tag',
-          '#tag' => 'span',
-          '#value' => $phone,
-        ),
-        'postal_address' => array(
-          '#type' => 'html_tag',
-          '#tag' => 'span',
-          '#value' => $postal_address,
-        ),
-      );
-      if (!empty($place->field_uib_geolocation)) {
-        $map = $language->language == 'en' ? '/map' : '/kart';
-        $block['content']['visit'] = array(
+        'visit' => array(
           '#type' => 'container',
           '#attributes' => array(
             'class' => 'visit',
@@ -170,14 +168,24 @@ function uib_area_block_view($delta='') {
             '#tag' => 'span',
             '#value' => $visit_address,
           ),
-          'campus_map' => array(
-            '#theme' => 'link',
-            '#text' => t('View campus map'),
-            '#path' => drupal_get_path_alias('node/' . $area->nid) . $map,
-            '#options' => array(
-              'attributes' => array(),
-              'html' => TRUE,
-            ),
+        ),
+      );
+      if (!empty($place->field_uib_geolocation) || $area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+        if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+          $nid = $language->language == 'en' ? 79263 : 79254;
+          $mapurl = drupal_get_path_alias('node/' . $nid) . $map;
+        }
+        else {
+          $map = $language->language == 'en' ? '/map' : '/kart';
+          $mapurl = drupal_get_path_alias('node/' . $area->nid) . $map;
+        }
+        $block['content']['visit']['campus_map'] = array(
+          '#theme' => 'link',
+          '#text' => t('View campus map'),
+          '#path' => $mapurl,
+          '#options' => array(
+            'attributes' => array(),
+            'html' => TRUE,
           ),
         );
       }
