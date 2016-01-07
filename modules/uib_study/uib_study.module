@@ -555,10 +555,14 @@ function uib_study_block_view($delta = '') {
     case 'study_content':
       $splice_list = array(
         'EB_SPRAK',
+        'B_RE_SPRAK',
+        'M_RE_SPRAK',
         'B_RE_PLASS',
+        'M_RE_PLASS',
         'EB_KONTAKT',
         'B_RE_INFO',
         'M_RE_INFO',
+        'B_RE_VISST',
       );
 
       $node = menu_get_object();
