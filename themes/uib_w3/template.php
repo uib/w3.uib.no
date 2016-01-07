@@ -406,10 +406,7 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
-        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
-          'label' => 'hidden',
-          'weight' => 0,
-        ));
+        $variables['page']['content_bottom']['study_static_links'] = __uib_w3__render_block('uib_study', 'study_static_links', 0);
       }
       break;
     case (isset($variables['node']) && $variables['node']->type == 'uib_testimonial'):
