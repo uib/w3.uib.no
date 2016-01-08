@@ -332,10 +332,10 @@ EOD;
 EOD;
         drupal_add_js($jq, 'inline');
       }
-      $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_type', array(
+      $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_category', array(
         'label' => 'hidden',
         'weight' => -50,
-      ), $variables['node']->language);
+      ));
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
