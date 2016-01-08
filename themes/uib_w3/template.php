@@ -91,9 +91,12 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
   drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 
-  $suggestions = $variables['theme_hook_suggestions'];
-  if(in_array('page__node__edit',$suggestions)) {
-    //in edit mode
+  $affected_suggestions = array('page__node__edit', 'page__node__translate', 'page__node__menu', 'page__node__revisions');
+  $do = FALSE;
+  foreach ($affected_suggestions as $s) {
+    if(in_array($s, $variables['theme_hook_suggestions'])) $do = TRUE;
+  }
+  if($do) {
     unset($variables['node']);
     unset($variables['page']['subheader']);
     unset($variables['page']['header']);
@@ -208,25 +211,31 @@ EOD;
           );
         }); ', 'inline');
       }
-
-      $stubborn_bastards = array(
-        'field_uib_relation',
-        'field_related_persons_label',
-        'field_uib_related_persons',
-        'field_uib_main_media',
-        'field_uib_kicker',
-        'field_uib_lead',
-        'field_uib_byline',
-        'links',
-        'language',
-      );
-      $empty = TRUE;
-      foreach($variables['page']['content']['system_main']['nodes'][$variables['node']->nid] as $key => $value) {
-        if (!in_array($key, $stubborn_bastards) && !(substr($key, 0, 1) == '#')) {
-          $empty = FALSE;
-        }
+      $exceptions = array('page__node__translate', 'page__node__menu', 'page__node__revisions');
+      $stop = FALSE;
+      foreach ($exceptions as $e) {
+        if(in_array($e, $variables['theme_hook_suggestions'])) $stop = TRUE;
       }
-      if ($empty) $variables['page']['content'] = array();
+      if (!$stop) {
+        $stubborn_bastards = array(
+          'field_uib_relation',
+          'field_related_persons_label',
+          'field_uib_related_persons',
+          'field_uib_main_media',
+          'field_uib_kicker',
+          'field_uib_lead',
+          'field_uib_byline',
+          'links',
+          'language',
+        );
+        $empty = TRUE;
+        foreach($variables['page']['content']['system_main']['nodes'][$variables['node']->nid] as $key => $value) {
+          if (!in_array($key, $stubborn_bastards) && !(substr($key, 0, 1) == '#')) {
+            $empty = FALSE;
+          }
+        }
+        if ($empty) $variables['page']['content'] = array();
+      }
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
