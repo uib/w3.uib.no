@@ -1,3 +1,27 @@
+# Release 38 _2016-01-07_
+
+Første release i 2016. Fokus på redesign.
+
+- Studieprogramsidene viser nå riktig formattering og har fått litt ekstra styling i tillegg til noen ekstra felt #13768 #13656 #13655 #13654 #13653 #13643 #13492 #13004
+- Noen utvekslingavtaler viste dobbel informasjon, dette er nå fikset #13536
+- Relevante lenker er nå flyttet ned på utvekslingsavtaler #12986
+- Studiespesialiserende er nå flyttet til den høyre siden på studieprogram #12980
+" visste du at" viser nå på høyre side på studieprogram #12873
+- Det har blitt gjort en del endringer på mobilmenyen for å få denne til å fungere bedre #13739 #13490 #13485
+- Informasjon på personsidene ble ikke lagret, dette er nå fikset #13678
+- Tilknyttet innhold fungerte ikke på sider som lå som innholdsliste #13671
+- Compatability mode på IE gjorde at siden så ødelagt ut, vi har lagt inn en overstyring av dette på siden #13667
+- Tilknyttet innhold med flere små bilder viser nå bare ett #13661
+- Studieinformasjon i tilknyttet innhold har nå riktig utseende #13647
+- Sider uten tekst i brødteksfeltet viser nå ikke dette feltet #13642
+- Vi har lagt til et globalt bunnfelt på alle sider #13629
+- Bilde og tekstfelt på områdesiden har nå samme størrelse #13609
+- Den valgte fanen på en artikkel har nå en mørkere farge enn de andre fanene #13514
+- Alle knapper har nå fått lik styling #13500
+- Vi har lagt til et kart i "besøk oss"-feltet #13475
+- Vi har endret størrelsen på videoer i hovedfeltet på et område #13220
+- Filtersidene til studieprogram og emne har fått litt mer riktig stil #13074
+
 # Release 37 _2015-12-17_
 
 Første release etter lansering. Fokus på å fikse de grove feilene.
