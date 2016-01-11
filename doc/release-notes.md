@@ -1,3 +1,11 @@
+# Release 38.2 _2016-01-11_
+
+- Oversett, meny og versjonsfanene i redigeringsmodus viste ikke funksjonaliteten. Denne er nå på plass igjen #13813
+
+# Release 38.1 _2016-01-08_
+
+- En liten justering av videoformatene på områdeforsidene slik at den fungerte i alle størrelser #13804
+
 # Release 38 _2016-01-07_
 
 Første release i 2016. Fokus på redesign.
