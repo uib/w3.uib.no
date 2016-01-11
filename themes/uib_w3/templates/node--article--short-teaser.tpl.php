@@ -79,6 +79,11 @@
  */
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <?php
+    print render(field_view_field('node', $node, 'field_uib_kicker',
+      array('label'=>'hidden'))
+    );
+  ?>
   <?php print render($content['field_uib_main_media']); ?>
   <div class="relation_content">
     <?php if (!$page): ?>
