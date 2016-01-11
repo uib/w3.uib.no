@@ -498,23 +498,6 @@ function uib_user_user_view_alter(&$build) {
     );
   $build['#group_children']['uib_tabs'] = 'group_user_work_1';
 
-  // Current projects field collapsible
-  if (isset($build['field_uib_user_projects'][0]['#markup'])) {
-    $field_collapsed = FALSE;
-    $tmp = trim(strip_tags($build['field_uib_user_projects'][0]['#markup']));
-    if (strlen($tmp) > 200) {
-      $field_collapsed = TRUE;
-    }
-    $build['field_uib_user_projects'][0]['#markup'] = theme(
-      'ctools_collapsible',
-      array(
-        'handle' => $build['field_uib_user_projects']['#title'],
-        'content' => $build['field_uib_user_projects'][0]['#markup'],
-        'collapsed' => $field_collapsed,
-        )
-      );
-  }
-
   if ($build['#view_mode'] == 'uib_user_teaser') {
     $build['uib_user_teaser'] = uib_user__teaser_markup($build['#account']);
     if (isset($build['field_uib_first_name'])) unset($build['field_uib_first_name']);

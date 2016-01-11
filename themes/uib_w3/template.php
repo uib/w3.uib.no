@@ -510,7 +510,6 @@ EOD;
         'field_uib_user_ou',
         'field_uib_user_url',
         'field_uib_user_social_media',
-        'field_uib_user_projects',
         'field_uib_user_feed',
         'field_uib_phone',
         'user_email',
