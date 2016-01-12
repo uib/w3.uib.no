@@ -79,7 +79,7 @@ if ($module eq 'zen') {
 
 run("rm -rf drupal/sites/all/$mod_dir/$module");
 run("ln -s drupal/sites");
-run("drush make drupal.make . --projects=$module --libraries= --no-core");
+run("vendor/bin/drush make drupal.make . --projects=$module --libraries= --no-core");
 run("rm sites");
 
 my $msg = ($old_vers ?
