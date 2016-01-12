@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function uib_area_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -40,7 +40,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_bottom_wrapper|node|area|default'] = $field_group;
+  $field_groups['group_bottom_wrapper|node|area|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -71,7 +71,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_column_first|node|area|default'] = $field_group;
+  $field_groups['group_column_first|node|area|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -103,7 +103,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_column_second|node|area|default'] = $field_group;
+  $field_groups['group_column_second|node|area|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -136,7 +136,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_contact_info|node|uib_ou|teaser'] = $field_group;
+  $field_groups['group_contact_info|node|uib_ou|teaser'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -172,7 +172,7 @@ function uib_area_field_group_info() {
       ),
     ),
   );
-  $export['group_level_1|node|area|form'] = $field_group;
+  $field_groups['group_level_1|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -204,7 +204,7 @@ function uib_area_field_group_info() {
       ),
     ),
   );
-  $export['group_management|node|area|form'] = $field_group;
+  $field_groups['group_management|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -236,7 +236,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_media_content|node|uib_article|teaser'] = $field_group;
+  $field_groups['group_media_content|node|uib_article|teaser'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -267,7 +267,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_media_wrapper|node|uib_article|teaser'] = $field_group;
+  $field_groups['group_media_wrapper|node|uib_article|teaser'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -300,7 +300,7 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_office_hours|node|uib_ou|teaser'] = $field_group;
+  $field_groups['group_office_hours|node|uib_ou|teaser'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -328,7 +328,7 @@ function uib_area_field_group_info() {
       ),
     ),
   );
-  $export['group_profile_text|node|area|form'] = $field_group;
+  $field_groups['group_profile_text|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -361,7 +361,19 @@ function uib_area_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_two_column|node|area|default'] = $field_group;
+  $field_groups['group_two_column|node|area|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Bottom wrapper');
+  t('Column first');
+  t('Column second');
+  t('Contact');
+  t('For level 1');
+  t('Management');
+  t('Office information');
+  t('W2 profile text');
+  t('two_column');
+
+  return $field_groups;
 }

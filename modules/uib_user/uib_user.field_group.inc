@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function uib_user_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -37,7 +37,7 @@ function uib_user_field_group_info() {
       ),
     ),
   );
-  $export['group_cristin|user|user|form'] = $field_group;
+  $field_groups['group_cristin|user|user|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -69,7 +69,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_media_element|user|user|default'] = $field_group;
+  $field_groups['group_media_element|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -123,7 +123,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_primary|user|user|form'] = $field_group;
+  $field_groups['group_primary|user|user|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -159,7 +159,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_secondary|user|user|form'] = $field_group;
+  $field_groups['group_secondary|user|user|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -202,7 +202,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_uib_hidden|user|user|form'] = $field_group;
+  $field_groups['group_uib_hidden|user|user|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -235,7 +235,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_ci_1|user|user|default'] = $field_group;
+  $field_groups['group_user_ci_1|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -266,7 +266,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_ci_2|user|user|default'] = $field_group;
+  $field_groups['group_user_ci_2|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -297,7 +297,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_contact_wrapper|user|user|default'] = $field_group;
+  $field_groups['group_user_contact_wrapper|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -334,7 +334,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_contact|user|user|default'] = $field_group;
+  $field_groups['group_user_contact|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -366,7 +366,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_first|user|user|default'] = $field_group;
+  $field_groups['group_user_first|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -397,7 +397,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_media|user|user|default'] = $field_group;
+  $field_groups['group_user_media|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -431,7 +431,7 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_second|user|user|default'] = $field_group;
+  $field_groups['group_user_second|user|user|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -467,7 +467,23 @@ function uib_user_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_user_work_1|user|user|default'] = $field_group;
+  $field_groups['group_user_work_1|user|user|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('CRIStin settings');
+  t('Contact info');
+  t('Contact info first');
+  t('Contact info second');
+  t('Contact wrapper');
+  t('First');
+  t('Hidden');
+  t('Main information');
+  t('Media element');
+  t('Personal media');
+  t('Second');
+  t('Secondary information');
+  t('Work information');
+
+  return $field_groups;
 }
