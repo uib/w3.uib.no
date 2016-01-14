@@ -78,10 +78,6 @@ function uib_calendar3_block_view($delta) {
     foreach ($result as $key => $value) {
       $nid = $value->nid;
 
-      $day = format_date(strtotime($value->field_uib_date_value . 'Z'),
-        'custom','d' );
-      $month = format_date(strtotime($value->field_uib_date_value . 'Z'),
-        'custom','M' );
       $time = format_date(strtotime($value->field_uib_date_value . 'Z'),
         'custom', 'H:i' );
       $allowed_values = field_info_field('field_uib_event_type');
@@ -95,20 +91,11 @@ function uib_calendar3_block_view($delta) {
       $ra['data'][$key]=array();
       $ra['data'][$key]['#type'] = 'container';
       $ra['data'][$key]['#attributes'] = array('class' => array('event'));
-      $ra['data'][$key]['date']['#type'] = 'container';
-      $ra['data'][$key]['date']['#attributes'] = array('class' => array('cal-card'));
-      $ra['data'][$key]['date']['day'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#attributes' => array('class' => array('d')),
-        '#value' => $day,
-        );
-      $ra['data'][$key]['date']['month'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#attributes' => array('class' => array('m')),
-        '#value' => $month,
-        );
+      $ra['data'][$key]['#attributes'] = array('class' => array('event'));
+
+      $ra['data'][$key]['date'] =array('#markup'=>
+        uib_calendar3__get_calendar_card_render_array(
+          $value->field_uib_date_value . 'Z'));
       $r = array();
       $r['#prefix'] = '<div class="cal-text"><a href="' . url('node/' . intval($nid)) . '">';
       $r['#suffix'] = '</a></div>';
@@ -559,4 +546,40 @@ function uib_calendar3__index_page($area_nid=NULL) {
   drupal_add_js(drupal_get_path('module', 'uib_calendar3') . '/cal3.js');
 
   return $page;
+}
+
+function uib_calendar3__get_calendar_card_render_array($utc_datestring){
+  $day = format_date(strtotime($utc_datestring),
+    'custom','d' );
+  $month = format_date(strtotime($utc_datestring),
+    'custom','M' );
+  $markup='<svg  class="cal-card" preserveAspectRatio="xMinYMin" viewBox="0 0 71 71" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch -->
+    <title>Tag - KALENDER </title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Skisser-sidemaler" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Aktuelt-1" sketch:type="MSArtboardGroup" transform="translate(-78.000000, -1736.000000)">
+            <g id="Tag---KALENDER-" sketch:type="MSLayerGroup" transform="translate(78.000000, 1736.000000)">
+                <rect id="Kalenderikon-bg" fill="#0DA6A3" sketch:type="MSShapeGroup" x="0" y="0" width="71" height="71"></rect>
+                <rect id="Kalenderikon-bg-Copy" fill="#00777B" sketch:type="MSShapeGroup" x="0" y="46" width="71" height="25"></rect>
+                <text id="calmonth" class="m" sketch:type="MSTextLayer"
+                font-family="Myriad Pro" font-size="12" font-weight="526"
+                sketch:alignment="middle" line-spacing="17.8571429"
+                letter-spacing="2.95540404" fill="#FFFFFF"
+                style="text-anchor: middle;">
+                    <tspan x="36" y="60">' . $month . '</tspan>
+                </text>
+                <text id="calday" class="d" sketch:type="MSTextLayer"
+                font-family="Adobe Garamond Pro" font-size="37"
+                font-weight="normal" sketch:alignment="middle" fill="#F8F8F8"
+                style="text-anchor: middle">
+                    <tspan x="36" y="35">' . $day . '</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
+';
+return $markup;
 }
