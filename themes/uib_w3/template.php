@@ -724,8 +724,8 @@ function __uib_w3__article_info(&$node) {
  */
 function __uib_w3__author(&$node) {
   $authors = FALSE;
-  $authorarray = array_merge(@$node->field_uib_byline['und'], 
-    @$node->field_uib_external_author['und']);
+  $authorarray = array_merge((array)@$node->field_uib_byline['und'],
+    (array)@$node->field_uib_external_author['und']);
   if (count($authorarray)) {
     $byline = field_view_field('node', $node, 'field_uib_byline', array(
       'type' => 'entityreference_label',
