@@ -1887,96 +1887,6 @@ return !empty($handler->argument);';
     2 => 'OR',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'uib_study' => 'uib_study',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Type (field_uib_study_type) */
-  $handler->display->display_options['filters']['field_uib_study_type_value']['id'] = 'field_uib_study_type_value';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['table'] = 'field_data_field_uib_study_type';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['field'] = 'field_uib_study_type_value';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['value'] = array(
-    'course' => 'course',
-  );
-  $handler->display->display_options['filters']['field_uib_study_type_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['operator_id'] = 'field_uib_study_type_value_op';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['label'] = 'Type';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['operator'] = 'field_uib_study_type_value_op';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['identifier'] = 'field_uib_study_type_value';
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  /* Filter criterion: Content: Title (field_uib_study_title:language) */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
-  $handler->display->display_options['filters']['language']['group'] = 1;
-  /* Filter criterion: Content: Study points rank (field_uib_study_points_rank) */
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['id'] = 'field_uib_study_points_rank_value';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['table'] = 'field_data_field_uib_study_points_rank';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['field'] = 'field_uib_study_points_rank_value';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['operator_id'] = 'field_uib_study_points_rank_value_op';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['label'] = 'Filter by ECTS credits';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['operator'] = 'field_uib_study_points_rank_value_op';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['identifier'] = 'studypoints_rank';
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  /* Filter criterion: Content: Category (field_uib_study_category) */
-  $handler->display->display_options['filters']['field_uib_study_category_value']['id'] = 'field_uib_study_category_value';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['field'] = 'field_uib_study_category_value';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['value'] = array(
-    'undergraduate' => 'undergraduate',
-    'postgraduate' => 'postgraduate',
-    'arsstudium' => 'arsstudium',
-    'phdkurs' => 'phdkurs',
-    'evu' => 'evu',
-  );
-  $handler->display->display_options['filters']['field_uib_study_category_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_uib_study_category_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator_id'] = 'field_uib_study_category_value_op';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['label'] = 'Filter by level';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator'] = 'field_uib_study_category_value_op';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['identifier'] = 'field_uib_study_category_value';
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    64272948 => 0,
-    170699807 => 0,
-    74573517 => 0,
-    176168899 => 0,
-  );
-  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Has taxonomy term */
   $handler->display->display_options['filters']['tid']['id'] = 'tid';
   $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
@@ -1989,7 +1899,7 @@ return !empty($handler->argument);';
     6 => '6',
     7 => '7',
   );
-  $handler->display->display_options['filters']['tid']['group'] = 2;
+  $handler->display->display_options['filters']['tid']['group'] = 1;
   $handler->display->display_options['filters']['tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Humanities and aesthetic studies';
@@ -2025,7 +1935,7 @@ return !empty($handler->argument);';
     11 => '11',
     12 => '12',
   );
-  $handler->display->display_options['filters']['tid_1']['group'] = 2;
+  $handler->display->display_options['filters']['tid_1']['group'] = 1;
   $handler->display->display_options['filters']['tid_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid_1']['expose']['operator_id'] = 'tid_1_op';
   $handler->display->display_options['filters']['tid_1']['expose']['label'] = 'Teacher training and pedagogy';
@@ -2058,7 +1968,7 @@ return !empty($handler->argument);';
     21 => '21',
     22 => '22',
   );
-  $handler->display->display_options['filters']['tid_2']['group'] = 2;
+  $handler->display->display_options['filters']['tid_2']['group'] = 1;
   $handler->display->display_options['filters']['tid_2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid_2']['expose']['operator_id'] = 'tid_2_op';
   $handler->display->display_options['filters']['tid_2']['expose']['label'] = 'Political science and Development studies';
@@ -2088,7 +1998,7 @@ return !empty($handler->argument);';
     28 => '28',
     29 => '29',
   );
-  $handler->display->display_options['filters']['tid_3']['group'] = 2;
+  $handler->display->display_options['filters']['tid_3']['group'] = 1;
   $handler->display->display_options['filters']['tid_3']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid_3']['expose']['operator_id'] = 'tid_3_op';
   $handler->display->display_options['filters']['tid_3']['expose']['label'] = 'Natural sciences and techincal subjects';
@@ -2119,7 +2029,7 @@ return !empty($handler->argument);';
     36 => '36',
     37 => '37',
   );
-  $handler->display->display_options['filters']['tid_4']['group'] = 2;
+  $handler->display->display_options['filters']['tid_4']['group'] = 1;
   $handler->display->display_options['filters']['tid_4']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid_4']['expose']['operator_id'] = 'tid_4_op';
   $handler->display->display_options['filters']['tid_4']['expose']['label'] = 'Health and welfare';
@@ -2137,12 +2047,103 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_4']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['tid_4']['type'] = 'select';
   $handler->display->display_options['filters']['tid_4']['vocabulary'] = 'uib_nus';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 2;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'uib_study' => 'uib_study',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Content: Type (field_uib_study_type) */
+  $handler->display->display_options['filters']['field_uib_study_type_value']['id'] = 'field_uib_study_type_value';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['table'] = 'field_data_field_uib_study_type';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['field'] = 'field_uib_study_type_value';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['value'] = array(
+    'course' => 'course',
+  );
+  $handler->display->display_options['filters']['field_uib_study_type_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['operator_id'] = 'field_uib_study_type_value_op';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['operator'] = 'field_uib_study_type_value_op';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['identifier'] = 'field_uib_study_type_value';
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_type_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
+  /* Filter criterion: Content: Title (field_uib_study_title:language) */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  $handler->display->display_options['filters']['language']['group'] = 2;
+  /* Filter criterion: Content: Study points rank (field_uib_study_points_rank) */
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['id'] = 'field_uib_study_points_rank_value';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['table'] = 'field_data_field_uib_study_points_rank';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['field'] = 'field_uib_study_points_rank_value';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['operator_id'] = 'field_uib_study_points_rank_value_op';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['label'] = 'Filter by ECTS credits';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['operator'] = 'field_uib_study_points_rank_value_op';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['identifier'] = 'studypoints_rank';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
+  /* Filter criterion: Content: Category (field_uib_study_category) */
+  $handler->display->display_options['filters']['field_uib_study_category_value']['id'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['field'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['value'] = array(
+    'undergraduate' => 'undergraduate',
+    'postgraduate' => 'postgraduate',
+    'arsstudium' => 'arsstudium',
+    'phdkurs' => 'phdkurs',
+    'evu' => 'evu',
+  );
+  $handler->display->display_options['filters']['field_uib_study_category_value']['group'] = 2;
+  $handler->display->display_options['filters']['field_uib_study_category_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator_id'] = 'field_uib_study_category_value_op';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['label'] = 'Filter by level';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator'] = 'field_uib_study_category_value_op';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['identifier'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    64272948 => 0,
+    170699807 => 0,
+    74573517 => 0,
+    176168899 => 0,
+  );
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: ID (field_uib_study_code) */
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['id'] = 'field_uib_study_code_value_1';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['table'] = 'field_data_field_uib_study_code';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['field'] = 'field_uib_study_code_value';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['operator'] = '!=';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['value'] = 'EKSTWEB100';
+  $handler->display->display_options['filters']['field_uib_study_code_value_1']['group'] = 2;
 
   /* Display: All studyprogrammes block */
   $handler = $view->new_display('block', 'All studyprogrammes block', 'studypr_all_b1');
@@ -2459,15 +2460,15 @@ return !empty($handler->argument);';
     t('Select any filter and click on Apply to see results'),
     t('Found @total courses'),
     t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
-    t('Type'),
-    t('Filter by ECTS credits'),
-    t('Filter by level'),
     t('Humanities and aesthetic studies'),
     t('Has taxonomy term'),
     t('Teacher training and pedagogy'),
     t('Political science and Development studies'),
     t('Natural sciences and techincal subjects'),
     t('Health and welfare'),
+    t('Type'),
+    t('Filter by ECTS credits'),
+    t('Filter by level'),
     t('All studyprogrammes block'),
     t('Listing all study programmes'),
     t('Found @total study programmes'),

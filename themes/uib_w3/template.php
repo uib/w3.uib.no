@@ -113,7 +113,15 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
 
   switch (true) {
-
+    case @$variables['page']['content']['system_main']['nodes']['87343']:
+      $haystack = $variables['page']['content']['system_main']['nodes'][87343]['uib_views_block']['views_study_blocks-courses_all_b1']['#markup'];
+      $needleOne = '<div class="views-exposed-widgets clearfix">';
+      $replaceOne = '<div class="views-exposed-widgets clearfix"><div class="bef_uib_course">';
+      $haystack = str_replace($needleOne, $replaceOne, $haystack);
+      $needleTwo = '<div id="edit-studypoints-rank-wrapper"';
+      $replaceTwo = '</div><div id="edit-studypoints-rank-wrapper"';
+      $variables['page']['content']['system_main']['nodes'][87343]['uib_views_block']['views_study_blocks-courses_all_b1']['#markup'] = str_replace($needleTwo, $replaceTwo, $haystack);
+    break;
     case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
