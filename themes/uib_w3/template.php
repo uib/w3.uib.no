@@ -17,6 +17,12 @@ function uib_w3_preprocess_html(&$variables) {
     if ($node->type == 'area' && $node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
       $variables['classes_array'][] = 'banner-image';
     }
+    if ($node->type == 'uib_study') {
+      $variables['classes_array'][] = 'uib-study__' . $node->field_uib_study_type['und'][0]['value'];
+      if ($node->field_uib_study_type['und'][0]['value'] != 'course') {
+        $variables['classes_array'][] = 'study-tabs';
+      }
+    }
   }
   if ($current_area = uib_area__get_current()) {
     if ($current_area->field_uib_menu_style['und'][0]['value'] == 'expanded') {
@@ -362,6 +368,7 @@ EOD;
       );
       $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
+      unset($variables['page']['content']['study_content']['uib_study_study_content']['#contextual_links']);
       $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange') {
         $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
