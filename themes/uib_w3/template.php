@@ -794,3 +794,22 @@ function __uib_w3__get_renderable_menu($menu_name) {
   }
   return $menu;
 }
+/**
+ * Overrides theme_breadcrumb()
+ *
+ * @param $vars
+ *  An array containing the breadcrumb links.
+ *
+ * @return
+ *  markup for the overriden breadcrumb
+ */
+function uib_w3_breadcrumb(&$vars) {
+  $breadcrumb = $vars['breadcrumb'];
+  $output = '<nav class="breadcrumb" role="navigation"><ol>';
+  foreach ($breadcrumb as $key => $crumb) {
+    if ($key == 2 && strpos($crumb, 'uib-remove-link')) $crumb = strip_tags($crumb);
+    $output .= '<li>' . urldecode($crumb) . ' </li>';
+  }
+  $output .= '</ol></nav>';
+  return $output;
+}

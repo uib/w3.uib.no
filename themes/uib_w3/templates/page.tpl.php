@@ -125,6 +125,9 @@
 <?php if ($page['content_top']): ?>
       <div class="content-top-wrapper">
         <div class="content-top">
+<?php if ($breadcrumb): ?>
+          <div class="uib_breadcrumb"><?php print $breadcrumb; ?></div>
+<?php endif; ?>
 <?php print render($page['content_top']); ?>
         </div>
       </div>
