@@ -2040,12 +2040,27 @@ function uib_study_views_pre_render(&$view) {
     );
     $sort_array = array();
     $i = 0;
+    $prev=null;
     foreach ($view->result as $row) {
+      if($row->nid == '94865'){
+        $row->field_field_uib_study_category =
+          $prev->field_field_uib_study_category;
+        $row->field_field_uib_study_title[0]['raw']['safe_value']=
+          $row->field_data_field_uib_study_title_field_uib_study_title_value;
+        $row->field_field_uib_study_title[0]['raw']['value']=
+          $row->field_data_field_uib_study_title_field_uib_study_title_value;
+        $row->field_field_uib_study_title[0]['rendered']['#markup']=
+          $row->field_data_field_uib_study_title_field_uib_study_title_value;
+        $row->field_field_uib_study_title[0]['rendered']['#access']=true;
+        $row->_field_data['nid'] =array('entity' => node_load($row->nid),
+          'entity_type' => 'node') ;
+      }
       @$weight = $category_weight[$row->field_field_uib_study_category[0]['raw']['value']];
       $weight = empty($weight) ? "99" : sprintf("%02d", $weight);
       $suffix = sprintf("%06d", $i);
       $sort_array[$weight . $row->field_field_uib_study_category[0]['rendered']['#markup'] . $suffix] = $row;
       $i++;
+      $prev = $row;
     }
     ksort($sort_array);
     $view->result = $sort_array;
