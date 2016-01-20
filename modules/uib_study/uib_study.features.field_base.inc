@@ -10,7 +10,7 @@
 function uib_study_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_nus'
+  // Exported field_base: 'field_uib_nus'.
   $field_bases['field_uib_nus'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -46,7 +46,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_nus_id'
+  // Exported field_base: 'field_uib_nus_id'.
   $field_bases['field_uib_nus_id'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -68,7 +68,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_nus_image'
+  // Exported field_base: 'field_uib_nus_image'.
   $field_bases['field_uib_nus_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -93,7 +93,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_uib_nus_text'
+  // Exported field_base: 'field_uib_nus_text'.
   $field_bases['field_uib_nus_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -114,7 +114,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_study_category'
+  // Exported field_base: 'field_uib_study_category'.
   $field_bases['field_uib_study_category'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -146,7 +146,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_study_code'
+  // Exported field_base: 'field_uib_study_code'.
   $field_bases['field_uib_study_code'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -168,7 +168,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_study_country'
+  // Exported field_base: 'field_uib_study_country'.
   $field_bases['field_uib_study_country'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -205,7 +205,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_study_image'
+  // Exported field_base: 'field_uib_study_image'.
   $field_bases['field_uib_study_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -230,7 +230,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_uib_study_label'
+  // Exported field_base: 'field_uib_study_label'.
   $field_bases['field_uib_study_label'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -266,7 +266,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_study_organisation'
+  // Exported field_base: 'field_uib_study_organisation'.
   $field_bases['field_uib_study_organisation'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -303,7 +303,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_study_part_of'
+  // Exported field_base: 'field_uib_study_part_of'.
   $field_bases['field_uib_study_part_of'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -338,7 +338,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_study_points_rank'
+  // Exported field_base: 'field_uib_study_points_rank'.
   $field_bases['field_uib_study_points_rank'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -367,7 +367,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_study_title'
+  // Exported field_base: 'field_uib_study_title'.
   $field_bases['field_uib_study_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -389,7 +389,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_study_type'
+  // Exported field_base: 'field_uib_study_type'.
   $field_bases['field_uib_study_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -417,7 +417,7 @@ function uib_study_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_term_title'
+  // Exported field_base: 'field_uib_term_title'.
   $field_bases['field_uib_term_title'] = array(
     'active' => 1,
     'cardinality' => 1,
