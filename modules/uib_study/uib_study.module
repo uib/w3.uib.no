@@ -551,6 +551,8 @@ function uib_study_block_view($delta = '') {
   $data = FALSE;
   $is_course = uib_study__is_course();
   $is_exchange = uib_study__is_exchange();
+  $is_evu_course = uib_study__is_course('evu');
+
   switch ($delta) {
     case 'study_content':
       $splice_list = array(
@@ -564,6 +566,21 @@ function uib_study_block_view($delta = '') {
         'M_RE_INFO',
         'B_RE_VISST',
       );
+      if($is_evu_course){
+        $splice_list[]='EB_INNHOLD';
+        $splice_list[]='EB_EVALUER';
+        $splice_list[]='EB_KONTAKT';
+        $splice_list[]='EB_INSTITU';
+        $splice_list[]='EB_UNDMETO';
+        $splice_list[]='EB_OBLIGAT';
+        $splice_list[]='EB_UNDSEM';
+        $splice_list[]='EB_NIVA';
+        $splice_list[]='EB_STUDRET';
+        $splice_list[]='EB_UTBYTTE';
+        $splice_list[]='EB_KRAV';
+        $splice_list[]='EB_VURDERI';
+        $splice_list[]='EB_K-SKALA';
+      }
 
       $node = menu_get_object();
       if ($node) {
@@ -999,6 +1016,12 @@ function uib_study_block_view($delta = '') {
             $resources['#items'][] = render($schedule);
             $reading_list = uib_study__get_resource_links('reading_list', $study_code);
             $resources['#items'][] = render($reading_list);
+            if ($category == 'evu') {
+              if (uib_study__course_description_exists($study_code)) {
+                $tmp = uib_study__get_description_link($study_code);
+                $resources['#items'][] = render($tmp);
+              }
+            }
             $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
           }
         }
