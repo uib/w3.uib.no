@@ -1946,7 +1946,26 @@ function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $
   global $language;
   $order_by = &$query->getOrderBy();
   $view = $query->alterMetaData['view'];
-  if($language->language == 'nb' && (($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1') || ($view->name == 'courses' && ($view->current_display == 'study_programmes' || $view->current_display == 'study_programmes_all_page')))) {
+  $run= $language->language == 'nb' 
+    && 
+    (
+      (
+        $view->name == 'study_blocks' 
+        && 
+        $view->current_display == 'studypr_all_b1'
+      ) 
+      || 
+      (
+        $view->name == 'courses' 
+        &&
+        (
+          $view->current_display == 'study_programmes' 
+          ||
+          $view->current_display == 'study_programmes_all_page'
+        )
+      )
+    );
+  if($run) {
     $query2 = db_select('node', 'n');
     $query2->addField('n', 'nid');
     $query2->addField('n', 'title', 'field_data_field_uib_study_title_field_uib_study_title_value');
@@ -1957,7 +1976,7 @@ function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $
 
     // include article on Lektorutdanning med master i historie
     // eller religionsvitenskap if language is nb, and...
-    $run = $language->language == 'nb';
+    $run = $run && $language->language == 'nb';
     // Checking if category filter is set. If it is, then
     // check that it contains integrertemasterpr-profesjonsst
     $run = $run && ( count(@$_GET['category']) == 0 ||
@@ -1981,7 +2000,7 @@ function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $
     foreach ($order_by as $key => $value) {
       $k = $key == 'field_data_field_uib_study_title_field_uib_study_title_value' ?
       'lower_title' : $key;
-      if($language->language == 'nb' && ($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1')) {
+      if($run) {
         unset($order_by[$key]);
         $query2->orderBy($k, $value);
       }
@@ -1990,7 +2009,7 @@ function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $
       }
     }
   }
-  if($language->language == 'nb' && ($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1')) {
+  if($run) {
     $query->union($query2);
   }
 }
