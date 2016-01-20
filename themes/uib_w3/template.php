@@ -650,10 +650,11 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
       }
       $variables['theme_hook_suggestions'][] = 'node__article__teaser';
-      if( count($variables['field_uib_event_type'])){
+      if( count($variables['field_uib_event_type']) &&
+        isset($variables['field_uib_date']['und'][0]['value'])){
         $variables['content']['field_uib_main_media'][0]['#markup'].=
           uib_calendar3__get_calendar_card_render_array(
-          $variables['field_uib_date'][0]['value'] . 'Z');
+          $variables['field_uib_date']['und'][0]['value'] . 'Z');
       }
 
     }
