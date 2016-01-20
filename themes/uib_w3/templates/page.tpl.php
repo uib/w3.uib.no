@@ -92,7 +92,7 @@
   <?php endif; ?>
 <?php endif; ?>
 <?php print render($page['header']); ?>
-    <div class="mobile-menu">
+    <div class="mobile-menu" title="<?php print t('Menu'); ?>">
       <span>Click</span>
 <?php print render($page['mobile']); ?>
     </div>
