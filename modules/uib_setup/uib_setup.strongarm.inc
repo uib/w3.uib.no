@@ -997,6 +997,216 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_append_to_url';
+  $strongarm->value = '';
+  $export['service_links_append_to_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_category_types';
+  $strongarm->value = array();
+  $export['service_links_category_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_category_vocs';
+  $strongarm->value = array(
+    1 => 0,
+  );
+  $export['service_links_category_vocs'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_check_icons';
+  $strongarm->value = 1;
+  $export['service_links_check_icons'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_hide_for_author';
+  $strongarm->value = 0;
+  $export['service_links_hide_for_author'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_hide_if_unpublished';
+  $strongarm->value = 1;
+  $export['service_links_hide_if_unpublished'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_in_links';
+  $strongarm->value = '2';
+  $export['service_links_in_links'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_in_node';
+  $strongarm->value = '0';
+  $export['service_links_in_node'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_label_in_node';
+  $strongarm->value = 'Bookmark/Search this post with';
+  $export['service_links_label_in_node'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_new_window';
+  $strongarm->value = '0';
+  $export['service_links_new_window'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_node_types';
+  $strongarm->value = array(
+    'uib_article' => 0,
+    'uib_external_content' => 0,
+    'area' => 0,
+    'uib_ou' => 0,
+    'uib_study' => 0,
+    'uib_testimonial' => 0,
+  );
+  $export['service_links_node_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_override_title';
+  $strongarm->value = '0';
+  $export['service_links_override_title'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_override_title_text';
+  $strongarm->value = '<title>';
+  $export['service_links_override_title_text'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_page_match_for_node';
+  $strongarm->value = '';
+  $export['service_links_page_match_for_node'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_path_icons';
+  $strongarm->value = 'sites/all/themes/uib/uib_zen/images/icons-social';
+  $export['service_links_path_icons'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_short_links_use';
+  $strongarm->value = '0';
+  $export['service_links_short_links_use'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_show';
+  $strongarm->value = array(
+    'delicious' => 0,
+    'digg' => 0,
+    'stumbleupon' => 0,
+    'twitter' => 1,
+    'pingthis' => 0,
+    'reddit' => 0,
+    'slashdot' => 0,
+    'newsvine' => 0,
+    'furl' => 0,
+    'facebook' => 1,
+    'myspace' => 0,
+    'google' => 0,
+    'yahoo' => 0,
+    'linkedin' => 1,
+    'technorati' => 0,
+    'technorati_favorite' => 0,
+    'icerocket' => 0,
+    'misterwong' => 0,
+    'google_buzz' => 0,
+    'mixx' => 0,
+    'box' => 0,
+    'blinklist' => 0,
+    'identica' => 0,
+    'newskicks' => 0,
+    'diigo' => 0,
+    'google_plus_share' => 1,
+  );
+  $export['service_links_show'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_style';
+  $strongarm->value = '2';
+  $export['service_links_style'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_visibility_for_node';
+  $strongarm->value = '0';
+  $export['service_links_visibility_for_node'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_weight';
+  $strongarm->value = array(
+    'delicious' => '-94',
+    'digg' => '-93',
+    'stumbleupon' => '-79',
+    'twitter' => '-100',
+    'pingthis' => '-81',
+    'reddit' => '-97',
+    'slashdot' => '-80',
+    'newsvine' => '-82',
+    'furl' => '-91',
+    'facebook' => '-98',
+    'myspace' => '-84',
+    'google' => '-90',
+    'yahoo' => '-76',
+    'linkedin' => '-99',
+    'technorati' => '-77',
+    'technorati_favorite' => '-78',
+    'icerocket' => '-88',
+    'misterwong' => '-86',
+    'google_buzz' => '-89',
+    'mixx' => '-85',
+    'box' => '-95',
+    'blinklist' => '-96',
+    'identica' => '-87',
+    'newskicks' => '-83',
+    'diigo' => '-92',
+    'google_plus_share' => '0',
+  );
+  $export['service_links_weight'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'service_links_weight_in_node';
+  $strongarm->value = '10';
+  $export['service_links_weight_in_node'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'site_default_country';
   $strongarm->value = 'NO';
   $export['site_default_country'] = $strongarm;

@@ -194,12 +194,3 @@ function uib_setup_update_7020() {
   module_disable(array('uib_calendar'), FALSE);
   drupal_uninstall_modules(array('uib_calendar', 'calendar'), FALSE);
 }
-
-/**
- * Disable and uninstall service_links modules
- */
-function uib_setup_update_7021() {
-  $modules = array('uib_service_links', 'service_links', 'general_services');
-  module_disable($modules, FALSE);
-  drupal_uninstall_modules($modules, FALSE);
-}
