@@ -439,6 +439,12 @@ EOD;
         'label' => 'hidden',
         'weight' => -20,
       ));
+      $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
+        'weight' => '30',
+        'type' => 'entityreference_entity_view',
+        'settings' => array('view_mode' => 'short_teaser'),
+        'label' => 'hidden',
+      ));
       break;
     case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user' && !in_array('page__user__edit', $variables['theme_hook_suggestions'])):
       $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
