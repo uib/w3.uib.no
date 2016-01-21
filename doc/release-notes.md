@@ -1,3 +1,26 @@
+# Release 39 _2016-01-21_
+
+I denne oppdateringen har vi fokusert mye på å forbedre studieutlistingene
+
+- Forbedre design på søkefelt inne på utvekslingsavtalesidene #12764 #12765
+- Generell forbedring av filterside for studieprogram, emne, evu-kurs og utvekslingsavtaler #13809 #13883 #13925 #13837 #13808 #13806
+- Rettet en feil hvor tekst la seg over menyen på tablet #13953
+- Fått tilbake brødsmulesti på alle sider #13847
+- Rettet en feil hvor lenker la seg over hverandre på mobil #13745
+- Deaktivert moduler som ikke brukes lengre #13660 #13863
+- Oppdatert moduler #13841
+- Lagt til infoside for studieprogram som ikke finnes i FS #13902
+- Styling for kicker inne på studiesider (emne, studieprogram ++) #13823
+- Lagt til lenger forsinkelse når man tar musen over over områdemenyen #13691
+- Prosjekt blir hentet ut på personside igjen #12935
+- Fått tilbake ekstern forfatter #12812
+- Tilknyttet innhold henter nå ut kicker #12584
+- Studietype viser nå i tilknyttet innhold #13862
+- Undermenypunkt på hovedmenypunkt 4 og 5 i områdemenyen legger seg i høyre kolonne #13494
+- På engelsk side står det "Menu" på menyknappen på mobil #13481
+- Relevante lenker har fått mer konsistent styling #11988
+- Kalenderhendelser som er hentet ut i bildekarusell får nå et datomerke i øvre venstre hjørne #13933 #12878
+
 # Release 38.2 _2016-01-11_
 
 - Oversett, meny og versjonsfanene i redigeringsmodus viste ikke funksjonaliteten. Denne er nå på plass igjen #13813
