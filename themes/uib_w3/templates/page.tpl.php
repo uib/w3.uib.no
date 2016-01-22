@@ -92,10 +92,16 @@
   <?php endif; ?>
 <?php endif; ?>
 <?php print render($page['header']); ?>
-    <div class="mobile-menu" title="<?php print t('Menu'); ?>">
+    <div class="mobile-menu noscript" title="<?php print t('Menu'); ?>">
       <span>Click</span>
 <?php print render($page['mobile']); ?>
     </div>
+        <nav class="mobile_dropdown">
+          <?php
+          $variables['mobile']['#prefix'] = '<nav class="mobile noscript">';
+          print render($variables['mobile']);
+          ?>
+        </nav>
       </header>
     </div>
 <?php endif; ?>

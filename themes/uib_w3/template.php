@@ -65,24 +65,24 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     if ($area_menu_name = uib_area__get_current_menu()) {
-      $variables['page']['header']['mobile']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
-      $variables['page']['header']['mobile']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
-      $variables['page']['header']['mobile']['area_menu']['#suffix'] = '</nav>';
-      $variables['page']['header']['mobile']['area_menu']['#weight'] = -15;
+      $variables['mobile']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
+      $variables['mobile']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
+      $variables['mobile']['area_menu']['#suffix'] = '</nav>';
+      $variables['mobile']['area_menu']['#weight'] = -15;
     }
     if ($variables['language']->language == 'nb') {
-      $variables['page']['header']['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
+      $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
     }
     else {
-      $variables['page']['header']['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
+      $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
     }
-    $variables['page']['header']['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
-    $variables['page']['header']['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
-    $variables['page']['header']['mobile']['global_mobile_menu']['#weight'] = 5;
-    $variables['page']['header']['mobile']['language'] = __uib_w3__render_block('locale','language',10);
-    $variables['page']['header']['mobile']['#prefix'] = '<nav class="mobile">';
-    $variables['page']['header']['mobile']['#suffix'] = '</nav>';
-    $variables['page']['header']['mobile']['#weight'] = 0;
+    $variables['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
+    $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
+    $variables['mobile']['global_mobile_menu']['#weight'] = 5;
+    $variables['mobile']['language'] = __uib_w3__render_block('locale','language',10);
+    $variables['mobile']['#prefix'] = '<nav class="mobile">';
+    $variables['mobile']['#suffix'] = '</nav>';
+    $variables['mobile']['#weight'] = 0;
   }
   if ($current_area && !$variables['is_front']) {
     global $base_path;
