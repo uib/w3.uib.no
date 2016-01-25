@@ -954,12 +954,12 @@ jQuery( document ).ready( function($){
   hash = location.hash;
   location.hash='';
   $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('select', hash);
-  if(history.pushState) {
+  if(history.pushState && hash) {
     setTimeout(function(){
       history.pushState(null, null, hash);
     }, 1);
   }
-  else {
+  else if(hash) {
     window.location.hash = hash;
   }
   window.scrollTo(0, 0);
