@@ -42,6 +42,9 @@ function uib_w3_preprocess_html(&$variables) {
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
+  drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/survey.js',
+    array('group' => JS_THEME,)
+  );
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     $global_menu_lang = $variables['language']->language == 'nb' ? '-no' : '';
@@ -584,9 +587,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
   if ($variables['page'])  {
-    drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/survey.js',
-      array('group' => JS_THEME,)
-    );
     if ($variables['type'] == 'area') {
       $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
         'settings' => array('view_mode' => 'teaser'),
