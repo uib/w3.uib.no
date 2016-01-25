@@ -1,3 +1,7 @@
+# Release 39.1 _2016-01-25_
+
+Bug fixes related to survey script introduced in R39
+
 # Release 39 _2016-01-21_
 
 I denne oppdateringen har vi fokusert mye på å forbedre studieutlistingene
