@@ -585,7 +585,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   $current_language = $language->language;
   if ($variables['page'])  {
     drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/survey.js',
-      array('group' => JS_DEFAULT,)
+      array('group' => JS_THEME,)
     );
     if ($variables['type'] == 'area') {
       $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
