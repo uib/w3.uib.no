@@ -171,11 +171,7 @@ EOD;
     case isset($variables['node']) && $variables['node']->type == 'uib_article':
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
-        $jq = <<<'EOD'
-          jQuery( document ).ready( function($){
-            $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
-          });
-EOD;
+        $jq = uib_w3__tabsScript();
         drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
         'label' => 'hidden',
@@ -387,11 +383,7 @@ EOD;
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'course') {
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
-        $jq = <<<'EOD'
-          jQuery( document ).ready( function($){
-            $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
-          });
-EOD;
+        $jq = uib_w3__tabsScript();
         drupal_add_js($jq, 'inline');
       }
       $variables['page']['content_top']['field_uib_study_type'] =
@@ -927,3 +919,34 @@ function __uib_w3__empty_region($region) {
   return TRUE;
 }
 
+function uib_w3__tabsScript(){
+  $jq = <<<'EOD'
+jQuery( document ).ready( function($){
+  // Loading jquery ui.tabs
+  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs(
+    {
+      select: function(event, ui){
+        if(history.pushState) {
+          history.pushState(null, null, ui.tab.hash);
+        }
+        else {
+          window.location.hash = ui.tab.hash;
+        }
+      }
+  });
+  hash = location.hash;
+  location.hash='';
+  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('select', hash);
+  if(history.pushState) {
+    setTimeout(function(){
+      history.pushState(null, null, hash);
+    }, 1);
+  }
+  else {
+    window.location.hash = hash;
+  }
+  window.scrollTo(0, 0);
+});
+EOD;
+return $jq;
+}
