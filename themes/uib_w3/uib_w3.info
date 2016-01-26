@@ -15,7 +15,6 @@ regions[help] = Help
 regions[page_bottom] = Page bottom
 
 stylesheets[all][] = css/style.css
-stylesheets[all][] = css/admin.css
 stylesheets[print][] = css/print.css
 
 settings[default_logo] = 0
