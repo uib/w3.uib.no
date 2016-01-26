@@ -1,0 +1,5 @@
+name = UiB Admin
+description = Determine theme and css for custom admin pages in uib.no
+package = UiB
+core = 7.x
+

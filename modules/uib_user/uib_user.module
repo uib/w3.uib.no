@@ -231,18 +231,6 @@ function uib_user__username_lc($form, &$form_state) {
 }
 
 /**
- * Implements hook_custom_theme().
- */
-function uib_user_custom_theme() {
-  $arg = arg();
-  if (isset($arg[2])) {
-    if ($arg[0] == 'user' && $arg[2] == 'edit') {
-      return variable_get('theme_default');
-    }
-  }
-}
-
-/**
  * Implements hook_block_info().
  */
 function uib_user_block_info() {

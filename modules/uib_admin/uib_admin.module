@@ -1,0 +1,30 @@
+<?php
+  function uib_admin_preprocess_html (&$variables) {
+    $suggestions = array(
+      'html__node__edit',
+      'html__node__staff_status',
+      'html__node__ties',
+      'html__node__translate',
+      'html__node__revisions',
+      'html__user__edit',
+      'html__user__translate',
+      'html__webdesk',
+    );
+    foreach ($suggestions as $suggestion) {
+      if (in_array($suggestion, $variables['theme_hook_suggestions'])) {
+        drupal_add_css(drupal_get_path('module','uib_admin') . '/css/uib_admin.css', array('group' => CSS_THEME));
+      }
+    }
+  }
+  function uib_admin_admin_paths () {
+    $paths = array(
+      'node/*/staff_status' => true,
+      'node/*/ties' => true,
+      'node/*/menu' => true,
+      'node/*/tmenu' => true,
+      'node/*/share' => true,
+      'user/*/edit' => true,
+      'webdesk' => true,
+    );
+    return $paths;
+  }

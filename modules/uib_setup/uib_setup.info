@@ -495,7 +495,6 @@ features[variable][] = locale_field_language_fallback
 features[variable][] = locale_language_negotiation_url_part
 features[variable][] = locale_language_providers_weight_language
 features[variable][] = locale_language_providers_weight_language_content
-features[variable][] = media__dialog_theme
 features[variable][] = media__file_extensions
 features[variable][] = media__wysiwyg_allowed_types
 features[variable][] = media__wysiwyg_browser_plugins

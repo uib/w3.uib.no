@@ -12,7 +12,7 @@ case $(pwd) in
        ;;
 esac
 
-REL=36
+REL=40
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -22,9 +22,7 @@ fi
 set -x
 date +%FT%T
 
-bin/site-drush en --yes uib_w3
-bin/site-drush vset theme_default uib_w3
-bin/site-drush image-flush area_main
-bin/site-drush image-flush content_sidebar
+bin/site-drush vset node_admin_theme 1
+bin/site-drush en uib_admin --yes
 
 date +%FT%T
