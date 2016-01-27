@@ -25,6 +25,7 @@
       'node/*/share' => true,
       'user/*/edit' => true,
       'webdesk' => true,
+      'webdesk/*' => true,
     );
     return $paths;
   }
