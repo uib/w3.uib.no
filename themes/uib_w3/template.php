@@ -168,14 +168,14 @@ EOD;
       drupal_add_js($jq, 'inline');
       break;
     case isset($variables['node']) && $variables['node']->type == 'uib_article':
-        drupal_add_library('system' , 'ui.tabs');
-        // set menu to appear as tabs
-        $jq = <<<'EOD'
-          jQuery( document ).ready( function($){
-            $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
-          });
+      drupal_add_library('system' , 'ui.tabs');
+      // set menu to appear as tabs
+      $jq = <<<'EOD'
+        jQuery( document ).ready( function($){
+          $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs();
+        });
 EOD;
-        drupal_add_js($jq, 'inline');
+      drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
         'label' => 'hidden',
         'weight' => -50,
@@ -198,23 +198,31 @@ EOD;
         'label' => 'hidden',
         'weight' => -30,
       ));
-      $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
-        'weight' => '25',
-      ));
-      $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
-        'weight' => '30',
-        'type' => 'entityreference_entity_view',
-        'settings' => array('view_mode' => 'short_teaser'),
-        'label' => 'hidden',
-      ));
-      $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
-        'weight' => '27',
-        'type' => 'entityreference_entity_view',
-        'settings' => array('view_mode' => 'uib_user_teaser'),
-      ));
-      $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
-        'weight' => '26',
-      ));
+      if (!empty($variables['node']->fields_uib_links)) {
+        $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
+          'weight' => '25',
+        ));
+      }
+      if (!empty($variables['node']->field_uib_relation)) {
+        $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
+          'weight' => '30',
+          'type' => 'entityreference_entity_view',
+          'settings' => array('view_mode' => 'short_teaser'),
+          'label' => 'hidden',
+        ));
+      }
+      if (!empty($variables['node']->field_uib_related_persons)) {
+       $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
+          'weight' => '27',
+          'type' => 'entityreference_entity_view',
+          'settings' => array('view_mode' => 'uib_user_teaser'),
+        ));
+      }
+      if (!empty($variables['node']->field_uib_files)) {
+        $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
+          'weight' => '26',
+        ));
+      }
 
       /**
        * Slideshow thingy.
@@ -247,6 +255,7 @@ EOD;
           'field_uib_kicker',
           'field_uib_lead',
           'field_uib_byline',
+          'field_uib_links',
           'links',
           'language',
         );
