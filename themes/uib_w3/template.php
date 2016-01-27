@@ -54,6 +54,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['global_menu']['#suffix'] = '</nav>';
     $variables['page']['header']['global_menu']['#weight'] = -10;
   }
+
   $current_area = uib_area__get_current();
   $frontpage = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
@@ -241,6 +242,16 @@ EOD;
           );
         }); ', 'inline');
       }
+
+      // Article types with social media links
+      $types = array('event', 'news', 'press_release', 'phd_press_release');
+      if(in_array(@$variables['node']->field_uib_article_type['und'][0]['value'], $types)){
+        // Add social media links inside content uib_artcle
+        $variables['page']['content']['system_main']['nodes']
+          [$variables['node']->nid]['service_links_service_links'] =
+          @__uib_w3__render_block('service_links', 'service_links', 1000, true);
+      }
+
       $exceptions = array('page__node__translate', 'page__node__menu', 'page__node__revisions');
       $stop = FALSE;
       foreach ($exceptions as $e) {

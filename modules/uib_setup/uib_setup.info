@@ -554,6 +554,7 @@ features[variable][] = scheduler_unpublish_required_uib_content_list
 features[variable][] = scheduler_unpublish_revision_uib_article
 features[variable][] = scheduler_unpublish_revision_uib_content_list
 features[variable][] = service_links_append_to_url
+features[variable][] = service_links_block_style
 features[variable][] = service_links_category_types
 features[variable][] = service_links_category_vocs
 features[variable][] = service_links_check_icons
