@@ -16,6 +16,7 @@ projects[drupal][patch][] = https://drupal.org/files/issues/node-sql-rewrite-196
 
 ; themes
 projects[zen][version] = 5.5
+projects[adminimal_theme] = 1.23
 
 ; modules
 projects[addressfield][version] = 1.2
