@@ -1875,8 +1875,10 @@ function uib_setup_user_default_permissions() {
     'name' => 'view the administration theme',
     'roles' => array(
       'admin' => 'admin',
+      'authenticated user' => 'authenticated user',
       'level 1' => 'level 1',
       'level 2' => 'level 2',
+      'level 3' => 'level 3',
     ),
     'module' => 'system',
   );
