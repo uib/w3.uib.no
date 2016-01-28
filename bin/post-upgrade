@@ -26,5 +26,6 @@ bin/site-drush vset node_admin_theme 1
 bin/site-drush en uib_admin --yes
 bin/site-drush en adminimal --yes
 bin/site-drush vset admin_theme adminimal
+bin/site-drush en adminimal_admin_menu --yes
 
 date +%FT%T
