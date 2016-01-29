@@ -25,6 +25,14 @@ function uib_study__evu_courses_get_form() {
  * Creates the form to filter evu courses
  */
 function uib_study__evu_courses_page_form($form, &$form_state){
+  $form['page_title'] = array(
+    '#type' => 'item',
+    '#markup' => '<h3>'.t('Finn kurs for etter- og videreutdanning').'</h3>',
+  );
+  $form['title'] = array(
+    '#type' => 'item',
+    '#markup' => t('Filtrer på høst og vår'),
+  );
   $form['autumn'] = array(
     '#type' => 'checkbox',
     '#title' => t('Autumn'),
@@ -159,7 +167,6 @@ function uib_study__evu_courses_page_list() {
 
   // Force EVU as the current area for this page.
   uib_area__get_current(77320);
-
   return $main;
 }
 
