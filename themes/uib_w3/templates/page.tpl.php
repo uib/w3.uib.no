@@ -96,13 +96,13 @@
       <span>Click</span>
 <?php print render($page['mobile']); ?>
     </div>
-        <nav class="mobile_dropdown">
-          <?php
-          $variables['mobile']['#prefix'] = '<nav class="mobile noscript">';
-          print render($variables['mobile']);
-          ?>
-        </nav>
       </header>
+      <nav class="mobile_dropdown">
+        <?php
+        $variables['mobile']['#prefix'] = '<nav class="mobile noscript">';
+        print render($variables['mobile']);
+        ?>
+      </nav>
     </div>
 <?php endif; ?>
 <?php if ($page['subheader']): ?>
