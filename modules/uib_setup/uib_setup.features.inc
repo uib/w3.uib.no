@@ -236,12 +236,11 @@ function uib_setup_image_default_styles() {
   $styles['full_width_image_mobile_1x'] = array(
     'label' => 'full_width_image_mobile_1x',
     'effects' => array(
-      3 => array(
-        'name' => 'image_scale',
+      8 => array(
+        'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 559,
-          'height' => 419,
-          'upscale' => 0,
+          'width' => 560,
+          'height' => 350,
         ),
         'weight' => 1,
       ),
