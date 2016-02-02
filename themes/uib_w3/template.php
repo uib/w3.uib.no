@@ -696,7 +696,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   else {
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'teaser') {
       if (count($variables['field_uib_media']) > 1) {
-        $variables['content']['field_uib_media'] = __uib_w3__keep_first_media($variables['content']['field_uib_media']);
+        $variables['content']['field_uib_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_media']);
       }
       $variables['theme_hook_suggestions'][] = 'node__testimonial__teaser';
     }
