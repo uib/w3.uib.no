@@ -1087,6 +1087,11 @@ function uib_study_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
+  $handler->display->display_options['header']['result']['content'] = 'Found @total courses';
   /* Relationship: Content: Taxonomy terms on node */
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
@@ -1339,6 +1344,7 @@ function uib_study_views_default_views() {
     t('Desc'),
     t('Advanced options'),
     t('Select any filter and click on Apply to see results'),
+    t('Found @total courses'),
     t('term'),
     t('Translations'),
     t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
