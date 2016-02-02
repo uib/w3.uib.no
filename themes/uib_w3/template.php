@@ -383,10 +383,18 @@ EOD;
 EOD;
         drupal_add_js($jq, 'inline');
       }
-      $variables['page']['content_top']['field_uib_study_type'] = field_view_field('node', $variables['node'], 'field_uib_study_category', array(
+      $variables['page']['content_top']['field_uib_study_type'] =
+        field_view_field('node', $variables['node'], 'field_uib_study_category',
+          array(
         'label' => 'hidden',
         'weight' => -50,
       ));
+      $category = $variables['node']->field_uib_study_category['und'][0]['value'];
+      $name = "field:field_uib_study_category:#allowed_values:" .
+        $category;
+      $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
+      i18n_string_translate($name, $category);
+
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
