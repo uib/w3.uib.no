@@ -534,6 +534,8 @@ EOD;
       $variables['page']['content']['field_uib_user_competence'] = $variables['page']['content']['system_main']['field_uib_user_competence'];
       $variables['page']['content_bottom']['user_twitter'] = __uib_w3__render_block('uib_user', 'twitter', 10);
       $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);
+      $variables['page']['content_bottom']['field_uib_user_docs'] =
+        $variables['page']['content']['system_main']['field_uib_user_docs'];
 
       $unset_variables = array(
         'user_vcard_link',
@@ -549,6 +551,7 @@ EOD;
         'field_uib_phone',
         'user_email',
         'field_uib_user_competence',
+        'field_uib_user_docs',
       );
       foreach ($unset_variables as $unset) {
         unset($variables['page']['content']['system_main'][$unset]);

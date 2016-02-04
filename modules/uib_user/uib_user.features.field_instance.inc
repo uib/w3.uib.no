@@ -1108,7 +1108,7 @@ function uib_user_field_default_field_instances() {
     ),
     'entity_type' => 'user',
     'field_name' => 'field_uib_user_docs',
-    'label' => 'Relevant documents',
+    'label' => 'Attachments',
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
@@ -2078,6 +2078,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
   t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, instagram, linkedin, mailto, researchgate, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
+  t('Attachments');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');
   t('Choose if you want CRIStin publications displayed before or after any you manually add in the "Publications" field. The default is to display CRIStin publications before.');
@@ -2101,7 +2102,6 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Publications');
   t('Publications placement');
   t('RSS feed');
-  t('Relevant documents');
   t('Research / work');
   t('Room');
   t('Slug');
