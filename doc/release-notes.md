@@ -1,3 +1,24 @@
+#Release 40 _2016-02-04_
+Den siste releasen hvor redesign har hovedfokus. Vi vil fremdeles jobbe videre med endringer i designet, men nå vil også andre saker komme med. 
+I denne releasen gjør vi også store endringer på redigeringsidene.
+
+- Vi har endret på redigeringstemaet #14093 #14093
+- Vi har gjort noen endringer på filtersidene #13812 #13830
+- Banneret på forsiden har blitt endret for å bedre fungere med flere bildeformater #14168
+- Personsidene har fått diverse endringer #14163
+- Eposten på personsidene er nå klikkbare igjen #14154
+- Vi har lagt til sosiale medier på artikler, kalenderhendelser og pressemeldinger #14069
+- Tilknyttet innhold fungerer nå bedre #13992 #13687
+- Informasjon i faner har nå riktig fontstørrelse #13963
+- Lenker i faner viser nå med riktig lenkefarge #13864
+- Kolofonmenyen ser nå mindre rotete ut #13831 #13449
+- Mobilmenyen har blitt bedre å bruke #13779
+- Kursbeskrivelsen for EVU har blitt flyttet til en egen side #13740
+- Studieprogram viser nå den oversatte versjonen av stikktittelen sin #13681
+- Vitnesbyrd viser nå tilknyttet innhold #13680
+- Lenken for å bytte språk har fått en mer beskrivende tekst #13351
+- Vi har endret rekkefølgen i elementene på vitnesbyrdene på områdeforsidene #12202
+
 # Release 39.1 _2016-01-25_
 
 Bug fixes related to survey script introduced in R39
