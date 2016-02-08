@@ -647,6 +647,12 @@ EOD;
  */
 function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
+  if($variables['view_mode']=='short_teaser'){
+    unset($variables['content']['links']);
+    unset($variables['content']['field_uib_main_media']['#items'][0]['field_file_image_title_text']);
+    unset($variables['content']['field_uib_main_media'][0]['#contextual_links']);
+    unset($variables['content']['field_uib_main_media'][0]['links']);
+  }
   $current_language = $language->language;
   if ($variables['page'])  {
     if ($variables['type'] == 'area') {

@@ -2890,6 +2890,8 @@ div.field-item {
   .field-name-field-uib-relation > .field-items > .field-item {
     position: relative;
     margin: 2.25rem 0.5% 0; }
+    .field-name-field-uib-relation > .field-items > .field-item a {
+      text-decoration: none; }
   .field-name-field-uib-relation .field-name-field-uib-main-media {
     margin-bottom: 0; }
   .field-name-field-uib-relation .field-label {

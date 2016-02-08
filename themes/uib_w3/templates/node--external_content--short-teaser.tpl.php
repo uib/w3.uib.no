@@ -78,16 +78,18 @@
  * @see template_process()
  */
 ?>
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print render($content['field_uib_media']); ?>
-  <div class="relation_content">
-    <?php if (!$page): ?>
-      <h2<?php print $title_attributes; ?>>
-        <a href="<?php print url($variables['field_uib_links']['und'][0]['url'], array('alias'=>true)); ?>"><?php print $title; ?></a>
-      </h2>
-    <?php endif; ?>
-    <?php
-      print render($content);
-    ?>
+<a class="enclose-relation" href="<?php print url($variables['field_uib_links']['und'][0]['url'], array('alias'=>true)); ?>">
+  <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+    <?php print preg_replace('/<a [^>]+>[^>]+>/s', '', render($content['field_uib_media'])); ?>
+    <div class="relation_content">
+      <?php if (!$page): ?>
+        <h2<?php print $title_attributes; ?>>
+          <?php print $title; ?>
+        </h2>
+      <?php endif; ?>
+      <?php
+        print preg_replace('/<a [^>]+>[^>]+>/s', '', render($content));
+      ?>
+    </div>
   </div>
-</div>
+</a>
