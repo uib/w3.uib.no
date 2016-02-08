@@ -78,7 +78,7 @@
  * @see template_process()
  */
 ?>
-<a class="enclose-relation" href="<?php print $node_url; ?>">
+<a href="<?php print $node_url; ?>">
   <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
     <?php print render($content['field_uib_kicker']); ?>
     <?php print preg_replace('/<a [^>]+>[^>]+>/s','',render($content['field_uib_main_media'])); ?>

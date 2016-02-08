@@ -2897,6 +2897,9 @@ div.field-item {
 .field-name-field-uib-relation {
   clear: both;
   padding: 3rem 0; }
+  .field-name-field-uib-relation a, .field-name-field-uib-relation a:hover, .field-name-field-uib-relation a:active {
+    color: #333;
+    text-decoration: none; }
   .field-name-field-uib-relation > .field-items > .field-item {
     position: relative;
     margin: 2.25rem 0.5% 0; }
@@ -2934,11 +2937,6 @@ div.field-item {
       font-size: 1.125rem;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       margin: 0; }
-      .field-name-field-uib-relation .node-uib-article h2 a,
-      .field-name-field-uib-relation .node-uib-testimonial h2 a,
-      .field-name-field-uib-relation .node-uib-external-content h2 a,
-      .field-name-field-uib-relation .node-uib-study h2 a {
-        color: #333; }
     .field-name-field-uib-relation .node-uib-article .element-invisible,
     .field-name-field-uib-relation .node-uib-testimonial .element-invisible,
     .field-name-field-uib-relation .node-uib-external-content .element-invisible,
