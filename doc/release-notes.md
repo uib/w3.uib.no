@@ -1,4 +1,9 @@
-#Release 40 _2016-02-04_
+# Release 40.1 _2016-02-08_
+
+De institutt- og fakultetsvise studieprogramlistingene ble tomme etter R40 #14260
+
+# Release 40 _2016-02-04_
+
 Den siste releasen hvor redesign har hovedfokus. Vi vil fremdeles jobbe videre med endringer i designet, men nå vil også andre saker komme med. 
 I denne releasen gjør vi også store endringer på redigeringsidene.
 
