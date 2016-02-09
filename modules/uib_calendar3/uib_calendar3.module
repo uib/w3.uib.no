@@ -512,16 +512,16 @@ function uib_calendar3__index_page($area_nid=NULL) {
       $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
       $info = isset($event['info']) ? $event['info'] : array();
       if (!empty($time)) {
-        array_unshift($info, t('Time') . ': ' . $time);
+        array_unshift($info,   '<div class="event-entry-info--time" aria-label="'.t('Time').'">' . $time . '</div>');
       }
       $location = $node[$nid]->field_uib_location_value;
       if ($location) {
         if (strlen($location) > 75) {
           $location = substr($location, 0, 73) . '...';
         }
-        $info[] = t('Location: !location', array('!location' => $location));
+        $info[] = '<div class="event-entry-info--place" aria-label="'.t('Location').'">' . $location . '</div>';
       }
-      $info = "<div class='event-entry-info'>" . implode('<br>', $info) . "</div>";
+      $info = "<div class='event-entry-info'>" . implode('', $info) . "</div>";
       $markup = "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . " ($event_types[$type])";
       if (!empty($suffix)) {
         $markup .= '<br>' . $suffix;
