@@ -245,6 +245,7 @@ EOD;
           'field_uib_kicker',
           'field_uib_lead',
           'field_uib_byline',
+          'field_uib_links',
           'links',
           'language',
         );
@@ -601,6 +602,8 @@ EOD;
   foreach ($unset_blocks as $block) {
     unset($variables['page']['header'][$block]);
   }
+  if (__uib_w3__empty_region($variables['page']['content_bottom'])) $variables['page']['content_bottom'] = array();
+  if (__uib_w3__empty_region($variables['page']['footer_top'])) $variables['page']['footer_top'] = array();
 }
 
 /**
@@ -811,6 +814,7 @@ function __uib_w3__author(&$node) {
 function __uib_w3__render_block($module, $block_id, $weight, $no_label=FALSE) {
   $block = block_load($module, $block_id);
   $block_content = _block_render_blocks(array($block));
+  if (empty($block_content)) return array();
   if ($no_label) $block->subject = FALSE;
   $render = _block_get_renderable_array($block_content);
   $render['#weight'] = $weight;
@@ -858,3 +862,17 @@ function uib_w3_breadcrumb(&$vars) {
   $output .= '</ol></nav>';
   return $output;
 }
+/**
+ * Verify empty regions
+ *
+ * @param $region
+ *
+ * @return boolean
+ */
+function __uib_w3__empty_region($region) {
+  foreach ($region as $r) {
+    if (!empty($r)) return FALSE;
+  }
+  return TRUE;
+}
+

@@ -172,9 +172,11 @@
 <?php endif; ?>
 <?php if ($page['footer']): ?>
         <div class="footer-wrapper">
+<?php if (isset($area_menu_footer)): ?>
           <nav class="main-menu__expanded">
 <?php print render($area_menu_footer); ?>
           </nav>
+<?php endif; ?>
           <div class="footer">
 <?php print render($page['footer']); ?>
           </div>
