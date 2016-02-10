@@ -139,7 +139,7 @@ function uib_area_views_default_views() {
     t('[title]
 [field_uib_visit_address]
 '),
-    t('Visit Address'),
+    t('Visitor Address'),
     t('All'),
     t('Page'),
   );

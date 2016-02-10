@@ -514,7 +514,7 @@ EOD;
       $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
       $items[] = $phone;
       $variables['page']['content']['system_main']['visit_address']['#label_display'] = 'hidden';
-      $visit_address = '<span class="user-contact__label">' . $variables['page']['content']['system_main']['visit_address']['#title'] . '</span>';
+      $visit_address = '<span class="user-contact__label">' . t('Visitor Address') . '</span>';
       $visit_address .= '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['visit_address']);
       if (!empty($variables['page']['content']['system_main']['field_uib_user_room'])) {
         $user_room = render($variables['page']['content']['system_main']['field_uib_user_room']);
