@@ -114,7 +114,7 @@ function uib_article_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
           'field_multiple_limit' => -1,

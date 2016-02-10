@@ -109,16 +109,16 @@ function uib_article_field_group_info() {
     'label' => 'Related content group',
     'weight' => '7',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
-      'formatter' => '',
+      'label' => 'Related content group',
       'instance_settings' => array(
-        'wrapper' => '',
-        'classes' => 'group-related-content field-group-html5',
         'id' => '',
+        'classes' => 'group-related-content field-group-html5',
+        'wrapper' => 'section',
       ),
     ),
   );

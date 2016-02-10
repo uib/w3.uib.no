@@ -239,6 +239,7 @@ EOD;
       if (!$stop) {
         $stubborn_bastards = array(
           'field_uib_relation',
+          'field_uib_related_content_label',
           'field_related_persons_label',
           'field_uib_related_persons',
           'field_uib_main_media',
@@ -672,6 +673,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_links',
       'field_uib_related_persons',
       'field_related_persons_label',
+      'field_uib_related_content_label',
       'field_uib_files',
       'field_uib_study_category',
       'field_uib_study_image',
