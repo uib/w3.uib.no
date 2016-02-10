@@ -5168,6 +5168,17 @@ nav {
   .node-type-area .field-name-field-uib-primary-text,
   .node-type-area .field-name-field-uib-primary-media {
     width: 100%; } }
+.node-type-area .view-ansatte > .view-filters {
+  display: none; }
+.node-type-area .staff-view {
+  margin-top: 2rem; }
+  .node-type-area .staff-view:first-child {
+    margin-top: 0; }
+  .node-type-area .staff-view h2 {
+    font-size: 1.625rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
 
 @media (min-width: 960px) {
   .node-type-area .content-top,

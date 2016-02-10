@@ -478,8 +478,8 @@ function uib_user_user_view_alter(&$build) {
       $build[$field_name]['#suffix'] = '</div>';
       $build[$field_name]['#label_display'] = 'hidden';
     }
+    $tabs_list_markup .= '</ul>';
   }
-  $tabs_list_markup .= '</ul>';
   $build['uib_tabs'] = array(
     '#weight' => 24,
     '#markup' => $tabs_list_markup,

@@ -317,6 +317,19 @@ EOD;
           'weight' => 10,
         ));
       }
+      /**
+       * Include list of area employee.
+       */
+      $show_staff = @$variables['node']->field_uib_show_staff['und'][0]['value'];
+      if ($show_staff) {
+        $view = views_get_view('ansatte');
+        $markup = "<h2>".$view->get_title() . " " . t('at') . " "
+          . $variables['node']->title . "</h2>";
+        $markup .= $view->preview('page_3', array( $variables['node']->nid));
+        $variables['page']['footer_top']['field_uib_front_staff']['#markup']
+          = "<div class=\"staff-view\">" . $markup . "</div>";
+        $variables['page']['footer_top']['field_uib_front_staff']['#weight'] = 120;
+      }
       $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
