@@ -1213,6 +1213,10 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       }
     }
   }
+  /*
+   * Move publishing opntions tabs to first option
+   */
+  $form['options']['#weight'] = -29;
 }
 
 /**
