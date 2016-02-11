@@ -2812,9 +2812,15 @@ div.field-item {
   padding: 3rem 0; }
   .field-name-field-uib-relation > .field-items > .field-item {
     position: relative;
-    margin: 2.25rem 0.5% 0; }
+    margin: 0rem 0.5% 0; }
   .field-name-field-uib-relation .field-name-field-uib-main-media {
     margin-bottom: 0; }
+  .field-name-field-uib-relation .field-label {
+    text-transform: uppercase;
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1.625rem;
+    margin-bottom: 0.75rem;
+    font-weight: normal; }
   .field-name-field-uib-relation .field-name-field-uib-kicker {
     text-align: left;
     position: absolute;

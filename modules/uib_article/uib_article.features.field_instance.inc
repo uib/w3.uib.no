@@ -131,7 +131,7 @@ function uib_article_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 8,
       ),
       'short_teaser' => array(

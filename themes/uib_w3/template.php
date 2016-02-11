@@ -195,6 +195,11 @@ EOD;
         'settings' => array('view_mode' => 'short_teaser'),
         'label' => 'hidden',
       ));
+      $tmpVar = field_view_field('node',$variables['node'],'field_uib_related_content_label');
+      if (!empty($tmpVar)) {
+        $variables['page']['content_bottom']['field_uib_relation']['#label_display'] = 'display';
+        $variables['page']['content_bottom']['field_uib_relation']['#title'] = $tmpVar[0]['#markup'];
+      }
       $variables['page']['content_bottom']['field_uib_related_persons'] = field_view_field('node', $variables['node'], 'field_uib_related_persons' , array(
         'weight' => '27',
         'type' => 'entityreference_entity_view',
