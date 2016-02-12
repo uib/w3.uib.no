@@ -508,6 +508,10 @@ function uib_calendar3__index_page($area_nid=NULL) {
       if (isset($event['end'])) {
         $time .= '–' . $event['end'];
       }
+      if (isset($event['info'][0])) {
+        $tmp = $event['info'][0];
+        $event['info'][0] = '<div class="event-entry-info--time" aria-label="'.t('time').'">' . $tmp . '</div>';
+      }
 
       $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
       $info = isset($event['info']) ? $event['info'] : array();
