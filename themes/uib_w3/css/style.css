@@ -2774,8 +2774,17 @@ div.field-item {
     max-width: 80px;
     height: auto; }
 
-.uib-user-selected-publications {
-  display: none; }
+.uib-user-selected-publications .field-label {
+  font-weight: bold;
+  font-size: 1.25rem; }
+.uib-user-selected-publications .uib-cristin-authors {
+  font-weight: bold; }
+.uib-user-selected-publications .uib-cristin-publications-set ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.uib-user-selected-publications .uib-cristin-publications-set li {
+  margin: 12px 0; }
 
 /* styled in _article-info.scss */
 .field-name-field-uib-relation {

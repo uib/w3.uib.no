@@ -538,6 +538,8 @@ EOD;
       $variables['page']['content_bottom']['field_uib_user_docs'] =
         $variables['page']['content']['system_main']['field_uib_user_docs'];
 
+      $variables['page']['content']['system_main']['field_uib_user_field'][0]['#markup'] .=
+        $variables['page']['content']['system_main']['selected_publications'][0]['#markup'];
       $unset_variables = array(
         'user_vcard_link',
         'user_login_incard_link',
@@ -553,6 +555,7 @@ EOD;
         'user_email',
         'field_uib_user_competence',
         'field_uib_user_docs',
+        'selected_publications',
       );
       foreach ($unset_variables as $unset) {
         unset($variables['page']['content']['system_main'][$unset]);
