@@ -170,7 +170,7 @@ function uib_area_block_view($delta='') {
           ),
         ),
       );
-      if (!empty($place->field_uib_geolocation) || $area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+      if (!empty($place->field_uib_geolocation) || ($area && $area->field_uib_area_type['und'][0]['value'] == 'frontpage')) {
         if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
           $nid = $language->language == 'en' ? 79263 : 79254;
           $mapurl = drupal_get_path_alias('node/' . $nid);
