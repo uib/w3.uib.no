@@ -281,18 +281,17 @@ function uib_setup_image_default_styles() {
 
   // Exported image style: user_thumbnail.
   $styles['user_thumbnail'] = array(
+    'label' => 'user_thumbnail',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale',
+      10 => array(
+        'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 80,
-          'height' => '',
-          'upscale' => 1,
+          'width' => 400,
+          'height' => 500,
         ),
         'weight' => 1,
       ),
     ),
-    'label' => 'user_thumbnail',
   );
 
   // Exported image style: wide_thumbnail.
