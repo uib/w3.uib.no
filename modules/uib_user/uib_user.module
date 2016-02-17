@@ -694,7 +694,9 @@ function uib_user__vcard_page($user_entity = NULL) {
  *
  */
 function uib_user__vcard($user_entity) {
+  global $language;
   $vc_user = entity_metadata_wrapper('user', $user_entity);
+  $vc_user->language($language->language);
   // Name
   $first_name = $vc_user->field_uib_first_name->value();
   $last_name = $vc_user->field_uib_last_name->value();
@@ -723,10 +725,13 @@ function uib_user__vcard($user_entity) {
   $vcard[] = 'VERSION:3.0';
   $vcard[] = "N;CHARSET=utf-8:$last_name;$first_name;";
   $vcard[] = "FN;CHARSET=utf-8:$full_name";
-  $vcard[] = 'ORG;CHARSET=utf-8:University of Bergen, ' . $vc_user->field_uib_user_ou->label();
+  $org=uib_user__ou_area($user_entity->field_uib_user_ou['und'][0]['target_id'],$user_entity->uid );
+  $nou=node_load($org);
+  $vcard[] = 'ORG;CHARSET=utf-8:' . t('University of Bergen') . ', ' . $nou->title;
   $vcard[] = "TITLE;CHARSET=utf-8:$title";
-  // $vcard[] = 'TEL;TYPE=WORK,VOICE:' . $vc_user->field_uib_phone->value();
-  $vcard[] = 'TEL;TYPE=WORK,VOICE:' . $user_entity->field_uib_phone['und'][0]['value'];
+  foreach ((array)$user_entity->field_uib_phone['und'] as $v){
+    $vcard[] = 'TEL;TYPE=WORK,VOICE:' . $v['value'];
+  }
 
   $adr = array();
   if (!empty($ou_address['thoroughfare'])) {
