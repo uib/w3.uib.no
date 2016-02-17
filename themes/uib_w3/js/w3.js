@@ -52,9 +52,30 @@
           }, 300 );
       });
     }
+  uibDisableCheckboxes();
   });
   function uibSearchClose(){
       $('.block-uib-search .lightbox').css('display','none');
       $('.block-uib-search .lightbox').css('opacity','0');
+  }
+  $(document).ajaxSuccess(function(){
+    uibDisableCheckboxes();
+  });
+  // Function for disabling other faculty checkboxes when UIB is checked
+  function uibDisableCheckboxes(){
+    var uib=".view-exchange-agreements #edit-term-node-tid-depth-1-2271";
+    if($(uib).is(':checked')){
+      $(uib).parents('.bef-checkboxes').find('input:not(' + uib + ')')
+        .attr('disabled', 'disabled');
+    }
+    $(uib).click(function(){
+      if($(this).is(':checked')){
+        $(this).parents('.bef-checkboxes').find('input:not(' + uib + ')')
+          .attr('disabled', 'disabled');
+      }
+      else{
+        $(this).parents('.bef-checkboxes').find('input').removeAttr('disabled');
+      }
+    });
   }
 })(jQuery);
