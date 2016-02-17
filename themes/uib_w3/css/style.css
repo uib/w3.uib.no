@@ -2119,7 +2119,7 @@ a {
     order: 3;
     position: relative;
     width: 100%;
-    top: 1rem;
+    top: 0;
     left: 0px;
     display: none;
     z-index: 11; }
@@ -3113,7 +3113,8 @@ div.field-item {
 
 .block-uib-search {
   overflow: visible;
-  height: 47px; }
+  height: 47px;
+  width: 47px; }
   .block-uib-search [name=noscriptform] .search-button {
     border: none;
     background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ0cHgiIGhlaWdodD0iNDRweCIgdmlld0JveD0iMCAwIDQ0IDQ0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5Tw7hrZWJva3M8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJPbXLDpWRlZm9yc2lkZS1qdXJpZGlzayIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExNzkuMDAwMDAwLCAtMjYuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJTw7hrZWJva3MiIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExNzkuMDAwMDAwLCAyNi4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJTw7hrZWJva3MtYmcta3ZhZHJhdGlzayIgZmlsbD0iI0ZGRkZGRiIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCIgeD0iMCIgeT0iMCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iNDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMi4zMjE3NTMxLDI3Ljk5ODg2MjMgQzIxLjAyNjMyODQsMjguNjk3OTAwOSAxOS41MzAzMzQsMjkuMDk2NzY1IDE3LjkzNjk0NTQsMjkuMDk2NzY1IEMxMy4wMDEyMDY3LDI5LjA5Njc2NSA5LDI1LjI2OTUyMzggOSwyMC41NDgzODI1IEM5LDE3LjcwMzMzMTcgMTAuNDUzMDM4MywxNS4xODI5MDA3IDEyLjY4OCwxMy42MjkwMjU0IEMxNC4xNjE3ODQsMTIuNjA0MzY1MSAxNS45NzU1NzgsMTIgMTcuOTM2OTQ1NCwxMiBDMjIuODcyNjg0LDEyIDI2Ljg3Mzg5MDcsMTUuODI3MjQxMiAyNi44NzM4OTA3LDIwLjU0ODM4MjUgQzI2Ljg3Mzg5MDcsMjIuMjQ4Mzg0MSAyNi4zNTUwOTU5LDIzLjgzMjQ4MyAyNS40NjA2ODM3LDI1LjE2MzcyNjggTDI2LjAyOTc3MjksMjUuNjg0Mzg1MiBMMzAuNDQwNTUzNSwyOS43MTk3OTgyIEwzMiwzMS4xNDY1MzIxIEwyOC44ODExMDcxLDM0IEwyNy4zMjE2NjA2LDMyLjU3MzI2NjEgTDIyLjkxMDg4LDI4LjUzNzg1MzEgTDIyLjMyMTc1MzEsMjcuOTk4ODYyMyBaIE0xNy45MzY5NDU0LDI1LjY3NzQxMiBDMjAuODk4Mzg4NSwyNS42Nzc0MTIgMjMuMjk5MTEyNiwyMy4zODEwNjczIDIzLjI5OTExMjYsMjAuNTQ4MzgyNSBDMjMuMjk5MTEyNiwxNy43MTU2OTc3IDIwLjg5ODM4ODUsMTUuNDE5MzUzIDE3LjkzNjk0NTQsMTUuNDE5MzUzIEMxNi43NjAxMjUsMTUuNDE5MzUzIDE1LjY3MTg0ODUsMTUuNzgxOTcyMSAxNC43ODc1NzgxLDE2LjM5Njc2ODMgQzEzLjQ0NjYwMTEsMTcuMzI5MDkzNCAxMi41NzQ3NzgxLDE4Ljg0MTM1MiAxMi41NzQ3NzgxLDIwLjU0ODM4MjUgQzEyLjU3NDc3ODEsMjMuMzgxMDY3MyAxNC45NzU1MDIyLDI1LjY3NzQxMiAxNy45MzY5NDU0LDI1LjY3NzQxMiBaIiBpZD0iSWtvbi10ZWduZXQiIGZpbGw9IiNDRjNDM0EiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwLjUwMDAwMCwgMjMuMDAwMDAwKSBzY2FsZSgtMSwgMSkgdHJhbnNsYXRlKC0yMC41MDAwMDAsIC0yMy4wMDAwMDApICI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K') 0 0 no-repeat;
@@ -4612,7 +4613,6 @@ nav {
 
 .header__wrapper {
   background: #cf3c3a;
-  padding: 1rem 1.25rem;
   position: relative;
   z-index: 100;
   min-height: 6.4375rem; }
@@ -4638,6 +4638,7 @@ nav {
       background-color: #ae2f2f; } }
 
 .header {
+  padding: 1rem 1.25rem;
   display: -ms-flexbox;
   -ms-flex-direction: row;
   -ms-flex-pack: distribute;
@@ -4650,6 +4651,8 @@ nav {
   flex-direction: row;
   justify-content: space-around;
   align-items: center; }
+  .header > h1 {
+    margin: 0; }
   .header > a:first-child {
     height: 4.4375rem; }
   .header .mobile-menu {
@@ -4744,6 +4747,7 @@ nav {
         margin: 0;
         padding: 0; }
       .header .region-header {
+        position: relative;
         -webkit-flex: 2;
         flex: 2;
         display: -ms-flexbox;
@@ -4762,9 +4766,8 @@ nav {
           display: block; }
         .header .region-header #block-locale-language {
           display: block;
-          order: 1;
           position: absolute;
-          top: -.7rem;
+          top: -1.4rem;
           right: 0; }
       .header form {
         display: none; }
