@@ -376,8 +376,13 @@ th {
     min-height: 26px;
     display: block;
     font-weight: normal; }
+  .form-item.form-type-bef-checkbox input[type="checkbox"]:disabled + label {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjQgKDE3MjQ5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5DaGVja2JveCBha3RpdjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9InVpYi5uby9zdHVkaWVwcm9ncmFtIiBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjIyLjAwMDAwMCwgLTUyMi4wMDAwMDApIj4KICAgICAgICAgICAgPGcgaWQ9IlN0dWRpZXByb2dyYW0tZmlsdGVyIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjEuMDAwMDAwLCA0MzguMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQ2hlY2tib3gtYWt0aXYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuMDAwMDAwLCA4NC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0iYWt0aXYtY2hlY2tib3giIHN0cm9rZT0iI2Q1ZDVkNSIgZmlsbD0iI2Y1ZjVmNSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik01LjI5ODgyODEyLDguNzEwOTM3NSBMOS4zNzY5NTMxMiwxNC4yNzE0ODQ0IEwxNS45Mzc1LDQuMzc1IiBpZD0iUGF0aC0zMTA5IiBzdHJva2U9IiNkNWQ1ZDUiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K');
+    color: #d5d5d5; }
   .form-item.form-type-bef-checkbox input[type="checkbox"]:checked + label {
     background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjQgKDE3MjQ5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5DaGVja2JveCBha3RpdjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9InVpYi5uby9zdHVkaWVwcm9ncmFtIiBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjIyLjAwMDAwMCwgLTUyMi4wMDAwMDApIj4KICAgICAgICAgICAgPGcgaWQ9IlN0dWRpZXByb2dyYW0tZmlsdGVyIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjEuMDAwMDAwLCA0MzguMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQ2hlY2tib3gtYWt0aXYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuMDAwMDAwLCA4NC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0iYWt0aXYtY2hlY2tib3giIHN0cm9rZT0iI0NGM0MzQSIgZmlsbD0iI0NGM0MzQSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik01LjI5ODgyODEyLDguNzEwOTM3NSBMOS4zNzY5NTMxMiwxNC4yNzE0ODQ0IEwxNS45Mzc1LDQuMzc1IiBpZD0iUGF0aC0zMTA5IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4='); }
+  .form-item.form-type-bef-checkbox input[type="checkbox"]:checked:disabled + label {
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDIwIDIwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjQgKDE3MjQ5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5DaGVja2JveCBha3RpdjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9InVpYi5uby9zdHVkaWVwcm9ncmFtIiBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjIyLjAwMDAwMCwgLTUyMi4wMDAwMDApIj4KICAgICAgICAgICAgPGcgaWQ9IlN0dWRpZXByb2dyYW0tZmlsdGVyIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjEuMDAwMDAwLCA0MzguMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQ2hlY2tib3gtYWt0aXYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuMDAwMDAwLCA4NC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0iYWt0aXYtY2hlY2tib3giIHN0cm9rZT0iI2Q1ZDVkNSIgZmlsbD0iI2Y1ZjVmNSIgeD0iMCIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik01LjI5ODgyODEyLDguNzEwOTM3NSBMOS4zNzY5NTMxMiwxNC4yNzE0ODQ0IEwxNS45Mzc1LDQuMzc1IiBpZD0iUGF0aC0zMTA5IiBzdHJva2U9IiNkNWQ1ZDUiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K'); }
   .form-item.form-type-bef-checkbox:last-child {
     margin-bottom: 10px; }
 
@@ -2219,6 +2224,13 @@ a {
     background: #f5f5f5; }
   .view-ansatte .profile h3 {
     border-bottom: none; }
+    .view-ansatte .profile h3 a:hover {
+      text-decoration: underline; }
+  .view-ansatte .profile .item-list .uib-user-phone li {
+    margin: 0;
+    font-size: 1.125rem; }
+  .view-ansatte .profile .uib-user-email a:hover {
+    text-decoration: underline; }
   .view-ansatte .profile .field-name-field-uib-user-competence {
     text-align: right;
     background-color: #f5f5f5; }
@@ -2945,37 +2957,54 @@ div.field-item {
   font-weight: normal; }
 .field-name-field-uib-related-persons .field-items .field-item {
   background-color: #f5f5f5;
-  margin-bottom: 1rem;
-  overflow: hidden; }
+  margin-bottom: 2rem; }
   .field-name-field-uib-related-persons .field-items .field-item .profile {
-    display: inline; }
+    display: block; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture {
-      float: left; }
+      margin: 0;
+      float: none; }
       .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
-        max-height: 12.5rem;
-        margin-right: 1rem;
-        display: block; }
+        width: 100%;
+        height: auto; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser {
       overflow: hidden;
       overflow-wrap: break-word;
-      word-wrap: break-word;
-      font-size: .8125rem; }
+      word-wrap: break-word; }
       .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3 {
         padding-top: .3rem;
-        border-bottom: none; }
+        border-bottom: none;
+        line-height: 1;
+        margin-bottom: .4rem; }
         .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3 a {
           color: #333333; }
-      .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3, .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser p, .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser li {
+          .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3 a:hover {
+            text-decoration: underline; }
+      .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser p, .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser li {
         margin-bottom: .1rem;
         color: #333333; }
       .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser .item-list .uib-user-phone {
-        list-style: none;
-        margin: 0; }
+        list-style: none; }
         .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser .item-list .uib-user-phone li {
-          font-size: 150%; }
+          margin: 0;
+          font-size: 1.125rem; }
+      .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser .uib-user-email a:hover {
+        text-decoration: underline; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .field-name-field-uib-user-competence {
       display: none; }
 
+@media (min-width: 600px) {
+  .field-name-field-uib-related-persons .field-items .field-item {
+    overflow: hidden;
+    margin-bottom: 1rem; }
+    .field-name-field-uib-related-persons .field-items .field-item .profile {
+      display: inline; }
+      .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture {
+        float: left; }
+        .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
+          display: block;
+          margin-right: 1rem;
+          width: 10rem;
+          height: 12.5rem; } }
 @media (min-width: 960px) {
   .field-name-field-uib-related-persons .field-items {
     display: -ms-flexbox;
