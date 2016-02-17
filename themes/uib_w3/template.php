@@ -484,6 +484,7 @@ EOD;
       );
       $variables['page']['content_top']['user_picture'] = $variables['page']['content']['system_main']['user_picture'];
       $variables['page']['content_top']['user_picture']['#weight'] = -40;
+      $variables['page']['content_top']['user_picture']['#prefix'] = '<div class="user-media">';
       $first_name = $variables['page']['content']['system_main']['field_uib_first_name'][0]['#markup'];
       $last_name = $variables['page']['content']['system_main']['field_uib_last_name'][0]['#markup'];
       $variables['page']['content_top']['user_name'] = array(
@@ -492,6 +493,7 @@ EOD;
         '#value' => $first_name . ' ' . $last_name,
         '#weight' => -30,
       );
+      $variables['page']['content_top']['user_name']['#prefix'] = '<div class="user-media-content">';
       $variables['page']['content_top']['position'] = $variables['page']['content']['system_main']['field_uib_position'];
       $variables['page']['content_top']['position']['#weight'] = -20;
       if (isset($variables['page']['content']['system_main']['field_uib_user_alt_position'])) {
@@ -536,8 +538,10 @@ EOD;
         '#theme' => 'item_list',
         '#items' => $items,
         '#weight' => 20,
-        '#attributes' => array('class' => array('user-contact-info')),
+        '#attributes' => array(),
       );
+      $variables['page']['content_top']['user_contact_info']['#prefix'] = '</div></div><div class="user-contact-info">';
+      $variables['page']['content_top']['user_contact_info']['#suffix'] = '</div>';
       $variables['page']['content']['field_uib_user_competence'] = $variables['page']['content']['system_main']['field_uib_user_competence'];
       $variables['page']['content_bottom']['user_twitter'] = __uib_w3__render_block('uib_user', 'twitter', 10);
       $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);

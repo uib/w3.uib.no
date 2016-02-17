@@ -276,7 +276,8 @@ th {
           margin-bottom: 0; } }
   .content-bottom-wrapper > * {
     max-width: 72rem;
-    margin: 0 auto; }
+    margin: 0 auto;
+    width: 100%; }
   .content-top-wrapper + .content-bottom-wrapper {
     padding: 0 1% 1rem; }
     @media (min-width: 600px) {
@@ -1524,9 +1525,10 @@ a {
       border-width: 25px;
       margin-left: -25px; }
   .field-name-field-uib-user-competence .field-items {
-    padding: 3%; }
+    padding: 1.25rem; }
     .field-name-field-uib-user-competence .field-items .field-item {
       background: #f5f5f5;
+      border-radius: 0.125rem;
       padding: 3px 8px;
       margin: 4px;
       display: inline-block; }
@@ -1920,19 +1922,23 @@ a {
       padding-left: 22px;
       background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
 
-#block-uib-area-feed h2 {
+#block-uib-area-feed h2,
+#block-uib-user-feed h2 {
   text-transform: uppercase;
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   font-weight: normal; }
-#block-uib-area-feed ul {
+#block-uib-area-feed ul,
+#block-uib-user-feed ul {
   padding: 0; }
-#block-uib-area-feed li {
+#block-uib-area-feed li,
+#block-uib-user-feed li {
   text-decoration: none;
   font-size: 1.3rem;
   color: #0da6a3;
   list-style: none;
   margin: 0 0 .6rem 0; }
-#block-uib-area-feed a {
+#block-uib-area-feed a,
+#block-uib-user-feed a {
   text-decoration: none; }
 
 .uib-find-studies {
@@ -3965,23 +3971,23 @@ nav {
     color: #00769e; }
 
 .node-type-uib-study.study-tabs .content-main-wrapper,
-.page-user .content-main-wrapper {
+.page-user.page-user- .content-main-wrapper {
   border-top: solid 2px #d5d5d5; }
   .node-type-uib-study.study-tabs .content-main-wrapper .region-content,
-  .page-user .content-main-wrapper .region-content {
+  .page-user.page-user- .content-main-wrapper .region-content {
     position: relative; }
 .node-type-uib-study.study-tabs .ui-tabs,
-.page-user .ui-tabs {
+.page-user.page-user- .ui-tabs {
   position: static;
   padding: 0; }
   .node-type-uib-study.study-tabs .ui-tabs h2,
-  .page-user .ui-tabs h2 {
+  .page-user.page-user- .ui-tabs h2 {
     display: none; }
   .node-type-uib-study.study-tabs .ui-tabs .ui-tabs-panel,
-  .page-user .ui-tabs .ui-tabs-panel {
+  .page-user.page-user- .ui-tabs .ui-tabs-panel {
     padding: 0; }
 .node-type-uib-study.study-tabs .uib-tabs-list,
-.page-user .uib-tabs-list {
+.page-user.page-user- .uib-tabs-list {
   width: 100%;
   max-width: 72rem;
   display: -ms-flexbox;
@@ -4004,20 +4010,20 @@ nav {
   padding: 0; }
   @media (min-width: 600px) {
     .node-type-uib-study.study-tabs .uib-tabs-list,
-    .page-user .uib-tabs-list {
+    .page-user.page-user- .uib-tabs-list {
       position: absolute;
       top: -7.4375rem;
       bottom: calc(100% + 1px); } }
 .node-type-uib-study.study-tabs .ui-widget-content,
 .node-type-uib-study.study-tabs .ui-widget-header,
-.page-user .ui-widget-content,
-.page-user .ui-widget-header {
+.page-user.page-user- .ui-widget-content,
+.page-user.page-user- .ui-widget-header {
   border: none 0;
   background: transparent; }
   .node-type-uib-study.study-tabs .ui-widget-content .ui-state-default,
   .node-type-uib-study.study-tabs .ui-widget-header .ui-state-default,
-  .page-user .ui-widget-content .ui-state-default,
-  .page-user .ui-widget-header .ui-state-default {
+  .page-user.page-user- .ui-widget-content .ui-state-default,
+  .page-user.page-user- .ui-widget-header .ui-state-default {
     border: none 0;
     background: transparent;
     padding: 0.5rem 0;
@@ -4025,73 +4031,72 @@ nav {
     font-size: 1.125rem; }
     .node-type-uib-study.study-tabs .ui-widget-content .ui-state-default a,
     .node-type-uib-study.study-tabs .ui-widget-header .ui-state-default a,
-    .page-user .ui-widget-content .ui-state-default a,
-    .page-user .ui-widget-header .ui-state-default a {
+    .page-user.page-user- .ui-widget-content .ui-state-default a,
+    .page-user.page-user- .ui-widget-header .ui-state-default a {
       padding: 0 0.75rem;
       border-left: 2px solid #d5d5d5; }
   .node-type-uib-study.study-tabs .ui-widget-content .first.ui-state-default a,
   .node-type-uib-study.study-tabs .ui-widget-header .first.ui-state-default a,
-  .page-user .ui-widget-content .first.ui-state-default a,
-  .page-user .ui-widget-header .first.ui-state-default a {
+  .page-user.page-user- .ui-widget-content .first.ui-state-default a,
+  .page-user.page-user- .ui-widget-header .first.ui-state-default a {
     padding-left: 0; }
   .node-type-uib-study.study-tabs .ui-widget-content .ui-state-active + .ui-state-default a,
   .node-type-uib-study.study-tabs .ui-widget-content .first.ui-state-default a,
   .node-type-uib-study.study-tabs .ui-widget-header .ui-state-active + .ui-state-default a,
   .node-type-uib-study.study-tabs .ui-widget-header .first.ui-state-default a,
-  .page-user .ui-widget-content .ui-state-active + .ui-state-default a,
-  .page-user .ui-widget-content .first.ui-state-default a,
-  .page-user .ui-widget-header .ui-state-active + .ui-state-default a,
-  .page-user .ui-widget-header .first.ui-state-default a {
+  .page-user.page-user- .ui-widget-content .ui-state-active + .ui-state-default a,
+  .page-user.page-user- .ui-widget-content .first.ui-state-default a,
+  .page-user.page-user- .ui-widget-header .ui-state-active + .ui-state-default a,
+  .page-user.page-user- .ui-widget-header .first.ui-state-default a {
     border-left: none 0; }
   .node-type-uib-study.study-tabs .ui-widget-content .ui-state-active a,
   .node-type-uib-study.study-tabs .ui-widget-content .ui-state-default a,
   .node-type-uib-study.study-tabs .ui-widget-header .ui-state-active a,
   .node-type-uib-study.study-tabs .ui-widget-header .ui-state-default a,
-  .page-user .ui-widget-content .ui-state-active a,
-  .page-user .ui-widget-content .ui-state-default a,
-  .page-user .ui-widget-header .ui-state-active a,
-  .page-user .ui-widget-header .ui-state-default a {
+  .page-user.page-user- .ui-widget-content .ui-state-active a,
+  .page-user.page-user- .ui-widget-content .ui-state-default a,
+  .page-user.page-user- .ui-widget-header .ui-state-active a,
+  .page-user.page-user- .ui-widget-header .ui-state-default a {
     color: #00769e; }
     .node-type-uib-study.study-tabs .ui-widget-content .ui-state-active a :hover,
     .node-type-uib-study.study-tabs .ui-widget-content .ui-state-default a :hover,
     .node-type-uib-study.study-tabs .ui-widget-header .ui-state-active a :hover,
     .node-type-uib-study.study-tabs .ui-widget-header .ui-state-default a :hover,
-    .page-user .ui-widget-content .ui-state-active a :hover,
-    .page-user .ui-widget-content .ui-state-default a :hover,
-    .page-user .ui-widget-header .ui-state-active a :hover,
-    .page-user .ui-widget-header .ui-state-default a :hover {
+    .page-user.page-user- .ui-widget-content .ui-state-active a :hover,
+    .page-user.page-user- .ui-widget-content .ui-state-default a :hover,
+    .page-user.page-user- .ui-widget-header .ui-state-active a :hover,
+    .page-user.page-user- .ui-widget-header .ui-state-default a :hover {
       text-decoration: underline; }
   .node-type-uib-study.study-tabs .ui-widget-content .ui-state-active,
   .node-type-uib-study.study-tabs .ui-widget-content .first.ui-state-active,
   .node-type-uib-study.study-tabs .ui-widget-header .ui-state-active,
   .node-type-uib-study.study-tabs .ui-widget-header .first.ui-state-active,
-  .page-user .ui-widget-content .ui-state-active,
-  .page-user .ui-widget-content .first.ui-state-active,
-  .page-user .ui-widget-header .ui-state-active,
-  .page-user .ui-widget-header .first.ui-state-active {
+  .page-user.page-user- .ui-widget-content .ui-state-active,
+  .page-user.page-user- .ui-widget-content .first.ui-state-active,
+  .page-user.page-user- .ui-widget-header .ui-state-active,
+  .page-user.page-user- .ui-widget-header .first.ui-state-active {
     background: #f5f5f5;
     border: solid 2px #d5d5d5 !important;
-    padding: 0.375rem 0.75rem;
-    font-weight: bold; }
+    padding: 0.375rem 0.75rem; }
     .node-type-uib-study.study-tabs .ui-widget-content .ui-state-active a,
     .node-type-uib-study.study-tabs .ui-widget-content .first.ui-state-active a,
     .node-type-uib-study.study-tabs .ui-widget-header .ui-state-active a,
     .node-type-uib-study.study-tabs .ui-widget-header .first.ui-state-active a,
-    .page-user .ui-widget-content .ui-state-active a,
-    .page-user .ui-widget-content .first.ui-state-active a,
-    .page-user .ui-widget-header .ui-state-active a,
-    .page-user .ui-widget-header .first.ui-state-active a {
+    .page-user.page-user- .ui-widget-content .ui-state-active a,
+    .page-user.page-user- .ui-widget-content .first.ui-state-active a,
+    .page-user.page-user- .ui-widget-header .ui-state-active a,
+    .page-user.page-user- .ui-widget-header .first.ui-state-active a {
       padding: 0 0.75rem;
       border: none 0; }
 .node-type-uib-study.study-tabs .ui-corner-all,
 .node-type-uib-study.study-tabs .ui-corner-top,
-.page-user .ui-corner-all,
-.page-user .ui-corner-top {
+.page-user.page-user- .ui-corner-all,
+.page-user.page-user- .ui-corner-top {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0; }
 .node-type-uib-study.study-tabs .ui-tabs .ui-tabs-nav li,
-.page-user .ui-tabs .ui-tabs-nav li {
+.page-user.page-user- .ui-tabs .ui-tabs-nav li {
   margin: 0; }
 
 .field-name-field-uib-quote {
@@ -4339,7 +4344,7 @@ nav {
       clear: none;
       padding-right: 0px; } }
 
-.user-contact-info {
+.user-contact-info ul {
   border-top: solid 1px #b7b7b7;
   border-bottom: solid 1px #b7b7b7;
   list-style: none;
@@ -4353,24 +4358,68 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; }
-  .user-contact-info li {
-    -webkit-flex: 1 0 auto;
-    flex: 1 0 auto;
-    -ms-flex: 1 0 auto;
+  .user-contact-info ul li {
+    -ms-flex: 1 0 50%;
+    -webkit-flex: 1 0 50%;
+    flex: 1 0 50%;
     font-size: 1.125rem;
     padding: 1rem 0.5rem 1rem 0; }
-  .user-contact-info .user-contact__label {
+    @media (min-width: 780px) {
+      .user-contact-info ul li {
+        -ms-flex: 1 0 auto;
+        -webkit-flex: 1 0 auto;
+        flex: 1 0 auto; } }
+    .user-contact-info ul li:nth-child(n+3) {
+      border-top: solid 1px #b7b7b7; }
+  .user-contact-info ul .user-contact__label {
     display: block;
     text-transform: uppercase;
     color: #cf3c3a;
     font-size: 1.4375rem; }
-  .user-contact-info .user-contact__value {
+  .user-contact-info ul .user-contact__value {
     font-size: 1.0625rem; }
-    .user-contact-info .user-contact__value .phone-number {
+    .user-contact-info ul .user-contact__value .phone-number {
       display: block; }
-  .user-contact-info .field-name-field-uib-user-room .field-label {
+  .user-contact-info ul .field-name-field-uib-user-room .field-label {
     float: left;
     font-weight: normal; }
+
+.user-media {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 600px) {
+    .user-media {
+      -webkit-flex-direction: row;
+      flex-direction: row; } }
+  .user-media h1 {
+    margin: 0; }
+  .user-media .user-picture {
+    -ms-flex: 0 0 10rem;
+    -webkit-flex: 0 0 10rem;
+    flex: 0 0 10rem; }
+  @media (min-width: 600px) {
+    .user-media {
+      -ms-flex-direction: row;
+      -ms-flex-align: center;
+      -webkit-flex-direction: row;
+      -webkit-align-items: center;
+      flex-direction: row;
+      align-items: center; }
+      .user-media .user-picture {
+        -ms-flex: 0 0 15rem;
+        -webkit-flex: 0 0 15rem;
+        flex: 0 0 15rem;
+        -ms-flex-item-align: start;
+        -webkit-align-self: flex-start;
+        align-self: flex-start; }
+      .user-media .user-media-content {
+        padding-left: 5rem; }
+        .user-media .user-media-content h1 {
+          line-height: 1; } }
 
 .field-name-field-uib-ou-title a {
   font-size: 1.25rem; }
@@ -4378,12 +4427,15 @@ nav {
 .field-name-field-uib-position {
   font-size: 1.25rem; }
 
-#block-uib-user-research-groups h2 {
-  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-  text-transform: uppercase;
-  font-weight: normal; }
-#block-uib-user-research-groups a {
-  font-size: 1.25rem; }
+#block-uib-user-research-groups {
+  background: #fff;
+  padding: 1.25rem; }
+  #block-uib-user-research-groups h2 {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    font-weight: normal; }
+  #block-uib-user-research-groups a {
+    font-size: 1.25rem; }
 
 .field-name-field-uib-user-social-media {
   margin-top: 1rem; }
@@ -5035,7 +5087,7 @@ nav {
   color: #00769e; }
 @media (min-width: 780px) {
   .content-main-wrapper .region-content .field-name-field-uib-user-competence:nth-child(2), .content-main-wrapper .region-content .block-uib-user:nth-child(2) {
-    margin-top: 120px; } }
+    margin-top: 2.75rem; } }
 
 @media (min-width: 600px) {
   .node-type-area .field-name-field-uib-primary-text,
@@ -5710,9 +5762,12 @@ nav {
     margin-left: 0;
     clear: none; } }
 .page-user .content-top .user-picture {
-  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ5MnB4IiBoZWlnaHQ9IjVweCIgdmlld0JveD0iMCAwIDQ5MiA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjIgKDE1ODU3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GYXJnZXN0cmlwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IkZvcnNpZGVuLShEZXNrdG9wKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMC4wMDAwMDAsIC02OTQuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3Jza25pbmciIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMC4wMDAwMDAsIDY5NC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJGYXJnZXN0cmlwZSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyNy40MDkxMjYsNC41IEw0MDkuMjYwMTE4LDQuNSBMNDA5LjI2MDExOCwwLjI2NiBMMzI3LjQwOTEyNiwwLjI2NiBMMzI3LjQwOTEyNiw0LjUgWiIgaWQ9IlLDuGQiIGZpbGw9IiNFNjUzNDMiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCw0LjUgTDgxLjg1MDk5MjcsNC41IEw4MS44NTA5OTI3LDAuMjY2IEwwLDAuMjY2IEwwLDQuNSBaIiBpZD0iU29ydCIgZmlsbD0iIzIzMzk0RCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04MS44NTA5OTI3LDQuNSBMMTYzLjcwMTk4NSw0LjUgTDE2My43MDE5ODUsMC4yNjYgTDgxLjg1MDk5MjcsMC4yNjYgTDgxLjg1MDk5MjcsNC41IFoiIGlkPSJCbMOlIiBmaWxsPSIjNUFBRUM2Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE2My43MDQ1NjMsNC41IEwyNDUuNTU1NTU2LDQuNSBMMjQ1LjU1NTU1NiwwLjI2NiBMMTYzLjcwNDU2MywwLjI2NiBMMTYzLjcwNDU2Myw0LjUgWiIgaWQ9Ikd1bCIgZmlsbD0iI0RCQzA0OCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNDUuNTU1NTU2LDQuNSBMMzI3LjQwNjU0OCw0LjUgTDMyNy40MDY1NDgsMC4yNjYgTDI0NS41NTU1NTYsMC4yNjYgTDI0NS41NTU1NTYsNC41IFoiIGlkPSJHcsO4bm4iIGZpbGw9IiM4QUFCNjciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDA5LjI2MDExOCw0LjUgTDQ5MS4xMTExMTEsNC41IEw0OTEuMTExMTExLDAuMjY2IEw0MDkuMjYwMTE4LDAuMjY2IEw0MDkuMjYwMTE4LDQuNSBaIiBpZD0iTGlsbGEiIGZpbGw9IiM4RDVGOEYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+') no-repeat top center;
-  background-size: contain;
-  padding-top: 5px; }
+  width: 70%;
+  margin-bottom: 1.25rem; }
+  .page-user .content-top .user-picture img {
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ5MnB4IiBoZWlnaHQ9IjVweCIgdmlld0JveD0iMCAwIDQ5MiA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjIgKDE1ODU3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GYXJnZXN0cmlwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IkZvcnNpZGVuLShEZXNrdG9wKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMC4wMDAwMDAsIC02OTQuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3Jza25pbmciIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMC4wMDAwMDAsIDY5NC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJGYXJnZXN0cmlwZSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyNy40MDkxMjYsNC41IEw0MDkuMjYwMTE4LDQuNSBMNDA5LjI2MDExOCwwLjI2NiBMMzI3LjQwOTEyNiwwLjI2NiBMMzI3LjQwOTEyNiw0LjUgWiIgaWQ9IlLDuGQiIGZpbGw9IiNFNjUzNDMiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCw0LjUgTDgxLjg1MDk5MjcsNC41IEw4MS44NTA5OTI3LDAuMjY2IEwwLDAuMjY2IEwwLDQuNSBaIiBpZD0iU29ydCIgZmlsbD0iIzIzMzk0RCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04MS44NTA5OTI3LDQuNSBMMTYzLjcwMTk4NSw0LjUgTDE2My43MDE5ODUsMC4yNjYgTDgxLjg1MDk5MjcsMC4yNjYgTDgxLjg1MDk5MjcsNC41IFoiIGlkPSJCbMOlIiBmaWxsPSIjNUFBRUM2Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE2My43MDQ1NjMsNC41IEwyNDUuNTU1NTU2LDQuNSBMMjQ1LjU1NTU1NiwwLjI2NiBMMTYzLjcwNDU2MywwLjI2NiBMMTYzLjcwNDU2Myw0LjUgWiIgaWQ9Ikd1bCIgZmlsbD0iI0RCQzA0OCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNDUuNTU1NTU2LDQuNSBMMzI3LjQwNjU0OCw0LjUgTDMyNy40MDY1NDgsMC4yNjYgTDI0NS41NTU1NTYsMC4yNjYgTDI0NS41NTU1NTYsNC41IFoiIGlkPSJHcsO4bm4iIGZpbGw9IiM4QUFCNjciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDA5LjI2MDExOCw0LjUgTDQ5MS4xMTExMTEsNC41IEw0OTEuMTExMTExLDAuMjY2IEw0MDkuMjYwMTE4LDAuMjY2IEw0MDkuMjYwMTE4LDQuNSBaIiBpZD0iTGlsbGEiIGZpbGw9IiM4RDVGOEYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+') no-repeat center top;
+    background-size: 100% 5px;
+    padding-top: 5px; }
 .page-user .content-top .item-list .user-contact-info {
   margin: 0;
   clear: both; }
@@ -5724,8 +5779,7 @@ nav {
   font-size: 2.375rem;
   margin-top: 0;
   margin-bottom: 0.25rem; }
-.page-user .content-top .user-picture,
-.page-user .content-top > :nth-last-child(2) {
+.page-user .content-top .user-media {
   margin-bottom: 3.75rem; }
 .page-user .content-top > .item-list {
   clear: both; }
@@ -5736,22 +5790,12 @@ nav {
   -webkit-flex-flow: row wrap;
   display: flex;
   flex-flow: row wrap; }
-.page-user .region-content {
-  display: -ms-flexbox;
-  -ms-flex-direction: column;
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  display: flex;
-  flex-direction: column; }
-  .page-user .region-content .field-name-field-uib-user-competence {
-    -webkit-order: 0;
-    order: 0; }
-  .page-user .region-content #block-system-main {
-    -webkit-order: 1;
-    order: 1; }
-  .page-user .region-content #block-uib-user-research-groups {
-    -webkit-order: 2;
-    order: 2; }
+.page-user .region-content .profile {
+  margin: 0; }
+  .page-user .region-content .profile h3 {
+    border-bottom: 0 none; }
+.page-user .region-content #block-system-main ~ * {
+  margin-bottom: 1.25rem; }
 .page-user .content-bottom {
   display: -ms-flexbox;
   -ms-flex-direction: column;
@@ -5759,7 +5803,6 @@ nav {
   -webkit-flex-direction: column;
   display: flex;
   flex-direction: column;
-  align-content: space-around;
   max-width: 72rem; }
   .page-user .content-bottom > * {
     flex: 1; }
@@ -5770,60 +5813,43 @@ nav {
       content: "";
       display: table;
       clear: both; }
-    .page-user .content-top .user-picture {
-      width: 23.40426%;
-      float: left;
-      margin-right: -100%;
-      margin-left: 0;
-      clear: none; }
-    .page-user .content-top .field-name-field-uib-position,
-    .page-user .content-top .field-name-field-uib-ou-title,
-    .page-user .content-top .field-name-field-uib-user-url,
-    .page-user .content-top .field-name-field-uib-user-social-media,
-    .page-user .content-top h1 {
-      width: 65.95745%;
-      float: left;
-      margin-right: -100%;
-      margin-left: 25.53191%;
-      clear: none;
-      margin-right: 0;
-      padding-left: 3.5rem; }
-      .page-user .content-top .field-name-field-uib-position:after,
-      .page-user .content-top .field-name-field-uib-ou-title:after,
-      .page-user .content-top .field-name-field-uib-user-url:after,
-      .page-user .content-top .field-name-field-uib-user-social-media:after,
-      .page-user .content-top h1:after {
-        content: "";
-        display: table;
-        clear: both; }
-  .page-user .region-content {
-    display: block; }
-    .page-user .region-content .uib-tabs-list ~ [id^="uib-tabs"] {
-      padding-top: 2.75rem; }
-    .page-user .region-content .profile {
-      width: 65.95745%;
-      float: left;
-      margin-right: -100%;
-      margin-left: 0;
-      clear: none; }
-      .page-user .region-content .profile:after {
-        content: "";
-        display: table;
-        clear: both; }
-    .page-user .region-content .field-name-field-uib-user-competence,
-    .page-user .region-content #block-uib-user-research-groups {
-      width: 31.91489%;
-      float: right;
-      margin-left: 0;
-      margin-right: 0;
-      clear: none; }
-    .page-user .region-content #block-uib-user-research-groups {
-      clear: right; }
-    .page-user .region-content:after {
+  .page-user .region-content .uib-tabs-list ~ [id^="uib-tabs"] {
+    padding-top: 2.75rem; }
+  .page-user .region-content #block-system-main + * {
+    margin-top: 2.8125rem; }
+  .page-user .region-content .profile {
+    width: 65.95745%;
+    float: left;
+    margin-right: -100%;
+    margin-left: 0;
+    clear: none; }
+    .page-user .region-content .profile:after {
       content: "";
       display: table;
       clear: both; }
+  .page-user .region-content .field-name-field-uib-user-competence,
+  .page-user .region-content #block-uib-user-research-groups {
+    width: 31.91489%;
+    float: right;
+    margin-left: 0;
+    margin-right: 0;
+    clear: none; }
+  .page-user .region-content #block-uib-user-research-groups {
+    clear: right; }
+  .page-user .region-content:after {
+    content: "";
+    display: table;
+    clear: both; }
   .page-user .content-bottom {
     -ms-flex-direction: row;
+    -ms-flex-pack: start;
     -webkit-flex-direction: row;
-    flex-direction: row; } }
+    -webkit-justify-content: flex-start;
+    flex-direction: row;
+    justify-content: flex-start; }
+    .page-user .content-bottom > * {
+      -ms-flex: 0 1 50%;
+      -webkit-flex: 0 1 50%;
+      flex: 0 1 50%; }
+    .page-user .content-bottom > *:not(:last-child) {
+      padding-right: 1rem; } }
