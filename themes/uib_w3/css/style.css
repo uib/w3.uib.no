@@ -4394,6 +4394,8 @@ nav {
   .user-contact-info ul .field-name-field-uib-user-room .field-label {
     float: left;
     font-weight: normal; }
+.user-contact-info .item-list ul li {
+  margin: 0; }
 
 .user-media {
   display: -ms-flexbox;
