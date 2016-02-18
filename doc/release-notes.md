@@ -1,3 +1,25 @@
+# Release 41 _2016-02-18_
+
+Vi jobber videre med generelle endringer på sidene.
+
+- Visit address har blitt endret til visitor address på personsidene #8386
+- Vi har gjort det mulig å legge til egendefinert tittel på tilknyttet innhold #11050
+- Vi har gjort endringer på kalendersiden for å kunne få inn ikoner #12622
+- Ansattsidene har fått ekspandert meny #12745
+- Personsidene viser nå fremhevede publikasjoner fras Cristin under "forskningsfanen" #13145
+- Områder uten innhold skal nå ikke vises på områdeforsider og artikler #13885
+- Lenken til studentrapportene på utvekslingsavtalesiden er nå mer synlig #13919
+- Filer på personsidene er flyttet til riktig sted #14060
+- Vi har gjort endringer på EVU-utlistingen #14176
+- Språklenken i toppmenyen er flyttet for å bedre passe med resten av toppmenyen #14180
+- Vi har flyttet "publiser"-fanen i redigeringsmodus for å gjøre publisering og redigering enklere #14186
+- Vi har endret på utseende på knappene på forsiden #14189
+- Diverse kodeendringer #14204 #14205 #13865 #14346
+- Personsidene og alle steder der personsidene blir hentet inn viser nå bildet i samme format. Det nye format er 4:5 #14209 #14365
+- Moduloppgraderinger #14226 #14211 #14225 #14227 #14228
+- Vi har gjort diverse stilendringer på personsidene #14310
+- Avkrysningsboksene på utvekslingsavtalene blir deaktivert når en velger "universitet i bergen" for å gjøre det mulig å bare vise avtale som ikke tilhører et fakultet #12937
+
 # Release 40.1 _2016-02-08_
 
 De institutt- og fakultetsvise studieprogramlistingene ble tomme etter R40 #14260
