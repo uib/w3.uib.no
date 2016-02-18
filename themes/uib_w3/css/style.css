@@ -4359,21 +4359,29 @@ nav {
   flex-direction: row;
   flex-wrap: wrap; }
   .user-contact-info ul li {
-    -ms-flex: 1 0 50%;
-    -webkit-flex: 1 0 50%;
-    flex: 1 0 50%;
+    -ms-flex: 1 0 100%;
+    -webkit-flex: 1 0 100%;
+    flex: 1 0 100%;
     font-size: 1.125rem;
     padding: 1rem 0.5rem 1rem 0; }
+    @media (min-width: 600px) {
+      .user-contact-info ul li {
+        -ms-flex: 1 0 50%;
+        -webkit-flex: 1 0 50%;
+        flex: 1 0 50%; } }
     @media (min-width: 780px) {
       .user-contact-info ul li {
         -ms-flex: 1 0 auto;
         -webkit-flex: 1 0 auto;
         flex: 1 0 auto; } }
-    .user-contact-info ul li:nth-child(n+3) {
+    .user-contact-info ul li:nth-child(n+2) {
       border-top: solid 1px #b7b7b7; }
-      @media (min-width: 780px) {
-        .user-contact-info ul li:nth-child(n+3) {
-          border-top: 0 none; } }
+    @media (min-width: 600px) {
+      .user-contact-info ul li:nth-child(2) {
+        border-top: 0 none; } }
+    @media (min-width: 780px) {
+      .user-contact-info ul li:nth-child(n+3) {
+        border-top: 0 none; } }
   .user-contact-info ul .user-contact__label {
     display: block;
     text-transform: uppercase;
