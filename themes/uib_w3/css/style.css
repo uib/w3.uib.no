@@ -4371,6 +4371,9 @@ nav {
         flex: 1 0 auto; } }
     .user-contact-info ul li:nth-child(n+3) {
       border-top: solid 1px #b7b7b7; }
+      @media (min-width: 780px) {
+        .user-contact-info ul li:nth-child(n+3) {
+          border-top: 0 none; } }
   .user-contact-info ul .user-contact__label {
     display: block;
     text-transform: uppercase;
