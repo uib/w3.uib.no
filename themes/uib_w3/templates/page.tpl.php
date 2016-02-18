@@ -128,7 +128,7 @@
 <?php endif; ?>
 <?php print render($page['help']); ?>
 <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-<?php if ($page['content_top']): ?>
+<?php if ($page['content_top'] || $breadcrumb): ?>
       <div class="content-top-wrapper">
         <div class="content-top">
 <?php if ($breadcrumb): ?>

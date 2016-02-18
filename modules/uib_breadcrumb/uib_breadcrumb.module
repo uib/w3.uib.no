@@ -13,13 +13,27 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
   }
   $uib_active_trail = array();
   $uib_active_trail[0] = array_shift($active_trail);
-  $uib_active_trail[1] = array(
-    'title' => $current_area->title,
-    'href' => 'node/' . $current_area->nid,
-    'link_path' => '',
-    'localized_options' => array(),
-    'type' => 0,
-  );
+  $uib_active_trail[0]['title'] = 'UiB';
+  $belongs_to = __uib_get_belongs_to($current_area);
+  foreach ($belongs_to as $key => $bt) {
+    if (count($belongs_to) > 2) {
+      if ($key == 0) {
+        $bt->title = strtoupper(drupal_get_path_alias('node/' . $bt->nid));
+      }
+      if ($key == 1) {
+        if (!isset($item['page_arguments'][0]->type) || @$item['page_arguments'][0]->type != 'area') {
+          $bt->title = strtoupper(drupal_get_path_alias('node/' . $bt->nid));
+        }
+      }
+    }
+    $uib_active_trail[] = array(
+      'title' => $bt->title,
+      'href' => 'node/' . $bt->nid,
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+  }
   if (isset($item['page_arguments'][0]->type)) {
     switch ($item['page_arguments'][0]->type) {
       case 'uib_article':
@@ -27,7 +41,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           case 'news':
             $uib_active_trail[] = array(
               'title' => t('News archive'),
-              'href' => $uib_active_trail[1]['href'] . '/news-archive',
+              'href' => $uib_active_trail[count($uib_active_trail)-1]['href'] . '/news-archive',
               'link_path' => '',
               'localized_options' => array(),
               'type' => 0,
@@ -37,7 +51,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             $datelink = date('Ym', $item['page_arguments'][0]->created);
             $uib_active_trail[] = array(
               'title' => t($month) . ' ' . $year,
-              'href' => $uib_active_trail[1]['href'] . '/news-archive/' . $datelink,
+              'href' => $uib_active_trail[count($uib_active_trail)-1]['href'] . '/' .  $datelink,
               'link_path' => '',
               'localized_options' => array(),
               'type' => 0,
@@ -94,8 +108,10 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             );
             break;
         }
+        $uib_active_trail[] = array_pop($active_trail);
         break;
       case 'uib_study':
+        unset($uib_active_trail[1]);
         $study_type = $item['page_arguments'][0]->field_uib_study_type['und'][0]['value'];
         $study_category = '';
         $courses_view_page_nid = variable_get('uib_courses_nid', 87343);
@@ -122,7 +138,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           $study_type_title = t('Studyprogramme');
           $study_type_href = "node/$programmes_view_page_nid";
         }
-        $uib_active_trail[2] = array(
+        $uib_active_trail[] = array(
           'title' => $study_type_title,
           'href' => $study_type_href,
           'link_path' => '',
@@ -134,7 +150,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           $parent = node_load($parent_nid);
           global $language;
           $lang = $language->language;
-          $uib_active_trail[3] = array(
+          $uib_active_trail[] = array(
             'title' => $parent->field_uib_study_title[$lang][0]['value'],
             'href' => 'node/' . $parent_nid,
             'link_path' => '',
@@ -142,6 +158,27 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             'type' => 0,
           );
         }
+        $uib_active_trail[] = array_pop($active_trail);
+        break;
+      case 'uib_views_page':
+        unset($uib_active_trail[1]);
+        $courses_view_page_nid = variable_get('uib_courses_nid', 87343);
+        $exchanges_view_page_nid = variable_get('uib_exchanges_nid', 87341);
+        $programmes_view_page_nid = variable_get('uib_programmes_nid', 87342);
+        if ($item['page_arguments'][0]->nid == $courses_view_page_nid) {
+          $title = t('Course');
+        }
+        elseif ($item['page_arguments'][0]->nid == $programmes_view_page_nid) {
+          $title = t('Studyprogramme');
+        }
+        elseif ($item['page_arguments'][0]->nid == $exchanges_view_page_nid) {
+          $title = t('Exchange agreement');
+        }
+        $uib_active_trail[] = array(
+          'title' => $title,
+          'href' => '',
+          'localized_options' => array(),
+        );
         break;
       case 'uib_market':
         $uib_active_trail[] = array(
@@ -154,6 +191,18 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         break;
     }
   }
+  else {
+    if ($item['path'] == 'utdanning/evu/courses') {
+      unset($uib_active_trail[1]);
+      $uib_active_trail[] = array(
+        'title' => t('Course'),
+        'href' => '',
+        'localized_options' => array(),
+      );
+    }
+  }
+  $extra_active_trail = end($uib_active_trail);
+  $uib_active_trail[] = $extra_active_trail;
   $active_trail = $uib_active_trail;
 }
 
@@ -163,7 +212,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
 function uib_breadcrumb_page_alter(&$page) {
   if (!path_is_admin(current_path())) {
     if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
-      $home = t('Home');
+      $home = 'UiB';
       $breadcrumb = array();
       $breadcrumb[] = l($home, '<front>');
       $current_area = uib_area__get_current();
@@ -286,4 +335,14 @@ function __uib_get_breadcrumb_item($object) {
     'localized_options' => array(),
     'type' => 0,
   );
+}
+
+function __uib_get_belongs_to($current_area) {
+  $belongs_to = array($current_area);
+  if (!empty($current_area->field_uib_area_parents)) {
+    foreach ($current_area->field_uib_area_parents['und'] as $key => $value) {
+      $belongs_to[] = node_load($value['target_id']);
+    }
+  }
+  return array_reverse($belongs_to);
 }

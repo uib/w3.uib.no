@@ -869,9 +869,20 @@ function __uib_w3__get_renderable_menu($menu_name) {
 function uib_w3_breadcrumb(&$vars) {
   $breadcrumb = $vars['breadcrumb'];
   $output = '<nav class="breadcrumb" role="navigation"><ol>';
-  foreach ($breadcrumb as $key => $crumb) {
-    if ($key == 2 && strpos($crumb, 'uib-remove-link')) $crumb = strip_tags($crumb);
-    $output .= '<li>' . urldecode($crumb) . ' </li>';
+  if (arg(0) == 'user' && is_numeric(arg(1))) {
+    $output .= '<li>' . l('UiB', '<front>') . '</li>';
+    global $language;
+    $lang = $language->language;
+    $linktext = $lang == 'en' ? 'Persons' : 'Personer';
+    $output .= '<li>' . l($linktext, '/persons') . '</li>';
+  }
+  else {
+    foreach ($breadcrumb as $key => $crumb) {
+      if (($key == 2 && strpos($crumb, 'uib-remove-link') || $key == count($breadcrumb)-1)) $crumb = strip_tags($crumb);
+      if (!strstr($crumb, 'node/all')) {
+        $output .= '<li>' . urldecode($crumb) . ' </li>';
+      }
+    }
   }
   $output .= '</ol></nav>';
   return $output;
