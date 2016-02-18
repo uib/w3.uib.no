@@ -1,3 +1,7 @@
 /*
  * Any custom CSS code wanted for admin pages may be added in this file
  * */
+.page-webdesk .views-field-picture img {
+  height: auto;
+  width: 10rem;
+}
