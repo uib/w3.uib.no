@@ -1244,23 +1244,19 @@ a {
       color: #333;
       line-height: 1.25; }
 
-.group-article-sidebar h3,
-.group-article-sidebar .field-label {
-  padding: 0.2em 0.5em; }
-.group-article-sidebar .field-label {
-  font-size: 1.5em; }
-.group-article-sidebar p, .group-article-sidebar ul {
-  font-size: 1.3em; }
-.group-article-sidebar .field-name-field-uib-media img ~ div {
-  padding: 0 1.25rem; }
-.group-article-sidebar .field-name-field-uib-media img + div {
-  padding: 0.625rem 1.25rem 0; }
-.group-article-sidebar .field-name-field-uib-media img ~ :last-child {
-  padding: 0 1.25rem 1.25rem; }
-.group-article-sidebar .field-name-field-uib-media > .field-items > .field-item {
+.group-article-sidebar .field-name-field-uib-media {
+  padding: 0 1rem;
   background: #fff; }
-  .group-article-sidebar .field-name-field-uib-media > .field-items > .field-item :last-child {
-    margin-bottom: 0; }
+  .group-article-sidebar .field-name-field-uib-media img {
+    margin: 0 -1rem 1rem;
+    max-width: calc(100% + 2rem);
+    width: calc(100% + 2rem); }
+  .group-article-sidebar .field-name-field-uib-media .content > .field,
+  .group-article-sidebar .field-name-field-uib-media .content > .field div {
+    display: inline;
+    float: none; }
+  .group-article-sidebar .field-name-field-uib-media > .field-items > .field-item:last-child {
+    margin-bottom: 1rem; }
 
 .node-uib-article .field-name-field-uib-text ul li {
   font-size: 1.25rem; }
@@ -2050,12 +2046,15 @@ a {
   margin-top: 15px; }
 
 .field-name-field-uib-copyright .field-label {
-  float: left;
-  margin-right: 4px; }
+  font-weight: normal; }
 
-.field-name-field-uib-owner .field-label {
-  float: left;
-  margin-right: 5px; }
+.field-name-field-uib-description {
+  margin-right: .5rem; }
+
+.field-name-field-uib-owner {
+  margin-right: .5rem; }
+  .field-name-field-uib-owner .field-label {
+    font-weight: normal; }
 
 /* styled in atoms/_texts.scss and molecules/_area-profiled-articles.scss */
 #block-locale-language {
@@ -2302,9 +2301,22 @@ a {
     .view-ansatte .profile .field-name-field-uib-user-competence .field-item {
       background: #fff; }
 
-.field-name-field-uib-main-media {
+.field-name-field-uib-main-media,
+.field-name-field-uib-media {
+  line-height: 1.2;
   color: #606060;
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
+  .field-name-field-uib-main-media .file-image > .content > .field,
+  .field-name-field-uib-main-media .file-image > .content > .field div,
+  .field-name-field-uib-media .file-image > .content > .field,
+  .field-name-field-uib-media .file-image > .content > .field div {
+    display: inline;
+    float: none; }
+  .field-name-field-uib-main-media .clearfix::after,
+  .field-name-field-uib-media .clearfix::after {
+    clear: none;
+    content: none;
+    display: none; }
 
 .global-menu ul {
   display: -ms-flexbox;
@@ -5376,9 +5388,6 @@ nav {
       margin-left: 0;
       margin-right: 0;
       clear: none; }
-      .content-main-wrapper .group-article-sidebar .field-name-field-uib-media .content img {
-        width: 100%;
-        height: auto; }
       .content-main-wrapper .group-article-sidebar > * {
         margin-bottom: 1.25rem; } }
 .page-calendar .calendar-header h1, .page-node-calendar .calendar-header h1 {

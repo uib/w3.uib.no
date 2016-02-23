@@ -1912,7 +1912,7 @@ function uib_zen_field__area($variables) {
   $output = '';
 
   if (!$variables['label_hidden']) {
-    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ': </div>';
   }
   $imagemap_prefix = '';
   if ($variables['element']['#field_name'] == 'field_uib_primary_media') {
