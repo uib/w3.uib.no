@@ -214,6 +214,11 @@ EOD;
         'type' => 'entityreference_entity_view',
         'settings' => array('view_mode' => 'uib_user_teaser'),
       ));
+      $title=@$variables['node']->field_related_persons_label['und'][0]['value'];
+      if($title &&
+        @$variables['page']['content_bottom']['field_uib_related_persons']['#title']){
+        $variables['page']['content_bottom']['field_uib_related_persons']['#title']=$title;
+      }
       $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
         'weight' => '26',
       ));
