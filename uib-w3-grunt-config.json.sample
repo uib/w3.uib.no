@@ -1,0 +1,4 @@
+{
+  "proxy": "your_local_url",
+  "sg": "the_path_to_your_instance_of_the_styleguide"
+}

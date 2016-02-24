@@ -1,47 +1,33 @@
 module.exports = function(grunt) {
-  var myProxy = grunt.option('proxy');
+  var myConfig = grunt.file.readJSON('uib-w3-grunt-config.json');
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    compass: {
-      dist: {
-        options: {
-          config: 'themes/uib_zen/config.rb',
-          bundleExec: true,
-          basePath: 'themes/uib_zen/'
-        }
-      }
-    },
-    shell: {
-      clearCache: {
-        options: {
-          stderr: false
-        },
-        command: 'bin/site-drush cc css-js'
-      }
-    },
     watch: {
       css: {
-        files: '**/*.scss',
-        tasks: ['compass', 'shell'],
+        files: myConfig.sg + 'public/css/style.css',
+        tasks: ['copy']
       }
     },
     browserSync: {
       dev: {
         bsFiles: {
-          src: 'themes/uib_zen/css/*.css',
+          src: 'themes/uib_w3/css/*.css',
         },
         options: {
           watchTask: true,
-          proxy: myProxy,
-          injectChanges: false
+          proxy: myConfig.proxy
         }
+      }
+    },
+    copy: {
+      dev: {
+        src: myConfig.sg + 'public/css/style.css',
+        dest: 'themes/uib_w3/css/style.css'
       }
     }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.registerTask('default', ['browserSync', 'watch']);
 }
