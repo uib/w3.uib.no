@@ -1,0 +1,5 @@
+name = UiB Browsersync support
+description = Enable browsersync support to make it easier to inspect style guide changes
+core = 7.x
+package = UiB
+dependecies[] = browsersync

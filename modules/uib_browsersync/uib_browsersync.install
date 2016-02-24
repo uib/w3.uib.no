@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * uib_browsersync.install
+ */
+
+/**
+ * Implements hook_install()
+ */
+function uib_browsersync_install() {
+  uibx_log('Install');
+}
+
+/**
+ * Implements hook_uninstall()
+ */
+function uib_browsersync_uninstall() {
+  uibx_log('Uninstall');
+}
+
+/**
+ * Implements hook_enable()
+ */
+function uib_browsersync_enable() {
+  module_enable(array('browsersync'), FALSE);
+  variable_set('browsersync_enabled', 1);
+  drupal_flush_all_caches();
+  uibx_log('Enabled browsersync');
+}
+
+/**
+ * Implements hook_disable()
+ */
+function uib_browsersync_disable() {
+  module_disable(array('browsersync'), TRUE);
+  variable_del('browsersync_enabled');
+  drupal_flush_all_caches();
+  uibx_log('Disabled browsersync');
+}
