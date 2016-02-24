@@ -29,6 +29,7 @@ projects[better_formats][version] = 1.0-beta2
 projects[better_formats][patch][] = https://www.drupal.org/files/issues/better_formats-default-text-format-override-2272385-6.patch
 projects[bot][revision] = d0e10c65616f267543e717addc17422979f83bd2
 projects[breakpoints][version] = 1.4
+projects[browsersync][version] = 1.1
 projects[coder][version] = 2.5
 projects[context][version] = 3.6
 projects[context][patch][] = patches/context-disable-menu.patch
