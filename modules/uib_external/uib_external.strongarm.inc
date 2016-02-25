@@ -41,10 +41,10 @@ function uib_external_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
       ),
       'display' => array(),

@@ -19,6 +19,7 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = field_uib_teaser
 features[field_instance][] = node-uib_external_content-field_uib_area
+features[field_instance][] = node-uib_external_content-field_uib_kicker
 features[field_instance][] = node-uib_external_content-field_uib_links
 features[field_instance][] = node-uib_external_content-field_uib_media
 features[field_instance][] = node-uib_external_content-field_uib_teaser
