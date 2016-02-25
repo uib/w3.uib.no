@@ -123,7 +123,20 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
 
   switch (true) {
-
+    case @$variables['page']['content']['system_main']['nodes']['87343']:
+      if (isset($variables['page']['content']['system_main']['nodes'][87343]['uib_views_block']['views_study_blocks-courses_all_b1']['#markup'])) {
+        $haystack = $variables['page']['content']['system_main']['nodes'][87343]['uib_views_block']['views_study_blocks-courses_all_b1']['#markup'];
+        $filterWrapperOne = '<div id="edit-studypoints-rank-wrapper"';
+        $filterWrapperOneReplace = '<div class="bef_uib_course_wrapper"><div id="edit-studypoints-rank-wrapper"';
+        $haystack = str_replace($filterWrapperOne, $filterWrapperOneReplace, $haystack);
+        $needleOne = '<div id="edit-tid-wrapper" class';
+        $replaceOne = '</div><div class="bef_uib_course"><div id="edit-tid-wrapper" class';
+        $haystack = str_replace($needleOne, $replaceOne, $haystack);
+        $needleTwo = '<div class="views-exposed-widget views-submit-button">';
+        $replaceTwo = '</div><div class="views-exposed-widget views-submit-button">';
+        $variables['page']['content']['system_main']['nodes'][87343]['uib_views_block']['views_study_blocks-courses_all_b1']['#markup'] = str_replace($needleTwo, $replaceTwo, $haystack);
+      }
+    break;
     case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
