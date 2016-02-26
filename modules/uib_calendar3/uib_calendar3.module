@@ -160,6 +160,16 @@ function uib_calendar3_menu() {
     'access callback' => TRUE,
     'page arguments' => array(1),
   );
+  $items["calrss.xml"] = array(
+    'page callback' => 'uib_calendar3__index_page',
+    'access callback' => TRUE,
+    'page arguments' => array(1, TRUE),
+  );
+  $items["node/%/calrss.xml"] = array(
+    'page callback' => 'uib_calendar3__index_page',
+    'access callback' => TRUE,
+    'page arguments' => array(1, TRUE),
+  );
   return $items;
 }
 
@@ -168,8 +178,8 @@ function uib_calendar3_menu() {
 /**
  * Generate main page
  */
-function uib_calendar3__index_page($area_nid=NULL) {
-  global $language;
+function uib_calendar3__index_page($area_nid = NULL, $rss = FALSE) {
+  global $language, $base_url;
   $param = drupal_get_query_parameters();
   if (isset($param['d'])) {
     $from_date = $param['d'];
@@ -190,7 +200,7 @@ function uib_calendar3__index_page($area_nid=NULL) {
   }
 
   $select = db_select('node', 'n');
-  $select->fields('n', array('nid', 'title'));
+  $select->fields('n', array('nid', 'title', 'created'));
 
   // only published articles of type events
   $select->where('n.status = 1');
@@ -225,12 +235,73 @@ function uib_calendar3__index_page($area_nid=NULL) {
   $select->leftJoin('field_data_field_uib_location', 'loc', 'loc.entity_id = n.nid');
   $select->fields('loc', array('field_uib_location_value'));
 
+  // include teaser
+  $select->leftJoin('field_data_field_uib_lead', 'lead', 'lead.entity_id = n.nid');
+  $select->fields('lead', array('field_uib_lead_value'));
+
   // filter and order by date
   $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));
-  //$select->orderBy('field_uib_date_value');
 
-  //$select->range(0, 5); // XXX while debugging
+  if($rss){
+    $select->orderBy('field_uib_date_value');
 
+    $feed = <<<RSS
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xml:base="{$base_url}" xmlns:dc = "http://purl.org/dc/elements/1.1/" >
+
+RSS;
+    $feed_end = "</rss>";
+    $channel_title = t('Upcoming events at the university');
+    if ($area) {
+      $channel_title = t('Upcoming events for !area', array('!area' => $area->title));
+    }
+    $channel_url = $base_url;
+
+    $items = "";
+    foreach ($select->execute() as $row) {
+      $node[$row->nid] = $row;
+      $type = $row->field_uib_event_type_value;
+      $url = url("node/$row->nid", array('absolute' => TRUE));
+      $unixtime = strtotime($row->field_uib_date_value. 'Z');
+      $unixtime2 = strtotime($row->field_uib_date_value2. 'Z');
+      $pubdate = date("D, d M Y H:i:s T", $row->created);
+
+      // Formatted timestamps
+      $y = format_date($unixtime, 'custom', 'Y');
+      $y = $y == date('Y') ? ' ' : " $y ";
+      $t = format_date($unixtime, 'custom', 'k\l H:i');
+      $d = format_date($unixtime, 'custom', 'j. M');
+      $d = date('Y-m-d', $unixtime) == date('Y-m-d') ? t('today') : $d;
+      $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d;
+      $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d;
+
+      $y2 = format_date($unixtime2, 'custom', 'Y');
+      $y2 = $y2 == date('Y') ? ' ' : " $y2 ";
+      $t2 = format_date($unixtime2, 'custom', 'k\l H:i');
+      $d2 = format_date($unixtime2, 'custom', 'j. M');
+      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d') ? t('today') : $d2;
+      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d2;
+      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d2;
+
+      // Title including start time
+      $title = ucfirst($d) . $y . $t . ' - ' . $row->title;
+
+      // Teaser, adding timespan at end of teaser.
+      $teaser = $row->field_uib_lead_value . "\n<br/><br/>";
+      $teaser .= t('From') . " {$d}{$y}{$t} " . t('to') . " {$d2}{$y2}{$t2} ";
+      $item = format_rss_item($title, $url, $teaser,
+        array('pubDate'=>$pubdate));
+      $items .= $item;
+    }
+    $feed .= format_rss_channel($channel_title, $channel_url, "", $items);
+    $feed .= $feed_end;
+
+    drupal_add_http_header('Accept','application/rss+xml, application/xhtml+xml'
+      . ', text/html');
+    drupal_add_http_header('Content-Type', 'application/rss+xml; charset=utf-8');
+    echo $feed;
+    return;
+  }
   // indexed by day
   $events_by_day = array();
   $ongoing_events = array();

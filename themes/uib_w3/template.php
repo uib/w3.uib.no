@@ -302,6 +302,14 @@ EOD;
       );
       drupal_add_html_head_link($link_attributes, TRUE);
 
+      // Adding link to calendar rss-feed to header
+      $link_attributes = array(
+        'rel' => 'alternate',
+        'type' => 'application/rss+xml',
+        'href' => '/' . request_path() . '/calrss.xml',
+      );
+      drupal_add_html_head_link($link_attributes, TRUE);
+
       if ($view_mode == 'content_main') {
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_copyright']);
         unset($variables['page']['content_top']['field_uib_primary_media'][0]['field_uib_owner']);
