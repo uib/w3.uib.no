@@ -1,8 +1,8 @@
 <?php
 
 /**
-* Implements hook_block_info()
-**/
+ * Implements hook_block_info()
+ */
 function uib_calendar3_block_info() {
   return array(
     'calendar3' => array(

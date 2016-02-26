@@ -67,8 +67,8 @@ HTML;
 
 
 /**
-* Implements hook_block_info()
-**/
+ * Implements hook_block_info()
+ */
 function uib_search_block_info() {
   return array(
     'global-searchform' => array(
