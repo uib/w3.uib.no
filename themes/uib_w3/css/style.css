@@ -4478,16 +4478,8 @@ nav {
   -webkit-flex-direction: column;
   display: flex;
   flex-direction: column; }
-  @media (min-width: 600px) {
-    .user-media {
-      -webkit-flex-direction: row;
-      flex-direction: row; } }
   .user-media h1 {
     margin: 0; }
-  .user-media .user-picture {
-    -ms-flex: 0 0 10rem;
-    -webkit-flex: 0 0 10rem;
-    flex: 0 0 10rem; }
   @media (min-width: 600px) {
     .user-media {
       -ms-flex-direction: row;
