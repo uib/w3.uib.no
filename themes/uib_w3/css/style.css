@@ -2348,9 +2348,10 @@ a {
     display: inline-block; }
 .global-menu li {
   padding: 0 0.5rem 0 0; }
-  .global-menu li:hover {
-    text-decoration: underline;
-    color: #fff; }
+  .global-menu li a:hover {
+    text-decoration: underline; }
+    .global-menu li a:hover :not(.active) {
+      color: #fff; }
 .global-menu li, .global-menu li * {
   white-space: nowrap;
   margin-top: -1px;
@@ -2388,9 +2389,6 @@ a {
       padding: 1rem 1rem 1rem 0;
       border-bottom: 1px solid #fff;
       display: block; }
-    .global-menu li ul li:hover, .global-menu li * ul li:hover {
-      text-decoration: underline;
-      color: #fff; }
   .global-menu li:hover > ul, .global-menu li *:hover > ul {
     display: block;
     z-index: 1000; }
