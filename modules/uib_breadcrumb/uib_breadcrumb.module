@@ -26,6 +26,13 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         }
       }
     }
+    if (count($belongs_to) > 1) {
+      if ($key == 0) {
+        if (!isset($item['page_arguments'][0]->type) || @$item['page_arguments'][0]->type != 'area') {
+          $bt->title = strtoupper(drupal_get_path_alias('node/' . $bt->nid));
+        }
+      }
+    }
     $uib_active_trail[] = array(
       'title' => $bt->title,
       'href' => 'node/' . $bt->nid,
