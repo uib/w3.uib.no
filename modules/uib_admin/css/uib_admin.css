@@ -5,3 +5,15 @@
   height: auto;
   width: 10rem;
 }
+.adminimal-theme input.form-autocomplete,
+.adminimal-theme input.form-text,
+.adminimal-theme input.form-file,
+.adminimal-theme textarea.form-textarea,
+.adminimal-theme select.form-select,
+.adminimal-theme fieldset,
+.adminimal-theme .defaultSkin .mceIframeContainer,
+.adminimal-theme .defaultSkin table.mceLayout,
+.adminimal-theme .defaultSkin table.mceLayout tr.mceFirst td,
+.adminimal-theme .defaultSkin table.mceLayout tr.mceLast td {
+  border-color: #858585;
+}
