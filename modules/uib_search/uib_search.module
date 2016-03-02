@@ -154,6 +154,7 @@ function uib_search_block_view($delta) {
               '#attributes' => array(
                 'class' => array('search-field'),
                 'name' => 'qq',
+                'placeholder' => t('search on uib.no'),
               ),
             ),
             'submit' => array(
