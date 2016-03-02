@@ -1354,8 +1354,12 @@ a {
     list-style: none;
     margin: 0;
     padding: 0; }
+    .uib_breadcrumb ol li {
+      font-size: 1rem; }
   .uib_breadcrumb li {
     padding: 0; }
+  .uib_breadcrumb li:not(:last-child) {
+    color: #00769e; }
   .uib_breadcrumb li:not(:first-child):before {
     content: "";
     display: inline-block;
@@ -1363,8 +1367,8 @@ a {
     margin: 0 0.625rem;
     height: 0.625rem;
     width: 0.4375rem; }
-  .uib_breadcrumb a {
-    text-decoration: none; }
+  .uib_breadcrumb a :hover {
+    text-decoration: underline; }
 
 /* styled in _article-info.scss */
 .page-node-calendar .ui-widget-header,
@@ -5096,7 +5100,7 @@ nav {
     .page-node-87342 .field-name-field-uib-node-title,
     .page-node-87343 .field-name-field-uib-node-title,
     .page-node-87344 .field-name-field-uib-node-title {
-      padding: 6.25rem 0 1.875rem; } }
+      padding: 0 0 1.875rem; } }
 .page-node-87341 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87342 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87343 .field-name-field-uib-view-information > .field-items > :last-child,
