@@ -3199,6 +3199,18 @@ div.field-item {
     height: 0;
     overflow: hidden;
     padding: 47px 0 0 47px; }
+    @media (max-width: 780px) {
+      .block-uib-search [name=noscriptform] .search-button {
+        position: absolute;
+        background-position: 1.8125rem 1.1875rem;
+        text-transform: uppercase;
+        width: 5.5rem;
+        padding: 2.9375rem 0 0 1rem;
+        top: 0;
+        height: 100%;
+        max-height: 7.5rem;
+        right: 0;
+        color: #fff; } }
   .block-uib-search > h2 {
     display: none; }
   .block-uib-search .lightbox {
@@ -4735,6 +4747,27 @@ nav {
   position: relative;
   z-index: 100;
   min-height: 6.4375rem; }
+  @media only screen and (max-width: 780px) {
+    .header__wrapper .header .mobile-menu {
+      position: absolute;
+      right: 5rem;
+      top: 0px;
+      height: 100%;
+      width: 5.5rem;
+      margin-right: 0;
+      border-top: 0;
+      border-bottom: 0;
+      border-color: #ae2f2f; }
+      .header__wrapper .header .mobile-menu:after {
+        padding-top: 4rem;
+        position: absolute;
+        background-position: 0.8125rem 1.1875rem;
+        background-repeat: no-repeat;
+        background-size: 3rem 3rem;
+        padding-left: 0.8rem;
+        padding-right: 1rem; }
+    .header__wrapper .header .active {
+      background-color: #ae2f2f; } }
 
 .header {
   padding: 1rem 1.25rem;
