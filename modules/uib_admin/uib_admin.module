@@ -1,6 +1,7 @@
 <?php
   function uib_admin_preprocess_html (&$variables) {
     $suggestions = array(
+      'html__node__add',
       'html__node__edit',
       'html__node__staff_status',
       'html__node__ties',
