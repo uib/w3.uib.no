@@ -127,7 +127,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         $filterWrapperOneReplace = '<div class="bef_uib_course_wrapper"><div id="edit-studypoints-rank-wrapper"';
         $haystack = str_replace($filterWrapperOne, $filterWrapperOneReplace, $haystack);
         $needleOne = '<div id="edit-tid-wrapper" class';
-        $replaceOne = '</div><div class="bef_uib_course"><div id="edit-tid-wrapper" class';
+        $replaceOne = '</div><div class="bef_uib_course"><label>'.t("Filter by subject").'</label><div id="edit-tid-wrapper" class';
         $haystack = str_replace($needleOne, $replaceOne, $haystack);
         $needleTwo = '<div class="views-exposed-widget views-submit-button">';
         $replaceTwo = '</div><div class="views-exposed-widget views-submit-button">';

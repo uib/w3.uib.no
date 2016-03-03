@@ -5013,6 +5013,10 @@ nav {
     min-width: 500px; }
     .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course [class*=views-widget-filter-tid] {
       float: none; }
+    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course fieldset {
+      border: 0; }
+    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course > label {
+      font-size: 1.625rem; }
   .node-uib-views-page .uib-all-courses .views-exposed-widgets .views-submit-button {
     order: 3; }
 .node-uib-views-page .views-exposed-widgets:after {
