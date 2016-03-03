@@ -222,7 +222,13 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
   }
   else {
     switch($item['path']) {
-      case 'calendar' || 'search':
+      case 'node/%/news-archive':
+        $uib_active_trail = array();
+        break;
+      case 'calendar':
+        $uib_active_trail = array();
+        break;
+      case 'search':
         $uib_active_trail = array();
         break;
       case 'node/%/calendar':
