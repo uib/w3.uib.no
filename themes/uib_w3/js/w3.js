@@ -10,7 +10,7 @@
       $('.block-uib-search .lightbox').css('display','block');
       $('.block-uib-search .lightbox .search-field').focus();
       $('.block-uib-search .lightbox').animate({
-        'opacity': 1
+        'opacity': .95
       }, 300);
     });
     $('.closeme').click(function(event){
