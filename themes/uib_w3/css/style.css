@@ -4993,36 +4993,6 @@ nav {
 .node-uib-views-page fieldset {
   margin: 0;
   padding: 0; }
-.node-uib-views-page .uib-all-courses .views-exposed-widgets {
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; }
-  .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course_wrapper {
-    display: -ms-flex;
-    -ms-flex-direction: column;
-    order: 2;
-    width: 49%;
-    min-width: 50%; }
-    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course_wrapper .views-exposed-widget {
-      width: 100%; }
-      .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course_wrapper .views-exposed-widget > label {
-        font-size: 1.625rem; }
-  .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course {
-    width: 49%;
-    display: inline-block;
-    order: 1;
-    min-width: 500px; }
-    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course [class*=views-widget-filter-tid] {
-      float: none; }
-    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course fieldset {
-      border: 0; }
-    .node-uib-views-page .uib-all-courses .views-exposed-widgets .bef_uib_course > label {
-      font-size: 1.625rem; }
-  .node-uib-views-page .uib-all-courses .views-exposed-widgets .views-submit-button {
-    order: 3; }
 .node-uib-views-page .views-exposed-widgets:after {
   display: table;
   clear: both;
@@ -5035,10 +5005,10 @@ nav {
       float: left;
       width: 50%; } }
   .node-uib-views-page .views-exposed-widgets > .views-exposed-widget.views-submit-button {
+    width: 100%;
     margin: 0;
     padding: 0;
-    text-align: right;
-    width: 100%; }
+    text-align: right; }
     .node-uib-views-page .views-exposed-widgets > .views-exposed-widget.views-submit-button > input {
       float: right; }
   .node-uib-views-page .views-exposed-widgets > .views-exposed-widget > label {
