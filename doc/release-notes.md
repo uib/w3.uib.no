@@ -1,3 +1,24 @@
+# Release 42 _2016-03-03_
+
+Vi jobber videre med generelle endringer på sidene.
+
+- Vi har lagt til både stikktittel og bibliotek for eksternt innhold #11026
+- Vcards på personsidene viser nå riktig informasjon #12907
+- Personer viser nå på forsiden av områder #13328
+- Fotograf og opphavsrett viser rett etter bildeteksten #13832
+- Vi har begynt å gjøre endringer på mobilmenyen #13857
+- Vi har lagt til rss på kalendersidene og nyhetsarkivene for områder #13904
+- Tittelen på tilknyttede personer er nå redigerbar #13918
+- Bildet i tilknyttet innhold er nå klikkbart #14198
+- Personsidene fungerer nå bedre på mobil #14377 #14430
+- Diverse bugs i IE og firefox #14432
+- Vi har gjort feltene i redigeringsmodus lettere å se #14479
+- Vi har fjernet brukerundersøkelsen #14482
+- Vi har endret på brødsmulestien slik at den bedre reflekterer orginasjonsstrukturen #13965
+- Sider med faner viser nå fanenavnene i url-feltet #13662
+- Kalendersiden har nå fått ikoner for tid og sted #14319
+- Vi har gjort mindre endringer på emnesiden #13810
+
 # Release 41 _2016-02-18_
 
 Vi jobber videre med generelle endringer på sidene.
