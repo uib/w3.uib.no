@@ -587,16 +587,6 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete any files'.
-  $permissions['delete any files'] = array(
-    'name' => 'delete any files',
-    'roles' => array(
-      'admin' => 'admin',
-      'level 1' => 'level 1',
-    ),
-    'module' => 'file_entity',
-  );
-
   // Exported permission: 'delete any uib_article content'.
   $permissions['delete any uib_article content'] = array(
     'name' => 'delete any uib_article content',
@@ -672,19 +662,6 @@ function uib_setup_user_default_permissions() {
       'level 1' => 'level 1',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'delete own files'.
-  $permissions['delete own files'] = array(
-    'name' => 'delete own files',
-    'roles' => array(
-      'admin' => 'admin',
-      'authenticated user' => 'authenticated user',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
-      'level 3' => 'level 3',
-    ),
-    'module' => 'file_entity',
   );
 
   // Exported permission: 'delete own uib_article content'.
@@ -795,18 +772,6 @@ function uib_setup_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit any files'.
-  $permissions['edit any files'] = array(
-    'name' => 'edit any files',
-    'roles' => array(
-      'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
-      'level 3' => 'level 3',
-    ),
-    'module' => 'file_entity',
-  );
-
   // Exported permission: 'edit any uib_article content'.
   $permissions['edit any uib_article content'] = array(
     'name' => 'edit any uib_article content',
@@ -887,19 +852,6 @@ function uib_setup_user_default_permissions() {
       'level 3' => 'level 3',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'edit own files'.
-  $permissions['edit own files'] = array(
-    'name' => 'edit own files',
-    'roles' => array(
-      'admin' => 'admin',
-      'authenticated user' => 'authenticated user',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
-      'level 3' => 'level 3',
-    ),
-    'module' => 'file_entity',
   );
 
   // Exported permission: 'edit own uib_article content'.
@@ -1115,15 +1067,6 @@ function uib_setup_user_default_permissions() {
     'name' => 'geocoder_service_handler_yandex',
     'roles' => array(),
     'module' => 'geocoder',
-  );
-
-  // Exported permission: 'import media'.
-  $permissions['import media'] = array(
-    'name' => 'import media',
-    'roles' => array(
-      'admin' => 'admin',
-    ),
-    'module' => 'media',
   );
 
   // Exported permission: 'manage features'.
