@@ -75,6 +75,7 @@ projects[linked_field][version] = 1.10
 projects[login_destination][version] = 1.4
 projects[markdown][version] = 1.2
 projects[media][version] = 2.0-beta1
+projects[media_vimeo][version] = 2.1
 projects[media_youtube][version] = 2.0-rc3
 projects[menu_admin_per_menu][version] = 1.1
 projects[menu_block][version] = 2.7
