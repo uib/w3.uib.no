@@ -112,7 +112,7 @@ projects[views_bulk_operations][version] = 3.3
 projects[views_data_export][version] = 3.0-beta9
 projects[views_field_view][version] = 1.1
 projects[views_slideshow][version] = 3.1
-projects[wysiwyg][version] = 2.2
+projects[wysiwyg][version] = 2.x-dev
 
 ; libraries
 libraries[jquery.cycle][download][type] = file
