@@ -64,6 +64,7 @@ projects[google_analytics][version] = 2.1
 projects[i18n][version] = 1.13
 projects[imagemagick][version] = 1.0
 projects[job_scheduler][version] = 2.0-alpha3
+projects[jquery_update][version] = 2.7
 projects[l10n_client][version] = 1.3
 projects[l10n_update][version] = 2.0
 projects[ldap][version] = 1.0-beta12
