@@ -6,12 +6,6 @@
 
 case $(pwd) in
     /var/www/w3-prestaging.test.uib.no )
-       git fetch
-       git checkout rts/14537
-       git submodule update
-       bin/site-drush updb --yes
-       bin/site-drush fr uib_setup --yes
-       bin/site-drush cc all
        ;;
 esac
 
