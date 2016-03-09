@@ -142,13 +142,25 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         $exchanges_view_page_nid = variable_get('uib_exchanges_nid', 87341);
         $programmes_view_page_nid = variable_get('uib_programmes_nid', 87342);
 
+        $course_for_exchange_students = FALSE;
         if (!empty($item['page_arguments'][0]->field_uib_study_category)) {
           $study_category = $item['page_arguments'][0]->field_uib_study_category['und'][0]['value'];
+        }
+        if (!empty($item['page_arguments'][0]->field_uib_study_label)) {
+          foreach ($item['page_arguments'][0]->field_uib_study_label['und'] as $value) {
+            if ($value['target_id'] == 40) $course_for_exchange_students = TRUE;
+          }
         }
         if ($study_type == 'course') {
           $study_type_title = t('Course');
           if ($study_category != 'evu') {
-            $study_type_href = "node/$courses_view_page_nid";
+            if ($course_for_exchange_students) {
+              $study_type_title = t('Exchange courses');
+              $study_type_href = 'node/87344';
+            }
+            else {
+              $study_type_href = "node/$courses_view_page_nid";
+            }
           }
           else {
             $study_type_href ='utdanning/evu/courses';
