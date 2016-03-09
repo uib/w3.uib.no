@@ -6,8 +6,11 @@
 
 case $(pwd) in
     /var/www/w3-prestaging.test.uib.no )
-       bin/site-drush en --yes uib_zen
-       bin/site-drush vset theme_default uib_zen
+       git fetch
+       git checkout rts/14537
+       git submodule update
+       bin/site-drush updb --yes
+       bin/site-drush fr uib_setup --yes
        bin/site-drush cc all
        ;;
 esac
