@@ -431,13 +431,16 @@ function uib_user_user_view_alter(&$build) {
   if (!empty($build['field_uib_user_alt_position'][0]['#markup'])) {
     $build['field_uib_user_alt_position'][0]['#markup'] = ', ' . $build['field_uib_user_alt_position'][0]['#markup'];
   }
-
-  if (!empty($build['field_uib_user_field'])) {
+  if (!empty($build['field_uib_user_field']) || !empty($build['selected_publications'])) {
     if ($profile_user->field_uib_position_category->value() == 'faculty') {
       $build['field_uib_user_field']['#title'] = t('Research');
     }
     elseif ($profile_user->field_uib_position_category->value() == 'staff') {
       $build['field_uib_user_field']['#title'] = t('Work');
+    }
+    if (!empty($build['selected_publications'])) {
+      $build['field_uib_user_field'][0]['#markup'] .= $build['selected_publications'][0]['#markup'];
+      $build['field_uib_user_field']['#weight'] = 25;
     }
   }
 
