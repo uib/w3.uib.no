@@ -112,7 +112,7 @@ projects[views_bulk_operations][version] = 3.3
 projects[views_data_export][version] = 3.0-beta9
 projects[views_field_view][version] = 1.1
 projects[views_slideshow][version] = 3.1
-projects[wysiwyg][version] = 2.x-dev
+projects[wysiwyg][revision] = 949039351d71d24d60faee4f63c6527e54761ee1
 
 ; libraries
 libraries[jquery.cycle][download][type] = file
@@ -120,3 +120,6 @@ libraries[jquery.cycle][download][url] = https://github.com/malsup/cycle/archive
 
 libraries[tinymce][download][type] = file
 libraries[tinymce][download][url] = http://download.moxiecode.com/tinymce/tinymce_3.5.8.zip
+
+libraries[ckeditor][download][type] = file
+libraries[ckeditor][dowbload][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.5.7/ckeditor_4.5.7_full.zip
