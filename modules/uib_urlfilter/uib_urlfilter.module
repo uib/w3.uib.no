@@ -98,12 +98,12 @@ function _uib_urlfilter_fix_language($url) {
     'sites',
     );
   $url = explode('/', $url);
-  if (in_array($url[3], $lang)) {
-    if (in_array($url[4], $lang)) {
-      array_splice($url, 3, 1);
+  if (in_array($url[1], $lang)) {
+    if (in_array($url[2], $lang)) {
+      array_splice($url, 1, 1);
     }
-    if (in_array($url[4], $no_language)) {
-      array_splice($url, 3, 1);
+    if (in_array($url[2], $no_language)) {
+      array_splice($url, 1, 1);
     }
   }
   $url = implode('/', $url);
