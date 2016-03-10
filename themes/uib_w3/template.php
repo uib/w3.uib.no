@@ -349,7 +349,6 @@ EOD;
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
         'type' => 'socialmedia_formatter',
-        'label' => 'hidden',
         'settings' => array('link' => TRUE),
         'weight' => '20',
       ));
