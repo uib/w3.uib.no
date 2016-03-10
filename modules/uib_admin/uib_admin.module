@@ -25,8 +25,13 @@
       'node/*/tmenu' => true,
       'node/*/share' => true,
       'user/*/edit' => true,
+      'user/login' => true,
       'webdesk' => true,
       'webdesk/*' => true,
     );
+    global $user;
+    if ($user->uid == 0) {
+      $paths['user'] = true;
+    }
     return $paths;
   }
