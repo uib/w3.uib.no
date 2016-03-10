@@ -50,36 +50,51 @@ function uib_calendar3_block_view($delta) {
 
   // include the date fields
   $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
-  $select->fields('d', array('field_uib_date_value'));
-  $select->orderBy('d.field_uib_date_value', 'ASC');
+  $select->fields('d', array('field_uib_date_value', 'field_uib_date_value2'));
 
   // Join area
   $select->join('field_data_field_uib_area', 'a', 'a.entity_id = n.nid');
-  $select->condition('a.field_uib_area_target_id', intval($area));
 
   // only current language
   $select->condition('n.language', $language->language);
-  $select->range(0, 5);
   $select_exhibition = clone $select;
 
   switch ($delta) {
   case 'calendar3':
 
+    // Cloning selected query to include promoted events in union-query
+    $promoted = clone $select;
+
+    $select->addExpression('1000', 'promoted');
+    $select->condition('a.field_uib_area_target_id', intval($area));
     // specific for event list
     $select->where('date(d.field_uib_date_value) >= date(now())');
     $select->condition('et.field_uib_event_type_value', 'exhibition', '<>');
 
+    $promoted->join('field_data_field_uib_promoted_events', 'pe', 'pe.field_uib_promoted_events_target_id = n.nid');
+    $promoted->condition('pe.delta', 0);
+    $promoted->addField('pe', 'delta', 'promoted');
+    $promoted->orderBy('promoted', 'ASC');
+    $promoted->orderBy('field_uib_date_value', 'ASC');
+    $promoted->range(0, 5);
+
+    $select->union($promoted);
 
     // fetch the events
     $result = $select->execute();
 
     $ra = array();
 
-    foreach ($result as $key => $value) {
+    $first = TRUE;
+    foreach ($result as $key => $value):
       $nid = $value->nid;
 
       $time = format_date(strtotime($value->field_uib_date_value . 'Z'),
         'custom', 'H:i' );
+      $time2 = format_date(strtotime($value->field_uib_date_value2 . 'Z'),
+        'custom', 'H:i' );
+      $eventdate = format_date(strtotime($value->field_uib_date_value . 'Z'),
+        'custom', 'd.M.Y' );
       $allowed_values = field_info_field('field_uib_event_type');
       $allowed_values = $allowed_values['settings']['allowed_values'];
       $type=$value->field_uib_event_type_value;
@@ -88,36 +103,133 @@ function uib_calendar3_block_view($delta) {
       }
 
       $title = $value->title;
-      $ra['data'][$key]=array();
-      $ra['data'][$key]['#type'] = 'container';
-      $ra['data'][$key]['#attributes'] = array('class' => array('event'));
-      $ra['data'][$key]['#attributes'] = array('class' => array('event'));
 
-      $ra['data'][$key]['date'] =array('#markup'=>
-        uib_calendar3__get_calendar_card_render_array(
-          $value->field_uib_date_value . 'Z'));
-      $r = array();
-      $r['#prefix'] = '<div class="cal-text"><a href="' . url('node/' . intval($nid)) . '">';
-      $r['#suffix'] = '</a></div>';
-      $r['time'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#value' => check_plain($time),
-      );
-      $r['title'] = array( '#markup' => ' - ' . check_plain($title) . " ($type)");
-      $ra['data'][$key][] = $r;
-    }
+      if($first):
+        $ra['data'][$key]=array();
+        $ra['data'][$key]['#type'] = 'container';
+        $ra['data'][$key]['#attributes'] = array('class' => array('event'));
+        $node = node_load($nid);
+        // adding class "first" to this item
+        array_push($ra['data'][$key]['#attributes']['class'], 'first');
+        // showing kicker
+        $ra['data'][$key]['kicker_image'] = array(
+            '#type' => 'container',
+            '#attributes' => array('class' => array('kicker_image')),
+        );
+        $ra['data'][$key]['kicker_image']['kicker'] = field_view_field('node', $node,
+          'field_uib_kicker', array('label' => 'hidden','weight'=>-400));
+        $ra['data'][$key]['kicker_image']['kicker']['#prefix'] = '<a href="' .
+          url('node/' . intval($nid)) . '">';
+        $ra['data'][$key]['kicker_image']['kicker']['#suffix'] = '</a>';
+       // if item has image add this, and a calendar-card
+        if(count($node->field_uib_main_media)):
+          $ra['data'][$key]['kicker_image']['image'] = array(
+            '#type' => 'container',
+            '#attributes' => array('class' => array('imagecontainer')),
+            '#weight' => -200,
+            'featuredimage' =>
+            field_view_field('node', $node,
+            'field_uib_main_media', array(
+              'type' => 'file_rendered',
+              'settings' => array('file_view_mode' =>
+                'wide_thumbnail'),
+              'label' => 'hidden',
+              'weight' => -30,
+              )),
+            'date' => array('#markup'=>
+              uib_calendar3__get_calendar_card_render_array(
+                $value->field_uib_date_value . 'Z'),
+              '#prefix' => '<a href="' . url('node/' . intval($nid)) . '">',
+              '#suffix' => '</a>',
+            ),
+          );
+        endif;
+
+        // Other info: - title
+        $ra['data'][$key]['calinfo'] = array();
+        $ra['data'][$key]['calinfo']['#prefix'] = '<a href="' .
+          url('node/' . intval($nid)) . '">';
+        $ra['data'][$key]['calinfo']['#suffix'] = '</a>';
+        $ra['data'][$key]['calinfo']['#type'] = 'container';
+        $ra['data'][$key]['calinfo']['#attributes'] =
+          array('class' => array('calinfo'));
+        $ra['data'][$key]['calinfo']['title'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#weight' => -29,
+          '#value' => check_plain($node->title),
+          );
+        // - date, time
+        $ra['data'][$key]['calinfo']['place'] = field_view_field('node', $node,
+          'field_uib_location', array('label' => 'hidden','weight'=>-28));
+        $t=check_plain($time);
+        if(strtotime($value->field_uib_date_value2 . 'Z')
+          > strtotime($value->field_uib_date_value . 'Z')){
+          $t .= ' ' . t('to') . ' ' . check_plain($time2);
+        }
+
+        $ra['data'][$key]['calinfo']['time'] = array(
+          '#type' => 'container',
+          '#weight' => -27,
+          '#attributes' => array('class'=>'datetime'),
+          'date' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#weight' => 0,
+            '#attributes' => array('class' => array('cal-date')),
+            '#value' => check_plain($eventdate),
+          ),
+          'time' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#weight' => 1,
+            '#attributes' => array('class' => array('cal-time')),
+            '#value' => $t,
+          ),
+        );
+      else:
+        if(!$ra['data']['column']){
+          $ra['data']['column'] = array(
+          '#type' => 'container',
+          '#attributes' => array('class' => array('calendar-list')),
+          );
+        }
+        $ra['data']['column'][$key]=array();
+        $ra['data']['column'][$key]['#type'] = 'container';
+        $ra['data']['column'][$key]['#attributes'] = array('class' => array('event'));
+        $r = array();
+        $r['#prefix'] = '<div class="cal-text">';
+        $r['#suffix'] = '</div>';
+        $r['time'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#attributes' => array('class' => array('time')),
+          '#value' => check_plain($time),
+        );
+        $r['title'] = array( '#markup' => ' - ' .
+          check_plain($title) . " ($type)");
+        $ra['data']['column'][$key]['#prefix'] = '<a href="' .
+          url('node/' . intval($nid)) . '">';
+        $ra['data']['column'][$key]['#suffix'] = '</a>';
+        $ra['data']['column'][$key][] = $r;
+        $ra['data']['column'][$key]['date'] =array('#markup'=>
+          uib_calendar3__get_calendar_card_render_array(
+            $value->field_uib_date_value . 'Z'));
+      endif;
+
+      $first = FALSE;
+    endforeach;
     if (empty($ra)) return;
-    $ra['full calendar'] = array(
-      '#markup' => l(t('View full calendar'),
-        'node/' . intval($area) . '/calendar', array('attributes'=>array('class' => array('more-link')))
-      ),
-    );
     $block['subject'] = t('Calendar');
     $block['content'] = $ra;
     break;
   case 'exhibitions3':
     $ra = array();
+
+    $select->range(0, 5);
+    $select->condition('a.field_uib_area_target_id', intval($area));
+    $select->orderBy('d.field_uib_date_value', 'ASC');
+
     // specific for exhibition list
     $select_exhibition->fields('d', array('field_uib_date_value2'));
     $select_exhibition->condition('et.field_uib_event_type_value', 'exhibition');
