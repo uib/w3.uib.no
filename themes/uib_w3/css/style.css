@@ -5208,13 +5208,16 @@ nav {
   .node-type-area .field-name-field-uib-primary-text,
   .node-type-area .field-name-field-uib-primary-media {
     width: 100%; } }
-.node-type-area .view-ansatte > .view-filters {
-  display: none; }
-.node-type-area .staff-view {
+.node-type-area .footer-top .staff-view {
+  width: 100%;
+  min-width: 100%;
+  -ms-flex: 1 0 100%;
+  -webkit-flex: 1 0 100%;
+  flex: 1 0 100%;
   margin-top: 2rem; }
-  .node-type-area .staff-view:first-child {
+  .node-type-area .footer-top .staff-view:first-child {
     margin-top: 0; }
-  .node-type-area .staff-view h2 {
+  .node-type-area .footer-top .staff-view h2 {
     font-size: 1.625rem;
     font-weight: normal;
     text-transform: uppercase;
@@ -5246,8 +5249,8 @@ nav {
     .node-type-area .content-bottom > *,
     .node-type-area .footer-top > * {
       -ms-flex: 1;
-      -webkit-flex: 1;
-      flex: 1; }
+      -webkit-flex: 1 0 auto;
+      flex: 1 0 auto; }
   .node-type-area .field-name-field-uib-primary-text,
   .node-type-area .field-name-field-uib-primary-media {
     margin: 0 0 1.875rem;
