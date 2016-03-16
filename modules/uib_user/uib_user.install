@@ -227,3 +227,17 @@ function uib_user_update_7010() {
   $edit['field_uib_slug']['und'][0]['value'] = 'Heidi.Espedal_1';
   user_save($who, $edit);
 }
+
+/**
+ *  Override forgotten password links
+ */
+function uib_user_update_7011() {
+  variable_set('locale_custom_strings_en', array(
+    '' => array(
+      'Sorry, unrecognized username or password. <a href="@password">Have you forgotten your password?</a>'
+        => 'Sorry, unrecognized username or password. <a href="https://sebra.uib.no/sebra/Password/chg_pwd?lang=english">Have you forgotten your password?</a>',
+      'Sorry, too many failed login attempts from your IP address. This IP address is temporarily blocked. Try again later or <a href="@url">request a new password</a>.'
+        => 'Sorry, too many failed login attempts from your IP address. This IP address is temporarily blocked. Try again later or <a href="https://sebra.uib.no/sebra/Password/chg_pwd?lang=english">request a new password</a>.'
+    )
+  ));
+}
