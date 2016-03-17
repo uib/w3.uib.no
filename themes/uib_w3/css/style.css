@@ -5306,7 +5306,8 @@ nav {
   .page-node-87343 .views-exposed-widgets .views-exposed-widget {
     float: none; }
   .page-node-87343 .views-exposed-widgets h3,
-  .page-node-87343 .views-exposed-widgets label {
+  .page-node-87343 .views-exposed-widgets label[for="edit-studypoints-rank"],
+  .page-node-87343 .views-exposed-widgets label[for="edit-field-uib-study-category-value"] {
     font-size: 1.625rem;
     font-weight: bold;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
