@@ -2,6 +2,7 @@
   "name": "w3",
   "version": "0.0.1",
   "description": "Grunt tasks for w3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git.uib.no:site/w3.uib.no.git"
