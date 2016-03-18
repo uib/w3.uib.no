@@ -27,19 +27,21 @@ function uib_study__evu_courses_get_form() {
 function uib_study__evu_courses_page_form($form, &$form_state){
   $form['page_title'] = array(
     '#type' => 'item',
-    '#markup' => '<h3>'.t('Finn kurs for etter- og videreutdanning').'</h3>',
+    '#markup' => '<h1>'.t('Finn kurs for etter- og videreutdanning').'</h1>',
   );
   $form['title'] = array(
     '#type' => 'item',
-    '#markup' => t('Filtrer på høst og vår'),
+    '#markup' => '<h3>' . t('Filtrer på høst og vår') . '</h3>',
   );
   $form['autumn'] = array(
     '#type' => 'checkbox',
     '#title' => t('Autumn'),
+    '#attributes' => array('class' => array('study-checkbox')),
   );
   $form['spring'] = array(
     '#type' => 'checkbox',
     '#title' => t('Spring'),
+    '#attributes' => array('class' => array('study-checkbox')),
   );
   $form['submit'] = array(
     '#type' => 'submit',
@@ -398,31 +400,34 @@ function uib_study__evu_instance($instance) {
     'text' => array(
       '#type' => 'container',
       '#attributes' => array('class' => 'instance-info'),
-      'tidkode' => uib_study__evu_html_tag('span', $data['semester'], 'semester'),
+      'tidkode' => uib_study__evu_html_tag('div', $data['semester'], 'semester'),
     ),
   );
 
   // Course date
   if (isset($data['course_date'])) {
     $div['text']['dates'] = array(
-      'br' => array('#markup' => '<br />'),
+      'div' =>array('#markup' => '<div>'),
       'title' => uib_study__evu_html_tag('span', t('Course date') . ': ', 'title break'),
       'text'=>uib_study__evu_html_tag('span', $data['course_date']),
+      'div2' => array('#markup' => '</div>'),
     );
   }
 
   // Price
   $div['text']['fee'] = array(
-    'br' =>array('#markup' => '<br />'),
+    'div' =>array('#markup' => '<div>'),
     'title' => uib_study__evu_html_tag('span', t('Price') . ': ', 'title'),
     'text' => uib_study__evu_html_tag('span', $data['price']),
+    'div2' => array('#markup' => '</div>'),
   );
 
   // Deadline
   $div['text']['deadline'] = array(
-    'br' =>array('#markup' => '<br />'),
+    'div' =>array('#markup' => '<div>'),
     'title' => uib_study__evu_html_tag('span', t('Application deadline') . ': ', 'title'),
     'text' => uib_study__evu_html_tag('span', $data['expires']),
+    'div2' => array('#markup' => '</div>'),
   );
 
   // Sign up button
