@@ -1,3 +1,18 @@
+# Release 43 _2016_03-17_
+
+- Noen av feltene som ikke skulle vise på sidene for EVU-kurs er fjernet #14660
+- Fjernet statiske atributter på .svg-filer #14644
+- Fikset en feil hvor utvalgte publikasjoner la seg over alle felt i høyre kolonne på personsider #14626
+- Fikset en feil hvor kurs for etter-og viderutdanning viste feil brødsmulesti #14615
+- Fikset en feil hvor ansattlister på områdeside ikke brukte full bredde. #14513
+- Bedre plassering for logg inn-knapp på mobil #14496
+- Fikset en feil hvor relevante lenker la til ekstra /nb når man navigerte på w3.uib.no #14415
+- Visuelle endringer på logg-inn siden #14387
+- Forbedret "glemt passord"-funksjonen slik at den lenker til sebra #14265
+- Justering av plassering og fontstørrelser i tillegg til forbedring på mobilvisning på emne-siden #13810
+- Lagt til "følg oss på" i kolofon over sosiale medier #13265
+- Lagt til hvit bakgrunn på tittel inne på selve kalendervisningen #12429
+
 # Release 42 _2016-03-03_
 
 Vi jobber videre med generelle endringer på sidene.
