@@ -1,4 +1,4 @@
-# Release 43 _2016_03-17_
+# Release 43 _2016-03-17_
 
 - Noen av feltene som ikke skulle vise på sidene for EVU-kurs er fjernet #14660
 - Fjernet statiske atributter på .svg-filer #14644
