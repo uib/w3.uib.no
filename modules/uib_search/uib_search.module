@@ -168,3 +168,303 @@ function uib_search_block_view($delta) {
   }
   return $retval;
 }
+
+/**
+ * Implements hook_user_update().
+ *
+ * hook_user_update is executed after user info is inserted in the database.
+ *
+ */
+function uib_search_user_update(&$edit, $account, $category) {
+  uib_search__index_user($account);
+}
+/**
+ * Implements hook_user_insert().
+ *
+ * hook_user_insert is executed after user is created
+ */
+function uib_search_user_insert(&$edit, $account, $category) {
+  uib_search__index_user($account);
+}
+/*
+ * Implements hook_user_delete().
+ *
+ * hook_user_delete executed before user is deleted
+ */
+function uib_search_user_delete($account) {
+  $account->status = 0;  // treat it as if was blocked
+  uib_search__index_user($account);
+}
+
+/**
+ * Index a user in the database. This implementation updates the search index
+ * in elasticsearch.
+ */
+
+function uib_search__index_user(&$account) {
+  if (!uib_search__check_elastic_settings(true)) {
+    uibx_log('Administrator settings for elasticsearch is not setup', 'notice');
+    return;
+  }
+  $prefix = uib_search__parameter_prefix();
+  $index = variable_get($prefix . 'admin_index');
+  $url = rtrim(variable_get($prefix . 'admin_url'), '/');
+  $type = 'user';
+  if ($account->status == 0) {
+    // Delete doc from users in search index, and return
+    $stat = uib_search__run_elastic_request(
+      "{$url}/{$index}/{$type}/{$account->uid}",
+      null,
+      'DELETE',
+      true
+    );
+    if ($stat->code == 404) {
+      uibx_log(
+        'User uid #' . $account->uid . ' was not found in the elastic index',
+        'notice'
+      );
+    }
+    else if ($stat->code != 200) {
+      uibx_log(
+        'User uid #' . $account->uid . ' could not be deleted from elastic'
+          . ' index. Status code ' . $stat->code ,
+        'error'
+      );
+    }
+    return;
+  }
+
+  $url = "{$url}/{$index}/{$type}/$account->uid";
+  $output = uib_search__get_elastic_user_array($account);
+  $status = uib_search__run_elastic_request(
+    $url,
+    json_encode($output),
+    'PUT',
+    true
+  );
+
+  if (in_array($status->code, array(200))) {
+    uibx_log('Successful update of elastic user '.$output['uid'], 'notice');
+  }
+  else if (in_array($status->code, array(201))) {
+    uibx_log('Successful creation of elastic user '.$output['uid'], 'notice');
+  }
+  else {
+    uibx_log(
+      "Updating elastic user {$output['uid']} failed: {$status->code} - "
+        . "{$status->status_message}",
+      'error'
+    );
+  }
+}
+
+/**
+ * Helper function to retrieve raw value / commaseparated string of values
+ * from a drupal array. The array typically has the form
+ * [
+ *   0 => [
+ *          'value' => 'whatevervalue',
+ *        ],
+ *   1 => [
+ *          'value' => 'someothervalue',
+ *        ],
+ *   ...
+ * ]
+ *
+ * Parameters
+ * $array - The array to process
+ * $field - optional parameter where the actual value is contained in another
+ * index than 'value'
+ * $asString - optional parameter. If set to false, values are returned as a
+ * flat array instead of an imploded string
+ * $delimiter - optional parameter used as glue for imploding the results.
+ */
+function uib_search__field_array_as_string(
+  $array,
+  $field = 'value',
+  $asString = TRUE,
+  $delimiter = ', '
+)
+{
+  if (!$array) return null;
+  $retval = array();
+  foreach ($array as $key => $value) {
+    $retval[] = $value[$field];
+  }
+  if ($asString) return implode($delimiter, $retval);
+  return $retval;
+}
+
+/**
+ * Execute a drupal http request against the currently set elastic search
+ * engine, providing authentication. Returns the same object returned by
+ * drupal_http_request().
+ */
+function uib_search__run_elastic_request(
+  $url = '',
+  $data,
+  $method = 'POST',
+  $run_as_administrator = false
+)
+{
+  $prefix = uib_search__parameter_prefix();
+  if ($run_as_administrator) {
+    $prefix .= 'admin_';
+  }
+  $user = variable_get($prefix . 'user');
+  $password = variable_get($prefix . 'password');
+  $token = "{$user}:{$password}";
+  $token = base64_encode($token);
+
+  return drupal_http_request($url,
+    array(
+      'headers' => array(
+        'Authorization' => "Basic {$token}"
+      ),
+      'method' => $method,
+      'data' => $data,
+      'timeout' => 1,
+    )
+  );
+}
+
+/**
+ * Get the parameter prefix used for elasticsearch parameters
+ */
+function uib_search__parameter_prefix() {
+  return 'uib_elasticsearch_';
+}
+
+/**
+ * Get object to store in the elastic index for the given user
+ */
+function uib_search__get_elastic_user_array($account) {
+  global $language;
+  $mVal = 'uib_search__field_array_as_string';
+
+  //General fields
+  $output = @array(
+    'name' => $account->name,
+    'mail' => $account->mail,
+    'uid' => $account->uid,
+    'first_name' => $account->field_uib_first_name['und'][0]['value'] ?:
+      $account->field_uib_user_alt_firstname['und'][0]['value'],
+    'last_name' => $account->field_uib_last_name['und'][0]['value'] ?:
+      $account->field_uib_user_alt_lastname['und'][0]['value'],
+    'phone' => $mVal($account->field_uib_phone['und']),
+    'social_media' => $mVal($account->field_uib_user_social_media['und']),
+    'slug' => $mVal(field_get_items('user', $account, 'field_uib_slug')),
+  );
+  // User picture
+  if (@$account->picture->uri) {
+    $output['picture'] = file_create_url($account->picture->uri);
+  }
+
+  $output['generic'] = array();
+  /*
+   * Language dependent fields
+   */
+  $languages = language_list();
+  foreach ($languages as $l) {
+    $language = $l;
+    $lang = "_{$language->language}";
+    // Resolving area from OU
+    $ou = @$account->field_uib_user_ou['und'][0]['target_id'];
+    $area = uib_user__ou_area($ou, $output['uid']);
+    if ($area) {
+      $area = node_load($area);
+      $output['ou' . $lang] = $area->title;
+    }
+    else {
+      $area = node_load($ou);
+      if ($area) {
+        $output['ou' . $lang] = $mVal(
+          field_get_items(
+            'node',
+            $area,
+            'field_uib_ou_title',
+            $language->language
+          )
+        );
+      }
+    }
+
+    //position
+    $output['position' . $lang] = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_position',
+        $language->language
+      )
+    );
+
+    // Resolving competence from taxonomi
+    $competence = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_user_competence',
+        $language->language
+      ),
+      'tid',
+      FALSE
+    );
+    if (is_array($competence)) {
+      foreach ($competence as &$v) {
+        $v = taxonomy_term_load($v)->name;
+      }
+    }
+    $output['competence' . $lang] = implode((array)$competence, ', ');
+
+    // Some generic fields
+    $output['generic']['title' . $lang] = $output['first_name'] . ' ' . $output['last_name'];
+    $output['generic']['link' . $lang] = url('/user/' . $output['uid'],
+      array('absolute' => TRUE));
+    $output['generic']['excerpt' . $lang] = array();
+    if (@$output['ou' . $lang]) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Organisation') . ': ' . $output['ou' . $lang];
+    }
+    if (@$output['position' . $lang]) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Position') . ': ' . $output['position' . $lang];
+    }
+    if (@$output['phone']) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Phone nr') . ': ' . $output['phone'];
+    }
+    if (@$output['mail']) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Email') . ': ' . $output['mail'];
+    }
+    $output['generic']['excerpt' . $lang] =
+      implode(', ', $output['generic']['excerpt' . $lang]);
+  }
+
+  $output['generic']['image'] = @$output['picture'] ;
+  return $output;
+}
+
+/**
+ * Check if elasticsearch settings are setup
+ *
+ * @param boolean $admin Set to true to check if admin settings are set.
+ * @return boolean Returns true if everything is set up, otherwise false.
+ *
+ */
+function uib_search__check_elastic_settings($admin = false) {
+  $px = uib_search__parameter_prefix();
+  if ($admin) {
+    $px .= 'admin_';
+  }
+  if (
+    variable_get($px . 'url') &&
+    variable_get($px . 'index') &&
+    variable_get($px . 'user') &&
+    variable_get($px . 'password')
+  ) {
+    return true;
+  }
+  return false;
+}
