@@ -206,9 +206,9 @@ function uib_search__index_user(&$account) {
     uibx_log('Administrator settings for elasticsearch is not setup', 'notice');
     return;
   }
-  $prefix = uib_search__parameter_prefix();
-  $index = variable_get($prefix . 'admin_index');
-  $url = rtrim(variable_get($prefix . 'admin_url'), '/');
+  $prefix = uib_search__parameter_prefix(1);
+  $index = variable_get($prefix . 'index');
+  $url = rtrim(variable_get($prefix . 'url'), '/');
   $type = 'user';
   if ($account->status == 0) {
     // Delete doc from users in search index, and return
@@ -311,13 +311,11 @@ function uib_search__run_elastic_request(
   $url = '',
   $data,
   $method = 'POST',
-  $run_as_administrator = false
+  $run_as_administrator = false,
+  $timeout = 1
 )
 {
-  $prefix = uib_search__parameter_prefix();
-  if ($run_as_administrator) {
-    $prefix .= 'admin_';
-  }
+  $prefix = uib_search__parameter_prefix($run_as_administrator);
   $user = variable_get($prefix . 'user');
   $password = variable_get($prefix . 'password');
   $token = "{$user}:{$password}";
@@ -330,23 +328,25 @@ function uib_search__run_elastic_request(
       ),
       'method' => $method,
       'data' => $data,
-      'timeout' => 1,
+      'timeout' => $timeout,
     )
   );
 }
 
 /**
  * Get the parameter prefix used for elasticsearch parameters
+ *
+ * @param boolean Set to true to get the admin prefix
  */
-function uib_search__parameter_prefix() {
-  return 'uib_elasticsearch_';
+function uib_search__parameter_prefix($admin = false) {
+  $admin = $admin ? 'admin_' : '';
+  return 'uib_elasticsearch_' . $admin;
 }
 
 /**
  * Get object to store in the elastic index for the given user
  */
 function uib_search__get_elastic_user_array($account) {
-  global $language;
   $mVal = 'uib_search__field_array_as_string';
 
   //General fields
@@ -364,7 +364,10 @@ function uib_search__get_elastic_user_array($account) {
   );
   // User picture
   if (@$account->picture->uri) {
-    $output['picture'] = file_create_url($account->picture->uri);
+    $output['picture'] = image_style_url(
+      'user_thumbnail',
+      $account->picture->uri
+    );
   }
 
   $output['generic'] = array();
@@ -372,8 +375,7 @@ function uib_search__get_elastic_user_array($account) {
    * Language dependent fields
    */
   $languages = language_list();
-  foreach ($languages as $l) {
-    $language = $l;
+  foreach ($languages as $language) {
     $lang = "_{$language->language}";
     // Resolving area from OU
     $ou = @$account->field_uib_user_ou['und'][0]['target_id'];
@@ -423,11 +425,16 @@ function uib_search__get_elastic_user_array($account) {
       }
     }
     $output['competence' . $lang] = implode((array)$competence, ', ');
+    $output['link' . $lang] = url('/user/' . $output['uid'],
+      array(
+        'absolute' => TRUE,
+        'language' => $language,
+      )
+    );
 
     // Some generic fields
     $output['generic']['title' . $lang] = $output['first_name'] . ' ' . $output['last_name'];
-    $output['generic']['link' . $lang] = url('/user/' . $output['uid'],
-      array('absolute' => TRUE));
+    $output['generic']['link' . $lang] = $output['link' . $lang];
     $output['generic']['excerpt' . $lang] = array();
     if (@$output['ou' . $lang]) {
       $output['generic']['excerpt' . $lang][] =
@@ -461,10 +468,7 @@ function uib_search__get_elastic_user_array($account) {
  *
  */
 function uib_search__check_elastic_settings($admin = false) {
-  $px = uib_search__parameter_prefix();
-  if ($admin) {
-    $px .= 'admin_';
-  }
+  $px = uib_search__parameter_prefix($admin);
   if (
     variable_get($px . 'url') &&
     variable_get($px . 'index') &&
