@@ -42,6 +42,13 @@ function uib_search_drush_command() {
       . 'n is provided, 5 elements are processed',
     ),
   );
+  $items['uib-search-url'] = array(
+    'description' => 'Print URL that can be used to access the elastic server.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'options' => array(
+      'admin' => 'Return URL that gives you admin access',
+    ),
+  );
   return $items;
 }
 
@@ -161,4 +168,13 @@ function drush_uib_search_index(){
   if ($verbose) {
     uibx_log("$line users updated", 'notice');
   }
+}
+
+function drush_uib_search_url() {
+  $px = uib_search__parameter_prefix(drush_get_option('admin'));
+  $url = variable_get($px . 'url') . '/' . variable_get($px . 'index') . '/';
+  if (substr($url, 0, 8) == 'https://') {
+    $url = substr($url, 0, 8) . variable_get($px . 'user') . ':' . variable_get($px . 'password') . '@' . substr($url, 8);
+  }
+  return $url;
 }
