@@ -38,7 +38,6 @@ function uib_search_drush_command() {
     'aliases' => array(),
     'arguments' => array(),
     'options' => array(
-      'verbose|v' => 'Display more output.',
       'stop=n' => 'Stop after n iterations. If --stop is given, but no '
       . 'n is provided, 5 elements are processed',
     ),
@@ -48,7 +47,7 @@ function uib_search_drush_command() {
 
 function drush_uib_search_user($identificator) {
   $identificator = trim($identificator);
-  if (is_numeric($identificator)){
+  if (is_numeric($identificator)) {
     $account = user_load($identificator);
   }
   else {
@@ -113,21 +112,8 @@ function drush_uib_search_index(){
     return;
   }
 
-  global $language;
-  $verbose = 0;
-  $stop = 0;
-  $prefix = uib_search__parameter_prefix(1);
-
-  if (drush_get_option('stop')) {
-    if (drush_get_option('stop') == 1) {
-      $stop = 5;
-    }
-    else {
-      $stop = intval(drush_get_option('stop'));
-    }
-  }
-  $verbose = intval(drush_get_option('verbose'));
-
+  $stop = drush_get_option('stop');
+  $verbose = drush_get_option('verbose');
 
   $select = db_select('users', 'u');
   $select->addField('u', 'uid');
@@ -135,6 +121,8 @@ function drush_uib_search_index(){
   $result = $select->execute();
 
   $rowcount = $stop ?: $result->rowCount();
+
+  $prefix = uib_search__parameter_prefix(1);
   $index = variable_get($prefix.'index');
   $type = 'user';
   $url = variable_get($prefix.'url');
@@ -153,32 +141,24 @@ function drush_uib_search_index(){
       . '", "_id" : "' . $value->uid . '" } }'."\n";
     $account = user_load($value->uid);
     $batch .= json_encode(uib_search__get_elastic_user_array($account))."\n";
-    if ($line%50 == 0) {
+    if ($line % 50 == 0) {
       $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
-      if ($verbose) {
-        uib_search__progress_bar($line, $rowcount);
-        if ($stat->code!=200) {
-          echo "\033[31m Message {$stat->status_message} Code "
-          . "{$stat->code} \033[0m\n";
-        }
+      if ($stat->code != 200) {
+        uibx_log("$stat->code $stat->status_message", 'error');
       }
       $batch = '';
+      if ($verbose && $line % 500 == 0) {
+        uibx_log(sprintf('%d users updated (%.0f%% done)', $line, 100 * $line / $rowcount), 'notice');
+      }
     }
   }
-  $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
+  if ($batch) {
+    $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
+    if ($stat->code != 200) {
+      uibx_log("$stat->code $stat->status_message", 'error');
+    }
+  }
   if ($verbose) {
-    uib_search__progress_bar($line, $rowcount);
-    if ($stat->code!=200) {
-      echo "\033[31m Message {$stat->status_message} Code "
-      . "{$stat->code} \033[0m\n";
-    }
+    uibx_log("$line users updated", 'notice');
   }
-}
-
-function uib_search__progress_bar($done, $total) {
-    $perc = floor(($done / $total) * 50);
-    $left = 50 - $perc;
-    $p2 = $perc * 2;
-    $write = sprintf("\033[0G\033[2K[%'={$perc}s>%-{$left}s] - $p2%% - $done/$total", "", "");
-    fwrite(STDERR, $write);
 }
