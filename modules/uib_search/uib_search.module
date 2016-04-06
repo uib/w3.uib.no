@@ -231,6 +231,13 @@ function uib_search__index_user(&$account) {
         'error'
       );
     }
+    else {
+      uibx_log(
+        'User uid #' . $account->uid . ' was deleted from elastic index.',
+        'notice'
+      );
+    }
+
     return;
   }
 

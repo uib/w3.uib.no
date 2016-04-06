@@ -2,12 +2,15 @@
 
 function uib_search_drush_command() {
   $items['uib-search-user'] = array(
-    'description' => 'Retrieve a flat user object as it will be inserted into the elastic search index.',
+    'description' => 'Retrieve a flat user object as it will be inserted into '
+      . 'the elastic search index. Options --index and --drop are mutually '
+      . 'exclusive.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'arguments' => array('identificator' => 'Either UID or username of the user'),
     'required-arguments' => true,
     'options' => array(
       'index' => 'Also index this user',
+      'drop' => 'Drop the user from elastic index',
     ),
   );
   $items['uib-search'] = array(
@@ -19,6 +22,14 @@ function uib_search_drush_command() {
       'no-pretty' => 'Do not pretty-print the results',
       'size=s' => 'Number of results to return',
       ),
+  );
+  $items['uib-search-drop-index'] = array(
+    'description' => 'Drop the current elastic index. The index will be '
+      . 'recreated when new content is added. If the readonly index and the '
+      . 'admin index are different, it is the admin index that will be dropped.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(),
+    'options' => array(),
   );
   return $items;
 }
@@ -37,6 +48,12 @@ function drush_uib_search_user($identificator) {
   }
   if (drush_get_option('index')) {
     uib_search__index_user($account);
+  }
+  else if (drush_get_option('drop')) {
+    $account->status = 0;
+    uib_search__index_user($account);
+    echo "Dropped user {$account->name}\n";
+    return;
   }
   print_r(uib_search__get_elastic_user_array($account));
 }
@@ -61,4 +78,20 @@ function drush_uib_search() {
 
   $result = uib_search__run_elastic_request($url, json_encode($q), 'GET');
   echo $result->data;
+}
+
+function drush_uib_search_drop_index() {
+  $px = uib_search__parameter_prefix(1);
+  $url = variable_get($px . 'url') . '/' . variable_get($px . 'index') . '/';
+  $stat = uib_search__run_elastic_request($url, null, 'DELETE', 5);
+  if ($stat->code = 200) {
+    echo "Elastic index dropped successfully\n";
+  }
+  else {
+    uibx_log(
+      'Error when trying to drop index: ' . variable_get($px . 'index') .
+      '. Code #' . $stat->code . ', Message ' . $stat->message . '.',
+      'notice'
+    );
+  }
 }
