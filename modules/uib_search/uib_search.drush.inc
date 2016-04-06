@@ -84,14 +84,14 @@ function drush_uib_search_drop_index() {
   $px = uib_search__parameter_prefix(1);
   $url = variable_get($px . 'url') . '/' . variable_get($px . 'index') . '/';
   $stat = uib_search__run_elastic_request($url, null, 'DELETE', 5);
-  if ($stat->code = 200) {
+  if ($stat->code == 200) {
     echo "Elastic index dropped successfully\n";
   }
   else {
     uibx_log(
-      'Error when trying to drop index: ' . variable_get($px . 'index') .
-      '. Code #' . $stat->code . ', Message ' . $stat->message . '.',
-      'notice'
+      'Failed to delete <' . $url .
+      '>: ' . $stat->code . ' ' . $stat->status_message . '.',
+      'error'
     );
   }
 }
