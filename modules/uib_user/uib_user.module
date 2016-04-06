@@ -579,15 +579,18 @@ function uib_user_field_formatter_view($entity_type, $entity, $field, $instance,
 /**
  * Find the the most relevant home area for a user
  */
-function uib_user__ou_area($ou_nid, $uid) {
+function uib_user__ou_area($ou_nid, $uid, $langcode = null) {
   global $language;
+  if (!$langcode) {
+    $langcode = $language->language;
+  }
   $area = NULL;
   // Get area (certain types) connected to ou
   $query = new EntityFieldQuery;
   $result = $query
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'area')
-    ->propertyCondition('language', $language->language)
+    ->propertyCondition('language', $langcode)
     ->fieldCondition('field_uib_ou', 'target_id', $ou_nid)
     ->fieldCondition('field_uib_area_type', 'value', array('institute', 'faculty', 'unit'))
     ->execute();
@@ -604,7 +607,7 @@ function uib_user__ou_area($ou_nid, $uid) {
     $result = $query
       ->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'area')
-      ->propertyCondition('language', $language->language)
+      ->propertyCondition('language', $langcode)
       ->fieldCondition('field_uib_staff', 'target_id', $uid)
       ->fieldCondition('field_uib_area_type', 'value', array('institute', 'faculty', 'unit'))
       ->execute();
