@@ -362,8 +362,8 @@ function uib_search__get_elastic_user_array($account) {
     'social_media' => $mVal($account->field_uib_user_social_media['und']),
     'slug' => $mVal(field_get_items('user', $account, 'field_uib_slug')),
   );
-  // User picture
-  if (@$account->picture->uri) {
+  // User picture TODO takes too long in stage_file_proxy setups
+  if (0 && @$account->picture->uri) {
     $output['picture'] = image_style_url(
       'user_thumbnail',
       $account->picture->uri
