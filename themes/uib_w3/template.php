@@ -725,6 +725,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = 'node__testimonial__teaser';
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
+      $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
       if (count($variables['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
       }
@@ -738,6 +739,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
 
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
+      $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
         $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
           'type' => 'file_rendered',
@@ -773,8 +775,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         'label' => 'hidden',
         'weight' => 5,
       ));
+      $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
     }
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
+      $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
     }
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'short_teaser') {
