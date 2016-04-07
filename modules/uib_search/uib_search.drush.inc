@@ -38,8 +38,7 @@ function uib_search_drush_command() {
     'aliases' => array(),
     'arguments' => array(),
     'options' => array(
-      'stop=n' => 'Stop after n iterations. If --stop is given, but no '
-      . 'n is provided, 5 elements are processed',
+      'stop=n' => 'Stop after n iterations',
     ),
   );
   $items['uib-search-url'] = array(
