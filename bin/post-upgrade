@@ -15,7 +15,7 @@ case $(pwd) in
        ;;
 esac
 
-REL=41
+REL=44
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -25,6 +25,7 @@ fi
 set -x
 date +%FT%T
 
-bin/site-drush image-flush user_thumbnail --yes
+bin/site-drush uib-search-drop-index
+bin/site-drush uib-search-index --verbose
 
 date +%FT%T
