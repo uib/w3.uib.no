@@ -19,8 +19,8 @@ function uib_search_drush_command() {
     'arguments' => array('query' => 'The search query'),
     'required-arguments' => true,
     'options' => array(
-      'no-pretty' => 'Do not pretty-print the results',
       'size=s' => 'Number of results to return',
+      'json' => 'Show the raw json result',
       ),
   );
   $items['uib-search-drop-index'] = array(
@@ -80,7 +80,7 @@ function drush_uib_search() {
   $px = uib_search__parameter_prefix();
   $url = variable_get($px . 'url') . '/' . variable_get($px . 'index')
     . '/_search?';
-  if(!drush_get_option('no-pretty')){
+  if(drush_get_option('json')){
     $url .= '&pretty';
   }
 
@@ -94,7 +94,24 @@ function drush_uib_search() {
   }
 
   $result = uib_search__run_elastic_request($url, json_encode($q), 'GET');
-  echo $result->data;
+  if (drush_get_option('json')) {
+    echo $result->data;
+    return;
+  }
+
+  $result = drupal_json_decode($result->data);
+  $hits = $result['hits'];
+  $total = $hits['total'];
+  foreach ($hits['hits'] as $hit) {
+    $hit = $hit['_source'];
+    printf("%-30s  %-30s  %s\n", $hit['mail'], str_replace('+47 ', '', $hit['phone']), $hit['link_nb']);
+  }
+  if ($total) {
+    print "*** $total hits\n";
+  }
+  else {
+    print "*** No hits\n";
+  }
 }
 
 function drush_uib_search_drop_index() {
