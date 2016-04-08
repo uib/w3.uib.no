@@ -58,6 +58,8 @@ class SebraPerson extends stdClass {
       $this->position_name_en = (string)$staff->title_english;
       $this->position_code = (int)$staff->code;
       $this->position_category = (string)$staff->title_category;
+      if ($this->position_code == 1475 && strpos($this->position_category, 'faculty') === false)
+        $this->position_category = 'faculty ' . $this->position_category;
     }
     else {
       $extern = uib_sebra__sws_get('affiliated?id=' . $id);

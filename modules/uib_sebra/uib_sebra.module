@@ -654,8 +654,21 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
       $edit['field_uib_position']['en'][0]['value'] = $u->position_name_en;
     if ($account->field_uib_position_code['und'][0]['value'] != $u->position_code)
       $edit['field_uib_position_code']['und'][0]['value'] = $u->position_code;
-    if ($account->field_uib_position_category['und'][0]['value'] != $u->position_category)
-      $edit['field_uib_position_category']['und'][0]['value'] = $u->position_category;
+
+    $existing_position_category = array();
+    if (isset($account->field_uib_position_category)) {
+      foreach ($account->field_uib_position_category['und'] as $delta => $category) {
+        $existing_position_category['und'][$delta]['value'] = $category['value'];
+      }
+    }
+    $new_position_category = array();
+    foreach (explode(" ", $u->position_category) as $category) {
+      $new_position_category['und'][]['value'] = $category;
+    }
+    if ($existing_position_category != $new_position_category) {
+      $edit['field_uib_position_category'] = $new_position_category;
+    }
+
     $existing_phone = $account->field_uib_phone;
     if (isset($existing_phone['und'])) {
       foreach ($existing_phone['und'] as $delta => $pnr) {
@@ -718,7 +731,9 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
     $account->field_uib_position['nb'][0]['value'] = $u->position_name_no;
     $account->field_uib_position['en'][0]['value'] = $u->position_name_en;
     $account->field_uib_position_code['und'][0]['value'] = $u->position_code;
-    $account->field_uib_position_category['und'][0]['value'] = $u->position_category;
+    foreach (explode(" ", $u->position_category) as $category) {
+      $account->field_uib_position_category['und'][]['value'] = $category;
+    }
     $account->field_uib_phone = $phones;
     if (!empty($places[$u->place_code])) {
       $account->field_uib_user_ou['und'][0]['target_id'] = $places[$u->place_code];

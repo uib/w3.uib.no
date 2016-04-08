@@ -19,6 +19,9 @@ fi
 set -x
 date +%FT%T
 
+# Make sure the test case user (Jan Erik Askildsen) is classified correctly
+bin/site-drush uib-sebra-user secja --verbose
+
 bin/site-drush uib-search-drop-index
 bin/site-drush uib-search-index --verbose
 
