@@ -83,6 +83,7 @@ function uib_setup_wysiwyg_default_profiles() {
           'Redo' => 1,
           'Link' => 1,
           'Unlink' => 1,
+          'Blockquote' => 1,
           'Cut' => 1,
           'Copy' => 1,
           'PasteFromWord' => 1,
@@ -101,7 +102,7 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,h2,h3,h4',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );
@@ -127,7 +128,6 @@ function uib_setup_wysiwyg_default_profiles() {
           'Redo' => 1,
           'Link' => 1,
           'Unlink' => 1,
-          'Blockquote' => 1,
           'Cut' => 1,
           'Copy' => 1,
           'PasteFromWord' => 1,
@@ -145,7 +145,7 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,h3,h4',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );
