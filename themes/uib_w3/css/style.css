@@ -2480,7 +2480,8 @@ a {
     content: "\00a0";
     display: block;
     border-bottom: 1px solid #cf3c3a;
-    margin-bottom: .2rem; }
+    margin-bottom: .2rem;
+    height: 1.5rem; }
 
   .field-name-field-uib-profiled-article > .field-items,
   .field-name-field-uib-profiled-message > .field-items {
@@ -2519,14 +2520,13 @@ a {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    height: 27.7rem;
-    max-height: 27.7rem; }
+    height: 25.9375rem; }
     .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-kicker,
     .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-kicker {
       -ms-flex-order: 2;
       -webkit-order: 2;
       order: 2;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%;
       border-bottom: none;
       margin-bottom: 0.375rem; }
@@ -2538,25 +2538,30 @@ a {
       -ms-flex-order: 1;
       -webkit-order: 1;
       order: 1;
-      width: 49.5%; }
+      width: 50%;
+      min-height: 100%;
+      margin-bottom: 0;
+      transform: translateY(50%); }
       .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-main-media img,
       .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-main-media img {
         background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ5MnB4IiBoZWlnaHQ9IjVweCIgdmlld0JveD0iMCAwIDQ5MiA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjIgKDE1ODU3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GYXJnZXN0cmlwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IkZvcnNpZGVuLShEZXNrdG9wKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMC4wMDAwMDAsIC02OTQuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3Jza25pbmciIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMC4wMDAwMDAsIDY5NC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJGYXJnZXN0cmlwZSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyNy40MDkxMjYsNC41IEw0MDkuMjYwMTE4LDQuNSBMNDA5LjI2MDExOCwwLjI2NiBMMzI3LjQwOTEyNiwwLjI2NiBMMzI3LjQwOTEyNiw0LjUgWiIgaWQ9IlLDuGQiIGZpbGw9IiNFNjUzNDMiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCw0LjUgTDgxLjg1MDk5MjcsNC41IEw4MS44NTA5OTI3LDAuMjY2IEwwLDAuMjY2IEwwLDQuNSBaIiBpZD0iU29ydCIgZmlsbD0iIzIzMzk0RCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04MS44NTA5OTI3LDQuNSBMMTYzLjcwMTk4NSw0LjUgTDE2My43MDE5ODUsMC4yNjYgTDgxLjg1MDk5MjcsMC4yNjYgTDgxLjg1MDk5MjcsNC41IFoiIGlkPSJCbMOlIiBmaWxsPSIjNUFBRUM2Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE2My43MDQ1NjMsNC41IEwyNDUuNTU1NTU2LDQuNSBMMjQ1LjU1NTU1NiwwLjI2NiBMMTYzLjcwNDU2MywwLjI2NiBMMTYzLjcwNDU2Myw0LjUgWiIgaWQ9Ikd1bCIgZmlsbD0iI0RCQzA0OCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNDUuNTU1NTU2LDQuNSBMMzI3LjQwNjU0OCw0LjUgTDMyNy40MDY1NDgsMC4yNjYgTDI0NS41NTU1NTYsMC4yNjYgTDI0NS41NTU1NTYsNC41IFoiIGlkPSJHcsO4bm4iIGZpbGw9IiM4QUFCNjciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDA5LjI2MDExOCw0LjUgTDQ5MS4xMTExMTEsNC41IEw0OTEuMTExMTExLDAuMjY2IEw0MDkuMjYwMTE4LDAuMjY2IEw0MDkuMjYwMTE4LDQuNSBaIiBpZD0iTGlsbGEiIGZpbGw9IiM4RDVGOEYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+') no-repeat top;
         background-size: 100% .5rem;
-        padding-top: .5rem; }
+        padding-top: .5rem;
+        transform: translateY(-50%); }
       .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card {
-        margin-top: 8px; }
+        margin-top: 8px;
+        top: -50%; }
     .field-name-field-uib-profiled-article .field-items .field-item:only-child .node-teaser > .content h2,
     .field-name-field-uib-profiled-message .field-items .field-item:only-child .node-teaser > .content h2 {
       -ms-flex-order: 3;
       -webkit-order: 3;
       order: 3;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5% 0 1.5%;
       border-left: 5px solid #cf3c3a;
       margin: 0 0 0.25rem 3%; }
@@ -2567,7 +2572,7 @@ a {
       -ms-flex-order: 4;
       -webkit-order: 4;
       order: 4;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%; }
 
   .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(2),
@@ -2612,14 +2617,13 @@ a {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    height: 27.7rem;
-    max-height: 27.7rem; }
+    height: 25.9375rem; }
     .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-kicker,
     .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-kicker {
       -ms-flex-order: 2;
       -webkit-order: 2;
       order: 2;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%;
       border-bottom: none;
       margin-bottom: 0.375rem; }
@@ -2630,25 +2634,30 @@ a {
       -ms-flex-order: 1;
       -webkit-order: 1;
       order: 1;
-      width: 49.5%; }
+      width: 50%;
+      min-height: 100%;
+      margin-bottom: 0;
+      transform: translateY(50%); }
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-main-media img,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-main-media img {
         background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ5MnB4IiBoZWlnaHQ9IjVweCIgdmlld0JveD0iMCAwIDQ5MiA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjIgKDE1ODU3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GYXJnZXN0cmlwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IkZvcnNpZGVuLShEZXNrdG9wKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMC4wMDAwMDAsIC02OTQuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3Jza25pbmciIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMC4wMDAwMDAsIDY5NC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJGYXJnZXN0cmlwZSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyNy40MDkxMjYsNC41IEw0MDkuMjYwMTE4LDQuNSBMNDA5LjI2MDExOCwwLjI2NiBMMzI3LjQwOTEyNiwwLjI2NiBMMzI3LjQwOTEyNiw0LjUgWiIgaWQ9IlLDuGQiIGZpbGw9IiNFNjUzNDMiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCw0LjUgTDgxLjg1MDk5MjcsNC41IEw4MS44NTA5OTI3LDAuMjY2IEwwLDAuMjY2IEwwLDQuNSBaIiBpZD0iU29ydCIgZmlsbD0iIzIzMzk0RCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04MS44NTA5OTI3LDQuNSBMMTYzLjcwMTk4NSw0LjUgTDE2My43MDE5ODUsMC4yNjYgTDgxLjg1MDk5MjcsMC4yNjYgTDgxLjg1MDk5MjcsNC41IFoiIGlkPSJCbMOlIiBmaWxsPSIjNUFBRUM2Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE2My43MDQ1NjMsNC41IEwyNDUuNTU1NTU2LDQuNSBMMjQ1LjU1NTU1NiwwLjI2NiBMMTYzLjcwNDU2MywwLjI2NiBMMTYzLjcwNDU2Myw0LjUgWiIgaWQ9Ikd1bCIgZmlsbD0iI0RCQzA0OCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNDUuNTU1NTU2LDQuNSBMMzI3LjQwNjU0OCw0LjUgTDMyNy40MDY1NDgsMC4yNjYgTDI0NS41NTU1NTYsMC4yNjYgTDI0NS41NTU1NTYsNC41IFoiIGlkPSJHcsO4bm4iIGZpbGw9IiM4QUFCNjciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDA5LjI2MDExOCw0LjUgTDQ5MS4xMTExMTEsNC41IEw0OTEuMTExMTExLDAuMjY2IEw0MDkuMjYwMTE4LDAuMjY2IEw0MDkuMjYwMTE4LDQuNSBaIiBpZD0iTGlsbGEiIGZpbGw9IiM4RDVGOEYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+') no-repeat top;
         background-size: 100% .5rem;
-        padding-top: .5rem; }
+        padding-top: .5rem;
+        transform: translateY(-50%); }
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card {
-        margin-top: 8px; }
+        margin-top: 8px;
+        top: -50%; }
     .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) .node-teaser > .content h2,
     .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) .node-teaser > .content h2 {
       -ms-flex-order: 3;
       -webkit-order: 3;
       order: 3;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5% 0 1.5%;
       border-left: 5px solid #cf3c3a;
       margin: 0 0 0.25rem 3%; }
@@ -2659,51 +2668,8 @@ a {
       -ms-flex-order: 4;
       -webkit-order: 4;
       order: 4;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content {
-    display: -ms-flexbox;
-    -ms-flex-direction: row;
-    display: -webkit-flex;
-    -webkit-flex-direction: row;
-    display: flex;
-    flex-direction: row;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-flex-flow: column wrap;
-    flex-flow: column wrap;
-    height: 27.7rem;
-    max-height: 27.7rem; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-kicker,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-kicker {
-    -ms-flex-order: 2;
-    -webkit-order: 2;
-    order: 2;
-    width: 49.5%;
-    padding: 0 5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-media,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-main-media,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-media,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-main-media {
-    -ms-flex-order: 1;
-    -webkit-order: 1;
-    order: 1;
-    width: 49.5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content h2,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content h2 {
-    -ms-flex-order: 3;
-    -webkit-order: 3;
-    order: 3;
-    width: 49.5%;
-    padding: 0 5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content p,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:first-child .node-teaser > .content p {
-    -ms-flex-order: 4;
-    -webkit-order: 4;
-    order: 4;
-    width: 49.5%;
-    padding: 0 5%; }
   .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(n+2),
   .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(n+2) {
     -ms-flex: 1;
@@ -2742,14 +2708,13 @@ a {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    height: 27.7rem;
-    max-height: 27.7rem; }
+    height: 25.9375rem; }
     .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-kicker,
     .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-kicker {
       -ms-flex-order: 2;
       -webkit-order: 2;
       order: 2;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%;
       border-bottom: none;
       margin-bottom: 0.375rem; }
@@ -2760,25 +2725,30 @@ a {
       -ms-flex-order: 1;
       -webkit-order: 1;
       order: 1;
-      width: 49.5%; }
+      width: 50%;
+      min-height: 100%;
+      margin-bottom: 0;
+      transform: translateY(50%); }
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media img,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media img,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media img {
         background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ5MnB4IiBoZWlnaHQ9IjVweCIgdmlld0JveD0iMCAwIDQ5MiA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjIgKDE1ODU3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GYXJnZXN0cmlwZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+CiAgICAgICAgPGcgaWQ9IkZvcnNpZGVuLShEZXNrdG9wKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIyMC4wMDAwMDAsIC02OTQuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJGb3Jza25pbmciIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMC4wMDAwMDAsIDY5NC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJGYXJnZXN0cmlwZSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyNy40MDkxMjYsNC41IEw0MDkuMjYwMTE4LDQuNSBMNDA5LjI2MDExOCwwLjI2NiBMMzI3LjQwOTEyNiwwLjI2NiBMMzI3LjQwOTEyNiw0LjUgWiIgaWQ9IlLDuGQiIGZpbGw9IiNFNjUzNDMiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCw0LjUgTDgxLjg1MDk5MjcsNC41IEw4MS44NTA5OTI3LDAuMjY2IEwwLDAuMjY2IEwwLDQuNSBaIiBpZD0iU29ydCIgZmlsbD0iIzIzMzk0RCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik04MS44NTA5OTI3LDQuNSBMMTYzLjcwMTk4NSw0LjUgTDE2My43MDE5ODUsMC4yNjYgTDgxLjg1MDk5MjcsMC4yNjYgTDgxLjg1MDk5MjcsNC41IFoiIGlkPSJCbMOlIiBmaWxsPSIjNUFBRUM2Ij48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE2My43MDQ1NjMsNC41IEwyNDUuNTU1NTU2LDQuNSBMMjQ1LjU1NTU1NiwwLjI2NiBMMTYzLjcwNDU2MywwLjI2NiBMMTYzLjcwNDU2Myw0LjUgWiIgaWQ9Ikd1bCIgZmlsbD0iI0RCQzA0OCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNDUuNTU1NTU2LDQuNSBMMzI3LjQwNjU0OCw0LjUgTDMyNy40MDY1NDgsMC4yNjYgTDI0NS41NTU1NTYsMC4yNjYgTDI0NS41NTU1NTYsNC41IFoiIGlkPSJHcsO4bm4iIGZpbGw9IiM4QUFCNjciPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNDA5LjI2MDExOCw0LjUgTDQ5MS4xMTExMTEsNC41IEw0OTEuMTExMTExLDAuMjY2IEw0MDkuMjYwMTE4LDAuMjY2IEw0MDkuMjYwMTE4LDQuNSBaIiBpZD0iTGlsbGEiIGZpbGw9IiM4RDVGOEYiPjwvcGF0aD4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+') no-repeat top;
         background-size: 100% .5rem;
-        padding-top: .5rem; }
+        padding-top: .5rem;
+        transform: translateY(-50%); }
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media .field-item .cal-card,
       .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media .field-item .cal-card {
-        margin-top: 8px; }
+        margin-top: 8px;
+        top: -50%; }
     .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content h2,
     .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content h2 {
       -ms-flex-order: 3;
       -webkit-order: 3;
       order: 3;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5% 0 1.5%;
       border-left: 5px solid #cf3c3a;
       margin: 0 0 0.25rem 3%; }
@@ -2789,44 +2759,8 @@ a {
       -ms-flex-order: 4;
       -webkit-order: 4;
       order: 4;
-      width: 49.5%;
+      width: 50%;
       padding: 0 5%; }
-    .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-kicker,
-    .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media,
-    .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media,
-    .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-kicker,
-    .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-main-media,
-    .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) .node-teaser > .content .field-name-field-uib-media {
-      width: 49.5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content {
-    display: -ms-flexbox;
-    -ms-flex-direction: column;
-    -ms-flex-pack: center;
-    -ms-flex-wrap: wrap;
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    -webkit-justify-content: center;
-    -webkit-flex-wrap: wrap;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-kicker,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-main-media,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-media,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-kicker,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-main-media,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content .field-name-field-uib-media {
-    width: 49.5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content h2,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content h2 {
-    width: 49.5%;
-    padding: 0 5%; }
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content p,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:first-child .node-teaser > .content p {
-    width: 49.5%;
-    padding: 0 5%; }
   .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1),
   .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) {
     -ms-flex: 1;
