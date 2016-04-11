@@ -15,6 +15,7 @@ include_once 'uib_market.features.inc';
  */
 function uib_market_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'uib_market') {
+    unset($node->content['field_uib_market_category']);
     // Force employee pages area when displaying a uib_market node
     $nid = ($langcode == 'nb') ?
       intval(variable_get('uib_ansatte_nb_nid')) :

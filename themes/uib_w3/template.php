@@ -152,6 +152,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
 EOD;
       drupal_add_js($jq, 'inline');
       break;
+    case isset($variables['node']) && $variables['node']->type == 'uib_market':
+      $variables['page']['content']['category'] = field_view_field('node',$variables['node'],'field_uib_market_category', array(
+        'label' => 'hidden',
+        'weight' => -46,
+      ), $variables['language']->language);
+      $variables['page']['content']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => $variables['node']->title,
+        '#weight' => -45,
+        '#attributes' => array('class' => 'uib_market_title'),
+      );
+    break;
     case isset($variables['node']) && $variables['node']->type == 'uib_article':
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
