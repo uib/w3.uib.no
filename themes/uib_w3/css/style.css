@@ -346,6 +346,11 @@ th {
     max-width: 72rem;
     margin: 0 auto;
     padding: 0 1.25rem; }
+  .page-node-87341 .content-main-wrapper .field-name-field-uib-view-information,
+  .page-node-87342 .content-main-wrapper .field-name-field-uib-view-information,
+  .page-node-87343 .content-main-wrapper .field-name-field-uib-view-information,
+  .page-node-87344 .content-main-wrapper .field-name-field-uib-view-information {
+    padding-bottom: 2.5rem; }
 
 .page-node-87344 .view-content > .item-list {
   padding-top: 2.5rem; }
@@ -5086,7 +5091,7 @@ nav {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     color: #333; }
 .node-uib-views-page .view-filters {
-  padding: 2.5rem 0; }
+  padding: 0 0 2.5rem; }
   .node-uib-views-page .view-filters .views-exposed-form .views-exposed-widgets label {
     margin-bottom: 0.625rem;
     background-position: left center;
