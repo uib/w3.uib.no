@@ -139,7 +139,7 @@ function uib_area_views_default_views() {
     t('[title]
 [field_uib_visit_address]
 '),
-    t('Visitor Address'),
+    t('Visit Address'),
     t('All'),
     t('Page'),
   );
@@ -2281,20 +2281,71 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['path']['exclude'] = TRUE;
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Field: Content: Photo */
+  $handler->display->display_options['fields']['field_uib_media']['id'] = 'field_uib_media';
+  $handler->display->display_options['fields']['field_uib_media']['table'] = 'field_data_field_uib_media';
+  $handler->display->display_options['fields']['field_uib_media']['field'] = 'field_uib_media';
+  $handler->display->display_options['fields']['field_uib_media']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_media']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_media']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_media']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['field_uib_media']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_media']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_uib_media']['type'] = 'file_rendered';
+  $handler->display->display_options['fields']['field_uib_media']['settings'] = array(
+    'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '[path]',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  $handler->display->display_options['fields']['field_uib_media']['delta_offset'] = '0';
   /* Field: Content: Main media */
   $handler->display->display_options['fields']['field_uib_main_media']['id'] = 'field_uib_main_media';
   $handler->display->display_options['fields']['field_uib_main_media']['table'] = 'field_data_field_uib_main_media';
   $handler->display->display_options['fields']['field_uib_main_media']['field'] = 'field_uib_main_media';
   $handler->display->display_options['fields']['field_uib_main_media']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_main_media']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_uib_main_media']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_uib_main_media']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['field_uib_main_media']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_main_media']['empty'] = '<img src="/sites/all/themes/uib/uib_zen/images/Recent_High.png">';
+  $handler->display->display_options['fields']['field_uib_main_media']['empty'] = '[field_uib_media]';
   $handler->display->display_options['fields']['field_uib_main_media']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_uib_main_media']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_uib_main_media]';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['empty'] = '<img src="/sites/all/themes/uib/uib_zen/images/Recent_High.png">';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -2417,6 +2468,8 @@ return !empty($handler->argument);';
     t('next ›'),
     t('last »'),
     t('Post date'),
+    t('[field_uib_media]'),
+    t('[field_uib_main_media]'),
     t('<img src="/sites/all/themes/uib/uib_zen/images/Recent_High.png">'),
     t('[title] ([created_1])'),
     t('Read more'),
