@@ -250,7 +250,7 @@ function uib_ansatte_views_default_views() {
   $handler->display->display_options['arguments']['field_uib_position_category_value']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['field_uib_position_category_value']['title'] = '%2 at %1';
   $handler->display->display_options['arguments']['field_uib_position_category_value']['breadcrumb_enable'] = TRUE;
-  $handler->display->display_options['arguments']['field_uib_position_category_value']['breadcrumb'] = '%1';
+  $handler->display->display_options['arguments']['field_uib_position_category_value']['breadcrumb'] = '%2';
   $handler->display->display_options['arguments']['field_uib_position_category_value']['default_argument_type'] = 'fixed';
   $handler->display->display_options['arguments']['field_uib_position_category_value']['default_argument_options']['argument'] = 'all';
   $handler->display->display_options['arguments']['field_uib_position_category_value']['summary']['number_of_records'] = '0';
@@ -356,7 +356,7 @@ return TRUE;
     t('List of staff for area'),
     t('Lists the all staff belonging to an area.  By adding "faculity" or "staff" to the URL limit to that kind.'),
     t('All employees at %1'),
-    t('%1'),
+    t('%2'),
     t('Staff list on bottom of area frontpage'),
     t('This is the staff listing shown on selected area frontpages. No exposed filters on this view.'),
   );
