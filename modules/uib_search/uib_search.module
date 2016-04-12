@@ -132,33 +132,123 @@ function uib_search_block_view($delta) {
           '#attributes' => array(
             'class' => array('lightbox'),
           ),
-          'close' => array(
+          'top' => array(
             '#type' => 'container',
-            'link' => array(
-              '#type' => 'link',
-              '#href' => '',
-              '#attributes' => array(
-                'class' => 'closeme',
-              ),
-              '#title' => t('Close'),
-            ),
             '#attributes' => array(
-              'class' => array('close-lightbox'),
+              'class' => array('topbar-wrapper'),
+            ),
+            'top' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array('topbar'),
+              ),
+              'typeswitcher' => array(
+                '#type' => 'checkbox',
+                '#value' => 'user',
+                '#title' => t('Search for person'),
+                '#default_value' => 'user',
+                '#id' => 'switch_type_button',
+                '#attributes' => array(
+                  'name' => 'searchtype',
+                  'data-toggle-title' => t('Back to search'),
+                  'data-title' => t('Search for person'),
+                ),
+              ),
+              'right' => array(
+                '#type' => 'container',
+                '#attributes' => array(
+                  'class' => array('top-right'),
+                ),
+                'close' => array(
+                  '#type' => 'container',
+                  'link' => array(
+                    '#type' => 'link',
+                    '#href' => '',
+                    '#attributes' => array(
+                      'class' => 'closeme',
+                    ),
+                    '#title' => t('Close'),
+                  ),
+                  '#attributes' => array(
+                    'class' => array('close-lightbox'),
+                  ),
+                ),
+                'menu' => array(
+                  '#type' => 'container',
+                  'link' => array(
+                    '#type' => 'link',
+                    '#href' => '#',
+                    '#attributes' => array(
+                      'class' => 'searchmenu',
+                    ),
+                    '#title' => t('Menu'),
+                  ),
+                  '#attributes' => array(
+                    'class' => array('menu-lightbox'),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          'spacer' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('spacer'),
             ),
           ),
           'search' => array(
             '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('search-wrapper'),
+            ),
             'searchtext' => array(
               '#type' => 'textfield',
               '#value' => check_plain(@$_GET['qq']),
               '#attributes' => array(
                 'class' => array('search-field'),
                 'name' => 'qq',
+                'autocomplete' => 'off',
               ),
             ),
             'submit' => array(
               '#type' => 'submit',
               '#value' => t('Search'),
+            ),
+            'user' => array(
+              '#type' => 'hidden',
+              '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
+              '#attributes' => array(
+                'name' => 'user',
+              ),
+            ),
+            'password' => array(
+              '#type' => 'hidden',
+              '#value' =>
+                variable_get(uib_search__parameter_prefix() . 'password'),
+              '#attributes' => array(
+                'name' => 'password',
+              ),
+            ),
+            'url' => array(
+              '#type' => 'hidden',
+              '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
+              '#attributes' => array(
+                'name' => 'url',
+              ),
+            ),
+            'index' => array(
+              '#type' => 'hidden',
+              '#value' =>
+                variable_get(uib_search__parameter_prefix() . 'index'),
+              '#attributes' => array(
+                'name' => 'index',
+              ),
+            ),
+          ),
+          'results' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => 'results',
             ),
           ),
         ),
