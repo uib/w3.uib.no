@@ -2,6 +2,7 @@
   $(document).ready(function($){
     $('.block-uib-search form[name=noscriptform] .search-button').click(function(event){
       event.preventDefault();
+      $('body,html').css('overflow', 'hidden');
       if($('#uib-search-lightbox-bottom').length==0){
         $('.block-uib-search form[name=lbform]').appendTo(
           $('<div id="uib-search-lightbox-bottom" class="block-uib-search"/>').appendTo('body')
@@ -10,18 +11,71 @@
       $('.block-uib-search .lightbox').css('display','block');
       $('.block-uib-search .lightbox .search-field').focus();
       $('.block-uib-search .lightbox').animate({
-        'opacity': .95
+        'opacity': 1
       }, 300);
     });
     $('.closeme').click(function(event){
       event.preventDefault();
+      $('body,html').css('overflow', 'visible');
       uibSearchClose();
     })
+    $('.searchmenu').click(function (event) {
+      event.preventDefault();
+      if (parseInt($('.lightbox').css('top')) == 0) {
+        $('.lightbox').animate({
+          top: 100,
+        }, {
+          complete: function() {
+            $('#uib-search-lightbox-bottom').css('position', 'relative');
+          },
+          duration: 500
+        });
+      }
+      else {
+        $('#uib-search-lightbox-bottom').css('position', 'static');
+        $('.lightbox').animate({
+          'top': 0,
+        }, 500);
+      }
+    })
+    $('#switch_type_button').click(function () {
+      if ($(this).is(':checked')) {
+        $(this).siblings('label').html($(this).attr('data-toggle-title'));
+        $('form[name=lbform] .results').css('display', 'block');
+        $('form[name=lbform] .search-field').keyup();
+      } else {
+        $(this).siblings('label').html($(this).attr('data-title'));
+        $('form[name=lbform] .results').css('display', 'none');
+      }
+      $('.block-uib-search .lightbox .search-field').focus();
+    });
+    $('form[name=lbform] .search-field').keyup(function (e) {
+      if (
+        parseInt($('form[name=lbform] .lightbox .spacer').css('height')) > 1
+      ) {
+        if (!$('form[name=lbform] .lightbox .spacer').is(':animated')) {
+          $('form[name=lbform] .lightbox .spacer').animate({
+            height: 15
+          }, 500);
+        }
+      }
+    });
     $(document).keyup(function(e) {
       if (e.which == 27) {
         if($('#uib-search-lightbox-bottom').length==1 &&
           $('.block-uib-search .lightbox').css('display')!='none'){
           uibSearchClose();
+        }
+      }
+    });
+    $('form[name=lbform] .search-field').click(function (e) {
+      if (
+        parseInt($('form[name=lbform] .lightbox .spacer').css('height')) > 1
+      ) {
+        if (!$('form[name=lbform] .lightbox .spacer').is(':animated')) {
+          $('form[name=lbform] .lightbox .spacer').animate({
+            height: 15
+          }, 500);
         }
       }
     });
