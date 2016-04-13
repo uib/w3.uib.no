@@ -5688,10 +5688,7 @@ nav {
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   background-color: #fff;
   text-decoration: none;
-  min-width: 236px; }
-  @media (min-width: 600px) {
-    [href*=evuweb].sign-up-button {
-      width: 236px; } }
+  width: 150px; }
   [href*=evuweb].sign-up-button:hover {
     text-decoration: none;
     background-color: #cf3c3a;
