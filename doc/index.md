@@ -95,6 +95,7 @@ site itself.
 * [Hints that’s good to know](hints.html)
 * [Git hints](git.html)
 * [fs-pres](fs-pres.html)
+* [Search: Elastic](elastic.html)
 
 
 ## Reference

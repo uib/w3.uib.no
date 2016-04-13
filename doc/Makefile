@@ -5,6 +5,7 @@ HTML = \
   development-setup.html \
   drupal-sync-course-site.html \
   drupal-update.html \
+  elastic.html \
   fs-pres.html \
   git.html \
   hints.html \
