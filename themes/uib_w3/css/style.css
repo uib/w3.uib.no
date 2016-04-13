@@ -1808,16 +1808,24 @@ a {
     margin: 0 0 1rem;
     font-size: 1rem;
     line-height: 1.2; }
-  .uib-study-evu-offer .instance {
-    display: -webkit-flex;
-    -webkit-flex-flow: row;
-    display: flex;
-    flex-flow: row; }
-  .uib-study-evu-offer .instance-info .title {
-    font-weight: normal; }
-  .uib-study-evu-offer .instance-info span {
-    font-size: 1rem;
-    line-height: 1; }
+  @media (min-width: 600px) {
+    .uib-study-evu-offer .instance {
+      display: -ms-flexbox;
+      -ms-flex-flow: row;
+      display: -webkit-flex;
+      -webkit-flex-flow: row;
+      display: flex;
+      flex-flow: row; } }
+  .uib-study-evu-offer .instance-info {
+    margin-bottom: 1.25rem; }
+    @media (min-width: 600px) {
+      .uib-study-evu-offer .instance-info {
+        margin-bottom: 0; } }
+    .uib-study-evu-offer .instance-info .title {
+      font-weight: normal; }
+    .uib-study-evu-offer .instance-info span {
+      font-size: 1rem;
+      line-height: 1; }
   .uib-study-evu-offer .no_instances p {
     font-size: 1rem; }
   .uib-study-evu-offer .sign-up {
