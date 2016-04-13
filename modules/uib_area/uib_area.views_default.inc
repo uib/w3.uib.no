@@ -2308,6 +2308,7 @@ return !empty($handler->argument);';
       ),
     ),
   );
+  $handler->display->display_options['fields']['field_uib_media']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_uib_media']['delta_offset'] = '0';
   /* Field: Content: Main media */
   $handler->display->display_options['fields']['field_uib_main_media']['id'] = 'field_uib_main_media';
