@@ -17,3 +17,6 @@
 .adminimal-theme .defaultSkin table.mceLayout tr.mceLast td {
   border-color: #858585;
 }
+.adminimal-theme .media-thumbnail img {
+  max-height: 200px;
+}

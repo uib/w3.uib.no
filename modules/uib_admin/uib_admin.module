@@ -10,6 +10,7 @@
       'html__user__edit',
       'html__user__translate',
       'html__webdesk',
+      'html__media__browser',
     );
     foreach ($suggestions as $suggestion) {
       if (in_array($suggestion, $variables['theme_hook_suggestions'])) {
