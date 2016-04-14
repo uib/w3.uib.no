@@ -2181,7 +2181,7 @@ a {
     content: "English\00a0\00a0website \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
   #block-locale-language li.nb a:before {
     color: #fff;
-    content: "Norsk\00a0\00a0nettside \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
+    content: "Norsk\00a0\00a0\00a0nettside \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
 
 .block-locale .active {
   display: none; }
@@ -2199,7 +2199,7 @@ a {
       #block-locale-language .language-switcher-locale-url .language-link {
         text-align: left; }
     #block-locale-language a {
-      width: 3.3rem;
+      width: 3.4rem;
       font-size: 1rem; }
     #block-locale-language li.en .language-link {
       content: "English"; }
@@ -2226,7 +2226,7 @@ a {
 .mobile_dropdown {
   display: block;
   min-width: 100%;
-  padding-top: 1rem; }
+  padding-top: 0rem; }
   .mobile_dropdown ul li.leaf, .mobile_dropdown ul li.expanded, .mobile_dropdown ul li.collapsed, .mobile_dropdown ul {
     margin: 0;
     padding: 0;
@@ -4974,26 +4974,30 @@ nav {
   @media only screen and (max-width: 780px) {
     .header__wrapper {
       height: 5rem; }
-      .header__wrapper .header .mobile-menu {
-        position: absolute;
-        right: 3.5rem;
-        top: 0px;
-        height: 100%;
-        width: 3.5rem;
-        margin-right: 0;
-        border-top: 0;
-        border-bottom: 0;
-        border-color: #ae2f2f; }
-        .header__wrapper .header .mobile-menu:after {
-          padding-top: 2.5rem;
+      .header__wrapper .header {
+        padding: 1rem 1.25rem 0rem 1.25rem; }
+        .header__wrapper .header > a:first-child {
+          height: 4rem; }
+        .header__wrapper .header .mobile-menu {
           position: absolute;
-          background-position: 0.25rem 0.5rem;
-          background-repeat: no-repeat;
-          background-size: 2rem 2.5rem;
-          padding-left: 0.1rem;
-          padding-right: 1rem; }
-      .header__wrapper .header .active {
-        background-color: #ae2f2f; } }
+          right: 3.5rem;
+          top: 0px;
+          height: 100%;
+          width: 3.5rem;
+          margin-right: 0;
+          border-top: 0;
+          border-bottom: 0;
+          border-color: #ae2f2f; }
+          .header__wrapper .header .mobile-menu:after {
+            padding-top: 2.5rem;
+            position: absolute;
+            background-position: 0.25rem 0.5rem;
+            background-repeat: no-repeat;
+            background-size: 2rem 2.5rem;
+            padding-left: 0.1rem;
+            padding-right: 1rem; }
+        .header__wrapper .header .active {
+          background-color: #ae2f2f; } }
 
 .header {
   padding: 1rem 1.25rem;
