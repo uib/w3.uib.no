@@ -41,6 +41,12 @@
     $('#switch_type_button').click(function () {
       if ($(this).is(':checked')) {
         $(this).siblings('label').html($(this).attr('data-toggle-title'));
+        var placeholder = $('form[name=lbform] .search-field')
+          .attr('placeholder');
+        $('form[name=lbform] .search-field').attr('placeholder',
+          $('form[name=lbform] .search-field').attr('data-placeholder'));
+        $('form[name=lbform] .search-field').attr('data-placeholder',
+          placeholder);
         $('form[name=lbform] .results').css('display', 'block');
         $('form[name=lbform] .search-field').keyup();
       } else {

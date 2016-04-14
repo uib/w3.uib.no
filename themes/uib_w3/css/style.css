@@ -3373,7 +3373,8 @@ div.field-item {
           font-weight: normal;
           color: #fff;
           outline: none;
-          text-align: center;
+          text-align: left;
+          padding-left: 30px;
           background-color: #3b3b3b; }
           .block-uib-search .lightbox .search-wrapper .form-type-textfield input :-webkit-autofill {
             background-color: #333333; }

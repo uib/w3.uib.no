@@ -203,6 +203,8 @@ function uib_search_block_view($delta) {
                 'class' => array('search-field'),
                 'name' => 'qq',
                 'autocomplete' => 'off',
+                'placeholder' => t('Search uib.no'),
+                'data-placeholder' => t('Search for person'),
               ),
             ),
             'submit' => array(
