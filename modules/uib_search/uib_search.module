@@ -516,12 +516,13 @@ function uib_search__get_elastic_user_array($account) {
       }
     }
     $output['competence' . $lang] = implode((array)$competence, ', ');
-    $output['link' . $lang] = url('/user/' . $output['uid'],
+    $url = preg_replace('/https?:\/\/w3\.uib\.no\/?/', 'http://www.uib.no/', url('user/' . $output['uid'],
       array(
         'absolute' => TRUE,
         'language' => $language,
       )
-    );
+    ));
+    $output['link' . $lang] = $url;
 
     // Some generic fields
     $output['generic']['title' . $lang] = $output['first_name'] . ' ' . $output['last_name'];
