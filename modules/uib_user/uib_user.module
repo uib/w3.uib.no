@@ -432,10 +432,10 @@ function uib_user_user_view_alter(&$build) {
     $build['field_uib_user_alt_position'][0]['#markup'] = ', ' . $build['field_uib_user_alt_position'][0]['#markup'];
   }
   if (!empty($build['field_uib_user_field']) || !empty($build['selected_publications'])) {
-    if ($profile_user->field_uib_position_category->value() == 'faculty') {
+    if (in_array('faculty', $profile_user->field_uib_position_category->value())) {
       $build['field_uib_user_field']['#title'] = t('Research');
     }
-    elseif ($profile_user->field_uib_position_category->value() == 'staff') {
+    elseif (in_array('staff', $profile_user->field_uib_position_category->value())) {
       $build['field_uib_user_field']['#title'] = t('Work');
     }
     if (!empty($build['selected_publications'])) {
