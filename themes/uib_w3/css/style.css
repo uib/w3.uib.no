@@ -3349,6 +3349,7 @@ div.field-item {
         position: relative; }
     .block-uib-search .lightbox .search-wrapper {
       border-bottom: 2px solid #FFF;
+      padding: 15px 0 0 0;
       display: -ms-flexbox;
       -ms-flex-direction: row;
       -ms-flex-wrap: nowrap;

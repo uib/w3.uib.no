@@ -191,12 +191,6 @@ function uib_search_block_view($delta) {
               ),
             ),
           ),
-          'spacer' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('spacer'),
-            ),
-          ),
           'search' => array(
             '#type' => 'container',
             '#attributes' => array(

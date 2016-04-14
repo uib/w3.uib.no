@@ -49,33 +49,11 @@
       }
       $('.block-uib-search .lightbox .search-field').focus();
     });
-    $('form[name=lbform] .search-field').keyup(function (e) {
-      if (
-        parseInt($('form[name=lbform] .lightbox .spacer').css('height')) > 1
-      ) {
-        if (!$('form[name=lbform] .lightbox .spacer').is(':animated')) {
-          $('form[name=lbform] .lightbox .spacer').animate({
-            height: 15
-          }, 500);
-        }
-      }
-    });
     $(document).keyup(function(e) {
       if (e.which == 27) {
         if($('#uib-search-lightbox-bottom').length==1 &&
           $('.block-uib-search .lightbox').css('display')!='none'){
           uibSearchClose();
-        }
-      }
-    });
-    $('form[name=lbform] .search-field').click(function (e) {
-      if (
-        parseInt($('form[name=lbform] .lightbox .spacer').css('height')) > 1
-      ) {
-        if (!$('form[name=lbform] .lightbox .spacer').is(':animated')) {
-          $('form[name=lbform] .lightbox .spacer').animate({
-            height: 15
-          }, 500);
         }
       }
     });
