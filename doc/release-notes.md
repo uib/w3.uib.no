@@ -1,3 +1,19 @@
+# Release 44 _2016-04-14_
+Vi lanserer en betaversjon av det nye søket på sidene våre. Denne betaversjonen søker bare etter personer.
+
+- Vi lanserer en betaversjon av det nye søket på sidene våre
+- Vi har oppdatert mediemodulen #14977 #14972 #14537
+- Vi har byttet wysiwyg #1531
+- Vi har lagt til mer luft på nyhetene på områdeforsider og gjort små endringer #14928 #14490 #13780
+- Brødsmulestien i ansattkatalogen viser nå riktig sti #14927
+- Ord som ligner på eposter blir ikke lenger automatisk omgjort til eposter #14888
+- Indre marked har blitt stylet #14875
+- Mobilheaderen er forbedret #14497
+- Vi har fjernet unødig luft på filtersidene #14474
+- Evu-siden har blitt forbedret #14364
+- Nyhetsarkiv viser nå lite bilde hvis det finnes #14054
+- Insituttledere vises nå både i vitenskapelig og administrativ ansattkatalog #10604
+
 # Release 43 _2016-03-17_
 
 - Noen av feltene som ikke skulle vise på sidene for EVU-kurs er fjernet #14660
