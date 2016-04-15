@@ -1,0 +1,4 @@
+name = UiB CKEditor config
+description = Custom settings for ckeditor in wysiwyg module
+package = UiB
+core = 7.x
