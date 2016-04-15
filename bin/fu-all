@@ -4,7 +4,9 @@
 # our feature based modules.  This can for instance be useful when
 # upgrading the version of features used.
 
-for mod in modules/*/*.features.inc; do
-    mod=$(basename $(dirname $mod))
-    echo bin/site-drush fu --yes $mod
+for info in modules/*/*.info; do
+    if grep -q features_api $info; then
+	mod=$(basename $(dirname $info))
+	echo bin/site-drush fu --yes $mod
+    fi
 done
