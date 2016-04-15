@@ -10,7 +10,8 @@
 function uib_geography_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'taxonomy_term-uib_geography-field_fs_country_code'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_geography-field_fs_country_code'.
   $field_instances['taxonomy_term-uib_geography-field_fs_country_code'] = array(
     'bundle' => 'uib_geography',
     'default_value' => NULL,
@@ -24,6 +25,17 @@ function uib_geography_field_default_field_instances() {
           'decimal_separator' => '.',
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
           'prefix_suffix' => TRUE,
           'scale' => 0,
           'thousand_separator' => ' ',
@@ -59,7 +71,8 @@ function uib_geography_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_geography-field_uib_geographic_name'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_geography-field_uib_geographic_name'.
   $field_instances['taxonomy_term-uib_geography-field_uib_geographic_name'] = array(
     'bundle' => 'uib_geography',
     'default_value' => NULL,
@@ -72,6 +85,17 @@ function uib_geography_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
         ),
         'type' => 'text_default',
         'weight' => 1,
@@ -129,7 +153,8 @@ function uib_geography_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-uib_geography-field_uib_iso_country'
+  // Exported field_instance:
+  // 'taxonomy_term-uib_geography-field_uib_iso_country'.
   $field_instances['taxonomy_term-uib_geography-field_uib_iso_country'] = array(
     'bundle' => 'uib_geography',
     'default_value' => NULL,
@@ -142,6 +167,17 @@ function uib_geography_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
         ),
         'type' => 'text_default',
         'weight' => 2,

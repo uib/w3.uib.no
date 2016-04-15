@@ -10,7 +10,7 @@
 function uib_field_bases_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_fs_country_code'
+  // Exported field_base: 'field_fs_country_code'.
   $field_bases['field_fs_country_code'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -27,7 +27,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_uib_first_name'
+  // Exported field_base: 'field_uib_first_name'.
   $field_bases['field_uib_first_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -49,7 +49,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_geographic_name'
+  // Exported field_base: 'field_uib_geographic_name'.
   $field_bases['field_uib_geographic_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -71,7 +71,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_iso_country'
+  // Exported field_base: 'field_uib_iso_country'.
   $field_bases['field_uib_iso_country'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -93,7 +93,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_last_name'
+  // Exported field_base: 'field_uib_last_name'.
   $field_bases['field_uib_last_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -115,7 +115,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_position_category'
+  // Exported field_base: 'field_uib_position_category'.
   $field_bases['field_uib_position_category'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -141,7 +141,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_position_code'
+  // Exported field_base: 'field_uib_position_code'.
   $field_bases['field_uib_position_code'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -158,7 +158,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_uib_slug'
+  // Exported field_base: 'field_uib_slug'.
   $field_bases['field_uib_slug'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -180,7 +180,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_sort_name'
+  // Exported field_base: 'field_uib_sort_name'.
   $field_bases['field_uib_sort_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -202,7 +202,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_alt_address'
+  // Exported field_base: 'field_uib_user_alt_address'.
   $field_bases['field_uib_user_alt_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -219,7 +219,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_uib_user_alt_firstname'
+  // Exported field_base: 'field_uib_user_alt_firstname'.
   $field_bases['field_uib_user_alt_firstname'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -241,7 +241,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_alt_lastname'
+  // Exported field_base: 'field_uib_user_alt_lastname'.
   $field_bases['field_uib_user_alt_lastname'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -263,7 +263,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_alt_position'
+  // Exported field_base: 'field_uib_user_alt_position'.
   $field_bases['field_uib_user_alt_position'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -285,7 +285,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_communication'
+  // Exported field_base: 'field_uib_user_communication'.
   $field_bases['field_uib_user_communication'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -306,7 +306,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_competence'
+  // Exported field_base: 'field_uib_user_competence'.
   $field_bases['field_uib_user_competence'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -333,7 +333,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_uib_user_cristin_nr'
+  // Exported field_base: 'field_uib_user_cristin_nr'.
   $field_bases['field_uib_user_cristin_nr'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -350,7 +350,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_uib_user_cristin_place'
+  // Exported field_base: 'field_uib_user_cristin_place'.
   $field_bases['field_uib_user_cristin_place'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -376,7 +376,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_uib_user_cristin_sort'
+  // Exported field_base: 'field_uib_user_cristin_sort'.
   $field_bases['field_uib_user_cristin_sort'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -402,7 +402,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_uib_user_cv'
+  // Exported field_base: 'field_uib_user_cv'.
   $field_bases['field_uib_user_cv'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -428,7 +428,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_uib_user_docs'
+  // Exported field_base: 'field_uib_user_docs'.
   $field_bases['field_uib_user_docs'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -454,7 +454,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_uib_user_domain'
+  // Exported field_base: 'field_uib_user_domain'.
   $field_bases['field_uib_user_domain'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -476,7 +476,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_feed'
+  // Exported field_base: 'field_uib_user_feed'.
   $field_bases['field_uib_user_feed'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -506,7 +506,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_uib_user_field'
+  // Exported field_base: 'field_uib_user_field'.
   $field_bases['field_uib_user_field'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -527,7 +527,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_opt_content'
+  // Exported field_base: 'field_uib_user_opt_content'.
   $field_bases['field_uib_user_opt_content'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -548,7 +548,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_opt_title'
+  // Exported field_base: 'field_uib_user_opt_title'.
   $field_bases['field_uib_user_opt_title'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -570,7 +570,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_ou'
+  // Exported field_base: 'field_uib_user_ou'.
   $field_bases['field_uib_user_ou'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -606,7 +606,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_uib_user_projects'
+  // Exported field_base: 'field_uib_user_projects'.
   $field_bases['field_uib_user_projects'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -627,7 +627,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_publications'
+  // Exported field_base: 'field_uib_user_publications'.
   $field_bases['field_uib_user_publications'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -648,7 +648,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_room'
+  // Exported field_base: 'field_uib_user_room'.
   $field_bases['field_uib_user_room'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -670,7 +670,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_social_media'
+  // Exported field_base: 'field_uib_user_social_media'.
   $field_bases['field_uib_user_social_media'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -692,7 +692,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_uib_user_teaching'
+  // Exported field_base: 'field_uib_user_teaching'.
   $field_bases['field_uib_user_teaching'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -713,7 +713,7 @@ function uib_field_bases_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_uib_user_url'
+  // Exported field_base: 'field_uib_user_url'.
   $field_bases['field_uib_user_url'] = array(
     'active' => 1,
     'cardinality' => 1,
