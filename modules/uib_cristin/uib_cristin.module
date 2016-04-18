@@ -521,7 +521,7 @@ function uib_cristin__get_json($cmd) {
   $res = drupal_http_request($url, array('timeout' => 5,));
 
   $log_message = "GET $url => ";
-  $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
+  $log_message .= $res->code <= 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
   $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
   $severity = 'notice';
 
