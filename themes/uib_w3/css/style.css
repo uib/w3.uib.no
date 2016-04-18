@@ -2992,7 +2992,8 @@ div.field-item {
   .field-name-field-uib-relation .field-name-field-uib-kicker {
     text-align: left;
     position: absolute;
-    top: -1.625rem; }
+    top: -1.625rem;
+    left: 0rem; }
   .field-name-field-uib-relation .node-uib-article,
   .field-name-field-uib-relation .node-uib-testimonial,
   .field-name-field-uib-relation .node-uib-external-content,
