@@ -24,7 +24,7 @@ This section contains usages of terms that are specific for [our site](http://ww
 The website is partitioned into areas that are basically their own sub-sites.
 _Articles_ belong to an area and can be edited by the _content managers_ of the
 area.  Areas have their own menu.  Content belonging to an area is currently presented
-together with the area’s header, sidebar and footer.
+together with the area’s header and footer.
 
 Areas form hierarchies, but don’t inherit stuff from their parent(s).  This
 is used mainly to reflect the organizational structure; for instance to present

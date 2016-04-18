@@ -28,7 +28,7 @@ which make it tempting to conflate these two concepts.  Don't do that.
 
 Articles contains the textual content of the site, and appear in the form of
 news articles, pages, events, and others.  Articles belong to an area and are
-presented using the area’s header, side-bar and footer.  Articles also get URLs
+presented using the area’s header and footer.  Articles also get URLs
 that make them appear as subordinates of an area.
 
 The [details of the content structures](model.html) is of course more complex than this and
