@@ -866,10 +866,7 @@ function uib_study_block_view($delta = '') {
           }
         }
         elseif ($type == 'exchange') {
-          $network = FALSE;
-          if ($data['utvprogramkode'] == 'NORDPLUS' || count($data['sted']) > 2) {
-            $network = TRUE;
-          }
+          $network = uib_study__exchange_is_network($data);
           if (!empty($data['betingelse'])) {
             foreach ($data['betingelse'] as $key => $betingelse) {
               if ($betingelse['personkategori'] == 'STUDENT') {
@@ -1040,14 +1037,10 @@ function uib_study_block_view($delta = '') {
           }
         }
         elseif ($type == 'exchange') {
-          $network = FALSE;
-          if ($data['utvprogramkode'] == 'NORDPLUS' || count($data['sted']) > 2) {
-            $network = TRUE;
-          }
           if (!empty($data['betingelse'])) {
             foreach ($data['betingelse'] as $key => $betingelse) {
               if ($betingelse['personkategori'] == 'STUDENT') {
-                if (!$network) {
+                if (!uib_study__exchange_is_network($data)) {
                   foreach ($betingelse['sted'] as $place) {
                     if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
                       $items[] = uib_study__get_study_facts_markup(t('Country'),uib_geography_get_country($place['landnr'], $language->language));
@@ -1109,7 +1102,7 @@ function uib_study_block_view($delta = '') {
             }
           }
         }
-        if (!$network) {
+        if (!uib_study__exchange_is_network($data)) {
           $items[] = t('On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.');
         }
         $render = array(
