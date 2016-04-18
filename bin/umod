@@ -58,7 +58,7 @@ sub do_list {
 	print "<tbody>\n";
     }
     else {
-	printf "%-17s %3s %3s  %s\n", "NAME", "#D", "#F", "DESCRIPTION";
+	printf "%-19s %3s %3s  %s\n", "NAME", "#D", "#F", "DESCRIPTION";
     }
     for (sort keys %MODULES) {
 	my $count_features = 0;
@@ -75,7 +75,7 @@ sub do_list {
 	    print "  <tr>", (map "<td>$_</td>", @row), "</tr>\n";
 	}
 	else {
-	    printf "%-17s %3d %3d  %s\n", @row;
+	    printf "%-19s %3d %3d  %s\n", @row;
 	}
     }
     if ($opt{html}) {
