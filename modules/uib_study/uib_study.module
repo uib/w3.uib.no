@@ -658,10 +658,10 @@ function uib_study_block_view($delta = '') {
             if ($language->language == 'nb') {
               $external_institution_codes = uib_study__external_inst_code($info_data);
               $reports = uib_study__published_student_reports($study_code, $external_institution_codes);
-              usort($reports, 'uib_study__exc_date_compare');
-              $collapsed = count($reports) > 1 ? TRUE : FALSE;
-              $years = array();
               if (!empty($reports)) {
+                usort($reports, 'uib_study__exc_date_compare');
+                $collapsed = count($reports) > 1 ? TRUE : FALSE;
+                $years = array();
                 foreach ($reports as $key => $report) {
                   $years[$key] = substr($report['date2']['#value'], 0, 4);
                   if (!empty($report['text'])) {
