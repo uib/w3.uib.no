@@ -22,8 +22,15 @@
     $('.searchmenu').click(function (event) {
       event.preventDefault();
       if (parseInt($('.lightbox').css('top')) == 0) {
+        var top = $('.header__wrapper').outerHeight(true);
+        if ($('#admin-menu').css('display') != 'none') {
+          top += $('#admin-menu').outerHeight(true);
+        }
+        if ($('.slicknav_menu').css('display') != 'none') {
+          top += $('.slicknav_menu').outerHeight(true);
+        }
         $('.lightbox').animate({
-          top: 100,
+          top: top,
         }, {
           complete: function() {
             $('#uib-search-lightbox-bottom').css('position', 'relative');
