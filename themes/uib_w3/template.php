@@ -291,6 +291,11 @@ EOD;
         'weight' => -30,
       ));
 
+      $variables['page']['content_top']['field_uib_important_message'] = field_view_field('node', $variables['node'], 'field_uib_important_message', array(
+        'label' => 'hidden',
+        'weight' => -40,
+      ));
+
       // Adding link to rss-newsfeed to header
       $link_attributes = array(
         'rel' => 'alternate',
@@ -725,6 +730,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_files',
       'field_uib_study_category',
       'field_uib_study_image',
+      'field_uib_important_message',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);
