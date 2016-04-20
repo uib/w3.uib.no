@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function( config ) {
-  // config.linkShowAdvancedTab = false;
-  config.removeDialogTabs = 'link:advanced';
+  config.removeDialogTabs = 'link:advanced;table:advanced;tableProperties:advanced';
+  config.contentsCss = 'sites/all/modules/uib/uib_ckeditor_config/ckeditor.css';
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
@@ -14,5 +14,13 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
     targetField['items'][0] = ['<not set>', 'notSet'];
     targetField['items'][1] = ['New window (_blank)', '_blank'];
     targetField['items'][2] = ['Same window (_self)', '_self'];
+  }
+
+  if ( dialogName == 'table' || dialogName == 'tableProperties' ) {
+    var info = dialogDefinition.getContents( 'info' );
+    var toRemove = [ 'txtWidth', 'txtHeight', 'selHeaders', 'txtBorder', 'cmbAlign', 'txtCellSpace', 'txtCellPad', 'txtCaption', 'txtSummary' ];
+    for ( key in toRemove ) {
+      info.remove( toRemove[key] );
+    }
   }
 });

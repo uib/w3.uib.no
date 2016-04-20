@@ -1,0 +1,12 @@
+html {
+  font-family: "myriad-pro", Verdana, sans-serif;
+}
+table {
+  border-collapse: collapse;
+  border: solid 1px #ccc;
+  min-width: 50%;
+}
+td {
+  border: solid 1px #ccc;
+  padding: 0.25rem;
+}
