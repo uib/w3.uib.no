@@ -65,3 +65,21 @@ function uib_webdesk_form_alter(&$form, &$form_state, $form_id) {
     );
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view
+ */
+function uib_webdesk_preprocess_views_view(&$variables) {
+  $language_challenged_views = array('my_content', 'user_areas', 'scheduled_content');
+  if (in_array($variables['view']->name, $language_challenged_views)) {
+    $view = $variables['view'];
+    foreach ($view->result as $key => $item) {
+      if ($item->node_language == 'nb') {
+        $variables['rows'] = str_replace('en/node/' . $item->nid, 'nb/node/' . $item->nid, $variables['rows']);
+      }
+      if ($item->node_language == 'en') {
+        $variables['rows'] = str_replace('nb/node/' . $item->nid, 'en/node/' . $item->nid, $variables['rows']);
+      }
+    }
+  }
+}
