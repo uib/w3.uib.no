@@ -749,7 +749,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           uib_calendar3__get_calendar_card_render_array(
           $variables['field_uib_date']['und'][0]['value'] . 'Z');
       }
-
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
       $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
@@ -777,7 +776,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = 'node__external_content__teaser';
       $variables['content']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_media', array(
         'type' => 'file_rendered',
-        'settings' => array('view_mode' => 'teaser'),
+        'settings' => array('file_view_mode' => 'wide_thumbnail'),
         'label' => 'hidden',
         'weight' => 3,
       ));
