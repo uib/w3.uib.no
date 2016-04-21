@@ -32,6 +32,36 @@ function uib_article_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_uib_published_timestamp'.
+  $field_bases['field_uib_published_timestamp'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_published_timestamp',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'date',
+    'settings' => array(
+      'cache_count' => 4,
+      'cache_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'granularity' => array(
+        'day' => 'day',
+        'hour' => 'hour',
+        'minute' => 'minute',
+        'month' => 'month',
+        'second' => 0,
+        'year' => 'year',
+      ),
+      'timezone_db' => 'UTC',
+      'todate' => '',
+      'tz_handling' => 'site',
+    ),
+    'translatable' => 0,
+    'type' => 'datestamp',
+  );
+
   // Exported field_base: 'field_uib_related_content_label'.
   $field_bases['field_uib_related_content_label'] = array(
     'active' => 1,
