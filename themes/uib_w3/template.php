@@ -811,8 +811,18 @@ function uib_w3_preprocess_node(&$variables, $hook) {
  * Function returning render array for article info
  */
 function __uib_w3__article_info(&$node) {
-  $date_info = '<span class="uib-date-info">' . t('Date') . ': ';
-  $date_info .= date('d.m.Y', $node->created);
+  $date_info = '<span class="uib-date-info">';
+  if ($node->status == 1) {
+    $published = $node->created;
+    $t = field_get_items('node', $node, 'field_uib_published_timestamp');
+    if ($t) {
+      $published = $t[0]['value'];
+    }
+    $date_info .= t('Published') . ': ' . date('d.m.Y', $published);
+  }
+  else {
+    $date_info .= '<span style="color:#cf3c3a;">' . t('Unpublished') . '</span>';
+  }
   $date_info .= ' (' . t('Last updated') . ': ' . date('d.m.Y' , $node->changed) . ')';
   $date_info .= '</span>';
 

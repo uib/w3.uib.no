@@ -158,6 +158,26 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     $form['extra_save'] = $form['actions']['submit'];
     $form['extra_save']['#weight'] = -1;
 
+    // Show published timestamp when status = 1, or it already has a value.
+    if (
+      $form_state['node']->status == 1
+      && !count($form_state['node']->field_uib_published_timestamp)
+    ) {
+      $form['field_uib_published_timestamp']['und'][0]['#default_value']['value'] =
+        $form_state['node']->created;
+    }
+    if (
+      $form_state['node']->status == 1
+      || count($form_state['node']->field_uib_published_timestamp)
+    ) {
+      $form['options']['field_uib_published_timestamp'] = $form['field_uib_published_timestamp'];
+      $form['options']['field_uib_published_timestamp']['#weight'] = 1000;
+      $form['options']['field_uib_published_timestamp']['#group'] = 'additional_settings';
+    }
+
+    // Always hide field_uib_published_timestamp in the default position
+    hide($form['field_uib_published_timestamp']);
+
     // Hiding $form['language']
     hide($form['language']);
     if (strstr($form['#action'], 'uib-article?translation')) {
@@ -494,6 +514,18 @@ function uib_article_node_presave($node) {
         }
       }
     }
+    if (
+      $node->status == 1
+      && !count($node->field_uib_published_timestamp['und'])
+    ) {
+        $node->field_uib_published_timestamp['und'][0]['value'] = time();
+    }
+  }
+  elseif (
+    $node->status == 1
+    && !count($node->field_uib_published_timestamp['und'])
+  ) {
+      $node->field_uib_published_timestamp['und'][0]['value'] = $node->created;
   }
 }
 
