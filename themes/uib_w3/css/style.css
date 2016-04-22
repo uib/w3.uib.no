@@ -1267,7 +1267,7 @@ a {
   .group-article-sidebar .field-name-field-uib-media .content > .field div {
     display: inline;
     float: none; }
-  .group-article-sidebar .field-name-field-uib-media > .field-items > .field-item:last-child {
+  .group-article-sidebar .field-name-field-uib-media > .field-items > .field-item {
     margin-bottom: 1rem; }
 
 .node-uib-article .field-name-field-uib-text ul li {
