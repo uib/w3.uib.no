@@ -8,6 +8,10 @@ function uib_api_menu() {
     'page callback' => 'uib_api__home',
     'access callback' => TRUE,
   );
+  $items["api/areas.json"] = array(
+    'page callback' => 'uib_api__areas_json',
+    'access callback' => TRUE,
+  );
   $items["api/calendar.json"] = array(
     'page callback' => 'uib_api__calendar_json',
     'access callback' => TRUE,
@@ -21,6 +25,60 @@ function uib_api_menu() {
 function uib_api__home() {
   return "<h2>Reservert</h2>";
 }
+
+/**
+ * Return list of all areas
+ */
+function uib_api__areas_json() {
+  $query = new EntityFieldQuery();
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'area')
+    ;
+  $result = $query->execute();
+  $nids = array_keys($result['node']);
+  $nodes = node_load_multiple($nids);
+
+  $data = array();
+
+  foreach ($nodes as $node) {
+    if ($node->nid === $node->tnid) {
+      $data[$node->tnid]['id'] = (int)$node->nid;
+      if ($node->field_uib_sebra_id) {
+        $data[$node->tnid]['sebra_id'] = (int)$node->field_uib_sebra_id['und'][0]['value'];
+      }
+      if ($node->field_uib_ou) {
+        $ou = node_load($node->field_uib_ou['und'][0]['target_id']);
+        $data[$node->tnid]['ou'] = (int)$ou->field_uib_ou_id['und'][0]['value'];
+      }
+      $data[$node->tnid]['type'] = $node->field_uib_area_type['und'][0]['value'];
+      if (!$node->status) {
+        $data[$node->tnid]['unpublished'] = true;
+      }
+      $parents = array();
+      if ($node->field_uib_area_parents) {
+        foreach ($node->field_uib_area_parents['und'] as $v) {
+          $parents[] = (int)$v['target_id'];
+        }
+      }
+      if ($parents) {
+        $data[$node->tnid]['parents'] = $parents;
+      }
+    }
+    $data[$node->tnid]['name'][$node->language] = $node->title;
+  }
+
+  $data = array_filter($data, function ($v) {
+    return array_key_exists('id', $v);
+  });
+  ksort($data);
+  $data = array(
+    "areas" => array_values($data),
+  );
+  drupal_add_http_header('Access-Control-Allow-Origin', '*');
+  return drupal_json_output($data);
+}
+
 
 /**
  * Return selected calendar events as json
