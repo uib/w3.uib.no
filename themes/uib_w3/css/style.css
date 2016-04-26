@@ -3376,6 +3376,8 @@ div.field-item {
       max-width: 72rem;
       margin: 0 auto; }
     .block-uib-search .lightbox .topbar-wrapper {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
       max-width: none;
       margin: 0;
       border-bottom: 1px solid #5c5c5c; }
@@ -3421,6 +3423,7 @@ div.field-item {
     .block-uib-search .lightbox .search-wrapper {
       border-bottom: 2px solid #FFF;
       padding: 15px 0 0 0;
+      margin: 0 1.25rem;
       display: -ms-flexbox;
       -ms-flex-direction: row;
       -ms-flex-wrap: nowrap;
@@ -3430,6 +3433,9 @@ div.field-item {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap; }
+      @media (min-width: 72rem) {
+        .block-uib-search .lightbox .search-wrapper {
+          margin: 0 auto; } }
       .block-uib-search .lightbox .search-wrapper .form-type-textfield {
         -ms-flex: 0 1 80%;
         -webkit-flex-grow: 1;
@@ -3467,11 +3473,18 @@ div.field-item {
       color: #fff; }
     .block-uib-search .lightbox .results {
       display: none;
-      width: 100%;
-      margin-top: 63px; }
+      width: 100%; }
+      @media (min-width: 600px) {
+        .block-uib-search .lightbox .results {
+          margin-top: 63px; } }
       .block-uib-search .lightbox .results .name {
         font-size: 1.375rem;
         font-weight: bold; }
+      .block-uib-search .lightbox .results .rgt, .block-uib-search .lightbox .results .position, .block-uib-search .lightbox .results .ou {
+        display: none; }
+        @media (min-width: 600px) {
+          .block-uib-search .lightbox .results .rgt, .block-uib-search .lightbox .results .position, .block-uib-search .lightbox .results .ou {
+            display: block; } }
       .block-uib-search .lightbox .results .even, .block-uib-search .lightbox .results .odd {
         float: none;
         width: 100%;
@@ -3486,7 +3499,10 @@ div.field-item {
         flex-direction: row;
         flex-wrap: wrap;
         border-bottom: 1px solid #5c5c5c;
-        padding: 19px 0; }
+        padding: 8px 1.25rem; }
+        @media (min-width: 600px) {
+          .block-uib-search .lightbox .results .even, .block-uib-search .lightbox .results .odd {
+            padding: 19px 1.25rem; } }
         .block-uib-search .lightbox .results .even em, .block-uib-search .lightbox .results .odd em {
           background-color: #cf3c3a; }
         .block-uib-search .lightbox .results .even .lft, .block-uib-search .lightbox .results .even .rgt, .block-uib-search .lightbox .results .odd .lft, .block-uib-search .lightbox .results .odd .rgt {
@@ -3557,7 +3573,7 @@ div.field-item {
       background-position: left 10px top 15px;
       background-repeat: no-repeat;
       margin: 0 5px 0 0; }
-      @media (min-width: 780px) {
+      @media (min-width: 600px) {
         .block-uib-search .lightbox .menu-lightbox {
           margin: 0 13px 0 0; } }
     .block-uib-search .lightbox .close-lightbox {
