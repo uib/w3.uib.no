@@ -1937,12 +1937,9 @@ a {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #333333;
-    list-style-type: none; }
+    color: #333333; }
     .field-name-field-uib-fact-box ul li {
-      position: relative;
-      padding-left: 22px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>"); }
 
 #block-uib-area-feed h2,
 #block-uib-user-feed h2 {
@@ -3969,12 +3966,9 @@ nav {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #333333;
-    list-style-type: none; }
+    color: #333333; }
     #block-uib-study-study-contact ul li {
-      position: relative;
-      padding-left: 22px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>"); }
 
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) p, #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) ul {
   font-size: 1.25rem; }
@@ -4054,12 +4048,9 @@ nav {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #333333;
-    list-style-type: none; }
+    color: #333333; }
     #block-uib-study-study-evu ul li {
-      position: relative;
-      padding-left: 22px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>"); }
   #block-uib-study-study-evu .title {
     font-weight: bold; }
   #block-uib-study-study-evu .title,
@@ -4116,12 +4107,9 @@ nav {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #333333;
-    list-style-type: none; }
+    color: #333333; }
     #block-uib-study-study-facts-exchange ul li {
-      position: relative;
-      padding-left: 22px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>"); }
   #block-uib-study-study-facts-exchange ul {
     list-style: none;
     padding: 0; }
@@ -4291,12 +4279,9 @@ nav {
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     line-height: 1.5rem;
-    color: #333333;
-    list-style-type: none; }
+    color: #333333; }
     .uib-study-specialization ul li {
-      position: relative;
-      padding-left: 22px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>") no-repeat left 0.5rem; }
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>"); }
   .uib-study-specialization ul li {
     background: transparent;
     padding: 0 0 0.5rem; }
