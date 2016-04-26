@@ -107,6 +107,9 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         if (empty($node->field_uib_related_persons)) {
           unset($node->field_related_persons_label);
         }
+        if (empty($node->field_uib_relation)) {
+          unset($node->field_uib_related_content_label);
+        }
         $created = $node->created;
         $changed = $node->changed;
         $node_view = node_view($node);
