@@ -194,3 +194,10 @@ function uib_setup_update_7020() {
   module_disable(array('uib_calendar'), FALSE);
   drupal_uninstall_modules(array('uib_calendar', 'calendar'), FALSE);
 }
+
+/**
+ * Enable new module: uib_message
+ */
+function uib_setup_update_7021() {
+  module_enable(array('uib_message'));
+}

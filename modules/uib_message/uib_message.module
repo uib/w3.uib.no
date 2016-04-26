@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UIB Message feature.
+ */
+
+include_once 'uib_message.features.inc';
