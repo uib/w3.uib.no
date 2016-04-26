@@ -3037,26 +3037,48 @@ div.field-item {
   margin: 12px 0; }
 
 /* styled in _article-info.scss */
-.field-name-field-uib-relation {
+.node-type-uib-content-list section.group-related-content {
+  padding-bottom: 0;
+  display: -ms-flexbox;
+  -ms-flex-direction: row;
+  -ms-flex-wrap: wrap;
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  .node-type-uib-content-list section.group-related-content > div {
+    order: 1;
+    width: 100%;
+    min-width: 100%;
+    -ms-flex: 0 1 100%;
+    flex: 0 1 100%; }
+    .node-type-uib-content-list section.group-related-content > div.field-name-field-uib-related-content-label {
+      order: 0; }
+  .node-type-uib-content-list section.group-related-content > .field-name-field-uib-relation {
+    padding: 0; }
+
+.field-name-field-uib-relation, .node-type-uib-content-list section.group-related-content {
   clear: both;
   padding: 3rem 0; }
-  .field-name-field-uib-relation a, .field-name-field-uib-relation a:hover, .field-name-field-uib-relation a:active {
+  .field-name-field-uib-relation a, .field-name-field-uib-relation a:hover, .field-name-field-uib-relation a:active, .node-type-uib-content-list section.group-related-content a, .node-type-uib-content-list section.group-related-content a:hover, .node-type-uib-content-list section.group-related-content a:active {
     color: #333;
     text-decoration: none; }
-  .field-name-field-uib-relation > .field-items > .field-item {
+  .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
     position: relative;
     margin: 2.25rem 0.5% 0; }
-    .field-name-field-uib-relation > .field-items > .field-item a {
+    .field-name-field-uib-relation > .field-items > .field-item a, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a {
       text-decoration: none; }
-  .field-name-field-uib-relation .field-name-field-uib-main-media {
+  .field-name-field-uib-relation .field-name-field-uib-main-media, .node-type-uib-content-list section.group-related-content .field-name-field-uib-main-media {
     margin-bottom: 0; }
-  .field-name-field-uib-relation .field-label {
+  .field-name-field-uib-relation .field-label, .field-name-field-uib-relation .field-name-field-uib-related-content-label, .node-type-uib-content-list section.group-related-content .field-label, .node-type-uib-content-list section.group-related-content .field-name-field-uib-related-content-label {
     text-transform: uppercase;
     font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     font-size: 1.625rem;
     margin-bottom: 0.75rem;
     font-weight: normal; }
-  .field-name-field-uib-relation .field-name-field-uib-kicker {
+  .field-name-field-uib-relation .field-name-field-uib-kicker, .node-type-uib-content-list section.group-related-content .field-name-field-uib-kicker {
     text-align: left;
     position: absolute;
     top: -1.625rem;
@@ -3064,7 +3086,10 @@ div.field-item {
   .field-name-field-uib-relation .node-uib-article,
   .field-name-field-uib-relation .node-uib-testimonial,
   .field-name-field-uib-relation .node-uib-external-content,
-  .field-name-field-uib-relation .node-uib-study {
+  .field-name-field-uib-relation .node-uib-study, .node-type-uib-content-list section.group-related-content .node-uib-article,
+  .node-type-uib-content-list section.group-related-content .node-uib-testimonial,
+  .node-type-uib-content-list section.group-related-content .node-uib-external-content,
+  .node-type-uib-content-list section.group-related-content .node-uib-study {
     display: -ms-flexbox;
     -ms-flex-direction: row;
     -ms-flex-pack: start;
@@ -3077,14 +3102,20 @@ div.field-item {
     .field-name-field-uib-relation .node-uib-article h2,
     .field-name-field-uib-relation .node-uib-testimonial h2,
     .field-name-field-uib-relation .node-uib-external-content h2,
-    .field-name-field-uib-relation .node-uib-study h2 {
+    .field-name-field-uib-relation .node-uib-study h2, .node-type-uib-content-list section.group-related-content .node-uib-article h2,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial h2,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content h2,
+    .node-type-uib-content-list section.group-related-content .node-uib-study h2 {
       font-size: 1.125rem;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       margin: 0; }
     .field-name-field-uib-relation .node-uib-article .element-invisible,
     .field-name-field-uib-relation .node-uib-testimonial .element-invisible,
     .field-name-field-uib-relation .node-uib-external-content .element-invisible,
-    .field-name-field-uib-relation .node-uib-study .element-invisible {
+    .field-name-field-uib-relation .node-uib-study .element-invisible, .node-type-uib-content-list section.group-related-content .node-uib-article .element-invisible,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .element-invisible,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .element-invisible,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .element-invisible {
       display: none; }
     .field-name-field-uib-relation .node-uib-article .field-name-field-uib-main-media,
     .field-name-field-uib-relation .node-uib-article .field-name-field-uib-media,
@@ -3101,7 +3132,22 @@ div.field-item {
     .field-name-field-uib-relation .node-uib-study .field-name-field-uib-main-media,
     .field-name-field-uib-relation .node-uib-study .field-name-field-uib-media,
     .field-name-field-uib-relation .node-uib-study .field-name-field-uib-primary-media,
-    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-image {
+    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-image, .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-main-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-primary-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-study-image,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-main-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-primary-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-study-image,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-main-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-primary-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-study-image,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-main-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-primary-media,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-study-image {
       -ms-flex: 0 0 9.75rem;
       -webkit-flex: 0 0 9.75rem;
       flex: 0 0 9.75rem; }
@@ -3120,21 +3166,42 @@ div.field-item {
       .field-name-field-uib-relation .node-uib-study .field-name-field-uib-main-media img,
       .field-name-field-uib-relation .node-uib-study .field-name-field-uib-media img,
       .field-name-field-uib-relation .node-uib-study .field-name-field-uib-primary-media img,
-      .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-image img {
+      .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-image img, .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-main-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-primary-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-study-image img,
+      .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-main-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-primary-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-study-image img,
+      .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-main-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-primary-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-study-image img,
+      .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-main-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-primary-media img,
+      .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-study-image img {
         height: 6.5rem;
         width: auto;
         max-width: 9.125rem; }
     .field-name-field-uib-relation .node-uib-article .relation_content,
     .field-name-field-uib-relation .node-uib-testimonial .relation_content,
     .field-name-field-uib-relation .node-uib-external-content .relation_content,
-    .field-name-field-uib-relation .node-uib-study .relation_content {
+    .field-name-field-uib-relation .node-uib-study .relation_content, .node-type-uib-content-list section.group-related-content .node-uib-article .relation_content,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .relation_content,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .relation_content,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .relation_content {
       -ms-flex: 1 1 auto;
       -webkit-flex: 1 1 auto;
       flex: 1 1 auto; }
       .field-name-field-uib-relation .node-uib-article .relation_content:first-child,
       .field-name-field-uib-relation .node-uib-testimonial .relation_content:first-child,
       .field-name-field-uib-relation .node-uib-external-content .relation_content:first-child,
-      .field-name-field-uib-relation .node-uib-study .relation_content:first-child {
+      .field-name-field-uib-relation .node-uib-study .relation_content:first-child, .node-type-uib-content-list section.group-related-content .node-uib-article .relation_content:first-child,
+      .node-type-uib-content-list section.group-related-content .node-uib-testimonial .relation_content:first-child,
+      .node-type-uib-content-list section.group-related-content .node-uib-external-content .relation_content:first-child,
+      .node-type-uib-content-list section.group-related-content .node-uib-study .relation_content:first-child {
         padding-left: 0rem; }
     .field-name-field-uib-relation .node-uib-article .field-name-field-uib-lead,
     .field-name-field-uib-relation .node-uib-article .field-name-field-uib-teaser,
@@ -3143,29 +3210,36 @@ div.field-item {
     .field-name-field-uib-relation .node-uib-external-content .field-name-field-uib-lead,
     .field-name-field-uib-relation .node-uib-external-content .field-name-field-uib-teaser,
     .field-name-field-uib-relation .node-uib-study .field-name-field-uib-lead,
-    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-teaser {
+    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-teaser, .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-lead,
+    .node-type-uib-content-list section.group-related-content .node-uib-article .field-name-field-uib-teaser,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-lead,
+    .node-type-uib-content-list section.group-related-content .node-uib-testimonial .field-name-field-uib-teaser,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-lead,
+    .node-type-uib-content-list section.group-related-content .node-uib-external-content .field-name-field-uib-teaser,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-lead,
+    .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-teaser {
       font-size: 1rem;
       margin-bottom: 0; }
-  .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type {
+  .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type, .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-study-type {
     margin-bottom: 0; }
-    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type .field-item {
+    .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type .field-item, .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-study-type .field-item {
       text-transform: none;
       background: transparent;
       color: #333;
       padding: 0;
       margin: 0;
       float: left; }
-      .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type .field-item::after {
+      .field-name-field-uib-relation .node-uib-study .field-name-field-uib-study-type .field-item::after, .node-type-uib-content-list section.group-related-content .node-uib-study .field-name-field-uib-study-type .field-item::after {
         content: ":\00a0"; }
   @media (min-width: 600px) {
-    .field-name-field-uib-relation > .field-items {
+    .field-name-field-uib-relation > .field-items, .node-type-uib-content-list section.group-related-content > .field-items {
       display: -ms-flexbox;
       -ms-flex-wrap: wrap;
       display: -webkit-flex;
       -webkit-flex-wrap: wrap;
       display: flex;
       flex-wrap: wrap; }
-      .field-name-field-uib-relation > .field-items > .field-item {
+      .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
         width: 49%; } }
 
 .field-name-field-uib-related-persons .field-label {
