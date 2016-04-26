@@ -2051,7 +2051,8 @@ a {
         -webkit-justify-content: flex-start;
         flex-wrap: wrap;
         justify-content: flex-start;
-        padding: 0; }
+        padding: 0;
+        margin: 0; }
       .uib-find-studies .menu__item {
         -ms-flex: 0 auto;
         -webkit-flex: 0 auto;
@@ -2091,7 +2092,8 @@ a {
           background-repeat: no-repeat;
           background-color: transparent; }
       .uib-find-studies a {
-        border: 0; } }
+        border: 0;
+        padding-top: 0.625rem; } }
 
 .form-type-select p {
   margin: 0;
