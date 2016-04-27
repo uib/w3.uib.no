@@ -3242,6 +3242,15 @@ div.field-item {
       .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
         width: 49%; } }
 
+.node-type-uib-content-list section.group-related-persons {
+  clear: both; }
+  .node-type-uib-content-list section.group-related-persons .field-name-field-related-persons-label .field-item {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    font-size: 1.625rem;
+    margin-bottom: .75rem;
+    font-weight: normal; }
+
 .field-name-field-uib-related-persons .field-label {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   text-transform: uppercase;
