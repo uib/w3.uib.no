@@ -87,7 +87,7 @@ function uib_search_block_view($delta) {
   $retval['subject']=t('Search');
   switch ($delta) {
   case 'global-searchform':
-    drupal_add_js(drupal_get_path('module', 'uib_search') . '/uib_search.js');
+    drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
     $action=$GLOBALS['base_path'] . $language->language . "/search";
     $retval['content']=array(
       '#type' => 'container',
