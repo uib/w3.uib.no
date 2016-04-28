@@ -1,4 +1,26 @@
+# Release 45 _2016-04-28_
+
+I denne releasen har vi fikset en god del forskjellige feil rundt omkring på systemet. Vi har jobbet litt videre med søket, og lagt til en ny funksjon som lister ut dokumenter og bilder på webdesken.
+
+- Søkeikonet ble ovalt i firefox, dette har vi fikset #15150
+- Kalenderknappen var ikke mulig å trykke på når det bare var en artikkel på en områdeforside, dette er nå ordnet #15142
+- Vi har fikset litt på innstillinger i wysiwygen #14976 #14974
+- Tilknyttet innhold og tilknyttede personer vises nå riktig i innholdslister #15116 #14739
+- Bildeteksten på artikler har nå fått mellomrom når det er flere bilder #15108
+- Redigerknappen i webdesken sender nå brukere til riktig redigeringsversjon av artikkelen/området #15082
+- Søket har blitt bedre på mobil #15073
+- Søkefeltet inneholder nå en standardtekst for å gjøre det enda tydeligere hva feltet gjør #14985
+- Bullet points vises nå også i IE #15071
+- Knappene har blitt standarisert #14963
+- Diverse søkesaker #14763 #15078
+- Forsideknappene har blitt fikset litt på #14357
+- Stikktittel på eksternt innhold hadde feil plassering i tilknyttet innhold #14688
+- Bilder i slideshow på områdeforsider har nå samme format #13518
+- Vi har lagt til en funksjon som gjør det mulig å få se alle filer (bilder og dokumenter) en har lastet opp på uib.no #12065
+- Viktig melding har fått riktig styling #13224
+
 # Release 44 _2016-04-14_
+
 Vi lanserer en betaversjon av det nye søket på sidene våre. Denne betaversjonen søker bare etter personer.
 
 - Vi lanserer en betaversjon av det nye søket på sidene våre
