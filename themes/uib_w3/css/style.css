@@ -2129,7 +2129,7 @@ a {
   .field-name-field-uib-important-message a {
     color: #fff;
     text-decoration: underline; }
-  .field-name-field-uib-important-message p, .field-name-field-uib-important-message span {
+  .field-name-field-uib-important-message * {
     color: #fff; }
   .field-name-field-uib-important-message > div > div:before {
     content: '';
