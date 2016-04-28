@@ -2044,9 +2044,9 @@ a {
       max-width: 36rem; }
       .uib-find-studies .menu {
         -ms-flex-pack: start;
-        -webkit-flex-wrap: wrap;
+        -webkit-flex-wrap: nowrap;
         -webkit-justify-content: flex-start;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-start;
         padding: 0;
         margin: 0; }
