@@ -118,9 +118,9 @@ function uib_area_field_group_info() {
     'label' => 'Contact',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_phone',
-      1 => 'field_uib_visit_address',
-      2 => 'field_uib_custom_email',
+      0 => 'field_uib_visit_address',
+      1 => 'field_uib_custom_email',
+      2 => 'field_uib_phone',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -282,8 +282,8 @@ function uib_area_field_group_info() {
     'label' => 'Office information',
     'weight' => '1',
     'children' => array(
-      0 => 'field_uib_custom_hours',
-      1 => 'field_uib_hours',
+      0 => 'field_uib_hours',
+      1 => 'field_uib_hours_custom',
       2 => 'group_contact_info',
     ),
     'format_type' => 'div',

@@ -3939,7 +3939,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -4011,7 +4011,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -4041,7 +4041,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -4051,23 +4051,8 @@ function uib_area_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 3,
       ),
     ),
@@ -4113,7 +4098,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -4279,7 +4264,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'geofield_map_map',
-        'weight' => 4,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'node',
@@ -4407,6 +4392,108 @@ function uib_area_field_default_field_instances() {
       'settings' => array(),
       'type' => 'office_hours',
       'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-uib_ou-field_uib_hours_custom'.
+  $field_instances['node-uib_ou-field_uib_hours_custom'] = array(
+    'bundle' => 'uib_ou',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Custom opening hours for holidays etc',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_hours_custom',
+    'label' => 'Custom hours',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 0,
+          'full_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 15,
     ),
   );
 
@@ -4563,7 +4650,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -4575,7 +4662,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'node',
@@ -4810,7 +4897,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'node',
@@ -4999,7 +5086,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'node',
@@ -5421,6 +5508,7 @@ function uib_area_field_default_field_instances() {
   t('Contacts');
   t('Content Manager');
   t('Custom hours');
+  t('Custom opening hours for holidays etc');
   t('Date');
   t('Deadline for event registration.');
   t('Email');
