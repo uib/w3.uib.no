@@ -17,7 +17,7 @@ projects[drupal][patch][] = https://drupal.org/files/issues/drupal-require_subdo
 
 ; themes
 projects[zen][version] = 5.5
-projects[adminimal_theme][version] = 1.23
+projects[adminimal_theme][version] = 1.24
 
 ; modules
 projects[addressfield][version] = 1.2
