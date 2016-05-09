@@ -9,20 +9,12 @@ case $(pwd) in
        ;;
 esac
 
-REL=44
+REL=46
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
     exit 1
 fi
 
-set -x
-date +%FT%T
 
-# Make sure the test case user (Jan Erik Askildsen) is classified correctly
-bin/site-drush uib-sebra-user secja --verbose
-
-bin/site-drush uib-search-drop-index
-bin/site-drush uib-search-index --verbose
-
-date +%FT%T
+bin/site-drush php-script populate-hours-custom.php
