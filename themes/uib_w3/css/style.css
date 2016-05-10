@@ -4655,7 +4655,7 @@ nav {
       content: "";
       display: table;
       clear: both; }
-  #block-uib-area-area-offices .field-name-field-uib-custom-hours p {
+  #block-uib-area-area-offices .field-name-field-uib-hours-custom p {
     font-size: 1rem; }
   #block-uib-area-area-offices .field-name-field-uib-geolocation a {
     font-size: 1rem; }
@@ -4700,7 +4700,7 @@ nav {
     margin-top: 10px;
     margin-bottom: 10px; }
   #block-uib-area-area-offices .field-name-field-uib-hours,
-  #block-uib-area-area-offices .field-name-field-uib-custom-hours,
+  #block-uib-area-area-offices .field-name-field-uib-hours-custom,
   #block-uib-area-area-offices .group-contact-info {
     padding-bottom: 15px; }
   #block-uib-area-area-offices .uib-tabs-nav-mobile {
@@ -4743,7 +4743,7 @@ nav {
     #block-uib-area-area-offices .field-name-field-uib-hours {
       -webkit-box-ordinal-group: 1;
       order: 1; }
-    #block-uib-area-area-offices .field-name-field-uib-custom-hours {
+    #block-uib-area-area-offices .field-name-field-uib-hours-custom {
       -webkit-box-ordinal-group: 2;
       order: 2; }
     #block-uib-area-area-offices .group-contact-info {
@@ -4762,7 +4762,7 @@ nav {
       margin-right: -100%;
       margin-left: 55.55556%;
       clear: none; }
-    #block-uib-area-area-offices .field-name-field-uib-custom-hours:after {
+    #block-uib-area-area-offices .field-name-field-uib-hours-custom:after {
       content: "";
       display: table;
       clear: both; }
@@ -4800,7 +4800,7 @@ nav {
       margin-left: 0;
       margin-right: 0;
       clear: none; }
-    #block-uib-area-area-offices .offices .field-name-field-uib-custom-hours {
+    #block-uib-area-area-offices .offices .field-name-field-uib-hours-custom {
       width: 100%;
       float: right;
       margin-left: 0;
