@@ -564,6 +564,30 @@ function uib_sebra__add_content_manager($content_manager_areas, $uid) {
 }
 
 /**
+ * Determine if the given user belongs to a test account.
+ *
+ * Rule is that if either the first or last name starts or
+ * ends with the word "test" or "testkonto" then it is.
+ */
+
+function _uib_sebra__is_testkonto($u) {
+  foreach (array($u->first_name, $u->last_name) as $name) {
+    $pos = stripos($name, 'test');
+    if ($pos === false)
+      continue;
+    if ($pos == 0) // startswith "test"
+      return 1;
+    $pos = strripos($name, 'test');
+    if ($pos == strlen($name) - 4) // endswith "test"
+      return 1;
+    $pos = strripos($name, 'testkonto');
+    if ($pos == strlen($name) - 9) // endswith "testkonto"
+      return 1;
+  }
+  return 0;
+}
+
+/**
  * Synchronise the given user with Sebra.  If the user did not already exist in
  * the Drupal database it will be created.  If it exists, this function will
  * figure out if any attributes need to be changed and - if so - update the user.
@@ -613,18 +637,21 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
     $phones['und'][]['value'] = $u->phone_mobile;
   }
 
+  $status = _uib_sebra__is_testkonto($u) ? 0 : 1;
+
   if ($account) {
     $edit = array();
     if ($account->mail != $u->email)
       $edit['mail'] = $u->email;
 
-    if ($account->status != 1) {
-      $edit['status'] = 1;
+    if ($account->status != $status) {
+      $edit['status'] = $status;
+      $un = $status == 1 ? 'un' : '';
       if (!$dry_run) {
-        uibx_log("$account->name unblocked");
+        uibx_log("$account->name ${un}blocked");
       }
       else {
-        uibx_log("$account->name would be unblocked");
+        uibx_log("$account->name would be ${un}blocked");
       }
     }
     $u->first_name = trim($u->first_name);
@@ -719,7 +746,7 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
     $account->is_new = 1;
     $account->name = $u->id;
     $account->mail = $u->email;
-    $account->status = 1; // ACTIVE
+    $account->status = $status;
     $account->field_uib_user_domain['und'][0]['value'] = 'uib';
     $account->field_uib_first_name['und'][0]['value'] = $u->first_name;
     $account->field_uib_last_name['und'][0]['value'] = $u->last_name;
