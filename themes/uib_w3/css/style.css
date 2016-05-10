@@ -4636,6 +4636,11 @@ nav {
   #block-uib-area-area-offices .ui-widget-content {
     border: none 0;
     background: transparent none; }
+    #block-uib-area-area-offices .ui-widget-content a {
+      color: #00769e;
+      text-decoration: none; }
+      #block-uib-area-area-offices .ui-widget-content a:hover {
+        text-decoration: underline; }
   #block-uib-area-area-offices .ui-widget-header {
     border: none 0; }
   #block-uib-area-area-offices .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
