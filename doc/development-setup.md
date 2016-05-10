@@ -252,10 +252,9 @@ and tasks setup for this project.
 
 The tasks supplied by this configuration is:
 
-1. `watch`: watches for changes to .scss files
-2. `compass`: compiles css files using bundler
-3. `shell`: runs a drush clear cache css-js
-4. `browsersync`: refreshes all connected browsers
+1. `watch`: watches for changes to style.css in your style guide
+2. `copy`: copies the updated style.css into your themes css folder
+3. `browsersync`: refreshes all connected browsers when style.css in your theme is updated
 
 To use these grunt tasks in your workflow you need to install node.js with npm
 on your development platform. On a mac node.js is available through homebrew.
@@ -270,11 +269,20 @@ Then in the root folder of your w3 app run:
     $ npm install
 
 This will install all dependecies for the grunt tasks in Gruntfile.js. Then to
-run the grunt task you have to:
+run the grunt tasks you have to:
 
-    $ grunt --proxy=<your_local_w3_url>
+1. copy the uib-w3-grunt-config.json.sample to uib-w3-grunt-config.json and update the settings.
+    - proxy should be the hostname of your local drupal instance without http://
+    - sg should be the path to your instance of the styleguide with trailing /
+2. enable the uib_browsersync module
 
-&lt;your\_local\_w3\_url> should be substituted with whatever url you use to access
-your local instans of w3 in the browser. The grunt script will give you urls to
-access the site local and external. You will *not* be abel to log in through
-this site (for now, anyway).
+
+    $ bin/site-drush en uib_browsersync --yes
+
+3. run the grunt tasks
+
+
+    $ grunt
+
+The grunt script will give you urls to access the site local and external. You will *not* be
+abel to log in through this site (for now, anyway).
