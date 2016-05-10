@@ -5,3 +5,122 @@
  */
 
 include_once 'uib_message.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function uib_menu() {
+  $items["api/msg"] = array(
+    'page callback' => 'uib_message__msg',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Return message objects as JSON based on parameters
+ *
+ * Input parameters could be
+ * 1: NodeID
+ * 2: Area
+ * 3: Username
+ * 4: Language
+ * 5: Markup
+ * 6: Limit
+ * 7: Offset
+ */
+function uib_message__msg() {
+  $msgid = null;
+  $area = 0;
+  $tag = 0;
+  $username = "";
+  $language = "nb";
+  $markup = "JSON";
+  $offset = 0;
+  $limit = 10;
+  $qp = drupal_get_query_parameters();
+
+  $node = null;
+
+  if (!empty($qp)) {
+    if (isset($qp['msgid']) && $qp['msgid']) {
+      $msgid = $qp['msgid'];
+    }
+    if (isset($qp['area']) && $qp['area']) {
+      $area = $qp['area'];
+    }
+    if (isset($qp['username']) && $qp['username']) {
+      $username = $qp['username'];
+    }
+    if (isset($qp['language']) && $qp['language']) {
+      $language = $qp['language'];
+    }
+    if (isset($qp['markup']) && $qp['markup']) {
+      $markup = $qp['markup'];
+    }
+    if (isset($qp['limit']) && $qp['limit']) {
+      $limit = $qp['limit'];
+    }
+    if (isset($qp['offset']) && $qp['offset']) {
+      $offset = $qp['offset'];
+    }
+    if (isset($qp['tag']) && $qp['tag']) {
+      $tag = $qp['tag'];
+    }
+  }
+
+  $data = array();
+  if (isset($msgid)) {
+    $data['msg'][] = uib_api__msg_node_to_array($msgid, $language, $area, $tag);
+  } else if (isset($qp['area'])) {
+    if (!is_numeric($qp['area'])) {
+      $area = db_query('SELECT nid FROM node WHERE type LIKE :type AND LOWER(title) LIKE :title',
+        array(':type'=>'area',':title' => strtolower($qp['area'])))->fetchField();
+    }
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type','node');
+    $query->entityCondition('bundle','uib_message');
+    $query->fieldCondition('field_uib_message_area','target_id',$area);
+    $query->range($offset, $limit);
+    $result = $query->execute();
+    $nids = array_keys($result['node']);
+    $nodes = node_load_multiple($nids);
+    foreach ($nodes as $nid => $node) {
+      $row = uib_api__msg_node_to_array($node->nid, $language, $qp['area'], $tag);
+      if ($row) {
+        $data['msg'][] = $row;
+      }
+    }
+  }
+  drupal_add_http_header('Access-Control-Allow-Origin', '*');
+  return drupal_json_output($data);
+}
+
+function uib_api__msg_node_to_array($nid, $language, $area, $tag) {
+  $node = node_load($nid);
+  $row = array('id' => (int)$node->nid);
+  if ($language == 'en' && empty($node->field_uib_message_text_en['und'][0]['value'])) return;
+  if ($language == 'nb' && empty($node->field_uib_message_text_nb['und'][0]['value'])) $language = 'en';
+
+  if ($area) {
+    if (is_numeric($area)) {
+      $area_node = node_load($node->field_uib_message_area['und'][0]['target_id']);
+      $row['area'] = $area_node->title;
+    } else {
+      $row['area'] = $area;
+    }
+  }
+  if ($language == 'nb') {
+    $row['link'] = $node->field_uib_message_link_nb['und'][0]['url'];
+    $row['text'] = $node->field_uib_message_text_nb['und'][0]['value'];
+  }
+  if ($language == 'en') {
+    $row['link'] = $node->field_uib_message_link_en['und'][0]['url'];
+    $row['text'] = $node->field_uib_message_text_en['und'][0]['value'];
+  }
+  if ($tag) {
+    $term = taxonomy_term_load($node->field_uib_message_tag['und'][0]['target_id']);
+    $row['tag'] = $term->name;
+  }
+  return $row;
+}
