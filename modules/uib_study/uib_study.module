@@ -19,10 +19,6 @@ function uib_study_block_info() {
       'info' => t('Study contact content from FS'),
       'status' => TRUE,
     ),
-    'study_facts' => array(
-      'info' => t('Study facts from FS'),
-      'status' => TRUE,
-    ),
     'study_facts_2' => array(
       'info' => t('New block for study facts from FS'),
       'status' => TRUE,
@@ -765,207 +761,6 @@ function uib_study_block_view($delta = '') {
         }
       }
       break;
-    case 'study_facts':
-      $node = menu_get_object();
-      if ($node && isset($node->field_uib_study_type)) {
-        $type = $node->field_uib_study_type['und'][0]['value'];
-        $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
-        global $language;
-        if (empty($data))
-          break;
-        $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
-        $rows = array();
-        if ($type == 'course') {
-          $category = $node->field_uib_study_category['und'][0]['value'];
-          if ($data['studieniva'] == 'FU') {
-            $study_code = $data['emneid']['emnekode'];
-            $rows[] = array(t('Course code'), $study_code);
-            $tmp = uib_study__studieniva($data['studieniva']);
-            $rows[] = array(t('Study level'), check_plain($tmp));
-          }
-          else {
-            $study_code = $data['emneid']['emnekode'];
-            $rows[] = array(t('Course code'), $study_code);
-            $rows[] = array(t('ECTS credits'), $data['studiepoeng']);
-            $rows[] = array(t('Teaching semester'), t($data['undervisningssemester:en']));
-            $rows[] = array(t('Number of semesters'), $data['antall-undsemester']);
-            $tmp = uib_study__extract_study_info($data_2, 'EB_SPRAK');
-            $rows[] = array(t('Teaching language'), uib_study__text_markup($tmp, $is_course, TRUE));
-            $tmp = uib_study__studieniva($data['studieniva']);
-            if (!empty($tmp)) {
-              $rows[] = array(t('Study level'), check_plain($tmp));
-            }
-            $resources = array(
-              '#theme' => 'item_list',
-              '#items' => array(),
-            );
-            $semester = uib_study__get_current_semester();
-            $tmp = uib_study__get_resource_links('schedule', $study_code);
-            $resources['#items'][] = render($tmp);
-            $tmp = uib_study__get_resource_links('reading_list', $study_code);
-            $resources['#items'][] = render($tmp);
-            // for evu courses, add link to course description
-            if ($category == 'evu') {
-              if (uib_study__course_description_exists($study_code)) {
-                $tmp = uib_study__get_description_link($study_code);
-                $resources['#items'][] = render($tmp);
-              }
-            }
-            $rows[] = array(t('Resources'), render($resources));
-          }
-          if ($category == 'evu') {
-            $not_for_evu = array(
-              'Undervisingssemester',
-              'Teaching semester',
-              'Antall semester',
-              'Number of semesters',
-              'Grad',
-              'Study level',
-              );
-            foreach ($rows as $key => $row) {
-              if (in_array($row[0], $not_for_evu)) {
-                unset($rows[$key]);
-              }
-            }
-            // Add a caption for evu
-            $caption = t('Continuing education course');
-          }
-        }
-        elseif ($type == 'program' or $type == 'specialization') {
-          $rows[] = array(t('Study programme code'), $data['studieprogramkode']);
-          $rows[] = array(t('ECTS credits'), $data['studiepoeng']);
-          // calculate duration of programme, based on 60 credits per year
-          $duration = number_format(round($data['studiepoeng'] / (60 * $data['heltidsprosent'] / 100), 1) , 1, ',', ' ');
-          if (substr($duration, -2) == ',0')      // Simplify with even years
-            $duration = substr($duration, 0, -2);
-          $rows[] = array(t('Duration'), $duration . ' ' . t('years'));
-          $tmp = uib_study__extract_study_info($data_2, 'B_RE_PLASS');
-          $rows[] = array(t('Number of seats'), uib_study__text_markup($tmp, $is_course, TRUE));
-          if (empty($data['gradnavn'])) {
-            $rows[] = array(t('Degree'));
-          }
-          else {
-            if (isset($data['gradnavn:en'])) {
-              $degree = $language->language == 'en' ? $data['gradnavn:en'] : $data['gradnavn'];
-            }
-            else {
-              $degree = $data['gradnavn'];
-            }
-            $rows[] = array(t('Degree'), $degree);
-          }
-          $tmp = uib_study__extract_study_info($data_2, 'SP_SPRAK');
-          if (strlen($tmp['#text']) <= 30) {
-            $rows[] = array(t('Teaching language'), $tmp['#text']);
-          }
-          $tmp = uib_study__extract_study_info($data_2, 'SP_START');
-          $rows[] = array(t('Study start'), $tmp['#text']);
-          if (uib_study__has_study_plan($data_2)) {
-            $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
-            $study_plan_url = l(t('Study plan'), (drupal_get_path_alias($study_path) . '/plan'));
-            $rows[] = array(t('Resources'), $study_plan_url);
-          }
-        }
-        elseif ($type == 'exchange') {
-          $network = uib_study__exchange_is_network($data);
-          if (!empty($data['betingelse'])) {
-            foreach ($data['betingelse'] as $key => $betingelse) {
-              if ($betingelse['personkategori'] == 'STUDENT') {
-                if (!$network) {
-                  foreach ($betingelse['sted'] as $place) {
-                    if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
-                      $rows[] = array(
-                        'data' => array(
-                          t('Country'),
-                          uib_geography_get_country($place['landnr'], $language->language),
-                          ),
-                        'class' => array('study-place'),
-                      );
-                      if (!empty($data['restinfo']['bynavn']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
-                        // Note: it is not clear what language the town name is in
-                        // Note: there seems to be only a single town name available
-                        $rows[] = array(t('Town'), check_plain($data['restinfo']['bynavn']));
-                      }
-                      if (!empty($place['url'])) {
-                        $rows[] = array(t('Web site'), l($place['url'], $place['url']));
-                      }
-                      if (!empty($place['antall_ut'])) {
-                        $rows[] = array(t('Number of exchange places'), check_plain($place['antall_ut']));
-                      }
-                      elseif (!empty($betingelse['antall_ut'])) {
-                        $rows[] = array(t('Number of exchange places'), check_plain($betingelse['antall_ut']));
-                      }
-                    }
-                  }
-                }
-
-                $belongs_to = uib_study__area($node, $language->language);
-                if ($belongs_to) {
-                  $rows[] = array(t('Belongs to'), $belongs_to);
-                }
-
-                if (!empty($data['studienivaintervallnavn'])) {
-                  $study_level = str_replace('-', '&ndash;', check_plain($data['studienivaintervallnavn']));
-                  $rows[] = array(t('Study level'), $study_level);
-                }
-
-                $rows[] = array(t('Exchange programme'), check_plain(drupal_ucfirst(drupal_strtolower($data['utvprogramkode']))));
-                if (!empty($data['dato-til'])) {
-                  // The FS date is in ISO 8601 format
-                  $rows[] = array(t('Valid to'), format_date(strtotime($data['dato-til'])));
-                }
-                if (!empty($data['restinfo']['varighet']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
-                  $exchange_duration = check_plain($data['restinfo']['varighet'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
-                  $rows[] = array(t('Exchange duration'), $exchange_duration);
-                }
-
-                $rows[] = array(t('How do I apply?'), l(t('Instruction on Søknadsweb'), 'utdanning/49395/søknadsweb-instruksjonar'));
-                $rows[] = array(t('Submit your application here'), l(t('Søknadsweb'), 'https://soknadsweb.uib.no/soknadsweb/login.seam?inst=uib'));
-                if (!$network) {
-                  $fs_study_type_nr = t('Not available');
-                  if (!empty($data['restinfo']['studietypenr'])) {
-                    $fs_study_type_nr = check_plain($data['restinfo']['studietypenr']);
-                  }
-                  $rows[] = array(t('Application code') . '*', $fs_study_type_nr);
-                }
-
-
-
-                // Table footnote
-                if (!$network) {
-                  $rows[] = array(
-                    'data' => array(array(
-                      'data' => '* ' . t('On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.'),
-                      'colspan' => 2,
-                      )),
-                    'class' => array('study-table-footnote'),
-                  );
-                }
-              }
-            }
-          }
-        }
-
-        if ($type != 'exchange') {
-          $belongs_to = uib_study__area($node, $language->language);
-          if ($belongs_to) {
-            $rows[] = array(t('Belongs to'), $belongs_to);
-          }
-          foreach ($rows as $i => $row) {
-            if (empty($row[1])) $rows[$i] = array();
-          }
-        }
-
-        $render = array(
-          '#theme' => 'table',
-          '#rows' => $rows,
-        );
-        if (!empty($caption)) {
-          $render['#caption'] = $caption;
-        }
-        $block['title'] = t('Study facts');
-        $block['content']['fspres'][] = $render;
-      }
-      break;
 
     case 'study_facts_2':
       $node = menu_get_object();
@@ -998,7 +793,7 @@ function uib_study_block_view($delta = '') {
             );
             $schedule = uib_study__get_resource_links('schedule', $study_code);
             $resources['#items'][] = render($schedule);
-            $reading_list = uib_study__get_resource_links('reading_list', $study_code);
+            $reading_list = uib_study__get_resource_links('reading_list', $data);
             $resources['#items'][] = render($reading_list);
             if ($category == 'evu') {
               if (uib_study__course_description_exists($study_code)) {
@@ -1616,28 +1411,36 @@ function uib_study__get_current_semester_long() {
   return $semester . ' ' . substr($tmp, 0, 4);
 }
 
-function uib_study__get_resource_links($type, $study_code) {
-  $current = uib_study__get_current_semester();
-  $previous = substr($current, -1) == 'v' ? substr($current,0,4) - 1 . 'h' : substr($current,0,4) . 'v';
-  $next = substr($current, -1) == 'v' ? substr($current,0,4) . 'h' : substr($current,0,4) + 1 . 'v';
+function uib_study__get_resource_links($type, $data) {
+  list ($previous, $current, $next) = uib_study__get_adjacent_semesters();
   if ($type == 'schedule') {
-    $previous_semester = uib_study__get_schedule_link($study_code, $previous, array('previous-semester'));
-    $current_semester = uib_study__get_schedule_link($study_code, $current, array('current', 'previous-exists', 'next-exists', 'variants-exist'));
-    $next_semester = uib_study__get_schedule_link($study_code, $next, array('next-semester'));
+    $previous_semester = uib_study__get_schedule_link($data, $previous, array('previous-semester'));
+    $current_semester = uib_study__get_schedule_link($data, $current, array('current', 'previous-exists', 'next-exists', 'variants-exist'));
+    $next_semester = uib_study__get_schedule_link($data, $next, array('next-semester'));
   }
   else {
-    $previous_semester = uib_study__get_reading_list_link($study_code, $previous, array('previous-semester'));
-    $current_semester = uib_study__get_reading_list_link($study_code, $current, array('current', 'previous-exists', 'next-exists', 'variants-exist'));
-    $next_semester = uib_study__get_reading_list_link($study_code, $next, array('next-semester'));
+    global $language;
+    $lang = $language->language == 'nb' ? 'no' : 'en';
+    if (isset($data['reading-list-url:' . $lang . ':' . $previous])) {
+      $previous_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $previous], array('previous-semester'));
+    }
+    if (isset($data['reading-list-url:' . $lang . ':' . $current])) {
+      $current_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $current], array('current', 'previous-exists', 'next-exists', 'variants-exist'));
+    }
+    if (isset($data['reading-list-url:' . $lang . ':' . $next])) {
+      $next_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $next], array('next-semester'));
+    }
   }
-  list ($prev, $cur, $next) = uib_study__get_adjacent_semesters();
-  if (isset($_GET['sem']) && $_GET['sem'] == $prev) {
+  if (isset($_GET['sem']) && $_GET['sem'] == $previous) {
+    if (empty($previous_semester)) return;
     $renderedSemester = $previous_semester;
   }
   elseif (isset($_GET['sem']) && $_GET['sem'] == $next) {
+    if (empty($next_semester)) return;
     $renderedSemester = $next_semester;
   }
   else {
+    if (empty($current_semester)) return;
     $renderedSemester = $current_semester;
   }
   return render($renderedSemester);
@@ -1658,13 +1461,11 @@ function uib_study__get_schedule_link($study_code, $semester, $classes) {
   return $schedule;
 }
 
-function uib_study__get_reading_list_link($study_code, $semester, $classes) {
-  global $language;
-  $locale = ($language->language == 'nb' ? '' : 'en_US');
+function uib_study__get_reading_list_link($path, $classes) {
   $reading_list = array(
     '#theme' => 'link',
     '#text' => t('Reading list'),
-    '#path' => 'https://miside.uib.no/fs-cron/pensum?emnekode='. $study_code . '&periode=' . $semester . '&locale=' . $locale . '&simple=1',
+    '#path' => $path,
     '#options' => array(
       'attributes' => array('class' => $classes),
       'html' => TRUE,

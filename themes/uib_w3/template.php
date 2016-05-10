@@ -628,7 +628,6 @@ EOD;
     'uib_area_area_parents',
     'uib_area_colophon_logos',
     'uib_study_study_related',
-    'uib_study_study_facts',
     'uib_study_study_facts_2',
     'uib_study_study_contact',
     'uib_study_study_plan',
