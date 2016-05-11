@@ -478,15 +478,13 @@ function uib_sebra__sync_users($limit, $no_block = FALSE) {
   foreach ($result as $user) {
     if (in_array($user->name, $users)) {
       if ($user->status == 0) {
-        $account = user_load($user->uid);
-        user_save($account, array(
-          'status' => 1, // ACTIVE
-        ));
-        uibx_log("$account->name unblocked");
+        $blocked_count++;
       }
-      $active_count++;
-      if (in_array($user->name, $add_staff)) {
-        $extras_count++;
+      else {
+        $active_count++;
+        if (in_array($user->name, $add_staff)) {
+          $extras_count++;
+        }
       }
     }
     elseif ($user->status != 0) {
