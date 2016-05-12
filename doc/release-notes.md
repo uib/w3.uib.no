@@ -1,3 +1,16 @@
+# Release 46 _2016-05-12_
+
+Det er mange fridager i mai og andre ting som skjer, men vi har da fått gjort litt:
+
+- Hodet til artiklene viser nå "Publisert dato" som redaktørende kan overstyre #13689
+- Lenkene til litteraturlistene på emnene er nå styrt fra LMS-systemet og kan nå lenke til [Canvas](https://mitt.uib.no/) #15197
+- Redigering av spesielle åpningstider for UB-sidene virker bedre nå #15182
+- Unngå at diverse testkonti får egne personsider #15120
+- Styling på UB-sidene #15185
+- Forberedelser for den nye meldingstjenesten vi jobber med #15101
+- Diverse moduloppdateringer #15225, #15179, #15178, #15178
+
+
 # Release 45 _2016-04-28_
 
 I denne releasen har vi fikset en god del forskjellige feil rundt omkring på systemet. Vi har jobbet litt videre med søket, og lagt til en ny funksjon som lister ut dokumenter og bilder på webdesken.
