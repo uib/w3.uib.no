@@ -568,8 +568,10 @@ function uib_study_block_view($delta = '') {
         $node = entity_metadata_wrapper('node', $node);
         $data = uib_study__fspres_get_node_json($node->getIdentifier(), 'render.json', TRUE);
         if (empty($data)) {
+          if (is_null($data)) $msg = t('Information about this study isn\'t currently available. Please try again later!');
+          else $msg = t('Information about this study is not available in English');
           $block['content'] = array(
-            '#markup' => '<div class="fs-error">' . t('Information about this study isn\'t currently available. Please try again later!') . '</div>',
+            '#markup' => '<div class="fs-error">' . $msg . '</div>',
           );
           break;
         }
