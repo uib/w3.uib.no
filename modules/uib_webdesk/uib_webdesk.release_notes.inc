@@ -30,8 +30,8 @@ function uib_webdesk__release_notes_page() {
   }
 
   drupal_add_css('
-    li { list-style: disc; }
-    h2 em { font-size: 70%; font-style: normal; font-weight: normal; float: right; }
+    .page-webdesk-release-notes h2 { margin-top: 2.5em; margin-bottom: 1.5em; }
+    h2 em { font-size: 60%; font-style: normal; color: #cf3c3a; font-weight: normal; display: block; margin-top: -3em; }
   ', array('type' => 'inline', 'group' => CSS_THEME));
 
   return $page;
