@@ -170,26 +170,24 @@ function uib_area_block_view($delta='') {
           ),
         ),
       );
-      if (!empty($place->field_uib_geolocation) || ($area && $area->field_uib_area_type['und'][0]['value'] == 'frontpage')) {
-        if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage') {
-          $nid = $language->language == 'en' ? 79263 : 79254;
-          $mapurl = drupal_get_path_alias('node/' . $nid);
-        }
-        else {
-          $map = $language->language == 'en' ? '/map' : '/kart';
-          $mapurl = drupal_get_path_alias('node/' . $area->nid) . $map;
-        }
-        $block['content']['visit']['campus_map'] = array(
-          '#theme' => 'link',
-          '#text' => t('View campus map'),
-          '#path' => $mapurl,
-          '#options' => array(
-            'attributes' => array(),
-            'html' => TRUE,
-          ),
-        );
+      if (empty($place->field_uib_geolocation)) {
+        $nid = $language->language == 'en' ? 79263 : 79254;
+        $mapurl = drupal_get_path_alias('node/' . $nid);
       }
-    break;
+      else {
+        $map = $language->language == 'en' ? '/map' : '/kart';
+        $mapurl = drupal_get_path_alias('node/' . $area->nid) . $map;
+      }
+      $block['content']['visit']['campus_map'] = array(
+        '#theme' => 'link',
+        '#text' => t('View campus map'),
+        '#path' => $mapurl,
+        '#options' => array(
+          'attributes' => array(),
+          'html' => TRUE,
+        ),
+      );
+      break;
     case 'colophon':
       $block['subject'] = NULL;
       $block['content'] = array(
