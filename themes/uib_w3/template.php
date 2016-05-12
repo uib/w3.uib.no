@@ -96,6 +96,13 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
   $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
+  if ($current_area) {
+    $variables['page']['footer']['social_media'] = field_view_field('node', $current_area, 'field_uib_social_media', array(
+      'type' => 'socialmedia_formatter',
+      'settings' => array('link' => TRUE),
+      'weight' => '20',
+    ));
+  }
   drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 
   $affected_suggestions = array('page__node__edit', 'page__node__translate', 'page__node__menu', 'page__node__revisions');
@@ -365,11 +372,6 @@ EOD;
       }
       $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
       $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
-      $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
-        'type' => 'socialmedia_formatter',
-        'settings' => array('link' => TRUE),
-        'weight' => '20',
-      ));
 
       switch ($variables['node']->field_uib_area_type['und'][0]['value']) {
         case 'newspage':
