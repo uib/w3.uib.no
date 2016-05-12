@@ -33,9 +33,14 @@
             should: [
               { match_phrase_prefix: {} },
               { match_phrase_prefix: {} },
+              { match_phrase_prefix: {} },
+              { match_phrase_prefix: {} },
+              { match_phrase_prefix: {} },
               { match: {} },
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
+              { match: {} },
+              { match: {} },
+              { match: {} },
+              { match: {} },
             ],
           },
         },
@@ -44,15 +49,27 @@
       };
 
       // Matching title, mail, ou and position
-      data.query.bool.should[0].match_phrase_prefix["generic.title_" + lang] =
-        query;
-      data.query.bool.should[1].match_phrase_prefix.mail = query;
-      data.query.bool.should[2].match["generic.title_" + lang] = query;
-      data.query.bool.should[3].match_phrase_prefix["ou_" + lang] = query;
-      data.query.bool.should[4].match_phrase_prefix["position_" + lang] = query;
+      data.query.bool.should[0].match_phrase_prefix.first_name
+        = { query: query, boost: 3};
+      data.query.bool.should[1].match_phrase_prefix.last_name
+        = { query: query, boost: 3};
+      data.query.bool.should[2].match_phrase_prefix.mail = query;
+      data.query.bool.should[3].match_phrase_prefix["ou_" + lang ] = query;
+      data.query.bool.should[4].match_phrase_prefix["position_" + lang]
+        = { query: query, boost: 2};
+      data.query.bool.should[5].match.first_name
+        = { query: query, boost: 4};
+      data.query.bool.should[6].match.last_name
+        = { query: query, boost: 4};
+      data.query.bool.should[7].match.mail = { query: query, boost: 2};
+      data.query.bool.should[8].match["ou_" + lang] = { query: query, boost: 2};
+      data.query.bool.should[9].match["position_" + lang]
+        = { query: query, boost: 3};
+
 
       // Highlighting matches
-      data.highlight.fields['generic.title_' + lang] = {};
+      data.highlight.fields.first_name = {};
+      data.highlight.fields.last_name = {};
       data.highlight.fields['ou_' + lang] = {};
       data.highlight.fields['position_' + lang] = {};
       data.highlight.fields.mail = {};
@@ -78,10 +95,15 @@
       var lang = $.uib_search.lang;
       var user_url = $.getVal(v._source, 'link_' + lang);
 
-      var name = $.getVal(v.highlight, 'generic.title_' + lang) ?
-        $.getVal(v.highlight, 'generic.title_' + lang) :
-        $.getVal(v._source.generic, 'title_' + lang);
-      name = $('<a></a>').attr('href', user_url).html(name);
+      var first_name = $.getVal(v.highlight, 'first_name') ?
+        $.getVal(v.highlight, 'first_name') :
+        $.getVal(v._source, 'first_name');
+      var last_name = $.getVal(v.highlight, 'last_name') ?
+        $.getVal(v.highlight, 'last_name') :
+        $.getVal(v._source, 'last_name');
+
+      var name = $('<a></a>').attr('href', user_url).html(first_name + ' '
+        + last_name);
 
       var mail = $.getVal(v._source, 'mail');
       var display_mail = $.getVal(v.highlight, 'mail') ?
