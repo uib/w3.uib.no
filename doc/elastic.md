@@ -71,6 +71,7 @@ The current document structure, as json, of indexed users
       slug,
       ou_en,
       position_en,
+      alt_position_en,
       competence_en,
       link_en,
       ou_nb,

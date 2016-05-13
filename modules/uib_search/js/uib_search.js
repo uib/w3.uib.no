@@ -36,6 +36,8 @@
               { match_phrase_prefix: {} },
               { match_phrase_prefix: {} },
               { match_phrase_prefix: {} },
+              { match_phrase_prefix: {} },
+              { match: {} },
               { match: {} },
               { match: {} },
               { match: {} },
@@ -57,15 +59,18 @@
       data.query.bool.should[3].match_phrase_prefix["ou_" + lang ] = query;
       data.query.bool.should[4].match_phrase_prefix["position_" + lang]
         = { query: query, boost: 2};
-      data.query.bool.should[5].match.first_name
+      data.query.bool.should[5].match_phrase_prefix["alt_position_" + lang]
+        = {query: query, boost: 2};
+      data.query.bool.should[6].match.first_name
         = { query: query, boost: 4};
-      data.query.bool.should[6].match.last_name
+      data.query.bool.should[7].match.last_name
         = { query: query, boost: 4};
-      data.query.bool.should[7].match.mail = { query: query, boost: 2};
-      data.query.bool.should[8].match["ou_" + lang] = { query: query, boost: 2};
-      data.query.bool.should[9].match["position_" + lang]
+      data.query.bool.should[8].match.mail = { query: query, boost: 2};
+      data.query.bool.should[9].match["ou_" + lang] = { query: query, boost: 2};
+      data.query.bool.should[10].match["position_" + lang]
         = { query: query, boost: 3};
-
+      data.query.bool.should[11].match["alt_position_" + lang]
+        = {query: query, boost: 3};
 
       // Highlighting matches
       data.highlight.fields.first_name = {};
@@ -73,6 +78,7 @@
       data.highlight.fields['ou_' + lang] = {};
       data.highlight.fields['position_' + lang] = {};
       data.highlight.fields.mail = {};
+      data.highlight.fields['alt_position_' + lang] = {};
       return data;
   };
   // Function to create search result output
@@ -114,6 +120,10 @@
         $.getVal(v.highlight, 'position_' + lang) :
         $.getVal(v._source, 'position_' + lang);
 
+      var alt_position = $.getVal(v.highlight, 'alt_position_' + lang) ?
+        $.getVal(v.highlight, 'alt_position_' + lang) :
+        $.getVal(v._source, 'alt_position_' + lang);
+
       var ou = $.getVal(v.highlight, 'ou_' + lang) ?
         $.getVal(v.highlight, 'ou_' + lang) :
         $.getVal(v._source, 'ou_' + lang);
@@ -128,7 +138,7 @@
         .append(
           $('<div><div>').addClass('position')
           .html(
-            position
+            position + (alt_position ? ', ' + alt_position : '')
           )
         )
         .append(
