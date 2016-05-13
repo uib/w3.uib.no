@@ -43,6 +43,8 @@
               { match: {} },
               { match: {} },
               { match: {} },
+              { match_phrase_prefix: {} },
+              { match: {} },
             ],
           },
         },
@@ -70,6 +72,10 @@
       data.query.bool.should[10].match["position_" + lang]
         = { query: query, boost: 3};
       data.query.bool.should[11].match["alt_position_" + lang]
+        = {query: query, boost: 3};
+      data.query.bool.should[12].match_phrase_prefix["competence_" + lang]
+        = {query: query, boost: 2};
+      data.query.bool.should[13].match["competence_" + lang]
         = {query: query, boost: 3};
 
       // Highlighting matches

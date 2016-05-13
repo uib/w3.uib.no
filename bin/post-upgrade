@@ -16,5 +16,4 @@ if git tag | grep -q R$REL; then
     exit 1
 fi
 
-
 bin/site-drush uib-search-index
