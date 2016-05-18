@@ -746,6 +746,18 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
       $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
+      if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
+        $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => 'wide_thumbnail'),
+          'label' => 'hidden',
+          'weight' => 3,
+        ));
+        $variables['content']['field_uib_main_media'] = $uib_media;
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
+        unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
+      }
       if (count($variables['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
       }
