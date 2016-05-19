@@ -126,8 +126,72 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     ));
   }
 
+  $automatic_pages = array(
+    'page__node__persons',
+    'page__node__persons__faculty',
+    'page__node__persons__staff',
+    'page__node__courses',
+    'page__node__study_programmes',
+    'page__node__bachelor_programmes',
+    'page__node__master_programmes',
+    'page__node__one_year_programmes',
+    'page__node__research_groups',
+    'page__node__research_schools',
+    'page__node__disciplines',
+    'page__node__map',
+    'page__node__news_archive',
+  );
+  $suggestions = array_intersect($automatic_pages, $variables['theme_hook_suggestions']);
   switch (true) {
-
+    case count($suggestions) > 0:
+      if (in_array('page__node__persons', $suggestions)) {
+        if (in_array('page__node__persons__faculty', $suggestions)) {
+          $title_prefix = t('Faculty at');
+        }
+        elseif (in_array('page__node__persons__staff', $suggestions)) {
+          $title_prefix = t('Administrative and technical staff at');
+        }
+        else {
+          $title_prefix = t('Staff at');
+        }
+      }
+      if (in_array('page__node__courses', $suggestions)) {
+        $title_prefix = t('Courses at');
+      }
+      if (in_array('page__node__study_programmes', $suggestions)) {
+        $title_prefix = t('Study programmes at');
+      }
+      if (in_array('page__node__bachelor_programmes', $suggestions)) {
+        $title_prefix = t('Bachelor programmes at');
+      }
+      if (in_array('page__node__master_programmes', $suggestions)) {
+        $title_prefix = t('Master programmes at');
+      }
+      if (in_array('page__node__one_year_programmes', $suggestions)) {
+        $title_prefix = t('One year programmes at');
+      }
+      if (in_array('page__node__research_groups', $suggestions)) {
+        $title_prefix = t('Research groups at');
+      }
+      if (in_array('page__node__research_schools', $suggestions)) {
+        $title_prefix = t('Research schools at');
+      }
+      if (in_array('page__node__disciplines', $suggestions)) {
+        $title_prefix = t('Disciplines at');
+      }
+      if (in_array('page__node__map', $suggestions)) {
+        $title_prefix = t('Map for');
+      }
+      if (in_array('page__node__news_archive', $suggestions)) {
+        $title_prefix = t('News archive for');
+      }
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $title_prefix . ' ' . $current_area->title,
+        '#weight' => -45,
+      );
+      break;
     case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
