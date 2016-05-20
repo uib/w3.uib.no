@@ -882,6 +882,16 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     if ($variables['type'] == 'uib_study' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__uib_study__short_teaser';
     }
+    if ($variables['type'] == 'uib_content_list' && $variables['view_mode'] == 'short_teaser') {
+      $image = array(
+        'path' => drupal_get_path('theme', 'uib_w3') . '/images/contentlist-icon.png',
+        'alt' => t('Content list'),
+      );
+      $variables['content']['field_uib_main_media'][0]['#markup'] = theme('image', $image);
+      $variables['content']['field_uib_main_media']['#prefix'] = '<div class="field-name-field-uib-media">';
+      $variables['content']['field_uib_main_media']['#suffix'] = '</div>';
+      $variables['theme_hook_suggestions'][] = 'node__content_list__short_teaser';
+    }
   }
 }
 
