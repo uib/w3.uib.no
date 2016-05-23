@@ -2648,6 +2648,9 @@ a {
       .field-name-field-uib-profiled-message > .field-items h2 a {
         color: #333333;
         text-decoration: none; }
+        .field-name-field-uib-profiled-article > .field-items h2 a:hover,
+        .field-name-field-uib-profiled-message > .field-items h2 a:hover {
+          text-decoration: underline; }
     .field-name-field-uib-profiled-article > .field-items .field-name-field-uib-teaser,
     .field-name-field-uib-profiled-article > .field-items .field-name-field-uib-lead,
     .field-name-field-uib-profiled-message > .field-items .field-name-field-uib-teaser,
