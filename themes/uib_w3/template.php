@@ -237,10 +237,10 @@ EOD;
       );
     break;
     case isset($variables['node']) && $variables['node']->type == 'uib_article':
-        drupal_add_library('system' , 'ui.tabs');
-        // set menu to appear as tabs
-        $jq = uib_w3__tabsScript();
-        drupal_add_js($jq, 'inline');
+      drupal_add_library('system' , 'ui.tabs');
+      // set menu to appear as tabs
+      $jq = uib_w3__tabsScript();
+      drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
         'label' => 'hidden',
         'weight' => -50,
@@ -348,6 +348,10 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
+      drupal_add_library('system' , 'ui.tabs');
+      // set menu to appear as tabs
+      $jq = uib_w3__tabsScript();
+      drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
       if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
         $view_mode = 'full_width_banner';
@@ -580,6 +584,10 @@ EOD;
       ));
       break;
     case (!isset($variables['node']) && $variables['theme_hook_suggestions'][0] == 'page__user' && !in_array('page__user__edit', $variables['theme_hook_suggestions'])):
+      drupal_add_library('system' , 'ui.tabs');
+      // set menu to appear as tabs
+      $jq = uib_w3__tabsScript();
+      drupal_add_js($jq, 'inline');
       $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
       $user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
       $variables['page']['content_top']['vcard_and_login'] = array(
@@ -1044,18 +1052,18 @@ jQuery( document ).ready( function($){
   // Loading jquery ui.tabs
   $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs(
     {
-      select: function(event, ui){
+      beforeActivate: function(event, ui){
         if(history.pushState) {
-          history.pushState(null, null, ui.tab.hash);
+          history.pushState(null, null, ui.newPanel.selector);
         }
         else {
-          window.location.hash = ui.tab.hash;
+          window.location.hash = ui.newPanel.selector;
         }
       }
   });
   hash = location.hash;
   location.hash='';
-  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('select', hash);
+  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('option', 'active', hash);
   if(history.pushState && hash) {
     setTimeout(function(){
       history.pushState(null, null, hash);
