@@ -3117,6 +3117,26 @@ div.field-item {
   .field-name-field-uib-relation a, .field-name-field-uib-relation a:hover, .field-name-field-uib-relation a:active, .node-type-uib-content-list section.group-related-content a, .node-type-uib-content-list section.group-related-content a:hover, .node-type-uib-content-list section.group-related-content a:active {
     color: #333;
     text-decoration: none; }
+  .field-name-field-uib-relation a > :first-child, .node-type-uib-content-list section.group-related-content a > :first-child {
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -moz-transition-duration: 0.35s;
+    -o-transition-duration: 0.35s;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -moz-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    -moz-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s; }
+  .field-name-field-uib-relation a:hover > :first-child, .node-type-uib-content-list section.group-related-content a:hover > :first-child {
+    background: #f5f5f5;
+    border-left: solid 0.375rem #ae2f2f; }
   .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
     position: relative;
     margin: 2.25rem 0.5% 0; }
