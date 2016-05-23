@@ -6211,7 +6211,9 @@ nav {
   margin: 0; }
   .page-node-news-archive .content-top-wrapper .content-top {
     padding: 0;
-    margin: 0; }
+    margin: 0 auto; }
+    .page-node-news-archive .content-top-wrapper .content-top h1 {
+      margin: 3.125rem 0 1.25rem; }
 .page-node-news-archive .content-main-wrapper #block-views-recent-news-block-date-selector {
   float: none;
   background-color: #fff;
