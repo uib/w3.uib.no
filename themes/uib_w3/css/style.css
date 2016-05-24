@@ -1935,13 +1935,19 @@ a {
       position: relative;
       bottom: -1rem;
       overflow: hidden; }
+  .field-name-field-uib-fact-box p + h3 {
+    margin-top: 2rem; }
   .field-name-field-uib-fact-box h4 {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #cf3c3a; }
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  .field-name-field-uib-fact-box h4 + ul,
+  .field-name-field-uib-fact-box h4 + p {
+    margin-top: .5rem; }
   .field-name-field-uib-fact-box p {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
@@ -1959,13 +1965,6 @@ a {
     .field-name-field-uib-fact-box ul li {
       list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>");
       margin-bottom: .75rem; }
-  .field-name-field-uib-fact-box p + h3 {
-    margin-top: 2rem; }
-  .field-name-field-uib-fact-box h4 {
-    line-height: 1.4rem; }
-  .field-name-field-uib-fact-box h4 + ul,
-  .field-name-field-uib-fact-box h4 + p {
-    margin-top: .5rem; }
 
 #block-uib-area-feed h2,
 #block-uib-user-feed h2 {
@@ -4145,13 +4144,19 @@ nav {
       position: relative;
       bottom: -1rem;
       overflow: hidden; }
+  #block-uib-study-study-contact p + h2 {
+    margin-top: 2rem; }
   #block-uib-study-study-contact h3 {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #cf3c3a; }
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  #block-uib-study-study-contact h3 + ul,
+  #block-uib-study-study-contact h3 + p {
+    margin-top: .5rem; }
   #block-uib-study-study-contact p {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
@@ -4228,13 +4233,19 @@ nav {
       position: relative;
       bottom: -1rem;
       overflow: hidden; }
+  #block-uib-study-study-evu p + h2 {
+    margin-top: 2rem; }
   #block-uib-study-study-evu .semester {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #cf3c3a; }
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  #block-uib-study-study-evu .semester + ul,
+  #block-uib-study-study-evu .semester + p {
+    margin-top: .5rem; }
   #block-uib-study-study-evu p {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
@@ -4288,13 +4299,19 @@ nav {
       position: relative;
       bottom: -1rem;
       overflow: hidden; }
+  #block-uib-study-study-facts-exchange p + h2 {
+    margin-top: 2rem; }
   #block-uib-study-study-facts-exchange .study-facts__label {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #cf3c3a; }
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  #block-uib-study-study-facts-exchange .study-facts__label + ul,
+  #block-uib-study-study-facts-exchange .study-facts__label + p {
+    margin-top: .5rem; }
   #block-uib-study-study-facts-exchange p {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
@@ -4461,13 +4478,19 @@ nav {
       position: relative;
       bottom: -1rem;
       overflow: hidden; }
+  .uib-study-specialization p + h3 {
+    margin-top: 2rem; }
   .uib-study-specialization h4 {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #cf3c3a; }
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  .uib-study-specialization h4 + ul,
+  .uib-study-specialization h4 + p {
+    margin-top: .5rem; }
   .uib-study-specialization p {
     margin: 1.5rem 10% 1.5rem 12%;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
