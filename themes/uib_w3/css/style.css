@@ -5265,7 +5265,7 @@ nav {
 .header__wrapper {
   background: #cf3c3a;
   position: relative;
-  z-index: 100;
+  z-index: 11;
   min-height: 5rem; }
   @media only screen and (max-width: 780px) {
     .header__wrapper {
@@ -5289,7 +5289,7 @@ nav {
             position: absolute;
             background-position: 0.25rem 0.5rem;
             background-repeat: no-repeat;
-            background-size: 2rem 2rem;
+            background-size: 2rem 2.5rem;
             padding-left: 0.1rem;
             padding-right: 1rem; }
         .header__wrapper .header .active {
