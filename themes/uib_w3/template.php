@@ -1062,14 +1062,16 @@ jQuery( document ).ready( function($){
       }
   });
   hash = location.hash;
-  location.hash='';
+  if (navigator.userAgent.search('MSIE') != -1 && hash.length > 0) {
+    location.hash='';
+  }
   $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('option', 'active', hash);
-  if(history.pushState && hash) {
+  if(history.pushState && hash.length > 0) {
     setTimeout(function(){
       history.pushState(null, null, hash);
     }, 1);
   }
-  else if(hash) {
+  else if(hash.length > 0) {
     window.location.hash = hash;
   }
   window.scrollTo(0, 0);
