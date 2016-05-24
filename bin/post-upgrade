@@ -17,3 +17,4 @@ if git tag | grep -q R$REL; then
 fi
 
 bin/site-drush uib-search-index
+bin/site-drush php-script delete-field-uib-custom-hours.php
