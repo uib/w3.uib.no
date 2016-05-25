@@ -404,25 +404,21 @@ EOD;
       ));
       $nid = $variables['node']->nid;
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'phdpresspage') {
-        $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 5);
+        $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 51);
       }
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
-        $variables['page']['content_bottom']['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 0);
-        $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 5);
-        $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 10);
+        $variables['page']['content']['system_main']['nodes'][$nid]['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 50);
+        $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 50);
+        $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 100);
         $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
-          'weight' => 30,
+          'weight' => 300,
           'type' => 'entityreference_entity_view',
           'settings' => array('view_mode' => 'teaser'),
           'label' => 'hidden',
         ));
-        if (isset($variables['page']['content_bottom']['uib_area_exhibitions']['uib_calendar3_exhibitions3']) && isset($variables['page']['content_bottom']['uib_area_newspage_recent_news']['views_recent_news-block'])) {
-          $variables['page']['content_bottom']['uib_area_exhibitions']['#prefix'] = '<div class="news-and-exhibitions">';
-          $variables['page']['content_bottom']['uib_area_newspage_recent_news']['#suffix'] = '</div>';
-        }
         $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
-          'weight' => 10,
+          'weight' => 100,
         ));
       }
       /**
@@ -436,16 +432,21 @@ EOD;
         $markup .= $view->preview('page_3', array( $variables['node']->nid));
         $variables['page']['footer_top']['field_uib_front_staff']['#markup']
           = "<div class=\"staff-view\">" . $markup . "</div>";
-        $variables['page']['footer_top']['field_uib_front_staff']['#weight'] = 120;
+        $variables['page']['footer_top']['field_uib_front_staff']['#weight'] = 1200;
       }
-      $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',20);
-      $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 15);
+      $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',200);
+      $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 150);
+      $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
+        'type' => 'socialmedia_formatter',
+        'settings' => array('link' => TRUE),
+        'weight' => '200',
+      ));
 
       switch ($variables['node']->field_uib_area_type['und'][0]['value']) {
         case 'newspage':
           $variables['page']['content_top']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
             'settings' => array('view_mode' => 'teaser'),
-            'weight' => 4,
+            'weight' => 40,
             'type' => 'entityreference_entity_view',
             'settings' => array('view_mode' => 'teaser'),
             'label' => 'hidden',
@@ -463,7 +464,7 @@ EOD;
             $variables['page']['content_top']['find_studies'] = array(
               '#type' => 'html_tag',
               '#value' => render($find_studies),
-              '#weight' => 20,
+              '#weight' => 200,
               '#attributes' => array('class' => array('uib-find-studies')),
               '#tag' => 'nav',
             );

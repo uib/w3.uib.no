@@ -136,7 +136,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -208,7 +208,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -259,7 +259,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -317,7 +317,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 9,
+        'weight' => 90,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -369,7 +369,7 @@ function uib_area_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -399,7 +399,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 100,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -456,7 +456,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -472,7 +472,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -524,7 +524,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -571,7 +571,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -617,7 +617,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -632,7 +632,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 27,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -811,7 +811,7 @@ function uib_area_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'field_collection_view',
-        'weight' => 8,
+        'weight' => 80,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -839,7 +839,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -853,7 +853,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -920,7 +920,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -991,7 +991,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1035,7 +1035,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 25,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1087,7 +1087,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1149,7 +1149,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 1,
+        'weight' => 10,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1232,7 +1232,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 20,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1320,7 +1320,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'entityreference_label',
-        'weight' => 4,
+        'weight' => 40,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1385,7 +1385,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'entityreference_label',
-        'weight' => 7,
+        'weight' => 70,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1422,7 +1422,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1455,7 +1455,7 @@ function uib_area_field_default_field_instances() {
           'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 10,
+        'weight' => 100,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1506,7 +1506,60 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 11,
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-area-field_uib_promoted_events'.
+  $field_instances['node-area-field_uib_promoted_events'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'deleted' => 0,
+    'description' => 'The promoted event will be shown first in the events - block',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_promoted_events',
+    'label' => 'Promoted event',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 8,
     ),
   );
 
@@ -1521,7 +1574,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1582,7 +1635,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 30,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1673,7 +1726,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1733,7 +1786,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'socialmedia_formatter',
-        'weight' => 5,
+        'weight' => 50,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1790,7 +1843,7 @@ function uib_area_field_default_field_instances() {
         'size' => 30,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1805,7 +1858,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1852,7 +1905,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 26,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1909,7 +1962,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -1939,7 +1992,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 90,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1996,7 +2049,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -2011,7 +2064,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2116,7 +2169,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -5466,6 +5519,7 @@ function uib_area_field_default_field_instances() {
   t('Primary text');
   t('Profiled testimonial');
   t('Promoted articles');
+  t('Promoted event');
   t('Registration deadline');
   t('Registration link');
   t('Related content');
@@ -5486,6 +5540,7 @@ function uib_area_field_default_field_instances() {
   t('The address for the location of the event. ');
   t('The person to contact for information related to the event. Use UiB usernames to search for people. ');
   t('The primary media is the image/video at the top of the area front page. If text is added to the primary text field the image shown will be a maximum of 334x251 pixels. If the primary text field is empty, the image will take up the entire width.');
+  t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
   t('This field contains the text that was known as "profiltekster" in the old version and was shown on the left side of the area page. ');
   t('This field is shown at the bottom of the area front page. ');
