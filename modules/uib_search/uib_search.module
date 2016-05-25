@@ -174,20 +174,6 @@ function uib_search_block_view($delta) {
                     'class' => array('close-lightbox'),
                   ),
                 ),
-                'menu' => array(
-                  '#type' => 'container',
-                  'link' => array(
-                    '#type' => 'link',
-                    '#href' => '#',
-                    '#attributes' => array(
-                      'class' => 'searchmenu',
-                    ),
-                    '#title' => t('Menu'),
-                  ),
-                  '#attributes' => array(
-                    'class' => array('menu-lightbox'),
-                  ),
-                ),
               ),
             ),
           ),
