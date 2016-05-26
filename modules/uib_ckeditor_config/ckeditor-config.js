@@ -1,5 +1,5 @@
 CKEDITOR.editorConfig = function( config ) {
-  config.removeDialogTabs = 'link:advanced;table:advanced;tableProperties:advanced';
+  config.removeDialogTabs = 'table:advanced;tableProperties:advanced';
   config.contentsCss = 'sites/all/modules/uib/uib_ckeditor_config/ckeditor.css';
 };
 
@@ -8,6 +8,11 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
   var dialogDefinition = ev.data.definition;
 
   if ( dialogName == 'link' ) {
+    var advancedTab = dialogDefinition.getContents( 'advanced' );
+    var toRemove = [ 'advId', 'advLangDir', 'advAccessKey', 'advName', 'advLangCode', 'advTabIndex', 'advContentType', 'advCSSClasses', 'advCharset', 'advRel', 'advStyles' ];
+    for ( key in toRemove ) {
+      advancedTab.remove( toRemove[key] );
+    }
     var targetTab = dialogDefinition.getContents( 'target' );
     var targetField = targetTab.get( 'linkTargetType' );
     targetField['items'] = [];
