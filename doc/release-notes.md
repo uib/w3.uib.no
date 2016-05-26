@@ -1,3 +1,29 @@
+# Release 47 _2016-05-26_
+Vi jobber videre med å utvikle personsøket, men har også fått tid til å gjøre litt andre småfikser
+
+Generelle saker:
+- Ny kalendervisning på områdeforsider, med mulighet til å fremheve et spesielt arrangement #14278
+- Det er nå mulig å hente inn artikler med kun et lite bilde som profilert artikkel på områdeforside #15171
+- Diverse saker der vi fikser valideringsfeil på siden #15309
+- De forskjellige faktaboksstilene har nå fått med unison utforming #15306 #15290
+- Artiklene på områdeforsider får nå underline på titlene #15302
+- Vi har tydeliggjort at tilknyttet innhold kan trykkes på #15301
+- Ankerdata hadde forsvunnet fra urlen etter en oppdatering av Jquery, Dette er nå tatt høyde for #15298
+- Vi har fjernet et unødig felt hos UB #15272
+- Sosiale medier vises nå også i bunnfeltet på artikler #15128
+- Vi har laget et API for lokale meldinger #15102
+- Områder uten et spesifikt kart får nå det generelle kartet til uib i kolofonfeltet #15099
+- Automatiske sider uten titler som ansattkatalogen, studieprogramlisten, forskergruppelisten og lignende har nå fått titler #14473
+- Tomme engelske studieprogram viser nå riktig tekst #13934
+- Innholdliste har fått riktig styling når det ligger som tilknyttet innhold #13866
+
+Søk:
+- Den alternative tittelen er nå indeksert og søkbar #15280
+- Oppdatering av javascriptkoden til søket #15273
+- Det er nå mulig å søke på kompetansefelt i personsøket #15262
+- Generell forbedring av søket #15259
+- Fjernet menyknappen fra søkesiden da den ikke fungerte optimalt #15152
+
 # Release 46 _2016-05-12_
 
 Det er mange fridager i mai og andre ting som skjer, men vi har da fått gjort litt:
