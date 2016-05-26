@@ -3842,7 +3842,6 @@ div.field-item {
       justify-content: space-between; }
       .block-uib-search .lightbox .topbar .top-right {
         flex: 0 1 auto;
-        min-width: 90px;
         display: -ms-flexbox;
         -ms-flex-direction: row;
         -ms-flex-wrap: nowrap;
