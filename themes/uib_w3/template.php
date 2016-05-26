@@ -39,6 +39,13 @@ function uib_w3_preprocess_html(&$variables) {
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
+function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
+  foreach ($links as $langcode => &$link) {
+    unset($links[$langcode]['attributes']['xml:lang']);
+    $link['attributes']['lang'] = $langcode;
+  }
+}
+
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
