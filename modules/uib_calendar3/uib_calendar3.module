@@ -119,12 +119,12 @@ function uib_calendar3_block_view($delta) {
       }
 
       $title = $value->title;
+      $node = node_load($nid);
 
       if($first):
         $ra['data'][$key]=array();
         $ra['data'][$key]['#type'] = 'container';
         $ra['data'][$key]['#attributes'] = array('class' => array('event'));
-        $node = node_load($nid);
         // adding class "first" to this item
         array_push($ra['data'][$key]['#attributes']['class'], 'first');
        // if item has image add this, and a calendar-card
