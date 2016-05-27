@@ -765,8 +765,7 @@ function uib_calendar3__get_calendar_card_render_array($utc_datestring){
                 <rect fill="#0DA6A3"  x="0" y="0" width="71" height="71"></rect>
                 <rect fill="#00777B"  x="0" y="46" width="71" height="25"></rect>
                 <text class="m"
-                font-family="Myriad Pro" font-size="12" font-weight="526"
-                 line-spacing="17.8571429"
+                font-family="Myriad Pro" font-size="12" font-weight="500"
                 letter-spacing="2.95540404" fill="#FFFFFF"
                 style="text-anchor: middle;">
                     <tspan x="36" y="60">' . $month . '</tspan>
