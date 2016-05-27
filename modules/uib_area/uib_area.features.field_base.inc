@@ -1622,7 +1622,7 @@ function uib_area_field_default_field_bases() {
         ),
         'view' => array(
           'args' => array(),
-          'display_name' => 'entityreference_1',
+          'display_name' => 'entityreference_3',
           'view_name' => 'newslist',
         ),
       ),
