@@ -1,7 +1,9 @@
 # Release 47 _2016-05-26_
+
 Vi jobber videre med å utvikle personsøket, men har også fått tid til å gjøre litt andre småfikser
 
 Generelle saker:
+
 - Ny kalendervisning på områdeforsider, med mulighet til å fremheve et spesielt arrangement #14278
 - Det er nå mulig å hente inn artikler med kun et lite bilde som profilert artikkel på områdeforside #15171
 - Diverse saker der vi fikser valideringsfeil på siden #15309
@@ -18,6 +20,7 @@ Generelle saker:
 - Innholdliste har fått riktig styling når det ligger som tilknyttet innhold #13866
 
 Søk:
+
 - Den alternative tittelen er nå indeksert og søkbar #15280
 - Oppdatering av javascriptkoden til søket #15273
 - Det er nå mulig å søke på kompetansefelt i personsøket #15262
