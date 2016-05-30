@@ -1616,7 +1616,7 @@ function uib_study__semester_name($code = NULL) {
       $name = t('Spring');
     }
     else {
-      $name = t('Fall');
+      $name = t('Autumn');
     }
     $name .= ' ' . substr($code, 0, 4);
     return $name;
