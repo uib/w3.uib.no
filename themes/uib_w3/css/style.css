@@ -1472,10 +1472,15 @@ a {
 .group-article-sidebar .field-name-field-uib-media {
   padding: 0 1rem;
   background: #fff; }
+  .group-article-sidebar .field-name-field-uib-media .media-vimeo-video,
+  .group-article-sidebar .field-name-field-uib-media .media-youtube-video,
   .group-article-sidebar .field-name-field-uib-media img {
     margin: 0 -1rem 1rem;
     max-width: calc(100% + 2rem);
     width: calc(100% + 2rem); }
+  .group-article-sidebar .field-name-field-uib-media .media-vimeo-video,
+  .group-article-sidebar .field-name-field-uib-media .media-youtube-video {
+    padding-bottom: calc(56.25% + 1.125rem); }
   .group-article-sidebar .field-name-field-uib-media .content > .field,
   .group-article-sidebar .field-name-field-uib-media .content > .field div {
     display: inline;
