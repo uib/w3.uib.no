@@ -234,6 +234,14 @@ function uib_search_block_view($delta) {
               'class' => 'results',
             ),
           ),
+          'results-bottom-anchor' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => '',
+            '#attributes' => array(
+              'class' => 'results-bottom-anchor',
+            ),
+          ),
         ),
       ),
     );

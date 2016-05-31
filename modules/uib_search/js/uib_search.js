@@ -1,7 +1,7 @@
 (function ($) {
 
   // Helper function to retrieve value or empty string
-  $.getVal = function (obj, key) {
+  $.fn.getVal = function (obj, key) {
     if (typeof obj === 'undefined' ) {
       return '';
     }
@@ -20,9 +20,29 @@
       return '';
     }
   };
-
+  $.fn.executeQuery = function (postdata){
+    // Options for jquery ajax-call
+    var options = {
+      url: $.uib_search.fullurl,
+      type: 'POST',
+      dataType: 'json',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader (
+          "Authorization", "Basic " + btoa($.uib_search.user + ":" + $.uib_search.password)
+        );
+      },
+      data: JSON.stringify(postdata),
+      success: function (data, status, jqXHR) {
+        $().createResults(data, $.uib_search.resultsselector)
+      },
+    };
+    $.ajax(options);
+  }
   // This function creates the elasticsearch query
-  $.createQuery = function (query) {
+  $.fn.createQuery = function (query) {
+      if(!$.uib_search.url){
+          $('.lightbox .topbar .form-type-checkbox').css('display', 'none');
+      }
       var index = $.uib_search.index;
       var lang = $.uib_search.lang;
 
@@ -50,6 +70,7 @@
         },
         highlight: { fields: {}, },
         size: $.uib_search.size,
+        from: $.uib_search.from,
       };
 
       // Matching title, mail, ou and position
@@ -87,54 +108,47 @@
       data.highlight.fields['alt_position_' + lang] = {};
       return data;
   };
-  // Function to create search result output
-  $.createResults = function (data, resultsselector, clearlist) {
-    var clearlist = typeof clearlist !== 'undefined' ? clearlist : true;
+  $.fn.createResults = function (data, resultsselector) {
+
     var resultstag = $(resultsselector);
-    if (clearlist) {
-      $.uib_search.from = $.uib_search.size;
-      if (data.hits.hits) {
-        resultstag.html('');
-      }
-    }
-    else {
-      $.uib_search.from += $.uib_search.size;
+    if (data.hits.hits) {
+      resultstag.html('');
     }
 
     $.each(data.hits.hits, function (index, v) {
       // Retrieving variables from returned object
       var evenodd = index % 2 ? 'odd' : 'even';
       var lang = $.uib_search.lang;
-      var user_url = $.getVal(v._source, 'link_' + lang);
+      var user_url = $().getVal(v._source, 'link_' + lang);
 
-      var first_name = $.getVal(v.highlight, 'first_name') ?
-        $.getVal(v.highlight, 'first_name') :
-        $.getVal(v._source, 'first_name');
-      var last_name = $.getVal(v.highlight, 'last_name') ?
-        $.getVal(v.highlight, 'last_name') :
-        $.getVal(v._source, 'last_name');
+      var first_name = $().getVal(v.highlight, 'first_name') ?
+        $().getVal(v.highlight, 'first_name') :
+        $().getVal(v._source, 'first_name');
+      var last_name = $().getVal(v.highlight, 'last_name') ?
+        $().getVal(v.highlight, 'last_name') :
+        $().getVal(v._source, 'last_name');
 
       var name = $('<a></a>').attr('href', user_url).html(first_name + ' '
         + last_name);
 
-      var mail = $.getVal(v._source, 'mail');
-      var display_mail = $.getVal(v.highlight, 'mail') ?
-        $.getVal(v.highlight, 'mail') :
+      var mail = $().getVal(v._source, 'mail');
+      var display_mail = $().getVal(v.highlight, 'mail') ?
+        $().getVal(v.highlight, 'mail') :
         mail;
 
-      var position = $.getVal(v.highlight, 'position_' + lang) ?
-        $.getVal(v.highlight, 'position_' + lang) :
-        $.getVal(v._source, 'position_' + lang);
+      var position = $().getVal(v.highlight, 'position_' + lang) ?
+        $().getVal(v.highlight, 'position_' + lang) :
+        $().getVal(v._source, 'position_' + lang);
 
-      var alt_position = $.getVal(v.highlight, 'alt_position_' + lang) ?
-        $.getVal(v.highlight, 'alt_position_' + lang) :
-        $.getVal(v._source, 'alt_position_' + lang);
+      var alt_position = $().getVal(v.highlight, 'alt_position_' + lang) ?
+        $().getVal(v.highlight, 'alt_position_' + lang) :
+        $().getVal(v._source, 'alt_position_' + lang);
 
-      var ou = $.getVal(v.highlight, 'ou_' + lang) ?
-        $.getVal(v.highlight, 'ou_' + lang) :
-        $.getVal(v._source, 'ou_' + lang);
+      var ou = $().getVal(v.highlight, 'ou_' + lang) ?
+        $().getVal(v.highlight, 'ou_' + lang) :
+        $().getVal(v._source, 'ou_' + lang);
 
-      var phone = $.getVal(v._source, 'phone');
+      var phone = $().getVal(v._source, 'phone');
 
       // building markup
       var lft = $('<div></div>').addClass('lft')
@@ -169,7 +183,105 @@
         .append(rgt)
         .appendTo(resultstag);
     });
+
+    // create pagination
+    var maxpages = 10;
+    var countpages = Math.ceil(data.hits.total / $.uib_search.size);
+    countpages = countpages > maxpages ? maxpages : countpages;
+    if (countpages>1) {
+      // wrapper
+      var wrapper = $('<div></div>')
+        .addClass('pagination-wrapper')
+        .appendTo(resultstag);
+
+      $('<a></a>')
+        .addClass('prev')
+        .attr('data-from', 'prev')
+        .text('Previous')
+        .appendTo(wrapper);
+      for (var i = 0; i < countpages; i++) {
+        var from = i * $.uib_search.size;
+        var link = $('<a></a>')
+        .addClass('resultpage')
+          .attr('data-from', from)
+          .text(i + 1);
+        if (from == $.uib_search.from) {
+          link.addClass('current');
+        }
+        link.appendTo(wrapper);
+      }
+      $('<a></a>')
+        .addClass('next')
+        .attr('data-from', 'next')
+        .text('Next')
+        .appendTo(wrapper);
+    }
+    else if(data.hits.total>7) {
+      $('<a></a>')
+        .addClass('no_more_results')
+        .attr('href', $.uib_search.fullurl)
+        .text('No more results for this query. Click to refine your search.')
+        .appendTo(resultstag);
+      $('.no_more_results').click(function(event){
+        event.preventDefault();
+        $().scroll('form[name=lbform] .search-field').focus();
+      })
+    }
+
+
+    $('.pagination-wrapper a').click(function(event){
+      event.preventDefault();
+      $.uib_search.scroll = 'form[name=lbform] .search-field';
+      $.uib_search.select = true;
+      $.uib_search.focus = true;
+      switch ($(this).data('from')) {
+        case 'prev':
+          if($.uib_search.from > 0){
+            $.uib_search.from -= $.uib_search.size;
+            $.uib_search.scroll = '.results-bottom-anchor';
+            $.uib_search.select = false;
+          }
+        break;
+        case 'next':
+          $.uib_search.from += $.uib_search.size;
+        break;
+        default:
+          $.uib_search.from = $(this).data('from');
+        break;
+      }
+      var postdata = $().createQuery($.uib_search.currentquery);
+      $().executeQuery(postdata);
+
+    });
+
+    if ($.uib_search.scroll) {
+      $().scroll($.uib_search.scroll);
+    }
+    if ($.uib_search.select) {
+      $('form[name=lbform] .search-field').select();
+    }
+    if ($.uib_search.focus) {
+      $('form[name=lbform] .search-field').focus();
+    }
   };
+
+  $.fn.loadNextResults = function (event, from) {
+    event.preventDefault();
+
+  }
+  /**
+  * Scroll to top of selector, by default the search input box, and
+  * optionally select the text
+  **/
+  $.fn.scroll = function (selector) {
+    $('.lightbox').animate({
+      scrollTop: $(selector).offset().top
+    }, 300);
+    return $(selector);
+  }
+  /*
+*/
+
   // Make sure dom is loaded
   $(document).ready(function ($) {
     // Reusable variables
@@ -183,6 +295,9 @@
       resultsselector: 'form[name=lbform] .results',
       lang: $('html').attr('lang'),
       currentquery: '',
+      scroll: '',
+      focus: '',
+      select: '',
     };
     $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
       + "/user/_search";
@@ -201,24 +316,12 @@
           return;
         }
         $.uib_search.currentquery = query;
-        var postdata = $.createQuery(query);
-        // Options for jquery ajax-call
-        var options = {
-          url: $.uib_search.fullurl,
-          type: 'POST',
-          dataType: 'json',
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader (
-              "Authorization", "Basic " + btoa($.uib_search.user + ":" + $.uib_search.password)
-            );
-          },
-          data: JSON.stringify(postdata),
-          success: function (data, status, jqXHR) {
-            $.createResults(data, $.uib_search.resultsselector,  true)
-          },
-        };
-        $.ajax(options);
-
+        $.uib_search.from = 0;
+        $.uib_search.scroll = false;
+        $.uib_search.focus = false;
+        $.uib_search.select = false;
+        var postdata = $().createQuery(query);
+        $().executeQuery(postdata);
       });
     }
   });
