@@ -185,7 +185,7 @@
     });
 
     // create pagination
-    var maxpages = 10;
+    var maxpages = 9;
     var countpages = Math.ceil(data.hits.total / $.uib_search.size);
     countpages = countpages > maxpages ? maxpages : countpages;
     if (countpages>1) {
@@ -194,11 +194,14 @@
         .addClass('pagination-wrapper')
         .appendTo(resultstag);
 
-      $('<a></a>')
+      var prev = $('<a></a>')
         .addClass('prev')
         .attr('data-from', 'prev')
-        .text('Previous')
-        .appendTo(wrapper);
+        .text('Previous');
+      if ( $.uib_search.from == 0) {
+        prev.addClass('disable');
+      }
+      prev.appendTo(wrapper);
       for (var i = 0; i < countpages; i++) {
         var from = i * $.uib_search.size;
         var link = $('<a></a>')
@@ -210,11 +213,15 @@
         }
         link.appendTo(wrapper);
       }
-      $('<a></a>')
+      var next = $('<a></a>')
         .addClass('next')
         .attr('data-from', 'next')
-        .text('Next')
-        .appendTo(wrapper);
+        .text('Next');
+      if ( $.uib_search.from == $.uib_search.size * (countpages - 1)) {
+        next.addClass('disable');
+      }
+      next.appendTo(wrapper);
+
     }
     else if(data.hits.total>7) {
       $('<a></a>')
@@ -234,6 +241,9 @@
       $.uib_search.scroll = 'form[name=lbform] .search-field';
       $.uib_search.select = true;
       $.uib_search.focus = true;
+      if ($(this).hasClass('disable') || $(this).hasClass('current') ) {
+        return;
+      }
       switch ($(this).data('from')) {
         case 'prev':
           if($.uib_search.from > 0){
@@ -265,10 +275,6 @@
     }
   };
 
-  $.fn.loadNextResults = function (event, from) {
-    event.preventDefault();
-
-  }
   /**
   * Scroll to top of selector, by default the search input box, and
   * optionally select the text
