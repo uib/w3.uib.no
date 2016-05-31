@@ -1,7 +1,7 @@
 (function ($) {
   var lightbox = '';
   $(document).ready(function($){
-    $('.block-uib-search form[name=noscriptform] .search-button').click(function(event){
+    $('.block-uib-search form[name=noscriptform] .search-button, .not-translated-search').click(function(event){
       event.preventDefault();
       $('body,html').css('overflow', 'hidden');
       if (lightbox.length > 0) {

@@ -244,6 +244,13 @@ EOD;
       );
     break;
     case isset($variables['node']) && $variables['node']->type == 'uib_article':
+      $not_trans = t('There has not been added a translated version of this content. You can either try <a href="@search" class="not-translated-search">searching</a> or go to the <a href="@area">"area"</a> home page to see if you can find the information there', array(
+        '@search' => url('search'),
+        '@area' => url('node/' . $current_area->nid),
+      ));
+      if ($variables['node']->language != $variables['language']->language) {
+        drupal_set_message($not_trans);
+      }
       drupal_add_library('system' , 'ui.tabs');
       // set menu to appear as tabs
       $jq = uib_w3__tabsScript();
