@@ -197,7 +197,7 @@
       var prev = $('<a></a>')
         .addClass('prev')
         .attr('data-from', 'prev')
-        .text('Previous');
+        .text(Drupal.t('Previous'));
       if ( $.uib_search.from == 0) {
         prev.addClass('disable');
       }
@@ -216,7 +216,7 @@
       var next = $('<a></a>')
         .addClass('next')
         .attr('data-from', 'next')
-        .text('Next');
+        .text(Drupal.t('Next'));
       if ( $.uib_search.from == $.uib_search.size * (countpages - 1)) {
         next.addClass('disable');
       }
