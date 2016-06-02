@@ -801,18 +801,23 @@ a {
   text-transform: uppercase; }
 
 .node-type-area .media-vimeo-video,
-.node-type-area .media-youtube-video {
+.node-type-area .media-youtube-video,
+.node-type-uib-article .media-vimeo-video,
+.node-type-uib-article .media-youtube-video {
   position: relative;
   padding-bottom: 56.25%;
   height: 0; }
   .node-type-area .media-vimeo-video iframe,
-  .node-type-area .media-youtube-video iframe {
+  .node-type-area .media-youtube-video iframe,
+  .node-type-uib-article .media-vimeo-video iframe,
+  .node-type-uib-article .media-youtube-video iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%; }
-.node-type-area .full-width {
+.node-type-area .full-width,
+.node-type-uib-article .full-width {
   width: 100%; }
 
 .field-name-field-uib-bottom-text h3 {
