@@ -2731,7 +2731,6 @@ function uib_area_node_view($node, $view_mode, $langcode) {
             if (count($ou->field_uib_main_media) > 0) {
 
               switch ($node->type) {
-                case 'uib_testimonial':
                 case 'uib_external_content':
                   $field = 'field_uib_media';
                   break;
