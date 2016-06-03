@@ -227,7 +227,7 @@
       $('<a></a>')
         .addClass('no_more_results')
         .attr('href', $.uib_search.fullurl)
-        .text('No more results for this query. Click to refine your search.')
+        .text(Drupal.t('No more results for this query. Click to refine your search.'))
         .appendTo(resultstag);
       $('.no_more_results').click(function(event){
         event.preventDefault();
