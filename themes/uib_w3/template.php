@@ -249,7 +249,7 @@ EOD;
         '@area' => url('node/' . $current_area->nid),
       ));
       if ($variables['node']->language != $variables['language']->language) {
-        drupal_set_message($not_trans);
+        drupal_set_message($not_trans, 'warning');
       }
       drupal_add_library('system' , 'ui.tabs');
       // set menu to appear as tabs
