@@ -1094,3 +1094,25 @@ jQuery( document ).ready( function($){
 EOD;
 return $jq;
 }
+
+/**
+ * Overrides theme_menu_link
+ *
+ * @param $variables
+ *   An array containing a menu link
+ *
+ * @return
+ *   the overriden markup
+ */
+function uib_w3_menu_link($variables) {
+  global $user;
+  $level_user = in_array('level 1', $user->roles) || in_array('level 2', $user->roles) || in_array('level 3', $user->roles) ? true : false;
+  if (strstr($variables['theme_hook_original'], 'menu_link__menu_area_')) {
+    if ((!empty($variables['element']['#below']) || $variables['element']['#href'] != 'http:#') || $level_user) {
+      return theme_menu_link($variables);
+    }
+  }
+  else {
+    return theme_menu_link($variables);
+  }
+}
