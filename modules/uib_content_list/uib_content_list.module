@@ -131,6 +131,42 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'uib_content_list_node_form') {
     hide($form['language']);
     hide($form['field_uib_main_media']);
+    if (strstr($form['#action'], 'uib-content-list?translation')) {
+      hide($form['field_uib_area']);
+
+      $last_numeric = 0;
+      foreach ($form['field_uib_step']['und'] as $key => $value) {
+        if (is_numeric($key)) {
+          if ($last_numeric < intval($key)) {
+            $last_numeric = intval($key);
+          }
+        }
+      }
+      if ($last_numeric > 0) {
+        $form['field_uib_step']['und'][0] = $form['field_uib_step']['und'][$last_numeric];
+        $form['field_uib_step']['und']['#maxdelta'] = 0;
+        $form['field_uib_step']['und']['#delta'] = 0;
+        $form['field_uib_step']['und']['#weight'] = 0;
+        for ($key = 1; $key <= $last_numeric; $key++) {
+          unset($form['field_uib_step']['und'][$key]);
+        }
+      }
+      $params = drupal_get_query_parameters();
+      if (isset($params['translation']) && isset($params['target'])) {
+        global $language;
+        global $base_url;
+        $langs = language_list();
+        $target = $params['target'];
+        $translation = $params['translation'];
+        if ($language->language != $target) {
+          $get = $_GET;
+          if (isset($_GET['q'])) unset($_GET['q']);
+          $get = http_build_query($get);
+          header("Location: $base_url/$target/node/add/uib-content-list?$get");
+          exit();
+        }
+      }
+    }
   }
 }
 
