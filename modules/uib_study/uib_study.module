@@ -776,35 +776,30 @@ function uib_study_block_view($delta = '') {
         $items = array();
         if ($type == 'course') {
           $category = $node->field_uib_study_category['und'][0]['value'];
-          if ($data['studieniva'] == 'FU') {
-
+          $study_code = $data['emneid']['emnekode'];
+          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
+          $items[] = uib_study__get_study_facts_markup(t('Teaching semester'), t($data['undervisningssemester:en']));
+          $items[] = uib_study__get_study_facts_markup(t('Course code'), $study_code);
+          if ($data['studieniva'] != 'FU') $items[] = uib_study__get_study_facts_markup(t('Number of semesters'), $data['antall-undsemester']);
+          $sprak = uib_study__extract_study_info($data_2, 'EB_SPRAK');
+          if ($sprak && $data['studieniva'] != 'FU') {
+            $items[] = uib_study__get_study_facts_markup(t('Language'), $sprak['#text']);
           }
-          else {
-            $study_code = $data['emneid']['emnekode'];
-            $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
-            $items[] = uib_study__get_study_facts_markup(t('Teaching semester'), t($data['undervisningssemester:en']));
-            $items[] = uib_study__get_study_facts_markup(t('Course code'), $study_code);
-            $items[] = uib_study__get_study_facts_markup(t('Number of semesters'), $data['antall-undsemester']);
-            $sprak = uib_study__extract_study_info($data_2, 'EB_SPRAK');
-            if ($sprak) {
-              $items[] = uib_study__get_study_facts_markup(t('Language'), $sprak['#text']);
+          $resources = array(
+            '#theme' => 'item_list',
+            '#items' => array(),
+          );
+          $schedule = uib_study__get_resource_links('schedule', $study_code);
+          $resources['#items'][] = render($schedule);
+          $reading_list = uib_study__get_resource_links('reading_list', $data);
+          $resources['#items'][] = render($reading_list);
+          if ($category == 'evu') {
+            if (uib_study__course_description_exists($study_code)) {
+              $tmp = uib_study__get_description_link($study_code);
+              $resources['#items'][] = render($tmp);
             }
-            $resources = array(
-              '#theme' => 'item_list',
-              '#items' => array(),
-            );
-            $schedule = uib_study__get_resource_links('schedule', $study_code);
-            $resources['#items'][] = render($schedule);
-            $reading_list = uib_study__get_resource_links('reading_list', $data);
-            $resources['#items'][] = render($reading_list);
-            if ($category == 'evu') {
-              if (uib_study__course_description_exists($study_code)) {
-                $tmp = uib_study__get_description_link($study_code);
-                $resources['#items'][] = render($tmp);
-              }
-            }
-            $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
           }
+          $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
         }
         elseif ($type == 'program' or $type == 'specialization') {
           $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
