@@ -45,6 +45,7 @@ class SebraPlace extends stdClass {
     $this->fax = (string)$place->fax;
     $this->alias = (string)$place->alias;
     $this->maildomain = (string)$place->maildomain;
+    $this->email = (string)$place->email;
 
     // Instead of empty strings we get the string "None" leaked
     // for the NULL attributes.  Sometimes we also get "na".

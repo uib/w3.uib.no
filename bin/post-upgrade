@@ -9,12 +9,11 @@ case $(pwd) in
        ;;
 esac
 
-REL=47
+REL=48
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
     exit 1
 fi
 
-bin/site-drush uib-search-index
-bin/site-drush php-script delete-field-uib-custom-hours.php
+bin/site-drush uib-sebra-places

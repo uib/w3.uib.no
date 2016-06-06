@@ -91,6 +91,7 @@ function uib_sebra__update_uib_ou($place_id) {
     $node->language = 'nb';
     $node->field_uib_ou_id['und'][0]['value'] = $place_id;
     $node->field_uib_ou_shortname['und'][0]['value'] = $place->alias;
+    $node->field_uib_email['und'][0]['value'] = $place->email;
     $node->field_uib_mail_domain['und'][0]['value'] = $place->maildomain;
 
     $node->field_uib_postal_address['und'][0]['thoroughfare'] = !empty($place->postbox) ? "Postboks $place->postbox"
@@ -131,6 +132,10 @@ function uib_sebra__update_uib_ou($place_id) {
     if ($ou->field_uib_ou_shortname->value() != $place->alias) {
       $ou->field_uib_ou_shortname->set($place->alias);
       $edit[] = 'shortname';
+    }
+    if ($ou->field_uib_email->value() != $place->email) {
+      $ou->field_uib_email->set($place->email);
+      $edit[] = 'email';
     }
     if ($ou->field_uib_mail_domain->value() != $place->maildomain) {
       $ou->field_uib_mail_domain->set($place->maildomain);
