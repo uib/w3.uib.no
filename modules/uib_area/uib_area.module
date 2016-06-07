@@ -589,8 +589,8 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
     $tabs_nav_mobile .= '<option value="uib-tab--' . $key . '">' . $node_title . '</ul>';
     $tabs_content .= '<div id="uib-tab--' . $key . '">';
     $item_view = node_view($item, $view_mode);
-    $item_view['field_uib_custom_email'][0]['#markup'] =
-      l($item_view['field_uib_custom_email'][0]['#markup'], 'mailto:' . $item_view['field_uib_custom_email'][0]['#markup']);
+    $item_view['field_uib_email'][0]['#markup'] =
+      l($item_view['field_uib_email'][0]['#markup'], 'mailto:' . $item_view['field_uib_email'][0]['#markup']);
     unset($item_view['links']);
     unset($item_view['#contextual_links']);
     $google_maps_link = uib_area__google_maps_link($item);
