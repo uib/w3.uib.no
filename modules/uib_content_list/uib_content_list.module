@@ -132,6 +132,9 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
     hide($form['language']);
     hide($form['field_uib_main_media']);
     if (strstr($form['#action'], 'uib-content-list?translation')) {
+      if (isset($form_state['node']->field_uib_area['und'])) {
+        $area_id = $form_state['node']->field_uib_area['und'][0]['target_id'];
+      };
       hide($form['field_uib_area']);
       foreach ($form['field_uib_step']['und'] as $key => $value) {
         if (is_numeric($key)) {
@@ -151,6 +154,26 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
           $q = $get['q'];
           header("Location: $base_url/$target/$q?translation=$translation&target=$target");
           exit();
+        }
+
+        $target_language = ($language->language == $target ? $langs[$target]->native : $langs[$target]->name);
+        if($language->language == 'nb' && $target == 'en') $target_language = 'Engelsk';
+
+        $original = node_load($translation);
+        if ($original){
+          $msg = t('Currently creating the @language translation of: ', array('@language' => $target_language));
+          $msg .= l($original->title, 'node/'. $original->nid);
+          if (isset($area_id)) {
+            // Get the area that will be assigned to the new article
+            $area = node_load($area_id);
+            $area_trans = translation_node_get_translations($area->tnid);
+            if(isset($area_trans[$target]))
+              $area = $area_trans[$target];
+            $msg .= '<br />';
+            $msg .= t('This translation will be added to the area: ');
+            $msg .= l($area->title, 'node/' . $area->nid);
+          }
+          drupal_set_message($msg, 'warning');
         }
       }
     }
