@@ -139,3 +139,15 @@ function uib_message_node_view($node, $view_mode, $langcode) {
     unset($node->content['field_uib_message_text_nb']);
   }
 }
+
+/**
+ * Implements hook node presave
+ * Changing nid of target to tnid
+ */
+function uib_message_node_presave($node) {
+  if ($node->type == 'uib_message') {
+    $area = $node->field_uib_message_area['und'][0]['target_id'];
+    $tnid = db_query("SELECT tnid FROM node WHERE nid = :area LIMIT 1", array(":area" => $area))->fetchField();
+    $node->field_uib_message_area['und'][0]['target_id'] = $tnid;
+  }
+}
