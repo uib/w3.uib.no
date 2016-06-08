@@ -1,3 +1,22 @@
+# Release 48 _2016-06-08_
+
+Vi jobber videre med det nye søket, men har også fått fikset en den generelle feil på webben.
+
+- Vi har gjort det mulig å vise områdespesifikke eposter i kolofonfeltet. Disse blir hentet fra sebra og må endres der. #15425 #15375
+- Tekst som kommer frem i søket er nå oversattbar #15377
+- Urlen til søknadsweb på utvekslingsavtaler er nå riktig #15353
+- Det er nå mulig å vise videoer som lite bilde #15350
+- Innholdslister er nå oversettbare #15349
+- Vi har endret slik at vi konsekvent bruker autumn istedenfor fall på de engelske sidene #15345
+- Utdanning og studentsidene har nå samme "lokalt tilknyttet innhold"-funksjon som ansattsidene har. 
+- Toppmenypunkter uten innhold vises ikke lenger på sidene
+- Diverse endringer for å følge wcag retningslinjer og valideringsfeil #15332 #15300
+- Video skalerer nå på mobil #15324
+- Personsøket viser nå flere resultater #15145
+- PHD-kurs viser nå samme faktastripe som vanlige studieprogram #14903
+- Vi viser nå den gule varselsboksen hvis innhold ikke er oversatt #14625
+- uib.no/kalender har fått noen designjusteringer #14334
+
 # Release 47 _2016-05-26_
 
 Vi jobber videre med å utvikle personsøket, men har også fått tid til å gjøre litt andre småfikser
