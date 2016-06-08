@@ -149,5 +149,18 @@ function uib_message_node_presave($node) {
     $area = $node->field_uib_message_area['und'][0]['target_id'];
     $tnid = db_query("SELECT tnid FROM node WHERE nid = :area LIMIT 1", array(":area" => $area))->fetchField();
     $node->field_uib_message_area['und'][0]['target_id'] = $tnid;
+    $node->title =
+      substr($node->field_uib_message_text_nb['und'][0]['value'],0,49) . " / " .
+      substr($node->field_uib_message_text_en['und'][0]['value'],0,49);
+  }
+}
+
+/**
+ * Implements hook form alter
+ */
+function uib_message_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'uib_message_node_form') {
+    $form['title']['#default_value'] = 'New UIB message';
+    $form['title']['#access'] = FALSE;
   }
 }
