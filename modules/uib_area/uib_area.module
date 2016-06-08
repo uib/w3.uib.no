@@ -170,6 +170,7 @@ function uib_area_block_view($delta='') {
           ),
         ),
       );
+      if (empty($visit_address)) unset($block['content']['visit']['visit_address']);
       if (empty($place->field_uib_geolocation)) {
         $nid = $language->language == 'en' ? 79263 : 79254;
         $mapurl = drupal_get_path_alias('node/' . $nid);
