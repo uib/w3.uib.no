@@ -1315,6 +1315,10 @@ function uib_area__list_area_aliases($node_alias = NULL) {
         'en' => 'disciplines',
         'nb' => 'fag',
       ),
+      'messages' => array(
+        'en' => 'messages',
+        'nb' => 'meldinger',
+      ),
     );
   }
 }

@@ -17,3 +17,4 @@ if git tag | grep -q R$REL; then
 fi
 
 bin/site-drush uib-sebra-places
+bin/site-drush php-script area-aliases.php

@@ -84,16 +84,16 @@ function uib_area_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '19',
+          'weight' => '18',
         ),
         'redirect' => array(
-          'weight' => '18',
+          'weight' => '17',
         ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '21',
+            'weight' => '20',
             'visible' => FALSE,
           ),
         ),
@@ -301,6 +301,34 @@ function uib_area_strongarm() {
   $strongarm->name = 'page_manager_term_view_disabled';
   $strongarm->value = TRUE;
   $export['page_manager_term_view_disabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_ou_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_ou_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_ou_nb_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_ou_nb_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_uib_ou_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_uib_ou_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_uib_organisation_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_uib_organisation_pattern'] = $strongarm;
 
   return $export;
 }

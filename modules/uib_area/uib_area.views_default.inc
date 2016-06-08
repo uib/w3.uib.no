@@ -3217,5 +3217,237 @@ return !empty($handler->argument);';
   );
   $export['research_groups'] = $view;
 
+  $view = new view();
+  $view->name = 'uib_message';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Message';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Message';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['row_class'] = 'uib_message';
+  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'full';
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_uib_message_tag_target_id']['id'] = 'field_uib_message_tag_target_id';
+  $handler->display->display_options['relationships']['field_uib_message_tag_target_id']['table'] = 'field_data_field_uib_message_tag';
+  $handler->display->display_options['relationships']['field_uib_message_tag_target_id']['field'] = 'field_uib_message_tag_target_id';
+  $handler->display->display_options['relationships']['field_uib_message_tag_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_uib_message_area_target_id']['id'] = 'field_uib_message_area_target_id';
+  $handler->display->display_options['relationships']['field_uib_message_area_target_id']['table'] = 'field_data_field_uib_message_area';
+  $handler->display->display_options['relationships']['field_uib_message_area_target_id']['field'] = 'field_uib_message_area_target_id';
+  $handler->display->display_options['relationships']['field_uib_message_area_target_id']['required'] = TRUE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Link English */
+  $handler->display->display_options['fields']['field_uib_message_link_en']['id'] = 'field_uib_message_link_en';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['table'] = 'field_data_field_uib_message_link_en';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['field'] = 'field_uib_message_link_en';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_en']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Link Norwegian */
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['id'] = 'field_uib_message_link_nb';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['table'] = 'field_data_field_uib_message_link_nb';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['field'] = 'field_uib_message_link_nb';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Message text in English */
+  $handler->display->display_options['fields']['field_uib_message_text_en']['id'] = 'field_uib_message_text_en';
+  $handler->display->display_options['fields']['field_uib_message_text_en']['table'] = 'field_data_field_uib_message_text_en';
+  $handler->display->display_options['fields']['field_uib_message_text_en']['field'] = 'field_uib_message_text_en';
+  $handler->display->display_options['fields']['field_uib_message_text_en']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_message_text_en']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_text_en']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Message text in Norwegian */
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['id'] = 'field_uib_message_text_nb';
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['table'] = 'field_data_field_uib_message_text_nb';
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['field'] = 'field_uib_message_text_nb';
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_text_nb']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Tag */
+  $handler->display->display_options['fields']['field_uib_message_tag']['id'] = 'field_uib_message_tag';
+  $handler->display->display_options['fields']['field_uib_message_tag']['table'] = 'field_data_field_uib_message_tag';
+  $handler->display->display_options['fields']['field_uib_message_tag']['field'] = 'field_uib_message_tag';
+  $handler->display->display_options['fields']['field_uib_message_tag']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_message_tag']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_tag']['settings'] = array(
+    'link' => 0,
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Message */
+  $handler = $view->new_display('page', 'Message', 'page');
+  $handler->display->display_options['path'] = 'messages';
+
+  /* Display: Feed */
+  $handler = $view->new_display('feed', 'Feed', 'feed');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'node_rss';
+  $handler->display->display_options['path'] = 'message.xml';
+  $handler->display->display_options['displays'] = array(
+    'default' => 'default',
+    'page' => 'page',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+
+  /* Display: Area */
+  $handler = $view->new_display('page', 'Area', 'page_1');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Area (field_uib_message_area) */
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['id'] = 'field_uib_message_area_target_id';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['table'] = 'field_data_field_uib_message_area';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['field'] = 'field_uib_message_area_target_id';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['validate']['type'] = 'php';
+  $handler->display->display_options['arguments']['field_uib_message_area_target_id']['validate_options']['code'] = '$node = node_load($argument);
+if(!$node) return false;
+if($node->tnid != 0)$handler->argument = $node->tnid;
+return true;';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  $handler->display->display_options['path'] = 'node/%/messages';
+  $translatables['uib_message'] = array(
+    t('Master'),
+    t('Message'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Taxonomy term entity referenced from field_uib_message_tag'),
+    t('Content entity referenced from field_uib_message_area'),
+    t('Feed'),
+    t('Block'),
+    t('Area'),
+    t('All'),
+  );
+  $export['uib_message'] = $view;
+
   return $export;
 }

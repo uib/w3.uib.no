@@ -124,3 +124,18 @@ function uib_api__msg_node_to_array($nid, $language, $area, $tag) {
   }
   return $row;
 }
+
+/**
+ * Implements hook node view
+ * Only show message in correct language
+ * if there is not message in the language wanted, show other language
+ */
+function uib_message_node_view($node, $view_mode, $langcode) {
+  if ($langcode == 'nb' && !empty($node->content['field_uib_message_text_nb'])) {
+    unset($node->content['field_uib_message_text_en']);
+    unset($node->content['field_uib_message_link_en']);
+  } else if ($langcode == 'en' && !empty($node->content['field_uib_message_text_en'])) {
+    unset($node->content['field_uib_message_link_nb']);
+    unset($node->content['field_uib_message_text_nb']);
+  }
+}
