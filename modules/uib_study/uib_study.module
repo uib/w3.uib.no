@@ -896,9 +896,6 @@ function uib_study_block_view($delta = '') {
             }
           }
         }
-        if (!uib_study__exchange_is_network($data)) {
-          $items[] = t('On January 1 and August 1 every year, you will be able to see if this agreement has been opened for applications with the deadlines February 1 and September 1, respectively.');
-        }
         if ($items) {
           $render = array(
             '#theme' => 'item_list',
