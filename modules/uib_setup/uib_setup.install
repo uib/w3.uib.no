@@ -201,3 +201,15 @@ function uib_setup_update_7020() {
 function uib_setup_update_7021() {
   module_enable(array('uib_message'));
 }
+
+/**
+ * Adding norwegian alias for /persons
+ */
+function uib_setup_update_7022() {
+  $new_alias = array(
+    'source' => 'persons',
+    'alias' => 'personer',
+    'language' => 'nb',
+  );
+  path_save($new_alias);
+}
