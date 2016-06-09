@@ -1109,7 +1109,8 @@ function uib_w3_menu_link($variables) {
   $level_user = in_array('level 1', $user->roles) || in_array('level 2', $user->roles) || in_array('level 3', $user->roles) ? true : false;
   if (strstr($variables['theme_hook_original'], 'menu_link__menu_area_')) {
     if ((!empty($variables['element']['#below']) || $variables['element']['#href'] != 'http:#') || $level_user) {
-      return theme_menu_link($variables);
+      $link = str_replace('http:#', '#', theme_menu_link($variables));
+      return $link;
     }
   }
   else {
