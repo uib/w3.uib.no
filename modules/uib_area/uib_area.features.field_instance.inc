@@ -2897,7 +2897,7 @@ function uib_area_field_default_field_instances() {
       'description_field' => 0,
       'entity_translation_sync' => FALSE,
       'file_directory' => 'attachments',
-      'file_extensions' => 'txt rtf pdf odf',
+      'file_extensions' => 'txt rtf pdf odf odt ods odp odg',
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
