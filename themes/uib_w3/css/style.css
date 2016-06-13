@@ -4727,6 +4727,15 @@ nav {
 .view-study-blocks .studentreport-ref {
   float: right; }
 
+#block-uib-study-study-period-phd {
+  background: #fff;
+  padding: 1rem; }
+  #block-uib-study-study-period-phd h2 {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    margin-top: 0.375rem;
+    font-weight: normal; }
+
 #block-uib-study-study-plan {
   margin: 0 1rem; }
   #block-uib-study-study-plan h2 {
@@ -6801,6 +6810,9 @@ nav {
   .node-type-uib-study .region-content .uib-study-belongs-to {
     -webkit-order: 9;
     order: 9; }
+  .node-type-uib-study .region-content #block-uib-study-study-period-phd {
+    -webkit-order: 10;
+    order: 10; }
 @media (min-width: 780px) {
   .node-type-uib-study .region-content {
     display: block; }
@@ -6822,6 +6834,7 @@ nav {
   .node-type-uib-study #block-uib-study-study-semester-toggle,
   .node-type-uib-study #block-uib-study-study-facts-exchange,
   .node-type-uib-study #block-uib-study-study-evu,
+  .node-type-uib-study #block-uib-study-study-period-phd,
   .node-type-uib-study .uib-study-belongs-to {
     width: 31.91489%;
     float: right;

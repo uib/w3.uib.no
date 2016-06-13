@@ -55,6 +55,10 @@ function uib_study_block_info() {
       'info' => t('Trivia regarding this study'),
       'status' => TRUE,
     ),
+    'study_period_phd' => array(
+      'info' => t('Information about the study period of this phd course'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -732,6 +736,18 @@ function uib_study_block_view($delta = '') {
         if (isset($toc)) {
           $block['content']['fspres']['#prefix'] = render($toc);
         }
+      }
+      break;
+    case 'study_period_phd':
+      $node = menu_get_object();
+      if ($node && $node->field_uib_study_category['und'][0]['value'] == 'phdkurs') {
+        $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $tmp= uib_study__extract_study_info($data, 'FKU_UNDPER');
+        $block['title'] = $tmp['#title'];
+        $block['content'] = array(
+          '#type' => 'markup',
+          '#markup' => $tmp['#text'],
+        );
       }
       break;
     case 'study_contact':

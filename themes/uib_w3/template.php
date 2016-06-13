@@ -537,6 +537,9 @@ EOD;
       }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'course') {
         $variables['page']['content']['study_toggle'] = __uib_w3__render_block('uib_study', 'study_semester_toggle', 10);
+        if ($variables['node']->field_uib_study_category['und'][0]['value'] == 'phdkurs') {
+          $variables['page']['content']['study_period'] = __uib_w3__render_block('uib_study', 'study_period_phd', 25);
+        }
       }
       if (in_array($variables['node']->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
         $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
