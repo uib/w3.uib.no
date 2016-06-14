@@ -1116,7 +1116,9 @@ function uib_w3_menu_link($variables) {
       return $link;
     }
   }
-  if (strstr($variables['theme_hook_original'], 'menu_link__menu_global_menu_2') && $variables['element']['#href'] == 'http:#') {
+  if ((strstr($variables['theme_hook_original'], 'menu_link__menu_global_menu_2')
+    || strstr($variables['theme_hook_original'], 'menu_link__menu_global_menu_no_2'))
+    && $variables['element']['#href'] == 'http:#') {
     return str_replace('http:#', '#', theme_menu_link($variables));
   }
   else {
