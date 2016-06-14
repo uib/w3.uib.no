@@ -1667,7 +1667,7 @@ a {
     .main-menu__expanded .menu__item li a {
       display: block;
       padding: 0.5rem 1rem; }
-    .main-menu__expanded .menu__item:hover .menu {
+    .main-menu__expanded .menu__item .menu {
       display: block; }
   .main-menu__expanded a {
     color: #333; }
@@ -1724,12 +1724,7 @@ a {
         .main-menu__expanded .menu__item li, .main-menu__expanded .menu__item > a {
           border-bottom: none 0; }
         .main-menu__expanded .menu__item .menu {
-          display: -ms-flexbox;
-          -ms-flex-direction: column;
-          display: -webkit-flex;
-          -webkit-flex-direction: column;
-          display: flex;
-          flex-direction: column; } }
+          display: block; } }
 
 .field-name-field-uib-user-competence {
   background: #fff; }
