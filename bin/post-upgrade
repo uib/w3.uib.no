@@ -18,3 +18,4 @@ fi
 
 bin/site-drush php-script area-aliases.php
 bin/site-drush php-script fix-filetopic-urls.php
+bin/site-drush uib-sebra-users --limit=0 -v
