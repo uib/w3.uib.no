@@ -724,7 +724,7 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
     // Some roles have no correspondence in Sebra and will be lost if we do not fix it here.
     // All roles but 'level 2' and 'level 3' are fixed.
     foreach ($account->roles as $key => $value) {
-      if ($value != 'level 2' OR $value != 'level 3') {
+      if ($value != 'level 2' AND $value != 'level 3') {
         $u->roles[$key] = $value;
       }
     }
