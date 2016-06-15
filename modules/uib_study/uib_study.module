@@ -743,11 +743,13 @@ function uib_study_block_view($delta = '') {
       if ($node && $node->field_uib_study_category['und'][0]['value'] == 'phdkurs') {
         $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
         $tmp= uib_study__extract_study_info($data, 'FKU_UNDPER');
-        $block['title'] = $tmp['#title'];
-        $block['content'] = array(
-          '#type' => 'markup',
-          '#markup' => $tmp['#text'],
-        );
+        if (!empty($tmp)) {
+          $block['title'] = $tmp['#title'];
+          $block['content'] = array(
+            '#type' => 'markup',
+            '#markup' => $tmp['#text'],
+          );
+        }
       }
       break;
     case 'study_contact':
