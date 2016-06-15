@@ -882,6 +882,24 @@ function uib_sebra_get_main_user($name = NULL) {
 }
 
 /**
+ * Implements hook_user_presave().
+ */
+function uib_sebra_user_presave(&$edit, $account, $category) {
+  if (array_key_exists('status', $edit)) {
+    if ($edit['status'] === 0) {
+      if (!array_key_exists('roles', $edit)) {
+        $roles = array_filter($account->roles, function($rname) {
+          return !in_array($rname, array('level 1', 'level 2', 'level 3'));
+        });
+        if ($roles != $account->roles) {
+          $edit['roles'] = $roles;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_user_update().
  */
 function uib_sebra_user_update(&$edit, $account, $category) {
