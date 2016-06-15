@@ -905,8 +905,12 @@ function uib_study_block_view($delta = '') {
                   $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
                   $items[] = uib_study__get_study_facts_markup(t('How do I apply'), l(t('Instructions on Søknadsweb'),'utdanning/49395/søknadsweb-instruksjonar'));
                   $items[] = uib_study__get_study_facts_markup(t('Submit your application here'), l(t('Søknadsweb'),'https://soknadsweb.uib.no/'));
-                  if (!empty($data['restinfo']['studietypenr']))
+                  if (!empty($data['restinfo']['studietypenr'])) {
                     $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
+                  }
+                  else {
+                    $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), t('Not open for admission'));
+                  }
                 }
               }
             }
