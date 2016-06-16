@@ -446,6 +446,16 @@ function uib_setup_user_default_permissions() {
     'module' => 'file_entity',
   );
 
+  // Exported permission: 'bypass maxlength'.
+  $permissions['bypass maxlength'] = array(
+    'name' => 'bypass maxlength',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+    ),
+    'module' => 'maxlength',
+  );
+
   // Exported permission: 'bypass node access'.
   $permissions['bypass node access'] = array(
     'name' => 'bypass node access',
