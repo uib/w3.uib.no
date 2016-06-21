@@ -31,8 +31,103 @@ function uib_content_list__access_check($node) {
   }
   return FALSE;
 }
-
-/*
+/**
+ * Implements hook_preprocess_page()
+ */
+function uib_content_list_preprocess_page(&$variables) {
+  global $user;
+  if (isset($variables['node'])) {
+    if ($variables['node']->type == 'uib_content_list') {
+      $metadata = entity_metadata_wrapper('node', $variables['node']->nid);
+      $title = check_plain($metadata->label());
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => $title,
+        '#weight' => -45,
+      );
+      $variables['page']['content_top']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_lead', array(
+        'label' => 'hidden',
+        'weight' => 0,
+      ));
+      $steps = array();
+      $all_steps = ($metadata->field_uib_step->value());
+      $allowed_user_roles = array('level 1', 'level 2', 'level 3');
+      $variables['page']['content_top']['field_uib_step'] = field_view_field('node', $variables['node'], 'field_uib_step', array(
+        'label' => 'hidden',
+        'weight' => 20,
+      ));
+      if (count(array_intersect($user->roles, $allowed_user_roles)) > 0) {
+        $steps = $all_steps;
+      }
+      else {
+        $all_content_steps = array();
+        foreach($variables['page']['content_top']['field_uib_step'] as $key => $step) {
+          if (is_numeric($key)) {
+            $all_content_steps[] = $step;
+            unset($variables['page']['content_top']['field_uib_step'][$key]);
+          }
+        }
+        foreach($all_steps as $key => $step) {
+          $s = entity_load_single('node', $step->field_uib_step_content['und'][0]['target_id']);
+          if ($s->status == 1) {
+            $steps[] = $step;
+            $variables['page']['content_top']['field_uib_step'][] = $all_content_steps[$key];
+          }
+        }
+      }
+      if (!empty($steps)) {
+        $query_string = drupal_get_query_parameters();
+        $list_current_step = 0;
+        if (!empty($query_string)) {
+          $list_current_step = $query_string['step'] - 1;
+        }
+        foreach ($steps as $key => $step) {
+          $classes = array('uib-step');
+          if ($key == $list_current_step) {
+            $classes[] = 'uib-step__current';
+            $list_step_content = '<span class="' . implode(' ', $classes) . '"> '. $step->field_uib_title['und'][0]['value'] . '</span>';
+          }
+          else {
+            $classes[] = 'uib-step__not-current';
+            $list_step_content = l($step->field_uib_title['und'][0]['value'], 'node/' . $variables['node']->nid, array('query' => array('step' => $key + 1), 'attributes' => array('class' => $classes),));
+          }
+          $variables['page']['content_top']['field_uib_step'][$key]['entity']['field_collection_item'][$step->item_id]['field_uib_title'][0]['#markup'] = $list_step_content;
+          unset($variables['page']['content_top']['field_uib_step'][$key]['links']);
+        }
+        $link_items = array();
+        if ($list_current_step > 0) {
+          $sp = $steps[$list_current_step - 1];
+          $link_items[] = l($sp->field_uib_title['und'][0]['value'], 'node/' . $variables['node']->nid, array('query' => array('step' => $list_current_step), 'attributes' => array('class' => array('content-list__previous'))));
+        }
+        if ($list_current_step < (count($steps) - 1)) {
+          $ns = $steps[$list_current_step + 1];
+          $link_items[] = l($ns->field_uib_title['und'][0]['value'], 'node/' . $variables['node']->nid, array('query' => array('step' => $list_current_step + 2), 'attributes' => array('class' => array('content-list__next'))));
+        }
+        if (!empty($link_items)) {
+          $variables['page']['content_bottom']['content_list_step_navigation'] = array(
+            '#theme' => 'item_list',
+            '#items' => $link_items,
+            '#weight' => 45,
+            '#attributes' => array('class' => array('content-list')),
+          );
+        }
+        $list_current_nid = $steps[$list_current_step]->field_uib_step_content['und'][0]['target_id'];
+        $node = node_load($list_current_nid);
+        $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $node, 'field_uib_relation', array(
+          'label' => 'hidden',
+          'type' => 'entityreference_entity_view',
+          'settings' => array('view_mode' => 'short_teaser'),
+          'weight' => '10',
+        ));
+        $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $node, 'field_uib_links', array(
+          'weight' => '20',
+        ));
+      }
+    }
+  }
+}
+/**
  * Implements hook_preprocess_node()
  */
 function uib_content_list_preprocess_node(&$variables, $hook) {
@@ -40,13 +135,6 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
   if ($variables['page']) {
     if ($variables['type'] == 'uib_content_list') {
       $metadata = entity_metadata_wrapper('node', $variables['nid']);
-      $title = check_plain($metadata->label());
-      $variables['content']['title'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'h1',
-        '#value' => $title,
-        '#weight' => -45,
-      );
       $steps = array();
       $all_steps = ($metadata->field_uib_step->value());
       $allowed_user_roles = array('level 1', 'level 2', 'level 3');
@@ -75,33 +163,6 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         if (!empty($query_string)) {
           $list_current_step = $query_string['step'] - 1;
         }
-        foreach ($steps as $key => $step) {
-          $classes = array('uib-step');
-          if ($key == $list_current_step) {
-            $classes[] = 'uib-step__current';
-            $list_step_content = '<span class="' . implode(' ', $classes) . '"> '. $step->field_uib_title['und'][0]['value'] . '</span>';
-          }
-          else {
-            $classes[] = 'uib-step__not-current';
-            $list_step_content = l($step->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $key + 1), 'attributes' => array('class' => $classes),));
-          }
-          $variables['content']['field_uib_step'][$key]['entity']['field_collection_item'][$step->item_id]['field_uib_title'][0]['#markup'] = $list_step_content;
-          unset($variables['content']['field_uib_step'][$key]['links']);
-        }
-        if ($list_current_step > 0) {
-          $sp = $steps[$list_current_step - 1];
-          $variables['content']['list_previous_step'] = array(
-            '#markup' => l($sp->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $list_current_step), 'attributes' => array('class' => array('list__previous')))),
-            '#weight' => '45',
-          );
-        }
-        if ($list_current_step < (count($steps) - 1)) {
-          $ns = $steps[$list_current_step + 1];
-          $variables['content']['list_next_step'] = array(
-            '#markup' => l($ns->field_uib_title['und'][0]['value'], 'node/' . $variables['nid'], array('query' => array('step' => $list_current_step + 2), 'attributes' => array('class' => array('list__next')))),
-            '#weight' => '46',
-          );
-        }
         $list_current_nid = $steps[$list_current_step]->field_uib_step_content['und'][0]['target_id'];
         $node = node_load($list_current_nid);
         if (empty($node->field_uib_related_persons)) {
@@ -112,14 +173,27 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         }
         $created = $node->created;
         $changed = $node->changed;
+        $title = l($node->title, 'node/' . $node->nid);
+        $node->title = NULL;
         $node_view = node_view($node);
         unset($node_view['field_uib_byline']);
+        unset($node_view['field_uib_relation']);
+        unset($node_view['field_uib_links']);
+        $node_view['title'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#value' => $title,
+          '#weight' => -50,
+          '#prefix' => '<div class="main-bar">',
+        );
         $node_view['article_info'] = uib_article__get_article_info($created, $changed);
+        $node_view['field_uib_text']['#suffix'] = '</div>';
         $variables['content']['list_current_step'] = array(
           '#markup' => drupal_render($node_view),
           '#weight' => 40,
         );
       }
+      hide($variables['content']['field_uib_step']);
     }
   }
 }
