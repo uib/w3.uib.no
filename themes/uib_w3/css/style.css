@@ -2555,23 +2555,33 @@ a {
       content: "English"; }
     #block-locale-language li.no .language-link {
       content: "Norsk"; } }
-.field-collection-container .field-name-field-uib-link-section .field-name-field-uib-title {
-  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-  text-transform: uppercase;
-  font-size: 1.625rem;
-  margin-bottom: .75rem;
-  font-weight: normal; }
-.field-collection-container .field-name-field-uib-link-section .field-name-field-uib-links .field-label {
-  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-  text-transform: uppercase;
-  font-size: 1.625rem;
-  margin-bottom: .75rem;
-  font-weight: normal; }
-.field-collection-container .field-name-field-uib-link-section .field-name-field-uib-links .field-item {
-  font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
-  font-size: 1.25rem;
-  margin: 0 0 .5rem 0;
-  line-height: 1.5rem; }
+@media (min-width: 600px) {
+  .field-collection-container {
+    border-bottom: none;
+    margin-bottom: 0; } }
+.field-collection-container .field-name-field-uib-link-section .field-collection-view {
+  padding: 0;
+  margin: 0 1rem 0 0; }
+  .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-title {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: normal; }
+  .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-links .field-label {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    font-size: 1.625rem;
+    margin-bottom: .75rem;
+    font-weight: normal; }
+  .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-links .field-item {
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    margin: 0 0 .5rem 0;
+    line-height: 1.5rem; }
+  .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-links .field-item {
+    margin-bottom: 1.03125rem;
+    font-size: 1.3rem; }
 
 .mobile_dropdown {
   display: block;
