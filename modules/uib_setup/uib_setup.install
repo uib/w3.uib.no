@@ -213,3 +213,15 @@ function uib_setup_update_7022() {
   );
   path_save($new_alias);
 }
+
+/**
+ * Adding norwegian alias for /messages
+ */
+function uib_setup_update_7023() {
+  $new_alias = array(
+    'source' => 'messages',
+    'alias' => 'meldinger',
+    'language' => 'nb',
+  );
+  path_save($new_alias);
+}
