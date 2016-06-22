@@ -6396,6 +6396,12 @@ nav {
     margin-right: -100%;
     margin-left: 0;
     clear: none; }
+    .node-uib-content-list .node-uib-article .main-bar .field-name-field-uib-text {
+      width: 100%;
+      float: right;
+      margin-left: 0;
+      margin-right: 0;
+      clear: none; }
   .node-uib-content-list .node-uib-article h2,
   .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
   .node-uib-content-list .node-uib-article .article-info {
