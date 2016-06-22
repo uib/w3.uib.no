@@ -1,0 +1,109 @@
+/**
+ * @file
+ * Print styling
+ *
+ * We provide some sane print styling for Drupal.
+ */
+
+@media print {
+  a:link,
+  a:visited {
+    /* underline all links */
+    text-decoration: underline !important;
+  }
+  .site-name a:link,
+  .site-name a:visited,
+  .subheader__wrapper h2 a {
+    /* Don't underline header */
+    text-decoration: none !important;
+  }
+  .content-top-wrapper a[href]:after,
+  .content-main-wrapper a[href]:after,
+  .footer-top-wrapper a[href]:after,
+  .content-bottom-wrapper a[href]:after,
+  .content a[href]:after {
+    /* Add visible URL after links. */
+    content: " (" attr(href) ")";
+    font-weight: normal;
+    font-size: 10pt;
+  }
+  .uib-news-byline a[href]:after {
+    content: '';
+  }
+  .content a[href^="javascript:"]:after,
+  .content a[href^="#"]:after {
+    /* Only display useful links. */
+    content: "";
+  }
+  .content,
+  .content-main-wrapper {
+    /* Un-float the content */
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body,
+  #main,
+  .content,
+  .content-main-wrapper,
+  .subheader__wrapper,
+  .footer-top-wrapper {
+    /* Turn off any background colors or images */
+    color: #000;
+    background-color: transparent !important;
+    background-image: none !important;
+    font-size: 10pt;
+  }
+  .header__wrapper,
+  nav,
+  .messages,
+  .error,
+  .region-header,
+  #skip-link,
+  #top-region-wrapper,
+  #block-locale-language,
+  #toolbar,
+  #navigation,
+  .region-sidebar-first,
+  .region-sidebar-second,
+  #footer,
+  .footer-wrapper,
+  .footer-bottom-wrapper,
+  .breadcrumb,
+  .tabs,
+  .action-links,
+  .links,
+  .book-navigation,
+  .forum-topic-navigation,
+  .pager,
+  .feed-icons,
+  .service-links,
+  #block-uib-area-node-children,
+  #bottom-region-wrapper,
+  #menu-search-mobile-wrapper,
+  #desktop-tablet-language,
+  .ui-tabs-nav,
+  #block-uib-area-news-and-calendar,
+  .more-link {
+    /* Hide nav elements etc. */
+    visibility: hidden;
+    display: none;
+  }
+  .ui-tabs,
+  .uib-tabs-container h2,
+  .uib-tabs-container .tabs-content {
+    display: block !important;
+    visibility: visible !important;
+  }
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+  .ui-widget-content {
+    border: none;
+  }
+  .field-name-field-uib-relation .field-items {
+    display: block;
+  }
+}
+/* End @media print */
