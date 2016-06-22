@@ -1770,14 +1770,15 @@ a {
           text-decoration: underline; }
 
 .item-list .content-list {
-  border-top: solid 0.0625rem #d5d5d5;
-  list-style: none;
-  margin: 2.5rem 0 0;
-  padding: 1.5rem 0 0; }
+  list-style: none; }
   .item-list .content-list li {
     display: inline;
     margin: 0;
     padding: 0; }
+.item-list:not(:first-child) .content-list {
+  border-top: solid 0.0625rem #d5d5d5;
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 0 0; }
 
 [class^="content-list__"] {
   background: #d5d5d5;
