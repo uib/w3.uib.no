@@ -36,7 +36,8 @@
     content: "";
   }
   .content,
-  .content-main-wrapper {
+  .content-main-wrapper,
+  .block-uib-study {
     /* Un-float the content */
     float: none !important;
     width: 100% !important;
@@ -90,7 +91,8 @@
     visibility: hidden;
     display: none;
   }
-  .ui-tabs,
+  .ui-tabs .ui-tabs-hide,
+  .ui-tabs .ui-tabs-panel,
   .uib-tabs-container h2,
   .uib-tabs-container .tabs-content {
     display: block !important;
