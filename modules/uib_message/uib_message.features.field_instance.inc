@@ -238,7 +238,11 @@ function uib_message_field_default_field_instances() {
   // Exported field_instance: 'node-uib_message-field_uib_message_tag'.
   $field_instances['node-uib_message-field_uib_message_tag'] = array(
     'bundle' => 'uib_message',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'target_id' => 5390,
+      ),
+    ),
     'default_value_function' => '',
     'deleted' => 0,
     'description' => '',
