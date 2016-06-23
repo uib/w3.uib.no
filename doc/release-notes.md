@@ -1,3 +1,27 @@
+# Release 49 _2016-06-23_
+
+I denne versjonen har vi gjort mange designjusteringer, rettet diverse feil og jobbet videre med lokal meldingstjeneste.
+
+- Det er nå mulig å laste opp flere åpne filformater (.odt, .ods, .odp, .odg) #15354
+- Kolofonmenyen holder seg nå i ro i Safari og Internet Explorer når man går over lenkene med musepekeren #15466
+- Forbedret støtte for utskrift (bl.a. er det nå mulig å skrive ut alt innhold som ligger skjult bak inaktive faner i skjermvisning) #13677
+- Ytterligere designjusteringer av uib.no/kalender #15467
+- Designjusteringer for fremhevede artikler (tidl. slideshow) på områdesidene #15366
+- Designjusteringer for viktige meldinger #15205
+- Designjusteringer er gjort på områdesider for å få nyhetsfeed på linje med øvrig innhold #15487
+- Forbedret designet på innholdsliste #15488
+- Fjernet uønsket informasjon i faktaboks på utvekslingsavtaler #15490
+- Gått gjennom alle filer som er lastet opp i w2 og rettet eventuelle brutte lenker #15497
+- Lagt til informasjon om at utvekslingsavtaler uten opptak neste semester ikke er søkbare #15489
+- Lagt til studieperiode på phd-kurs #14904
+- Lagt til ytterligere styling på tilknyttet innhold uten bilde på hover #15340
+- Rettet en feil hvor “personer” i brødsmulestien gikk til 404-side #15405
+- Rettet feil hvor det kom opp en dialogboks for mye ved opplasting av bilder #15469
+- Vi jobber videre med lokal meldingstjeneste #15104 #15283 #15462 #15574 #15634
+- Diverse saker der valideringsfeil blir rettet #15474 #15465 #15504 #15577
+- Diverse saker som dreier seg om brukernes tilgangsrettigheter (bl.a. fjerning av redigeringstilgang for inaktive brukere) #15372 #15513 #15517
+- Diverse sikkerhets- og moduloppdateringer #15606 #15607 #15608
+
 # Release 48 _2016-06-08_
 
 Vi jobber videre med det nye søket, men har også fått fikset en den generelle feil på webben.
