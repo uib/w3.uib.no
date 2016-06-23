@@ -3455,7 +3455,7 @@ div.field-item {
       position: relative;
       text-decoration: none;
       width: calc(100% - 0.375rem); }
-      .field-name-field-uib-relation > .field-items > .field-item a :before, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a :before {
+      .field-name-field-uib-relation > .field-items > .field-item a:before, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a:before {
         -moz-transition-property: left, width;
         -o-transition-property: left, width;
         -webkit-transition-property: left, width;
@@ -3492,7 +3492,7 @@ div.field-item {
       .field-name-field-uib-relation > .field-items > .field-item a:hover, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a:hover {
         background: #f5f5f5;
         left: 0.375rem; }
-        .field-name-field-uib-relation > .field-items > .field-item a:hover :before, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a:hover :before {
+        .field-name-field-uib-relation > .field-items > .field-item a:hover:before, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a:hover:before {
           left: -0.375rem;
           width: 0.375rem; }
         .field-name-field-uib-relation > .field-items > .field-item a:hover h2, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a:hover h2 {
