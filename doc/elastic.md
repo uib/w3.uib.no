@@ -9,12 +9,27 @@ data.
 
 ## Disable frontend search
 You can disable the instant search in the uib.no frontend by deleting
-variable `uib_elasticsearch_index`; for instance with the command `bin/site-drush vdel uib_elasticsearch_index`.
+variable `uib_elasticsearch_index`, for instance with the command
+
+    bin/site-drush vdel uib_elasticsearch_index
 
 ## Setup
 
+Variables for the setup can be set in different ways depending on your needs:
 
-The following variables need to be set to allow the search to work.
+- The $conf-array in settings.php
+
+  `$conf['uib_elasticsearch_index'] =  'index_name';`
+
+- Using site-drush
+
+  `bin/site-drush vset uib_elasticsearch_index index_name`
+
+- Somwhere else entirely
+
+  `<?php variable_set('uib_elasticsearch_index', 'index_name'); ?>`
+
+The following variables need to be set to allow the search to work:
 
 * `uib_elasticsearch_index` - The index used as a base for all searches
 * `uib_elasticsearch_url` - Base url for the search index.
@@ -24,7 +39,8 @@ The following variables need to be set to allow the search to work.
 The following variables need to be setup to allow indexing of documents, and
 drush commands to work
 
-* `uib_elasticsearch_admin_index` - Index used as a base for indexing documents
+* `uib_elasticsearch_admin_index` - Index used as a base for indexing 
+documents
 * `uib_elasticsearch_admin_url` - Base url used when indexing documents
 * `uib_elasticsearch_admin_user` - User with administration rights for index
 * `uib_elasticsearch_admin_password` - Password for admin user
@@ -51,12 +67,12 @@ You can change variable values with
 There is functionality available from drush to manage
 indexing. The following commands are useful when working with the search index
 
-    bin/site-drush vget elastic           # list all current variables for
-                                          # elasticsearch.
-    bin/site-drush help | grep uib-search # list drush commands on uib_search
-                                          # module
+    bin/site-drush vget elastic           # list all current variables
+                                          # for elasticsearch.
+    bin/site-drush help | grep uib-search # list drush commands on
+                                          # uib_search module
 
-## User document structure in elastic
+## User document structure in Elastic
 
 The current document structure, as json, of indexed users
 
@@ -79,6 +95,9 @@ The current document structure, as json, of indexed users
       competence_nb,
       link_nb
       generic : {
+        title,
+        link,
+        excerpt,
         title_en,
         link_en,
         excerpt_en,
@@ -89,6 +108,38 @@ The current document structure, as json, of indexed users
       },
     }
 
+## Node document structure in Elastic
+
+Nodes can contain the fields defined below. `field_uib_` is stripped from the
+field names, so a field called `field_uib_somefield` will simply show in the
+structure as `somefield`.
+
+
+    {
+      w3 : {
+        title,
+        lead,
+        teaser,
+        text,
+        text2,
+        primary_text,
+        secondary_text,
+        article_type,
+        promote,
+        url,
+      },
+      generic : {
+        title,
+        link,
+        excerpt,
+        _searchable_text,
+      }
+    }
+
+Generic fields are populated by combining relevant fields for the entity.
+
+The generic field `_searchable_text` should be a field containing all relevant
+searchable text from a node.
 
 ## Update document schema in Elasticsearch
 

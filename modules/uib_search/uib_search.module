@@ -12,7 +12,7 @@ function uib_search_menu() {
 }
 
 /**
- * Returns the search page
+ * Returns the search page.
  */
 function uib_search__page() {
   $q = isset($_GET['qq']) ? $_GET['qq'] : 'uib';
@@ -65,9 +65,8 @@ JS;
 HTML;
 }
 
-
 /**
- * Implements hook_block_info()
+ * Implements hook_block_info().
  */
 function uib_search_block_info() {
   return array(
@@ -77,192 +76,6 @@ function uib_search_block_info() {
     ),
   );
 }
-
-// TODO: This function should be removed when the switch to elasticsearch
-// is completed.
-function uib_search__form_old($delta = 'global-searchform'){
-  global $language;
-  $retval=array();
-  $retval['subject']=t('Search');
-  switch ($delta) {
-  case 'global-searchform':
-    drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
-    $action=$GLOBALS['base_path'] . $language->language . "/search";
-    $retval['content']=array(
-      '#type' => 'container',
-      '#weight' => -45,
-      '#attributes' => array(
-        'class' => array('global-search'),
-      ),
-      'form' => array(
-        '#type' => 'form',
-        '#name' => 'noscriptform',
-        '#id' => 'uib-search-noscript-form',
-        '#action' => $action,
-        '#method' => "get",
-        '#attributes' => array(
-          'name' => 'noscriptform',
-        ),
-        'link' => array(
-          "#markup" => '<input class="search-button" type="submit" value="'
-          . t("Search") . '" />',
-        ),
-        'noscript' => array(
-          '#prefix' => '<noscript>',
-          '#suffix' => '</noscript>',
-          'qq' => array(
-            '#type' => 'textfield',
-            '#attributes' => array(
-              'class' => array('search-field'),
-              'value' => check_plain(@$_GET['qq']),
-                  'name' => 'qq',
-            ),
-          ),
-        ),
-      ),
-      'lightbox-form' => array(
-        '#type' => 'form',
-        '#name' => 'lbform',
-        '#id' => 'uib-search-form',
-        '#action' => $action,
-        '#method' => "get",
-        '#attributes' => array(
-          'name' => 'lbform',
-        ),
-        'lightbox' => array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('lightbox'),
-          ),
-          'top' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('topbar-wrapper'),
-            ),
-            'top' => array(
-              '#type' => 'container',
-              '#attributes' => array(
-                'class' => array('topbar'),
-              ),
-              'typeswitcher' => array(
-                '#type' => 'checkbox',
-                '#value' => 'user',
-                '#title' => t('Search for person'),
-                '#default_value' => 'user',
-                '#id' => 'switch_type_button',
-                '#attributes' => array(
-                  'name' => 'searchtype',
-                  'data-toggle-title' => t('Back to search'),
-                  'data-title' => t('Search for person'),
-                ),
-              ),
-              'right' => array(
-                '#type' => 'container',
-                '#attributes' => array(
-                  'class' => array('top-right'),
-                ),
-                'close' => array(
-                  '#type' => 'container',
-                  'link' => array(
-                    '#type' => 'link',
-                    '#href' => '',
-                    '#attributes' => array(
-                      'class' => 'closeme',
-                    ),
-                    '#title' => t('Close'),
-                  ),
-                  '#attributes' => array(
-                    'class' => array('close-lightbox'),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          'search' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('search-wrapper'),
-            ),
-            'searchfield' => array(
-              '#type' => 'html_tag',
-              '#tag' => 'label',
-              '#value' => t('Search field'),
-              '#attributes' => array(
-                'for' => 'searchfield',
-                'class' => 'element-invisible',
-              ),
-            ),
-            'searchtext' => array(
-              '#type' => 'textfield',
-              '#value' => check_plain(@$_GET['qq']),
-              '#attributes' => array(
-                'class' => array('search-field'),
-                'name' => 'qq',
-                'autocomplete' => 'off',
-                'placeholder' => t('Search uib.no'),
-                'data-placeholder' => t('Search for person'),
-                'id' => 'searchfield',
-              ),
-            ),
-            'submit' => array(
-              '#type' => 'submit',
-              '#value' => t('Search'),
-            ),
-            'user' => array(
-              '#type' => 'hidden',
-              '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
-              '#attributes' => array(
-                'name' => 'user',
-              ),
-            ),
-            'password' => array(
-              '#type' => 'hidden',
-              '#value' =>
-                variable_get(uib_search__parameter_prefix() . 'password'),
-              '#attributes' => array(
-                'name' => 'password',
-              ),
-            ),
-            'url' => array(
-              '#type' => 'hidden',
-              '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
-              '#attributes' => array(
-                'name' => 'url',
-              ),
-            ),
-            'index' => array(
-              '#type' => 'hidden',
-              '#value' =>
-                variable_get(uib_search__parameter_prefix() . 'index'),
-              '#attributes' => array(
-                'name' => 'index',
-              ),
-            ),
-          ),
-          'results' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => 'results',
-            ),
-          ),
-          'results-bottom-anchor' => array(
-            '#type' => 'html_tag',
-            '#tag' => 'span',
-            '#value' => '',
-            '#attributes' => array(
-              'class' => 'results-bottom-anchor',
-            ),
-          ),
-        ),
-      ),
-    );
-    break;
-  }
-  return $retval;
-}
-
-
-
 
 /**
  * Implements hook_block_view().
@@ -286,336 +99,6 @@ function uib_search_block_view($delta) {
     break;
   }
   return $retval;
-}
-
-/**
- * Implements hook_user_update().
- *
- * hook_user_update is executed after user info is inserted in the database.
- *
- */
-function uib_search_user_update(&$edit, $account, $category) {
-  uib_search__index_user($account);
-}
-/**
- * Implements hook_user_insert().
- *
- * hook_user_insert is executed after user is created
- */
-function uib_search_user_insert(&$edit, $account, $category) {
-  uib_search__index_user($account);
-}
-/*
- * Implements hook_user_delete().
- *
- * hook_user_delete executed before user is deleted
- */
-function uib_search_user_delete($account) {
-  $account->status = 0;  // treat it as if was blocked
-  uib_search__index_user($account);
-}
-
-/**
- * Index a user in the database. This implementation updates the search index
- * in elasticsearch.
- */
-
-function uib_search__index_user(&$account) {
-  if (!uib_search__check_elastic_settings(true)) {
-    uibx_log('Administrator settings for elasticsearch is not setup', 'notice');
-    return;
-  }
-  $prefix = uib_search__parameter_prefix(1);
-  $index = variable_get($prefix . 'index');
-  $url = rtrim(variable_get($prefix . 'url'), '/');
-  $type = 'user';
-  if ($account->status == 0) {
-    // Delete doc from users in search index, and return
-    $stat = uib_search__run_elastic_request(
-      "{$url}/{$index}/{$type}/{$account->uid}",
-      null,
-      'DELETE',
-      true
-    );
-    if ($stat->code == 404) {
-      uibx_log(
-        'User uid #' . $account->uid . ' was not found in the elastic index',
-        'notice'
-      );
-    }
-    else if ($stat->code != 200) {
-      uibx_log(
-        'User uid #' . $account->uid . ' could not be deleted from elastic'
-          . ' index. Status code ' . $stat->code ,
-        'error'
-      );
-    }
-    else {
-      uibx_log(
-        'User uid #' . $account->uid . ' was deleted from elastic index.',
-        'notice'
-      );
-    }
-
-    return;
-  }
-
-  $url = "{$url}/{$index}/{$type}/$account->uid";
-  $output = uib_search__get_elastic_user_array($account);
-  $status = uib_search__run_elastic_request(
-    $url,
-    json_encode($output),
-    'PUT',
-    true
-  );
-
-  if (in_array($status->code, array(200))) {
-    uibx_log('Successful update of elastic user '.$output['uid'], 'notice');
-  }
-  else if (in_array($status->code, array(201))) {
-    uibx_log('Successful creation of elastic user '.$output['uid'], 'notice');
-  }
-  else {
-    uibx_log(
-      "Updating elastic user {$output['uid']} failed: {$status->code} - "
-        . "{$status->status_message}",
-      'error'
-    );
-  }
-}
-
-/**
- * Helper function to retrieve raw value / commaseparated string of values
- * from a drupal array. The array typically has the form
- * [
- *   0 => [
- *          'value' => 'whatevervalue',
- *        ],
- *   1 => [
- *          'value' => 'someothervalue',
- *        ],
- *   ...
- * ]
- *
- * Parameters
- * $array - The array to process
- * $field - optional parameter where the actual value is contained in another
- * index than 'value'
- * $asString - optional parameter. If set to false, values are returned as a
- * flat array instead of an imploded string
- * $delimiter - optional parameter used as glue for imploding the results.
- */
-function uib_search__field_array_as_string(
-  $array,
-  $field = 'value',
-  $asString = TRUE,
-  $delimiter = ', '
-)
-{
-  if (!$array) return null;
-  $retval = array();
-  foreach ($array as $key => $value) {
-    $retval[] = $value[$field];
-  }
-  if ($asString) return implode($delimiter, $retval);
-  return $retval;
-}
-
-/**
- * Execute a drupal http request against the currently set elastic search
- * engine, providing authentication. Returns the same object returned by
- * drupal_http_request().
- */
-function uib_search__run_elastic_request(
-  $url = '',
-  $data,
-  $method = 'POST',
-  $run_as_administrator = false,
-  $timeout = 1
-)
-{
-  $prefix = uib_search__parameter_prefix($run_as_administrator);
-  $user = variable_get($prefix . 'user');
-  $password = variable_get($prefix . 'password');
-  $token = "{$user}:{$password}";
-  $token = base64_encode($token);
-
-  return drupal_http_request($url,
-    array(
-      'headers' => array(
-        'Authorization' => "Basic {$token}"
-      ),
-      'method' => $method,
-      'data' => $data,
-      'timeout' => $timeout,
-    )
-  );
-}
-
-/**
- * Get the parameter prefix used for elasticsearch parameters
- *
- * @param boolean Set to true to get the admin prefix
- */
-function uib_search__parameter_prefix($admin = false) {
-  $admin = $admin ? 'admin_' : '';
-  return 'uib_elasticsearch_' . $admin;
-}
-
-/**
- * Get object to store in the elastic index for the given user
- */
-function uib_search__get_elastic_user_array($account) {
-  $mVal = 'uib_search__field_array_as_string';
-
-  //General fields
-  $output = @array(
-    'name' => $account->name,
-    'mail' => $account->mail,
-    'uid' => $account->uid,
-    'first_name' => $account->field_uib_first_name['und'][0]['value'] ?:
-      $account->field_uib_user_alt_firstname['und'][0]['value'],
-    'last_name' => $account->field_uib_last_name['und'][0]['value'] ?:
-      $account->field_uib_user_alt_lastname['und'][0]['value'],
-    'phone' => $mVal($account->field_uib_phone['und']),
-    'social_media' => $mVal($account->field_uib_user_social_media['und']),
-    'slug' => $mVal(field_get_items('user', $account, 'field_uib_slug')),
-  );
-  // User picture TODO takes too long in stage_file_proxy setups
-  if (0 && @$account->picture->uri) {
-    $output['picture'] = image_style_url(
-      'user_thumbnail',
-      $account->picture->uri
-    );
-  }
-
-  $output['generic'] = array();
-  /*
-   * Language dependent fields
-   */
-  $languages = language_list();
-  foreach ($languages as $language) {
-    $lang = "_{$language->language}";
-    // Resolving area from OU
-    $ou = @$account->field_uib_user_ou['und'][0]['target_id'];
-    $area = uib_user__ou_area($ou, $output['uid'], $language->language);
-    if ($area) {
-      $area = node_load($area);
-      $output['ou' . $lang] = $area->title;
-    }
-    else {
-      $area = node_load($ou);
-      if ($area) {
-        $output['ou' . $lang] = $mVal(
-          field_get_items(
-            'node',
-            $area,
-            'field_uib_ou_title',
-            $language->language
-          )
-        );
-      }
-    }
-
-    //position
-    $output['position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_position',
-        $language->language
-      )
-    );
-    //alt position
-    $output['alt_position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_alt_position',
-        $language->language
-      )
-    );
-    //alt position
-    $output['alt_position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_alt_position',
-        $language->language
-      )
-    );
-
-    // Resolving competence from taxonomi
-    $competence = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_competence',
-        $language->language
-      ),
-      'tid',
-      FALSE
-    );
-    if (is_array($competence)) {
-      foreach ($competence as &$v) {
-        $v = taxonomy_term_load($v)->name;
-      }
-    }
-    $output['competence' . $lang] = implode((array)$competence, ', ');
-    $url = preg_replace('/https?:\/\/w3\.uib\.no\/?/', 'http://www.uib.no/', url('user/' . $output['uid'],
-      array(
-        'absolute' => TRUE,
-        'language' => $language,
-      )
-    ));
-    $output['link' . $lang] = $url;
-
-    // Some generic fields
-    $output['generic']['title' . $lang] = $output['first_name'] . ' ' . $output['last_name'];
-    $output['generic']['link' . $lang] = $output['link' . $lang];
-    $output['generic']['excerpt' . $lang] = array();
-    if (@$output['ou' . $lang]) {
-      $output['generic']['excerpt' . $lang][] =
-        t('Organisation') . ': ' . $output['ou' . $lang];
-    }
-    if (@$output['position' . $lang]) {
-      $output['generic']['excerpt' . $lang][] =
-        t('Position') . ': ' . $output['position' . $lang];
-    }
-    if (@$output['phone']) {
-      $output['generic']['excerpt' . $lang][] =
-        t('Phone nr') . ': ' . $output['phone'];
-    }
-    if (@$output['mail']) {
-      $output['generic']['excerpt' . $lang][] =
-        t('Email') . ': ' . $output['mail'];
-    }
-    $output['generic']['excerpt' . $lang] =
-      implode(', ', $output['generic']['excerpt' . $lang]);
-  }
-
-  $output['generic']['image'] = @$output['picture'] ;
-  return $output;
-}
-
-/**
- * Check if elasticsearch settings are setup
- *
- * @param boolean $admin Set to true to check if admin settings are set.
- * @return boolean Returns true if everything is set up, otherwise false.
- *
- */
-function uib_search__check_elastic_settings($admin = false) {
-  $px = uib_search__parameter_prefix($admin);
-  if (
-    variable_get($px . 'url') &&
-    variable_get($px . 'index') &&
-    variable_get($px . 'user') &&
-    variable_get($px . 'password')
-  ) {
-    return true;
-  }
-  return false;
 }
 
 /**
@@ -823,4 +306,776 @@ function uib_search__noscript_form(){
   );
 
   return $form;
+}
+
+// TODO: This function should be removed when the switch to elasticsearch
+// is completed.
+function uib_search__form_old($delta = 'global-searchform'){
+  global $language;
+  $retval=array();
+  $retval['subject']=t('Search');
+  switch ($delta) {
+  case 'global-searchform':
+    drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
+    $action=$GLOBALS['base_path'] . $language->language . "/search";
+    $retval['content']=array(
+      '#type' => 'container',
+      '#weight' => -45,
+      '#attributes' => array(
+        'class' => array('global-search'),
+      ),
+      'form' => array(
+        '#type' => 'form',
+        '#name' => 'noscriptform',
+        '#id' => 'uib-search-noscript-form',
+        '#action' => $action,
+        '#method' => "get",
+        '#attributes' => array(
+          'name' => 'noscriptform',
+        ),
+        'link' => array(
+          "#markup" => '<input class="search-button" type="submit" value="'
+          . t("Search") . '" />',
+        ),
+        'noscript' => array(
+          '#prefix' => '<noscript>',
+          '#suffix' => '</noscript>',
+          'qq' => array(
+            '#type' => 'textfield',
+            '#attributes' => array(
+              'class' => array('search-field'),
+              'value' => check_plain(@$_GET['qq']),
+                  'name' => 'qq',
+            ),
+          ),
+        ),
+      ),
+      'lightbox-form' => array(
+        '#type' => 'form',
+        '#name' => 'lbform',
+        '#id' => 'uib-search-form',
+        '#action' => $action,
+        '#method' => "get",
+        '#attributes' => array(
+          'name' => 'lbform',
+        ),
+        'lightbox' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('lightbox'),
+          ),
+          'top' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('topbar-wrapper'),
+            ),
+            'top' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array('topbar'),
+              ),
+              'typeswitcher' => array(
+                '#type' => 'checkbox',
+                '#value' => 'user',
+                '#title' => t('Search for person'),
+                '#default_value' => 'user',
+                '#id' => 'switch_type_button',
+                '#attributes' => array(
+                  'name' => 'searchtype',
+                  'data-toggle-title' => t('Back to search'),
+                  'data-title' => t('Search for person'),
+                ),
+              ),
+              'right' => array(
+                '#type' => 'container',
+                '#attributes' => array(
+                  'class' => array('top-right'),
+                ),
+                'close' => array(
+                  '#type' => 'container',
+                  'link' => array(
+                    '#type' => 'link',
+                    '#href' => '',
+                    '#attributes' => array(
+                      'class' => 'closeme',
+                    ),
+                    '#title' => t('Close'),
+                  ),
+                  '#attributes' => array(
+                    'class' => array('close-lightbox'),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          'search' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('search-wrapper'),
+            ),
+            'searchfield' => array(
+              '#type' => 'html_tag',
+              '#tag' => 'label',
+              '#value' => t('Search field'),
+              '#attributes' => array(
+                'for' => 'searchfield',
+                'class' => 'element-invisible',
+              ),
+            ),
+            'searchtext' => array(
+              '#type' => 'textfield',
+              '#value' => check_plain(@$_GET['qq']),
+              '#attributes' => array(
+                'class' => array('search-field'),
+                'name' => 'qq',
+                'autocomplete' => 'off',
+                'placeholder' => t('Search uib.no'),
+                'data-placeholder' => t('Search for person'),
+                'id' => 'searchfield',
+              ),
+            ),
+            'submit' => array(
+              '#type' => 'submit',
+              '#value' => t('Search'),
+            ),
+            'user' => array(
+              '#type' => 'hidden',
+              '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
+              '#attributes' => array(
+                'name' => 'user',
+              ),
+            ),
+            'password' => array(
+              '#type' => 'hidden',
+              '#value' =>
+                variable_get(uib_search__parameter_prefix() . 'password'),
+              '#attributes' => array(
+                'name' => 'password',
+              ),
+            ),
+            'url' => array(
+              '#type' => 'hidden',
+              '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
+              '#attributes' => array(
+                'name' => 'url',
+              ),
+            ),
+            'index' => array(
+              '#type' => 'hidden',
+              '#value' =>
+                variable_get(uib_search__parameter_prefix() . 'index'),
+              '#attributes' => array(
+                'name' => 'index',
+              ),
+            ),
+          ),
+          'results' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => 'results',
+            ),
+          ),
+          'results-bottom-anchor' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => '',
+            '#attributes' => array(
+              'class' => 'results-bottom-anchor',
+            ),
+          ),
+        ),
+      ),
+    );
+    break;
+  }
+  return $retval;
+}
+
+/**
+ * Implements hook_user_update().
+ *
+ * hook_user_update is executed after user info is inserted in the database.
+ *
+ */
+function uib_search_user_update(&$edit, $account, $category) {
+  uib_search__index_entity(entity_metadata_wrapper('user', $account));
+}
+
+/**
+ * Implements hook_user_insert().
+ *
+ * hook_user_insert is executed after user is created
+ */
+function uib_search_user_insert(&$edit, $account, $category) {
+  uib_search__index_entity(entity_metadata_wrapper('user', $account));
+}
+
+/**
+ * Implements hook_user_delete().
+ *
+ * hook_user_delete executed before user is deleted
+ */
+function uib_search_user_delete($account) {
+  uib_search__index_entity(entity_metadata_wrapper('user', $account), TRUE);
+}
+
+/**
+ * Implements hook_node_update().
+ *
+ */
+function uib_search_node_update($node) {
+  uib_search__index_entity(entity_metadata_wrapper('node', $node));
+}
+
+/**
+ * Implements hook_node_insert().
+ *
+ */
+function uib_search_node_insert($node) {
+  uib_search__index_entity(entity_metadata_wrapper('node', $node));
+}
+
+/**
+ * Implements hook_node_delete().
+ *
+ */
+function uib_search_node_delete($node) {
+  uib_search__index_entity(entity_metadata_wrapper('node', $node), TRUE);
+}
+
+/**
+ * Helper function to retrieve raw value / commaseparated string of values
+ * from a drupal array. The array typically has the form
+ * [
+ *   0 => [
+ *          'value' => 'whatevervalue',
+ *        ],
+ *   1 => [
+ *          'value' => 'someothervalue',
+ *        ],
+ *   ...
+ * ]
+ *
+ * Parameters
+ * $array - The array to process
+ * $field - optional parameter where the actual value is contained in another
+ * index than 'value'
+ * $asString - optional parameter. If set to false, values are returned as a
+ * flat array instead of an imploded string
+ * $delimiter - optional parameter used as glue for imploding the results.
+ */
+function uib_search__field_array_as_string(
+  $array,
+  $field = 'value',
+  $asString = TRUE,
+  $delimiter = ', '
+)
+{
+  if (!$array) return null;
+  $retval = array();
+  foreach ($array as $key => $value) {
+    $retval[] = $value[$field];
+  }
+  if ($asString) return implode($delimiter, $retval);
+  return $retval;
+}
+
+/**
+ * Execute a drupal http request against the currently set elastic search
+ * engine, providing authentication. Returns the same object returned by
+ * drupal_http_request().
+ */
+function uib_search__run_elastic_request(
+  $url = '',
+  $data,
+  $method = 'POST',
+  $run_as_administrator = false,
+  $timeout = 1
+)
+{
+  $prefix = uib_search__parameter_prefix($run_as_administrator);
+  $user = variable_get($prefix . 'user');
+  $password = variable_get($prefix . 'password');
+  $token = "{$user}:{$password}";
+  $token = base64_encode($token);
+
+  return drupal_http_request($url,
+    array(
+      'headers' => array(
+        'Authorization' => "Basic {$token}"
+      ),
+      'method' => $method,
+      'data' => $data,
+      'timeout' => $timeout,
+    )
+  );
+}
+
+/**
+ * Get the parameter prefix used for elasticsearch parameters
+ *
+ * @param boolean Set to true to get the admin prefix
+ */
+function uib_search__parameter_prefix($admin = false) {
+  $admin = $admin ? 'admin_' : '';
+  return 'uib_elasticsearch_' . $admin;
+}
+
+/**
+ * Get object to store in the elastic index for the given user
+ */
+function uib_search__get_elastic_user_array($account) {
+  $mVal = 'uib_search__field_array_as_string';
+
+  //General fields
+  $output = @array(
+    'name' => $account->name,
+    'mail' => $account->mail,
+    'uid' => $account->uid,
+    'first_name' => $account->field_uib_first_name['und'][0]['value'] ?:
+      $account->field_uib_user_alt_firstname['und'][0]['value'],
+    'last_name' => $account->field_uib_last_name['und'][0]['value'] ?:
+      $account->field_uib_user_alt_lastname['und'][0]['value'],
+    'phone' => $mVal($account->field_uib_phone['und']),
+    'social_media' => $mVal($account->field_uib_user_social_media['und']),
+    'slug' => $mVal(field_get_items('user', $account, 'field_uib_slug')),
+  );
+  // User picture TODO takes too long in stage_file_proxy setups
+  if (0 && @$account->picture->uri) {
+    $output['picture'] = image_style_url(
+      'user_thumbnail',
+      $account->picture->uri
+    );
+  }
+
+  $output['generic'] = array();
+  /*
+   * Language dependent fields
+   */
+  $languages = language_list();
+  foreach ($languages as $language) {
+    $lang = "_{$language->language}";
+    // Resolving area from OU
+    $ou = @$account->field_uib_user_ou['und'][0]['target_id'];
+    $area = uib_user__ou_area($ou, $output['uid'], $language->language);
+    if ($area) {
+      $area = node_load($area);
+      $output['ou' . $lang] = $area->title;
+    }
+    else {
+      $area = node_load($ou);
+      if ($area) {
+        $output['ou' . $lang] = $mVal(
+          field_get_items(
+            'node',
+            $area,
+            'field_uib_ou_title',
+            $language->language
+          )
+        );
+      }
+    }
+
+    //position
+    $output['position' . $lang] = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_position',
+        $language->language
+      )
+    );
+    //alt position
+    $output['alt_position' . $lang] = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_user_alt_position',
+        $language->language
+      )
+    );
+    //alt position
+    $output['alt_position' . $lang] = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_user_alt_position',
+        $language->language
+      )
+    );
+
+    // Resolving competence from taxonomi
+    $competence = $mVal(
+      field_get_items(
+        'user',
+        $account,
+        'field_uib_user_competence',
+        $language->language
+      ),
+      'tid',
+      FALSE
+    );
+    if (is_array($competence)) {
+      foreach ($competence as &$v) {
+        $v = taxonomy_term_load($v)->name;
+      }
+    }
+    $output['competence' . $lang] = implode((array)$competence, ', ');
+    $url = preg_replace(
+      '/https?:\/\/w3\.uib\.no\/?/',
+      'http://www.uib.no/',
+      url('user/' . $output['uid'],
+      array(
+        'absolute' => TRUE,
+        'language' => $language,
+      )
+    ));
+    $output['link' . $lang] = $url;
+
+    // Some generic fields
+    $output['generic']['title' . $lang] = $output['first_name']
+      . ' ' . $output['last_name'];
+    $output['generic']['link' . $lang] = $output['link' . $lang];
+    $output['generic']['excerpt' . $lang] = array();
+    if (@$output['ou' . $lang]) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Organisation') . ': ' . $output['ou' . $lang];
+    }
+    if (@$output['position' . $lang]) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Position') . ': ' . $output['position' . $lang];
+    }
+    if (@$output['phone']) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Phone nr') . ': ' . $output['phone'];
+    }
+    if (@$output['mail']) {
+      $output['generic']['excerpt' . $lang][] =
+        t('Email') . ': ' . $output['mail'];
+    }
+    $output['generic']['excerpt' . $lang] =
+      implode(', ', $output['generic']['excerpt' . $lang]);
+
+    if ($lang == '_nb') {
+      $output['generic']['title'] = $output['generic']['title_nb'];
+      $output['generic']['link'] = $output['generic']['link_nb'];
+      $output['generic']['excerpt'] = $output['generic']['excerpt_nb'];
+    }
+  }
+
+  $output['generic']['image'] = @$output['picture'] ;
+  return $output;
+}
+
+/**
+ * Check if elasticsearch settings are setup
+ *
+ * @param boolean $admin Set to true to check if admin settings are set.
+ * @return boolean Returns true if everything is set up, otherwise false.
+ *
+ */
+function uib_search__check_elastic_settings($admin = false) {
+  $px = uib_search__parameter_prefix($admin);
+  if (
+    variable_get($px . 'url') &&
+    variable_get($px . 'index') &&
+    variable_get($px . 'user') &&
+    variable_get($px . 'password')
+  ) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Index a content item in the database. This implementation updates the search
+ * index in elasticsearch. Node of a type listed in the drupal variable
+ * uib_search_nodetype_noindex will not be indexed.
+ *
+ * @param $wrapped_entity entity object
+ * @param $delete Set to TRUE to delete the entity in question. Defaults to
+ * FALSE
+ */
+function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
+  if (!uib_search__check_elastic_settings(TRUE)) {
+    uibx_log('Administrator settings for elasticsearch is not setup', 'notice');
+    return;
+  }
+  $ignore = variable_get('uib_search_nodetype_noindex', array());
+  if (in_array(trim($wrapped_entity->getBundle()), $ignore)) {
+    uibx_log(
+      'Entity ignored (rules fetched from variable uib_search_nodetype_noindex)',
+      'notice'
+    );
+    return;
+  }
+
+  $id = $wrapped_entity->getIdentifier();
+  $entity_type = $wrapped_entity->info()['type'];
+  $prefix = uib_search__parameter_prefix(1);
+  $index = variable_get($prefix . 'index');
+  $url = rtrim(variable_get($prefix . 'url'), '/');
+  if ($wrapped_entity->status->value() == 0) {
+    $delete = TRUE;
+  }
+  if ($delete) {
+    // Delete doc from users in search index, and return
+    $stat = uib_search__run_elastic_request(
+      "{$url}/{$index}/{$entity_type}/{$id}",
+      NULL,
+      'DELETE',
+      TRUE
+    );
+    if ($stat->code == 404) {
+      uibx_log(
+        ucwords($entity_type) . " id #" . $id . ' was not found in the elastic index',
+        'notice'
+      );
+    }
+    else if ($stat->code != 200) {
+      uibx_log(
+        ucwords($entity_type) . " id #" . $id . ' could not be deleted from elastic'
+          . ' index. Status code ' . $stat->code ,
+        'error'
+      );
+    }
+    else {
+      uibx_log(
+        ucwords($entity_type) . " id #" . $id . ' was deleted from elastic index.',
+        'notice'
+      );
+    }
+
+    return;
+  }
+
+  $url = "{$url}/{$index}/{$entity_type}/$id";
+  $output = uib_search__get_elastic_entity_array($wrapped_entity);
+  $status = uib_search__run_elastic_request(
+    $url,
+    json_encode($output),
+    'PUT',
+    TRUE
+  );
+  if (in_array($status->code, array(200))) {
+    uibx_log("Successful update of elastic $entity_type ".$id, 'notice');
+  }
+  else if (in_array($status->code, array(201))) {
+    uibx_log("Successful creation of elastic $entity_type ".$id, 'notice');
+  }
+  else {
+    uibx_log(
+      "Updating elastic $entity_type {$id} failed: {$status->code} - "
+        . "{$status->status_message}",
+      'error'
+    );
+  }
+  return $output;
+}
+
+function uib_search__get_elastic_entity_array($wrapped_entity) {
+  $type = $wrapped_entity->info()['type'];
+
+  // Handling users
+  if ($type == 'user') {
+    $account = user_load($wrapped_entity->getIdentifier());
+    return uib_search__get_elastic_user_array($account);
+  }
+  else if ($type != 'node') {
+    uibx_log("Handler for entity of type {$type} not implemented", 'warning');
+    return NULL;
+  }
+
+  // Only some fields are indexed
+  $fields = array(
+    'title',
+    'lead',
+    'teaser',
+    'text',
+    'text2',
+    'primary_text',
+    'secondary_text',
+    'market_text',
+    'article_type',
+    'promote',
+    'url',
+    'type',
+    'language',
+  );
+  $usefields = variable_get('uib_search_nodefields', $fields);
+
+  $field_prefix = 'field_uib';
+  $output = array();
+  foreach ($wrapped_entity as $k => $v){
+    $key = str_replace($field_prefix . '_', '', $k);
+    if (!in_array($key, $usefields)) {
+      // Fields not in $usefields are ignored
+      continue;
+    }
+
+    switch ($key) {
+      case 'text':
+      case 'text2':
+      case 'primary_text':
+      case 'secondary_text':
+      case 'market_text':
+        $tmp = $v->value();
+        if (array_key_exists('safe_value', (array)$tmp)) {
+          $tmp = $tmp['safe_value'];
+        }
+        else if (array_key_exists('value', (array)$tmp)) {
+          $tmp = $tmp['value'];
+        }
+        $tmp = uib_search__null_if_empty($tmp);
+        $tmp = uib_search__strip_html($tmp);
+        $output[$key] = uib_search__null_if_empty($tmp);
+        break;
+      case 'url':
+        $ll = language_list();
+        $lang = $ll[$wrapped_entity->language->value()];
+        $output[$key] = url(
+          "{$type}/{$wrapped_entity->getIdentifier()}",
+          array(
+            'absolute' => TRUE,
+            'language' => $lang,
+          )
+        );
+        break;
+      default:
+        $output[$key] = uib_search__null_if_empty($v->value());
+        break;
+    }
+  }
+  unset($wrapped_entity);
+  if (@$output['article_type']) {
+    $type .= " - " . $output['article_type'];
+  }
+  $output = array('w3' => $output);
+  $output['generic'] = array(
+    'title' => $output['w3']['title'],
+    'link' => $output['w3']['url'],
+    'excerpt' =>
+      @$output['w3']['teaser']
+      ?: @$output['w3']['lead']
+      ?: substr(strip_tags(@$output['w3']['text']), 0, 160)
+      ?: substr(strip_tags(@$output['w3']['primary_text']), 0, 160)
+      ?: substr(strip_tags(@$output['w3']['text2']), 0, 160)
+      ?: substr(strip_tags(@$output['w3']['secondary_text']), 0, 160)
+      ?: NULL,
+    '_searchable_text' => uib_search__concat_text(
+      $output['w3'],
+      array(
+        'title',
+        'lead',
+        'teaser',
+        'text',
+        'text2',
+        'primary_text',
+        'secondary_text',
+        'market_text',
+      )
+    ),
+  );
+  return $output;
+}
+
+/**
+ * Returns NULL for empty values (strings, empty arrays etc.)
+ *
+ * @param mixed $val
+ */
+function uib_search__null_if_empty($val) {
+  if (is_array($val) || is_object($val)) {
+    $val = (array)$val;
+    if (count($val) == 0) {
+      $val = NULL;
+    }
+    else {
+      foreach ($val as $k => &$v) {
+        $v = uib_search__null_if_empty($v);
+        if (is_null($v)) {
+          unset($val[$k]);
+        }
+      }
+    }
+  }
+  else {
+    if (!trim($val)) {
+      $val = NULL;
+    }
+  }
+  return $val;
+}
+
+function uib_search__strip_html($val) {
+  if (!trim($val)) {
+    return NULL;
+  }
+  libxml_use_internal_errors(true);
+  $doc = new DOMDocument();
+  $xml = '<?xml encoding="utf-8" ?>' . $val;
+  if (!$doc->loadHTML($xml)) {
+    foreach (libxml_get_errors() as $error) {
+      $level = 'notice';
+      switch ($error->level) {
+        case LIBXML_ERR_WARNING:
+          $level = 'warning';
+          break;
+
+        case LIBXML_ERR_ERROR:
+          $level = 'error';
+          break;
+
+        case LIBXML_ERR_WARNING:
+          $level = 'warning';
+          break;
+      }
+      uibx_log('Xml - error: ' . $error->message, $level);
+    }
+    libxml_clear_errors();
+  }
+  uib_search__remove_tag('script', $doc);
+  uib_search__remove_tag('style', $doc);
+  $retval = $doc->saveHTML();
+
+  $retval = preg_replace(
+    array(
+      '/<\/p *>/i',
+      '/<br *\/?>/i',
+      '/<\/li *>/i',
+      '/<\/div *>/i',
+      '/<\/h[0-9] *>/i',
+    ),
+    "$0\n",
+    $retval
+  );
+  $retval = strip_tags($retval);
+  $retval = preg_replace('/[\n\r]+/',"\n\n", $retval);
+  $retval = html_entity_decode($retval);
+  $retval = trim($retval);
+  return $retval;
+}
+
+function uib_search__remove_tag($tag, $dom) {
+    $list = $dom->getElementsByTagName($tag);
+    while ( $node = $list->item(0) ) {
+        $node->parentNode->removeChild($node);
+    }
+}
+
+/**
+ * Concatenate (possibly empty) arguments in an array to a comma separated
+ * string.
+ * @param array $array The array to handle number of string arguments
+ * @param array $keys Array of keys
+ * @return string The concatenated string.
+ */
+function uib_search__concat_text($array, $keys) {
+  $output = '';
+  foreach ($keys as $key) {
+    if (array_key_exists($key, $array)) {
+      $output .= "{$array[$key]}, ";
+    }
+  }
+  return trim($output, ', ');
 }

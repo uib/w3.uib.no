@@ -5,7 +5,7 @@
 # process; for instance for enabling modules that must be present before
 # we start.
 
-REL=7.5
+REL=53
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -16,4 +16,5 @@ set -x
 echo "Pre upgrade"
 date +%FT%T
 
-bin/site-drush pm-enable --yes office_hours
+bin/site-drush ev 'variable_set("uib_search_nodetype_noindex",
+  ['uib_views_page','uib_ou','uib_message','uib_content_list','uib_study',]);'
