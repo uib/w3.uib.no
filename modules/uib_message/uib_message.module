@@ -127,18 +127,62 @@ function uib_message__msg_node_to_array($nid, $language, $area, $tag) {
 }
 
 /**
- * Implements hook node view
- * Only show message in correct language
- * if there is not message in the language wanted, show other language
+ * Implements hook_node_view().
+ *
+ * Messages are too dynamic to set up using the regular display settings, so we
+ * fill up the content here.
  */
 function uib_message_node_view($node, $view_mode, $langcode) {
-  if ($langcode == 'nb' && !empty($node->content['field_uib_message_text_nb'])) {
-    unset($node->content['field_uib_message_text_en']);
-    unset($node->content['field_uib_message_link_en']);
-  } else if ($langcode == 'en' && !empty($node->content['field_uib_message_text_en'])) {
-    unset($node->content['field_uib_message_link_nb']);
-    unset($node->content['field_uib_message_text_nb']);
+  if ($node->type != 'uib_message')
+    return;
+
+  drupal_add_css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', 'external');
+  $tag = taxonomy_term_load($node->field_uib_message_tag['und'][0]['target_id']);
+  $icon = 'comment-o';
+  if ($tag->name == 'operations')
+    $icon = 'gears';
+  $node->content['message_icon'] = array(
+    '#markup' => '<div class="message-icon" title="' . $tag->name . '"><i class="fa fa-' . $icon . '"></i></div>',
+  );
+  $node->content['message_age'] = array(
+    '#markup' => '<div class="message-age">' . format_interval(time() - $node->created, 1) . ' ' . t('ago') . '</div>',
+  );
+
+  $lang_pref[] = $langcode;
+  $lang_pref[] = $langcode == 'nb' ? 'en' : 'nb';
+
+  $message = '';
+  $link = null;
+  foreach ($lang_pref as $lang) {
+    $field = 'field_uib_message_text_' . $lang;
+    $field = $node->$field;
+    if (!empty($field)) {
+      $message = $field['und'][0]['value'];
+    }
+    if ($message) {
+      $field = 'field_uib_message_link_' . $lang;
+      $field = $node->$field;
+      if (!empty($field)) {
+        $link = $field['und'][0]['url'];
+      }
+      break;
+    }
   }
+  $message = check_plain($message);
+
+  $current_area = uib_area__get_current();
+  if (!$current_area || $node->field_uib_message_area['und'][0]['target_id'] != $current_area->tnid) {
+    $message_area = node_load($node->field_uib_message_area['und'][0]['target_id']);
+    $message_area = uib_area__get_current_by_language($message_area);
+    $message = '<span class="message-area-from">' . l(check_plain($message_area->title), "node/$message_area->nid") . ':</span> ' . $message;
+  }
+  if ($link) {
+    $message .= ' <span class="message-link">' . l(t('Read more') . '…', $link) . '</span>';
+  }
+  $node->content['message_text'] = array(
+    '#markup' => '<div class="message-text">' . $message . '</div>',
+  );
+
 }
 
 /**

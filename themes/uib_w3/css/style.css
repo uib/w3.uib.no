@@ -5885,6 +5885,24 @@ nav {
       .header .block-uib-search form {
         display: block; } }
 
+.node-uib-message {
+  max-width: 60ex;
+  margin-top: 1rem;
+  border-top: 2px solid #d5d5d5; }
+  .node-uib-message .message-icon {
+    float: left;
+    padding-right: 0.7rem;
+    padding-top: 0.6rem;
+    font-size: 3rem;
+    color: #e55343; }
+  .node-uib-message .message-age {
+    color: #606060;
+    text-align: right;
+    font-size: smaller; }
+  .node-uib-message .message-area-from a {
+    color: #e55343;
+    font-weight: bold; }
+
 .content-main-wrapper #cse .gsc-control-cse, .content-main-wrapper #cse .gsc-control-cse-no {
   padding: 0;
   background-color: #f5f5f5;

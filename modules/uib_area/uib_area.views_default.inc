@@ -3222,14 +3222,14 @@ return !empty($handler->argument);';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Message';
+  $view->human_name = 'Messages';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Message';
+  $handler->display->display_options['title'] = 'Messages';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -3237,9 +3237,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['row_class'] = 'uib_message';
-  $handler->display->display_options['style_options']['uses_fields'] = TRUE;
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'full';
   /* Relationship: Entity Reference: Referenced Entity */
@@ -3370,8 +3368,8 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
-  /* Display: Message */
-  $handler = $view->new_display('page', 'Message', 'page');
+  /* Display: Messages */
+  $handler = $view->new_display('page', 'Messages', 'page');
   $handler->display->display_options['path'] = 'messages';
 
   /* Display: Feed */
@@ -3435,7 +3433,7 @@ return true;';
   $handler->display->display_options['path'] = 'node/%/messages';
   $translatables['uib_message'] = array(
     t('Master'),
-    t('Message'),
+    t('Messages'),
     t('more'),
     t('Apply'),
     t('Reset'),
