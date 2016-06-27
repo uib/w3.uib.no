@@ -779,7 +779,7 @@ function uib_setup_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 3,
       ),
       'content_sidebar' => array(
@@ -945,7 +945,7 @@ function uib_setup_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 1,
       ),
       'content_sidebar' => array(
@@ -1119,7 +1119,7 @@ function uib_setup_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 2,
       ),
       'content_sidebar' => array(
