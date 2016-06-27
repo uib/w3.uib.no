@@ -3534,11 +3534,6 @@ div.field-item {
     font-size: 1.625rem;
     margin-bottom: 0.75rem;
     font-weight: normal; }
-  .field-name-field-uib-relation .field-name-field-uib-kicker, .node-type-uib-content-list section.group-related-content .field-name-field-uib-kicker {
-    text-align: left;
-    position: absolute;
-    top: -1.625rem;
-    left: 0rem; }
   .field-name-field-uib-relation .node-uib-article,
   .field-name-field-uib-relation .node-uib-testimonial,
   .field-name-field-uib-relation .node-uib-external-content,
