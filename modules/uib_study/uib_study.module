@@ -59,6 +59,10 @@ function uib_study_block_info() {
       'info' => t('Information about the study period of this phd course'),
       'status' => TRUE,
     ),
+    'study_so_code' => array(
+      'info' => t('The code used to apply for admission at "Samordna opptak"'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -411,7 +415,6 @@ function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
   $node = node_load($nid);
   if ($node->type != 'uib_study')
     return FALSE;
-
   $study = entity_metadata_wrapper('node', $node);
   $type = $study->field_uib_study_type->value();
   /* Fetch what to render from:
@@ -749,6 +752,23 @@ function uib_study_block_view($delta = '') {
             '#type' => 'markup',
             '#markup' => $tmp['#text'],
           );
+        }
+      }
+      break;
+    case 'study_so_code':
+      $node = menu_get_object();
+      $affected_study_categories = array('bachelorprogram','arsstudium','masterprogram','integrertemasterpr-profesjonsst');
+      if ($node && in_array($node->field_uib_study_category['und'][0]['value'], $affected_study_categories)) {
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
+        if (!empty($data)) {
+          if (!empty($data['opptak'])) {
+            if (is_array($data['opptak']['opptakskode'])) continue;
+            $block['title'] = t('Application code (SO)');
+            $block['content'] = array(
+              '#type' => 'markup',
+              '#markup' => l($data['opptak']['opptakskode'], 'http://www.samordnaopptak.no/'),
+            );
+          }
         }
       }
       break;

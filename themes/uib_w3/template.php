@@ -553,6 +553,7 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
+        $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 4);
         $variables['page']['content']['study_did_you_know'] = __uib_w3__render_block('uib_study', 'study_trivia', 7);
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
         $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
