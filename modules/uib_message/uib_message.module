@@ -9,7 +9,7 @@ include_once 'uib_message.features.inc';
 /**
  * Implements hook_menu().
  */
-function uib_menu() {
+function uib_message_menu() {
   $items["api/msg"] = array(
     'page callback' => 'uib_message__msg',
     'access callback' => TRUE,
@@ -71,7 +71,7 @@ function uib_message__msg() {
 
   $data = array();
   if (isset($msgid)) {
-    $data['msg'][] = uib_api__msg_node_to_array($msgid, $language, $area, $tag);
+    $data['msg'][] = uib_message__msg_node_to_array($msgid, $language, $area, $tag);
   } else if (isset($qp['area'])) {
     if (!is_numeric($qp['area'])) {
       $area = db_query('SELECT nid FROM node WHERE type LIKE :type AND LOWER(title) LIKE :title',
@@ -86,7 +86,7 @@ function uib_message__msg() {
     $nids = array_keys($result['node']);
     $nodes = node_load_multiple($nids);
     foreach ($nodes as $nid => $node) {
-      $row = uib_api__msg_node_to_array($node->nid, $language, $qp['area'], $tag);
+      $row = uib_message__msg_node_to_array($node->nid, $language, $qp['area'], $tag);
       if ($row) {
         $data['msg'][] = $row;
       }
@@ -96,7 +96,7 @@ function uib_message__msg() {
   return drupal_json_output($data);
 }
 
-function uib_api__msg_node_to_array($nid, $language, $area, $tag) {
+function uib_message__msg_node_to_array($nid, $language, $area, $tag) {
   $node = node_load($nid);
   $row = array('id' => (int)$node->nid);
   if ($language == 'en' && empty($node->field_uib_message_text_en['und'][0]['value'])) return;
@@ -141,7 +141,8 @@ function uib_message_node_view($node, $view_mode, $langcode) {
 }
 
 /**
- * Implements hook node presave
+ * Implements hook_node_presave().
+ *
  * Changing nid of target to tnid
  */
 function uib_message_node_presave($node) {
@@ -156,7 +157,7 @@ function uib_message_node_presave($node) {
 }
 
 /**
- * Implements hook form alter
+ * Implements hook_form_alter().
  */
 function uib_message_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'uib_message_node_form') {
