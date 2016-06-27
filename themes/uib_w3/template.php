@@ -265,8 +265,6 @@ EOD;
         '#value' => $variables['node']->title,
         '#weight' => -45,
       );
-      $article_info = __uib_w3__article_info($variables['node']);
-      $variables['page']['content_top']['article_info'] = $article_info;
       $variables['page']['content_top']['field_uib_lead'] = field_view_field('node', $variables['node'], 'field_uib_lead', array(
         'label' => 'hidden',
         'weight' => -35,
@@ -357,7 +355,11 @@ EOD;
             $empty = FALSE;
           }
         }
-        if ($empty) $variables['page']['content'] = array();
+        if ($empty) {
+          $article_info = __uib_w3__article_info($variables['node']);
+          $variables['page']['content_top']['article_info'] = $article_info;
+          $variables['page']['content'] = array();
+        }
       }
       break;
 
@@ -801,6 +803,13 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['content']['field_uib_location']['#label_display'] = 'hidden';
       $variables['content']['field_uib_event_type']['#label_display'] = 'hidden';
       $variables['content']['field_uib_contacts']['#label_display'] = 'hidden';
+      $article_info = __uib_w3__article_info($variables['node']);
+      if (isset($variables['content']['field_uib_text'])) {
+        $variables['content']['field_uib_text'][0]['#markup'] = render($article_info) . $variables['content']['field_uib_text'][0]['#markup'];
+      }
+      else {
+        $variables['content']['article_info'] = $article_info;
+      }
     }
     $hide_vars = array(
       'field_uib_byline',
@@ -954,7 +963,7 @@ function __uib_w3__article_info(&$node) {
   $article_info = array(
     '#type' => 'markup',
     '#markup' => '<div class="article-info">',
-    '#weight' => '-40',
+    '#weight' => '0',
   );
   if (!in_array($node->field_uib_article_type['und'][0]['value'], array('infopage', 'event'))) {
     $author = __uib_w3__author($node);
