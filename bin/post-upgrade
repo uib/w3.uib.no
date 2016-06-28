@@ -9,13 +9,19 @@ case $(pwd) in
        ;;
 esac
 
-REL=49
+REL=50
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
     exit 1
 fi
 
+set -x
+
 bin/site-drush php-script area-aliases.php
 bin/site-drush php-script fix-filetopic-urls.php
 bin/site-drush php-script clear-roles-blocked-users
+
+if [ "$(hostname)" = attilatest.uib.no ]; then
+    bin/site-drush vset uib_display_employee_messages_block 1
+fi

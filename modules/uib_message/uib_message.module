@@ -81,6 +81,7 @@ function uib_message__msg() {
     $query->entityCondition('entity_type','node');
     $query->entityCondition('bundle','uib_message');
     $query->fieldCondition('field_uib_message_area','target_id',$area);
+    $query->propertyOrderBy('created', 'DESC');
     $query->range($offset, $limit);
     $result = $query->execute();
     $nids = array_keys($result['node']);
@@ -164,4 +165,39 @@ function uib_message_form_alter(&$form, &$form_state, $form_id) {
     $form['title']['#default_value'] = 'New UIB message';
     $form['title']['#access'] = FALSE;
   }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function uib_message_block_info() {
+  $block = array();
+  $block['uib_message_block'] = array(
+    'info' => t('Message block title'),
+    'status' => TRUE,
+  );
+  return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_message_block_view($delta = '') {
+  $block = array();
+  switch($delta) {
+  case 'uib_message_block' :
+    $block['subject'] = 'Messages';
+    $block['content'] = uib_message__block_content();
+    break;
+  }
+  return $block;
+}
+
+/**
+ * Implements custom function to render message block
+ */
+function uib_message__block_content() {
+  drupal_add_js(drupal_get_path('module','uib_message') . '/msg-block.js');
+  $output = t("<div id='messages-block-content'>Loading...</div>");
+  return $output;
 }

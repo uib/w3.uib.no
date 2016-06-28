@@ -426,6 +426,9 @@ EOD;
         $variables['page']['content']['system_main']['nodes'][$nid]['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 50);
         $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 50);
         $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 100);
+        if (($nid == 1 || $nid == 2) && variable_get('uib_display_employee_messages_block', 0)) {
+          $variables['page']['content_bottom']['uib_messages'] = __uib_w3__render_block('uib_message', 'uib_message_block', 100);
+        }
         $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
           'weight' => 300,
           'type' => 'entityreference_entity_view',
