@@ -495,8 +495,10 @@ function uib_article__set_redirect($entity) {
  *
  */
 function uib_article_node_presave($node) {
+  if ($node->type != 'uib_article')
+    return;
   if ($node->is_new) {
-    if ($node->type == 'uib_article' && $node->field_uib_article_type['und'][0]['value'] != 'infopage') {
+    if ($node->field_uib_article_type['und'][0]['value'] != 'infopage') {
       if (!$node->anti_bubbling) {
         // Upon creation of an article,
         // add all area parents to field_uib_area. RTS-914
