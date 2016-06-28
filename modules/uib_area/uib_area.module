@@ -1253,6 +1253,10 @@ function uib_area__list_area_aliases($node_alias = NULL) {
     return array(
       'rss.xml' => array('en' => 'rss.xml', 'nb' => 'rss.xml'),
       'calrss.xml' => array('en' => 'calrss.xml', 'nb' => 'calrss.xml'),
+      'messages' => array(
+        'en' => 'messages',
+        'nb' => 'meldinger',
+      ),
     );
   }
   else {

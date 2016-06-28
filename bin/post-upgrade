@@ -19,8 +19,6 @@ fi
 set -x
 
 bin/site-drush php-script area-aliases.php
-bin/site-drush php-script fix-filetopic-urls.php
-bin/site-drush php-script clear-roles-blocked-users
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
     bin/site-drush vset uib_display_employee_messages_block 1
