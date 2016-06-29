@@ -3399,6 +3399,15 @@ return !empty($handler->argument);';
 
   /* Display: Area */
   $handler = $view->new_display('page', 'Area', 'page_1');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'No recent messages';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'There are no messages posted. Please come back later!';
+  $handler->display->display_options['empty']['area']['format'] = 'plain_text';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Area (field_uib_message_area) */
   $handler->display->display_options['arguments']['field_uib_message_area_target_id']['id'] = 'field_uib_message_area_target_id';
@@ -3445,6 +3454,8 @@ return true;';
     t('Feed'),
     t('Block'),
     t('Area'),
+    t('No recent messages'),
+    t('There are no messages posted. Please come back later!'),
     t('All'),
   );
   $export['uib_message'] = $view;
