@@ -265,6 +265,10 @@ function uib_message_block_view($delta = '') {
  */
 function uib_message__block_content() {
   drupal_add_js(drupal_get_path('module','uib_message') . '/msg-block.js');
-  $output = t("<div id='messages-block-content'>Loading...</div>");
+  $node = menu_get_object();
+  $output = "<div id='messages-block-content'>".t('Loading...')
+    ."</div><noscript>"
+    .l(t('Link to alternative'),'node/'
+    .$node->nid.'/messages')."</noscript>";
   return $output;
 }
