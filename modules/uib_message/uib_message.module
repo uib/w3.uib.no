@@ -183,6 +183,18 @@ function uib_message_node_view($node, $view_mode, $langcode) {
     '#markup' => '<div class="message-text">' . $message . '</div>',
   );
 
+  if (node_access('update', $node)) {
+    $node->content['links']['node']['#links']['edit'] = array(
+       'title' => t('edit'),
+       'href' => 'node/' . $node->nid . '/edit',
+    );
+  }
+  if (node_access('delete', $node)) {
+    $node->content['links']['node']['#links']['delete'] = array(
+       'title' => t('delete'),
+       'href' => 'node/' . $node->nid . '/delete',
+    );
+  }
 }
 
 /**
