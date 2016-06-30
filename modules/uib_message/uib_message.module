@@ -127,6 +127,42 @@ function uib_message__msg_node_to_array($nid, $language, $area, $tag) {
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function uib_message_node_access($node, $op, $account) {
+  if (is_object($node) && $node->type == 'uib_message') {
+    if ($op == 'update' || $op == 'delete') {
+      if (in_array('level 2', $account->roles) || in_array('level 3', $account->roles)) {
+        $area = node_load($node->field_uib_message_area['und'][0]['target_id']);
+        if (!uib_area__is_content_manager($area, $account))
+          return NODE_ACCESS_DENY;
+      }
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
+ * Implements hook_node_validate().
+ */
+function uib_message_node_validate($node, $form, &$form_state) {
+  if ($form["#form_id"] == "uib_message_node_form") {
+    global $user;
+    if (!in_array('level 1', $user->roles) && $user->uid != 1) {
+      $area_id = $form_state['values']['field_uib_message_area']['und'][0]['target_id'];
+      if ($area_id != "") {
+        $area_node = node_load($area_id);
+        if (!uib_area__is_content_manager($area_node, $user)) {
+          $message = t('You must be content manager of ');
+          $message .= t('the area'); // split because then we already have the translations from uib_article
+          form_set_error('field_uib_message_area', $message . ': ' . $area_node->title);
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_node_view().
  *
  * Messages are too dynamic to set up using the regular display settings, so we
