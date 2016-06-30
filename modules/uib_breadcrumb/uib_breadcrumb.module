@@ -193,7 +193,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           );
         }
         $uib_active_trail[] = array(
-          'title' => $item['page_arguments'][0]->field_uib_study_title[$lang][0]['safe_value'],
+          'title' => $item['page_arguments'][0]->field_uib_study_title[$lang][0]['value'],
           'href' => 'node/' . $item['page_arguments'][0]->nid,
           'link_path' => '',
           'localized_options' => array(),
