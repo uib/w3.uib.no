@@ -4858,19 +4858,17 @@ nav {
   #block-uib-study-study-period-phd .content * {
     font-size: 1.25rem; }
 
-#block-uib-study-study-plan {
-  margin: 0 1rem; }
-  #block-uib-study-study-plan h2 {
-    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-    text-transform: uppercase;
-    font-size: 1.625rem;
-    margin-bottom: .75rem;
-    font-weight: normal; }
-  #block-uib-study-study-plan a {
-    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
-    font-size: 1.25rem;
-    margin: 0 0 .5rem 0;
-    line-height: 1.5rem; }
+#block-uib-study-study-plan h2 {
+  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  margin-bottom: .25rem;
+  font-weight: normal; }
+#block-uib-study-study-plan a {
+  font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  font-size: 1.25rem;
+  margin: 0 0 .5rem 0;
+  line-height: 1.5rem; }
 
 #block-uib-study-study-related .field-label {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
