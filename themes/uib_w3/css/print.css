@@ -6,6 +6,30 @@
  */
 
 @media print {
+  .content-top-wrapper .content-top h1 {
+    font-size: 20pt;
+  }
+  .content-main-wrapper #block-uib-study-study-content .ui-tabs-panel h3,
+  .content-main-wrapper #block-uib-study-study-content .ui-tabs-panel h4,
+  .content-main-wrapper #block-uib-study-study-content .ui-tabs-panel p,
+  .content-top-wrapper .content-top p,
+  .content-main-wrapper .field-name-field-uib-text h2,
+  .content-main-wrapper .field-name-field-uib-text h3,
+  .content-main-wrapper .field-name-field-uib-text p,
+  .content-main-wrapper .field-name-field-uib-text ol li,
+  .content-main-wrapper .field-name-field-uib-text ul li,
+  .content-main-wrapper .field-name-field-uib-text td,
+  .content-main-wrapper ul li {
+    font-size: 12pt;
+  }
+  .content-top-wrapper .content-top #block-uib-study-study-facts-2 ul li,
+  #uib-tabs-construction th,
+  #uib-tabs-construction td {
+    font-size: 10pt;
+  }
+  .content-main-wrapper #block-uib-study-study-content .ui-tabs-panel h3 {
+    font-weight: bold;
+  }
   a:link,
   a:visited {
     /* underline all links */
@@ -49,18 +73,31 @@
   .content,
   .content-main-wrapper,
   .subheader__wrapper,
-  .footer-top-wrapper {
+  .footer-top-wrapper,
+  .header__wrapper {
     /* Turn off any background colors or images */
     color: #000;
     background-color: transparent !important;
     background-image: none !important;
-    font-size: 10pt;
   }
-  .header__wrapper,
+  .node-type-uib-study.study-tabs .content-main-wrapper {
+    border: none;
+  }
+  .header__wrapper .site-name a {
+    color: #000;
+    position: absolute;
+    left: 0;
+  }
+  .content-top-wrapper,
+  .subheader__wrapper h2 {
+    text-align: left;
+  }
+  .header__wrapper .header .logo__link,
+  .header__wrapper .header .region-header,
+  .header__wrapper .header .mobile-menu,
   nav,
   .messages,
   .error,
-  .region-header,
   #skip-link,
   #top-region-wrapper,
   #block-locale-language,
