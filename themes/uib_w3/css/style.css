@@ -709,24 +709,27 @@ img {
     display: -ms-flexbox;
     -ms-flex-direction: row;
     -ms-flex-align: end;
+    -ms-flex-pack: justify;
     display: -webkit-flex;
     -webkit-flex-direction: row;
     -webkit-align-items: flex-end;
+    -webkit-justify-content: space-between;
     display: flex;
     flex-direction: row;
-    align-items: flex-end; }
+    align-items: flex-end;
+    justify-content: space-between; }
     .field-name-field-uib-main-media.description .content picture {
       -ms-flex: 0 0 66.10169%;
       -webkit-flex: 0 0 66.10169%;
-      flex: 0 0 66.10169%; }
+      flex: 0 0 66.10169%;
+      -webkit-align-self: flex-start;
+      align-self: flex-start; }
     .field-name-field-uib-main-media.description .content .uib-media-info {
       -ms-flex: 0 0 32.20339%;
       -webkit-flex: 0 0 32.20339%;
       flex: 0 0 32.20339%;
-      padding-left: 1.694922%; }
-      .field-name-field-uib-main-media.description .content .uib-media-info .field-name-field-uib-description {
-        border-top: solid 1px #d5d5d5;
-        padding-top: 1rem; } }
+      border-top: solid 1px #d5d5d5;
+      padding-top: 1rem; } }
 
 label {
   color: #333;
@@ -2874,10 +2877,10 @@ a {
   line-height: 1.2;
   color: #606060;
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
-  .field-name-field-uib-main-media .file-image > .content > .field,
-  .field-name-field-uib-main-media .file-image > .content > .field div,
-  .field-name-field-uib-media .file-image > .content > .field,
-  .field-name-field-uib-media .file-image > .content > .field div {
+  .field-name-field-uib-main-media .file-image > .content > .uib-media-info .field,
+  .field-name-field-uib-main-media .file-image > .content > .uib-media-info .field div,
+  .field-name-field-uib-media .file-image > .content > .uib-media-info .field,
+  .field-name-field-uib-media .file-image > .content > .uib-media-info .field div {
     display: inline;
     float: none; }
   .field-name-field-uib-main-media .clearfix::after,
