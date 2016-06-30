@@ -701,6 +701,8 @@ img {
 
 .node-type-uib-article .field-name-field-uib-main-media img {
   margin-bottom: 0.625rem; }
+.field-name-field-uib-main-media:not(:last-child) {
+  margin-bottom: 1.25rem; }
 
 @media (min-width: 600px) {
   .node-type-uib-article .field-name-field-uib-main-media.description img {
@@ -1450,7 +1452,6 @@ a {
 .article-info {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
   .field-name-field-uib-text .article-info {
-    padding-bottom: 2rem;
     border-bottom: solid 1px #b7b7b7;
     margin-bottom: 1.5625rem; }
   .article-info * {
