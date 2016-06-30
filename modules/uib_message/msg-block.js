@@ -1,6 +1,6 @@
 jQuery( document ).ready(function ($) {
   var language = $('html').attr('lang');
-  var json = "/api/msg?area=IT-avdelingen&tag=1&language="+language;
+  var json = "/api/msg?area=IT-avdelingen&tag=1&limit=6&language="+language;
   $.getJSON(json, function(result){
     $("#messages-block-content").text("");
     $.each(result, function(i, field){
