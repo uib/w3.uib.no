@@ -5900,10 +5900,20 @@ nav {
   .node-uib-message .message-age {
     color: #606060;
     text-align: right;
-    font-size: smaller; }
+    font-size: 0.8125rem; }
   .node-uib-message .message-area-from a {
     color: #e55343;
     font-weight: bold; }
+  .node-uib-message ul.links {
+    float: right;
+    margin: 0;
+    padding: 0; }
+    .node-uib-message ul.links li {
+      padding: 0;
+      font-size: 0.8125rem; }
+      .node-uib-message ul.links li a {
+        color: #e55343;
+        opacity: 0.6; }
 
 .content-main-wrapper #cse .gsc-control-cse, .content-main-wrapper #cse .gsc-control-cse-no {
   padding: 0;
