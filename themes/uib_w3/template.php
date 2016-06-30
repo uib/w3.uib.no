@@ -1148,4 +1148,5 @@ function uib_w3_menu_link($variables) {
       return theme_menu_link($variables);
     }
   }
+  return theme_menu_link($variables);
 }
