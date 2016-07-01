@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for b in $(git branch "$@" --no-color | cut -c2- | grep -v -- -\> | grep -v origin/staging | grep -v origin/master); do
+    echo $(git show -s --format=%ci $b | cut -c 1-10) $b
+done | sort -r
