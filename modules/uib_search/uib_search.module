@@ -182,6 +182,15 @@ function uib_search_block_view($delta) {
             '#attributes' => array(
               'class' => array('search-wrapper'),
             ),
+            'searchfield' => array(
+              '#type' => 'html_tag',
+              '#tag' => 'label',
+              '#value' => t('Search field'),
+              '#attributes' => array(
+                'for' => 'searchfield',
+                'class' => 'element-invisible',
+              ),
+            ),
             'searchtext' => array(
               '#type' => 'textfield',
               '#value' => check_plain(@$_GET['qq']),
@@ -191,6 +200,7 @@ function uib_search_block_view($delta) {
                 'autocomplete' => 'off',
                 'placeholder' => t('Search uib.no'),
                 'data-placeholder' => t('Search for person'),
+                'id' => 'searchfield',
               ),
             ),
             'submit' => array(
