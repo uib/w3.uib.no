@@ -311,3 +311,39 @@ function uib_message__block_content() {
     .$node->nid.'/messages')."</noscript>";
   return $output;
 }
+
+/**
+ * Implements hook_views_query_alter().
+ *
+ * Will search the taxonomy term data for possible URL matches
+ */
+function uib_message_views_query_alter(&$view, &$query) {
+  if ($view->name == 'uib_message') {
+    $taxonomy_ids = array();
+    $q = drupal_get_query_parameters();
+    $param = false;
+    if (isset($q['tag'])) {
+      $param = explode(',', $q['tag']);
+    }
+    $field = "field_data_field_uib_message_tag.field_uib_message_tag_target_id";
+    if (count($param) >= 1 && $param) {
+      $uib_message_tag_tree = taxonomy_get_tree(38); // the 'uib_message_tag' vocabulary
+      foreach ($uib_message_tag_tree as $obj) {
+        $tax_arr = explode('/', $obj->name);
+        if (in_array($tax_arr[0], $param) || in_array($tax_arr[1], $param)) {
+          $taxonomy_ids[] = $obj->tid;
+        }
+      }
+      if (count($taxonomy_ids) == 1) {
+        $query->add_where(0, $field, $taxonomy_ids[0], '=');
+      }
+      else {
+        $db_or = db_or();
+        foreach ($taxonomy_ids as $tid) {
+          $db_or->condition($field, $tid, '=');
+        }
+        $query->add_where(3, $db_or);
+      }
+    }
+  }
+}
