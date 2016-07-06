@@ -939,8 +939,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
  */
 function uib_w3_preprocess_field(&$vars) {
   if ($vars['element']['#field_name'] == 'field_uib_main_media') {
-    if (!empty($vars['element']['#items'][0]['field_uib_description'])) {
-      $vars['classes_array'][] = 'description';
+    if (@$vars['items'][0]['#view_mode'] == 'content_main') {
+      if (!empty($vars['element']['#items'][0]['field_uib_description'])) {
+        $vars['classes_array'][] = 'description';
+      }
     }
   }
 }
