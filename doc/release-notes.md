@@ -1,3 +1,19 @@
+# Release 50 _2016-07-07_
+
+I denne versjonen har vi gjort flere større designjusteringer, rettet diverse feil og i tillegg jobbet videre med lokal meldingstjeneste.
+
+- Redusert størrelsen på hovedbildet, plassert billedteksten til høyre og flyttet bylinen like over brødteksten #15612 #15611
+- Forbedret universell utforming av søkefunksjonen #15733
+- Videre utvikling av lokal meldingstjeneste #15727 #15706 #15705 #15691 #15687 #15686 #15685 #15683 #15682 #15671 #15670 #15636 #15484 #15106
+- Ytterligere designjusteringer av uib.no/kalender #15731
+- Rettet visning av apostrof i brødsmulesti #15708
+- Forbedret støtte for utskrift (bl.a. har vi redusert skriftstørrelsen en rekke steder) #15668
+- Fjernet kicker fra tilknyttet innhold #15605
+- Designjusteringer av student-banneret i mobilvisning #15501
+- Studieprogram-sidene har fått en boks for søkerkoder fra Samordna opptak #15495
+- Toppmenypunkter uten innhold vises ikke lenger på sidene #15702
+- Designjusteringer for vising av lenke til studieplan #15701
+
 # Release 49 _2016-06-23_
 
 I denne versjonen har vi gjort mange designjusteringer, rettet diverse feil og jobbet videre med lokal meldingstjeneste.
