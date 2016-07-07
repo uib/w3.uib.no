@@ -81,6 +81,9 @@ function uib_message__msg() {
     $query->entityCondition('entity_type','node');
     $query->entityCondition('bundle','uib_message');
     $query->fieldCondition('field_uib_message_area','target_id',$area);
+    if ($language == 'en') {
+      $query->fieldCondition('field_uib_message_text_en','value','NULL','!=');
+    }
     $query->propertyOrderBy('created', 'DESC');
     $query->range($offset, $limit);
     $result = $query->execute();
