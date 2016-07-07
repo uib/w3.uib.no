@@ -26,3 +26,4 @@ fi
 set -x
 
 bin/site-drush php-script clean-up-profiled-messages.php
+bin/site-drush php-script remove-superfluous-menu-items.php
