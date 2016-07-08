@@ -2067,7 +2067,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_2']['group'] = 2;
   $handler->display->display_options['filters']['tid_2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['tid_2']['expose']['operator_id'] = 'tid_2_op';
-  $handler->display->display_options['filters']['tid_2']['expose']['label'] = 'Political science and Development studies';
+  $handler->display->display_options['filters']['tid_2']['expose']['label'] = 'Social sciences, law and psychology';
   $handler->display->display_options['filters']['tid_2']['expose']['operator'] = 'tid_2_op';
   $handler->display->display_options['filters']['tid_2']['expose']['identifier'] = 'tid_2';
   $handler->display->display_options['filters']['tid_2']['expose']['multiple'] = TRUE;
@@ -2471,7 +2471,7 @@ return !empty($handler->argument);';
     t('Humanities and aesthetic studies'),
     t('Has taxonomy term'),
     t('Teacher training and pedagogy'),
-    t('Political science and Development studies'),
+    t('Social sciences, law and psychology'),
     t('Natural sciences and techincal subjects'),
     t('Health and welfare'),
     t('All studyprogrammes block'),
