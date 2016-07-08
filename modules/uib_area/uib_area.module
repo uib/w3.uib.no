@@ -1771,6 +1771,88 @@ function uib_area_menu_alter(&$items) {
   $items['admin/structure/menu/item/%menu_link/reset']['access arguments'] = array(4);
   $items['admin/structure/menu/item/%menu_link/delete']['access callback'] = 'uib_area__menulink_access';
   $items['admin/structure/menu/item/%menu_link/delete']['access arguments'] = array(4);
+  $items['admin/structure/menu/parents']['page callback'] = 'uib_area__limit_parent_options_js';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function uib_area_form_menu_overview_form_alter(&$form, &$form_state, $form_id) {
+  if (substr($form['#menu']['menu_name'], 0, 10) == 'menu-area-') {
+    $form['#post_render'][] = 'uib_area__menu_overview_form_post_render';
+  }
+}
+
+function uib_area__menu_overview_form_post_render($content, $element) {
+  $limit = 2;
+  if ($limit < MENU_MAX_DEPTH) {
+    $javascript = &drupal_static('drupal_add_js', array());
+    if (isset($javascript['settings']['data'])) {
+      foreach ($javascript['settings']['data'] as $i => $data) {
+        if (isset($data['tableDrag']['menu-overview']['menu-plid'])) {
+          $found = TRUE;
+          break;
+        }
+      }
+      if (!empty($found)) {
+        array_splice($javascript['settings']['data'], $i, 1);
+        if ($limit > 1) {
+          drupal_add_tabledrag('menu-overview', 'match', 'parent', 'menu-plid', 'menu-plid', 'menu-mlid', TRUE, $limit - 1);
+        }
+      }
+    }
+  }
+  return $content;
+}
+
+/**
+ * Implements hook_form_menu_edit_item_alter()
+ */
+function uib_area_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
+  if (substr($form['original_item']['#value']['menu_name'], 0, 10) == 'menu-area-') {
+    if (isset($form['parent']['#options'])) {
+      $relative_depth = !empty($form['has_children']['#value']) && ($item = $form['original_item']['#value']) ? menu_link_children_relative_depth($item) : 0;
+      $form['parent']['#options'] = uib_area__filter_parent_options($form['parent']['#options'], $relative_depth);
+    }
+  }
+}
+
+/**
+ * Callback to limit parent depth
+ */
+function uib_area__limit_parent_options_js() {
+  $available_menus = array();
+  if (isset($_POST['menus']) && count($_POST['menus'])) {
+    foreach ($_POST['menus'] as $menu) {
+      $available_menus[$menu] = $menu;
+    }
+  }
+  $options = _menu_get_options(menu_get_menus(), $available_menus, array('mlid' => 0));
+  $options = uib_area__filter_parent_options($options);
+
+  drupal_json_output($options);
+}
+
+/**
+ * Filter parent options
+ */
+function uib_area__filter_parent_options($options, $relative_depth = 0, $indent = '--') {
+  $menus_options = array();
+  foreach ($options as $key => $option) {
+    list($menu_name, ) = explode(':', $key);
+    $menus_options[$menu_name][$key] = $option;
+  }
+  $options = array();
+  foreach ($menus_options as $menu_name => $menu_options) {
+    $limit = 2;
+    $indents = str_repeat($indent, max(1, $limit - $relative_depth));
+    foreach ($menu_options as $key => $option) {
+      if (strpos($option, $indents) !== 0) {
+        $options[$key] = $option;
+      }
+    }
+    return $options;
+  }
 }
 
 /**
