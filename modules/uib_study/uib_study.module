@@ -1310,6 +1310,18 @@ function &uib_study__study_map() {
 }
 
 /**
+ * Get nid from study code
+ * @param string $study_code The study code
+ * @return int node id or NULL if not found.
+ */
+function uib_study__nid_from_study_code($study_code) {
+  $map = &uib_study__study_map();
+  if (array_key_exists($study_code, $map)) {
+    return $map[$study_code];
+  }
+}
+
+/**
  *  Returns the path to the page for given study code.  Returns FALSE for codes
  *  that are not in use.
  */

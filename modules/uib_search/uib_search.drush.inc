@@ -1,6 +1,18 @@
 <?php
 
 function uib_search_drush_command() {
+  $items['uib-search-study'] = array(
+    'description' => 'Retrieve a study object as it will be inserted into '
+      . 'the elastic search index. Options --index and --drop are mutually '
+      . 'exclusive.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array('study_code' => 'Study code'),
+    'required-arguments' => true,
+    'options' => array(
+      'index' => 'Also index this study object',
+      'drop' => 'Drop the study object from elastic index',
+    ),
+  );
   $items['uib-search-user'] = array(
     'description' => 'Retrieve a user object as it will be inserted into '
       . 'the elastic search index. Options --index and --drop are mutually '
@@ -48,7 +60,8 @@ function uib_search_drush_command() {
       . 'search database. Currently supports users and nodes.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'aliases' => array(),
-    'arguments' => array('type' => 'Entity type node / user. Defaults to user'),
+    'arguments' => array('type' => 'Entity type node, user or study. Defaults '
+    . 'to user. The study - option will simply index nodes of type uib_study.'),
     'options' => array(
       'stop=n' => 'Stop after n iterations. Defaults to 10.',
     ),
@@ -70,10 +83,22 @@ function drush_uib_search_user($identificator) {
 function drush_uib_search_node($nid) {
   print json_encode(uib_search__search_any('node', $nid), JSON_PRETTY_PRINT) . "\n";
 }
+function drush_uib_search_study($study_code) {
+  $nid = uib_study__nid_from_study_code($study_code);
+  if (!$nid) {
+    uibx_log('No such study code: ' . $study_code);
+    return;
+  }
+  $output = uib_search__search_any('study', $nid);
+  if ($output) {
+    print json_encode($output, JSON_PRETTY_PRINT). "\n";
+  }
+}
 
 function uib_search__search_any($type, $id){
   $id = trim($id);
   $e = FALSE;
+  $study = $type == 'study';
   switch ($type) {
     case 'user':
       if (is_numeric($id)) {
@@ -84,6 +109,8 @@ function uib_search__search_any($type, $id){
       }
       break;
     case 'node':
+    case 'study':
+      $type = 'node';
       $e = node_load($id);
       break;
   }
@@ -91,15 +118,30 @@ function uib_search__search_any($type, $id){
     uibx_log("Entity $type with id $id not found", 'notice');
     return NULL;
   }
+  $drop = drush_get_option('drop');
+  if ($e->status == 0 && !$drop) {
+    uibx_log("Entity $type with id $id is not published", 'notice');
+    return NULL;
+  }
+
   $entity = entity_metadata_wrapper($type, $e);
   if (drush_get_option('index')) {
-    $output = uib_search__index_entity($entity);
+    if ($study) {
+      $output = uib_search__index_study($entity);
+    }
+    else {
+      $output = uib_search__index_entity($entity);
+    }
   }
-  else if (drush_get_option('drop')) {
+  else if ($drop) {
     $output = uib_search__index_entity($entity, TRUE);
   }
   else {
     $output = uib_search__get_elastic_entity_array($entity);
+    if ($study) {
+      $fs = uib_search__get_elastic_study_array($entity);
+      $output = uib_search__merge_study_arrays($output, $fs);
+    }
   }
   return $output;
 }
@@ -117,8 +159,8 @@ function drush_uib_search() {
   if (!$query) {
     $q = array(
       'query' => array(
-        'wildcard' => array('generic.title' => '*')
-      ),
+        'match_all' => new stdClass()
+      )
     );
   }
   else {
@@ -142,9 +184,20 @@ function drush_uib_search() {
   $hits = $result['hits'];
   $total = $hits['total'];
   foreach ($hits['hits'] as $hit) {
+    if (isset($hit['_source']['generic'])) {
+      $output = $hit['_source']['generic'];
+      $output['title'] = $hit['_id'] . ': ' . $output['title'];
+    }
+    else {
+      $output = array(
+        'title' => "TYPE: {$hit['_type']}  ID: {$hit['_id']}  JSON:",
+        'link' => '',
+        'excerpt' => json_encode($hit['_source']),
+      );
+    }
     $hit = $hit['_source'];
-    printf("%-50s  %-30s\n", $hit['generic']['title'], $hit['generic']['link']);
-    $desc = explode("\n", trim($hit['generic']['excerpt']));
+    printf("%-50s  %-30s\n", substr($output['title'], 0, 50), $output['link']);
+    $desc = explode("\n", trim($output['excerpt']));
     $desc = substr($desc[0], 0, 80);
     printf("%-80s\n", $desc);
     echo str_repeat('-', 80) . "\n";
@@ -192,16 +245,20 @@ function drush_uib_search_index($type = 'user') {
       $id_key = 'uid';
       break;
     case 'node':
+    case 'study':
       $table = 'node';
       $id_key = 'nid';
       break;
     default:
-      uibx_log("Indexing type {$type} is not implemented. Only type user and node is " .
+      uibx_log("Type {$type} is not implemented. Only type user and node is " .
       "available.", 'error');
       return;
   }
 
   $query = "SELECT max(a.{$id_key}) maxid FROM {$table} a WHERE a.status = 1";
+  if ($type == 'study') {
+    $query .= " AND a.type = 'uib_study'";
+  }
   $result = db_query($query)->fetch();
   $maxid = $result->maxid;
   if ($last_processed_id == $maxid) {
@@ -216,6 +273,10 @@ function drush_uib_search_index($type = 'user') {
   $select->addField('a', $id_key);
   $select->condition('a.status', 1);
   $select->condition("a.{$id_key}", $last_processed_id, '>' );
+  if ($type == 'study') {
+    $select->condition('a.type', 'uib_study');
+  }
+
   $select->orderBy("a.{$id_key}");
   $select->range(NULL, $stop);
   if ($type == 'node') {
@@ -245,12 +306,20 @@ function drush_uib_search_index($type = 'user') {
     else {
       variable_set($last_processed_key, $value->$id_key);
     }
+    $ntype = $type == 'study' ? 'node' : $type;
     $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
       . '"_type" : "' . $type
       . '", "_id" : "' . $value->$id_key . '" } }'."\n";
-    $loader = $type . '_load'; // node_load or user_load
-    $entity = entity_metadata_wrapper($type, $loader($value->$id_key));
-    $batch .= json_encode(uib_search__get_elastic_entity_array($entity))."\n";
+    $entity = entity_metadata_wrapper(
+      $ntype,
+      current(entity_load($ntype, array($value->$id_key)))
+    );
+    $nodearray = uib_search__get_elastic_entity_array($entity);
+    $sarr = uib_search__get_elastic_study_array($entity);
+    if($sarr && count($sarr)) {
+      $nodearray = uib_search__merge_study_arrays($nodearray, $sarr);
+    }
+    $batch .= json_encode($nodearray)."\n";
     if ($line % 50 == 0) {
       $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
       if ($stat->code != 200) {
@@ -269,7 +338,11 @@ function drush_uib_search_index($type = 'user') {
     }
   }
 
-  $remaining = db_query("SELECT count(*) FROM {node} WHERE nid > :last", array(':last' => variable_get($last_processed_key, 0)))->fetchField();
+  $remaining = db_query(
+    "SELECT count(*) FROM {node} WHERE nid > :last" .
+      ($type == 'study' ? " AND type='uib_study'" : ""),
+    array(':last' => variable_get($last_processed_key, 0))
+  )->fetchField();
   print("Updated $rowcount ${type}s; $remaining remaining.\n");
 }
 

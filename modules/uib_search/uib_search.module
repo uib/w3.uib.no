@@ -821,32 +821,20 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
   }
   if ($delete) {
     // Delete doc from users in search index, and return
+    if ($wrapped_entity->getBundle() == 'uib_study') {
+      $type = 'study';
+    }
+    else {
+      $type = $entity_type;
+    }
+
     $stat = uib_search__run_elastic_request(
-      "{$url}/{$index}/{$entity_type}/{$id}",
+      "{$url}/{$index}/{$type}/{$id}",
       NULL,
       'DELETE',
       TRUE
     );
-    if ($stat->code == 404) {
-      uibx_log(
-        ucwords($entity_type) . " id #" . $id . ' was not found in the elastic index',
-        'notice'
-      );
-    }
-    else if ($stat->code != 200) {
-      uibx_log(
-        ucwords($entity_type) . " id #" . $id . ' could not be deleted from elastic'
-          . ' index. Status code ' . $stat->code ,
-        'error'
-      );
-    }
-    else {
-      uibx_log(
-        ucwords($entity_type) . " id #" . $id . ' was deleted from elastic index.',
-        'notice'
-      );
-    }
-
+    uib_search__report_status($stat, $entity_type, $id, 'delete');
     return;
   }
 
@@ -858,25 +846,15 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
     'PUT',
     TRUE
   );
-  if (in_array($status->code, array(200))) {
-    uibx_log("Successful update of elastic $entity_type ".$id, 'notice');
-  }
-  else if (in_array($status->code, array(201))) {
-    uibx_log("Successful creation of elastic $entity_type ".$id, 'notice');
-  }
-  else {
-    uibx_log(
-      "Updating elastic $entity_type {$id} failed: {$status->code} - "
-        . "{$status->status_message}",
-      'error'
-    );
-  }
-  return $output;
+  uib_search__report_status($status, $entity_type, $id);
 }
 
 function uib_search__get_elastic_entity_array($wrapped_entity) {
   $type = $wrapped_entity->info();
   $type = $type['type'];
+  if ($wrapped_entity->status->value() != 1) {
+    return NULL;
+  }
 
   // Handling users
   if ($type == 'user') {
@@ -903,6 +881,8 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'url',
     'type',
     'language',
+    'study_code',
+    'study_title',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
 
@@ -947,6 +927,9 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         $output[$key] = uib_search__null_if_empty($v->value());
         break;
     }
+  }
+  if ($wrapped_entity->getBundle() == 'uib_study') {
+    $output['title'] = uib_search__null_if_empty($wrapped_entity->field_uib_study_title->value());
   }
   unset($wrapped_entity);
   if (@$output['article_type']) {
@@ -1058,6 +1041,29 @@ function uib_search__strip_html($val) {
   return $retval;
 }
 
+function uib_search__report_status($status, $type, $id, $action = 'update') {
+  if (in_array($status->code, array(200))) {
+    uibx_log("Successful $action of elastic $type id #$id", 'notice');
+  }
+  else if (in_array($status->code, array(201))) {
+    $action = $action == 'update' ? 'creation' : $action;
+    uibx_log("Successful $action of elastic $type id #$id", 'notice');
+  }
+  else if ($status->code == 404) {
+    uibx_log(
+      ucwords($type) . " id #" . $id . ' was not found in the elastic index',
+      'notice'
+    );
+  }
+  else {
+    uibx_log(
+      ucfirst($action) . " elastic $type id {$id} failed: {$status->code} - "
+        . "{$status->status_message}",
+      'error'
+    );
+  }
+}
+
 function uib_search__remove_tag($tag, $dom) {
     $list = $dom->getElementsByTagName($tag);
     while ( $node = $list->item(0) ) {
@@ -1080,4 +1086,140 @@ function uib_search__concat_text($array, $keys) {
     }
   }
   return trim($output, ', ');
+}
+
+/**
+ * Get an array with data from FS for the given nid, suitable for inserting
+ * into elasticsearch.
+ *
+ * @param int $nid Node ID for the node to return data from.
+ * @return an array with structured data from FS. Returns an empty array
+ * if no data is found.
+ *
+ */
+function uib_search__get_elastic_study_array($wrapped_entity) {
+  if (!isset($wrapped_entity->field_uib_study_type)) {
+    return NULL;
+  }
+  $study_type = $wrapped_entity->field_uib_study_type->value();
+  $render = uib_search__get_render_json($wrapped_entity);
+  $output = array(
+    'fs' => array(
+      'text' => $render['text'],
+      'study_type' => $study_type,
+    ),
+    'generic' => array(
+      'excerpt' => $render['excerpt'],
+      '_searchable_text' =>  $render['_searchable_text'],
+    )
+  );
+
+  return $output;
+}
+
+function uib_search__index_study($wrapped_entity) {
+  $prefix = uib_search__parameter_prefix(1);
+  $index = variable_get($prefix . 'index');
+  $url = rtrim(variable_get($prefix . 'url'), '/');
+  $type = 'study';
+  // Loading data from FS
+  $fsdata = uib_search__get_elastic_study_array($wrapped_entity);
+  // Loading data from w3 as well
+  $entitydata = uib_search__get_elastic_entity_array($wrapped_entity);
+  $data = uib_search__merge_study_arrays($entitydata, $fsdata);
+  $url = "{$url}/{$index}/{$type}/" . $wrapped_entity->getIdentifier();
+  $status = uib_search__run_elastic_request(
+    $url,
+    json_encode($data),
+    'PUT',
+    true
+  );
+  uib_search__report_status(
+    $status,
+    "node (study {$data['study_type']})",
+    $wrapped_entity->getIdentifier()
+  );
+  return $data;
+}
+
+function uib_search__split_key($key) {
+  $ke = explode(':', $key);
+  $key = strtolower($ke[0]);
+  $lang = '';
+  $sem = '';
+  if (count($ke) > 1) {
+    $lang = ':' . $ke[1];
+  }
+  if (count($ke) > 2) {
+    $sem = $ke[2];
+  }
+  return array($key, $lang, $sem);
+}
+
+function uib_search__get_render_json($entity) {
+  $nid = $entity->nid->value();
+
+  $courses = uib_study__fspres_get_node_json($nid, 'render.json');
+
+  // Ignore some types
+  $ignore_types = array(
+    'B_RE_SPRAK',
+    'M_RE_SPRAK',
+  );
+
+  // make a decent array
+  $output = array();
+  $output['_searchable_text'] = '';
+  $output['text'] = '';
+  if (!empty($courses)) {
+    $excerpt = FALSE;
+    foreach ($courses  as $course) {
+      if (array_key_exists('#title', $course)) {
+        $output['_searchable_text'] .= "{$course['#title']}\n\n";
+      }
+      foreach ($course['#items'] as $item) {
+        if (in_array($item['#type'], $ignore_types)) {
+          continue;
+        }
+        if (array_key_exists('#title', $item)) {
+          $output['_searchable_text'] .= $item['#title'] . "\n\n";
+          $output['text'] .= $item['#title'] . "\n\n";
+        }
+        if (array_key_exists('#text', $item)) {
+          $output['_searchable_text'] .= $item['#text'] . "\n\n";
+          $output['text'] .= $item['#text'] . "\n\n";
+          if (!$excerpt) {
+            $output['excerpt'] = uib_search__strip_html($item['#text']);
+            $excerpt = TRUE;
+          }
+        }
+      }
+    }
+    // strip HTML
+    $output['_searchable_text'] = uib_search__strip_html($output['_searchable_text']);
+    $output['text'] = uib_search__strip_html($output['text']);
+
+  }
+  if (!array_key_exists('excerpt', $output)) {
+    $output['excerpt'] = '';
+  }
+  $output['excerpt'] =
+    preg_replace('/\s+?(\S+)?$/', '...', substr($output['excerpt'], 0, 350));
+  return $output;
+}
+
+/**
+ * Merge study content from W3 and from FS into an array suitable for elastic.
+ * @param array $nodearray Array with W3-data for study node
+ * @param array $studyarray Array with FS-data for study
+ * @return array Merged array for elastic search.
+ */
+function uib_search__merge_study_arrays($nodearray, $studyarray) {
+  $nodearray['generic']['_searchable_text'] .= "\n\n" . $studyarray['generic']['_searchable_text'];
+  $nodearray['generic']['_searchable_text'] = trim($nodearray['generic']['_searchable_text']);
+  $nodearray['generic']['excerpt'] .= "\n\n" . $studyarray['generic']['excerpt'];
+  $nodearray['generic']['excerpt'] = trim($nodearray['generic']['excerpt']);
+  unset($studyarray['generic']);
+  $nodearray = array_merge($nodearray, $studyarray);
+  return $nodearray;
 }
