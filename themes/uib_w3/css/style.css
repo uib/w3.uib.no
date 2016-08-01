@@ -3501,12 +3501,14 @@ div.field-item {
 
 .field-name-field-uib-relation, .node-type-uib-content-list section.group-related-content {
   clear: both;
-  padding: 3rem 0; }
+  padding: 0; }
   .field-name-field-uib-relation a, .field-name-field-uib-relation a:hover, .field-name-field-uib-relation a:active, .node-type-uib-content-list section.group-related-content a, .node-type-uib-content-list section.group-related-content a:hover, .node-type-uib-content-list section.group-related-content a:active {
     color: #333;
     text-decoration: none; }
   .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
-    margin: 2.25rem 0.5% 0; }
+    margin: 0; }
+    .field-name-field-uib-relation > .field-items > .field-item:nth-child(n+2), .node-type-uib-content-list section.group-related-content > .field-items > .field-item:nth-child(n+2) {
+      margin-top: 2.25rem; }
     .field-name-field-uib-relation > .field-items > .field-item a, .node-type-uib-content-list section.group-related-content > .field-items > .field-item a {
       -moz-transition-property: background, left;
       -o-transition-property: background, left;
@@ -3769,7 +3771,15 @@ div.field-item {
       display: flex;
       flex-wrap: wrap; }
       .field-name-field-uib-relation > .field-items > .field-item, .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
-        width: 49%; } }
+        width: 49%; }
+        .field-name-field-uib-relation > .field-items > .field-item.even, .node-type-uib-content-list section.group-related-content > .field-items > .field-item.even {
+          margin-right: 1%; }
+        .field-name-field-uib-relation > .field-items > .field-item.odd, .node-type-uib-content-list section.group-related-content > .field-items > .field-item.odd {
+          margin-left: 1%; }
+        .field-name-field-uib-relation > .field-items > .field-item:nth-child(n+2), .node-type-uib-content-list section.group-related-content > .field-items > .field-item:nth-child(n+2) {
+          margin-top: 0; }
+        .field-name-field-uib-relation > .field-items > .field-item:nth-child(n+3), .node-type-uib-content-list section.group-related-content > .field-items > .field-item:nth-child(n+3) {
+          margin-top: 2.25rem; } }
 
 .node-type-uib-content-list section.group-related-persons {
   clear: both; }
