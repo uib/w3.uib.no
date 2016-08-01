@@ -930,7 +930,7 @@ function uib_study_block_view($delta = '') {
                   if (!empty($data['restinfo']['studietypenr'])) {
                     $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
                   }
-                  else {
+                  elseif ($data['utvprogramkode'] != 'NORDPLUS') {
                     $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), t('Not open for admission'));
                   }
                 }
