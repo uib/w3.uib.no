@@ -225,3 +225,13 @@ function uib_setup_update_7023() {
   );
   path_save($new_alias);
 }
+
+/**
+ * Cleanup of historic uib_employee_pages module
+ */
+function uib_setup_update_7024() {
+  db_delete('system')
+    ->condition('name', 'uib_employee_pages')
+    ->condition('type', 'module')
+    ->execute();
+}
