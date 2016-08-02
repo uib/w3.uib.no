@@ -790,7 +790,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         ));
         hide($variables['content']['field_uib_profiled_article']);
       }
-      if ($variables['field_uib_area_type']['und'][0]['value'] == 'frontpage') {
+      if ($variables['field_uib_area_type']['und'][0]['value'] != 'newspage') {
         hide($variables['content']['field_uib_profiled_message']);
       }
       if ($variables['field_uib_area_type']['und'][0]['value'] == 'phdpresspage') {
