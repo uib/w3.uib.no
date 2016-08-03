@@ -1809,7 +1809,8 @@ function uib_area__menu_overview_form_post_render($content, $element) {
  * Implements hook_form_menu_edit_item_alter()
  */
 function uib_area_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
-  if (substr($form['original_item']['#value']['menu_name'], 0, 10) == 'menu-area-') {
+  global $user;
+  if (substr($form['original_item']['#value']['menu_name'], 0, 10) == 'menu-area-' && !in_array('level 1', $user->roles) && $user->uid != 1) {
     if (isset($form['parent']['#options'])) {
       $relative_depth = !empty($form['has_children']['#value']) && ($item = $form['original_item']['#value']) ? menu_link_children_relative_depth($item) : 0;
       $form['parent']['#options'] = uib_area__filter_parent_options($form['parent']['#options'], $relative_depth);
