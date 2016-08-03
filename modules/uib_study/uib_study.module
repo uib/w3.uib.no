@@ -761,12 +761,11 @@ function uib_study_block_view($delta = '') {
       if ($node && in_array($node->field_uib_study_category['und'][0]['value'], $affected_study_categories)) {
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
         if (!empty($data)) {
-          if (!empty($data['opptak'])) {
-            if (is_array($data['opptak']['opptakskode'])) continue;
+          if (!empty($data['studietypenr'])) {
             $block['title'] = t('Application code (SO)');
             $block['content'] = array(
               '#type' => 'markup',
-              '#markup' => l($data['opptak']['opptakskode'], 'http://www.samordnaopptak.no/'),
+              '#markup' => l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
             );
           }
         }
