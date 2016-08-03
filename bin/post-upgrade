@@ -9,6 +9,13 @@ case $(pwd) in
        ;;
 esac
 
+if [ "$(hostname)" = attilatest.uib.no ]; then
+    bin/site-drush vset uib_display_employee_messages_block 1
+fi
+
+
+# The rest is stuff that should only happen for the given release
+
 REL=51
 
 if git tag | grep -q R$REL; then
@@ -19,7 +26,3 @@ fi
 set -x
 
 bin/site-drush php-script clean-up-profiled-messages.php
-
-if [ "$(hostname)" = attilatest.uib.no ]; then
-    bin/site-drush vset uib_display_employee_messages_block 1
-fi
