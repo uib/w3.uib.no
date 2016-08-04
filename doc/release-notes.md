@@ -1,3 +1,16 @@
+# Release 51 _2016-08-04_
+
+Litt mindre oppdatering pga ferieavvikling. Jobbet videre med lokal meldingstjeneste, gjort noen justeringer på studiesidene i anledning semesterstart og gjort noen oppdateringer av Drupal.
+
+- Jobbet videre med lokal meldingstjeneste #15704 #15637 #15886
+- Rettet en feil hvor filtermulighetene på emne var feil #15696
+- Rettet en feil hvor innhold fra felt som ikke finnes viste #15884
+- Fjernet unødvendig luft over tilknyttet innhold #15730
+- Fjernet "kode i søknadsweb" fra nordplusavtaler #15866
+- Henter søkerkode fra FS i riktig resttjeneste #15888
+- Diverse oppgraderinger av Drupal #15844 #15845
+- Opprettet en oversikt for level 1 som viser tilganger på et område #15765
+
 # Release 50 _2016-07-07_
 
 I denne versjonen har vi gjort flere større designjusteringer, rettet diverse feil og i tillegg jobbet videre med lokal meldingstjeneste.
