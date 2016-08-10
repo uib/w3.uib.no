@@ -1325,6 +1325,10 @@ function uib_area__list_area_aliases($node_alias = NULL) {
         'en' => 'messages',
         'nb' => 'meldinger',
       ),
+      'messages.xml' => array(
+        'en' => 'messages.xml',
+        'nb' => 'meldinger.xml'
+      ),
     );
   }
 }
