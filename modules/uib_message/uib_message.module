@@ -249,7 +249,7 @@ function uib_message_node_view($node, $view_mode, $langcode) {
     }
   }
   $message = '<span class="text">' . check_plain($message) . '</span>';
-
+  $message_area_print = false;
   $current_area = uib_area__get_current();
   if (!$current_area || $node->field_uib_message_area['und'][0]['target_id'] != $current_area->tnid) {
     $message_area = node_load($node->field_uib_message_area['und'][0]['target_id']);
@@ -275,9 +275,11 @@ function uib_message_node_view($node, $view_mode, $langcode) {
       'href' => 'node/' . $node->nid . '/delete',
     );
   }
-  $node->content['message_area'] = array(
-    '#markup' => $message_area_print,
-  );
+  if($message_area_print){
+    $node->content['message_area'] = array(
+      '#markup' => $message_area_print,
+    );
+  }
   $node->content['message_age'] = array(
     '#markup' => '<div class="message-age">' . format_interval(time() - $node->created, 1) . ' ' . t('ago') . '</div>',
   );
