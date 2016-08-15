@@ -572,7 +572,7 @@ function uib_area__format_visit_address($place) {
  */
 function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 'teaser') {
   drupal_add_library('system' , 'ui.tabs');
-  drupal_add_js(drupal_get_path('theme', 'uib_zen') . '/js/tabs.js',
+  drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js',
     array('group' => JS_THEME, )
   );
   global $language;
@@ -588,7 +588,7 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
       $node_title = $item->field_uib_ou_title[$language->language][0]['value'];
     }
     $tabs_nav .= '<li><a href="#uib-tab--' . $key . '">' . $node_title . '</a></li>';
-    $tabs_nav_mobile .= '<option value="uib-tab--' . $key . '">' . $node_title . '</ul>';
+    $tabs_nav_mobile .= '<option value="uib-tab--' . $key . '">' . $node_title . '</option>';
     $tabs_content .= '<div id="uib-tab--' . $key . '">';
     $item_view = node_view($item, $view_mode);
     $item_view['field_uib_email'][0]['#markup'] =
