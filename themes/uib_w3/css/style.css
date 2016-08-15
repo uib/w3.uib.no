@@ -2512,6 +2512,7 @@ a {
     font-weight: normal; }
 
 .field-name-field-uib-important-message {
+  width: 100%;
   position: relative;
   background-color: #333333;
   padding: 21px;
