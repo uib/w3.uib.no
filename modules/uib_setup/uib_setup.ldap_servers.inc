@@ -20,7 +20,7 @@ function uib_setup_default_ldap_servers() {
   $ldap_servers_conf->address = 'ldaps://ldap.ha.uib.no';
   $ldap_servers_conf->port = 389;
   $ldap_servers_conf->tls = FALSE;
-  $ldap_servers_conf->bind_method = TRUE;
+  $ldap_servers_conf->bind_method = 3;
   $ldap_servers_conf->binddn = '';
   $ldap_servers_conf->bindpw = '';
   $ldap_servers_conf->basedn = array(
