@@ -189,7 +189,7 @@ th {
 * {
   box-sizing: border-box; }
 
-#block-uib-area-area-offices .ui-tabs-selected:after, #block-uib-area-area-offices .ui-tabs-selected:before {
+#block-uib-area-area-offices .ui-tabs-selected:after, #block-uib-area-area-offices .ui-tabs-active:after, #block-uib-area-area-offices .ui-tabs-selected:before, #block-uib-area-area-offices .ui-tabs-active:before {
   border: transparent solid;
   content: ' ';
   height: 0;
@@ -2921,8 +2921,8 @@ a {
   .field-name-field-uib-media .file-image > .content > .uib-media-info .field div {
     display: inline;
     float: none; }
-  .field-name-field-uib-main-media::after,
-  .field-name-field-uib-media::after {
+  .field-name-field-uib-main-media .clearfix::after,
+  .field-name-field-uib-media .clearfix::after {
     clear: none;
     content: none;
     display: none; }
@@ -5389,16 +5389,19 @@ nav {
   #block-uib-area-area-offices .group-contact-info {
     padding-bottom: 15px; }
   #block-uib-area-area-offices .uib-tabs-nav-mobile {
-    width: 100%; }
-  #block-uib-area-area-offices .ui-tabs-selected {
+    width: 100%;
+    appearance: menulist;
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist; }
+  #block-uib-area-area-offices .ui-tabs-selected, #block-uib-area-area-offices .ui-tabs-active {
     position: relative; }
-    #block-uib-area-area-offices .ui-tabs-selected:after {
+    #block-uib-area-area-offices .ui-tabs-selected:after, #block-uib-area-area-offices .ui-tabs-active:after {
       border-width: 12px;
       border-right-color: #f5f5f5;
       margin-top: -12px;
       right: -1px;
       z-index: 20; }
-    #block-uib-area-area-offices .ui-tabs-selected:before {
+    #block-uib-area-area-offices .ui-tabs-selected:before, #block-uib-area-area-offices .ui-tabs-active:before {
       border-width: 13px;
       border-right-color: #f5f5f5;
       margin-top: -13px;
