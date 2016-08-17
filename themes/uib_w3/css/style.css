@@ -6005,7 +6005,17 @@ nav {
 .node-uib-message {
   max-width: 60ex;
   margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 2px solid #d5d5d5; }
+  .node-uib-message .message-tag {
+    display: table-cell;
+    padding: 0 0.5rem;
+    background-color: #cf3c3a;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.8125rem; }
+  .node-uib-message .message-text {
+    margin: 0.5rem 0; }
   .node-uib-message .message-icon {
     float: left;
     padding-right: 0.7rem;
@@ -6014,20 +6024,39 @@ nav {
     color: #e55343; }
   .node-uib-message .message-age {
     color: #606060;
-    text-align: right;
+    float: left;
+    clear: left;
+    padding: 0;
     font-size: 0.8125rem; }
+    @media (min-width: 600px) {
+      .node-uib-message .message-age {
+        float: right;
+        clear: none;
+        padding: 0.25rem 0 0 0; } }
   .node-uib-message .message-area-from a {
-    color: #e55343;
-    font-weight: bold; }
+    float: left;
+    color: #00769e;
+    font-size: 0.8125rem; }
   .node-uib-message ul.links {
-    float: right;
+    float: left;
+    clear: left;
     margin: 0;
-    padding: 0; }
+    padding: 0 1rem 0 0; }
+    @media (min-width: 600px) {
+      .node-uib-message ul.links {
+        float: right;
+        clear: none; } }
     .node-uib-message ul.links li {
+      float: left;
+      clear: left;
       padding: 0;
       font-size: 0.8125rem; }
+      @media (min-width: 600px) {
+        .node-uib-message ul.links li {
+          float: none;
+          clear: none; } }
       .node-uib-message ul.links li a {
-        color: #e55343; }
+        color: #00769e; }
 
 .content-main-wrapper #cse .gsc-control-cse, .content-main-wrapper #cse .gsc-control-cse-no {
   padding: 0;
