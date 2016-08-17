@@ -4366,41 +4366,44 @@ nav {
       width: 100%;
       background: #606060;
       text-align: left;
-      min-height: 23.5rem;
-      color: #fff; }
+      color: #fff;
+      z-index: 1000; }
     :not(.uib-area-expanded-menu) > #main-menu > .menu .menu__item:hover > ul {
       display: block;
-      z-index: 1000;
       color: #fff; }
     :not(.uib-area-expanded-menu) > #main-menu > .menu > .jstransition.menu__item > ul {
       display: block;
       height: 0px;
-      min-height: 0px;
       overflow: hidden;
       padding: 0 0 0 1.875rem;
-      margin: 0;
-      min-height: inherit; }
+      margin: 0; }
     :not(.uib-area-expanded-menu) > #main-menu .menu__item ul {
       -ms-flex-direction: column;
       -webkit-flex-direction: column;
       flex-direction: column; }
-    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(-n+3) .menu li:nth-child(n+6) {
+    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(-n+3) .menu li:nth-child(even) {
       margin-left: 55%;
       position: relative;
-      top: -18.125rem; }
-    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(n+4) .menu li:nth-child(-n+5) {
+      top: -1.8125rem; }
+    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(-n+3) .menu li:first-child {
+      position: relative;
+      margin-top: .3125rem; }
+    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(n+4) .menu li:nth-child(odd) {
       margin-left: 55%;
       position: relative; }
-    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(n+4) .menu li:nth-child(n+6) {
-      margin-left: 0;
+    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(n+4) .menu li:nth-child(even) {
       position: relative;
-      top: -18.125rem; }
+      top: -1.8125rem; }
+    :not(.uib-area-expanded-menu) > #main-menu .menu .menu__item:nth-child(n+4) .menu li:first-child {
+      position: relative;
+      margin-top: .3125rem; }
     :not(.uib-area-expanded-menu) > #main-menu .menu li .menu li:last-child {
-      margin-bottom: -17rem; }
+      margin-bottom: -1.75rem; }
     :not(.uib-area-expanded-menu) > #main-menu .menu__item ul li {
       border-bottom: .0625rem solid #979797;
       margin-right: 10%;
-      width: 45%; }
+      width: 45%;
+      margin-top: -1.8125rem; }
       :not(.uib-area-expanded-menu) > #main-menu .menu__item ul li a {
         display: block;
         padding: .9375rem;

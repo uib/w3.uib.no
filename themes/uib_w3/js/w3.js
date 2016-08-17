@@ -59,7 +59,6 @@
           $(this).children('ul').first().stop().delay(200).animate(
             {
               height: $(this).children('ul').first().get(0).scrollHeight+80,
-              minHeight: '23.5rem',
               paddingTop: '1.875rem',
               paddingRight: '1.875rem',
               paddingBottom: '1.875rem',
