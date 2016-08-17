@@ -97,14 +97,14 @@ automatically. This is often nice and correct, but sometimes not what you want.
 How to change this mapping is described below.
 
 If you change the mapping for a field in an index, all documents in this
-index needs to be reindexed. Below drush is used as alias for bin/site-drush
+index needs to be reindexed.
 
 Save the current mapping to a file (mapping.txt):
 
-    curl -XGET `drush uib-search-url`_mapping?pretty > mapping.txt
+    curl -XGET `bin/site-drush uib-search-url --admin`_mapping?pretty >mapping.txt
 
-Open mapping.txt in a text editor and change the mapping to your liking. First
-remove the reference to the actual index name (here called w3myindex), so:
+Open `mapping.txt` in a text editor and change the mapping to your liking. First
+remove the reference to the actual index name (here called `w3myindex`), so:
 
     {
       "w3myindex" : {
@@ -131,25 +131,24 @@ will be:
     }
 
 Now edit the mapping to how you need it. Fields that should not be analyzed can
-be set to “index”: “not_analyzed”, f.ex. url fields.
+be set to `{ “index”: “not_analyzed” }`, f.ex. url fields.
 
 Now, to make a new index with your current mapping:
 
-Drop the current index
+Drop the current index:
 
-    drush uib-search-drop-index
+    bin/site-drush uib-search-drop-index
 
 Create a new index which includes your modified mapping.txt file:
 
-    curl -XPUT `drush uib-search-url` --data-binary @mapping.txt
+    curl -XPUT `bin/site-drush uib-search-url --admin` --data-binary <mapping.txt
 
 Check your new mapping with
 
-    curl -XGET `drush uib-search-url`_mapping?pretty
+    curl -XGET `bin/site-drush uib-search-url --admin`_mapping?pretty
 
 Restore the index. This depends on what content was actually in the index. The
 code below will index all users in w3, in batches of 1000.
 
-    drush vset uib_search_last_processed_user 0
-
-    for  i in {1..10}; do drush uib-search-index user --stop=1000 -v; done
+    bin/site-drush vset uib_search_last_processed_user 0
+    for i in {1..10}; do bin/site-drush uib-search-index user --stop=1000 -v; done
