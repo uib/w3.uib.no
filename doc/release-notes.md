@@ -1,3 +1,14 @@
+# Release 52 _2016-08-18_
+
+I denne versjonen har vi foretatt designjusteringer, rettet feil og i tillegg jobbet videre med lokal meldingstjeneste og søkefunksjon.
+
+- Vi har endret visningen av menypunkter i områdemenyen: Menypunktene vises nå fortløpende side ved side. #15722
+- Rettet en feil som gjorde at video-spilleren ikke ble vist. #15963
+- Rettet en feil som gjorde at åpningstidene til UBs enheter ikke ble vist ved bruk av mobil. #15879
+- Designjustering av feltet for viktige meldinger. Feltet vises nå med full bredde. #15890
+- Videre utvikling av lokal meldingstjeneste og ny søkefunksjon. #15909 #15645 #15684 #15906 #15791
+- Et par sikkerhetsoppdateringer. #15961 #15962
+
 # Release 51 _2016-08-04_
 
 Litt mindre oppdatering pga ferieavvikling. Jobbet videre med lokal meldingstjeneste, gjort noen justeringer på studiesidene i anledning semesterstart og gjort noen oppdateringer av Drupal.
