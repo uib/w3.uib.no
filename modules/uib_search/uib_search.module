@@ -78,10 +78,9 @@ function uib_search_block_info() {
   );
 }
 
-/**
- * Implements hook_block_view().
- */
-function uib_search_block_view($delta) {
+// TODO: This function should be removed when the switch to elasticsearch
+// is completed.
+function uib_search__form_old($delta = 'global-searchform'){
   global $language;
   $retval=array();
   $retval['subject']=t('Search');
@@ -98,6 +97,7 @@ function uib_search_block_view($delta) {
       'form' => array(
         '#type' => 'form',
         '#name' => 'noscriptform',
+        '#id' => 'uib-search-noscript-form',
         '#action' => $action,
         '#method' => "get",
         '#attributes' => array(
@@ -123,6 +123,7 @@ function uib_search_block_view($delta) {
       'lightbox-form' => array(
         '#type' => 'form',
         '#name' => 'lbform',
+        '#id' => 'uib-search-form',
         '#action' => $action,
         '#method' => "get",
         '#attributes' => array(
@@ -255,6 +256,33 @@ function uib_search_block_view($delta) {
         ),
       ),
     );
+    break;
+  }
+  return $retval;
+}
+
+
+
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_search_block_view($delta) {
+  $retval=array();
+  switch ($delta) {
+  case 'global-searchform':
+    $retval['subject']=t('Search');
+    // TODO: This if-block should be removed when the switch to elasticsearch
+    // has been completed, keeping the if - part, and removing the else-part.
+    if (variable_get('uib_search_switch_to_elastic', FALSE)) {
+      drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
+      $retval['content']['noscript'] = drupal_get_form('uib_search__noscript_form');
+      $retval['content']['normal'] = drupal_get_form('uib_search__form');
+    }
+    else {
+      $retval = uib_search__form_old();
+    }
+
     break;
   }
   return $retval;
@@ -588,4 +616,211 @@ function uib_search__check_elastic_settings($admin = false) {
     return true;
   }
   return false;
+}
+
+/**
+ * Get the search form
+ * @return The form render-array
+ */
+function uib_search__form(){
+  global $language;
+  $action=$GLOBALS['base_path'] . $language->language . "/search";
+  $form= array(
+    '#weight' => -45,
+    '#action' => $action,
+    '#method' => 'get',
+    '#id' => 'uib-search-form',
+    '#type' => 'form',
+    '#attributes' => array(
+      'class' => array('global-search'),
+    ),
+    'lightbox' => array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('lightbox'),
+      ),
+      'top' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('topbar-wrapper'),
+        ),
+        'top' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('topbar'),
+          ),
+          'spacer' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('spacer'),
+            ),
+          ),
+          'right' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('top-right'),
+            ),
+            'close' => array(
+              '#type' => 'container',
+              'link' => array(
+                '#type' => 'link',
+                '#href' => '',
+                '#attributes' => array(
+                  'class' => array('closeme'),
+                ),
+                '#title' => t('Close'),
+              ),
+              '#attributes' => array(
+                'class' => array('close-lightbox'),
+              ),
+            ),
+          ),
+        ),
+      ),
+      'search' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('search-wrapper'),
+        ),
+        'searchfield' => array(
+          '#type' => 'html_tag',
+          '#tag' => 'label',
+          '#value' => t('Search field'),
+          '#attributes' => array(
+            'for' => 'searchfield',
+            'class' => array('element-invisible'),
+          ),
+        ),
+        'searchtext' => array(
+          '#type' => 'textfield',
+          '#value' => check_plain(@$_GET['qq']),
+          '#attributes' => array(
+            'class' => array('search-field'),
+            'name' => 'qq',
+            'autocomplete' => 'off',
+            'placeholder' => t('Search uib.no'),
+            'data-placeholder' => t('Search for person'),
+            'id' => 'searchfield',
+          ),
+        ),
+        'submit' => array(
+          '#type' => 'submit',
+          '#value' => t('Search'),
+        ),
+        'user' => array(
+          '#type' => 'hidden',
+          '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
+          '#attributes' => array(
+            'name' => 'user',
+          ),
+        ),
+        'password' => array(
+          '#type' => 'hidden',
+          '#value' =>
+            variable_get(uib_search__parameter_prefix() . 'password'),
+          '#attributes' => array(
+            'name' => 'password',
+          ),
+        ),
+        'url' => array(
+          '#type' => 'hidden',
+          '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
+          '#attributes' => array(
+            'name' => 'url',
+          ),
+        ),
+        'index' => array(
+          '#type' => 'hidden',
+          '#value' =>
+            variable_get(uib_search__parameter_prefix() . 'index'),
+          '#attributes' => array(
+            'name' => 'index',
+          ),
+        ),
+        'elastic' => array(
+          '#type' => 'hidden',
+          '#value' => '1',
+          '#name' => 'uib_search_switch_to_elastic',
+        ),
+      ),
+      'results-wrapper' => array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('results-wrapper'),
+        ),
+        'results' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('results'),
+          ),
+          'results-bottom-anchor' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'span',
+            '#value' => '',
+            '#attributes' => array(
+              'class' => array('results-bottom-anchor'),
+            ),
+          ),
+        ),
+        'right' => array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('right-selector'),
+          ),
+          'filters' => array(
+            '#type' => 'checkboxes',
+            '#id' => 'search-filter-checkboxes',
+            '#title' => t('Filter on content'),
+            '#description' => t('Choose what results to return'),
+            '#options' => array(
+              'everything' => t('Everything'),
+              'news' => t('News'),
+              'study' => t('Study-information'),
+              'event' => t('Event'),
+              'user' => t('Person'),
+              'external_content' => t('External content'),
+            ),
+            '#attributes' => array(
+              'name' => 'uib_search_filters[]',
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  return $form;
+}
+
+function uib_search__noscript_form(){
+  global $language;
+  $action=$GLOBALS['base_path'] . $language->language . "/search";
+  $form=array(
+    '#type' => 'form',
+    '#name' => 'noscriptform',
+    '#action' => $action,
+    '#method' => 'get',
+    '#id' => 'uib-search-noscript-form',
+    '#attributes' => array(
+      'name' => 'noscriptform',
+    ),
+    'link' => array(
+      "#markup" => '<input class="search-button" type="submit" value="'
+      . t("Search") . '" />',
+    ),
+    'noscript' => array(
+      '#prefix' => '<noscript>',
+      '#suffix' => '</noscript>',
+      'qq' => array(
+        '#type' => 'textfield',
+        '#attributes' => array(
+          'class' => array('search-field'),
+          'value' => check_plain(@$_GET['qq']),
+              'name' => 'qq',
+        ),
+      ),
+    ),
+  );
+
+  return $form;
 }

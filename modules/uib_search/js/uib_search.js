@@ -231,14 +231,14 @@
         .appendTo(resultstag);
       $('.no_more_results').click(function(event){
         event.preventDefault();
-        $().scroll('form[name=lbform] .search-field').focus();
+        $().scroll('form#uib-search-form .search-field').focus();
       })
     }
 
 
     $('.pagination-wrapper a').click(function(event){
       event.preventDefault();
-      $.uib_search.scroll = 'form[name=lbform] .search-field';
+      $.uib_search.scroll = 'form#uib-search-form .search-field';
       $.uib_search.select = true;
       $.uib_search.focus = true;
       if ($(this).hasClass('disable') || $(this).hasClass('current') ) {
@@ -268,10 +268,10 @@
       $().scroll($.uib_search.scroll);
     }
     if ($.uib_search.select) {
-      $('form[name=lbform] .search-field').select();
+      $('form#uib-search-form .search-field').select();
     }
     if ($.uib_search.focus) {
-      $('form[name=lbform] .search-field').focus();
+      $('form#uib-search-form .search-field').focus();
     }
   };
 
@@ -294,11 +294,11 @@
     $.uib_search = {
       from: 0,
       size: 10,
-      password: $('form[name=lbform] input[name=password]').val(),
-      user: $('form[name=lbform] input[name=user]').val(),
-      index: $('form[name=lbform] input[name=index]').val(),
-      url: $('form[name=lbform] input[name=url]').val(),
-      resultsselector: 'form[name=lbform] .results',
+      password: $('form#uib-search-form input[name=password]').val(),
+      user: $('form#uib-search-form input[name=user]').val(),
+      index: $('form#uib-search-form input[name=index]').val(),
+      url: $('form#uib-search-form input[name=url]').val(),
+      resultsselector: 'form#uib-search-form .results',
       lang: $('html').attr('lang'),
       currentquery: '',
       scroll: '',
@@ -313,8 +313,11 @@
       $('.lightbox .topbar .form-type-checkbox').css('display', 'none');
     }
     else{
-      $('form[name=lbform] .search-field').keyup(function (e) {
-        if (!$('#switch_type_button').is(':checked')) {
+      $('form#uib-search-form .search-field').keyup(function (e) {
+        if (
+          !$('#switch_type_button').is(':checked') &&
+          !$('#search-filter-checkboxes input[value=user]').is(':checked')
+        ) {
           return;
         }
         var query = $(e.target).val().trim();

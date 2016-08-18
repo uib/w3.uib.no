@@ -6,6 +6,7 @@
 
 case $(pwd) in
     /var/www/w3-prestaging.test.uib.no )
+    bin/site-drush vset uib_search_switch_to_elastic TRUE
        ;;
 esac
 
