@@ -75,6 +75,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $variables['mobile']['area_menu']['#suffix'] = '</nav>';
       $variables['mobile']['area_menu']['#weight'] = -15;
     }
+    if ($frontpage) unset($variables['mobile']['area_menu']);
     if ($variables['language']->language == 'nb') {
       $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
     }
