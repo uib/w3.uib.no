@@ -777,7 +777,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Content: Place (field_uib_ou) */
+  /* Contextual filter: Content: Responsible (field_uib_ou) */
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
@@ -3874,12 +3874,12 @@ return true;';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'rss_fields';
   $handler->display->display_options['row_options']['title_field'] = 'field_uib_message_text_nb';
-  $handler->display->display_options['row_options']['link_field'] = 'nid';
+  $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_nb';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
   $handler->display->display_options['row_options']['date_field'] = 'field_uib_date';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
-    'guid_field' => 'field_uib_message_link_nb',
+    'guid_field' => 'nid',
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
