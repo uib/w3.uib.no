@@ -777,7 +777,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Content: Responsible (field_uib_ou) */
+  /* Contextual filter: Content: Place (field_uib_ou) */
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
@@ -3382,7 +3382,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_en';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
-  $handler->display->display_options['row_options']['date_field'] = 'field_uib_date';
+  $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
     'guid_field' => 'nid',
     'guid_field_is_permalink' => 0,
@@ -3449,31 +3449,6 @@ return !empty($handler->argument);';
       ),
     ),
   );
-  /* Field: Content: Date */
-  $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -3500,6 +3475,14 @@ return !empty($handler->argument);';
       ),
     ),
   );
+  /* Field: Content revision: Updated date */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'r';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['timestamp']['timezone'] = 'UTC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -3584,7 +3567,7 @@ return true;';
   $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_en';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
-  $handler->display->display_options['row_options']['date_field'] = 'field_uib_date';
+  $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
     'guid_field' => 'nid',
     'guid_field_is_permalink' => 0,
@@ -3684,31 +3667,14 @@ return true;';
       ),
     ),
   );
-  /* Field: Content: Date */
-  $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
+  /* Field: Content revision: Updated date */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'r';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['timestamp']['timezone'] = 'UTC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Area (field_uib_message_area) */
   $handler->display->display_options['arguments']['field_uib_message_area_target_id']['id'] = 'field_uib_message_area_target_id';
@@ -3750,7 +3716,7 @@ return true;';
   $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_nb';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
-  $handler->display->display_options['row_options']['date_field'] = 'field_uib_date';
+  $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
     'guid_field' => 'nid',
     'guid_field_is_permalink' => 0,
@@ -3764,31 +3730,6 @@ return true;';
   $handler->display->display_options['fields']['field_uib_message_tag']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_message_tag']['settings'] = array(
     'link' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
-  /* Field: Content: Date */
-  $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
     'linked_field' => array(
       'linked' => 0,
       'destination' => '',
@@ -3868,6 +3809,14 @@ return true;';
       ),
     ),
   );
+  /* Field: Content revision: Updated date */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'r';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['timestamp']['timezone'] = 'UTC';
   $handler->display->display_options['path'] = 'meldinger.xml';
   $handler->display->display_options['displays'] = array(
     'default' => 'default',
@@ -3880,12 +3829,12 @@ return true;';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'rss_fields';
   $handler->display->display_options['row_options']['title_field'] = 'field_uib_message_text_nb';
-  $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_nb';
+  $handler->display->display_options['row_options']['link_field'] = 'nid';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
-  $handler->display->display_options['row_options']['date_field'] = 'field_uib_date';
+  $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
-    'guid_field' => 'nid',
+    'guid_field' => 'field_uib_message_link_nb',
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3983,31 +3932,14 @@ return true;';
       ),
     ),
   );
-  /* Field: Content: Date */
-  $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
-  $handler->display->display_options['fields']['field_uib_date']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_date']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_date']['settings'] = array(
-    'format_type' => 'long',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-    'show_remaining_days' => 0,
-    'linked_field' => array(
-      'linked' => 0,
-      'destination' => '',
-      'advanced' => array(
-        'title' => '',
-        'target' => '',
-        'class' => '',
-        'rel' => '',
-        'text' => '',
-      ),
-    ),
-  );
+  /* Field: Content revision: Updated date */
+  $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['table'] = 'node_revision';
+  $handler->display->display_options['fields']['timestamp']['field'] = 'timestamp';
+  $handler->display->display_options['fields']['timestamp']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['timestamp']['custom_date_format'] = 'r';
+  $handler->display->display_options['fields']['timestamp']['second_date_format'] = 'long';
+  $handler->display->display_options['fields']['timestamp']['timezone'] = 'UTC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Area (field_uib_message_area) */
   $handler->display->display_options['arguments']['field_uib_message_area_target_id']['id'] = 'field_uib_message_area_target_id';
@@ -4045,6 +3977,7 @@ return true;';
     t('English Feed'),
     t('English Messages'),
     t('http:noresult'),
+    t('Updated date'),
     t('Block'),
     t('Area'),
     t('No recent messages'),
