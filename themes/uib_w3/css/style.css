@@ -2925,8 +2925,8 @@ a {
   .field-name-field-uib-media .file-image > .content > .uib-media-info .field div {
     display: inline;
     float: none; }
-  .field-name-field-uib-main-media::after,
-  .field-name-field-uib-media::after {
+  .field-name-field-uib-main-media .clearfix::after,
+  .field-name-field-uib-media .clearfix::after {
     clear: none;
     content: none;
     display: none; }
