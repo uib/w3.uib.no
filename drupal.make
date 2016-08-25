@@ -114,7 +114,7 @@ projects[views][version] = 3.14
 projects[views][patch][] = https://www.drupal.org/files/issues/views-3.x-dev-issue_1331056-52.patch
 projects[views_bulk_operations][version] = 3.3
 projects[views_data_export][version] = 3.0-beta9
-projects[views_field_view][version] = 1.1
+projects[views_field_view][version] = 1.2
 projects[views_slideshow][version] = 3.1
 projects[wysiwyg][revision] = 949039351d71d24d60faee4f63c6527e54761ee1
 
