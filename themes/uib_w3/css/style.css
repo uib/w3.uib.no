@@ -706,7 +706,8 @@ img {
 
 @media (min-width: 600px) {
   .node-type-uib-article .field-name-field-uib-main-media.description img {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    width: 100%; }
   .field-name-field-uib-main-media.description .content {
     display: -ms-flexbox;
     -ms-flex-direction: row;
