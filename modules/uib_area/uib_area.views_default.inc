@@ -3394,7 +3394,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_message_link_en']['field'] = 'field_uib_message_link_en';
   $handler->display->display_options['fields']['field_uib_message_link_en']['label'] = '';
   $handler->display->display_options['fields']['field_uib_message_link_en']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_en']['empty'] = 'http:noresult';
   $handler->display->display_options['fields']['field_uib_message_link_en']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_uib_message_link_en']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -3601,7 +3603,9 @@ return true;';
   $handler->display->display_options['fields']['field_uib_message_link_en']['field'] = 'field_uib_message_link_en';
   $handler->display->display_options['fields']['field_uib_message_link_en']['label'] = '';
   $handler->display->display_options['fields']['field_uib_message_link_en']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_en']['empty'] = 'http:noresult';
   $handler->display->display_options['fields']['field_uib_message_link_en']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_en']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_uib_message_link_en']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -3829,7 +3833,9 @@ return true;';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['field'] = 'field_uib_message_link_nb';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['label'] = '';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['empty'] = 'http:noresult';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -3896,7 +3902,9 @@ return true;';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['field'] = 'field_uib_message_link_nb';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['label'] = '';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['empty'] = 'http:noresult';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_uib_message_link_nb']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_uib_message_link_nb']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -4036,6 +4044,7 @@ return true;';
     t('Content entity referenced from field_uib_message_area'),
     t('English Feed'),
     t('English Messages'),
+    t('http:noresult'),
     t('Block'),
     t('Area'),
     t('No recent messages'),
