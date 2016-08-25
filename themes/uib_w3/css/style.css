@@ -835,6 +835,9 @@ a {
   text-align: center;
   text-transform: uppercase; }
 
+.content-main-wrapper #uib-tabs-studieplan {
+  font-size: 1.25rem; }
+
 .node-type-area .media-vimeo-video,
 .node-type-area .media-youtube-video,
 .node-type-uib-article .media-vimeo-video,
