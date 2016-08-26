@@ -16,7 +16,7 @@ fi
 
 # The rest is stuff that should only happen for the given release
 
-REL=52
+REL=53
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";

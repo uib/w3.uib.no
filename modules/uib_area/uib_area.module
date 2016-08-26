@@ -1327,6 +1327,8 @@ function uib_area__list_area_aliases($node_alias = NULL) {
       ),
       'messages.xml' => array(
         'en' => 'messages.xml',
+      ),
+      'meldinger.xml' => array(
         'nb' => 'meldinger.xml'
       ),
     );
