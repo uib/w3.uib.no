@@ -857,7 +857,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           'label' => 'hidden',
           'weight' => 3,
         ));
+        $uib_media['#field_name'] = 'field_uib_main_media';
         $variables['content']['field_uib_main_media'] = $uib_media;
+        $variables['content']['field_uib_main_media'][0] = array();
+        $variables['content']['field_uib_main_media'][0]['#markup'] = render($uib_media[0]);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
