@@ -811,7 +811,8 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
   }
 
   $id = $wrapped_entity->getIdentifier();
-  $entity_type = $wrapped_entity->info()['type'];
+  $entity_type = $wrapped_entity->info();
+  $entity_type = $entity_type['type'];
   $prefix = uib_search__parameter_prefix(1);
   $index = variable_get($prefix . 'index');
   $url = rtrim(variable_get($prefix . 'url'), '/');
@@ -874,7 +875,8 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
 }
 
 function uib_search__get_elastic_entity_array($wrapped_entity) {
-  $type = $wrapped_entity->info()['type'];
+  $type = $wrapped_entity->info();
+  $type = $type['type'];
 
   // Handling users
   if ($type == 'user') {
