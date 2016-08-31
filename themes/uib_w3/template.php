@@ -815,6 +815,16 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       else {
         $variables['content']['article_info'] = $article_info;
       }
+      if ($variables['field_uib_article_type']['und'][0]['value'] == 'phd_press_release') {
+        $media_link = __uib_w3__download_image_link($variables['content']['field_uib_media'][0]['#file']);
+        $media_markup = render($variables['content']['field_uib_media']);
+        $media_markup = substr($media_markup, 0, -18);
+        $media_markup .= $media_link . '</div></div></div>';
+        $variables['content']['field_uib_media'] = array(
+          '#weight' => 28,
+          '#markup' => $media_markup,
+        );
+      }
     }
     $hide_vars = array(
       'field_uib_byline',
@@ -1158,4 +1168,12 @@ function uib_w3_menu_link($variables) {
   else {
     return theme_menu_link($variables);
   }
+}
+
+function __uib_w3__download_image_link($file) {
+  $uri = file_entity_download_uri($file);
+  $link_text = t('Download press photo');
+  $image_link = l($link_text, $uri['path'], $uri['options']);
+  $output = '<div class="image--download-original clearfix">' . $image_link . '</div>';
+  return $output;
 }
