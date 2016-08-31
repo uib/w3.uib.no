@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Index all studies to the elasticsearch database.
+
+# Run 1000 at a time to prevent out of memory error
+# Currently well less than 4000 active courses in FS
+
+for i in {1..4}
+do
+  bin/site-drush uib-search-index study --stop=1000
+done
+
+# Reset counter to 0 for next run
+bin/site-drush vset uib_search_last_processed_study 0 2> /dev/null
