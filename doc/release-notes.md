@@ -1,3 +1,20 @@
+# Release 53 _2016-09-01_
+
+I denne versjonen har vi rettet diverse feil, foretatt enkelte designjusteringer og i tillegg jobbet videre med lokal meldingstjeneste og ny søkefunksjon.
+
+- Forbedret utsnitt av forside-banner ved bruk av mobil #15500
+- Lenke for nedlasting av pressefoto finnes nå på sidene for doktorgradspressemeldinger #15896
+- Undermenyen vises ikke lenger i toppmenyen på førstesiden ved bruk av mobil #15979
+- Teksten for påmeldingsfrist er flyttet inn i boksen for arrangement i sidespalten #15700
+- Datoikon vises nå på fremhevede artikler både ved bruk av små og store bilder #15958
+- Rettet feil som gjorde at tekst og ikoner i kolofon-feltet overlappet ved bruk av mobil #15885
+- Rettet feil som gjorde at store bilder i artikler ikke ble skalert på riktig måte ved bruk av Firefox ESR versjon 45 #15913
+- Rettet feil som gjorde at billedtekst ikke brøt som den skulle #16016
+- Designjustering av visse tekstelememnter i visning av studieplaner #13872
+- Videre utvikling av lokal meldingstjeneste #15907 #15991 #15998 #16011 #16019 #16020 #16029
+- Videre utvikling av ny søkefunksjon #15264 #15415
+- Diverse Drupal-oppdateringer #12436 #16021 #16022 #16023 #16024
+
 # Release 52 _2016-08-18_
 
 I denne versjonen har vi foretatt designjusteringer, rettet feil og i tillegg jobbet videre med lokal meldingstjeneste og søkefunksjon.
