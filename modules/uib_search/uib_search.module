@@ -261,7 +261,9 @@ function uib_search__form(){
               'study' => t('Study-information'),
               'event' => t('Event'),
               'user' => t('Person'),
-              'external_content' => t('External content'),
+            ),
+            '#default_value' => array(
+              'everything'
             ),
             '#attributes' => array(
               'name' => 'uib_search_filters[]',

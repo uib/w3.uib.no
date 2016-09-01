@@ -43,13 +43,26 @@
       }
       $('.block-uib-search .lightbox .search-field').focus();
     });
-    $('#search-filter-checkboxes input[value=user]').click(function () {
-      if ($(this).is(':checked')) {
-        $('form#uib-search-form .results').css('visibility', 'visible');
-        $('form#uib-search-form .search-field').keyup();
-      } else {
-        $('form#uib-search-form .results').css('visibility', 'hidden');
+    $('#search-filter-checkboxes input').click(function() {
+      var otherchecked =
+        $('#search-filter-checkboxes input[value!=everything]')
+          .is(':checked');
+      if ($(this).attr('value') == 'everything') {
+        $(this).prop('checked', true);
+        $('#search-filter-checkboxes input[value!=everything]')
+          .prop('checked', false);
       }
+      else {
+        if (otherchecked) {
+          $('#search-filter-checkboxes input[value=everything]')
+            .prop('checked', false)
+        }
+        else {
+          $('#search-filter-checkboxes input[value=everything]')
+            .prop('checked', true)
+        }
+      }
+      $('form#uib-search-form .search-field').keyup();
       $('.block-uib-search .lightbox .search-field').focus();
     });
 

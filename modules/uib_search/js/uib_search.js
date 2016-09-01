@@ -45,67 +45,189 @@
       }
       var index = $.uib_search.index;
       var lang = $.uib_search.lang;
-
-      // Building elastic query
+      var all = false;
+      var should = [];
       var data = {
         query: {
           bool: {
-            should: [
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
-              { match_phrase_prefix: {} },
-              { match: {} },
-              { match: {} },
-              { match: {} },
-              { match: {} },
-              { match: {} },
-              { match: {} },
-              { match_phrase_prefix: {} },
-              { match: {} },
-            ],
-          },
+            should: [],
+            filter: {
+              or: []
+            },
+            minimum_should_match: 1
+          }
         },
         highlight: { fields: {}, },
         size: $.uib_search.size,
         from: $.uib_search.from,
-      };
+      }
+      if (
+        $('#search-filter-checkboxes input[value=everything]').is(':checked')
+      ) {
+        all = true;
+        // News
+        data.query.bool.filter.or.push(
+          {term: {'w3.article_type': { value: 'news'}}}
+        );
+        // Event
+        data.query.bool.filter.or.push(
+          {term: {'w3.article_type': { value: 'event'}}}
+        );
+        // Area
+        data.query.bool.filter.or.push(
+          {term: {'w3.type': { value: 'area'}}}
+        );
+        // Study
+        data.query.bool.filter.or.push({type: {value: 'study'}});
+        // User
+        data.query.bool.filter.or.push({type: {value: 'user'}});
+      }
+      if (
+        all ||
+        $('#search-filter-checkboxes input[value=user]').is(':checked') ||
+        $('#switch_type_button').is(':checked')
+      ) {
 
-      // Matching title, mail, ou and position
-      data.query.bool.should[0].match_phrase_prefix.first_name
-        = { query: query, boost: 3};
-      data.query.bool.should[1].match_phrase_prefix.last_name
-        = { query: query, boost: 3};
-      data.query.bool.should[2].match_phrase_prefix.mail = query;
-      data.query.bool.should[3].match_phrase_prefix["ou_" + lang ] = query;
-      data.query.bool.should[4].match_phrase_prefix["position_" + lang]
-        = { query: query, boost: 2};
-      data.query.bool.should[5].match_phrase_prefix["alt_position_" + lang]
-        = {query: query, boost: 2};
-      data.query.bool.should[6].match.first_name
-        = { query: query, boost: 4};
-      data.query.bool.should[7].match.last_name
-        = { query: query, boost: 4};
-      data.query.bool.should[8].match.mail = { query: query, boost: 2};
-      data.query.bool.should[9].match["ou_" + lang] = { query: query, boost: 2};
-      data.query.bool.should[10].match["position_" + lang]
-        = { query: query, boost: 3};
-      data.query.bool.should[11].match["alt_position_" + lang]
-        = {query: query, boost: 3};
-      data.query.bool.should[12].match_phrase_prefix["competence_" + lang]
-        = {query: query, boost: 2};
-      data.query.bool.should[13].match["competence_" + lang]
-        = {query: query, boost: 3};
+        if (!all) {
+          // Document type must be user
+          data.query.bool.filter.or.push({type: {value: 'user'}});
+        }
+        should_tmp = []
+        should_tmp.push(
+          {match_phrase_prefix: {first_name: { query: query, boost: 3}}},
+          {match: {first_name: { query: query, boost: 3}}},
+          {match_phrase_prefix: {last_name: { query: query, boost: 3}}},
+          {match: {last_name: { query: query, boost: 3}}},
+          {match_phrase_prefix: {mail: query}},
+          {match: {mail: query}}
+        );
 
-      // Highlighting matches
-      data.highlight.fields.first_name = {};
-      data.highlight.fields.last_name = {};
-      data.highlight.fields['ou_' + lang] = {};
-      data.highlight.fields['position_' + lang] = {};
-      data.highlight.fields.mail = {};
-      data.highlight.fields['alt_position_' + lang] = {};
+        // NGrams
+        tmp = {match: {}}
+        tmp.match["first_name.ngrams"] = { query: query, boost: 3};
+        should_tmp.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["last_name.ngrams"] = { query: query, boost: 3};
+        should_tmp.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["ou_" + lang] = { query: query, boost: 2};
+        should_tmp.push(tmp)
+
+        tmp = {match_phrase_prefix: {}}
+        tmp.match_phrase_prefix["ou_" + lang] = query;
+        should_tmp.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["position_" + lang] = { query: query, boost: 3};
+        should_tmp.push(tmp)
+
+        tmp = {match_phrase_prefix: {}}
+        tmp.match_phrase_prefix["position_" + lang] = { query: query, boost: 2};
+        should_tmp.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["alt_position_" + lang] = {query: query, boost: 3};
+        should_tmp.push(tmp)
+
+        tmp = {match_phrase_prefix: {}}
+        tmp.match_phrase_prefix["alt_position_" + lang] =
+          {query: query, boost: 2};
+        should_tmp.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["competence_" + lang] = {query: query, boost: 3};
+        should_tmp.push(tmp)
+
+        tmp = {match_phrase_prefix: {}}
+        tmp.match_phrase_prefix["competence_" + lang] =
+          {query: query, boost: 2};
+        should_tmp.push(tmp)
+
+        // Adding above searches to the toplevel should-array
+        should.push({bool: {should: should_tmp}});
+
+        // Highlighted fields
+        data.highlight.fields.first_name = {};
+        data.highlight.fields.last_name = {};
+        data.highlight.fields['ou_' + lang] = {};
+        data.highlight.fields['position_' + lang] = {};
+        data.highlight.fields.mail = {};
+        data.highlight.fields['alt_position_' + lang] = {};
+
+
+
+      }
+      if (all ||
+        $('#search-filter-checkboxes input[value=news]').is(':checked') ||
+        $('#search-filter-checkboxes input[value=study]').is(':checked') ||
+        $('#search-filter-checkboxes input[value=event]').is(':checked')
+      ) {
+
+        if (!all &&
+          $('#search-filter-checkboxes input[value=news]').is(':checked')
+        ) {
+          // Document type: node, and w3 article-type: news
+          data.query.bool.filter.or.push(
+            {and:[
+              {type: {value: 'node'}},
+              {term: {'w3.article_type': { value: 'news'}}}
+            ]}
+          );
+        }
+
+        if (!all &&
+          $('#search-filter-checkboxes input[value=event]').is(':checked')
+        ) {
+          // Document type: node, and w3 article-type: event
+          data.query.bool.filter.or.push(
+            {and:[
+              {type: {value: 'node'}},
+              {term: {'w3.article_type': { value: 'event'}}}
+            ]}
+          );
+        }
+
+        if (!all &&
+          $('#search-filter-checkboxes input[value=study]').is(':checked')
+        ) {
+          // Document type: study
+          data.query.bool.filter.or.push({type: {value: 'study'}});
+
+        }
+
+        // Match direct hit on study code
+        tmp = {match: {}}
+        tmp.match["w3.study_code"] = {query: query, boost: 10};
+        should.push(tmp)
+
+        // Boost hits on content type area
+        tmp = {match: {}}
+        tmp.match["w3.type"] = {query: 'area', boost: 1.2};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic.title"] = {query: query, boost: 3};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic.title.ngrams"] = {query: query, boost: 3};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic.excerpt"] = {query: query, boost: 2};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic._searchable_text"] = {query: query, boost: 1};
+        should.push(tmp)
+
+        // Highlighted fields
+        data.highlight.fields['generic.title'] = {};
+        data.highlight.fields['generic.excerpt'] = {};
+      }
+      data.query.bool.should = should;
       return data;
   };
   $.fn.createResults = function (data, resultsselector) {
@@ -116,11 +238,19 @@
     }
 
     $.each(data.hits.hits, function (index, v) {
+      var node = v._type == 'node' || v._type == 'study';
       // Retrieving variables from returned object
       var evenodd = index % 2 ? 'odd' : 'even';
       var lang = $.uib_search.lang;
       var user_url = $().getVal(v._source, 'link_' + lang);
 
+      var link = $().getVal(v._source.generic, 'link');
+      var title = $().getVal(v.highlight, 'generic.title') ?
+        $().getVal(v.highlight, 'generic.title') :
+        $().getVal(v._source.generic, 'title');
+      var excerpt = $().getVal(v.highlight, 'generic.excerpt') ?
+        $().getVal(v.highlight, 'generic.excerpt') :
+        $().getVal(v._source.generic, 'excerpt');
       var first_name = $().getVal(v.highlight, 'first_name') ?
         $().getVal(v.highlight, 'first_name') :
         $().getVal(v._source, 'first_name');
@@ -150,39 +280,53 @@
 
       var phone = $().getVal(v._source, 'phone');
 
+
       // building markup
       var lft = $('<div></div>').addClass('lft')
         .append(
-          $('<div><div>').addClass('name').append(name)
+          $('<div></div>').addClass('name').append(name)
         )
         .append(
-          $('<div><div>').addClass('position')
+          $('<div></div>').addClass('position')
           .html(
             position + (alt_position ? ', ' + alt_position : '')
           )
         )
         .append(
-          $('<div><div>').addClass('ou')
+          $('<div></div>').addClass('ou')
           .html(
             ou
           )
         );
       var rgt = $('<div></div>').addClass('rgt')
         .append(
-          $('<div><div>').addClass('mail').append(
+          $('<div></div>').addClass('mail').append(
             $('<a></a>').attr('href', 'mailto:' + mail).html(display_mail)
           )
         )
         .append(
-          $('<div><div>').addClass('phone').text(phone)
+          $('<div></div>').addClass('phone').text(phone)
         );
 
+      // Rewrite markup if document type = node
+      if (node) {
+        name = $('<a></a>').attr('href', link).html(title);
+        lft = $('<div></div>').addClass('lft')
+        .append(
+          $('<div></div>').addClass('title').append(name)
+        )
+        .append(
+          $('<div></div>').addClass('excerpt').html(excerpt)
+        );
+        rgt = '';
+      }
 
       $('<div></div>').addClass('user_' + v._id + ' ' + evenodd)
         .append(lft)
         .append(rgt)
         .appendTo(resultstag);
-    });
+
+    }); // each
 
     // create pagination
     var maxpages = 9;
@@ -306,7 +450,7 @@
       select: '',
     };
     $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
-      + "/user/_search";
+      + "/_search";
 
     if(!$.uib_search.url){
       // Hide switch button if elastic url is not set
@@ -314,14 +458,16 @@
     }
     else{
       $('form#uib-search-form .search-field').keyup(function (e) {
+        // TODO: Remove if block when switching to new search
         if (
-          !$('#switch_type_button').is(':checked') &&
-          !$('#search-filter-checkboxes input[value=user]').is(':checked')
+          $('#switch_type_button').length &&
+          !$('#switch_type_button').is(':checked')
         ) {
           return;
         }
         var query = $(e.target).val().trim();
-        if (query.length == 0 || query == $.uib_search.currentquery ) {
+        if (query.length == 0) {
+          $('.results').html('');
           return;
         }
         $.uib_search.currentquery = query;
