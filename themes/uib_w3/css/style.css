@@ -2015,16 +2015,16 @@ a {
   margin: 1rem auto;
   padding: 1rem 1rem 1rem 4rem; }
 
-.group-article-sidebar .field-name-field-uib-date,
-.group-article-sidebar .field-name-field-uib-deadline,
-.group-article-sidebar .field-name-field-uib-registration-link,
-.group-article-sidebar .field-name-field-uib-contacts,
-.group-article-sidebar .field-name-field-uib-location {
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-date,
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-deadline,
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-registration-link,
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-contacts,
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-location {
   background: #fff;
   padding: 1rem;
   font-size: 1.25rem;
   line-height: 1.4rem; }
-.group-article-sidebar .field-name-field-uib-event-type {
+.content-main-wrapper .group-article-sidebar .field-name-field-uib-event-type {
   position: relative;
   background: #cf3c3a;
   color: #fff;
@@ -2035,7 +2035,7 @@ a {
   padding: 16px 5% 0 5%;
   line-height: 1.4rem;
   margin: 0 0 40px 0; }
-  .group-article-sidebar .field-name-field-uib-event-type:after {
+  .content-main-wrapper .group-article-sidebar .field-name-field-uib-event-type:after {
     content: " ";
     width: 0;
     height: 0;
@@ -2047,7 +2047,7 @@ a {
     position: relative;
     bottom: -1rem;
     overflow: hidden; }
-.group-article-sidebar #node_uib_article_full_group_article_sidebar.group-article-sidebar {
+.content-main-wrapper .group-article-sidebar #node_uib_article_full_group_article_sidebar.group-article-sidebar {
   width: 100%; }
 
 .group-article-sidebar {
