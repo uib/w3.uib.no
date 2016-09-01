@@ -2015,16 +2015,19 @@ a {
   margin: 1rem auto;
   padding: 1rem 1rem 1rem 4rem; }
 
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-date,
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-deadline,
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-registration-link,
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-contacts,
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-location {
+.uib-article__event .group-article-sidebar {
+  margin-bottom: 1.25rem; }
+
+.group-article-sidebar .field-name-field-uib-date,
+.group-article-sidebar .field-name-field-uib-deadline,
+.group-article-sidebar .field-name-field-uib-registration-link,
+.group-article-sidebar .field-name-field-uib-contacts,
+.group-article-sidebar .field-name-field-uib-location {
   background: #fff;
   padding: 1rem;
   font-size: 1.25rem;
   line-height: 1.4rem; }
-.content-main-wrapper .group-article-sidebar .field-name-field-uib-event-type {
+.group-article-sidebar .field-name-field-uib-event-type {
   position: relative;
   background: #cf3c3a;
   color: #fff;
@@ -2035,7 +2038,7 @@ a {
   padding: 16px 5% 0 5%;
   line-height: 1.4rem;
   margin: 0 0 40px 0; }
-  .content-main-wrapper .group-article-sidebar .field-name-field-uib-event-type:after {
+  .group-article-sidebar .field-name-field-uib-event-type:after {
     content: " ";
     width: 0;
     height: 0;
@@ -2047,7 +2050,7 @@ a {
     position: relative;
     bottom: -1rem;
     overflow: hidden; }
-.content-main-wrapper .group-article-sidebar #node_uib_article_full_group_article_sidebar.group-article-sidebar {
+.group-article-sidebar #node_uib_article_full_group_article_sidebar.group-article-sidebar {
   width: 100%; }
 
 .group-article-sidebar {
@@ -2132,6 +2135,7 @@ a {
     -ms-flex-order: 5;
     -webkit-order: 5;
     order: 5;
+    margin-bottom: 0;
     padding-top: 0;
     padding-right: 10%;
     padding-left: 12%; }
@@ -2156,6 +2160,7 @@ a {
     -ms-flex-order: 6;
     -webkit-order: 6;
     order: 6;
+    margin-bottom: 0;
     padding-top: 0;
     padding-right: 10%;
     padding-left: 12%;
