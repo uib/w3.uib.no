@@ -18,6 +18,7 @@ dependencies[] = features
 dependencies[] = field_collection
 dependencies[] = field_group
 dependencies[] = file_entity
+dependencies[] = focal_point
 dependencies[] = general_services
 dependencies[] = geocoder
 dependencies[] = googleanalytics

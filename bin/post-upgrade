@@ -27,3 +27,4 @@ fi
 set -x
 
 bin/site-drush php-script area-aliases.php
+bin/site-drush image-flush full_width_image_mobile_1x

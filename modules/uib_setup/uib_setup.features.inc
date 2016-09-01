@@ -239,11 +239,15 @@ function uib_setup_image_default_styles() {
   $styles['full_width_image_mobile_1x'] = array(
     'label' => 'full_width_image_mobile_1x',
     'effects' => array(
-      8 => array(
-        'name' => 'image_scale_and_crop',
+      3 => array(
+        'name' => 'focal_point_scale_and_crop',
         'data' => array(
           'width' => 560,
           'height' => 350,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
         ),
         'weight' => 1,
       ),
