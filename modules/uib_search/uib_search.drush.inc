@@ -268,9 +268,9 @@ function drush_uib_search_index($type = 'user') {
       uibx_log("$stat->code $stat->status_message", 'error');
     }
   }
-  if ($verbose) {
-    uibx_log("Updated $rowcount ${type}s.", 'notice');
-  }
+
+  $remaining = db_query("SELECT count(*) FROM {node} WHERE nid > :last", array(':last' => variable_get($last_processed_key, 0)))->fetchField();
+  print("Updated $rowcount ${type}s; $remaining remaining.\n");
 }
 
 
