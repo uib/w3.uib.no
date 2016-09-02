@@ -428,7 +428,10 @@ function uib_user_user_view_alter(&$build) {
     }
   }
 
-  if (!empty($build['field_uib_user_alt_position'][0]['#markup'])) {
+  if ($build['#account']->field_uib_position_code['und'][0]['value'] == 9300) {
+    $build['field_uib_position'][0]['#markup'] = '';
+  }
+  if (!empty($build['field_uib_user_alt_position'][0]['#markup']) && $build['#account']->field_uib_position_code['und'][0]['value'] != 9300) {
     $build['field_uib_user_alt_position'][0]['#markup'] = ', ' . $build['field_uib_user_alt_position'][0]['#markup'];
   }
   if (!empty($build['field_uib_user_field']) || !empty($build['selected_publications'])) {
@@ -709,10 +712,15 @@ function uib_user__vcard($user_entity) {
   $full_name = "$first_name $last_name";
 
   // Position
-  $title = $vc_user->field_uib_position->value();
+  if ($vc_user->field_uib_position_code->value() != 9300) {
+    $title = $vc_user->field_uib_position->value();
+  }
   $title_alt = $vc_user->field_uib_user_alt_position->value();
+  if ($vc_user->field_uib_position_code->value() != 9300 && !empty($title_alt)) {
+    $title .= ", ";
+  }
   if (!empty($title_alt)) {
-    $title .= ", $title_alt";
+    $title .= $title_alt;
   }
 
   // Address
@@ -789,9 +797,15 @@ function uib_user__teaser_markup($user = NULL) {
     $markup['#markup'] = '<div class="uib-user-teaser">';
     $full_name = $user_wrapper->field_uib_first_name->value() . ' ' . $user_wrapper->field_uib_last_name->value();
     $user_url = 'user/' . $user_wrapper->getIdentifier();
-    $position = $user_wrapper->language($lang)->field_uib_position->value();
+    $position = '';
+    if ($user_wrapper->field_uib_position_code->value() != 9300) {
+      $position = $user_wrapper->language($lang)->field_uib_position->value();
+    }
+    if ($user_wrapper->field_uib_position_code->value() != 9300 && $user_wrapper->language($lang)->field_uib_user_alt_position->value()) {
+      $position .= ', ';
+    }
     if ($user_wrapper->language($lang)->field_uib_user_alt_position->value()) {
-      $position .= ', ' . $user_wrapper->language($lang)->field_uib_user_alt_position->value();
+      $position .= $user_wrapper->language($lang)->field_uib_user_alt_position->value();
     }
     $phone = $user_wrapper->field_uib_phone->value();
     $mail = $user_wrapper->mail->value();
