@@ -54,8 +54,8 @@ function uib_message__msg() {
     if (isset($qp['area']) && $qp['area']) {
       $area = $qp['area'];
     }
-    if (isset($qp['username']) && $qp['username']) {
-      $username = $qp['username'];
+    if (isset($qp['user']) && $qp['user']) {
+      $username = $qp['user'];
     }
     if (isset($qp['language']) && $qp['language']) {
       $language = $qp['language'];
@@ -77,10 +77,11 @@ function uib_message__msg() {
   $data = array();
   if (isset($msgid)) {
     $data['msg'][] = uib_message__msg_node_to_array($msgid, $language, $area, $tag);
-  } else if (isset($qp['area'])) {
-    if (!is_numeric($qp['area'])) {
+  }
+  else if ($area) {
+    if (!is_numeric($area)) {
       $area = db_query('SELECT nid FROM node WHERE type LIKE :type AND LOWER(title) LIKE :title',
-        array(':type'=>'area',':title' => strtolower($qp['area'])))->fetchField();
+        array(':type'=>'area',':title' => strtolower($area)))->fetchField();
     }
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type','node');
@@ -98,6 +99,48 @@ function uib_message__msg() {
       $row = uib_message__msg_node_to_array($node->nid, $language, $qp['area'], $tag);
       if ($row) {
         $data['msg'][] = $row;
+      }
+    }
+  }
+
+  if (!empty($username)) {
+    $user = user_load_by_name($username);
+    if (!$user) {
+      $data['error'] = 'No such user';
+    }
+    else {
+      // Some known node IDs
+      $AREA_IT = '77318';
+      $AREA_EIA = '77319';
+      $AREA_EMPLOYEE_PAGES = '1';
+
+      $area = db_query(
+        "SELECT entity_id FROM {field_data_field_uib_staff} WHERE field_uib_staff_target_id = :uid",
+        array(':uid' => $user->uid)
+      );
+      $areas = array(
+        $AREA_EMPLOYEE_PAGES,
+      );
+      foreach ($area as $k) {
+        uib_area__get_parentage($k->entity_id, $areas);
+      }
+      $areas = array_unique($areas);
+      $result = db_query(
+        "SELECT node.nid, area.field_uib_message_area_target_id AS aid
+           FROM {node}, {field_data_field_uib_message_area} AS area, {taxonomy_term_data} AS tax, {field_data_field_uib_message_tag} AS tag
+          WHERE (tax.tid = tag.field_uib_message_tag_target_id AND tag.entity_id=node.nid) AND node.type='uib_message' AND node.nid=area.entity_id AND ((area.field_uib_message_area_target_id IN (:area_it,:area_eia) AND tax.name='Drift/Operations') OR area.field_uib_message_area_target_id IN (:areas))
+       ORDER BY node.created DESC",
+        array(
+          ':areas' => $areas,
+          ':area_it' => $AREA_IT,
+          ':area_eia' => $AREA_EIA,
+        )
+      );
+      foreach ($result as $node) {
+        $row = uib_message__msg_node_to_array($node->nid, $language, $node->aid, $tag);
+        if ($row) {
+          $data['msg'][] = $row;
+        }
       }
     }
   }
