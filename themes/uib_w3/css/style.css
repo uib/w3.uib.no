@@ -1647,8 +1647,6 @@ a {
       font-size: 1rem; }
   .uib_breadcrumb li {
     padding: 0; }
-  .uib_breadcrumb li:not(:last-child) {
-    color: #00769e; }
   .uib_breadcrumb li:not(:first-child):before {
     content: "";
     display: inline-block;
