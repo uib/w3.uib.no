@@ -76,7 +76,7 @@ function uib_message__msg() {
 
   $data = array();
   if (isset($msgid)) {
-    $data['msg'][] = uib_message__msg_node_to_array($msgid, $language, $area, $tag);
+    $data['msg'][] = uib_message__msg_node_to_array($msgid, $language);
   }
   else if ($area) {
     if (!is_numeric($area)) {
@@ -96,7 +96,7 @@ function uib_message__msg() {
     $nids = array_keys($result['node']);
     $nodes = node_load_multiple($nids);
     foreach ($nodes as $nid => $node) {
-      $row = uib_message__msg_node_to_array($node->nid, $language, $qp['area'], $tag);
+      $row = uib_message__msg_node_to_array($node->nid, $language);
       if ($row) {
         $data['msg'][] = $row;
       }
@@ -137,7 +137,7 @@ function uib_message__msg() {
         )
       );
       foreach ($result as $node) {
-        $row = uib_message__msg_node_to_array($node->nid, $language, $node->aid, $tag);
+        $row = uib_message__msg_node_to_array($node->nid, $language);
         if ($row) {
           $data['msg'][] = $row;
         }
@@ -148,32 +148,49 @@ function uib_message__msg() {
   return drupal_json_output($data);
 }
 
-function uib_message__msg_node_to_array($nid, $language, $area, $tag) {
+function uib_message__msg_node_to_array($nid, $language) {
   $node = node_load($nid);
+  if (!$node)
+    return;
   $row = array('id' => (int)$node->nid);
   if ($language == 'en' && empty($node->field_uib_message_text_en['und'][0]['value'])) return;
   if ($language == 'nb' && empty($node->field_uib_message_text_nb['und'][0]['value'])) $language = 'en';
 
-  if ($area) {
-    if (is_numeric($area)) {
-      $area_node = node_load($node->field_uib_message_area['und'][0]['target_id']);
-      $row['area'] = $area_node->title;
-    } else {
-      $row['area'] = $area;
-    }
-  }
   if ($language == 'nb') {
-    $row['link'] = $node->field_uib_message_link_nb['und'][0]['url'];
     $row['text'] = $node->field_uib_message_text_nb['und'][0]['value'];
+    if (!empty($node->field_uib_message_link_nb))
+      $row['link'] = $node->field_uib_message_link_nb['und'][0]['url'];
   }
   if ($language == 'en') {
-    $row['link'] = $node->field_uib_message_link_en['und'][0]['url'];
     $row['text'] = $node->field_uib_message_text_en['und'][0]['value'];
+    if (!empty($node->field_uib_message_link_en))
+      $row['link'] = $node->field_uib_message_link_en['und'][0]['url'];
   }
-  if ($tag) {
-    $term = taxonomy_term_load($node->field_uib_message_tag['und'][0]['target_id']);
-    $row['tag'] = $term->name;
+
+  $term = taxonomy_term_load($node->field_uib_message_tag['und'][0]['target_id']);
+  $tag = explode('/', $term->name);
+  $row['tag'] = $language == 'nb' ? $tag[0] : $tag[1];
+
+  $area_node = node_load($node->field_uib_message_area['und'][0]['target_id']);
+  if ($area_node->language != $language) {
+    // find area node in the right language
+    $result = db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->condition('tnid', $area_node->tnid)
+      ->condition('language', $language)
+      ->execute();
+    $nid = $result->fetchField();
+    if ($nid) {
+      $area_node = node_load($nid);
+    }
   }
+  $row['area'] = $area_node->title;
+  $languages = language_list();
+  $row['area_link'] = url("node/$area_node->nid", array('absolute' => true, 'language' => $languages[$language]));
+
+  $row['posted'] = date('c', $node->created);
+  $row['posted_time'] = (int)$node->created;
+
   return $row;
 }
 
