@@ -55,6 +55,18 @@ function uib_search_drush_command() {
     'arguments' => array(),
     'options' => array(),
   );
+  $items['uib-search-setup'] = array(
+    'description' => 'Setup elastic search. By default setup mapping found in '
+    . 'the file uib_search/elastic/mapping.json. Alternative file can be given '
+    . 'as optional argument.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array('file' => 'Alternative json file'),
+    'required-arguments' => FALSE,
+    'options' => array(
+      'drop' => 'Drop the current index.',
+      'show' => 'Show current mapping and exit.',
+    ),
+  );
   $items['uib-search-index'] = array(
     'description' => 'Index entities in the database to the elastic '
       . 'search database. Currently supports users and nodes.',
@@ -355,4 +367,47 @@ function drush_uib_search_url() {
     $url = substr($url, 0, 8) . variable_get($px . 'user') . ':' . variable_get($px . 'password') . '@' . substr($url, 8);
   }
   return $url;
+}
+
+/**
+ * Setup and display current mapping in elastic.
+ */
+function drush_uib_search_setup() {
+  $prefix = uib_search__parameter_prefix(1);
+  $index = variable_get($prefix.'index');
+  $url = variable_get($prefix.'url');
+  $url="{$url}/{$index}/";
+  $args = func_get_args();
+  if (drush_get_option('show')) {
+    $url .= '_mapping';
+    $url .= (count($args) ? '/' . $args[0] : '');
+    $url .= '?pretty';
+    $stat = uib_search__run_elastic_request($url, "", 'GET', TRUE);
+    echo $stat->data;
+    return;
+  }
+  $file = current($args);
+  if (!$file) {
+    $file = __DIR__ . '/elastic/mapping.json';
+  }
+  if (!file_exists($file)) {
+    if (!file_exists( '../' . $file)) {
+      echo '../' . $file;
+      uibx_log('No such file ' . $file);
+      return;
+    }
+    $file = '../' . $file;
+  }
+  if (drush_get_option('drop')) {
+    drush_uib_search_drop_index();
+  }
+
+  $mapping = file_get_contents($file);
+  $stat = uib_search__run_elastic_request($url, $mapping, 'POST', TRUE);
+  if ($stat->code == 200) {
+    uibx_log("File {$file} imported without errors");
+  }
+  else {
+    print_r(json_encode($stat, JSON_PRETTY_PRINT));
+  }
 }
