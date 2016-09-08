@@ -427,8 +427,8 @@ function uib_user_user_view_alter(&$build) {
       $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup'] = l($area->title, 'node/' . $relevant_area);
     }
   }
-
-  if ($build['#account']->field_uib_position_code['und'][0]['value'] == 9300) {
+  $position = $build['#account']->field_uib_position['nb'][0]['value'];
+  if (strtolower($position) == 'stilling utenfor reg') {
     $build['field_uib_position'][0]['#markup'] = '';
   }
   if (!empty($build['field_uib_user_alt_position'][0]['#markup']) && $build['#account']->field_uib_position_code['und'][0]['value'] != 9300) {
@@ -712,11 +712,11 @@ function uib_user__vcard($user_entity) {
   $full_name = "$first_name $last_name";
 
   // Position
-  if ($vc_user->field_uib_position_code->value() != 9300) {
+  if (strtolower($vc_user->language('nb')->field_uib_position->value()) != 'stilling utenfor reg') {
     $title = $vc_user->field_uib_position->value();
   }
   $title_alt = $vc_user->field_uib_user_alt_position->value();
-  if ($vc_user->field_uib_position_code->value() != 9300 && !empty($title_alt)) {
+  if (strtolower($vc_user->language('nb')->field_uib_position->value()) != 'stilling utenfor reg' && !empty($title_alt)) {
     $title .= ", ";
   }
   if (!empty($title_alt)) {
@@ -798,10 +798,10 @@ function uib_user__teaser_markup($user = NULL) {
     $full_name = $user_wrapper->field_uib_first_name->value() . ' ' . $user_wrapper->field_uib_last_name->value();
     $user_url = 'user/' . $user_wrapper->getIdentifier();
     $position = '';
-    if ($user_wrapper->field_uib_position_code->value() != 9300) {
+    if (strtolower($user_wrapper->language($lang)->field_uib_position->value()) != 'stilling utenfor reg') {
       $position = $user_wrapper->language($lang)->field_uib_position->value();
     }
-    if ($user_wrapper->field_uib_position_code->value() != 9300 && $user_wrapper->language($lang)->field_uib_user_alt_position->value()) {
+    if (strtolower($user_wrapper->language($lang)->field_uib_position->value()) != 'stilling utenfor reg' && $user_wrapper->language($lang)->field_uib_user_alt_position->value()) {
       $position .= ', ';
     }
     if ($user_wrapper->language($lang)->field_uib_user_alt_position->value()) {
