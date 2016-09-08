@@ -959,13 +959,15 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         break;
       case 'url':
         $ll = language_list();
-        $lang = $ll[$wrapped_entity->language->value()];
+        $options =  array('absolute' => TRUE);
+        if (array_key_exists($wrapped_entity->language->value(), $ll)) {
+          $lang = $ll[$wrapped_entity->language->value()];
+          $options['language'] = $lang;
+        }
+
         $output[$key] = url(
           "{$type}/{$wrapped_entity->getIdentifier()}",
-          array(
-            'absolute' => TRUE,
-            'language' => $lang,
-          )
+          $options
         );
         break;
       default:
