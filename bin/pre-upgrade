@@ -33,4 +33,4 @@ bin/site-drush vset uib_elasticsearch_useindex index1
 bin/site-drush vset uib_elasticsearch_useindex_admin index2
 
 bin/site-drush ev 'variable_set("uib_search_nodetype_noindex",
-  array("uib_views_page","uib_ou","uib_message","uib_content_list",));'
+  array("uib_views_page","uib_ou","uib_message","uib_content_list","uib_external_content"));'
