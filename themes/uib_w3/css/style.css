@@ -706,9 +706,6 @@ img {
 .logo svg g g g path {
   fill: #fff; }
 
-.field-name-field-uib-main-media .element-invisible {
-  display: none; }
-
 .node-type-uib-article .field-name-field-uib-main-media img {
   margin-bottom: 0.625rem; }
 .field-name-field-uib-main-media:not(:last-child) {
@@ -743,6 +740,10 @@ img {
       flex: 0 0 32.20339%;
       border-top: solid 1px #d5d5d5;
       padding-top: 1rem; } }
+
+.field-name-field-uib-main-media .element-invisible,
+.field-name-field-uib-media .element-invisible {
+  word-break: break-all; }
 
 label {
   color: #333;
