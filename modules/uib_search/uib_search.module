@@ -930,6 +930,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'language',
     'study_code',
     'study_title',
+    'search_description',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
 
@@ -989,7 +990,8 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'title' => $output['w3']['title'],
     'link' => $output['w3']['url'],
     'excerpt' =>
-      @$output['w3']['teaser']
+      @$output['w3']['search_description']
+      ?: @$output['w3']['teaser']
       ?: @$output['w3']['lead']
       ?: substr(strip_tags(@$output['w3']['text']), 0, 160)
       ?: substr(strip_tags(@$output['w3']['primary_text']), 0, 160)
@@ -999,6 +1001,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     '_searchable_text' => uib_search__concat_text(
       $output['w3'],
       array(
+        'search_description',
         'title',
         'lead',
         'teaser',
