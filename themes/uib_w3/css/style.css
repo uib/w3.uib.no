@@ -1562,6 +1562,9 @@ a {
   font-size: 1.8rem;
   margin: 7px 0;
   padding: 4px 0 0 0; }
+.node-uib-article .field-name-field-uib-text .uib-vacancies h3 {
+  font-size: 1.25rem;
+  font-weight: normal; }
 
 .field-name-field-uib-files .field-label {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
