@@ -140,6 +140,7 @@ structure as `somefield`.
         article_type,
         promote,
         url,
+        search_description,
       },
       generic : {
         title,
