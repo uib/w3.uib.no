@@ -421,7 +421,8 @@ function uib_message_block_view($delta = '') {
  * Implements custom function to render message block
  */
 function uib_message__block_content() {
-  drupal_add_js(drupal_get_path('module','uib_message') . '/msg-block.js');
+  drupal_add_js(drupal_get_path('module', 'uib_message') . '/js/jso/build/jso.js');
+  drupal_add_js(drupal_get_path('module','uib_message') . '/js/msg-block.js');
   $node = menu_get_object();
   $output = "<div id='messages-block-content' class='node-uib-message'>".t('Loading...')
     ."</div><noscript>"

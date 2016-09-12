@@ -1,0 +1,43 @@
+{
+  "name": "jso",
+  "main": "jso.js",
+  "version": "2.0.3",
+  "homepage": "https://github.com/andreassolberg/jso",
+  "description": "OAuth 2.0 implementation in Javascript",
+  "keywords": [
+    "oauth",
+    "authentication",
+    "authorization",
+    "openid",
+    "openid",
+    "connect",
+    "api",
+    "rest"
+  ],
+  "authors": [
+    "Andreas Åkre Solberg"
+  ],
+  "license": "Simplified BSD Licence http://opensource.org/licenses/BSD-2-Clause",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "almond": "~0.2.9",
+    "qunit": "~1.16.0"
+  },
+  "dependencies": {},
+  "_release": "2.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.3",
+    "commit": "8b57ef1d17853868e40c540ea924632f56a5fcd9"
+  },
+  "_source": "https://github.com/andreassolberg/jso.git",
+  "_target": "^2.0.3",
+  "_originalSource": "jso",
+  "_direct": true
+}
