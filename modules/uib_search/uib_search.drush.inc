@@ -191,6 +191,9 @@ function drush_uib_search() {
     return;
   }
 
+  if (!$result) {
+    return;
+  }
   $result = drupal_json_decode($result->data);
   $hits = $result['hits'];
   $total = $hits['total'];
@@ -225,7 +228,10 @@ function drush_uib_search_drop_index() {
   $url = uib_search__get_setup('url', TRUE) . '/'
     . uib_search__get_setup('index', TRUE) . '/';
   $stat = uib_search__run_elastic_request($url, null, 'DELETE', TRUE, 5);
-  if ($stat->code == 200) {
+  if (!$stat) {
+    return;
+  }
+  else if ($stat->code == 200) {
     echo "Elastic index dropped successfully\n";
   }
   else {
@@ -239,12 +245,6 @@ function drush_uib_search_drop_index() {
 
 
 function drush_uib_search_index($type = 'user') {
-  if (!uib_search__check_elastic_settings(1)) {
-    uibx_log("Elasticsearch is not setup. Please consult the " .
-    "documentation.", 'error');
-    return;
-  }
-
   $stop = drush_get_option('stop', 10);
   $last_processed_key = "uib_search_last_processed_{$type}";
   $last_processed_id = variable_get($last_processed_key, 0);
@@ -332,7 +332,11 @@ function drush_uib_search_index($type = 'user') {
     $batch .= json_encode($nodearray)."\n";
     if ($line % 50 == 0) {
       $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
-      if ($stat->code != 200) {
+      if (!$stat) {
+        uibx_log('HTTP-call failed');
+        return;
+      }
+      else if ($stat->code != 200) {
         uibx_log("$stat->code $stat->status_message", 'error');
       }
       $batch = '';
@@ -343,7 +347,11 @@ function drush_uib_search_index($type = 'user') {
   }
   if ($batch) {
     $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
-    if ($stat->code != 200) {
+    if (!$stat) {
+      uibx_log('HTTP-call failed');
+      return;
+    }
+    else if ($stat->code != 200) {
       uibx_log("$stat->code $stat->status_message", 'error');
     }
   }
@@ -360,6 +368,11 @@ function drush_uib_search_index($type = 'user') {
 
 function drush_uib_search_url() {
   $admin = drush_get_option('admin');
+  if (!uib_search__check_elastic_settings($admin)) {
+    $a = $admin ? 'Administrator s' : 'S';
+    uibx_log($a . 'ettings for elasticsearch is missing', 'error');
+    return;
+  }
   $url = uib_search__get_setup('url', $admin) . '/'
     . uib_search__get_setup('index', $admin) . '/';
   if (substr($url, 0, 8) == 'https://') {

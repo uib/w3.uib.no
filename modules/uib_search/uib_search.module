@@ -597,6 +597,11 @@ function uib_search__run_elastic_request(
 {
   $user = uib_search__get_setup('user', $run_as_administrator);
   $password = uib_search__get_setup('password', $run_as_administrator);
+  if (!uib_search__check_elastic_settings($run_as_administrator)) {
+    $admin = $run_as_administrator ? 'Administrator s' : 'S';
+    uibx_log($admin . 'ettings for elasticsearch is missing', 'error');
+    return;
+  }
   $token = "{$user}:{$password}";
   $token = base64_encode($token);
 
@@ -845,10 +850,6 @@ function uib_search__check_elastic_settings($admin = false) {
  * FALSE
  */
 function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
-  if (!uib_search__check_elastic_settings(TRUE)) {
-    uibx_log('Administrator settings for elasticsearch is not setup', 'notice');
-    return;
-  }
   $ignore = variable_get('uib_search_nodetype_noindex', array());
   if (in_array(trim($wrapped_entity->getBundle()), $ignore)) {
     uibx_log(
@@ -1094,7 +1095,10 @@ function uib_search__strip_html($val) {
 }
 
 function uib_search__report_status($status, $type, $id, $action = 'update') {
-  if (in_array($status->code, array(200))) {
+  if (!$status) {
+    uibx_log('HTTP-call failed');
+  }
+  else if (in_array($status->code, array(200))) {
     uibx_log("Successful $action of elastic $type id #$id", 'notice');
   }
   else if (in_array($status->code, array(201))) {
