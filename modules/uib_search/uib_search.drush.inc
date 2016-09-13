@@ -161,8 +161,7 @@ function uib_search__search_any($type, $id){
 function drush_uib_search() {
   $query = implode(' ', func_get_args());
 
-  $px = uib_search__parameter_prefix();
-  $url = variable_get($px . 'url') . '/' . variable_get($px . 'index')
+  $url = uib_search__get_setup('url') . '/' . uib_search__get_setup('index')
     . '/_search?';
   if (drush_get_option('json')) {
     $url .= '&pretty';
@@ -223,9 +222,9 @@ function drush_uib_search() {
 }
 
 function drush_uib_search_drop_index() {
-  $px = uib_search__parameter_prefix(1);
-  $url = variable_get($px . 'url') . '/' . variable_get($px . 'index') . '/';
-  $stat = uib_search__run_elastic_request($url, null, 'DELETE', 5);
+  $url = uib_search__get_setup('url', TRUE) . '/'
+    . uib_search__get_setup('index', TRUE) . '/';
+  $stat = uib_search__run_elastic_request($url, null, 'DELETE', TRUE, 5);
   if ($stat->code == 200) {
     echo "Elastic index dropped successfully\n";
   }
@@ -299,9 +298,8 @@ function drush_uib_search_index($type = 'user') {
 
   $rowcount = $result->rowCount();
 
-  $prefix = uib_search__parameter_prefix(1);
-  $index = variable_get($prefix.'index');
-  $url = variable_get($prefix.'url');
+  $index = uib_search__get_setup('index', TRUE);
+  $url = uib_search__get_setup('url', TRUE);
   $url="{$url}/{$index}/_bulk";
 
   $batch = '';
@@ -361,10 +359,12 @@ function drush_uib_search_index($type = 'user') {
 
 
 function drush_uib_search_url() {
-  $px = uib_search__parameter_prefix(drush_get_option('admin'));
-  $url = variable_get($px . 'url') . '/' . variable_get($px . 'index') . '/';
+  $admin = drush_get_option('admin');
+  $url = uib_search__get_setup('url', $admin) . '/'
+    . uib_search__get_setup('index', $admin) . '/';
   if (substr($url, 0, 8) == 'https://') {
-    $url = substr($url, 0, 8) . variable_get($px . 'user') . ':' . variable_get($px . 'password') . '@' . substr($url, 8);
+    $url = substr($url, 0, 8) . uib_search__get_setup('user', $admin) . ':'
+      . uib_search__get_setup('password', $admin) . '@' . substr($url, 8);
   }
   return $url;
 }
@@ -373,9 +373,8 @@ function drush_uib_search_url() {
  * Setup and display current mapping in elastic.
  */
 function drush_uib_search_setup() {
-  $prefix = uib_search__parameter_prefix(1);
-  $index = variable_get($prefix.'index');
-  $url = variable_get($prefix.'url');
+  $index = uib_search__get_setup('index', TRUE);
+  $url = uib_search__get_setup('url', TRUE);
   $url="{$url}/{$index}/";
   $args = func_get_args();
   if (drush_get_option('show')) {

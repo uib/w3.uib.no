@@ -15,43 +15,56 @@ variable `uib_elasticsearch_index`, for instance with the command
 
 ## Setup
 
-Variables for the setup can be set in different ways depending on your needs:
+Variables for the administrative setup will generally be set up in drupals
+settings.php - file:
 
-- The $conf-array in settings.php
+    $conf['uib_elasticsearch_admin'] = array(
+      'index1' => array(
+        'url' => 'https://api.search.uib.no',
+        'user' => 'w3_admin',
+        'password' => '*********',
+        'index' => 'w3',
+      ),
+      'index2' => array(
+        'url' => 'https://api.test.search.uib.no',
+        'user' => 'w3_2_admin',
+        'password' => '*********',
+        'index' => 'w3_2',
+      ),
+    );
 
-  `$conf['uib_elasticsearch_index'] =  'index_name';`
+...while the read only setup can be set in the database using variable_set
 
-- Using site-drush
+    bin/site-drush ev '
+    $arr = array(
+      "index1" => array(
+        "url" => "https://api.search.uib.no",
+        "user" => "w3",
+        "password" => "*********",
+        "index" => "w3",
+      ),
+      "index2" => array(
+        "url" => "https://api.test.search.uib.no",
+        "user" => "w3_2",
+        "password" => "*********",
+        "index" => "w3_2",
+      ),
+    );
+    variable_set("uib_elasticsearch", $arr);
+    '
 
-  `bin/site-drush vset uib_elasticsearch_index index_name`
+The variables `uib_elasticsearch_useindex` and
+`uib_elasticsearch_useindex_admin` determine which index to use. Default
+for these are 'index1'. You can set these using drush
 
-- Somwhere else entirely
-
-  `<?php variable_set('uib_elasticsearch_index', 'index_name'); ?>`
-
-The following variables need to be set to allow the search to work:
-
-* `uib_elasticsearch_index` - The index used as a base for all searches
-* `uib_elasticsearch_url` - Base url for the search index.
-* `uib_elasticsearch_user` - Read only user to the search index
-* `uib_elasticsearch_password` - Password for read only user
-
-The following variables need to be setup to allow indexing of documents, and
-drush commands to work
-
-* `uib_elasticsearch_admin_index` - Index used as a base for indexing 
-documents
-* `uib_elasticsearch_admin_url` - Base url used when indexing documents
-* `uib_elasticsearch_admin_user` - User with administration rights for index
-* `uib_elasticsearch_admin_password` - Password for admin user
+  `bin/site-drush vset uib_elasticsearch_useindex index2`
+  `bin/site-drush vset uib_elasticsearch_useindex_admin index2`
 
 If you don't have a database available visit
-[token.search.uib.no](https://token.search.uib.no)
+[token.test.search.uib.no](https://token.test.search.uib.no) (testing) or
+[token.search.uib.no](https://token.search.uib.no) (production)
 and fill in the variables from the values it provide you after you
 create a new index.
-
-On the production system, the index and url will usually be the same for both
-admin and read only, while this can differ on development systems.
 
 The admin-variables are defined in settings.php on the production system, to
 prevent these values from leaking to development systems when running

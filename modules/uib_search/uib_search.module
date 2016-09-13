@@ -192,7 +192,7 @@ function uib_search__form(){
         ),
         'user' => array(
           '#type' => 'hidden',
-          '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
+          '#value' => uib_search__get_setup('user'),
           '#attributes' => array(
             'name' => 'user',
           ),
@@ -200,14 +200,14 @@ function uib_search__form(){
         'password' => array(
           '#type' => 'hidden',
           '#value' =>
-            variable_get(uib_search__parameter_prefix() . 'password'),
+            uib_search__get_setup('password'),
           '#attributes' => array(
             'name' => 'password',
           ),
         ),
         'url' => array(
           '#type' => 'hidden',
-          '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
+          '#value' => uib_search__get_setup('url'),
           '#attributes' => array(
             'name' => 'url',
           ),
@@ -215,7 +215,7 @@ function uib_search__form(){
         'index' => array(
           '#type' => 'hidden',
           '#value' =>
-            variable_get(uib_search__parameter_prefix() . 'index'),
+            uib_search__get_setup('index'),
           '#attributes' => array(
             'name' => 'index',
           ),
@@ -440,7 +440,7 @@ function uib_search__form_old($delta = 'global-searchform'){
             ),
             'user' => array(
               '#type' => 'hidden',
-              '#value' => variable_get(uib_search__parameter_prefix() . 'user'),
+              '#value' => uib_search__get_setup('user'),
               '#attributes' => array(
                 'name' => 'user',
               ),
@@ -448,14 +448,14 @@ function uib_search__form_old($delta = 'global-searchform'){
             'password' => array(
               '#type' => 'hidden',
               '#value' =>
-                variable_get(uib_search__parameter_prefix() . 'password'),
+                uib_search__get_setup('password'),
               '#attributes' => array(
                 'name' => 'password',
               ),
             ),
             'url' => array(
               '#type' => 'hidden',
-              '#value' => variable_get(uib_search__parameter_prefix() . 'url'),
+              '#value' => uib_search__get_setup('url'),
               '#attributes' => array(
                 'name' => 'url',
               ),
@@ -463,7 +463,7 @@ function uib_search__form_old($delta = 'global-searchform'){
             'index' => array(
               '#type' => 'hidden',
               '#value' =>
-                variable_get(uib_search__parameter_prefix() . 'index'),
+                uib_search__get_setup('index'),
               '#attributes' => array(
                 'name' => 'index',
               ),
@@ -593,9 +593,8 @@ function uib_search__run_elastic_request(
   $timeout = 1
 )
 {
-  $prefix = uib_search__parameter_prefix($run_as_administrator);
-  $user = variable_get($prefix . 'user');
-  $password = variable_get($prefix . 'password');
+  $user = uib_search__get_setup('user', $run_as_administrator);
+  $password = uib_search__get_setup('password', $run_as_administrator);
   $token = "{$user}:{$password}";
   $token = base64_encode($token);
 
@@ -612,13 +611,61 @@ function uib_search__run_elastic_request(
 }
 
 /**
- * Get the parameter prefix used for elasticsearch parameters
+ * Get a setup property for elasticsearch. This function expects the
+ * variables uib_elasticsearch_useindex and uib_elasticsearch_useindex_admin
+ * to be set. 'index1' is used as a default if uib_elasticsearch_useindex
+ * is not set. Setup is fetched from the variable uib_elasticsearch, and
+ * is on the form below.
+ * Read only:
+ * $conf['uib_elasticsearch'] = array(
+ *   'index1' => array(
+ *     'url' => 'https://api.search.uib.no',
+ *     'user' => 'w3_user',
+ *     'password' => '**********',
+ *     'index' => 'w3',
+ *   ),
+ *   'index2' => array(
+ *     'url' => 'https://api.test.search.uib.no',
+ *     'user' => 'w3_2_user',
+ *     'password' => '**********',
+ *     'index' => 'w3_2',
+ *   )
+ * );
  *
- * @param boolean Set to true to get the admin prefix
+ * Admin:
+ * $conf['uib_elasticsearch_admin'] = array(
+ *   'index1' => array(
+ *     'url' => 'https://api.search.uib.no',
+ *     'user' => 'w3_admin',
+ *     'password' => '**********',
+ *     'index' => 'w3',
+ *   ),
+ *   'index2' => array(
+ *     'url' => 'https://api.test.search.uib.no',
+ *     'user' => 'w3_2_admin',
+ *     'password' => '**********',
+ *     'index' => 'w3_2',
+ *   )
+ * );
+ * The variables uib_elasticsearch_useindex and uib_elasticsearch_useindex_admin
+ * are used to set which index is used.
+ *
+ * Indexes can be setup on https://token.test.search.uib.no (testing) or
+ * https://token.search.uib.no (prod). See the docs for more info.
+ * @param string $name Setup type, can be user, password, url or index.
+ * @param boolean $admin Set to TRUE for the admin setup
  */
-function uib_search__parameter_prefix($admin = false) {
-  $admin = $admin ? 'admin_' : '';
-  return 'uib_elasticsearch_' . $admin;
+function uib_search__get_setup($name, $admin = FALSE) {
+  if (!in_array($name, array('user', 'password', 'url', 'index'))) {
+    return;
+  }
+  $a = $admin ? '_admin' : '';
+  $setup = variable_get('uib_elasticsearch' . $a);
+  $use = variable_get('uib_elasticsearch_useindex' . $a, 'index1');
+  if (!$setup || !array_key_exists($use, $setup)) {
+    return;
+  }
+  return $setup[$use][$name];
 }
 
 /**
@@ -775,12 +822,11 @@ function uib_search__get_elastic_user_array($account) {
  *
  */
 function uib_search__check_elastic_settings($admin = false) {
-  $px = uib_search__parameter_prefix($admin);
   if (
-    variable_get($px . 'url') &&
-    variable_get($px . 'index') &&
-    variable_get($px . 'user') &&
-    variable_get($px . 'password')
+    uib_search__get_setup('url', $admin) &&
+    uib_search__get_setup('index', $admin) &&
+    uib_search__get_setup('user', $admin) &&
+    uib_search__get_setup('password', $admin)
   ) {
     return true;
   }
@@ -813,9 +859,8 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
   $id = $wrapped_entity->getIdentifier();
   $entity_type = $wrapped_entity->info();
   $entity_type = $entity_type['type'];
-  $prefix = uib_search__parameter_prefix(1);
-  $index = variable_get($prefix . 'index');
-  $url = rtrim(variable_get($prefix . 'url'), '/');
+  $index = uib_search__get_setup('index', TRUE);
+  $url = rtrim(uib_search__get_setup('url', TRUE), '/');
   if ($wrapped_entity->status->value() == 0) {
     $delete = TRUE;
   }
@@ -1118,9 +1163,8 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
 }
 
 function uib_search__index_study($wrapped_entity) {
-  $prefix = uib_search__parameter_prefix(1);
-  $index = variable_get($prefix . 'index');
-  $url = rtrim(variable_get($prefix . 'url'), '/');
+  $index = uib_search__get_setup('index', TRUE);
+  $url = rtrim(uib_search__get_setup('url', TRUE), '/');
   $type = 'study';
   // Loading data from FS
   $fsdata = uib_search__get_elastic_study_array($wrapped_entity);
