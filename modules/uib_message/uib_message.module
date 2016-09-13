@@ -399,6 +399,7 @@ function uib_message_block_info() {
   $block['uib_message_block'] = array(
     'info' => t('Message block title'),
     'status' => TRUE,
+    'cache' => DRUPAL_NO_CACHE,
   );
   return $block;
 }
@@ -410,7 +411,6 @@ function uib_message_block_view($delta = '') {
   $block = array();
   switch($delta) {
   case 'uib_message_block' :
-    $block['subject'] = 'Messages';
     $block['content'] = uib_message__block_content();
     break;
   }
@@ -423,7 +423,7 @@ function uib_message_block_view($delta = '') {
 function uib_message__block_content() {
   drupal_add_js(drupal_get_path('module','uib_message') . '/msg-block.js');
   $node = menu_get_object();
-  $output = "<div id='messages-block-content'>".t('Loading...')
+  $output = "<div id='messages-block-content' class='node-uib-message'>".t('Loading...')
     ."</div><noscript>"
     .l(t('Link to alternative'),'node/'
     .$node->nid.'/messages')."</noscript>";

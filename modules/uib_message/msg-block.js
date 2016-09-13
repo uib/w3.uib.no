@@ -5,7 +5,9 @@ jQuery( document ).ready(function ($) {
     $("#messages-block-content").text("");
     $.each(result, function(i, field){
       var json_obj = field;
-      var output = "<ul>";
+      var output = "<div class='uib-collapsible-container'>";
+      output += "<h2 class='uib-collapsible-handle closed'>Vis meldinger</h2>";
+      output += "<ul class='uib-collapsible-content' style='display:none;'>";
       for (var i in json_obj) {
         output += "<li>";
         output += "<span class='uib_message_area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>"
@@ -17,7 +19,14 @@ jQuery( document ).ready(function ($) {
         output += "</li>";
       }
       output += "</ul>";
+      output += "</div>";
       $("#messages-block-content").append(output);
+      $(".uib-collapsible-handle").css("cursor", "pointer");
+      $(".uib-collapsible-handle").click(function(event){
+        $(".uib-collapsible-content").toggle();
+        $(".uib-collapsible-handle").toggleClass('open closed');
+        $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == 'Vis meldinger' ? 'Skjul meldinger' : 'Vis meldinger');
+      });
     });
   });
 });
