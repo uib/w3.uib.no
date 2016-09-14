@@ -44,16 +44,16 @@ function uib_article_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '10',
+          'weight' => '8',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '9',
         ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '12',
+            'weight' => '14',
             'visible' => FALSE,
           ),
           'teaser' => array(

@@ -8,6 +8,16 @@ function uib_search_menu() {
     'page callback' => 'uib_search__page',
     'access callback' => TRUE,
   );
+  $items["searchboost/up/%/%"] = array(
+    'page callback' => 'uib_search__boost_item_search',
+    'page arguments' => array(1,2,3),
+    'access callback' => TRUE,
+  );
+  $items["searchboost/down/%/%"] = array(
+    'page callback' => 'uib_search__boost_item_search',
+    'page arguments' => array(1,2,3),
+    'access callback' => TRUE,
+  );
   return $items;
 }
 
@@ -103,6 +113,14 @@ function uib_search_block_view($delta) {
     // has been completed, keeping the if - part, and removing the else-part.
     if (variable_get('uib_search_switch_to_elastic', FALSE)) {
       drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
+      drupal_add_js(
+        array('uib_search' => array(
+          'uib_search_boost_max' => 10,
+          'uib_search_boost_min' => pow(.5,10),
+          )
+        ),
+        'setting'
+      );
       $retval['content']['noscript'] = drupal_get_form('uib_search__noscript_form');
       $retval['content']['normal'] = drupal_get_form('uib_search__form');
 
@@ -121,7 +139,7 @@ function uib_search_block_view($delta) {
  * @return The form render-array
  */
 function uib_search__form(){
-  global $language;
+  global $language, $user;
   $action=$GLOBALS['base_path'] . $language->language . "/search";
   $form= array(
     '#weight' => -45,
@@ -253,6 +271,19 @@ function uib_search__form(){
       ),
     ),
   );
+  if (
+      in_array('level 1', $user->roles)
+      || in_array('admin', $user->roles)
+      || $user->uid == 1
+  ) {
+    $form['lightbox']['search']['boost'] = array(
+      '#type' => 'hidden',
+      '#value' => 1,
+      '#attributes' => array(
+        'name' => 'boost',
+      ),
+    );
+  }
 
   return $form;
 }
@@ -283,7 +314,6 @@ function uib_search__noscript_form(){
       ),
     ),
   );
-
   return $form;
 }
 
@@ -648,6 +678,13 @@ function uib_search__get_elastic_user_array($wrapped_entity) {
       ', ',
       (array)$wrapped_entity->field_uib_user_alt_position->value()
     ));
+    //search manual boost
+    $output['search_manual_boost'] = uib_search__null_if_empty(
+      $wrapped_entity->field_uib_search_manual_boost->value()
+    );
+    if (!$output['search_manual_boost']) {
+      $output['search_manual_boost'] = 1;
+    }
 
     $competence = $wrapped_entity->field_uib_user_competence->value();
     if (is_array($competence)) {
@@ -814,6 +851,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'study_code',
     'study_title',
     'search_description',
+    'search_manual_boost',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
 
@@ -827,6 +865,12 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     }
 
     switch ($key) {
+      case 'search_manual_boost':
+        $output[$key] = uib_search__null_if_empty($v->value());
+        if ($output[$key] == NULL) {
+          $output[$key] = 1;
+        }
+        break;
       case 'text':
       case 'text2':
       case 'primary_text':
@@ -1159,4 +1203,64 @@ function uib_search__merge_study_arrays($nodearray, $studyarray) {
   unset($studyarray['generic']);
   $nodearray = array_merge($nodearray, $studyarray);
   return $nodearray;
+}
+
+/**
+ * Increase the search boost for an item manually. This function sets the boost
+ * value for individual entities in the database. How this value is used is up
+ * to the search implementation to decide.
+ *
+ * @param string $dir Direction of boost. Can be up or down.
+ * @param string $type Entity type, either node or user.
+ * @param int $id Entity id to boost
+ * @return void The function exits drupal, echoing the current boost value.
+ */
+function uib_search__boost_item_search($dir, $type, $id) {
+  global $user;
+  if (
+    !(
+      in_array('level 1', $user->roles)
+      || in_array('admin', $user->roles)
+      || $user->uid == 1
+      )
+    ) {
+    // User does not have role admin or level 1
+    return;
+  }
+  if (!$id) {
+    // no id is set
+    return;
+  }
+  $o = null;
+  switch ($type) {
+    case 'node':
+      $o = node_load($id);
+      break;
+    case 'user':
+      $o = user_load($id);
+      break;
+  }
+  if (!$o) {
+    // entity not found
+    return;
+  }
+  $old  = isset($o->field_uib_search_manual_boost['und'][0]['value'])
+    ? $o->field_uib_search_manual_boost['und'][0]['value']
+    : 1;
+  $max = variable_get('uib_search_boost_max', 10);
+  $min = variable_get('uib_search_boost_min', pow(.5,10));
+  switch ($dir) {
+    case 'up':
+      $new = $old < 1 ? 1 : $old + 1;
+      break;
+    case 'down':
+      $new = $old > 1 ? $old - 1: $old / 2;
+      break;
+  }
+  $new = $new > $max ? $max : $new;
+  $new = $new < $min ? $min : $new;
+  $o->field_uib_search_manual_boost['und'][0]['value'] = $new;
+  call_user_func($type . '_save', $o);
+  drupal_json_output($new);
+  drupal_exit();
 }

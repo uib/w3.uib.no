@@ -120,6 +120,24 @@ function uib_article_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
+  // Exported field_base: 'field_uib_search_manual_boost'.
+  $field_bases['field_uib_search_manual_boost'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_search_manual_boost',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'number',
+    'settings' => array(
+      'decimal_separator' => '.',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'number_float',
+  );
+
   // Exported field_base: 'field_uib_show_global_calendar'.
   $field_bases['field_uib_show_global_calendar'] = array(
     'active' => 1,

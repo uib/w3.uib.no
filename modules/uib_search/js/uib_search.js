@@ -6,7 +6,11 @@
       return '';
     }
     if (key in obj) {
-      if (typeof obj[key] === 'string') {
+      if (
+        typeof obj[key] === 'string'
+        || typeof obj[key] === 'number'
+        || typeof obj[key] === 'boolean'
+      ) {
         return obj[key];
       }
       else if (obj[key] && typeof obj[key][0] === 'string') {
@@ -242,6 +246,8 @@
 
       $.each(data.hits.hits, function (index, v) {
         var node = v._type == 'node' || v._type == 'study';
+        var w3_type = v._source.w3 ? v._source.w3.type : '';
+
         var entitywrapper = $('<div></div>');
         entitywrapper.addClass('item');
         entitywrapper.addClass(v._type);
@@ -337,6 +343,36 @@
             .append(
               $('<div></div>').addClass('excerpt').html(excerpt)
             );
+        }
+        // If level 1 user:
+        if ($('input[name=boost]').val()==1 &&
+            (
+              v._type == 'user' ||
+              (
+                v._type == 'node' &&
+                (
+                  w3_type == 'area' ||
+                  w3_type == 'uib_article'
+                )
+              )
+            )
+          ) {
+          var up = $('<a></a>').addClass('up').text(Drupal.t('Up'))
+          up.attr('href', '/searchboost/up/' + v._type + '/' + v._id);
+          var down = $('<a></a>').addClass('down').text(Drupal.t('Down'))
+          down.attr('href', '/searchboost/down/' + v._type + '/' + v._id);
+          var boost_value = $('<span></span>')
+            .addClass('boost_value')
+            .text($().getVal(v._source.w3, 'search_manual_boost'));
+
+          var boost = $('<div></div>').addClass('boost').append(
+            up
+          ).append(
+            down
+          ).append(
+            boost_value
+          );
+          lft.append(boost);
         }
 
         // Showing hits for
@@ -436,6 +472,25 @@
       if ($.uib_search.focus) {
         $('form#uib-search-form .search-field').focus();
       }
+      $('.boost a').click(function(event) {
+        event.preventDefault();
+        $.post('/en' + $(event.target).attr('href'), function(data) {
+          var parent = $(event.target).parent();
+          var up = parent.children('.up');
+          var down = parent.children('.down');
+          parent.children('a').removeClass('disabled');
+          parent.children('.boost_value').text(data);
+
+          // Disable boost links when max or min boost is reached
+          if (data >= Drupal.settings.uib_search.uib_search_boost_max) {
+            up.addClass('disabled');
+          }
+          else if (data <= Drupal.settings.uib_search.uib_search_boost_min) {
+            down.addClass('disabled');
+          }
+        });
+      });
+
     };
   };
 

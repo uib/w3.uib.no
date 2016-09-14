@@ -205,10 +205,13 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
 
     $hidden_fields_not_level_1 = array(
       'field_uib_user_domain',
+      'field_uib_search_manual_boost',
     );
-    if (!in_array('level 1', $GLOBALS['user']->roles, TRUE)) {
-      foreach ($hidden_fields_not_level_1 as $item) {
-        $form[$item]['#access'] = FALSE;
+    if ($user->uid != 1) {
+      if (!in_array('level 1', $GLOBALS['user']->roles, TRUE)) {
+        foreach ($hidden_fields_not_level_1 as $item) {
+          $form[$item]['#access'] = FALSE;
+        }
       }
     }
 

@@ -161,6 +161,7 @@ features[field_instance][] = node-area-field_uib_profiled_message
 features[field_instance][] = node-area-field_uib_profiled_testimonial
 features[field_instance][] = node-area-field_uib_promoted_events
 features[field_instance][] = node-area-field_uib_search_description
+features[field_instance][] = node-area-field_uib_search_manual_boost
 features[field_instance][] = node-area-field_uib_sebra_id
 features[field_instance][] = node-area-field_uib_secondary_text
 features[field_instance][] = node-area-field_uib_show_staff

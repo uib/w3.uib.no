@@ -153,6 +153,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     if (!(in_array('level 1', $user->roles) or $user->uid == 1)) {
       unset($form['field_uib_article_type']['und']['#options']['no_sidebar']);
+      hide($form['field_uib_search_manual_boost']);
     }
     // Extra save button
     $form['extra_save'] = $form['actions']['submit'];

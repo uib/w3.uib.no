@@ -366,6 +366,51 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-field_uib_search_manual_boost'.
+  $field_instances['user-user-field_uib_search_manual_boost'] = array(
+    'bundle' => 'user',
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'uib_user_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_uib_search_manual_boost',
+    'label' => 'Manual Search Boost',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => 10,
+      'min' => 0.0001,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 38,
+    ),
+  );
+
   // Exported field_instance: 'user-user-field_uib_slug'.
   $field_instances['user-user-field_uib_slug'] = array(
     'bundle' => 'user',
@@ -1097,7 +1142,7 @@ function uib_user_field_default_field_instances() {
           ),
         ),
         'type' => 'file_default',
-        'weight' => 11,
+        'weight' => 9,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -2090,6 +2135,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Home page');
   t('ID w2');
   t('Last name');
+  t('Manual Search Boost');
   t('Manual publications list. It will show in addition to what is imported from CRIStin.');
   t('Number of publications');
   t('Optional tab content');
@@ -2104,6 +2150,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('RSS feed');
   t('Research / work');
   t('Room');
+  t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Slug');
   t('Sort name');
   t('Sort order');
