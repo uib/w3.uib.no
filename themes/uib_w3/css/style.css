@@ -7259,27 +7259,37 @@ nav {
 
 .view-ansatte .profile {
   margin-bottom: 2rem;
-  display: -ms-flexbox;
-  -ms-flex-direction: row;
-  display: -webkit-flex;
-  -webkit-flex-direction: row;
-  display: flex;
-  flex-direction: row; }
+  display: block; }
   .view-ansatte .profile .user-picture {
-    -ms-flex: 0 1 15%;
-    -webkit-flex: 0 1 15%;
-    flex: 0 1 15%;
-    padding-right: 1%;
     max-width: 15%;
-    z-index: 1; }
-  .view-ansatte .profile .uib-user-teaser {
-    -ms-flex: 0 1 39.5%;
-    -webkit-flex: 0 1 39.5%;
-    flex: 0 1 39.5%; }
+    min-width: 10rem;
+    float: none; }
   .view-ansatte .profile .field-name-field-uib-user-competence {
-    -ms-flex: 0 1 45.5%;
-    -webkit-flex: 0 1 45.5%;
-    flex: 0 1 45.5%; }
+    text-align: left; }
+  @media (min-width: 600px) {
+    .view-ansatte .profile {
+      display: -ms-flexbox;
+      -ms-flex-direction: row;
+      display: -webkit-flex;
+      -webkit-flex-direction: row;
+      display: flex;
+      flex-direction: row; }
+      .view-ansatte .profile .user-picture {
+        -ms-flex: 0 1 15%;
+        -webkit-flex: 0 1 15%;
+        flex: 0 1 15%;
+        padding-right: 1%;
+        z-index: 1; }
+      .view-ansatte .profile .uib-user-teaser {
+        -ms-flex: 0 1 39.5%;
+        -webkit-flex: 0 1 39.5%;
+        flex: 0 1 39.5%; }
+      .view-ansatte .profile .field-name-field-uib-user-competence {
+        -ms-flex: 0 1 45.5%;
+        -webkit-flex: 0 1 45.5%;
+        flex: 0 1 45.5%;
+        min-width: 45.5%;
+        text-align: right; } }
 
 .node-type-uib-study .region-content {
   display: -ms-flexbox;
