@@ -4325,7 +4325,7 @@ div.field-item {
       display: block;
       width: 100%;
       order: 2; }
-      .block-uib-search .lightbox .results .name {
+      .block-uib-search .lightbox .results .name, .block-uib-search .lightbox .results .title {
         font-size: 1.375rem;
         font-weight: bold; }
       .block-uib-search .lightbox .results .rgt, .block-uib-search .lightbox .results .position, .block-uib-search .lightbox .results .ou {
