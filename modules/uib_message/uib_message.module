@@ -424,7 +424,7 @@ function uib_message__block_content() {
   drupal_add_js(drupal_get_path('module', 'uib_message') . '/js/jso/build/jso.js');
   drupal_add_js(drupal_get_path('module','uib_message') . '/js/msg-block.js');
   $node = menu_get_object();
-  $output = "<div id='messages-block-content' class='node-uib-message'>".t('Loading...')
+  $output = "<div id='messages-block-content'>".t('Loading...')
     ."</div><noscript>"
     .l(t('Link to alternative'),'node/'
     .$node->nid.'/messages')."</noscript>";

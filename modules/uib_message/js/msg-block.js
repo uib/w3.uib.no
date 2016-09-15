@@ -56,17 +56,17 @@ jQuery( document ).ready(function ($) {
       output += "<ul>";
       for (var i in json_obj) {
         output += "<li>";
-        output += "<span class='uib_message_area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>"
-               + " <span class='uib_message_tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
-               + " <span class='uib_message_text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
+        output +=  " <span class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
+               + " <span class='message-text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
         if(json_obj[i].link) {
-          output += " <span class='uib_message_link'><a href='" + json_obj[i].link + "'>Read more...</a></span>";
+          output += " <span class='message-link'><a href='" + json_obj[i].link + "'>Read more...</a></span>";
         }
+        output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
         output += "</li>";
       }
       output += "</ul>";
       output += "<div class='uib-feide-login'>";
-      output += "Log in";
+      output += "Logg inn";
       output += "</div>";
       output += "</div>";
       output += "</div>";
