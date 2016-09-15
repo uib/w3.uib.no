@@ -1,3 +1,15 @@
+# Release 54 _2016-09-15_
+
+I denne releasen har fokuset vært på ferdigstilling av lokal meldingstjeneste og videreutvikling av det nye søket som skal på i oktober.
+
+- Viderutvikling av den nye søkemotoren #16200 #16185 #16091 #16086 #16081 #16054 #15417 #16068 #15421 #15267
+- Ferdigstilling av meldingstjeneste #16216 #16116 #16098 #16090 #16078 #15887 #16218
+- Justert tekststørrelse på titler på ledige stillinger #16147
+- Rettet en feil hvor lange filnavn ødela visning på mobil #16130
+- Endret det slik at personer med tittelen "Stilling utenfor reg" ikke viser stillingstittel
+- Endret brødsmulestien slik at det som ikke er lenker ikke får blå lenkefarge #15957
+- Forbedret visning av personer på mobil #15919
+
 # Release 53 _2016-09-01_
 
 I denne versjonen har vi rettet diverse feil, foretatt enkelte designjusteringer og i tillegg jobbet videre med lokal meldingstjeneste og ny søkefunksjon.
