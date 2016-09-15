@@ -18,8 +18,12 @@ jQuery( document ).ready(function ($) {
         var user = feideUser[0].split(":")[1].split("@")[0];
         var json = "/api/msg?user=" + user + "&limit=6&language="+language;
         $.getJSON(json, function(result){
-          outputAPI(result);
-          $(".uib-feide-login").remove();
+          outputAPI(result, "open");
+          $(".uib-feide-login").text("Logg ut");
+          $(".uib-feide-login").click(function() {
+            jso.wipeTokens();
+            window.location.assign(location.origin + location.pathname);
+          });
         });
       }
     });
@@ -27,26 +31,28 @@ jQuery( document ).ready(function ($) {
   else {
     var json = "/api/msg?area=IT-avdelingen&tag=1&limit=6&language="+language;
     $.getJSON(json, function(result){
-      outputAPI(result);
+      outputAPI(result, "closed");
       $(".uib-feide-login").click(function() {
         jso.ajax({
           url: "https://auth.dataporten.no/userinfo",
           datatype: 'json',
           success: function(data) {
-            $(".uib-feide-login").remove();
+            $(".uib-feide-login").text("Logg ut");
           }
         });
       });
     });
   }
 
-  function outputAPI(result){
+  function outputAPI(result, state){
     $("#messages-block-content").text("");
     $.each(result, function(i, field){
       var json_obj = field;
       var output = "<div class='uib-collapsible-container'>";
-      output += "<h2 class='uib-collapsible-handle closed'>Vis meldinger</h2>";
-      output += "<div class='uib-collapsible-content' style='display:none;'>";
+      output += "<h2 class='uib-collapsible-handle "+ state + "'>Vis meldinger</h2>";
+      var style = "";
+      if (state == "closed") style = " style='display:none;'";
+      output += "<div class='uib-collapsible-content'" + style + ">";
       output += "<ul>";
       for (var i in json_obj) {
         output += "<li>";
@@ -66,6 +72,7 @@ jQuery( document ).ready(function ($) {
       output += "</div>";
       $("#messages-block-content").append(output);
       $(".uib-collapsible-handle").css("cursor", "pointer");
+      $(".uib-feide-login").css("cursor", "pointer");
       $(".uib-collapsible-handle").click(function(event){
         $(".uib-collapsible-content").toggle();
         $(".uib-collapsible-handle").toggleClass('open closed');
