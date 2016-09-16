@@ -143,12 +143,14 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         $programmes_view_page_nid = variable_get('uib_programmes_nid', 87342);
 
         $course_for_exchange_students = FALSE;
+        $intgrad = FALSE;
         if (!empty($item['page_arguments'][0]->field_uib_study_category)) {
           $study_category = $item['page_arguments'][0]->field_uib_study_category['und'][0]['value'];
         }
         if (!empty($item['page_arguments'][0]->field_uib_study_label)) {
           foreach ($item['page_arguments'][0]->field_uib_study_label['und'] as $value) {
             if ($value['target_id'] == 40) $course_for_exchange_students = TRUE;
+            if ($value['target_id'] == 41) $intgrad = TRUE;
           }
         }
         if ($study_type == 'course') {
@@ -171,8 +173,14 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           $study_type_href = "node/$exchanges_view_page_nid";
         }
         else {
-          $study_type_title = t('Studyprogramme');
-          $study_type_href = "node/$programmes_view_page_nid";
+          if ($intgrad) {
+            $study_type_title = t('International programmes');
+            $study_type_href = 'node/50057';
+          }
+          else {
+            $study_type_title = t('Studyprogramme');
+            $study_type_href = "node/$programmes_view_page_nid";
+          }
         }
         $uib_active_trail[] = array(
           'title' => $study_type_title,
