@@ -3505,8 +3505,10 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_message_text_en_value']['operator'] = 'not empty';
   $handler->display->display_options['path'] = 'messages.xml';
   $handler->display->display_options['displays'] = array(
-    'default' => 'default',
-    'page' => 'page',
+    'default' => 0,
+    'page' => 0,
+    'block' => 0,
+    'page_1' => 0,
   );
 
   /* Display: Block */
@@ -3819,8 +3821,10 @@ return true;';
   $handler->display->display_options['fields']['timestamp']['timezone'] = 'UTC';
   $handler->display->display_options['path'] = 'meldinger.xml';
   $handler->display->display_options['displays'] = array(
-    'default' => 'default',
-    'page' => 'page',
+    'default' => 0,
+    'page' => 0,
+    'block' => 0,
+    'page_1' => 0,
   );
 
   /* Display: Norwegian area feed */
