@@ -18,7 +18,9 @@ jQuery( document ).ready(function ($) {
         var user = feideUser[0].split(":")[1].split("@")[0];
         var json = "/api/msg?user=" + user + "&limit=6&language="+language;
         $.getJSON(json, function(result){
-          outputAPI(result, "open");
+          outputAPI(result);
+          $(".uib-collapsible-content").toggle();
+          $(".uib-collapsible-handle").toggleClass('open closed');
           $(".uib-feide-login").text("Logg ut");
           $(".uib-feide-login").click(function() {
             jso.wipeTokens();
@@ -31,28 +33,23 @@ jQuery( document ).ready(function ($) {
   else {
     var json = "/api/msg?area=IT-avdelingen&tag=1&limit=6&language="+language;
     $.getJSON(json, function(result){
-      outputAPI(result, "closed");
+      outputAPI(result);
       $(".uib-feide-login").click(function() {
         jso.ajax({
           url: "https://auth.dataporten.no/userinfo",
           datatype: 'json',
-          success: function(data) {
-            $(".uib-feide-login").text("Logg ut");
-          }
         });
       });
     });
   }
 
-  function outputAPI(result, state){
+  function outputAPI(result){
     $("#messages-block-content").text("");
     $.each(result, function(i, field){
       var json_obj = field;
       var output = "<div class='uib-collapsible-container'>";
-      output += "<h2 class='uib-collapsible-handle "+ state + "'>Vis meldinger</h2>";
-      var style = "";
-      if (state == "closed") style = " style='display:none;'";
-      output += "<div class='uib-collapsible-content'" + style + ">";
+      output += "<h2 class='uib-collapsible-handle closed'>Vis meldinger</h2>";
+      output += "<div class='uib-collapsible-content' style='display:none;'>";
       output += "<ul>";
       for (var i in json_obj) {
         output += "<li>";
