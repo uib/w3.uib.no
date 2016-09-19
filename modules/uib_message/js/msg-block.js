@@ -21,6 +21,7 @@ jQuery( document ).ready(function ($) {
           outputAPI(result);
           $(".uib-collapsible-content").toggle();
           $(".uib-collapsible-handle").toggleClass('open closed');
+          $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == 'Vis meldinger' ? 'Skjul meldinger' : 'Vis meldinger');
           $(".uib-feide-login").text("Logg ut");
           $(".uib-feide-login").click(function() {
             jso.wipeTokens();
