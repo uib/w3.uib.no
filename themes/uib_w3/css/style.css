@@ -6256,7 +6256,7 @@ nav {
 .node-uib-message,
 .block-uib-message li {
   border-top: 2px solid #d5d5d5;
-  padding: 0.5rem 0; }
+  padding: 0.5rem 10rem 0.5rem 0; }
   .node-uib-message .message-area,
   .node-uib-message .message-tag,
   .block-uib-message li .message-area,
@@ -6281,9 +6281,9 @@ nav {
     @media (min-width: 600px) {
       .node-uib-message .message-age,
       .block-uib-message li .message-age {
-        float: right;
-        clear: none;
-        padding: 0.25rem 0 0 0; } }
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0; } }
   .node-uib-message .message-area-from a,
   .block-uib-message li .message-area-from a {
     float: left;

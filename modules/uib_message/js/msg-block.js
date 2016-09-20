@@ -32,7 +32,9 @@ jQuery( document ).ready(function ($) {
               if(json_obj[i].link) {
                 output += " <span class='message-link'><a href='" + json_obj[i].link + "'>Read more...</a></span>";
               }
+              console.log(json_obj[i]);
               output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
+              output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
               output += "</li>";
             }
             output += "</ul>";
@@ -58,20 +60,51 @@ jQuery( document ).ready(function ($) {
     });
   }
   else {
-      $("#messages-block-content").text("");
-      var output = "<div class='uib-collapsible-container'>";
-      output += "<h2 class='uib-collapsible-handle open'>Meldinger</h2>";
-      output += "<div class='uib-collapsible-content'>"
-      output += "<div class='uib-feide-login'>";
-      output += "Logg inn";
-      output += "</div>";
-      output += "</div>"
-      $("#messages-block-content").append(output);
-      $(".uib-feide-login").click(function() {
-        jso.ajax({
-          url: "https://auth.dataporten.no/userinfo",
-          datatype: 'json',
-        });
+    $("#messages-block-content").text("");
+    var output = "<div class='uib-collapsible-container'>";
+    output += "<h2 class='uib-collapsible-handle open'>Meldinger</h2>";
+    output += "<div class='uib-collapsible-content'>"
+    output += "<div class='uib-feide-login'>";
+    output += "Logg inn";
+    output += "</div>";
+    output += "</div>"
+    $("#messages-block-content").append(output);
+    $(".uib-feide-login").click(function() {
+      jso.ajax({
+        url: "https://auth.dataporten.no/userinfo",
+        datatype: 'json',
       });
+    });
   }
 });
+
+function timeSince(posted_time) {
+
+  var msPerMinute = 60 * 1000;
+  var msPerHour = msPerMinute * 60;
+  var msPerDay = msPerHour * 24;
+  var msPerMonth = msPerDay * 30;
+  var msPerYear = msPerDay * 365;
+
+  var now = new Date();
+  var elapsed =  now.getTime() - posted_time*1000;
+
+  if (elapsed < msPerMinute) {
+       return Math.round(elapsed/1000) + ' seconds ago';
+  }
+  else if (elapsed < msPerHour) {
+       return Math.round(elapsed/msPerMinute) + ' minutes ago';
+  }
+  else if (elapsed < msPerDay ) {
+       return Math.round(elapsed/msPerHour ) + ' hours ago';
+  }
+  else if (elapsed < msPerMonth) {
+      return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';
+  }
+  else if (elapsed < msPerYear) {
+      return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';
+  }
+  else {
+      return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
+  }
+}
