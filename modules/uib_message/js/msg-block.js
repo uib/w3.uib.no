@@ -22,7 +22,7 @@ jQuery( document ).ready(function ($) {
           $.each(result, function(i, field){
             var json_obj = field;
             var output = "<div class='uib-collapsible-container'>";
-            output += "<h2 class='uib-collapsible-handle closed'>Vis meldinger</h2>";
+            output += "<h2 class='uib-collapsible-handle closed'>" + Drupal.t('Show messages') + "</h2>";
             output += "<div class='uib-collapsible-content' style='display:none;'>";
             output += "<ul>";
             for (var i in json_obj) {
@@ -30,16 +30,15 @@ jQuery( document ).ready(function ($) {
               output +=  " <span class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
                      + " <span class='message-text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
               if(json_obj[i].link) {
-                output += " <span class='message-link'><a href='" + json_obj[i].link + "'>Read more...</a></span>";
+                output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span>";
               }
-              console.log(json_obj[i]);
               output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
               output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
               output += "</li>";
             }
             output += "</ul>";
             output += "<div class='uib-feide-login'>";
-            output += "Logg inn";
+            output += "Log in";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -47,9 +46,9 @@ jQuery( document ).ready(function ($) {
             $(".uib-collapsible-handle").click(function(event){
               $(".uib-collapsible-content").toggle();
               $(".uib-collapsible-handle").toggleClass('open closed');
-              $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == 'Vis meldinger' ? 'Skjul meldinger' : 'Vis meldinger');
+              $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == Drupal.t('Show messages') ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
             });
-            $(".uib-feide-login").text("Logg ut");
+            $(".uib-feide-login").text(Drupal.t('Log out'));
             $(".uib-feide-login").click(function() {
               jso.wipeTokens();
               window.location.assign(location.origin + location.pathname);
@@ -62,10 +61,10 @@ jQuery( document ).ready(function ($) {
   else {
     $("#messages-block-content").text("");
     var output = "<div class='uib-collapsible-container'>";
-    output += "<h2 class='uib-collapsible-handle open'>Meldinger</h2>";
+    output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Messages') + "</h2>";
     output += "<div class='uib-collapsible-content'>"
     output += "<div class='uib-feide-login'>";
-    output += "Logg inn";
+    output += Drupal.t('Log in');
     output += "</div>";
     output += "</div>"
     $("#messages-block-content").append(output);
@@ -90,22 +89,37 @@ function timeSince(posted_time) {
   var elapsed =  now.getTime() - posted_time*1000;
 
   if (elapsed < msPerMinute) {
-       return Math.round(elapsed/1000) + ' seconds ago';
+    return Math.round(elapsed/1000) + ' ' + Drupal.t('seconds ago');
+  }
+  else if (elapsed < 2*msPerMinute) {
+    return Drupal.t('@elapsed minute ago', {'@elapsed':1});
   }
   else if (elapsed < msPerHour) {
-       return Math.round(elapsed/msPerMinute) + ' minutes ago';
+       return Math.round(elapsed/msPerMinute) + ' ' + Drupal.t('minutes ago');
+  }
+  else if (elapsed < 2*msPerHour) {
+    return Drupal.t('@elapsed hour ago', {'@elapsed':1});
   }
   else if (elapsed < msPerDay ) {
-       return Math.round(elapsed/msPerHour ) + ' hours ago';
+       return Math.round(elapsed/msPerHour ) + ' ' + Drupal.t(' hours ago');
+  }
+  else if (elapsed < 2*msPerDay) {
+    return Drupal.t('approximately @elapsed day ago', {'@elapsed':1});
   }
   else if (elapsed < msPerMonth) {
-      return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';
+      return Drupal.t('approximately @elapsed days ago', {'@elapsed':Math.round(elapsed/msPerDay)});
+  }
+  else if (elapsed < 2*msPerMonth) {
+    return Drupal.t('approximately @elapsed month ago', {'@elapsed':1});
   }
   else if (elapsed < msPerYear) {
-      return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';
+      return Drupal.t('approximately @elapsed months ago', {'@elapsed':Math.round(elapsed/msPerMonth)});
+  }
+  else if (elapsed < 2*msPerYear) {
+    return Drupal.t('approximately @elapsed year ago', {'@elapsed':1});
   }
   else {
-      return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
+      return Drupal.t('approximately @elapsed years ago', {'@elapsed':Math.round(elapsed/msPerYear)});
   }
 }
 
