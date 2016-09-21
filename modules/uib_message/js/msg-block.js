@@ -36,7 +36,9 @@ jQuery( document ).ready(function ($) {
                   output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span>";
                 }
                 console.log(json_obj[i]);
-                output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
+                output += "<span class='message-area'><a href='"
+                        + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
+                        + Drupal.checkPlain(json_obj[i].area) + "</a></span>";
                 output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
                 output += "</li>";
               }
@@ -81,6 +83,11 @@ jQuery( document ).ready(function ($) {
     });
   }
 });
+
+function arealink(area,language,tag) {
+  var msg = (language == 'en') ? 'messages' : 'meldinger';
+  return area + "/" + msg + "?tag="+tag;
+}
 
 function timeSince(posted_time) {
 
