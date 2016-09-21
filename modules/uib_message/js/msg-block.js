@@ -16,7 +16,7 @@ jQuery( document ).ready(function ($) {
       success: function(data) {
         var feideUser = data.user.userid_sec;
         var user = feideUser[0].split(":")[1].split("@")[0];
-        var json = "/api/msg?user=" + user + "&limit=6&language="+language;
+        var json = "/api/msg?user=" + user + "&limit=12&language="+language;
         $.getJSON(json, function(result){
           $("#messages-block-content").text("");
           $.each(result, function(i, field){
@@ -25,16 +25,21 @@ jQuery( document ).ready(function ($) {
             output += "<h2 class='uib-collapsible-handle closed'>" + Drupal.t('Show messages') + "</h2>";
             output += "<div class='uib-collapsible-content' style='display:none;'>";
             output += "<ul>";
+            var now = new Date();
             for (var i in json_obj) {
-              output += "<li>";
-              output +=  " <span class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
-                     + " <span class='message-text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
-              if(json_obj[i].link) {
-                output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span>";
+              var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
+              if (lapsed < 1000*60*60*24*7) {
+                output += "<li>";
+                output +=  " <span class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
+                       + " <span class='message-text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
+                if(json_obj[i].link) {
+                  output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span>";
+                }
+                console.log(json_obj[i]);
+                output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
+                output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
+                output += "</li>";
               }
-              output += "<span class='message-area'>" + Drupal.checkPlain(json_obj[i].area) + "</span>";
-              output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
-              output += "</li>";
             }
             output += "</ul>";
             output += "<div class='uib-feide-login'>";
