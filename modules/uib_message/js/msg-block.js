@@ -2,7 +2,7 @@ jQuery( document ).ready(function ($) {
   var language = $('html').attr('lang');
   var jso = new JSO({
     providerID: "dataporten",
-    client_id: "ebb2d254-a8a1-4bbb-a98e-fb7b4eab63f0",
+    client_id: getClientID(),
     authorization: "https://auth.dataporten.no/oauth/authorization",
     default_lifetime: false,
     redirect_uri: window.location.href
@@ -107,4 +107,9 @@ function timeSince(posted_time) {
   else {
       return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
   }
+}
+
+function getClientID() {
+  if (location.origin == 'http://localhost:3000') return 'ebb2d254-a8a1-4bbb-a98e-fb7b4eab63f0';
+  else return 'c2d666d7-b029-46fa-91eb-1b340ef12ea0';
 }
