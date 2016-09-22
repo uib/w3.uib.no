@@ -6207,8 +6207,6 @@ nav {
     padding: 0 1.25rem; }
 
 @media (min-width: 600px) {
-  .block-uib-message li {
-    position: relative; }
   .block-uib-message .message-area {
     position: absolute;
     top: 0.5rem;
@@ -6256,7 +6254,17 @@ nav {
 .node-uib-message,
 .block-uib-message li {
   border-top: 2px solid #d5d5d5;
-  padding: 0.5rem 10rem 0.5rem 0; }
+  padding: 0.5rem 0; }
+  .node-uib-message:after,
+  .block-uib-message li:after {
+    content: "";
+    display: table;
+    clear: both; }
+  @media (min-width: 600px) {
+    .node-uib-message,
+    .block-uib-message li {
+      padding: 0.5rem 6rem 0.5rem 0;
+      position: relative; } }
   .node-uib-message .message-area,
   .node-uib-message .message-tag,
   .block-uib-message li .message-area,
@@ -6282,7 +6290,7 @@ nav {
       .node-uib-message .message-age,
       .block-uib-message li .message-age {
         position: absolute;
-        bottom: 0.5rem;
+        bottom: 1rem;
         right: 0; } }
   .node-uib-message .message-area-from a,
   .block-uib-message li .message-area-from a {
@@ -6294,7 +6302,7 @@ nav {
     float: left;
     clear: left;
     margin: 0;
-    padding: 0 1rem 0 0; }
+    padding: 0 1rem 0.5rem 0; }
     @media (min-width: 600px) {
       .node-uib-message ul.links,
       .block-uib-message li ul.links {

@@ -30,16 +30,15 @@ jQuery( document ).ready(function ($) {
               var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
               if (lapsed < 1000*60*60*24*7) {
                 output += "<li>";
-                output +=  " <span class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</span>"
-                       + " <span class='message-text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
+                output +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
+                       + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
                 if(json_obj[i].link) {
-                  output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span>";
+                  output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
                 }
-                console.log(json_obj[i]);
-                output += "<span class='message-area'><a href='"
+                output += "<div class='message-area'><a href='"
                         + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
-                        + Drupal.checkPlain(json_obj[i].area) + "</a></span>";
-                output += "<span class='message-age'>" + timeSince(json_obj[i].posted_time) + "</span>";
+                        + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
+                output += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
                 output += "</li>";
               }
             }
