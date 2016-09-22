@@ -44,8 +44,8 @@ jQuery( document ).ready(function ($) {
               }
             }
             output += "</ul>";
-            output += "<div class='uib-feide-login'>";
-            output += "Log in";
+            output += "<div class='uib-feide-logout'>";
+            output += "<a class='uib-feide-loggedin'>" + Drupal.t('Log out') + "</a>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -55,8 +55,7 @@ jQuery( document ).ready(function ($) {
               $(".uib-collapsible-handle").toggleClass('open closed');
               $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == Drupal.t('Show messages') ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
             });
-            $(".uib-feide-login").text(Drupal.t('Log out'));
-            $(".uib-feide-login").click(function() {
+            $(".uib-feide-loggedin").click(function() {
               jso.wipeTokens();
               window.location.assign(location.origin + location.pathname);
             });
