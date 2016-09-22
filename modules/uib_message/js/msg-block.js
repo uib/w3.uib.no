@@ -14,6 +14,7 @@ jQuery( document ).ready(function ($) {
       url: "https://auth.dataporten.no/userinfo",
       datatype: 'json',
       success: function(data) {
+        removeToken();
         var feideUser = data.user.userid_sec;
         var user = feideUser[0].split(":")[1].split("@")[0];
         var json = "/api/msg?user=" + user + "&limit=12&language="+language;
@@ -86,6 +87,15 @@ jQuery( document ).ready(function ($) {
 function arealink(area,language,tag) {
   var msg = (language == 'en') ? 'messages' : 'meldinger';
   return area + "/" + msg + "?tag="+tag;
+}
+
+function removeToken() {
+  if ("pushState" in history) {
+    history.replaceState("", document.title, location.origin + location.pathname);
+  }
+  else {
+    document.location.hash = "";
+  }
 }
 
 function timeSince(posted_time) {
