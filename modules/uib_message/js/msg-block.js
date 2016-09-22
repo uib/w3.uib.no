@@ -116,22 +116,22 @@ function timeSince(posted_time) {
        return Math.round(elapsed/msPerHour ) + ' ' + Drupal.t(' hours ago');
   }
   else if (elapsed < 2*msPerDay) {
-    return Drupal.t('approximately @elapsed day ago', {'@elapsed':1});
+    return Drupal.t('@elapsed day ago', {'@elapsed':1});
   }
   else if (elapsed < msPerMonth) {
-      return Drupal.t('approximately @elapsed days ago', {'@elapsed':Math.round(elapsed/msPerDay)});
+      return Drupal.t('@elapsed days ago', {'@elapsed':Math.round(elapsed/msPerDay)});
   }
   else if (elapsed < 2*msPerMonth) {
-    return Drupal.t('approximately @elapsed month ago', {'@elapsed':1});
+    return Drupal.t('@elapsed month ago', {'@elapsed':1});
   }
   else if (elapsed < msPerYear) {
-      return Drupal.t('approximately @elapsed months ago', {'@elapsed':Math.round(elapsed/msPerMonth)});
+      return Drupal.t('@elapsed months ago', {'@elapsed':Math.round(elapsed/msPerMonth)});
   }
   else if (elapsed < 2*msPerYear) {
-    return Drupal.t('approximately @elapsed year ago', {'@elapsed':1});
+    return Drupal.t('@elapsed year ago', {'@elapsed':1});
   }
   else {
-      return Drupal.t('approximately @elapsed years ago', {'@elapsed':Math.round(elapsed/msPerYear)});
+      return Drupal.t('@elapsed years ago', {'@elapsed':Math.round(elapsed/msPerYear)});
   }
 }
 
