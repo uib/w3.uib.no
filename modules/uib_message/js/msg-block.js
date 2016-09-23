@@ -27,6 +27,8 @@ jQuery( document ).ready(function ($) {
             output += "<div class='uib-collapsible-content'>";
             output += "<ul>";
             var now = new Date();
+            var lastVisit = getCookie('uib-messages-last-visit');
+            var newMessages = 0;
             for (var i in json_obj) {
               var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
               if (lapsed < 1000*60*60*24*7) {
@@ -41,6 +43,9 @@ jQuery( document ).ready(function ($) {
                         + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
                 output += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
                 output += "</li>";
+                if (Drupal.checkPlain(json_obj[i].posted_time)*1000 > lastVisit) {
+                  newMessages++;
+                }
               }
             }
             output += "</ul>";
@@ -51,7 +56,7 @@ jQuery( document ).ready(function ($) {
             output += "</div>";
             $("#messages-block-content").append(output);
             $(".uib-collapsible-handle").click(function(event){
-              toggleMessageBox();
+              toggleMessageBox(0);
             });
             $(".uib-feide-loggedin").click(function() {
               jso.wipeTokens();
@@ -62,7 +67,7 @@ jQuery( document ).ready(function ($) {
               document.cookie = "uib-messages-logged-in=1";
             }
             else {
-              toggleMessageBox();
+              toggleMessageBox(newMessages);
             }
           });
         });
@@ -86,10 +91,17 @@ jQuery( document ).ready(function ($) {
       });
     });
   }
-  function toggleMessageBox() {
+  function toggleMessageBox(newMessages) {
     $(".uib-collapsible-content").toggle();
     $(".uib-collapsible-handle").toggleClass('open closed');
-    $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == Drupal.t('Show messages') ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
+    $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html().startsWith(Drupal.t('Show messages')) ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
+    if($(".uib-collapsible-handle").hasClass('open')) {
+      now = new Date();
+      document.cookie = "uib-messages-last-visit=" + now.getTime();
+    }
+    if (newMessages) {
+      $(".uib-collapsible-handle").append(' <span class="new-messages-count">(' + newMessages + ' ' + Drupal.t('new') + ')</span>');
+    }
   }
 });
 
