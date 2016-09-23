@@ -23,8 +23,8 @@ jQuery( document ).ready(function ($) {
           $.each(result, function(i, field){
             var json_obj = field;
             var output = "<div class='uib-collapsible-container'>";
-            output += "<h2 class='uib-collapsible-handle closed'>" + Drupal.t('Show messages') + "</h2>";
-            output += "<div class='uib-collapsible-content' style='display:none;'>";
+            output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Hide messages') + "</h2>";
+            output += "<div class='uib-collapsible-content'>";
             output += "<ul>";
             var now = new Date();
             for (var i in json_obj) {
@@ -51,9 +51,7 @@ jQuery( document ).ready(function ($) {
             output += "</div>";
             $("#messages-block-content").append(output);
             $(".uib-collapsible-handle").click(function(event){
-              $(".uib-collapsible-content").toggle();
-              $(".uib-collapsible-handle").toggleClass('open closed');
-              $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == Drupal.t('Show messages') ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
+              toggleMessageBox();
             });
             $(".uib-feide-loggedin").click(function() {
               jso.wipeTokens();
@@ -81,7 +79,13 @@ jQuery( document ).ready(function ($) {
       });
     });
   }
+  function toggleMessageBox() {
+    $(".uib-collapsible-content").toggle();
+    $(".uib-collapsible-handle").toggleClass('open closed');
+    $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html() == Drupal.t('Show messages') ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
+  }
 });
+
 
 function arealink(area,language,tag) {
   var msg = (language == 'en') ? 'messages' : 'meldinger';
