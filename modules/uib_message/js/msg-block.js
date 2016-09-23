@@ -55,8 +55,15 @@ jQuery( document ).ready(function ($) {
             });
             $(".uib-feide-loggedin").click(function() {
               jso.wipeTokens();
+              document.cookie = "uib-messages-logged-in=0; expires=-1"
               window.location.assign(location.origin + location.pathname);
             });
+            if(!getCookie("uib-messages-logged-in") || getCookie("uib-messages-logged-in") == 0) {
+              document.cookie = "uib-messages-logged-in=1";
+            }
+            else {
+              toggleMessageBox();
+            }
           });
         });
       }
@@ -86,6 +93,11 @@ jQuery( document ).ready(function ($) {
   }
 });
 
+function getCookie(name) {
+    function escape(s) { return s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1'); };
+    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
+    return match ? match[1] : null;
+}
 
 function arealink(area,language,tag) {
   var msg = (language == 'en') ? 'messages' : 'meldinger';
