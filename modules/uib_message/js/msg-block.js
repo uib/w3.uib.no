@@ -79,8 +79,13 @@ jQuery( document ).ready(function ($) {
     var output = "<div class='uib-collapsible-container'>";
     output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Messages') + "</h2>";
     output += "<div class='uib-collapsible-content'>"
+    output += "<div class='uib-message-login'>";
     output += "<div class='uib-feide-login'>";
     output += Drupal.t('Log in');
+    output += "</div>";
+    output += "<p class='uib-message-login-description'>";
+    output += Drupal.t('You will be redirected to a log in page. Choose University of Bergen and log in with your UiB username and password.');
+    output += "</p>";
     output += "</div>";
     output += "</div>"
     $("#messages-block-content").append(output);

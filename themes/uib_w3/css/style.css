@@ -6215,7 +6215,15 @@ nav {
   .block-uib-message .message-area {
     position: absolute;
     top: 0.5rem;
-    right: 0; } }
+    right: 0; }
+  .block-uib-message .uib-message-login {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    display: flex;
+    align-items: center; }
+  .block-uib-message .uib-message-login-description {
+    font-size: 1rem; } }
 .block-uib-message .message-area,
 .block-uib-message .message-tag {
   display: block; }
