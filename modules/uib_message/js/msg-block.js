@@ -25,30 +25,38 @@ jQuery( document ).ready(function ($) {
             var output = "<div class='uib-collapsible-container'>";
             output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Hide messages') + "</h2>";
             output += "<div class='uib-collapsible-content'>";
-            output += "<ul>";
             var now = new Date();
             var lastVisit = getCookie('uib-messages-last-visit');
             var newMessages = 0;
+            var addToOutput = false;
             for (var i in json_obj) {
               var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
               if (lapsed < 1000*60*60*24*7) {
-                output += "<li>";
-                output +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
+                if (addToOutput) addToOutput += "<li>";
+                else addToOutput = "<li>";
+                addToOutput +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
                        + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
                 if(json_obj[i].link) {
-                  output += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
+                  addToOutput += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
                 }
-                output += "<div class='message-area'><a href='"
+                addToOutput += "<div class='message-area'><a href='"
                         + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
                         + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
-                output += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
-                output += "</li>";
+                addToOutput += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
+                addToOutput += "</li>";
                 if (Drupal.checkPlain(json_obj[i].posted_time)*1000 > lastVisit) {
                   newMessages++;
                 }
               }
             }
-            output += "</ul>";
+            if (addToOutput) {
+              output += "<ul>"
+              output += addToOutput;
+              output += "</ul>";
+            }
+            else {
+              output += "<p class='uib-no-messages'>" + Drupal.t('No new messages.') + "</p>";
+            }
             output += "<div class='uib-feide-logout'>";
             output += "<a class='uib-feide-loggedin'>" + Drupal.t('Log out') + "</a>";
             output += "</div>";
