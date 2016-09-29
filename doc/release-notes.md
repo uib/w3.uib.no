@@ -1,3 +1,11 @@
+# Release 55 _2016-09-29_
+
+I denne releasen har fokuset fortsatt vært på ferdigstilling av lokal meldingstjeneste
+
+- Saker knyttet til ny meldingstjeneste #16012 #16225 #16238 #16240 #16243 #16245 #16246 #16250 #16298 #16318 #16321 #16322 #16323 #16324 #16325
+- Fjernet adresse til hjemmeside for nettverksavtaler #16192
+- Forbedret brødsmulestien til studieprogrammer #15695
+
 # Release 54 _2016-09-15_
 
 I denne releasen har fokuset vært på ferdigstilling av lokal meldingstjeneste og videreutvikling av det nye søket som skal på i oktober.
