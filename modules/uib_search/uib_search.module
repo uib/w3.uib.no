@@ -85,12 +85,27 @@ function uib_search_block_view($delta) {
   switch ($delta) {
   case 'global-searchform':
     $retval['subject']=t('Search');
+
+    // Setup for elasticsearch
+    drupal_add_js(
+      array('uib_search' =>
+        array(
+          'user' => uib_search__get_setup('user'),
+          'password' => uib_search__get_setup('password'),
+          'url' => uib_search__get_setup('url'),
+          'index' => uib_search__get_setup('index'),
+        )
+      ),
+      'setting'
+    );
+
     // TODO: This if-block should be removed when the switch to elasticsearch
     // has been completed, keeping the if - part, and removing the else-part.
     if (variable_get('uib_search_switch_to_elastic', FALSE)) {
       drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
       $retval['content']['noscript'] = drupal_get_form('uib_search__noscript_form');
       $retval['content']['normal'] = drupal_get_form('uib_search__form');
+
     }
     else {
       $retval = uib_search__form_old();
@@ -189,41 +204,6 @@ function uib_search__form(){
         'submit' => array(
           '#type' => 'submit',
           '#value' => t('Search'),
-        ),
-        'user' => array(
-          '#type' => 'hidden',
-          '#value' => uib_search__get_setup('user'),
-          '#attributes' => array(
-            'name' => 'user',
-          ),
-        ),
-        'password' => array(
-          '#type' => 'hidden',
-          '#value' =>
-            uib_search__get_setup('password'),
-          '#attributes' => array(
-            'name' => 'password',
-          ),
-        ),
-        'url' => array(
-          '#type' => 'hidden',
-          '#value' => uib_search__get_setup('url'),
-          '#attributes' => array(
-            'name' => 'url',
-          ),
-        ),
-        'index' => array(
-          '#type' => 'hidden',
-          '#value' =>
-            uib_search__get_setup('index'),
-          '#attributes' => array(
-            'name' => 'index',
-          ),
-        ),
-        'elastic' => array(
-          '#type' => 'hidden',
-          '#value' => '1',
-          '#name' => 'uib_search_switch_to_elastic',
         ),
       ),
       'results-wrapper' => array(
@@ -439,36 +419,6 @@ function uib_search__form_old($delta = 'global-searchform'){
             'submit' => array(
               '#type' => 'submit',
               '#value' => t('Search'),
-            ),
-            'user' => array(
-              '#type' => 'hidden',
-              '#value' => uib_search__get_setup('user'),
-              '#attributes' => array(
-                'name' => 'user',
-              ),
-            ),
-            'password' => array(
-              '#type' => 'hidden',
-              '#value' =>
-                uib_search__get_setup('password'),
-              '#attributes' => array(
-                'name' => 'password',
-              ),
-            ),
-            'url' => array(
-              '#type' => 'hidden',
-              '#value' => uib_search__get_setup('url'),
-              '#attributes' => array(
-                'name' => 'url',
-              ),
-            ),
-            'index' => array(
-              '#type' => 'hidden',
-              '#value' =>
-                uib_search__get_setup('index'),
-              '#attributes' => array(
-                'name' => 'index',
-              ),
             ),
           ),
           'results' => array(
