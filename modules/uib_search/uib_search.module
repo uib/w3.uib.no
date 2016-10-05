@@ -895,6 +895,7 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
     TRUE
   );
   uib_search__report_status($status, $entity_type, $id);
+  return $output;
 }
 
 function uib_search__get_elastic_entity_array($wrapped_entity) {
