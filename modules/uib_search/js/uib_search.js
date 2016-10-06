@@ -20,7 +20,7 @@
       return '';
     }
   };
-  $.fn.executeQuery = function (postdata){
+  $.fn.executeQuery = function (postdata, query){
     // Options for jquery ajax-call
     var options = {
       url: $.uib_search.fullurl,
@@ -32,9 +32,7 @@
         );
       },
       data: JSON.stringify(postdata),
-      success: function (data, status, jqXHR) {
-        $().createResults(data, $.uib_search.resultsselector)
-      },
+      success: $().createResults($.uib_search.resultsselector, query),
     };
     $.ajax(options);
   }
@@ -230,193 +228,212 @@
       data.query.bool.should = should;
       return data;
   };
-  $.fn.createResults = function (data, resultsselector) {
+  $.fn.createResults = function (resultsselector, query) {
 
-    var resultstag = $(resultsselector);
-    if (data.hits.hits) {
-      resultstag.html('');
-    }
-
-    $.each(data.hits.hits, function (index, v) {
-      var node = v._type == 'node' || v._type == 'study';
-      // Retrieving variables from returned object
-      var evenodd = index % 2 ? 'odd' : 'even';
-      var lang = $.uib_search.lang;
-      var user_url = $().getVal(v._source, 'link_' + lang);
-
-      var link = $().getVal(v._source.generic, 'link');
-      var title = $().getVal(v.highlight, 'generic.title') ?
-        $().getVal(v.highlight, 'generic.title') :
-        $().getVal(v._source.generic, 'title');
-      var excerpt = $().getVal(v.highlight, 'generic.excerpt') ?
-        $().getVal(v.highlight, 'generic.excerpt') :
-        $().getVal(v._source.generic, 'excerpt');
-      var first_name = $().getVal(v.highlight, 'first_name') ?
-        $().getVal(v.highlight, 'first_name') :
-        $().getVal(v._source, 'first_name');
-      var last_name = $().getVal(v.highlight, 'last_name') ?
-        $().getVal(v.highlight, 'last_name') :
-        $().getVal(v._source, 'last_name');
-
-      var name = $('<a></a>').attr('href', user_url).html(first_name + ' '
-        + last_name);
-
-      var mail = $().getVal(v._source, 'mail');
-      var display_mail = $().getVal(v.highlight, 'mail') ?
-        $().getVal(v.highlight, 'mail') :
-        mail;
-
-      var position = $().getVal(v.highlight, 'position_' + lang) ?
-        $().getVal(v.highlight, 'position_' + lang) :
-        $().getVal(v._source, 'position_' + lang);
-
-      var alt_position = $().getVal(v.highlight, 'alt_position_' + lang) ?
-        $().getVal(v.highlight, 'alt_position_' + lang) :
-        $().getVal(v._source, 'alt_position_' + lang);
-
-      var ou = $().getVal(v.highlight, 'ou_' + lang) ?
-        $().getVal(v.highlight, 'ou_' + lang) :
-        $().getVal(v._source, 'ou_' + lang);
-
-      var phone = $().getVal(v._source, 'phone');
-
-
-      // building markup
-      var lft = $('<div></div>').addClass('lft')
-        .append(
-          $('<div></div>').addClass('name').append(name)
-        )
-        .append(
-          $('<div></div>').addClass('position')
-          .html(
-            position + (alt_position ? ', ' + alt_position : '')
-          )
-        )
-        .append(
-          $('<div></div>').addClass('ou')
-          .html(
-            ou
-          )
-        );
-      var rgt = $('<div></div>').addClass('rgt')
-        .append(
-          $('<div></div>').addClass('mail').append(
-            $('<a></a>').attr('href', 'mailto:' + mail).html(display_mail)
-          )
-        )
-        .append(
-          $('<div></div>').addClass('phone').text(phone)
-        );
-
-      // Rewrite markup if document type = node
-      if (node) {
-        name = $('<a></a>').attr('href', link).html(title);
-        lft = $('<div></div>').addClass('lft')
-        .append(
-          $('<div></div>').addClass('title').append(name)
-        )
-        .append(
-          $('<div></div>').addClass('excerpt').html(excerpt)
-        );
-        rgt = '';
+    return function (data, status, jqXHR) {
+      var resultstag = $(resultsselector);
+      if (data.hits.hits) {
+        resultstag.html('');
       }
+      var showhits = $('<div></div>')
+        .addClass('showhits')
+        .html(Drupal.t('Showing hits for') + ' <em>"' + query + '"</em>');
+      showhits.appendTo(resultstag);
 
-      $('<div></div>').addClass('user_' + v._id + ' ' + evenodd)
-        .append(lft)
-        .append(rgt)
-        .appendTo(resultstag);
+      $.each(data.hits.hits, function (index, v) {
+        var node = v._type == 'node' || v._type == 'study';
+        var entitywrapper = $('<div></div>');
+        entitywrapper.addClass('item');
+        entitywrapper.addClass(v._type);
 
-    }); // each
+        // Retrieving variables from returned object
+        var evenodd = index % 2 ? 'odd' : 'even';
+        var lang = $.uib_search.lang;
+        var user_url = $().getVal(v._source, 'link_' + lang);
 
-    // create pagination
-    var maxpages = 9;
-    var countpages = Math.ceil(data.hits.total / $.uib_search.size);
-    countpages = countpages > maxpages ? maxpages : countpages;
-    if (countpages>1) {
-      // wrapper
-      var wrapper = $('<div></div>')
-        .addClass('pagination-wrapper')
-        .appendTo(resultstag);
+        var link = $().getVal(v._source.generic, 'link');
+        var title = $().getVal(v.highlight, 'generic.title') ?
+          $().getVal(v.highlight, 'generic.title') :
+          $().getVal(v._source.generic, 'title');
+        var excerpt = $().getVal(v.highlight, 'generic.excerpt') ?
+          $().getVal(v.highlight, 'generic.excerpt') :
+          $().getVal(v._source.generic, 'excerpt');
+        var first_name = $().getVal(v.highlight, 'first_name') ?
+          $().getVal(v.highlight, 'first_name') :
+          $().getVal(v._source, 'first_name');
+        var last_name = $().getVal(v.highlight, 'last_name') ?
+          $().getVal(v.highlight, 'last_name') :
+          $().getVal(v._source, 'last_name');
 
-      var prev = $('<a></a>')
-        .addClass('prev')
-        .attr('data-from', 'prev')
-        .text(Drupal.t('Previous'));
-      if ( $.uib_search.from == 0) {
-        prev.addClass('disable');
-      }
-      prev.appendTo(wrapper);
-      for (var i = 0; i < countpages; i++) {
-        var from = i * $.uib_search.size;
-        var link = $('<a></a>')
-        .addClass('resultpage')
-          .attr('data-from', from)
-          .text(i + 1);
-        if (from == $.uib_search.from) {
-          link.addClass('current');
+        var name = $('<a></a>').attr('href', user_url).html(first_name + ' '
+          + last_name);
+
+        var mail = $().getVal(v._source, 'mail');
+        var display_mail = $().getVal(v.highlight, 'mail') ?
+          $().getVal(v.highlight, 'mail') :
+          mail;
+
+        var position = $().getVal(v.highlight, 'position_' + lang) ?
+          $().getVal(v.highlight, 'position_' + lang) :
+          $().getVal(v._source, 'position_' + lang);
+
+        var alt_position = $().getVal(v.highlight, 'alt_position_' + lang) ?
+          $().getVal(v.highlight, 'alt_position_' + lang) :
+          $().getVal(v._source, 'alt_position_' + lang);
+
+          var ou = $().getVal(v.highlight, 'ou_' + lang) ?
+          $().getVal(v.highlight, 'ou_' + lang) :
+          $().getVal(v._source, 'ou_' + lang);
+
+        var phone = $().getVal(v._source, 'phone');
+
+        var displaylink = $('<a></a>')
+          .attr('href', user_url)
+          .text(user_url);
+
+        // building markup
+        var lft = $('<div></div>').addClass('lft')
+          .append(
+            $('<div></div>').addClass('name').append(name)
+          )
+          .append(
+            $('<div></div>').addClass('link').append(displaylink)
+          )
+          .append(
+            $('<div></div>').addClass('ou')
+            .html(
+              ou
+            )
+          )
+          .append(
+            $('<div></div>').addClass('mail').append(
+              $('<a></a>').attr('href', 'mailto:' + mail).html(display_mail)
+            )
+          )
+          .append(
+            $('<div></div>').addClass('phone').text(phone)
+          );
+
+        // Rewrite markup if document type = node
+        if (node) {
+          entitywrapper.addClass('node');
+          entitywrapper.addClass(v._source.w3.type);
+          entitywrapper.addClass(v._source.w3.article_type);
+          displaylink = $('<a></a>')
+            .attr('href', link)
+            .text(link);
+
+          name = $('<a></a>').attr('href', link).html(title);
+          lft = $('<div></div>').addClass('lft')
+            .append(
+              $('<div></div>').addClass('title').append(name)
+            )
+            .append(
+              $('<div></div>').addClass('link').append(displaylink)
+            )
+            .append(
+              $('<div></div>').addClass('excerpt').html(excerpt)
+            );
         }
-        link.appendTo(wrapper);
-      }
-      var next = $('<a></a>')
-        .addClass('next')
-        .attr('data-from', 'next')
-        .text(Drupal.t('Next'));
-      if ( $.uib_search.from == $.uib_search.size * (countpages - 1)) {
-        next.addClass('disable');
-      }
-      next.appendTo(wrapper);
 
-    }
-    else if(data.hits.total>7) {
-      $('<a></a>')
-        .addClass('no_more_results')
-        .attr('href', $.uib_search.fullurl)
-        .text(Drupal.t('No more results for this query. Click to refine your search.'))
-        .appendTo(resultstag);
-      $('.no_more_results').click(function(event){
-        event.preventDefault();
-        $().scroll('form#uib-search-form .search-field').focus();
-      })
-    }
+        // Showing hits for
+        entitywrapper
+          .addClass(evenodd)
+          .append(lft)
+          .appendTo(resultstag);
 
+      }); // each
 
-    $('.pagination-wrapper a').click(function(event){
-      event.preventDefault();
-      $.uib_search.scroll = 'form#uib-search-form .search-field';
-      $.uib_search.select = true;
-      $.uib_search.focus = true;
-      if ($(this).hasClass('disable') || $(this).hasClass('current') ) {
-        return;
-      }
-      switch ($(this).data('from')) {
-        case 'prev':
-          if($.uib_search.from > 0){
-            $.uib_search.from -= $.uib_search.size;
-            $.uib_search.scroll = '.results-bottom-anchor';
-            $.uib_search.select = false;
+      // create pagination
+      var maxpages = 9;
+      var countpages = Math.ceil(data.hits.total / $.uib_search.size);
+      countpages = countpages > maxpages ? maxpages : countpages;
+      if (countpages>1) {
+        // wrapper
+        var wrapper = $('<div></div>')
+          .addClass('pagination-wrapper')
+          .appendTo(resultstag);
+
+        var prev = $('<a></a>')
+          .addClass('prev')
+          .attr('data-from', 'prev')
+          .text(Drupal.t('Previous'));
+        if ( $.uib_search.from == 0) {
+          prev.addClass('disable');
+        }
+        prev.appendTo(wrapper);
+        for (var i = 0; i < countpages; i++) {
+          var from = i * $.uib_search.size;
+          var link = $('<a></a>')
+          .addClass('resultpage')
+            .attr('data-from', from)
+            .text(i + 1);
+          if (from == $.uib_search.from) {
+            link.addClass('current');
           }
-        break;
-        case 'next':
-          $.uib_search.from += $.uib_search.size;
-        break;
-        default:
-          $.uib_search.from = $(this).data('from');
-        break;
+          link.appendTo(wrapper);
+        }
+        var next = $('<a></a>')
+          .addClass('next')
+          .attr('data-from', 'next')
+          .text(Drupal.t('Next'));
+        if ( $.uib_search.from == $.uib_search.size * (countpages - 1)) {
+          next.addClass('disable');
+        }
+        next.appendTo(wrapper);
+
       }
-      var postdata = $().createQuery($.uib_search.currentquery);
-      $().executeQuery(postdata);
+      else if(data.hits.total>7) {
+        $('<a></a>')
+          .addClass('no_more_results')
+          .attr('href', $.uib_search.fullurl)
+          .text(Drupal.t('No more results for this query. Click to refine your search.'))
+          .appendTo(resultstag);
+        $('.no_more_results').click(function(event){
+          event.preventDefault();
+          $().scroll('form#uib-search-form .search-field').focus();
+        })
+      }
 
-    });
 
-    if ($.uib_search.scroll) {
-      $().scroll($.uib_search.scroll);
-    }
-    if ($.uib_search.select) {
-      $('form#uib-search-form .search-field').select();
-    }
-    if ($.uib_search.focus) {
-      $('form#uib-search-form .search-field').focus();
-    }
+      $('.pagination-wrapper a').click(function(event){
+        event.preventDefault();
+        $.uib_search.scroll = 'form#uib-search-form .search-field';
+        $.uib_search.select = true;
+        $.uib_search.focus = true;
+        if ($(this).hasClass('disable') || $(this).hasClass('current') ) {
+          return;
+        }
+        switch ($(this).data('from')) {
+          case 'prev':
+            if($.uib_search.from > 0){
+              $.uib_search.from -= $.uib_search.size;
+              $.uib_search.scroll = '.results-bottom-anchor';
+              $.uib_search.select = false;
+            }
+          break;
+          case 'next':
+            $.uib_search.from += $.uib_search.size;
+          break;
+          default:
+            $.uib_search.from = $(this).data('from');
+          break;
+        }
+        var postdata = $().createQuery($.uib_search.currentquery);
+        $().executeQuery(postdata, $.uib_search.currentquery);
+
+      });
+
+      if ($.uib_search.scroll) {
+        $().scroll($.uib_search.scroll);
+      }
+      if ($.uib_search.select) {
+        $('form#uib-search-form .search-field').select();
+      }
+      if ($.uib_search.focus) {
+        $('form#uib-search-form .search-field').focus();
+      }
+    };
   };
 
   /**
@@ -476,7 +493,7 @@
         $.uib_search.focus = false;
         $.uib_search.select = false;
         var postdata = $().createQuery(query);
-        $().executeQuery(postdata);
+        $().executeQuery(postdata, query);
       });
     }
   });
