@@ -128,7 +128,7 @@ function uib_message__msg() {
       $result = db_query(
         "SELECT node.nid, area.field_uib_message_area_target_id AS aid
            FROM {node}, {field_data_field_uib_message_area} AS area, {taxonomy_term_data} AS tax, {field_data_field_uib_message_tag} AS tag
-          WHERE (tax.tid = tag.field_uib_message_tag_target_id AND tag.entity_id=node.nid) AND node.type='uib_message' AND node.nid=area.entity_id AND ((area.field_uib_message_area_target_id IN (:area_it,:area_eia) AND tax.name='Drift/Operations') OR area.field_uib_message_area_target_id IN (:areas))
+          WHERE status=1 AND (tax.tid = tag.field_uib_message_tag_target_id AND tag.entity_id=node.nid) AND node.type='uib_message' AND node.nid=area.entity_id AND ((area.field_uib_message_area_target_id IN (:area_it,:area_eia) AND tax.name='Drift/Operations') OR area.field_uib_message_area_target_id IN (:areas))
        ORDER BY node.created DESC
           LIMIT :limit OFFSET :offset",
         array(
