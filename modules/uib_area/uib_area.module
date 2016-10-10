@@ -284,7 +284,7 @@ function uib_area_block_view($delta='') {
           continue;
         }
         $feed = uib_feed__jobbnorge_url($place->field_uib_jobbnorge_id['und'][0]['value'], $area->language);
-        $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_feed__format_pre_render'), array('uib_area__feed_format_post_render'));
+        $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_feed__format_pre_render'), array('uib_area__jobbnorge_format_post_render', 'uib_area__feed_format_post_render'));
       }
     break;
     case 'feed':
@@ -625,6 +625,23 @@ function uib_area__feed_format_post_render($markup) {
     $markup = preg_replace('/<h2>/', '<h2><span></span>', $markup, 1);
     $markup = '<div class="blue-block">' . $markup . '</div>';
   }
+  return $markup;
+}
+
+function uib_area__jobbnorge_format_post_render($markup) {
+  global $language;
+  if ($markup && strpos($markup, 'h3') === FALSE) {
+    $markup = '<div id="block-uib-area-jobbnorge" class="block block-uib-area">';
+    $markup .= '<div class="content"><div class="item-list">';
+    $markup .= '<h2>' . t('Open positions') . '</h2>';
+    $markup .= '<p>' . t('There are no open positions for this unit at the moment.') . '</p>';
+    $markup .= '</div></div></div>';
+  }
+  $all_vacant_positions_text = t("See all open positions at UiB");
+  if ($language->language == 'en') $all_vacant_positions_link = l($all_vacant_positions_text, 'node/84777');
+  else $all_vacant_positions_link = l($all_vacant_positions_text, 'node/84775');
+  $markup = substr(trim($markup), 0, -6);
+  $markup .= '<div class="uib-all-vacancies">' . $all_vacant_positions_link . '</div></div>';
   return $markup;
 }
 
