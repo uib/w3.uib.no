@@ -1,7 +1,6 @@
 jQuery( document ).ready(function ($) {
   var language = $('html').attr('lang');
   if (Drupal.settings.user) {
-    console.log(Drupal.settings.user);
     getMessages(Drupal.settings.user, language, false);
   }
   else {
@@ -62,7 +61,6 @@ jQuery( document ).ready(function ($) {
     }
   }
   function getMessages(user, language, dp) {
-    console.log(user);
     var json = "/api/msg?user=" + user + "&limit=12&language="+language;
     $.getJSON(json, function(result){
       $("#messages-block-content").text("");
@@ -75,24 +73,16 @@ jQuery( document ).ready(function ($) {
         var lastVisit = getCookie('uib-messages-last-visit');
         var newMessages = 0;
         var addToOutput = false;
+        var offset = 0;
         for (var i in json_obj) {
           var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
           if (lapsed < 1000*60*60*24*7) {
-            if (addToOutput) addToOutput += "<li>";
-            else addToOutput = "<li>";
-            addToOutput +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
-                   + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
-            if(json_obj[i].link) {
-              addToOutput += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
-            }
-            addToOutput += "<div class='message-area'><a href='"
-                    + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
-                    + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
-            addToOutput += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
-            addToOutput += "</li>";
+            if (addToOutput) addToOutput += messageMarkup(i, json_obj, language);
+            else addToOutput = messageMarkup(i, json_obj, language);
             if (Drupal.checkPlain(json_obj[i].posted_time)*1000 > lastVisit) {
               newMessages++;
             }
+            offset++;
           }
         }
         if (addToOutput) {
@@ -108,6 +98,7 @@ jQuery( document ).ready(function ($) {
           output += "<a class='uib-feide-loggedin'>" + Drupal.t('Log out') + "</a>";
           output += "</div>";
         }
+        output += "<div class='message-archive'>" + Drupal.t('Show older messages') + "</div>";
         output += "</div>";
         output += "</div>";
         $("#messages-block-content").append(output);
@@ -119,6 +110,9 @@ jQuery( document ).ready(function ($) {
           document.cookie = "uib-messages-logged-in=0; expires=-1"
           window.location.assign(location.origin + location.pathname);
         });
+        $(".message-archive").click(function() {
+          showArchive(user, language, offset);
+        });
         if(!getCookie("uib-messages-logged-in") || getCookie("uib-messages-logged-in") == 0) {
           document.cookie = "uib-messages-logged-in=1";
         }
@@ -126,6 +120,24 @@ jQuery( document ).ready(function ($) {
           toggleMessageBox(newMessages);
         }
       });
+    });
+  }
+  function showArchive(user, language, offset) {
+    var json = "/api/msg?user=" + user + "&offset=" + offset +"&language="+language;
+    $.getJSON(json, function(result){
+      var markup = '';
+      $.each(result, function(i, field){
+        for (var i in field) {
+          markup += messageMarkup(i, field, language);
+        }
+      });
+        $('.message-archive').remove();
+      if (markup) {
+        $('.uib-collapsible-content ul').append(markup);
+      }
+      else {
+        $('.uib-collapsible-content').append('<p class="no-older-messages">' + Drupal.t('No older messages') + '</p>');
+      }
     });
   }
 });
@@ -139,6 +151,21 @@ function getCookie(name) {
 function arealink(area,language,tag) {
   var msg = (language == 'en') ? 'messages' : 'meldinger';
   return area + "/" + msg + "?tag="+tag;
+}
+
+function messageMarkup(i, json_obj, language) {
+  var markup = "<li>";
+  markup +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
+         + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
+  if(json_obj[i].link) {
+    markup += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
+  }
+  markup += "<div class='message-area'><a href='"
+          + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
+          + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
+  markup += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
+  markup += "</li>";
+  return markup;
 }
 
 function removeToken() {
