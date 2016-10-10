@@ -1,108 +1,53 @@
 jQuery( document ).ready(function ($) {
   var language = $('html').attr('lang');
-  var jso = new JSO({
-    providerID: "dataporten",
-    client_id: getClientID(),
-    authorization: "https://auth.dataporten.no/oauth/authorization",
-    default_lifetime: false,
-    redirect_uri: window.location.href
-  });
-  jso.callback();
-  JSO.enablejQuery($);
-  if (jso.checkToken()) {
-    jso.ajax({
-      url: "https://auth.dataporten.no/userinfo",
-      datatype: 'json',
-      success: function(data) {
-        removeToken();
-        var feideUser = data.user.userid_sec;
-        var user = feideUser[0].split(":")[1].split("@")[0];
-        var json = "/api/msg?user=" + user + "&limit=12&language="+language;
-        $.getJSON(json, function(result){
-          $("#messages-block-content").text("");
-          $.each(result, function(i, field){
-            var json_obj = field;
-            var output = "<div class='uib-collapsible-container'>";
-            output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Hide messages') + "</h2>";
-            output += "<div class='uib-collapsible-content'>";
-            var now = new Date();
-            var lastVisit = getCookie('uib-messages-last-visit');
-            var newMessages = 0;
-            var addToOutput = false;
-            for (var i in json_obj) {
-              var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
-              if (lapsed < 1000*60*60*24*7) {
-                if (addToOutput) addToOutput += "<li>";
-                else addToOutput = "<li>";
-                addToOutput +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
-                       + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
-                if(json_obj[i].link) {
-                  addToOutput += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
-                }
-                addToOutput += "<div class='message-area'><a href='"
-                        + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
-                        + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
-                addToOutput += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
-                addToOutput += "</li>";
-                if (Drupal.checkPlain(json_obj[i].posted_time)*1000 > lastVisit) {
-                  newMessages++;
-                }
-              }
-            }
-            if (addToOutput) {
-              output += "<ul>"
-              output += addToOutput;
-              output += "</ul>";
-            }
-            else {
-              output += "<p class='uib-no-messages'>" + Drupal.t('No new messages.') + "</p>";
-            }
-            output += "<div class='uib-feide-logout'>";
-            output += "<a class='uib-feide-loggedin'>" + Drupal.t('Log out') + "</a>";
-            output += "</div>";
-            output += "</div>";
-            output += "</div>";
-            $("#messages-block-content").append(output);
-            $(".uib-collapsible-handle").click(function(event){
-              toggleMessageBox(0);
-            });
-            $(".uib-feide-loggedin").click(function() {
-              jso.wipeTokens();
-              document.cookie = "uib-messages-logged-in=0; expires=-1"
-              window.location.assign(location.origin + location.pathname);
-            });
-            if(!getCookie("uib-messages-logged-in") || getCookie("uib-messages-logged-in") == 0) {
-              document.cookie = "uib-messages-logged-in=1";
-            }
-            else {
-              toggleMessageBox(newMessages);
-            }
-          });
-        });
-      }
-    });
+  if (Drupal.settings.user) {
+    console.log(Drupal.settings.user);
+    getMessages(Drupal.settings.user, language, false);
   }
   else {
-    $("#messages-block-content").text("");
-    var output = "<div class='uib-collapsible-container'>";
-    output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Messages') + "</h2>";
-    output += "<div class='uib-collapsible-content'>"
-    output += "<div class='uib-message-login'>";
-    output += "<div class='uib-feide-login'>";
-    output += Drupal.t('Log in');
-    output += "</div>";
-    output += "<p class='uib-message-login-description'>";
-    output += Drupal.t('You will be redirected to a log in page. Choose University of Bergen and log in with your UiB username and password.');
-    output += "</p>";
-    output += "</div>";
-    output += "</div>"
-    $("#messages-block-content").append(output);
-    $(".uib-feide-login").click(function() {
+    var jso = new JSO({
+      providerID: "dataporten",
+      client_id: getClientID(),
+      authorization: "https://auth.dataporten.no/oauth/authorization",
+      default_lifetime: false,
+      redirect_uri: window.location.href
+    });
+    jso.callback();
+    JSO.enablejQuery($);
+    if (jso.checkToken()) {
       jso.ajax({
         url: "https://auth.dataporten.no/userinfo",
         datatype: 'json',
+        success: function(data) {
+          removeToken();
+          var feideUser = data.user.userid_sec;
+          var user = feideUser[0].split(":")[1].split("@")[0];
+          getMessages(user, language, true);
+        }
       });
-    });
+    }
+    else {
+      $("#messages-block-content").text("");
+      var output = "<div class='uib-collapsible-container'>";
+      output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Messages') + "</h2>";
+      output += "<div class='uib-collapsible-content'>"
+      output += "<div class='uib-message-login'>";
+      output += "<div class='uib-feide-login'>";
+      output += Drupal.t('Log in');
+      output += "</div>";
+      output += "<p class='uib-message-login-description'>";
+      output += Drupal.t('You will be redirected to a log in page. Choose University of Bergen and log in with your UiB username and password.');
+      output += "</p>";
+      output += "</div>";
+      output += "</div>"
+      $("#messages-block-content").append(output);
+      $(".uib-feide-login").click(function() {
+        jso.ajax({
+          url: "https://auth.dataporten.no/userinfo",
+          datatype: 'json',
+        });
+      });
+    }
   }
   function toggleMessageBox(newMessages) {
     $(".uib-collapsible-content").toggle();
@@ -115,6 +60,73 @@ jQuery( document ).ready(function ($) {
     if (newMessages) {
       $(".uib-collapsible-handle").append(' <span class="new-messages-count">(' + newMessages + ' ' + Drupal.t('new') + ')</span>');
     }
+  }
+  function getMessages(user, language, dp) {
+    console.log(user);
+    var json = "/api/msg?user=" + user + "&limit=12&language="+language;
+    $.getJSON(json, function(result){
+      $("#messages-block-content").text("");
+      $.each(result, function(i, field){
+        var json_obj = field;
+        var output = "<div class='uib-collapsible-container'>";
+        output += "<h2 class='uib-collapsible-handle open'>" + Drupal.t('Hide messages') + "</h2>";
+        output += "<div class='uib-collapsible-content'>";
+        var now = new Date();
+        var lastVisit = getCookie('uib-messages-last-visit');
+        var newMessages = 0;
+        var addToOutput = false;
+        for (var i in json_obj) {
+          var lapsed = now.getTime() - Drupal.checkPlain(json_obj[i].posted_time)*1000;
+          if (lapsed < 1000*60*60*24*7) {
+            if (addToOutput) addToOutput += "<li>";
+            else addToOutput = "<li>";
+            addToOutput +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
+                   + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
+            if(json_obj[i].link) {
+              addToOutput += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
+            }
+            addToOutput += "<div class='message-area'><a href='"
+                    + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
+                    + Drupal.checkPlain(json_obj[i].area) + "</a></div>";
+            addToOutput += "<div class='message-age'>" + timeSince(json_obj[i].posted_time) + "</div>";
+            addToOutput += "</li>";
+            if (Drupal.checkPlain(json_obj[i].posted_time)*1000 > lastVisit) {
+              newMessages++;
+            }
+          }
+        }
+        if (addToOutput) {
+          output += "<ul>"
+          output += addToOutput;
+          output += "</ul>";
+        }
+        else {
+          output += "<p class='uib-no-messages'>" + Drupal.t('No new messages.') + "</p>";
+        }
+        if (dp) {
+          output += "<div class='uib-feide-logout'>";
+          output += "<a class='uib-feide-loggedin'>" + Drupal.t('Log out') + "</a>";
+          output += "</div>";
+        }
+        output += "</div>";
+        output += "</div>";
+        $("#messages-block-content").append(output);
+        $(".uib-collapsible-handle").click(function(event){
+          toggleMessageBox(0);
+        });
+        $(".uib-feide-loggedin").click(function() {
+          jso.wipeTokens();
+          document.cookie = "uib-messages-logged-in=0; expires=-1"
+          window.location.assign(location.origin + location.pathname);
+        });
+        if(!getCookie("uib-messages-logged-in") || getCookie("uib-messages-logged-in") == 0) {
+          document.cookie = "uib-messages-logged-in=1";
+        }
+        else {
+          toggleMessageBox(newMessages);
+        }
+      });
+    });
   }
 });
 
