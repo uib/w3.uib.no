@@ -482,6 +482,9 @@
         ) {
           return;
         }
+        $(".global-search").submit(function(e){
+          return false;
+        });
         var query = $(e.target).val().trim();
         if (query.length == 0) {
           $('.results').html('');
