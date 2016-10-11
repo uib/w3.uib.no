@@ -132,11 +132,16 @@ jQuery( document ).ready(function ($) {
         }
       });
         $('.message-archive').remove();
-      if (markup) {
+      if (markup && $('.uib-collapsible-content ul').length) {
+        $('.uib-collapsible-content ul').append(markup);
+      }
+      else if (markup) {
+        $('.uib-collapsible-content .uib-no-messages').remove();
+        $('.uib-collapsible-content').append('<ul></ul>');
         $('.uib-collapsible-content ul').append(markup);
       }
       else {
-        $('.uib-collapsible-content').append('<p class="no-older-messages">' + Drupal.t('No older messages') + '</p>');
+        $('.uib-collapsible-content').append('<p class="uib-no-messages">' + Drupal.t('No messages') + '</p>');
       }
     });
   }
