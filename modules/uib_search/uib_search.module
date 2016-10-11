@@ -259,7 +259,7 @@ function uib_search__form(){
 
 function uib_search__noscript_form(){
   global $language;
-  $action=$GLOBALS['base_path'] . $language->language . "/search";
+  $action = 'https://www.google.com/search';
   $form=array(
     '#type' => 'form',
     '#name' => 'noscriptform',
@@ -274,14 +274,11 @@ function uib_search__noscript_form(){
       . t("Search") . '" />',
     ),
     'noscript' => array(
-      '#prefix' => '<noscript>',
-      '#suffix' => '</noscript>',
-      'qq' => array(
-        '#type' => 'textfield',
+      'site' => array(
+        '#type' => 'hidden',
         '#attributes' => array(
-          'class' => array('search-field'),
-          'value' => check_plain(@$_GET['qq']),
-              'name' => 'qq',
+          'name' => 'as_sitesearch',
+          'value' => 'uib.no',
         ),
       ),
     ),
@@ -310,7 +307,7 @@ function uib_search__form_old($delta = 'global-searchform'){
         '#type' => 'form',
         '#name' => 'noscriptform',
         '#id' => 'uib-search-noscript-form',
-        '#action' => $action,
+        '#action' => 'https://www.google.com/search',
         '#method' => "get",
         '#attributes' => array(
           'name' => 'noscriptform',
@@ -320,14 +317,11 @@ function uib_search__form_old($delta = 'global-searchform'){
           . t("Search") . '" />',
         ),
         'noscript' => array(
-          '#prefix' => '<noscript>',
-          '#suffix' => '</noscript>',
-          'qq' => array(
-            '#type' => 'textfield',
+          'site' => array(
+            '#type' => 'hidden',
             '#attributes' => array(
-              'class' => array('search-field'),
-              'value' => check_plain(@$_GET['qq']),
-                  'name' => 'qq',
+              'name' => 'as_sitesearch',
+              'value' => 'uib.no',
             ),
           ),
         ),
