@@ -490,43 +490,6 @@ function uib_search_node_delete($node) {
 }
 
 /**
- * Helper function to retrieve raw value / commaseparated string of values
- * from a drupal array. The array typically has the form
- * [
- *   0 => [
- *          'value' => 'whatevervalue',
- *        ],
- *   1 => [
- *          'value' => 'someothervalue',
- *        ],
- *   ...
- * ]
- *
- * Parameters
- * $array - The array to process
- * $field - optional parameter where the actual value is contained in another
- * index than 'value'
- * $asString - optional parameter. If set to false, values are returned as a
- * flat array instead of an imploded string
- * $delimiter - optional parameter used as glue for imploding the results.
- */
-function uib_search__field_array_as_string(
-  $array,
-  $field = 'value',
-  $asString = TRUE,
-  $delimiter = ', '
-)
-{
-  if (!$array) return null;
-  $retval = array();
-  foreach ($array as $key => $value) {
-    $retval[] = $value[$field];
-  }
-  if ($asString) return implode($delimiter, $retval);
-  return $retval;
-}
-
-/**
  * Execute a drupal http request against the currently set elastic search
  * engine, providing authentication. Returns the same object returned by
  * drupal_http_request().
@@ -622,27 +585,26 @@ function uib_search__get_setup($name, $admin = FALSE) {
 /**
  * Get object to store in the elastic index for the given user
  */
-function uib_search__get_elastic_user_array($account) {
-  $mVal = 'uib_search__field_array_as_string';
+function uib_search__get_elastic_user_array($wrapped_entity) {
 
   //General fields
   $output = @array(
-    'name' => $account->name,
-    'mail' => $account->mail,
-    'uid' => $account->uid,
-    'first_name' => $account->field_uib_first_name['und'][0]['value'] ?:
-      $account->field_uib_user_alt_firstname['und'][0]['value'],
-    'last_name' => $account->field_uib_last_name['und'][0]['value'] ?:
-      $account->field_uib_user_alt_lastname['und'][0]['value'],
-    'phone' => $mVal($account->field_uib_phone['und']),
-    'social_media' => $mVal($account->field_uib_user_social_media['und']),
-    'slug' => $mVal(field_get_items('user', $account, 'field_uib_slug')),
+    'name' => $wrapped_entity->name->value(),
+    'mail' => $wrapped_entity->mail->value(),
+    'uid' => $wrapped_entity->uid->value(),
+    'first_name' => $wrapped_entity->field_uib_first_name->value() ?:
+      $wrapped_entity->field_uib_user_alt_firstname->value(),
+    'last_name' => $wrapped_entity->field_uib_last_name->value() ?:
+      $wrapped_entity->field_uib_user_alt_lastname->value(),
+    'phone' => implode(', ', $wrapped_entity->field_uib_phone->value()),
+    'social_media' => implode(', ', $wrapped_entity->field_uib_user_social_media->value()),
+    'slug' => $wrapped_entity->field_uib_slug->value(),
   );
   // User picture TODO takes too long in stage_file_proxy setups
-  if (0 && @$account->picture->uri) {
+  if (0 && @$wrapped_entity->picture->uri) {
     $output['picture'] = image_style_url(
       'user_thumbnail',
-      $account->picture->uri
+      $wrapped_entity->picture->uri
     );
   }
 
@@ -653,75 +615,51 @@ function uib_search__get_elastic_user_array($account) {
   $languages = language_list();
   foreach ($languages as $language) {
     $lang = "_{$language->language}";
+    $wrapped_entity->language($language->language);
     // Resolving area from OU
-    $ou = @$account->field_uib_user_ou['und'][0]['target_id'];
+    $ou = $wrapped_entity->field_uib_user_ou->getIdentifier();
     $area = uib_user__ou_area($ou, $output['uid'], $language->language);
     if ($area) {
-      $area = node_load($area);
-      $output['ou' . $lang] = $area->title;
+      $area = entity_metadata_wrapper(
+        'node',
+        $area,
+        array('langcode', $language->language)
+      );
+      $output['ou' . $lang] = $area->title->value();
     }
-    else {
-      $area = node_load($ou);
+    else if ($ou) {
+      $area = entity_metadata_wrapper(
+        'node',
+        $ou,
+        array('langcode', $language->language)
+      );
       if ($area) {
-        $output['ou' . $lang] = $mVal(
-          field_get_items(
-            'node',
-            $area,
-            'field_uib_ou_title',
-            $language->language
-          )
-        );
+        $output['ou' . $lang] = uib_search__null_if_empty(implode(
+          ', ',
+          (array)$area->field_uib_ou_title->value()
+        ));
       }
     }
-
     //position
-    $output['position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_position',
-        $language->language
-      )
-    );
+    $output['position' . $lang] =
+      uib_search__null_if_empty($wrapped_entity->field_uib_position->value());
     //alt position
-    $output['alt_position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_alt_position',
-        $language->language
-      )
-    );
-    //alt position
-    $output['alt_position' . $lang] = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_alt_position',
-        $language->language
-      )
-    );
+    $output['alt_position' . $lang] = uib_search__null_if_empty(implode(
+      ', ',
+      (array)$wrapped_entity->field_uib_user_alt_position->value()
+    ));
 
-    // Resolving competence from taxonomi
-    $competence = $mVal(
-      field_get_items(
-        'user',
-        $account,
-        'field_uib_user_competence',
-        $language->language
-      ),
-      'tid',
-      FALSE
-    );
+    $competence = $wrapped_entity->field_uib_user_competence->value();
     if (is_array($competence)) {
       foreach ($competence as &$v) {
-        $v = taxonomy_term_load($v)->name;
+        $v = $v->name;
       }
     }
     $output['competence' . $lang] = implode((array)$competence, ', ');
+
     $url = preg_replace(
-      '/https?:\/\/w3\.uib\.no\/?/',
-      'http://www.uib.no/',
+      '/http(s?):\/\/w3\.uib\.no\/?/',
+      'http\1://www.uib.no/',
       url('user/' . $output['uid'],
       array(
         'absolute' => TRUE,
@@ -851,8 +789,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
 
   // Handling users
   if ($type == 'user') {
-    $account = user_load($wrapped_entity->getIdentifier());
-    return uib_search__get_elastic_user_array($account);
+    return uib_search__get_elastic_user_array($wrapped_entity);
   }
   else if ($type != 'node') {
     uibx_log("Handler for entity of type {$type} not implemented", 'warning');
