@@ -575,11 +575,18 @@ function uib_content_list_node_validate($node, $form, &$form_state) {
     }
     if (!empty($form_state['values']['field_uib_step']['und'])) {
       $step = $form_state['values']['field_uib_step']['und'];
+      $error = array();
       foreach ($step as $k => $s) {
         if (is_numeric($k)) {
           if (empty($s['field_uib_step_content']['und'][0]['target_id']) && !empty($s['field_uib_title']['und'][0]['value'])) {
-            form_set_error(t('Make sure all step content are correct (should read Node title (Node ID))'));
+            $error[] = $k+1;
           }
+        }
+      }
+      if (($error)) {
+        foreach ($error as $e) {
+          $errormessage = t('Your step content in step @e is not a valid node.', array('@e' => $e));
+          form_set_error('field_uib_step[und][' . $e , $errormessage);
         }
       }
     }
