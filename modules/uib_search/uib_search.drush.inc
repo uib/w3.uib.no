@@ -320,10 +320,7 @@ function drush_uib_search_index($type = 'user') {
     $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
       . '"_type" : "' . $type
       . '", "_id" : "' . $value->$id_key . '" } }'."\n";
-    $entity = entity_metadata_wrapper(
-      $ntype,
-      current(entity_load($ntype, array($value->$id_key)))
-    );
+    $entity = entity_metadata_wrapper($ntype, $value->$id_key);
     $nodearray = uib_search__get_elastic_entity_array($entity);
     $sarr = uib_search__get_elastic_study_array($entity);
     if($sarr && count($sarr)) {
