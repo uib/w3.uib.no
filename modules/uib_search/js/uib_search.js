@@ -252,9 +252,12 @@
         var user_url = $().getVal(v._source, 'link_' + lang);
 
         var link = $().getVal(v._source.generic, 'link');
+        var study_code = $().getVal(v._source.w3, 'study_code') ?
+        $().getVal(v._source.w3, 'study_code') + ' / ': '';
         var title = $().getVal(v.highlight, 'generic.title') ?
           $().getVal(v.highlight, 'generic.title') :
           $().getVal(v._source.generic, 'title');
+        title = study_code + title;
         var excerpt = $().getVal(v.highlight, 'generic.excerpt') ?
           $().getVal(v.highlight, 'generic.excerpt') :
           $().getVal(v._source.generic, 'excerpt');
