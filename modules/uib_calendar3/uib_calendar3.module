@@ -110,7 +110,7 @@ function uib_calendar3_block_view($delta) {
         $time_from_to .= '–' . check_plain($time2);
       }
       $eventdate = format_date(strtotime($value->field_uib_date_value . 'Z'),
-        'custom', 'd.M.Y' );
+        'custom', 'd.m.Y' );
       $allowed_values = field_info_field('field_uib_event_type');
       $allowed_values = $allowed_values['settings']['allowed_values'];
       $type=$value->field_uib_event_type_value;

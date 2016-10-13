@@ -804,7 +804,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
     if ($variables['type'] == 'uib_article') {
       $variables['content']['field_uib_date']['#label_display'] = 'hidden';
-      $variables['content']['field_uib_date'][0]['#markup'] = str_replace(array('to', 'til'), '–', $variables['content']['field_uib_date'][0]['#markup']);
+      $variables['content']['field_uib_date'][0]['#markup'] = str_replace(array(' to ', ' til '), '–', $variables['content']['field_uib_date'][0]['#markup']);
       $variables['content']['field_uib_registration_link']['#label_display'] = 'hidden';
       $variables['content']['field_uib_location']['#label_display'] = 'hidden';
       $variables['content']['field_uib_event_type']['#label_display'] = 'hidden';
