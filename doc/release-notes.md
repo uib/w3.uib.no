@@ -1,3 +1,14 @@
+# Release 56 _2016-10-13_
+
+I denne versjonen har fokuset vært på ferdigstillingen av nytt søk samt lokal meldigstjeneste. I tillegg har det blitt gjort noen forbedringer og retting av feil.
+
+- Endret visning av ledige stillinger på områdeforsider. Overskriften "Ledige stilling" vil nå alltid vises. I de tilfellene det ikke finnes utlyste stillinger, vil en bli gjort oppmerksom på det. Lenke til samtlige ledige stillinger ved UiB er lagt til. #15697	
+- Tankestrek er nå brukt for å angi tidsrom i kalenderoppføringer #16255
+- Rettet feil i forbindelse med sletting av innholdslister i webdesken #16344
+- Tilrettelegging for visning av interne stillingsutlysninger #16487
+- Saker knyttet til ny søkefunksjon #16235 #16428 #16339 #16440 #16443 #16480 #16495 #16497 #16531
+- Saker knyttet til ny meldingstjeneste #16297 #16320 #16398
+
 # Release 55 _2016-09-29_
 
 I denne releasen har fokuset fortsatt vært på ferdigstilling av lokal meldingstjeneste
