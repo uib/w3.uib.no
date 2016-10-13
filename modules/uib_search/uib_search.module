@@ -852,11 +852,13 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'study_title',
     'search_description',
     'search_manual_boost',
+    'published_timestamp',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
 
   $field_prefix = 'field_uib';
   $output = array();
+  $output['published_timestamp'] = $wrapped_entity->created->value();
   foreach ($wrapped_entity as $k => $v){
     $key = str_replace($field_prefix . '_', '', $k);
     if (!in_array($key, $usefields)) {
@@ -899,6 +901,11 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
           "{$type}/{$wrapped_entity->getIdentifier()}",
           $options
         );
+        break;
+      case 'published_timestamp':
+        if (uib_search__null_if_empty($v->value())) {
+          $output[$key] = uib_search__null_if_empty($v->value());
+        }
         break;
       default:
         $output[$key] = uib_search__null_if_empty($v->value());
