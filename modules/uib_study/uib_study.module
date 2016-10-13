@@ -844,7 +844,6 @@ function uib_study_block_view($delta = '') {
           if (substr($duration, -2) == ',0')
             $duration = substr($duration, 0, -2);
           $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
-          $items[] = uib_study__get_study_facts_markup(t('Study programme code'), $data['studieprogramkode']);
           $seats_info = $data['infocategory'] == 'bachelorprogram' ? 'B_RE_PLASS' : 'M_RE_PLASS';
           $seats = uib_study__extract_study_info($data_2, $seats_info);
           if ($seats) {
@@ -859,6 +858,11 @@ function uib_study_block_view($delta = '') {
           $sprak = uib_study__extract_study_info($data_2, $sprak_info);
           if ($sprak) {
             $items[] = uib_study__get_study_facts_markup(t('Language'), uib_study__text_markup($sprak, $is_course, TRUE));
+          }
+          if (uib_study__has_study_plan($data_2)) {
+            $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
+            $items[] = uib_study__get_study_facts_markup(t('Study plan'), l(t('See study plan'), drupal_get_path_alias($study_path) . '/plan'));
+
           }
         }
         elseif ($type == 'exchange') {

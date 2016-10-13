@@ -556,7 +556,6 @@ EOD;
         ));
         $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 4);
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
-        $variables['page']['content_bottom']['study_plan'] = __uib_w3__render_block('uib_study', 'study_plan', 20);
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
           'weight' => 0,
@@ -727,8 +726,8 @@ EOD;
     'uib_area_colophon_logos',
     'uib_study_study_related',
     'uib_study_study_facts_2',
-    'uib_study_study_contact',
     'uib_study_study_plan',
+    'uib_study_study_contact',
     'uib_study_study_semester_toggle',
     'uib_study_study_testimonial',
     'uib_study_study_evu',
