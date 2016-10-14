@@ -15,22 +15,3 @@ fi
 set -x
 echo "Pre upgrade"
 date +%FT%T
-
-# make sure elasticsearch read-settings are correct:
-bin/site-drush ev '
-$names = array("user", "password", "url", "index");
-$setup = array("index1" => array());
-foreach ($names as $v) {
-  $setup ["index1"][$v] = variable_get("uib_elasticsearch_" . $v);
-}
-variable_set("uib_elasticsearch", $setup);
-'
-
-# Set elasticsearch to use index1 from configuration
-bin/site-drush vset uib_elasticsearch_useindex index1
-
-# Set elasticsearch admin to use index2 from configuration
-bin/site-drush vset uib_elasticsearch_useindex_admin index2
-
-bin/site-drush ev 'variable_set("uib_search_nodetype_noindex",
-  array("uib_views_page","uib_ou","uib_message","uib_content_list","uib_external_content"));'
