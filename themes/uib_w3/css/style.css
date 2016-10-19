@@ -4902,9 +4902,17 @@ nav {
   font-weight: bold; }
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) a {
   color: #00769e; }
+#block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib_exchange_agreements h4 {
+  margin: 0; }
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib_exchange_agreements ul {
   list-style: none;
   padding: 0; }
+#block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib_exchange_agreements h4 + ul {
+  margin-bottom: 1.25rem; }
+  #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib_exchange_agreements h4 + ul li {
+    margin-bottom: 0.625rem; }
+#block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib_exchange_agreements a {
+  font-weight: normal; }
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib-study-construction caption {
   font-size: 1.5rem;
   background: #d5d5d5; }
