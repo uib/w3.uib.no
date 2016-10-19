@@ -42,9 +42,9 @@ function drush_uib_study_uib_sync_fs() {
     'BILATERAL',
     'NORDPLUS',
   );
-$study_count = 0;
 
   // let's process these then
+  $study_count = 0;
   foreach ($ou_id as $nid => $oid) {
     $o1 = substr($oid, 0, 2);
     $o2 = substr($oid, 2, 2);
