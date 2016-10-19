@@ -17,7 +17,7 @@ fi
 
 # The rest is stuff that should only happen for the given release
 
-REL=53
+REL=57
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -26,5 +26,4 @@ fi
 
 set -x
 
-bin/site-drush php-script area-aliases.php
-bin/site-drush image-flush full_width_image_mobile_1x
+bin/site-drush uib-sync-fs --verbose

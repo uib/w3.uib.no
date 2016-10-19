@@ -87,7 +87,11 @@ function drush_uib_study_uib_sync_fs() {
       }
       if (!empty($data['utvekslingsavtaler'])) {
         foreach ($data['utvekslingsavtaler'] as $avtale) {
-          if (in_array($avtale['category'], $exchange_agreement_categories) && in_array('STUDENT', $avtale['category_persons'])) {
+          if ((in_array($avtale['category'], $exchange_agreement_categories) &&
+               in_array('STUDENT', $avtale['category_persons']))
+             ||
+             in_array($avtale['category'], array('MOU', 'FORSKNINGSAVTALE'))
+          ) {
             $study_count++;
             $missing_refs = uib_study__update_study('exchange', $avtale, $nid, $studies_all);
             if ($missing_refs) {
@@ -151,6 +155,7 @@ function drush_uib_study_uib_sync_fs() {
 }
 
 function uib_study__update_study($type, $study, $ou_nid, &$existing) {
+  $category = isset($study['category']) ? drupal_strtolower($study['category']) : FALSE;
   if ($type == 'course') {
     $no_path_prefix = 'emne';
     $en_path_prefix = 'course';
@@ -160,8 +165,14 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $en_path_prefix = 'studyprogramme';
   }
   elseif ($type == 'exchange') {
-    $no_path_prefix = 'utvekslingsavtale';
-    $en_path_prefix = 'exchange-agreement';
+    if ($category == 'mou' || $category == 'forskningsavtale') {
+      $no_path_prefix = 'forskningsavtale';
+      $en_path_prefix = 'research-agreement';
+    }
+    else {
+      $no_path_prefix = 'utvekslingsavtale';
+      $en_path_prefix = 'exchange-agreement';
+    }
   }
 
   $admin_user = &drupal_static(__FUNCTION__);
@@ -275,8 +286,8 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $metadata->field_uib_study_code->set($study['id']);
     $metadata->field_uib_study_type->set($type);
     $metadata->field_uib_ou->set($ou_nid);
-    if (isset($study['category'])) {
-      $metadata->field_uib_study_category->set($study['category']);
+    if ($category) {
+      $metadata->field_uib_study_category->set($category);
     }
 
     // Populate English version
@@ -490,9 +501,9 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
         }
       }
 
-      if (isset($study['category'])) {
-        if ($wrapper->field_uib_study_category->value() != $study['category']) {
-          $wrapper->field_uib_study_category->set($study['category']);
+      if ($category) {
+        if ($wrapper->field_uib_study_category->value() != $category) {
+          $wrapper->field_uib_study_category->set($category);
           $edit[] = 'category';
         }
       }

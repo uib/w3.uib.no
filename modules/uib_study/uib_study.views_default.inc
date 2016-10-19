@@ -754,6 +754,15 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['language_2']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
+  /* Filter criterion: Content: Category (field_uib_study_category) */
+  $handler->display->display_options['filters']['field_uib_study_category_value']['id'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['field'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['value'] = array(
+    'forskningsavtale' => 'forskningsavtale',
+    'mou' => 'mou',
+  );
 
   /* Display: Teacher exchange block */
   $handler = $view->new_display('block', 'Teacher exchange block', 'b2');
@@ -911,6 +920,15 @@ function uib_study_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language_1']['group'] = 1;
+  /* Filter criterion: Content: Category (field_uib_study_category) */
+  $handler->display->display_options['filters']['field_uib_study_category_value']['id'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['field'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['value'] = array(
+    'forskningsavtale' => 'forskningsavtale',
+    'mou' => 'mou',
+  );
   $translatables['exchange_agreements'] = array(
     t('Master'),
     t('more'),
