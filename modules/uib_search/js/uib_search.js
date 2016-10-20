@@ -1,5 +1,14 @@
 (function ($) {
 
+  // Helper function to delay befor executing search
+  $.fn.delay = (function() {
+    var timer = 0;
+    return function(callback, ms) {
+      clearTimeout (timer);
+      timer = setTimeout(callback, ms);
+    };
+  })();
+
   // Helper function to retrieve value or empty string
   $.fn.getVal = function (obj, key) {
     if (typeof obj === 'undefined' ) {
@@ -459,7 +468,10 @@
           break;
         }
         var postdata = $().createQuery($.uib_search.currentquery);
-        $().executeQuery(postdata, $.uib_search.currentquery);
+        $().delay(function() {
+          $().executeQuery(postdata, $.uib_search.currentquery);
+        }, $.uib_search.delay );
+
 
       });
 
@@ -550,11 +562,15 @@
         }
         $.uib_search.currentquery = query;
         $.uib_search.from = 0;
+        $.uib_search.delay = 300;
         $.uib_search.scroll = false;
         $.uib_search.focus = false;
         $.uib_search.select = false;
         var postdata = $().createQuery(query);
-        $().executeQuery(postdata, query);
+        $().delay(function() {
+          $().executeQuery(postdata, query);
+        }, $.uib_search.delay );
+
       });
     }
   });
