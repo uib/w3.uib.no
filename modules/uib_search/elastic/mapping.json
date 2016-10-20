@@ -505,6 +505,10 @@
               "type": "date",
               "format": "epoch_second"
             },
+            "changed" : {
+              "type": "date",
+              "format": "epoch_second"
+            },
             "article_type": {
               "type": "string",
               "index": "not_analyzed"
