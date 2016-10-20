@@ -199,6 +199,78 @@
     },
     "study": {
       "properties": {
+        "generic": {
+          "properties": {
+            "_searchable_text": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "excerpt": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "excerpt_en": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "excerpt_nb": {
+              "type": "string",
+              "analyzer": "norwegian"
+            },
+            "link": {
+              "type": "string"
+            },
+            "link_en": {
+              "type": "string"
+            },
+            "link_nb": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                },
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
+                }
+              }
+            },
+            "title_en": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "title_nb": {
+              "type": "string",
+              "analyzer": "norwegian"
+            }
+          }
+        },
         "fs": {
           "properties": {
             "study_type": {
@@ -220,31 +292,6 @@
             }
           }
         },
-        "w3": {
-          "properties": {
-            "study_code": {
-              "type": "string",
-              "analyzer": "lowercase"
-            },
-            "study_title": {
-              "type": "string",
-              "fields": {
-                "nb": {
-                  "type": "string",
-                  "analyzer": "norwegian"
-                },
-                "en": {
-                  "type": "string",
-                  "analyzer": "english"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "node": {
-      "properties": {
         "w3": {
           "properties": {
             "article_type": {
@@ -335,12 +382,18 @@
             },
             "title": {
               "type": "string",
+              "fields": {
+                "nb": {
                   "type": "string",
                   "analyzer": "norwegian"
                 },
                 "en": {
                   "type": "string",
                   "analyzer": "english"
+                },
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
                 }
               }
             },
@@ -350,6 +403,230 @@
             },
             "url": {
               "type": "string"
+            },
+            "study_code": {
+              "type": "string",
+              "analyzer": "lowercase"
+            },
+            "study_title": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "node": {
+      "properties": {
+        "generic": {
+          "properties": {
+            "_searchable_text": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "excerpt": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "excerpt_en": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "excerpt_nb": {
+              "type": "string",
+              "analyzer": "norwegian"
+            },
+            "link": {
+              "type": "string"
+            },
+            "link_en": {
+              "type": "string"
+            },
+            "link_nb": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                },
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
+                }
+              }
+            },
+            "title_en": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "title_nb": {
+              "type": "string",
+              "analyzer": "norwegian"
+            }
+          }
+        },
+        "w3": {
+          "properties": {
+            "article_type": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "language": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "lead": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "primary_text": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "secondary_text": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "teaser": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "text": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "text2": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
+            },
+            "title": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                },
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "url": {
+              "type": "string"
+            },
+            "study_code": {
+              "type": "string",
+              "analyzer": "lowercase"
+            },
+            "study_title": {
+              "type": "string",
+              "fields": {
+                "nb": {
+                  "type": "string",
+                  "analyzer": "norwegian"
+                },
+                "en": {
+                  "type": "string",
+                  "analyzer": "english"
+                }
+              }
             }
           }
         }
