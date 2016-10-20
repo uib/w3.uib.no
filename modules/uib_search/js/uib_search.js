@@ -239,6 +239,16 @@
         data.highlight.fields['generic.excerpt'] = {};
       }
       data.query.bool.should = should;
+      data.query = {
+        function_score: {
+          query: data.query,
+          field_value_factor: {
+            field: "w3.search_manual_boost",
+            modifier: "log1p",
+          }
+        }
+      }
+
       return data;
   };
   $.fn.createResults = function (resultsselector, query) {
