@@ -37,6 +37,9 @@
   "mappings": {
     "user": {
       "properties": {
+        "search_manual_boost": {
+          "type": "float"
+        },
         "alt_position_en": {
           "type": "string",
           "analyzer": "english"
@@ -199,6 +202,9 @@
     },
     "study": {
       "properties": {
+		"search_manual_boost": {
+		  "type": "float"
+        },
         "generic": {
           "properties": {
             "_searchable_text": {
@@ -427,6 +433,9 @@
     },
     "node": {
       "properties": {
+        "search_manual_boost": {
+          "type": "float"
+        },
         "generic": {
           "properties": {
             "_searchable_text": {
