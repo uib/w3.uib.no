@@ -856,6 +856,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'changed',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
+  $search_manual_boost = 1;
 
   $field_prefix = 'field_uib';
   $output = array();
@@ -869,9 +870,17 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
 
     switch ($key) {
       case 'search_manual_boost':
-        $output[$key] = uib_search__null_if_empty($v->value());
-        if ($output[$key] == NULL) {
-          $output[$key] = 1;
+        $search_manual_boost = uib_search__null_if_empty($v->value());
+        $max = variable_get('uib_search_boost_max', 10);
+        $min = variable_get('uib_search_boost_min', pow(.5,10));
+        if ($search_manual_boost == NULL) {
+          $search_manual_boost = 1;
+        }
+        else if ($search_manual_boost>$max) {
+          $search_manual_boost = $max;
+        }
+        else if ($search_manual_boost<$min) {
+          $search_manual_boost = $min;
         }
         break;
       case 'text':
@@ -921,6 +930,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     $type .= " - " . $output['article_type'];
   }
   $output = array('w3' => $output);
+  $output['search_manual_boost'] = $search_manual_boost;
   $output['generic'] = array(
     'title' => $output['w3']['title'],
     'link' => $output['w3']['url'],
