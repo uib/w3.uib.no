@@ -104,3 +104,9 @@ curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/node --data \
   }
 }
 '
+
+# Remove external content from no-index - array
+bin/site-drush ev '$a=variable_get("uib_search_nodetype_noindex");
+      $a=array_flip($a);
+      unset($a["uib_external_content"]);
+      variable_set("uib_search_nodetype_noindex", array_flip($a));'
