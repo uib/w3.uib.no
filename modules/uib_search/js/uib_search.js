@@ -264,7 +264,7 @@
       }
       var showhits = $('<div></div>')
         .addClass('showhits')
-        .html(Drupal.t('Showing hits for') + ' <em>"' + query + '"</em>');
+        .html(Drupal.t(data.hits.total + ' hits for') + ' <em>"' + query + '"</em>');
       showhits.appendTo(resultstag);
 
       $.each(data.hits.hits, function (index, v) {
