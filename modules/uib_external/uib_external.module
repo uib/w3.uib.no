@@ -5,3 +5,23 @@
  */
 
 include_once 'uib_external.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ */
+function uib_external_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  if($form_id = 'uib_external_content_node_form') {
+    if (
+      !(
+        in_array('level 1', $user->roles)
+        || in_array('admin', $user->roles)
+        || $user->uid == 1
+        )
+      ) {
+      // User does not have role admin or level 1
+      hide($form['field_uib_search_manual_boost']);
+    }
+  }
+
+}
