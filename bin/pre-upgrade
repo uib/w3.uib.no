@@ -21,3 +21,50 @@ curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/node --data \
 '{"properties":{"w3":{"properties":{"published_timestamp":{"type":"date","format":"epoch_second"},"changed":{"type":"date","format":"epoch_second"}}}}}'
 curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/study --data \
 '{"properties":{"w3":{"properties":{"published_timestamp":{"type":"date","format":"epoch_second"},"changed":{"type":"date","format":"epoch_second"}}}}}'
+
+curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/node --data \
+'
+{
+  "properties": {
+    "w3": {
+      "properties": {
+        "date": {
+          "properties": {
+            "value": {
+              "type":   "date",
+              "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "value2": {
+              "type":   "date",
+              "format": "yyyy-MM-dd HH:mm:ss"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+'
+curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/study --data \
+'
+{
+  "properties": {
+    "w3": {
+      "properties": {
+        "date": {
+          "properties": {
+            "value": {
+              "type":   "date",
+              "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "value2": {
+              "type":   "date",
+              "format": "yyyy-MM-dd HH:mm:ss"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+'

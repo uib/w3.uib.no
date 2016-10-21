@@ -300,6 +300,18 @@
         },
         "w3": {
           "properties": {
+            "date": {
+              "properties": {
+                "value": {
+                  "type":   "date",
+                  "format": "yyyy-MM-dd HH:mm:ss"
+                },
+                "value2": {
+                  "type":   "date",
+                  "format": "yyyy-MM-dd HH:mm:ss"
+                }
+              }
+            },
             "article_type": {
               "type": "string",
               "index": "not_analyzed"
@@ -510,6 +522,18 @@
         },
         "w3": {
           "properties": {
+            "date": {
+              "properties": {
+                "value": {
+                  "type":   "date",
+                  "format": "yyyy-MM-dd HH:mm:ss"
+                },
+                "value2": {
+                  "type":   "date",
+                  "format": "yyyy-MM-dd HH:mm:ss"
+                }
+              }
+            },
             "published_timestamp" : {
               "type": "date",
               "format": "epoch_second"
