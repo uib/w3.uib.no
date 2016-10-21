@@ -1,5 +1,48 @@
 (function ($) {
 
+  // Simple date formatter
+  $.fn.df = function(d, f) {
+    if(!d instanceof Date || typeof f !== 'string') {
+      return '';
+    }
+    var months = [
+      Drupal.t('January'),
+      Drupal.t('February'),
+      Drupal.t('March'),
+      Drupal.t('April'),
+      Drupal.t('May'),
+      Drupal.t('June'),
+      Drupal.t('July'),
+      Drupal.t('August'),
+      Drupal.t('September'),
+      Drupal.t('October'),
+      Drupal.t('November'),
+      Drupal.t('December'),
+    ];
+    // Formats like php
+    var formats = {
+      Y: "d.getFullYear()",
+      n: "d.getMonth()+1",
+      m: "('0'+(d.getMonth()+1)).slice(-2)",
+      M: "months[d.getMonth()].slice(0,3)",
+      F: "months[d.getMonth()]",
+      d: "('0'+d.getDate()).slice(-2)",
+      H: "('0'+d.getHours()).slice(-2)",
+      i: "('0'+d.getMinutes()).slice(-2)",
+      s: "('0'+d.getSeconds()).slice(-2)",
+    };
+    var output = '';
+    for (var i=0, len=f.length; i<len; i++) {
+      if (f[i] in formats) {
+        output += eval(formats[f[i]])
+      }
+      else {
+        output += f[i];
+      }
+    }
+    return output;
+  }
+
   // Helper function to delay befor executing search
   $.fn.delay = (function() {
     var timer = 0;
@@ -299,6 +342,7 @@
       $.each(data.hits.hits, function (index, v) {
         var node = v._type == 'node' || v._type == 'study';
         var w3_type = v._source.w3 ? v._source.w3.type : '';
+        var article_type = v._source.w3.article_type;
 
         var entitywrapper = $('<div></div>');
         entitywrapper.addClass('item');
@@ -323,8 +367,14 @@
           $().getVal(v.highlight, 'first_name') :
           $().getVal(v._source, 'first_name');
         var last_name = $().getVal(v.highlight, 'last_name') ?
-          $().getVal(v.highlight, 'last_name') :
-          $().getVal(v._source, 'last_name');
+            $().getVal(v.highlight, 'last_name') :
+            $().getVal(v._source, 'last_name');
+        if (article_type == 'event') {
+          var event_from = new Date($().getVal(v._source.w3.date, 'value'));
+          var event_to = new Date($().getVal(v._source.w3.date, 'value2'));
+          var location = $().getVal(v._source.w3, 'location');
+        }
+
 
         var name = $('<a></a>').attr('href', user_url).html(first_name + ' '
           + last_name);
@@ -391,10 +441,27 @@
             )
             .append(
               $('<div></div>').addClass('link').append(displaylink)
-            )
-            .append(
+            );
+          if (article_type == 'event') {
+            var day = $('<span></span>').addClass('cal-date').text(
+                $.fn.df(event_from, 'd.m.Y')
+            );
+            var time = $('<span></span>').addClass('cal-time').text(
+                $.fn.df(event_from, 'H:i') +  '-' + $.fn.df(event_to, 'H:i')
+            );
+            lft.append(
+              $('<div></div>').addClass('excerpt')
+              .append($('<div></div>').addClass('datetime')
+                .append(day)
+                .append(time))
+              .append($('<div></div>').addClass('location').html(location))
+            );
+          }
+          else {
+            lft.append(
               $('<div></div>').addClass('excerpt').html(excerpt)
             );
+          }
         }
         // If level 1 user:
         if ($('input[name=boost]').val()==1 &&
