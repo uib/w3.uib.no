@@ -560,17 +560,6 @@ EOD;
           'label' => 'hidden',
           'weight' => 0,
         ));
-        $specializations = '';
-        $view = views_get_view('uib_study_specialization');
-        $view->preview('block', array($variables['node']->nid));
-        if ($view->result) {
-          $specializations = '<div class="block block-uib-study uib-study-specialization"><h3>' . t('Specialization') . '</h3>' . $view->render() . '</div>';
-        }
-        $variables['page']['content']['field_uib_study'] = array(
-          '#type' => 'markup',
-          '#markup' => $specializations,
-          '#weight' => 8,
-        );
         $variables['page']['content_bottom']['field_uib_feed'] = field_view_field('node', $variables['node'], 'field_uib_feed', array(
           'type' => 'uib_area_link_feed',
           'settings' => array('view_mode' => 'full'),

@@ -654,6 +654,26 @@ function uib_study_block_view($delta = '') {
                 '#suffix' => '</div>',
               );
             }
+            if ($type == 'program') {
+              $view = views_get_view('uib_study_specialization');
+              $view->preview('block', array($nid));
+              if ($view->result) {
+              $group_title = t('Specialization');
+                $tab_items[] = '<a href="#uib-tabs-specialization">' . $group_title . '</a>';
+                $render['specialization'] = array(
+                  '#type' => 'html_tag',
+                  '#tag' => 'h2',
+                  '#value' => t('Specialization'),
+                );
+                $render['specialization block'] = array(
+                  '#type' => 'html_tag',
+                  '#tag' => 'div',
+                  '#value' => $view->render(),
+                  '#prefix' => '<div id="uib-tabs-specialization">',
+                  '#suffix' => '</div>',
+                );
+              }
+            }
           }
           elseif ($type == 'exchange') {
             if ($language->language == 'nb') {
