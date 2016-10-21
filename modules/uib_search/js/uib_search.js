@@ -239,11 +239,12 @@
         data.highlight.fields['generic.excerpt'] = {};
       }
       data.query.bool.should = should;
+
       data.query = {
         function_score: {
           query: data.query,
           field_value_factor: {
-            field: "w3.search_manual_boost",
+            field: "search_manual_boost",
             modifier: "log1p",
           }
         }
@@ -382,7 +383,7 @@
           down.attr('href', '/searchboost/down/' + v._type + '/' + v._id);
           var boost_value = $('<span></span>')
             .addClass('boost_value')
-            .text($().getVal(v._source.w3, 'search_manual_boost'));
+            .text($().getVal(v._source, 'search_manual_boost'));
 
           var boost = $('<div></div>').addClass('boost').append(
             up
