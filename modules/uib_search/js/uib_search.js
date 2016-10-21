@@ -240,12 +240,15 @@
       }
       data.query.bool.should = should;
 
-      data.query = {
-        function_score: {
-          query: data.query,
-          field_value_factor: {
-            field: "search_manual_boost",
-            modifier: "log1p",
+      // Use manual boosting only if new search is enabled:
+      if (!$('#switch_type_button').length) {
+        data.query = {
+          function_score: {
+            query: data.query,
+            field_value_factor: {
+              field: "search_manual_boost",
+              modifier: "log1p",
+            }
           }
         }
       }
