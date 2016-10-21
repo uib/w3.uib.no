@@ -88,6 +88,10 @@
         data.query.bool.filter.or.push(
           {term: {'w3.type': { value: 'area'}}}
         );
+        // External content or link to views etc
+        data.query.bool.filter.or.push(
+          {term: {'w3.type': { value: 'uib_external_content'}}}
+        );
         // Study
         data.query.bool.filter.or.push({type: {value: 'study'}});
         // User
