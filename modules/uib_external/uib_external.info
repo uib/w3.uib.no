@@ -22,6 +22,7 @@ features[field_instance][] = node-uib_external_content-field_uib_area
 features[field_instance][] = node-uib_external_content-field_uib_kicker
 features[field_instance][] = node-uib_external_content-field_uib_links
 features[field_instance][] = node-uib_external_content-field_uib_media
+features[field_instance][] = node-uib_external_content-field_uib_search_manual_boost
 features[field_instance][] = node-uib_external_content-field_uib_teaser
 features[node][] = uib_external_content
 features[variable][] = field_bundle_settings_node__uib_external_content

@@ -22,7 +22,7 @@ function uib_external_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -347,6 +347,58 @@ function uib_external_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'node-uib_external_content-field_uib_search_manual_boost'.
+  $field_instances['node-uib_external_content-field_uib_search_manual_boost'] = array(
+    'bundle' => 'uib_external_content',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value. If field is set to 0 or not set for external content types, then the item will not be indexed to elasticsearch.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_search_manual_boost',
+    'label' => 'Manual Search Boost',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max' => 10,
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_external_content-field_uib_teaser'.
   $field_instances['node-uib_external_content-field_uib_teaser'] = array(
     'bundle' => 'uib_external_content',
@@ -454,7 +506,9 @@ function uib_external_field_default_field_instances() {
   t('Area');
   t('External URL');
   t('Kicker');
+  t('Manual Search Boost');
   t('Photo');
+  t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value. If field is set to 0 or not set for external content types, then the item will not be indexed to elasticsearch.');
   t('Teaser');
 
   return $field_instances;
