@@ -326,8 +326,10 @@ function drush_uib_search_index($type = 'user') {
     if($sarr && count($sarr)) {
       $nodearray = uib_search__merge_study_arrays($nodearray, $sarr);
     }
-    $batch .= json_encode($nodearray)."\n";
-    if ($line % 50 == 0) {
+    if (count($nodearray)) {
+      $batch .= json_encode($nodearray)."\n";
+    }
+    if ($line % 50 == 0 && $batch) {
       $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
       if (!$stat) {
         uibx_log('HTTP-call failed');
