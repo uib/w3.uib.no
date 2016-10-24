@@ -1675,6 +1675,33 @@ function uib_area_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_uib_search_keywords'.
+  $field_bases['field_uib_search_keywords'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_search_keywords',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'uib_search_keywords',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
   // Exported field_base: 'field_uib_sebra_id'.
   $field_bases['field_uib_sebra_id'] = array(
     'active' => 1,

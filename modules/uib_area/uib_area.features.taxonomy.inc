@@ -17,5 +17,13 @@ function uib_area_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'uib_search_keywords' => array(
+      'name' => 'uib_search_keywords',
+      'machine_name' => 'uib_search_keywords',
+      'description' => 'List of searchable keywords',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
   );
 }

@@ -359,7 +359,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['fields']['path']['label'] = '';
   $handler->display->display_options['fields']['path']['exclude'] = TRUE;
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  /* Field: Field: External URL */
+  /* Field: Field: Links */
   $handler->display->display_options['fields']['field_uib_links']['id'] = 'field_uib_links';
   $handler->display->display_options['fields']['field_uib_links']['table'] = 'field_data_field_uib_links';
   $handler->display->display_options['fields']['field_uib_links']['field'] = 'field_uib_links';
