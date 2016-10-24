@@ -1006,3 +1006,23 @@ function _uib_article__node_exists($nid) {
   $c = $q->fetchField();
   return $c;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function uib_article_form_node_delete_confirm_alter(&$form, $form_state) {
+  if (empty($form['nid']['#value'])) {
+    return;
+  }
+
+  $nid = $form['nid']['#value'];
+  $q = db_query("select s.entity_id from {field_data_field_uib_step} as s inner join {field_data_field_uib_step_content} as sc on s.field_uib_step_value = sc.entity_id where sc.field_uib_step_content_target_id = :nid", array(':nid' => $nid));
+  $c = $q->fetchField();
+  if ($c) {
+    $content_list = node_load($c);
+    $message = t('This node is a part of the content list "!title" and must be removed from the content list before it can be deleted.', array('!title' => l($content_list->title, 'node/' . $c)));
+    drupal_set_message($message, 'error');
+    unset($form['description']);
+    unset($form['actions']['submit']);
+  }
+}
