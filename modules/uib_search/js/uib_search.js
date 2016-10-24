@@ -227,11 +227,36 @@
         should.push(tmp)
 
         tmp = {match: {}}
+        tmp.match["generic.title.nb"] = {query: query, boost: 3};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic.title.en"] = {query: query, boost: 3};
+        should.push(tmp)
+
+
+        tmp = {match: {}}
         tmp.match["generic.excerpt"] = {query: query, boost: 2};
         should.push(tmp)
 
         tmp = {match: {}}
+        tmp.match["generic.excerpt.nb"] = {query: query, boost: 2};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic.excerpt.en"] = {query: query, boost: 2};
+        should.push(tmp)
+
+        tmp = {match: {}}
         tmp.match["generic._searchable_text"] = {query: query, boost: 1};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic._searchable_text.nb"] = {query: query, boost: 1};
+        should.push(tmp)
+
+        tmp = {match: {}}
+        tmp.match["generic._searchable_text.en"] = {query: query, boost: 1};
         should.push(tmp)
 
         // Highlighted fields
