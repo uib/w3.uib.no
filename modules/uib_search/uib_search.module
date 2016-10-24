@@ -855,6 +855,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'published_timestamp',
     'changed',
     'date',
+    'location',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
   $search_manual_boost = 1;
