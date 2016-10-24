@@ -320,6 +320,9 @@
               "type": "string",
               "index": "not_analyzed"
             },
+            "search_keywords": {
+              "type": "string"
+            },
             "language": {
               "type": "string",
               "index": "not_analyzed"
@@ -553,6 +556,9 @@
             "location": {
               "type": "string",
               "index": "not_analyzed"
+            },
+            "search_keywords": {
+              "type": "string"
             },
             "language": {
               "type": "string",

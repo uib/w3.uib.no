@@ -856,6 +856,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'changed',
     'date',
     'location',
+    'search_keywords',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
   $search_manual_boost = 1;
@@ -919,6 +920,13 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         if (uib_search__null_if_empty($v->value())) {
           $output[$key] = uib_search__null_if_empty($v->value());
         }
+        break;
+      case 'search_keywords':
+        $arr = array();
+        foreach ($v->value() as $item) {
+          $arr[] = $item->name;
+        }
+        $output[$key] = $arr;
         break;
       default:
         $output[$key] = uib_search__null_if_empty($v->value());
