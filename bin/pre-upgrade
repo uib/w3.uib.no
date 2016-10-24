@@ -68,3 +68,33 @@ curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/study --data \
   }
 }
 '
+curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/study --data \
+'
+{
+  "properties": {
+    "w3": {
+      "properties": {
+        "location": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
+'
+curl -XPUT `bin/site-drush uib-search-url --admin`/_mapping/node --data \
+'
+{
+  "properties": {
+    "w3": {
+      "properties": {
+        "location": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
+'

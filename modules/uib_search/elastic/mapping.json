@@ -316,6 +316,10 @@
               "type": "string",
               "index": "not_analyzed"
             },
+            "location": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
             "language": {
               "type": "string",
               "index": "not_analyzed"
@@ -543,6 +547,10 @@
               "format": "epoch_second"
             },
             "article_type": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "location": {
               "type": "string",
               "index": "not_analyzed"
             },
