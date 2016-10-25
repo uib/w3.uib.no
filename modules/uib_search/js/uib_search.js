@@ -339,6 +339,10 @@
 
     return function (data, status, jqXHR) {
       var resultstag = $(resultsselector);
+      if ($.trim($('form#uib-search-form .search-field').val())=='') {
+        resultstag.html('');
+        return;
+      }
       if (data.hits.hits) {
         resultstag.html('');
       }
