@@ -265,6 +265,14 @@
         tmp.match["w3.type"] = {query: 'area', boost: 1.2};
         should.push(tmp)
 
+        // Boost recent content
+        tmp = {"range": {}}
+        tmp.range["w3.changed"] = {
+          boost: 2,
+          gte: "now-1M"
+        }
+        should.push(tmp)
+
         tmp = {match: {}}
         tmp.match["generic.title"] = {query: query, boost: 3};
         should.push(tmp)
