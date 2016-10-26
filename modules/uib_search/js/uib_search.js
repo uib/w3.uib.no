@@ -350,7 +350,8 @@
       $.each(data.hits.hits, function (index, v) {
         var node = v._type == 'node' || v._type == 'study';
         var w3_type = v._source.w3 ? v._source.w3.type : '';
-        var article_type = v._source.w3.article_type;
+        var article_type = v._source.w3
+        ? v._source.w3.article_type : '';
 
         var entitywrapper = $('<div></div>');
         entitywrapper.addClass('item');
