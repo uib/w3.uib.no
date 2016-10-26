@@ -44,7 +44,7 @@
   }
 
   // Helper function to delay befor executing search
-  $.fn.delay = (function() {
+  $.fn.searchDelay = (function() {
     var timer = 0;
     return function(callback, ms) {
       clearTimeout (timer);
@@ -579,7 +579,7 @@
           break;
         }
         var postdata = $().createQuery($.uib_search.currentquery);
-        $().delay(function() {
+        $().searchDelay(function() {
           $().executeQuery(postdata, $.uib_search.currentquery);
         }, $.uib_search.delay );
 
@@ -678,7 +678,7 @@
         $.uib_search.focus = false;
         $.uib_search.select = false;
         var postdata = $().createQuery(query);
-        $().delay(function() {
+        $().searchDelay(function() {
           $().executeQuery(postdata, query);
         }, $.uib_search.delay );
 
