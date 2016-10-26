@@ -786,7 +786,7 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
   if ($wrapped_entity->status->value() == 0) {
     $delete = TRUE;
   }
-  if ( property_exists($wrapped_entity, 'field_uib_search_manual_boost')
+  if ( isset($wrapped_entity->field_uib_search_manual_boost)
     && intval($wrapped_entity->field_uib_search_manual_boost->value()) == 0
     && $wrapped_entity->type->value() == 'uib_external_content') {
     $delete = TRUE;
@@ -828,7 +828,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
   if ($wrapped_entity->status->value() != 1) {
     return NULL;
   }
-  if (property_exists($wrapped_entity, 'field_uib_search_manual_boost')
+  if (isset($wrapped_entity->field_uib_search_manual_boost)
     && intval($wrapped_entity->field_uib_search_manual_boost->value()) == 0
     && $wrapped_entity->type->value() == 'uib_external_content') {
     return NULL;
