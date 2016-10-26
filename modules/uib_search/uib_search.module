@@ -868,6 +868,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'date',
     'location',
     'search_keywords',
+    'links',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
   $search_manual_boost = 1;
@@ -896,6 +897,11 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         }
         else if ($search_manual_boost<$min) {
           $search_manual_boost = $min;
+        }
+        break;
+      case 'links':
+        if ($wrapped_entity->type->value() == 'uib_external_content') {
+          $replace_url = uib_search__null_if_empty(current((array)$v->value()));
         }
         break;
       case 'text':
@@ -943,6 +949,9 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         $output[$key] = uib_search__null_if_empty($v->value());
         break;
     }
+  }
+  if ($replace_url) {
+    $output['url'] = $replace_url['url'];
   }
   if ($wrapped_entity->getBundle() == 'uib_study') {
     $output['title'] = uib_search__null_if_empty($wrapped_entity->field_uib_study_title->value());
