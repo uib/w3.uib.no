@@ -274,10 +274,6 @@
         should.push(tmp)
 
         tmp = {match: {}}
-        tmp.match["generic.title"] = {query: query, boost: 3};
-        should.push(tmp)
-
-        tmp = {match: {}}
         tmp.match["generic.title.ngrams"] = {query: query, boost: 3};
         should.push(tmp)
 
@@ -291,19 +287,11 @@
 
 
         tmp = {match: {}}
-        tmp.match["generic.excerpt"] = {query: query, boost: 2};
-        should.push(tmp)
-
-        tmp = {match: {}}
         tmp.match["generic.excerpt.nb"] = {query: query, boost: 2};
         should.push(tmp)
 
         tmp = {match: {}}
         tmp.match["generic.excerpt.en"] = {query: query, boost: 2};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic._searchable_text"] = {query: query, boost: 1};
         should.push(tmp)
 
         tmp = {match: {}}
@@ -315,8 +303,8 @@
         should.push(tmp)
 
         // Highlighted fields
-        data.highlight.fields['generic.title'] = {};
-        data.highlight.fields['generic.excerpt'] = {};
+        data.highlight.fields['generic.title.' + lang] = {};
+        data.highlight.fields['generic.excerpt.' + lang] = {};
       }
       data.query.bool.should = should;
 
@@ -369,12 +357,12 @@
         var link = $().getVal(v._source.generic, 'link');
         var study_code = $().getVal(v._source.w3, 'study_code') ?
         $().getVal(v._source.w3, 'study_code') + ' / ': '';
-        var title = $().getVal(v.highlight, 'generic.title') ?
-          $().getVal(v.highlight, 'generic.title') :
+        var title = $().getVal(v.highlight, 'generic.title.' + lang) ?
+          $().getVal(v.highlight, 'generic.title.' + lang) :
           $().getVal(v._source.generic, 'title');
         title = study_code + title;
-        var excerpt = $().getVal(v.highlight, 'generic.excerpt') ?
-          $().getVal(v.highlight, 'generic.excerpt') :
+        var excerpt = $().getVal(v.highlight, 'generic.excerpt.' + lang) ?
+          $().getVal(v.highlight, 'generic.excerpt.' + lang) :
           $().getVal(v._source.generic, 'excerpt');
         var first_name = $().getVal(v.highlight, 'first_name') ?
           $().getVal(v.highlight, 'first_name') :
