@@ -311,10 +311,10 @@ function drush_uib_search_index($type = 'user') {
     }
     $line++;
     if ($value->$id_key == $maxid) {
-      variable_set($last_processed_key, 9E8); // high number
+      $last_processed_id = 9E8; // high number
     }
     else {
-      variable_set($last_processed_key, $value->$id_key);
+      $last_processed_id = $value->$id_key;
     }
     $ntype = $type == 'study' ? 'node' : $type;
     $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
@@ -338,6 +338,10 @@ function drush_uib_search_index($type = 'user') {
       else if ($stat->code != 200) {
         uibx_log("$stat->code $stat->status_message", 'error');
       }
+      else {
+        // Success
+        variable_set($last_processed_key, $last_processed_id);
+      }
       $batch = '';
       if ($verbose && $line % 500 == 0) {
         uibx_log(sprintf('%d %ss updated (%.0f%% done)', $line, $type, 100 * $line / $rowcount), 'notice');
@@ -352,6 +356,10 @@ function drush_uib_search_index($type = 'user') {
     }
     else if ($stat->code != 200) {
       uibx_log("$stat->code $stat->status_message", 'error');
+    }
+    else {
+      // Success
+      variable_set($last_processed_key, $last_processed_id);
     }
   }
 
