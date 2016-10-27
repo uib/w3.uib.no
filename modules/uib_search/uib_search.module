@@ -876,6 +876,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
   $field_prefix = 'field_uib';
   $output = array();
   $output['published_timestamp'] = $wrapped_entity->created->value();
+  $replace_url = '';
 
   foreach ($wrapped_entity as $k => $v){
     $key = str_replace($field_prefix . '_', '', $k);
