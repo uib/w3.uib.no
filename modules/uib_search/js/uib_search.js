@@ -305,6 +305,7 @@
         // Highlighted fields
         data.highlight.fields['generic.title.' + lang] = {};
         data.highlight.fields['generic.excerpt.' + lang] = {};
+        data.highlight.fields['w3.study_code'] = {};
       }
       data.query.bool.should = should;
 
@@ -355,8 +356,12 @@
         var user_url = $().getVal(v._source, 'link_' + lang);
 
         var link = $().getVal(v._source.generic, 'link');
-        var study_code = $().getVal(v._source.w3, 'study_code') ?
-        $().getVal(v._source.w3, 'study_code') + ' / ': '';
+        var study_code = '';
+        if (v._type == 'study') {
+          study_code = $().getVal(v.highlight, 'w3.study_code') ?
+            $().getVal(v.highlight, 'w3.study_code') + ' / ' :
+            $().getVal(v._source.w3, 'study_code') + ' / ';
+        }
         var title = $().getVal(v.highlight, 'generic.title.' + lang) ?
           $().getVal(v.highlight, 'generic.title.' + lang) :
           $().getVal(v._source.generic, 'title');
