@@ -476,8 +476,9 @@
               (
                 v._type == 'node' &&
                 (
-                  w3_type == 'area' ||
-                  w3_type == 'uib_article'
+                  w3_type == 'area'
+                  || w3_type == 'uib_article'
+                  || w3_type == 'uib_external_content'
                 )
               )
             )
