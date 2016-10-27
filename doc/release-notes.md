@@ -1,3 +1,16 @@
+# Release 57 _2016-10-27_
+
+I denne versjonen har fokuset igjen vært på ferdigstillingen av ny søkefunksjon. Dessuten har det blitt gjort noen forbedringer, både når det gjelder design og funksjonalitet.
+
+- Man vil nå ikke lenger være i stand til å slette sider som er del av en innholdsliste. Ved forsøk på sletting vil man bli gjort oppmerksom på dette #16546
+- Startet arbeidet med visning av forskningsavtaler #16616 #16617
+- Designjustert oversikten over utvekslingsavtaler på sider for studieprogram #16537
+- Fjernet blokken "Visste du at" på sider for studieprogram #16534
+- På sider for studieprogram er lenken til studieplanen flyttet fra bunnen av siden til faktalinjen høyere oppe. Samtidig er studiekoden fjernet fra faktalinjen #16535
+- På sider for studieprogram finnes nå lenker til eventuelle studieretninger under en nyopprettet fane i hovedspalten. Samtidig er den gamle boksen fjernet fra sidespalten #16589
+- Saker tilknyttet ny søkefunksjon #15265 #16450 #16451 #16452 #16453 #16454 #16600 #16605 #16625 #16627 #16629 #16636 #16640 #16641 #16642 #16646 #16650 #16651 #16658 #16677 #16678
+- Diverse Drupal-oppdateringer #16618 #16619 #16620 #16621 #16624 #16626
+
 # Release 56 _2016-10-13_
 
 I denne versjonen har fokuset vært på ferdigstillingen av nytt søk samt lokal meldigstjeneste. I tillegg har det blitt gjort noen forbedringer og retting av feil.
