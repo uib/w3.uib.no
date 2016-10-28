@@ -811,6 +811,9 @@ function uib_study_block_view($delta = '') {
           );
         }
         if ($render) {
+          if (!strpos($render['#markup'],"mailto")) {
+            $render['#markup'] = preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $render['#markup']);
+          }
           $block['title'] = t("Contact");
           $block['content']['fspres'][] = $render;
         }
