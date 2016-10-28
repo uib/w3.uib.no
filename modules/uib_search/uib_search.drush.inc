@@ -287,6 +287,21 @@ function drush_uib_search_index($type = 'user') {
   if ($type == 'study') {
     $select->condition('a.type', 'uib_study');
   }
+  if ($type == 'study' || $type == 'node') {
+    // Skip external content with manual boost not set
+    $select->leftJoin(
+      'field_data_field_uib_search_manual_boost',
+      'b',
+      "b.entity_id = a.{$id_key}");
+    $and = db_and();
+    $and->condition('a.type', 'uib_external_content');
+    $and->condition('b.field_uib_search_manual_boost_value', 0, '>');
+    $or = db_or();
+    $or->condition($and);
+    $or->condition('a.type', 'uib_external_content', '<>');
+    $select->condition($or);
+  }
+
 
   $select->orderBy("a.{$id_key}");
   $select->range(NULL, $stop);
@@ -317,9 +332,6 @@ function drush_uib_search_index($type = 'user') {
       $last_processed_id = $value->$id_key;
     }
     $ntype = $type == 'study' ? 'node' : $type;
-    $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
-      . '"_type" : "' . $type
-      . '", "_id" : "' . $value->$id_key . '" } }'."\n";
     $entity = entity_metadata_wrapper($ntype, $value->$id_key);
     $nodearray = uib_search__get_elastic_entity_array($entity);
     $sarr = uib_search__get_elastic_study_array($entity);
@@ -327,6 +339,9 @@ function drush_uib_search_index($type = 'user') {
       $nodearray = uib_search__merge_study_arrays($nodearray, $sarr);
     }
     if (count($nodearray)) {
+      $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
+        . '"_type" : "' . $type
+        . '", "_id" : "' . $value->$id_key . '" } }'."\n";
       $batch .= json_encode($nodearray)."\n";
     }
     if ($line % 50 == 0 && $batch) {
