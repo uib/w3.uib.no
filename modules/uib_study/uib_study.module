@@ -778,10 +778,10 @@ function uib_study_block_view($delta = '') {
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
         if (!empty($data)) {
           if (!empty($data['studietypenr'])) {
-            $block['title'] = t('Application code (SO)');
+            $block['title'] = t('Apply here');
             $block['content'] = array(
               '#type' => 'markup',
-              '#markup' => l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
+              '#markup' => "<h3>" . t('Application code in NUCAS') . "</h3>" . l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
             );
           }
         }
