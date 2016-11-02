@@ -57,8 +57,8 @@ The variables `uib_elasticsearch_useindex` and
 `uib_elasticsearch_useindex_admin` determine which index to use. Default
 for these are 'index1'. You can set these using drush
 
-  `bin/site-drush vset uib_elasticsearch_useindex index2`
-  `bin/site-drush vset uib_elasticsearch_useindex_admin index2`
+    bin/site-drush vset uib_elasticsearch_useindex index2
+    bin/site-drush vset uib_elasticsearch_useindex_admin index2
 
 If you don't have a database available visit
 [token.test.search.uib.no](https://token.test.search.uib.no) (testing) or
