@@ -42,7 +42,17 @@ foreach ($fields as $field_name => $field_info) {
 
 ksort($bundle);
 foreach ($bundle as $name => $info) {
-  print "bundle $name : $info[type] {\n";
+  print "bundle $name : $info[type]";
+  if (
+    ($info['type'] == 'user') ||
+    ($info['type'] == 'node' && entity_translation_node_supported_type($name))
+  ) {
+    print "(fieldtrans)";
+  }
+  elseif ($info['type'] == 'node' && translation_supported_type($name)) {
+    print "(trans)";
+  }
+  print " {\n";
   usort($info['fields'], function ($a, $b) {
     return strcmp($a['name'], $b['name']);
   });
