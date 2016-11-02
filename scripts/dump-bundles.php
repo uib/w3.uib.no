@@ -32,6 +32,12 @@ foreach ($fields as $field_name => $field_info) {
       elseif (!$instance_info['required']) {
           $ftype .= '?';
       }
+      if ($field_info['type'] == 'entityreference') {
+        $ftype .= ' => ' . $field_info['settings']['target_type'];
+        if ($field_info['settings']['handler_settings']['target_bundles']) {
+          $ftype .= '(' . implode(',', array_keys($field_info['settings']['handler_settings']['target_bundles'])) . ')';
+        }
+      }
       $bundle[$bundle_name]['fields'][] = array(
         'name' => preg_replace('/^field_uib_/', '_', $field_name),
         'type' => $ftype,
