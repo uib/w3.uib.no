@@ -617,7 +617,8 @@ function uib_study_block_view($delta = '') {
 
         $type = $node->field_uib_study_type->value();
         $study_code = $node->field_uib_study_code->value();
-        if ($type == 'program' || $type == 'specialization' || $type == 'exchange') {
+        $study_category = $node->field_uib_study_category->value();
+        if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
           $tab_items_construction_position = 0;
           foreach ($data as $group) {
