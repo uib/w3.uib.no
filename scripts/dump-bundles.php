@@ -26,6 +26,9 @@ foreach ($fields as $field_name => $field_info) {
         }
         $ftype .= ')';
       }
+      elseif ($field_info['type'] == 'list_text') {
+        $ftype .= '(' . implode(',', array_keys($field_info['settings']['allowed_values'])) . ')';
+      }
       if ($field_info['cardinality'] == -1) {
         $ftype .= $instance_info['required'] ? "+" : "*";
       }
