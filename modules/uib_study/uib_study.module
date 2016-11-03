@@ -824,6 +824,7 @@ function uib_study_block_view($delta = '') {
       $node = menu_get_object();
       if ($node && isset($node->field_uib_study_type)) {
         $type = $node->field_uib_study_type['und'][0]['value'];
+        $study_category = $node->field_uib_study_category['und'][0]['value'];
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
         global $language;
         if (empty($data))
@@ -919,6 +920,17 @@ function uib_study_block_view($delta = '') {
                 if (!empty($data['restinfo']['varighet']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
                   $exchange_duration = check_plain($data['restinfo']['varighet'] . ' ' . drupal_strtolower($data['restinfo']['tidsenhet']));
                   $items[] = uib_study__get_study_facts_markup(t('Exchange duration'), $exchange_duration);
+                }
+              }
+              if (in_array($study_category, array('forskningsavtale', 'mou')) && $betingelse['personkategori'] == 'FORSKER') {
+                foreach ($betingelse['sted'] as $place) {
+                  if ($place['_type'] == 'eksternt') {
+                    $items[] =  uib_study__get_study_facts_markup(t('Country'),uib_geography_get_country($place['landnr'], $language->language));
+                    $items[] = uib_study__get_study_facts_markup(t('Exchange type'), $data['utvprogramkode']);
+                    if ($place['url']) {
+                      $items[] = uib_study__get_study_facts_markup(t('Homepage'), $place['url']);
+                    }
+                  }
                 }
               }
             }
