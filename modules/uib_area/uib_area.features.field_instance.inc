@@ -3836,7 +3836,7 @@ function uib_area_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Attach other pages to this page.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -5811,6 +5811,7 @@ function uib_area_field_default_field_instances() {
   t('An author who is external to UiB may be added here. Always use the byline field for UiB authors.');
   t('Area');
   t('Areas might provide their own logo image.  It will be included in the header.  The logo ought to be about 80x80 pixels and have a transparent background.');
+  t('Attach other pages to this page.');
   t('Attachments');
   t('Banner');
   t('Bottom image');

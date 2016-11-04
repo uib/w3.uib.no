@@ -97,7 +97,7 @@ function uib_article_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -254,7 +254,7 @@ function uib_article_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -315,7 +315,7 @@ function uib_article_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -428,6 +428,7 @@ function uib_article_field_default_field_instances() {
   t('Related persons label');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Show in global calendar');
+  t('Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
 
   return $field_instances;
 }
