@@ -397,6 +397,25 @@
   $.fn.createResults = function (resultsselector, query) {
 
     return function (data, status, jqXHR) {
+      if (typeof debug !== 'undefined' && debug) {
+        console.log('Max score' + data.hits.max_score);
+        console.log('Returned data object: ');
+        console.log(data);
+        for (i in data.hits.hits) {
+          var changed =
+            typeof data.hits.hits[i]._source.w3 == 'undefined' ?
+              0 : data.hits.hits[i]._source.w3.changed;
+          var matched = typeof data.hits.hits[i].matched_queries == 'undefined' ?
+              '' : ' Queries: ' + data.hits.hits[i].matched_queries.join(', ');
+          var thetype = typeof data.hits.hits[i]._source.w3 == 'undefined' ?
+              data.hits.hits[i]._type : data.hits.hits[i]._source.w3.type;
+          console.log('score treff ' + i + ': ' + data.hits.hits[i]._score
+            + ' changed: ' + $.fn.df(new Date(changed*1000), 'd.m.Y')
+            + ' w3.type: ' + thetype
+            + matched
+            );
+        }
+      }
       var resultstag = $(resultsselector);
       if ($.trim($('form#uib-search-form .search-field').val())=='') {
         resultstag.html('');
