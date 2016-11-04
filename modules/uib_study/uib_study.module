@@ -1945,8 +1945,7 @@ function uib_study_views_pre_render(&$view) {
     ksort($sort_array);
     $view->result = $sort_array;
   }
-
-  if ($view->name == 'exchange_agreements') {
+  if ($view->name == 'exchange_agreements' && $view->current_display != 'rab') {
     // Extra filter in order to use "without depth" for a particular
     // exchange agreement owner: uib
     $uib_tid = 2271;

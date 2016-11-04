@@ -3,7 +3,7 @@
   $replacements = 0;
   foreach ($result as $eid) {
     uibx_log('Found research agrement at node ' .$eid->entity_id);
-    $r = db_query("select pid, alias, language from url_alias where source = 'node/" . $eid->entity_id ."' and (alias like 'forskningsavtale%' or alias like 'research-agreement')");
+    $r = db_query("select pid, alias, language from url_alias where source = 'node/" . $eid->entity_id ."' and (alias like 'forskningsavtale%' or alias like 'research-agreement%')");
     foreach ($r as $alias) {
       list($to_be_replaced, $study_code) = explode('/', $alias->alias);
       if ($alias->language == 'en') {
