@@ -733,7 +733,7 @@
     // Reusable variables
     $.uib_search = {
       from: 0,
-      size: 10,
+      size: 15,
       password: Drupal.settings.uib_search.password,
       user: Drupal.settings.uib_search.user,
       index: Drupal.settings.uib_search.index,
