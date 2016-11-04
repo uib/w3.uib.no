@@ -166,8 +166,8 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
   }
   elseif ($type == 'exchange') {
     if ($category == 'mou' || $category == 'forskningsavtale') {
-      $no_path_prefix = 'forskningsavtale';
-      $en_path_prefix = 'research-agreement';
+      $no_path_prefix = 'samarbeidsavtale';
+      $en_path_prefix = 'bilateral-agreement';
     }
     else {
       $no_path_prefix = 'utvekslingsavtale';
