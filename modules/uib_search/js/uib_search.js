@@ -101,20 +101,193 @@
       var lang = $.uib_search.lang;
       var all = false;
       var should = [];
+      var tmp = {};
       var data = {
         query: {
           bool: {
             should: [],
-            filter: {
-              or: []
-            },
-            minimum_should_match: 1
+            must: {},
+            filter: {bool: {should: []}},
           }
         },
         highlight: { fields: {}, },
         size: $.uib_search.size,
         from: $.uib_search.from,
       }
+      var boostquery = {bool: {should: [], _name: "Boost"}};
+      var searchquery =
+        {bool: {should: [], _name: "Search", minimum_should_match: 1}};
+
+      /**************************************
+       * Query matching
+       *************************************/
+
+      // Match NGrams in title. Ngrams are made up of word triplets
+      tmp = {match: {}};
+      tmp.match["generic.title.ngrams"] = {
+        query: query,
+        boost: 6,
+        minimum_should_match: "30%",
+        _name: "NGram-search",
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {match: {}}
+      tmp.match["generic.excerpt." + lang] = {
+        query: query,
+        boost: 2,
+        fuzziness: 3,
+        prefix_length: 3,
+        max_expansions: 100,
+        _name: "Fuzzy-match-excerpt",
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {match: {}}
+      tmp.match["generic._searchable_text." + lang] = {
+        query: query,
+        boost: 1,
+        fuzziness: 3,
+        prefix_length: 3,
+        max_expansions: 50,
+        _name: "Fuzzy-match-searchable-text",
+      };
+      searchquery.bool.should.push(tmp);
+
+      // Phrase-matching on title
+      tmp = {match_phrase_prefix: {}};
+      tmp.match_phrase_prefix["generic.title.nb"] = {
+        query: query,
+        boost: 1,
+        _name: "Phrase-nb-search",
+        };
+      searchquery.bool.should.push(tmp);
+
+      // Match on custom fields for persons
+      tmp = {
+        bool: {
+          should:[
+            {match_phrase_prefix: {first_name: {query: query}}},
+            {match: {first_name: {query: query, fuzziness: 3, prefix_length: 3, max_expansions: 50,}}},
+            {match_phrase_prefix: {last_name: {query: query}}},
+            {match: {last_name: {query: query, fuzziness: 3, prefix_length: 3, max_expansions: 50,}}},
+            {match_phrase_prefix: {mail: {query: query}}},
+            {match_phrase_prefix: {ou_nb: {query: query}}},
+            {match_phrase_prefix: {ou_en: {query: query}}},
+            {match_phrase_prefix: {position_nb: {query: query}}},
+            {match_phrase_prefix: {position_en: {query: query}}},
+            {match_phrase_prefix: {alt_position_nb: {query: query}}},
+            {match_phrase_prefix: {alt_position_en: {query: query}}},
+            {match_phrase_prefix: {competence_nb: {query: query}}},
+            {match_phrase_prefix: {competence_en: {query: query}}},
+            {multi_match: {query: query, fields: [
+              "ou_nb",
+              "ou_en",
+              "position_nb",
+              "position_en",
+              "alt_position_nb",
+              "alt_position_en",
+              "competence_nb",
+              "competence_en",
+            ]}},
+          ],
+        _name: 'Person-search',
+        }
+      };
+      searchquery.bool.should.push(tmp);
+
+      // Add the searchquery to the must clause, as something here must match
+      data.query.bool.must = searchquery;
+
+      /**************************************
+       * Highlighted fields
+       *************************************/
+      data.highlight.fields["generic.title." + lang] = {};
+      data.highlight.fields["generic.excerpt." + lang] = {};
+      data.highlight.fields.first_name = {};
+      data.highlight.fields.last_name = {};
+      data.highlight.fields['ou_' + lang] = {};
+      data.highlight.fields['position_' + lang] = {};
+      data.highlight.fields.mail = {};
+      data.highlight.fields['alt_position_' + lang] = {};
+
+      /**************************************
+       * Boosting relevance
+       *************************************/
+      // Importance levels are found in this doc https://goo.gl/yw9mzP
+      // The boost levels associated with the importance levels are subject
+      // to change.
+      var importance_levels = {
+        1:6, // Most important: Area pages etc
+        2:5, // Less important: News from latest month etc
+        3:4, // Even less important: News from last year?
+        4:3, // ...etc
+        5:2,
+        6:1,
+      };
+
+      // Match direct hit on study code
+      tmp = {
+        term: {
+          "w3.study_code": {
+            value: query,
+            boost: importance_levels[1],
+          }
+        }
+      }
+      boostquery.bool.should.push(tmp);
+
+      // Boost hits on content type area
+      tmp = {
+        constant_score: {
+          filter: {
+            term: {
+              "w3.type": {
+                value: 'area'
+              },
+            },
+          },
+          boost: importance_levels[1],
+        },
+      };
+      boostquery.bool.should.push(tmp);
+
+      // Boost recent content
+      tmp = {
+        constant_score: {
+          filter: {
+            bool: {
+              must: [
+                 {
+                   range: {
+                     "w3.changed":{
+                       gte: "now-1M"
+                     },
+                   },
+                 },
+                 {
+                   term: {
+                     "w3.article_type": {
+                       value: 'news'
+                     },
+                   },
+                 },
+              ],
+            },
+          },
+          boost: importance_levels[2],
+        },
+      };
+      boostquery.bool.should.push(tmp);
+
+      // Boost relevanskriteriene i forhold til søkekriteriene
+      // for å få rett effekt av relevanskriteriene
+      tmp = {bool: {should: boostquery, boost: 10}};
+
+      // Adding relevance boost to should - clause. Some or none of these can
+      // match.
+      data.query.bool.should.push(tmp);
+
       if (
         $('#search-filter-checkboxes input[value=everything]').is(':checked')
       ) {
@@ -150,71 +323,6 @@
           // Document type must be user
           data.query.bool.filter.or.push({type: {value: 'user'}});
         }
-        should_tmp = []
-        should_tmp.push(
-          {match_phrase_prefix: {first_name: { query: query, boost: 3}}},
-          {match: {first_name: { query: query, boost: 3}}},
-          {match_phrase_prefix: {last_name: { query: query, boost: 3}}},
-          {match: {last_name: { query: query, boost: 3}}},
-          {match_phrase_prefix: {mail: query}},
-          {match: {mail: query}}
-        );
-
-        // NGrams
-        tmp = {match: {}}
-        tmp.match["first_name.ngrams"] = { query: query, boost: 3};
-        should_tmp.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["last_name.ngrams"] = { query: query, boost: 3};
-        should_tmp.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["ou_" + lang] = { query: query, boost: 2};
-        should_tmp.push(tmp)
-
-        tmp = {match_phrase_prefix: {}}
-        tmp.match_phrase_prefix["ou_" + lang] = query;
-        should_tmp.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["position_" + lang] = { query: query, boost: 3};
-        should_tmp.push(tmp)
-
-        tmp = {match_phrase_prefix: {}}
-        tmp.match_phrase_prefix["position_" + lang] = { query: query, boost: 2};
-        should_tmp.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["alt_position_" + lang] = {query: query, boost: 3};
-        should_tmp.push(tmp)
-
-        tmp = {match_phrase_prefix: {}}
-        tmp.match_phrase_prefix["alt_position_" + lang] =
-          {query: query, boost: 2};
-        should_tmp.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["competence_" + lang] = {query: query, boost: 3};
-        should_tmp.push(tmp)
-
-        tmp = {match_phrase_prefix: {}}
-        tmp.match_phrase_prefix["competence_" + lang] =
-          {query: query, boost: 2};
-        should_tmp.push(tmp)
-
-        // Adding above searches to the toplevel should-array
-        should.push({bool: {should: should_tmp}});
-
-        // Highlighted fields
-        data.highlight.fields.first_name = {};
-        data.highlight.fields.last_name = {};
-        data.highlight.fields['ou_' + lang] = {};
-        data.highlight.fields['position_' + lang] = {};
-        data.highlight.fields.mail = {};
-        data.highlight.fields['alt_position_' + lang] = {};
-
-
 
       }
       if (all ||
@@ -255,59 +363,7 @@
 
         }
 
-        // Match direct hit on study code
-        tmp = {match: {}}
-        tmp.match["w3.study_code"] = {query: query, boost: 10};
-        should.push(tmp)
-
-        // Boost hits on content type area
-        tmp = {match: {}}
-        tmp.match["w3.type"] = {query: 'area', boost: 1.2};
-        should.push(tmp)
-
-        // Boost recent content
-        tmp = {"range": {}}
-        tmp.range["w3.changed"] = {
-          boost: 2,
-          gte: "now-1M"
-        }
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic.title.ngrams"] = {query: query, boost: 3};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic.title.nb"] = {query: query, boost: 3};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic.title.en"] = {query: query, boost: 3};
-        should.push(tmp)
-
-
-        tmp = {match: {}}
-        tmp.match["generic.excerpt.nb"] = {query: query, boost: 2};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic.excerpt.en"] = {query: query, boost: 2};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic._searchable_text.nb"] = {query: query, boost: 1};
-        should.push(tmp)
-
-        tmp = {match: {}}
-        tmp.match["generic._searchable_text.en"] = {query: query, boost: 1};
-        should.push(tmp)
-
-        // Highlighted fields
-        data.highlight.fields['generic.title.' + lang] = {};
-        data.highlight.fields['generic.excerpt.' + lang] = {};
-        data.highlight.fields['w3.study_code'] = {};
       }
-      data.query.bool.should = should;
 
       // Use manual boosting only if new search is enabled:
       if (!$('#switch_type_button').length) {
