@@ -377,15 +377,17 @@
           );
         }
       }
-      // Use manual boosting only if new search is enabled:
+      // Use manual boosting only if new search is enabled. Affects
+      // only the search part of the query (not other boosts)
       if (!$('#switch_type_button').length) {
-        data.query = {
+        data.query.bool.must = {
           function_score: {
-            query: data.query,
+            query: data.query.bool.must,
             field_value_factor: {
-              field: "search_manual_boost",
-              modifier: "log1p",
-            }
+              field: 'search_manual_boost',
+              modifier: "square",
+              factor: 1,
+            },
           }
         }
       }
