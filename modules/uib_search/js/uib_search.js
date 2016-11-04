@@ -288,31 +288,31 @@
       // match.
       data.query.bool.should.push(tmp);
 
+      /**************************************
+       * Filtering
+       * The filtering will not affect
+       * relevance scores.
+       *************************************/
+      // All content
       if (
         $('#search-filter-checkboxes input[value=everything]').is(':checked')
       ) {
         all = true;
-        // News
-        data.query.bool.filter.or.push(
-          {term: {'w3.article_type': { value: 'news'}}}
-        );
-        // Event
-        data.query.bool.filter.or.push(
-          {term: {'w3.article_type': { value: 'event'}}}
-        );
-        // Area
-        data.query.bool.filter.or.push(
-          {term: {'w3.type': { value: 'area'}}}
-        );
-        // External content or link to views etc
-        data.query.bool.filter.or.push(
-          {term: {'w3.type': { value: 'uib_external_content'}}}
-        );
         // Study
-        data.query.bool.filter.or.push({type: {value: 'study'}});
+        data.query.bool.filter.bool.should.push(
+          {type: {value: 'study'}}
+        );
         // User
-        data.query.bool.filter.or.push({type: {value: 'user'}});
+        data.query.bool.filter.bool.should.push(
+          {type: {value: 'user'}}
+        );
+        // Node
+        data.query.bool.filter.bool.should.push(
+          {type: {value: 'node'}}
+        );
       }
+
+      // Users
       if (
         all ||
         $('#search-filter-checkboxes input[value=user]').is(':checked') ||
@@ -321,50 +321,62 @@
 
         if (!all) {
           // Document type must be user
-          data.query.bool.filter.or.push({type: {value: 'user'}});
+          data.query.bool.filter.bool.should.push(
+            {type: {value: 'user'}}
+          );
         }
 
       }
+
+      // News, study, events
       if (all ||
         $('#search-filter-checkboxes input[value=news]').is(':checked') ||
         $('#search-filter-checkboxes input[value=study]').is(':checked') ||
         $('#search-filter-checkboxes input[value=event]').is(':checked')
       ) {
 
+        // News
         if (!all &&
           $('#search-filter-checkboxes input[value=news]').is(':checked')
         ) {
           // Document type: node, and w3 article-type: news
-          data.query.bool.filter.or.push(
-            {and:[
-              {type: {value: 'node'}},
-              {term: {'w3.article_type': { value: 'news'}}}
-            ]}
-          );
+          data.query.bool.filter.bool.should.push({
+            bool: {
+              should: [
+                {type: {value: 'node'}},
+                {term: {'w3.article_type': { value: 'news'}}},
+              ],
+              minimum_should_match: 2,
+            }
+          });
         }
 
+        // Events
         if (!all &&
           $('#search-filter-checkboxes input[value=event]').is(':checked')
         ) {
           // Document type: node, and w3 article-type: event
-          data.query.bool.filter.or.push(
-            {and:[
-              {type: {value: 'node'}},
-              {term: {'w3.article_type': { value: 'event'}}}
-            ]}
-          );
+          data.query.bool.filter.bool.should.push({
+            bool: {
+              should: [
+                {type: {value: 'node'}},
+                {term: {'w3.article_type': { value: 'event'}}},
+              ],
+              minimum_should_match: 2,
+            }
+          });
         }
 
+        // Study
         if (!all &&
           $('#search-filter-checkboxes input[value=study]').is(':checked')
         ) {
           // Document type: study
-          data.query.bool.filter.or.push({type: {value: 'study'}});
-
+          data.query.bool.filter.bool.should.push(
+            {type: {value: 'study'}}
+          );
         }
-
       }
-
       // Use manual boosting only if new search is enabled:
       if (!$('#switch_type_button').length) {
         data.query = {
