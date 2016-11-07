@@ -564,6 +564,7 @@ function uib_study_block_view($delta = '') {
         'B_RE_INFO',
         'M_RE_INFO',
         'B_RE_VISST',
+        'M_RE_FEE',
       );
 
       $node = menu_get_object();
@@ -883,6 +884,10 @@ function uib_study_block_view($delta = '') {
           $sprak = uib_study__extract_study_info($data_2, $sprak_info);
           if ($sprak) {
             $items[] = uib_study__get_study_facts_markup(t('Language'), uib_study__text_markup($sprak, $is_course, TRUE));
+          }
+          $fee = uib_study__extract_study_info($data_2, 'M_RE_FEE');
+          if ($fee && $language->language == 'en') {
+            $items[] = uib_study__get_study_facts_markup(t('Tuition fee'), uib_study__text_markup($fee, $is_course, TRUE));
           }
           if (uib_study__has_study_plan($data_2)) {
             $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
