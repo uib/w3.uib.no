@@ -1072,22 +1072,45 @@ function uib_search__strip_html($val) {
   return $retval;
 }
 
-function uib_search__report_status($status, $type, $id, $action = 'update') {
+/**
+ * Reports status  of http request to elasticsearch using uibx_lox - function.
+ *
+ * @param unknown $status HTTP Status object returned by
+ * uib_search__run_elastic_request(...)
+ * @param unknown $type Type of update (node, study, user or batch which can
+ * include the others)
+ * @param number $id The id beeing updated.
+ * @param string $action The update action (create, update, delete)
+ * @return boolean true on success, false if errors are reported.
+ */
+function uib_search__report_status($status, $type, $id = 0, $action = 'update') {
+  $data = json_decode($status->data);
   if (!$status) {
     uibx_log('HTTP-call failed');
+    return FALSE;
   }
   else if (in_array($status->code, array(200))) {
-    uibx_log("Successful $action of elastic $type id #$id", 'notice');
+    if($data->errors) {
+      uibx_log("There where errors during {$action} of elastic $type", 'error');
+      return FALSE;
+    }
+    else {
+      $idtext = $id ? "id #$id" : "";
+      uibx_log("Successful $action of elastic $type $idtext", 'notice');
+      return TRUE;
+    }
   }
   else if (in_array($status->code, array(201))) {
     $action = $action == 'update' ? 'creation' : $action;
     uibx_log("Successful $action of elastic $type id #$id", 'notice');
+    return TRUE;
   }
   else if ($status->code == 404) {
     uibx_log(
       ucwords($type) . " id #" . $id . ' was not found in the elastic index',
-      'notice'
+      'warning'
     );
+    return FALSE;
   }
   else {
     uibx_log(
@@ -1095,6 +1118,7 @@ function uib_search__report_status($status, $type, $id, $action = 'update') {
         . "{$status->status_message}",
       'error'
     );
+    return FALSE;
   }
 }
 
