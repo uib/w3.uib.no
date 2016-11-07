@@ -349,14 +349,8 @@ function drush_uib_search_index($type = 'user') {
     }
     if ($line % 50 == 0 && $batch) {
       $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
-      if (!$stat) {
-        uibx_log('HTTP-call failed');
-        return;
-      }
-      else if ($stat->code != 200) {
-        uibx_log("$stat->code $stat->status_message", 'error');
-      }
-      else {
+      $ok = uib_search__report_status($stat, 'batch');
+      if ($ok) {
         // Success
         variable_set($last_processed_key, $last_processed_id);
       }
@@ -368,14 +362,8 @@ function drush_uib_search_index($type = 'user') {
   }
   if ($batch) {
     $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
-    if (!$stat) {
-      uibx_log('HTTP-call failed');
-      return;
-    }
-    else if ($stat->code != 200) {
-      uibx_log("$stat->code $stat->status_message", 'error');
-    }
-    else {
+    $ok = uib_search__report_status($stat, 'batch');
+    if ($ok) {
       // Success
       variable_set($last_processed_key, $last_processed_id);
     }
@@ -386,7 +374,7 @@ function drush_uib_search_index($type = 'user') {
       ($type == 'study' ? " AND type='uib_study'" : ""),
     array(':last' => variable_get($last_processed_key, 0))
   )->fetchField();
-  print("Updated $rowcount ${type}s; $remaining remaining.\n");
+  print("Tried updating $rowcount ${type}s; $remaining remaining.\n");
 }
 
 
