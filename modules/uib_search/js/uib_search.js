@@ -452,8 +452,11 @@
             var day = $('<span></span>').addClass('cal-date').text(
                 $.fn.df(event_from, 'd.m.Y')
             );
+            var to = !isNaN(event_to) && event_to ?
+              '-' + $.fn.df(event_to, 'H:i')
+              : '';
             var time = $('<span></span>').addClass('cal-time').text(
-                $.fn.df(event_from, 'H:i') +  '-' + $.fn.df(event_to, 'H:i')
+                $.fn.df(event_from, 'H:i') + to
             );
             lft.append(
               $('<div></div>').addClass('excerpt')
