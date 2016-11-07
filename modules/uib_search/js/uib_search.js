@@ -280,6 +280,46 @@
       };
       boostquery.bool.should.push(tmp);
 
+      // Boost upcoming events
+      tmp = {
+        constant_score: {
+          filter: {
+            bool: {
+              should: [
+                {
+                  range: {
+                    "w3.date.value":{
+                      gte: "now/d"
+                    },
+                  },
+                },
+                {
+                  range: {
+                    "w3.date.value2":{
+                      gte: "now/d"
+                    },
+                  },
+                },
+              ],
+              must: [
+                 {
+                   term: {
+                     "w3.article_type": {
+                       value: 'event'
+                     },
+                   },
+                 },
+              ],
+              minimum_should_match: 1,
+            },
+          },
+          boost: importance_levels[2],
+        },
+      };
+      boostquery.bool.should.push(tmp);
+
+
+
       // Boost relevanskriteriene i forhold til søkekriteriene
       // for å få rett effekt av relevanskriteriene
       tmp = {bool: {should: boostquery, boost: 10}};
