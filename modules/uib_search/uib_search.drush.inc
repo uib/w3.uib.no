@@ -370,7 +370,8 @@ function drush_uib_search_index($type = 'user') {
   }
 
   $remaining = db_query(
-    "SELECT count(*) FROM {node} WHERE nid > :last" .
+    "SELECT count(*) FROM {" . $table . "} WHERE ". $id_key ." > :last" .
+      " AND status = 1 " .
       ($type == 'study' ? " AND type='uib_study'" : ""),
     array(':last' => variable_get($last_processed_key, 0))
   )->fetchField();
