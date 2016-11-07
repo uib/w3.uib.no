@@ -287,6 +287,9 @@ function drush_uib_search_index($type = 'user') {
   if ($type == 'study') {
     $select->condition('a.type', 'uib_study');
   }
+  else if ($type == 'node') {
+    $select->condition('a.type', 'uib_study', '<>');
+  }
   if ($type == 'study' || $type == 'node') {
     // Skip external content with manual boost not set
     $select->leftJoin(
