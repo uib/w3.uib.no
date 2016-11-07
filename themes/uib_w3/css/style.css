@@ -300,16 +300,24 @@ th {
     .footer-wrapper {
       padding: 4.375rem 1.25rem; } }
 
+.page-node-102270 .content-main-wrapper,
 .page-node-87341 .content-main-wrapper,
 .page-node-87342 .content-main-wrapper,
 .page-node-87343 .content-main-wrapper,
 .page-node-87344 .content-main-wrapper {
   padding: 0 0 7.5rem; }
+  .page-node-102270 .content-main-wrapper .region-content,
   .page-node-87341 .content-main-wrapper .region-content,
   .page-node-87342 .content-main-wrapper .region-content,
   .page-node-87343 .content-main-wrapper .region-content,
   .page-node-87344 .content-main-wrapper .region-content {
     max-width: 100%; }
+  .page-node-102270 .content-main-wrapper .attachment-before > *,
+  .page-node-102270 .content-main-wrapper .field-name-field-uib-node-title > *,
+  .page-node-102270 .content-main-wrapper .field-name-field-uib-view-information > *,
+  .page-node-102270 .content-main-wrapper .view-filters > *,
+  .page-node-102270 .content-main-wrapper .view-header > *,
+  .page-node-102270 .content-main-wrapper .view-content > *,
   .page-node-87341 .content-main-wrapper .attachment-before > *,
   .page-node-87341 .content-main-wrapper .field-name-field-uib-node-title > *,
   .page-node-87341 .content-main-wrapper .field-name-field-uib-view-information > *,
@@ -337,11 +345,15 @@ th {
     max-width: 72rem;
     margin: 0 auto;
     padding: 0 1.25rem; }
+  .page-node-102270 .content-main-wrapper .field-name-field-uib-view-information,
   .page-node-87341 .content-main-wrapper .field-name-field-uib-view-information,
   .page-node-87342 .content-main-wrapper .field-name-field-uib-view-information,
   .page-node-87343 .content-main-wrapper .field-name-field-uib-view-information,
   .page-node-87344 .content-main-wrapper .field-name-field-uib-view-information {
     padding-bottom: 2.5rem; }
+
+.page-node-102270 .view-content {
+  padding-top: 2.5rem; }
 
 .page-node-87344 .view-content > .item-list {
   padding-top: 2.5rem; }
@@ -6633,6 +6645,9 @@ nav {
     .node-uib-views-page .view-content .item-list ul li {
       line-height: 2.8125rem; }
 
+.page-node-102270 .field-name-field-uib-node-title,
+.page-node-102270 .field-name-field-uib-view-information,
+.page-node-102270 .view-filters,
 .page-node-87341 .field-name-field-uib-node-title,
 .page-node-87341 .field-name-field-uib-view-information,
 .page-node-87341 .view-filters,
@@ -6646,23 +6661,28 @@ nav {
 .page-node-87344 .field-name-field-uib-view-information,
 .page-node-87344 .view-filters {
   background: #fff; }
+.page-node-102270 .field-name-field-uib-node-title,
 .page-node-87341 .field-name-field-uib-node-title,
 .page-node-87342 .field-name-field-uib-node-title,
 .page-node-87343 .field-name-field-uib-node-title,
 .page-node-87344 .field-name-field-uib-node-title {
   padding: 1rem 0; }
   @media (min-width: 600px) {
+    .page-node-102270 .field-name-field-uib-node-title,
     .page-node-87341 .field-name-field-uib-node-title,
     .page-node-87342 .field-name-field-uib-node-title,
     .page-node-87343 .field-name-field-uib-node-title,
     .page-node-87344 .field-name-field-uib-node-title {
       padding: 0 0 1.875rem; } }
+.page-node-102270 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87341 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87342 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87343 .field-name-field-uib-view-information > .field-items > :last-child,
 .page-node-87344 .field-name-field-uib-view-information > .field-items > :last-child {
   border-bottom: solid 1px #b7b7b7;
   padding: 0 0 2.5rem; }
+.page-node-102270 .attachment-before,
+.page-node-102270 .view-header,
 .page-node-87341 .attachment-before,
 .page-node-87341 .view-header,
 .page-node-87342 .attachment-before,
@@ -6673,6 +6693,10 @@ nav {
 .page-node-87344 .view-header {
   padding: 2.5rem 0 0;
   margin: 0 0 2.1875rem; }
+
+.page-node-102270 .field-name-field-uib-view-information > .field-items :last-child {
+  border-bottom: none;
+  padding: 0; }
 
 .uib-study--search-results {
   font-size: 1.25rem;
