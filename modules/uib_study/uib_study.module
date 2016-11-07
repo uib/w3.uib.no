@@ -869,6 +869,8 @@ function uib_study_block_view($delta = '') {
           $duration = number_format(round($data['studiepoeng'] / 60 * ($data['heltidsprosent'] / 100), 1), 1, ',', ' ');
           if (substr($duration, -2) == ',0')
             $duration = substr($duration, 0, -2);
+          $duration = ($duration > 1 ? $duration . ' ' . t('years') : $duration . ' ' . t('year'));
+          if ($language->language == 'en') $duration = str_replace(',', '.', $duration);
           $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
           $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
           $seats = uib_study__extract_study_info($data_2, $seats_info);
