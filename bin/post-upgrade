@@ -27,3 +27,4 @@ fi
 set -x
 
 bin/site-drush scr alter-research-agreement-aliases -v
+bin/site-drush scr remove-uib-nus-aliases -v
