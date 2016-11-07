@@ -10,6 +10,29 @@
 function uib_study_field_default_field_bases() {
   $field_bases = array();
 
+  // Exported field_base: 'field_uib_link_section_2'.
+  $field_bases['field_uib_link_section_2'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_link_section_2',
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
+  );
+
   // Exported field_base: 'field_uib_nus'.
   $field_bases['field_uib_nus'] = array(
     'active' => 1,

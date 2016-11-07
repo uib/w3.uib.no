@@ -556,7 +556,8 @@ EOD;
         ));
         $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 4);
         $variables['page']['content']['study_testimonial'] = __uib_w3__render_block('uib_study', 'study_testimonial', 10, TRUE);
-        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+        $link_section = $language->language == 'en' ? '_2' : '';
+        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
           'label' => 'hidden',
           'weight' => 0,
         ));
