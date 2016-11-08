@@ -169,8 +169,14 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           }
         }
         elseif ($study_type == 'exchange') {
-          $study_type_title = t('Exchange agreement');
-          $study_type_href = "node/$exchanges_view_page_nid";
+          if (in_array($study_category, array('mou', 'forskningsavtale'))) {
+            $study_type_title = t('Bilateral agreement');
+            $study_type_href = "node/102270";
+          }
+          else {
+            $study_type_title = t('Exchange agreement');
+            $study_type_href = "node/$exchanges_view_page_nid";
+          }
         }
         else {
           if ($intgrad) {
