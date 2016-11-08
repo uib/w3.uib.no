@@ -523,7 +523,7 @@ EOD;
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
       unset($variables['page']['content']['study_content']['uib_study_study_content']['#contextual_links']);
       $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
-      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange') {
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange' && (!in_array($variables['node']->field_uib_study_category['und'][0]['value'], array('mou', 'forskningsavtale')))) {
         $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
       }
       global $language;
@@ -575,7 +575,9 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
-        $variables['page']['content_bottom']['study_static_links'] = __uib_w3__render_block('uib_study', 'study_static_links', 0);
+        if (!in_array($variables['node']->field_uib_study_category['und'][0]['value'], array('mou', 'forskningsavtale'))) {
+          $variables['page']['content_bottom']['study_static_links'] = __uib_w3__render_block('uib_study', 'study_static_links', 0);
+        }
       }
       break;
     case (isset($variables['node']) && $variables['node']->type == 'uib_testimonial'):
