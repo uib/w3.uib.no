@@ -528,13 +528,15 @@ EOD;
       }
       global $language;
       $belongs_to = uib_study__area($variables['node'], $language->language);
-      $variables['page']['content']['study_belongs_to'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'div',
-        '#value' => $belongs_to,
-        '#weight' => 20,
-        '#attributes' => array('class' => array('uib-study-belongs-to')),
-      );
+      if ($belongs_to) {
+        $variables['page']['content']['study_belongs_to'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#value' => $belongs_to,
+          '#weight' => 20,
+          '#attributes' => array('class' => array('uib-study-belongs-to')),
+        );
+      }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'exchange') {
         $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
       }
