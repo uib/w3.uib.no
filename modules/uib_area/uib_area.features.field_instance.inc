@@ -1127,7 +1127,7 @@ function uib_area_field_default_field_instances() {
   $field_instances['node-area-field_uib_primary_media'] = array(
     'bundle' => 'area',
     'deleted' => 0,
-    'description' => 'The primary media is the image/video at the top of the area front page. If text is added to the primary text field the image shown will be a maximum of 334x251 pixels. If the primary text field is empty, the image will take up the entire width.',
+    'description' => 'The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1197,9 +1197,7 @@ function uib_area_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'media_internet' => 'media_internet',
           'upload' => 'upload',
-          'youtube' => 0,
         ),
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
       'weight' => 4,
@@ -1211,7 +1209,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This is the primary profile text on the page. Keep it short and focus on useful information like a basic description and contact info.',
+    'description' => 'This text field contains the primary profile text on the page and will be placed to the right of the image. Keep the text short and focus on useful information like a basic description and contact info.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1286,6 +1284,10 @@ function uib_area_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -5892,7 +5894,7 @@ function uib_area_field_default_field_instances() {
   t('Text');
   t('The address for the location of the event. ');
   t('The person to contact for information related to the event. Use UiB usernames to search for people. ');
-  t('The primary media is the image/video at the top of the area front page. If text is added to the primary text field the image shown will be a maximum of 334x251 pixels. If the primary text field is empty, the image will take up the entire width.');
+  t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
   t('This field contains the text that was known as "profiltekster" in the old version and was shown on the left side of the area page. ');
@@ -5900,8 +5902,8 @@ function uib_area_field_default_field_instances() {
   t('This is a field level 1 users may use to add an image map to main media in an area.');
   t('This is a short category title which highlights the subject of the article. ');
   t('This is the large image/video at the top.');
-  t('This is the primary profile text on the page. Keep it short and focus on useful information like a basic description and contact info.');
   t('This is the secondary profile text. Use this for information that is often accessed. Think about what information is important at different times of the year. ');
+  t('This text field contains the primary profile text on the page and will be placed to the right of the image. Keep the text short and focus on useful information like a basic description and contact info.');
   t('Title');
   t('Type');
   t('Use this field for important messages that requires the immediate attention of the reader like for instance in case of a crisis or other important events. ');
