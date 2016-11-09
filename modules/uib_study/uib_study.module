@@ -630,32 +630,26 @@ function uib_study_block_view($delta = '') {
               continue;
             $group_title_html_id = uib_study__clean_id_string($group_title);
             $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
-            if ($group_type == 'presentasjon' || $group_type == 'oppbygging')
-              $tab_items_construction_position = count($tab_items);
+            if ($group_type == 'presentasjon' || $group_type == 'oppbygging') {
+              if ($type == 'program' || $type == 'specialization') {
+                $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
+                if (!empty($plan['rows'])) {
+                  $table = uib_study__construction_table($plan, $type, $study_code);
+
+                  $construction_table = array(
+                    '#theme' => 'table',
+                    '#caption' => $table['caption'],
+                    '#rows' => $table['t_rows'],
+                    '#attributes' => array('class' => 'uib-study-construction'),
+                  );
+                  if (isset($render[$group_id])) {
+                    $render[$group_id]['construction']['#markup'] = render($construction_table);
+                  }
+                }
+              }
+            }
           }
           if ($type == 'program' || $type == 'specialization') {
-            $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
-            if (!empty($plan['rows'])) {
-              $group_title = t('Construction');
-              array_splice($tab_items, $tab_items_construction_position, 0,
-                '<a href="#uib-tabs-construction">' . $group_title . '</a>');
-              $render['construction'] = array(
-                '#type' => 'html_tag',
-                '#tag' => 'h2',
-                '#value' => t("Construction"),
-              );
-
-              $table = uib_study__construction_table($plan, $type, $study_code);
-
-              $render['construction table'] = array(
-                '#theme' => 'table',
-                '#caption' => $table['caption'],
-                '#rows' => $table['t_rows'],
-                '#attributes' => array('class' => 'uib-study-construction'),
-                '#prefix' => '<div id="uib-tabs-construction">',
-                '#suffix' => '</div>',
-              );
-            }
             if ($type == 'program') {
               $view = views_get_view('uib_study_specialization');
               $view->preview('block', array($nid));
