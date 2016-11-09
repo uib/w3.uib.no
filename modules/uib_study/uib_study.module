@@ -621,7 +621,7 @@ function uib_study_block_view($delta = '') {
         $study_category = $node->field_uib_study_category->value();
         if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
-          $tab_items_construction_position = 0;
+          $tab_items_specialization_position = 0;
           foreach ($data as $group) {
             $group_id = $group['#group'];
             $group_type = substr($group_id, strpos($group_id, '_') + 1);
@@ -648,14 +648,16 @@ function uib_study_block_view($delta = '') {
                 }
               }
             }
+            if ($group_type == 'presentasjon' || $group_type == 'introduksjon')
+              $tab_items_specialization_position = count($tab_items);
           }
           if ($type == 'program' || $type == 'specialization') {
             if ($type == 'program') {
               $view = views_get_view('uib_study_specialization');
               $view->preview('block', array($nid));
               if ($view->result) {
-              $group_title = t('Specialization');
-                $tab_items[] = '<a href="#uib-tabs-specialization">' . $group_title . '</a>';
+                $group_title = t('Specialization');
+                array_splice($tab_items, $tab_items_specialization_position, 0, '<a href="#uib-tabs-specialization">' . $group_title . '</a>');
                 $render['specialization'] = array(
                   '#type' => 'html_tag',
                   '#tag' => 'h2',
