@@ -6853,6 +6853,9 @@ nav {
   .content-main-wrapper .region-content .field-name-field-uib-user-competence:nth-child(2), .content-main-wrapper .region-content .block-uib-user:nth-child(2) {
     margin-top: 2.75rem; } }
 
+.node-type-area .field-name-field-uib-primary-text {
+  padding: 1rem 2%;
+  margin-bottom: 1rem; }
 @media (min-width: 600px) {
   .node-type-area .field-name-field-uib-primary-text,
   .node-type-area .field-name-field-uib-primary-media {
@@ -6906,8 +6909,6 @@ nav {
     width: 50%; }
   .node-type-area .full-width .field-name-field-uib-primary-media {
     width: 100%; }
-  .node-type-area .field-name-field-uib-primary-text {
-    padding: 2% 3%; }
   .node-type-area .field-name-field-uib-secondary-text {
     width: 100%; }
   .node-type-area .field-name-field-uib-bottom-media {
