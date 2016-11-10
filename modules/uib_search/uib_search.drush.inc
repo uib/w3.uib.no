@@ -342,6 +342,8 @@ function drush_uib_search_index($type = 'user') {
       $nodearray = uib_search__merge_study_arrays($nodearray, $sarr);
     }
     if (count($nodearray)) {
+      uib_search__clean_utf8_string_array($nodearray);
+
       $batch .= '{ "'.$action.'" : { "_index" : "' . $index . '", '
         . '"_type" : "' . $type
         . '", "_id" : "' . $value->$id_key . '" } }'."\n";

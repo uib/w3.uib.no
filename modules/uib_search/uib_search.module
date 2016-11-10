@@ -813,6 +813,9 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
 
   $url = "{$url}/{$index}/{$entity_type}/$id";
   $output = uib_search__get_elastic_entity_array($wrapped_entity);
+
+  uib_search__clean_utf8_string_array($output);
+
   $status = uib_search__run_elastic_request(
     $url,
     json_encode($output),
@@ -972,10 +975,10 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
       @$output['w3']['search_description']
       ?: @$output['w3']['teaser']
       ?: @$output['w3']['lead']
-      ?: substr(strip_tags(@$output['w3']['text']), 0, 160)
-      ?: substr(strip_tags(@$output['w3']['primary_text']), 0, 160)
-      ?: substr(strip_tags(@$output['w3']['text2']), 0, 160)
-      ?: substr(strip_tags(@$output['w3']['secondary_text']), 0, 160)
+      ?: strip_tags(@$output['w3']['text'])
+      ?: strip_tags(@$output['w3']['primary_text'])
+      ?: strip_tags(@$output['w3']['text2'])
+      ?: strip_tags(@$output['w3']['secondary_text'])
       ?: NULL,
     '_searchable_text' => uib_search__concat_text(
       $output['w3'],
@@ -1024,51 +1027,46 @@ function uib_search__null_if_empty($val) {
 }
 
 function uib_search__strip_html($val) {
-  if (!trim($val)) {
+  if (!trim($val, "\t\n\r\0\x0B\xC2\xA0")) {
     return NULL;
   }
-  libxml_use_internal_errors(true);
-  $doc = new DOMDocument();
-  $xml = '<?xml encoding="utf-8" ?>' . $val;
-  if (!$doc->loadHTML($xml)) {
-    foreach (libxml_get_errors() as $error) {
-      $level = 'notice';
-      switch ($error->level) {
-        case LIBXML_ERR_WARNING:
-          $level = 'warning';
-          break;
 
-        case LIBXML_ERR_ERROR:
-          $level = 'error';
-          break;
-
-        case LIBXML_ERR_WARNING:
-          $level = 'warning';
-          break;
-      }
-      uibx_log('Xml - error: ' . $error->message, $level);
-    }
-    libxml_clear_errors();
-  }
-  uib_search__remove_tag('script', $doc);
-  uib_search__remove_tag('style', $doc);
-  $retval = $doc->saveHTML();
-
+  // Strip html tags including content in script tags, style tags etc.
+  // Replacing block elements with newlines.
+  // Replacing multiple newlines with max 2 repeting newlines
   $retval = preg_replace(
     array(
-      '/<\/p *>/i',
-      '/<br *\/?>/i',
-      '/<\/li *>/i',
-      '/<\/div *>/i',
-      '/<\/h[0-9] *>/i',
+      // Remove invisible content
+      '/<head[^>]*?>.*?<\/head>/siu',
+      '/<style[^>]*?>.*?<\/style>/siu',
+      '/<script[^>]*?.*?<\/script>/siu',
+      '/<object[^>]*?.*?<\/object>/siu',
+      '/<embed[^>]*?.*?<\/embed>/siu',
+      '/<applet[^>]*?.*?<\/applet>/siu',
+      '/<noframes[^>]*?.*?<\/noframes>/siu',
+      '/<noscript[^>]*?.*?<\/noscript>/siu',
+      '/<noembed[^>]*?.*?<\/noembed>/siu',
+      // Add line breaks before and after blocks
+      '/<\/?((address)|(blockquote)|(center)|(del))/iu',
+      '/<\/?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))/iu',
+      '/<\/?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))/iu',
+      '/<\/?((table)|(th)|(td)|(caption))/iu',
+      '/<\/?((form)|(button)|(fieldset)|(legend)|(input))/iu',
+      '/<\/?((label)|(select)|(optgroup)|(option)|(textarea))/iu',
+      '/<\/?((frameset)|(frame)|(iframe)|(br))/iu',
+      '/[\n\r]{2,}/siu'
     ),
-    "$0\n",
-    $retval
+    array(
+        ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+        "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
+        "\n\$0", "\n\$0", "\n\n"
+    ),
+    $val
   );
   $retval = strip_tags($retval);
-  $retval = preg_replace('/[\n\r]+/',"\n\n", $retval);
-  $retval = html_entity_decode($retval, ENT_QUOTES, 'UTF-8');
-  $retval = trim($retval);
+
+  // Trimming, also removing trailing non breaking spaces etc.
+  $retval = trim( $retval, "\t\n\r\0\x0B\xC2\xA0" );
   return $retval;
 }
 
@@ -1091,7 +1089,21 @@ function uib_search__report_status($status, $type, $id = 0, $action = 'update') 
   }
   else if (in_array($status->code, array(200))) {
     if($data->errors) {
-      uibx_log("There where errors during {$action} of elastic $type", 'error');
+      uibx_log(
+        "There where errors during {$action} of elastic {$type}:",
+        'error'
+      );
+      foreach ($data->items as $item) {
+        if (isset($item->index->error)) {
+          uibx_log(
+            'ID: #' . $item->index->_id . ', Type: '
+            . $item->index->_type . ', '
+            . ucfirst(str_replace('_', ' ', $item->index->error->type)) . ': '
+            . $item->index->error->reason,
+            'error'
+          );
+        }
+      }
       return FALSE;
     }
     else {
@@ -1339,4 +1351,24 @@ function uib_search__boost_item_search($dir, $type, $id) {
   call_user_func($type . '_save', $o);
   drupal_json_output($new);
   drupal_exit();
+}
+
+
+/**
+ * Takes an array of strings and tests for bed character encodings. Bad strings
+ * will be set to NULL. The function modifies the input array directly.
+ *
+ * @param array $array
+ */
+function uib_search__clean_utf8_string_array(&$array) {
+  array_walk_recursive($array,
+    function(&$item, $key) {
+      if (is_string($item)) {
+        $item = iconv('UTF-8', 'UTF-8//IGNORE', $item);
+        if ($item === FALSE) {
+          $item = NULL;
+        }
+      }
+    }
+  );
 }
