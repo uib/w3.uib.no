@@ -136,9 +136,9 @@
       tmp.match["generic.excerpt." + lang] = {
         query: query,
         boost: 2,
-        fuzziness: 3,
+        fuzziness: 1,
         prefix_length: 3,
-        max_expansions: 100,
+        max_expansions: 50,
         _name: "Fuzzy-match-excerpt",
       };
       searchquery.bool.should.push(tmp);
@@ -147,7 +147,7 @@
       tmp.match["generic._searchable_text." + lang] = {
         query: query,
         boost: 1,
-        fuzziness: 3,
+        fuzziness: 1,
         prefix_length: 3,
         max_expansions: 50,
         _name: "Fuzzy-match-searchable-text",
@@ -168,9 +168,9 @@
         bool: {
           should:[
             {match_phrase_prefix: {first_name: {query: query}}},
-            {match: {first_name: {query: query, fuzziness: 3, prefix_length: 3, max_expansions: 50,}}},
+            {match: {first_name: {query: query, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
             {match_phrase_prefix: {last_name: {query: query}}},
-            {match: {last_name: {query: query, fuzziness: 3, prefix_length: 3, max_expansions: 50,}}},
+            {match: {last_name: {query: query, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
             {match_phrase_prefix: {mail: {query: query}}},
             {match_phrase_prefix: {ou_nb: {query: query}}},
             {match_phrase_prefix: {ou_en: {query: query}}},
