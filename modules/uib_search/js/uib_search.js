@@ -327,12 +327,23 @@
       // Adding relevance boost to should - clause. Some or none of these can
       // match.
       data.query.bool.should.push(tmp);
-
       /**************************************
        * Filtering
        * The filtering will not affect
        * relevance scores.
        *************************************/
+      // Hide users on KHiB until jan 1. 2017
+      if (new Date()<new Date(2017,0,1,0,0,0,0)) {
+        data.query.bool.filter.bool.must_not =
+          {bool:
+            {must:
+              [
+                {match: {ou_nb: { query: 'Fakultet for kunst, musikk og design'}}},
+                {type: {value: 'user'}},
+              ]
+            }
+          };
+      }
       // All content
       if (
         $('#search-filter-checkboxes input[value=everything]').is(':checked')
