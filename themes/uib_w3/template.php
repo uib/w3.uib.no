@@ -649,10 +649,12 @@ EOD;
       foreach ($account->field_uib_phone['und'] as $number) {
         $numbers[] = $number['value'];
       }
-      $numbers = '<span class="phone-number">' . implode('</span><span class="phone-number">', $numbers) . '</span>';
-      $phone = '<span class="user-contact__label">' . t('Phone') . '</span>';
-      $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
-      $items[] = $phone;
+      if (!empty($numbers)) {
+        $numbers = '<span class="phone-number">' . implode('</span><span class="phone-number">', $numbers) . '</span>';
+        $phone = '<span class="user-contact__label">' . t('Phone') . '</span>';
+        $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
+        $items[] = $phone;
+      }
       $variables['page']['content']['system_main']['visit_address']['#label_display'] = 'hidden';
       $visit_address = '<span class="user-contact__label">' . t('Visitor Address') . '</span>';
       $visit_address .= '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['visit_address']);
