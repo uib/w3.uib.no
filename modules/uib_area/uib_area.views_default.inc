@@ -2585,7 +2585,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_main_media']['type'] = 'file_rendered';
   $handler->display->display_options['fields']['field_uib_main_media']['settings'] = array(
     'file_view_mode' => 'wide_thumbnail',
-    'field_multiple_limit' => '-1',
+    'field_multiple_limit' => '1',
     'field_multiple_limit_offset' => '0',
     'linked_field' => array(
       'linked' => 0,
@@ -2599,6 +2599,8 @@ return !empty($handler->argument);';
       ),
     ),
   );
+  $handler->display->display_options['fields']['field_uib_main_media']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_main_media']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_uib_main_media']['delta_offset'] = '0';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
