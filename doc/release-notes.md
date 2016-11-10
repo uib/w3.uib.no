@@ -1,3 +1,22 @@
+# Release 58 _2016-11-10_
+
+Release 58 2016-11-10
+I denne versjonen har fokuset vært på videreutvikling av studieprogramsidene. I tillegg har vi jobbet videre med ferdigstillingen av ny søkefunksjon.
+
+- Engelske studieprogramsider har nå fått egne felt for relevante lenker #16824
+- Endret fanenes rekkefølge på sider for studieprogram #16679
+- Designjustert boksen for "Søkerkode i Samordna opptak" #16588
+- Lagt til litt mer luft på introtekst-feltet på områdesider #16870
+- Fanen "Studieløp" er nå fjernet fra sider for studieprogram, og tabellen fra "Studieløp" er flyttet inn under fanen "Oppbygging" #16587
+- Infotypen 'Tuition fee' vises nå i faktalinjen på sider for enkelte masterprogram #16586
+- Flere infotyper fra FS vises nå i faktalinjen på sider for årsstudier og integrerte masterstudier/profesjonsstudier #16342
+- Lagt til "år" etter antallet under infotypen "Lengde" i faktalinjen på sider for studieprogram #16747
+- E-postadresser i kontaktinformasjonsboksen på sider for studieprogram er nå blitt klikkbare #16536
+- Videre arbeid med visning av forskningsavtaler #15575
+- Oppdatert enkelte hjelpetekster på redigeringssidene #16716 #16875
+- Fjernet gamle sider med faginformasjon #16750
+- Saker tilknyttet ny søkefunksjon #16667 #16675 #16701 #16715 #16735 #16746 #16772 #16848 #16883 #16884
+
 # Release 57 _2016-10-27_
 
 I denne versjonen har fokuset igjen vært på ferdigstillingen av ny søkefunksjon. Dessuten har det blitt gjort noen forbedringer, både når det gjelder design og funksjonalitet.
