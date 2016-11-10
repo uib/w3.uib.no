@@ -565,6 +565,9 @@ function uib_study_block_view($delta = '') {
         'M_RE_INFO',
         'B_RE_VISST',
         'M_RE_FEE',
+        'B_RE_START',
+        'M_RE_START',
+        'B_RE_POENG',
       );
 
       $node = menu_get_object();
