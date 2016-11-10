@@ -1405,18 +1405,6 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_organisation';
   $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '3';
 
-  /* Display: Quota */
-  $handler = $view->new_display('page', 'Quota', 'quota');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Master\'s Programmes - Quota';
-  $handler->display->display_options['path'] = 'education/quota';
-
-  /* Display: Self-financing */
-  $handler = $view->new_display('page', 'Self-financing', 'self_financing');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Master\'s Programmes - Self-financing';
-  $handler->display->display_options['path'] = 'education/self-financing';
-
   /* Display: Exchange */
   $handler = $view->new_display('block', 'Exchange', 'b1');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -1540,10 +1528,6 @@ function uib_study_views_default_views() {
     t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
     t('Filter by faculty'),
     t('Has taxonomy terms (with depth)'),
-    t('Quota'),
-    t('Master\'s Programmes - Quota'),
-    t('Self-financing'),
-    t('Master\'s Programmes - Self-financing'),
     t('Exchange'),
     t('Filter by semester'),
   );
