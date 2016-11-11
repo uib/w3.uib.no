@@ -1,6 +1,5 @@
 # Release 58 _2016-11-10_
 
-Release 58 2016-11-10
 I denne versjonen har fokuset vært på videreutvikling av studieprogramsidene. I tillegg har vi jobbet videre med ferdigstillingen av ny søkefunksjon.
 
 - Engelske studieprogramsider har nå fått egne felt for relevante lenker #16824
