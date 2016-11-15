@@ -369,7 +369,7 @@ function uib_area_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 14,
+      'weight' => 17,
     ),
   );
 
@@ -456,7 +456,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 18,
     ),
   );
 
@@ -1200,7 +1200,7 @@ function uib_area_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 4,
+      'weight' => 10,
     ),
   );
 
@@ -1291,7 +1291,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 11,
     ),
   );
 
@@ -1299,8 +1299,9 @@ function uib_area_field_default_field_instances() {
   $field_instances['node-area-field_uib_profiled_article'] = array(
     'bundle' => 'area',
     'default_value' => NULL,
+    'default_value_function' => '',
     'deleted' => 0,
-    'description' => 'Select which articles show up in the slideshow, a large image is required for your article to appear in the slideshow.',
+    'description' => 'Select which articles that should show up as profiled articles. A large image is required for your article to appear as a profiled article.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1339,9 +1340,14 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_profiled_article',
-    'label' => 'Slideshow',
+    'label' => 'Profiled articles',
     'required' => 0,
     'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
@@ -1354,7 +1360,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 13,
     ),
   );
 
@@ -1424,7 +1430,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 17,
+      'weight' => 19,
     ),
   );
 
@@ -1508,7 +1514,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 16,
     ),
   );
 
@@ -1561,7 +1567,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 9,
+      'weight' => 14,
     ),
   );
 
@@ -1637,7 +1643,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -1687,7 +1693,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 21,
+      'weight' => 9,
     ),
   );
 
@@ -1886,7 +1892,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 7,
+      'weight' => 12,
     ),
   );
 
@@ -2141,7 +2147,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 20,
     ),
   );
 
@@ -2228,7 +2234,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 12,
+      'weight' => 15,
     ),
   );
 
@@ -5869,6 +5875,7 @@ function uib_area_field_default_field_instances() {
   t('Postal Address');
   t('Primary media');
   t('Primary text');
+  t('Profiled articles');
   t('Profiled testimonial');
   t('Promoted articles');
   t('Promoted event');
@@ -5881,12 +5888,11 @@ function uib_area_field_default_field_instances() {
   t('Search keywords');
   t('Sebra ID');
   t('Secondary text');
-  t('Select which articles show up in the slideshow, a large image is required for your article to appear in the slideshow.');
+  t('Select which articles that should show up as profiled articles. A large image is required for your article to appear as a profiled article.');
   t('Select which content type you want to create. Choose between info page, event or news article.');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Short name');
   t('Show staff');
-  t('Slideshow');
   t('Small images');
   t('Staff');
   t('Staff sync status');

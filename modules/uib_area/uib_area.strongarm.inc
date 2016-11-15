@@ -84,10 +84,10 @@ function uib_area_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '20',
+          'weight' => '8',
         ),
         'redirect' => array(
-          'weight' => '19',
+          'weight' => '9',
         ),
       ),
       'display' => array(

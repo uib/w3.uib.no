@@ -420,7 +420,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['fields']['field_uib_event_type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_event_type']['empty'] = '[field_uib_article_type]';
   $handler->display->display_options['fields']['field_uib_event_type']['type'] = 'i18n_list_default';
-  /* Sort criterion: Content: Slideshow (field_uib_profiled_article:delta) */
+  /* Sort criterion: Content: Profiled articles (field_uib_profiled_article:delta) */
   $handler->display->display_options['sorts']['delta']['id'] = 'delta';
   $handler->display->display_options['sorts']['delta']['table'] = 'field_data_field_uib_profiled_article';
   $handler->display->display_options['sorts']['delta']['field'] = 'delta';

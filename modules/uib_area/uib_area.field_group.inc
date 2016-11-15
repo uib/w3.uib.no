@@ -151,16 +151,16 @@ function uib_area_field_group_info() {
     'label' => 'For level 1',
     'weight' => '1',
     'children' => array(
-      0 => 'field_uib_image_map',
-      1 => 'field_uib_sebra_id',
-      2 => 'field_uib_ou',
-      3 => 'field_uib_menu_style',
-      4 => 'field_uib_offices',
-      5 => 'field_uib_area_parents',
-      6 => 'field_uib_w2_id',
-      7 => 'field_uib_area_type',
+      0 => 'field_uib_menu_style',
+      1 => 'field_uib_area_banner',
+      2 => 'field_uib_offices',
+      3 => 'field_uib_area_type',
+      4 => 'field_uib_sebra_id',
+      5 => 'field_uib_w2_id',
+      6 => 'field_uib_ou',
+      7 => 'field_uib_area_parents',
       8 => 'field_uib_search_manual_boost',
-      9 => 'field_uib_area_banner',
+      9 => 'field_uib_image_map',
       10 => 'title',
     ),
     'format_type' => 'tab',
@@ -186,14 +186,14 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Management',
-    'weight' => '2',
+    'weight' => '6',
     'children' => array(
-      0 => 'field_uib_logo',
+      0 => 'field_uib_staff',
       1 => 'field_uib_important_message',
-      2 => 'field_uib_colophone_logos',
-      3 => 'field_uib_staff',
+      2 => 'field_uib_content_manager',
+      3 => 'field_uib_colophone_logos',
       4 => 'field_uib_show_staff',
-      5 => 'field_uib_content_manager',
+      5 => 'field_uib_logo',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -314,7 +314,7 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'W2 profile text',
-    'weight' => '3',
+    'weight' => '7',
     'children' => array(
       0 => 'field_uib_text2',
       1 => 'field_uib_media',
@@ -330,6 +330,115 @@ function uib_area_field_group_info() {
     ),
   );
   $field_groups['group_profile_text|node|area|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_relevant_links|node|area|form';
+  $field_group->group_name = 'group_relevant_links';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'area';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Relevant links',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_uib_link_section',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-relevant-links field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_relevant_links|node|area|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_rss|node|area|form';
+  $field_group->group_name = 'group_rss';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'area';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'RSS',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_uib_feed',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-rss field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_rss|node|area|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_search|node|area|form';
+  $field_group->group_name = 'group_search';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'area';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Search',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_uib_search_description',
+      1 => 'field_uib_search_keywords',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-search field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_search|node|area|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_social_media|node|area|form';
+  $field_group->group_name = 'group_social_media';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'area';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Social media',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_uib_social_media',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-social-media field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_social_media|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -373,6 +482,10 @@ function uib_area_field_group_info() {
   t('For level 1');
   t('Management');
   t('Office information');
+  t('RSS');
+  t('Relevant links');
+  t('Search');
+  t('Social media');
   t('W2 profile text');
   t('two_column');
 
