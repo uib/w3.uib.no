@@ -11,15 +11,6 @@ include_once 'uib_devel.features.inc';
  */
 
 function uib_devel_entity_view_alter(&$build, $type) {
-  $server = 'http://w2-data.test.uib.no';
-  if (isset($build['field_uib_w2_path'])) {
-    $w2_path = $build['field_uib_w2_path'][0]['#markup'];
-    $build['field_uib_w2_path'][0]['#markup'] = '<a href="' . $server . $w2_path . '">' . $w2_path . '</a>';
-  }
-  if (isset($build['field_uib_w2_id'])) {
-    $w2_id =  $build['field_uib_w2_id'][0]['#markup'];
-    $build['field_uib_w2_id'][0]['#markup'] = '<a href="' . $server . 'topicmap/@@xtopic?id=' . $w2_id . '">' . $w2_id . '</a>';
-  }
   if (isset($build['field_uib_sebra_id'])) {
     $sebra_id =  $build['field_uib_sebra_id'][0]['#markup'];
     $build['field_uib_sebra_id'][0]['#markup'] = '<a href="http://sebra.uib.no/sws/omraader?omraadekode=' . $sebra_id . '">' . $sebra_id . '</a>';

@@ -1,38 +1,6 @@
 <?php
 
 /**
-* Create redirects for migrated news and events where they do not exist
-*/
-function uib_article_update_7000() {
-  $node_list = array();
-  // Get all uib_article news node ids
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'uib_article')
-    ->fieldCondition('field_uib_article_type', 'value', 'news', '=')
-    ->fieldCondition('field_uib_w2_id', 'value', '', '>');
-  $result = $query->execute();
-  if ($result) {
-    $node_list = array_merge($node_list, array_keys($result['node']));
-  }
-  // Get all uib_article event node ids
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'uib_article')
-    ->fieldCondition('field_uib_article_type', 'value', 'event', '=')
-    ->fieldCondition('field_uib_w2_id', 'value', '', '>');
-  $result = $query->execute();
-  if ($result) {
-    $node_list = array_merge($node_list, array_keys($result['node']));
-  }
-  $nodes = entity_load('node', $node_list);
-  foreach ($nodes as $node) {
-    // set redirects
-    uib_article__set_redirect($node);
-  }
-}
-
-/**
 * Populate parental area trail for existing articles (not infopages)
 */
 function uib_article_update_7001() {

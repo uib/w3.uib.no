@@ -351,11 +351,8 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       );
     }
 
-    // Hide all fields with "w2" in name
+    // Hide som fields
     foreach ($form as $field_key => $field_value) {
-      if (mb_stripos($field_key, 'w2', 0, 'utf-8') !== FALSE) {
-        hide($form[$field_key]);
-      }
       if ($field_key ==  'field_uib_nav_weight') {
         hide($form[$field_key]);
       }
@@ -477,36 +474,6 @@ function uib_article_node_validate($node, $form, &$form_state) {
           form_set_error('field_uib_area][und][0', $message . ': ' . $area_node->title);
         }
       }
-    }
-  }
-}
-
-/**
- * Create redirect for a node entity.
- *
- * This is only relevant for nodes migrated from w2.
- * If the attached field_uib_w2_path contains a string, the
- * redirect will be setup to our node.
- * @param entity $entity.
- */
-function uib_article__set_redirect($entity) {
-  if (!empty($entity->field_uib_w2_path['und'][0]['value'])) {
-    // Redirect source may not exceed 255 chars
-    if (drupal_strlen($entity->field_uib_w2_path['und'][0]['value']) > 255) {
-      uibx_log('Redirect ignored; exceeded 255 characters: ' . $source_path, 'warning');
-      return;
-    }
-    $redirect = new stdClass();
-    redirect_object_prepare($redirect);
-    $redirect->source = $entity->field_uib_w2_path['und'][0]['value'];
-    $redirect->redirect = 'node/' . $entity->nid;
-    // Check if the redirect exists before saving.
-    $hash = redirect_hash($redirect);
-    if (!redirect_load_by_hash($hash)) {
-      redirect_save($redirect);
-      uibx_log('Redirect created for ' . $redirect->source . ' -> ' . $redirect->redirect);
-    } else {
-      uibx_log('Redirect ' . $redirect->source . ' -> ' . $redirect->redirect . ' already existed');
     }
   }
 }
