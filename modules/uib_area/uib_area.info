@@ -131,6 +131,7 @@ features[field_group][] = group_bottom_wrapper|node|area|default
 features[field_group][] = group_column_first|node|area|default
 features[field_group][] = group_column_second|node|area|default
 features[field_group][] = group_contact_info|node|uib_ou|teaser
+features[field_group][] = group_event_info|node|uib_article|form
 features[field_group][] = group_level_1|node|area|form
 features[field_group][] = group_management|node|area|form
 features[field_group][] = group_media_content|node|uib_article|teaser

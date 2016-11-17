@@ -141,6 +141,37 @@ function uib_area_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_event_info|node|uib_article|form';
+  $field_group->group_name = 'group_event_info';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Event info',
+    'weight' => '22',
+    'children' => array(
+      0 => 'field_uib_contacts',
+      1 => 'field_uib_deadline',
+      2 => 'field_uib_location',
+      3 => 'field_uib_registration_link',
+      4 => 'group_fields_not_available',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-event-info field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_event_info|node|uib_article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_level_1|node|area|form';
   $field_group->group_name = 'group_level_1';
   $field_group->entity_type = 'node';
@@ -507,6 +538,7 @@ function uib_area_field_group_info() {
   t('Column first');
   t('Column second');
   t('Contact');
+  t('Event info');
   t('For level 1');
   t('Management');
   t('Office information');
