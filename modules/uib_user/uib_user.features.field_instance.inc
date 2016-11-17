@@ -2079,46 +2079,6 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     ),
   );
 
-  // Exported field_instance: 'user-user-field_uib_w2_id'.
-  $field_instances['user-user-field_uib_w2_id'] = array(
-    'bundle' => 'user',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'uib_user_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'user',
-    'field_name' => 'field_uib_w2_id',
-    'label' => 'ID w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => 0,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -6,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
@@ -2133,7 +2093,6 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('First name');
   t('Follow me');
   t('Home page');
-  t('ID w2');
   t('Last name');
   t('Manual Search Boost');
   t('Manual publications list. It will show in addition to what is imported from CRIStin.');

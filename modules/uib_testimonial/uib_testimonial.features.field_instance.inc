@@ -1056,98 +1056,6 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_id'.
-  $field_instances['node-uib_testimonial-field_uib_w2_id'] = array(
-    'bundle' => 'uib_testimonial',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_id',
-    'label' => 'ID w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_testimonial-field_uib_w2_path'.
-  $field_instances['node-uib_testimonial-field_uib_w2_path'] = array(
-    'bundle' => 'uib_testimonial',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_path',
-    'label' => 'Path w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('A small image in the sidebar. ');
@@ -1157,11 +1065,9 @@ function uib_testimonial_field_default_field_instances() {
   t('Exchange place');
   t('Exchange text');
   t('Here you should type which area this content belongs to');
-  t('ID w2');
   t('Lead');
   t('Name');
   t('Organization');
-  t('Path w2');
   t('Photo');
   t('Position');
   t('Quote');

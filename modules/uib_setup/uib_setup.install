@@ -235,3 +235,13 @@ function uib_setup_update_7024() {
     ->condition('type', 'module')
     ->execute();
 }
+
+/**
+ * Delete w2 fields
+ */
+function uib_setup_update_7025() {
+  field_delete_field('field_uib_w2_id');
+  field_delete_field('field_uib_w2_path');
+  field_delete_field('field_uib_menu_title_w2');
+  field_delete_field('field_uib_w2_nav_parent_id');
+}

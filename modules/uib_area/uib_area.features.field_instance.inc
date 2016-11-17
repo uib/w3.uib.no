@@ -2343,90 +2343,6 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-area-field_uib_w2_id'.
-  $field_instances['node-area-field_uib_w2_id'] = array(
-    'bundle' => 'area',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 14,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'module' => 'geofield_map',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'geofield_map_baselayers_hybrid' => 1,
-          'geofield_map_baselayers_map' => 1,
-          'geofield_map_baselayers_physical' => 0,
-          'geofield_map_baselayers_satellite' => 1,
-          'geofield_map_center' => array(
-            'lat' => 0,
-            'lon' => 0,
-          ),
-          'geofield_map_controltype' => 'default',
-          'geofield_map_draggable' => 1,
-          'geofield_map_height' => '300px',
-          'geofield_map_maptype' => 'map',
-          'geofield_map_max_zoom' => 0,
-          'geofield_map_min_zoom' => 0,
-          'geofield_map_mtc' => 'menu',
-          'geofield_map_overview' => 0,
-          'geofield_map_overview_opened' => 0,
-          'geofield_map_pancontrol' => 0,
-          'geofield_map_scale' => 0,
-          'geofield_map_scrollwheel' => 0,
-          'geofield_map_streetview_show' => 1,
-          'geofield_map_width' => '100%',
-          'geofield_map_zoom' => 17,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'geofield_map_map',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_id',
-    'label' => 'ID w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_article-field_uib_area'.
   $field_instances['node-uib_article-field_uib_area'] = array(
     'bundle' => 'uib_article',
@@ -3676,52 +3592,6 @@ If you want to add a url to the external author this may be done in the form [au
     ),
   );
 
-  // Exported field_instance: 'node-uib_article-field_uib_menu_title_w2'.
-  $field_instances['node-uib_article-field_uib_menu_title_w2'] = array(
-    'bundle' => 'uib_article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 16,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_menu_title_w2',
-    'label' => 'Menu title w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 6,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_article-field_uib_nav_weight'.
   $field_instances['node-uib_article-field_uib_nav_weight'] = array(
     'bundle' => 'uib_article',
@@ -4051,144 +3921,6 @@ If you want to add a url to the external author this may be done in the form [au
       ),
       'type' => 'text_textarea',
       'weight' => 14,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_article-field_uib_w2_id'.
-  $field_instances['node-uib_article-field_uib_w2_id'] = array(
-    'bundle' => 'uib_article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 17,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 17,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_id',
-    'label' => 'ID w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 40,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_article-field_uib_w2_nav_parent_id'.
-  $field_instances['node-uib_article-field_uib_w2_nav_parent_id'] = array(
-    'bundle' => 'uib_article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 13,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 16,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 16,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_nav_parent_id',
-    'label' => 'Parent ID w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_article-field_uib_w2_path'.
-  $field_instances['node-uib_article-field_uib_w2_path'] = array(
-    'bundle' => 'uib_article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 21,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_w2_path',
-    'label' => 'Path w2',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 4,
     ),
   );
 
@@ -5852,7 +5584,6 @@ If you want to add a url to the external author this may be done in the form [au
   t('Follow us');
   t('Here you should type which area this content belongs to');
   t('Hours');
-  t('ID w2');
   t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
   t('Illustration that goes together with the bottom text.');
   t('Image map');
@@ -5872,13 +5603,10 @@ If you want to add a url to the external author this may be done in the form [au
   t('Manual Search Boost');
   t('Media');
   t('Menu style');
-  t('Menu title w2');
   t('Name');
   t('Offices');
   t('Organisational unit');
-  t('Parent ID w2');
   t('Parents');
-  t('Path w2');
   t('Phone');
   t('Place');
   t('Place ID');
