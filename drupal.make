@@ -11,7 +11,7 @@ api = 2
 ;translations[] = nb
 
 ; core
-projects[drupal][version] = 7.51
+projects[drupal][version] = 7.52
 projects[drupal][patch][] = https://drupal.org/files/issues/node-sql-rewrite-1969208-28.patch
 projects[drupal][patch][] = https://drupal.org/files/issues/drupal-require_subdomain_for_mailto_links-2016739-49.patch
 
