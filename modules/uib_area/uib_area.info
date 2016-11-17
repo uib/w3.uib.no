@@ -138,6 +138,7 @@ features[field_group][] = group_media_wrapper|node|uib_article|teaser
 features[field_group][] = group_office_hours|node|uib_ou|teaser
 features[field_group][] = group_profile_text|node|area|form
 features[field_group][] = group_relevant_links|node|area|form
+features[field_group][] = group_resources|node|uib_article|form
 features[field_group][] = group_rss|node|area|form
 features[field_group][] = group_search|node|area|form
 features[field_group][] = group_social_media|node|area|form

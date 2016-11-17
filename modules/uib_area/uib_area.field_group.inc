@@ -361,6 +361,34 @@ function uib_area_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_resources|node|uib_article|form';
+  $field_group->group_name = 'group_resources';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Resources',
+    'weight' => '18',
+    'children' => array(
+      0 => 'field_uib_links',
+      1 => 'field_uib_files',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-resources field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_resources|node|uib_article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_rss|node|area|form';
   $field_group->group_name = 'group_rss';
   $field_group->entity_type = 'node';
@@ -484,6 +512,7 @@ function uib_area_field_group_info() {
   t('Office information');
   t('RSS');
   t('Relevant links');
+  t('Resources');
   t('Search');
   t('Social media');
   t('W2 profile text');
