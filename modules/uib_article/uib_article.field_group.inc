@@ -63,23 +63,19 @@ function uib_article_field_group_info() {
     'label' => 'Information',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_show_global_calendar',
+      0 => 'field_uib_area',
       1 => 'field_uib_text',
-      2 => 'field_related_persons_label',
-      3 => 'field_uib_lead',
-      4 => 'field_uib_published_timestamp',
-      5 => 'field_uib_area',
-      6 => 'field_uib_external_author',
-      7 => 'field_uib_related_content_label',
-      8 => 'field_uib_search_keywords',
-      9 => 'field_uib_event_type',
-      10 => 'field_uib_main_media',
-      11 => 'field_uib_kicker',
-      12 => 'field_uib_byline',
-      13 => 'field_uib_related_persons',
-      14 => 'field_uib_relation',
-      15 => 'field_uib_article_type',
-      16 => 'title',
+      2 => 'field_uib_published_timestamp',
+      3 => 'field_uib_kicker',
+      4 => 'field_uib_event_type',
+      5 => 'field_uib_article_type',
+      6 => 'field_uib_lead',
+      7 => 'field_uib_external_author',
+      8 => 'field_uib_main_media',
+      9 => 'field_uib_search_keywords',
+      10 => 'field_uib_show_global_calendar',
+      11 => 'field_uib_byline',
+      12 => 'title',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -129,6 +125,34 @@ function uib_article_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_related_content|node|uib_article|form';
+  $field_group->group_name = 'group_related_content';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Related content',
+    'weight' => '20',
+    'children' => array(
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-related-content field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_related_content|node|uib_article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_related_persons|node|uib_article|default';
   $field_group->group_name = 'group_related_persons';
   $field_group->entity_type = 'node';
@@ -152,6 +176,34 @@ function uib_article_field_group_info() {
     ),
   );
   $field_groups['group_related_persons|node|uib_article|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_related_persons|node|uib_article|form';
+  $field_group->group_name = 'group_related_persons';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Related persons',
+    'weight' => '19',
+    'children' => array(
+      0 => 'field_uib_related_persons',
+      1 => 'field_related_persons_label',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-related-persons field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_related_persons|node|uib_article|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -186,7 +238,9 @@ function uib_article_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Information');
+  t('Related content');
   t('Related content group');
+  t('Related persons');
   t('Related persons group');
   t('Sidebar');
   t('article-sidebar');

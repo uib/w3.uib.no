@@ -366,7 +366,7 @@ function uib_article_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 19,
+      'weight' => 17,
     ),
   );
 
