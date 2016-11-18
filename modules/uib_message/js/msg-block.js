@@ -4,12 +4,19 @@ jQuery( document ).ready(function ($) {
     getMessages(Drupal.settings.user, language, false);
   }
   else {
+    if (language === 'en') {
+      var redirect_area = '/en/foremployees';
+    }
+    else {
+      var redirect_area = location.origin === 'http://localhost:3000' ? '/nb/foransatte' : '/foransatte';
+    }
+    var redirect_uri = location.origin + redirect_area ;
     var jso = new JSO({
       providerID: "dataporten",
       client_id: getClientID(),
       authorization: "https://auth.dataporten.no/oauth/authorization",
       default_lifetime: false,
-      redirect_uri: window.location.href
+      redirect_uri: redirect_uri
     });
     jso.callback();
     JSO.enablejQuery($);
