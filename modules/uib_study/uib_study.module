@@ -327,7 +327,7 @@ function uib_study_flush_caches() {
 }
 
 function uib_study__fspres_request($path) {
-  $url = variable_get('uib_fspres_root', 'http://fs-pres.test.uib.no');
+  $url = variable_get('uib_fspres_root', 'http://fs-pres.app.uib.no');
   $url .= '/';
   $url .= $path;
 
