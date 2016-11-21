@@ -2080,13 +2080,27 @@ return !empty($handler->argument);';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Language */
+  $handler->display->display_options['fields']['language']['id'] = 'language';
+  $handler->display->display_options['fields']['language']['table'] = 'node';
+  $handler->display->display_options['fields']['language']['field'] = 'language';
+  $handler->display->display_options['fields']['language']['label'] = '';
+  $handler->display->display_options['fields']['language']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['language']['alter']['text'] = '([language]';
+  $handler->display->display_options['fields']['language']['alter']['max_length'] = '3';
+  $handler->display->display_options['fields']['language']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['language']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['language']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['language']['element_type'] = 'span';
+  $handler->display->display_options['fields']['language']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['language']['empty'] = '(XX';
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['label'] = '';
   $handler->display->display_options['fields']['status']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['status']['alter']['text'] = '([status])';
+  $handler->display->display_options['fields']['status']['alter']['text'] = '[status])';
   $handler->display->display_options['fields']['status']['element_type'] = 'span';
   $handler->display->display_options['fields']['status']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['status']['type'] = 'published-notpublished';
@@ -2354,6 +2368,58 @@ return !empty($handler->argument);';
     'uib_study' => 'uib_study',
   );
   $handler->display->display_options['filters']['type_1']['group'] = 2;
+
+  /* Display: Study ER related content */
+  $handler = $view->new_display('entityreference', 'Study ER related content', 'entityreference_4');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['display_description'] = 'Entity reference for related content in ';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'entityreference_style';
+  $handler->display->display_options['style_options']['search_fields'] = array(
+    'field_uib_study_code' => 'field_uib_study_code',
+    'title' => 'title',
+    'field_uib_area' => 0,
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'entityreference_fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'uib_article' => 'uib_article',
+    'uib_content_list' => 'uib_content_list',
+    'uib_testimonial' => 'uib_testimonial',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'uib_external_content' => 'uib_external_content',
+    'uib_study' => 'uib_study',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
   $translatables['newslist'] = array(
     t('Master'),
     t('more'),
@@ -2369,11 +2435,15 @@ return !empty($handler->argument);';
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('([status])'),
+    t('([language]'),
+    t('(XX'),
+    t('[status])'),
     t('Entity Reference'),
     t('Content list autocomplete'),
     t('ER related content'),
     t('Entity reference for related content'),
+    t('Study ER related content'),
+    t('Entity reference for related content in '),
   );
   $export['newslist'] = $view;
 

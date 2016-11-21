@@ -441,6 +441,66 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_related_content_label'.
+  $field_instances['node-uib_study-field_uib_related_content_label'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_related_content_label',
+    'label' => 'Related content label',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 22,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_study_category'.
   $field_instances['node-uib_study-field_uib_study_category'] = array(
     'bundle' => 'uib_study',
@@ -909,6 +969,75 @@ function uib_study_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance: 'node-uib_study-field_uib_study_relation'.
+  $field_instances['node-uib_study-field_uib_study_relation'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'deleted' => 0,
+    'description' => 'Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'link' => FALSE,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 15,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_study_relation',
+    'label' => 'Related content',
+    'required' => 0,
+    'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 21,
     ),
   );
 
@@ -1453,6 +1582,7 @@ function uib_study_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
+  t('Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.');
   t('Category');
   t('Country');
   t('Descriptive text');
@@ -1465,6 +1595,8 @@ function uib_study_field_default_field_instances() {
   t('NUS ID');
   t('Organisation');
   t('Part of study');
+  t('Related content');
+  t('Related content label');
   t('Relevant links');
   t('Relevant links en');
   t('Responsible');

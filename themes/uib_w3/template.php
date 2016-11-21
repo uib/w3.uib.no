@@ -494,6 +494,38 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'uib_study':
+      $variables['page']['content_bottom']['field_uib_study_relation'] =
+        field_view_field(
+          'node',
+          $variables['node'],
+          'field_uib_study_relation', array(
+            'weight' => '30',
+            'type' => 'entityreference_entity_view',
+            'settings' => array('view_mode' => 'short_teaser', 'hide_admin_links' => TRUE),
+          )
+        );
+
+      $tmpVar = field_view_field('node',$variables['node'],'field_uib_related_content_label');
+      if (!empty($tmpVar)) {
+        $variables['page']['content_bottom']['field_uib_study_relation']['#label_display'] = 'display';
+        $variables['page']['content_bottom']['field_uib_study_relation']['#title'] = $tmpVar[0]['#markup'];
+      }
+
+      foreach (
+        $variables['page']['content_bottom']['field_uib_study_relation']['#items']
+          as $k => $e
+      ) {
+        if (
+          $e['entity']->language != 'und' &&
+          $e['entity']->language != $variables['language']->language
+        ) {
+          unset($variables['page']['content_bottom']['field_uib_study_relation']['#items'][$k]);
+        }
+      }
+
+      unset($variables['page']['content']['system_main']['nodes']
+        [$variables['node']->nid]['field_uib_main_media'][0]['#contextual_links']);
+
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'course') {
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
@@ -763,12 +795,6 @@ EOD;
  */
 function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
-  if($variables['view_mode']=='short_teaser'){
-    unset($variables['content']['links']);
-    unset($variables['content']['field_uib_main_media']['#items'][0]['field_file_image_title_text']);
-    unset($variables['content']['field_uib_main_media'][0]['#contextual_links']);
-    unset($variables['content']['field_uib_main_media'][0]['links']);
-  }
   $current_language = $language->language;
   if ($variables['page'])  {
     if ($variables['type'] == 'area') {
@@ -844,6 +870,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_files',
       'field_uib_study_category',
       'field_uib_study_image',
+      'field_uib_study_relation',
       'field_uib_important_message',
     );
     foreach ($hide_vars as $var) {
@@ -890,7 +917,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
         $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
           'type' => 'file_rendered',
-          'settings' => array('view_mode' => 'wide_thumbnail'),
+          'settings' => array('file_view_mode' => 'wide_thumbnail'),
           'label' => 'hidden',
           'weight' => 3,
         ));
@@ -927,6 +954,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
       $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
+
     }
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__testimonial__short_teaser';
@@ -944,6 +972,15 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['content']['field_uib_main_media']['#suffix'] = '</div>';
       $variables['theme_hook_suggestions'][] = 'node__content_list__short_teaser';
     }
+  }
+  if($variables['view_mode']=='short_teaser'){
+    unset($variables['content']['links']);
+    unset($variables['content']['field_uib_main_media']['#items'][0]['field_file_image_title_text']);
+    unset($variables['content']['field_uib_main_media'][0]['#contextual_links']);
+    unset($variables['content']['field_uib_main_media'][0]['links']);
+    unset($variables['content']['field_uib_media']['#items'][0]['field_file_image_title_text']);
+    unset($variables['content']['field_uib_media'][0]['#contextual_links']);
+    unset($variables['content']['field_uib_media'][0]['links']);
   }
 }
 
