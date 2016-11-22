@@ -1683,6 +1683,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'use text format uib_markdown_limited'.
+  $permissions['use text format uib_markdown_limited'] = array(
+    'name' => 'use text format uib_markdown_limited',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'view any unpublished area content'.
   $permissions['view any unpublished area content'] = array(
     'name' => 'view any unpublished area content',

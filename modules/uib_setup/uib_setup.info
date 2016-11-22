@@ -424,6 +424,7 @@ features[user_permission][] = use panels locks
 features[user_permission][] = use text format basic_html
 features[user_permission][] = use text format full_html
 features[user_permission][] = use text format restricted_html
+features[user_permission][] = use text format uib_markdown_limited
 features[user_permission][] = view any unpublished area content
 features[user_permission][] = view any unpublished content
 features[user_permission][] = view any unpublished uib_article content
