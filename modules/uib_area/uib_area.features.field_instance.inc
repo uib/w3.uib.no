@@ -2879,7 +2879,9 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'An author who is external to UiB may be added here. Always use the byline field for UiB authors.',
+    'description' => 'An author who is external to UiB may be added here. Always use the byline field for UiB authors.
+
+If you want to add a url to the external author this may be done in the form [author name](url) .',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2907,12 +2909,13 @@ function uib_area_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'basic_html' => 0,
+          'full_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 0,
+          'uib_markdown_limited' => 'uib_markdown_limited',
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -2928,17 +2931,22 @@ function uib_area_field_default_field_instances() {
             'restricted_html' => array(
               'weight' => -8,
             ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
           ),
         ),
       ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
@@ -5816,7 +5824,9 @@ function uib_area_field_default_field_instances() {
   t('Add the author of the content. Use UiB usernames to search for people.');
   t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a rss feed to the right sidebar');
-  t('An author who is external to UiB may be added here. Always use the byline field for UiB authors.');
+  t('An author who is external to UiB may be added here. Always use the byline field for UiB authors.
+
+If you want to add a url to the external author this may be done in the form [author name](url) .');
   t('Area');
   t('Areas might provide their own logo image.  It will be included in the header.  The logo ought to be about 80x80 pixels and have a transparent background.');
   t('Attach other pages to this page.');

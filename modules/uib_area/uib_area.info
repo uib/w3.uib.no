@@ -24,6 +24,7 @@ dependencies[] = i18n_field
 dependencies[] = link
 dependencies[] = linked_field
 dependencies[] = list
+dependencies[] = markdown
 dependencies[] = media
 dependencies[] = media_vimeo
 dependencies[] = media_youtube

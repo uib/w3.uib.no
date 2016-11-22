@@ -35,3 +35,6 @@
 .field-name-field-uib-published-timestamp.form-wrapper{
   margin: 40px 0 0;
 }
+#edit-field-uib-external-author-und-0-format {
+  display: none;
+}

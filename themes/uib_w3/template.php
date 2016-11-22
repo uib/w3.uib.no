@@ -1011,7 +1011,7 @@ function __uib_w3__author(&$node) {
         $tmp[] = $byline[$key]['#markup'];
       }
       else{
-        $tmp[] = '<span class="ext_auth">' . $b['value'] . '</span>';
+        $tmp[] = '<span class="ext_auth">' . $b['safe_value'] . '</span>';
       }
     }
     if ($tmp) {
