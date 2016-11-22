@@ -2451,7 +2451,7 @@ a {
     margin: 1rem 0; }
   .uib-find-studies .menu__item {
     margin: 0 0 0 0;
-    padding: 0.6rem 1.5rem 0.6rem 1rem;
+    padding: 0.6rem 0 0.6rem;
     font-size: 1rem;
     -ms-flex: 1 1;
     -webkit-flex: 1 1;
@@ -2539,26 +2539,26 @@ a {
         -ms-flex: 0 auto;
         -webkit-flex: 0 auto;
         flex: 0 auto; }
-        .uib-find-studies .menu__item :first-child {
+        .uib-find-studies .menu__item:first-child a {
           margin-right: 0.5rem; }
-        .uib-find-studies .menu__item :not(:first-child) {
+        .uib-find-studies .menu__item:not(:first-child) a {
           margin-left: 0.5rem; }
       .uib-find-studies a {
         border: 2px solid #fff; } }
   @media (min-width: 1050px) {
     .uib-find-studies {
       background: transparent;
-      padding: 0;
-      width: 50%;
-      max-width: 36rem; }
+      padding: 0; }
       .uib-find-studies .menu {
-        -ms-flex-pack: start;
+        -ms-flex-pack: justify;
         -webkit-flex-wrap: nowrap;
-        -webkit-justify-content: flex-start;
+        -webkit-justify-content: space-between;
         flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-content: space-between;
         padding: 0;
-        margin: 0; }
+        margin: 0;
+        width: 90%;
+        max-width: 32.4rem; }
       .uib-find-studies .menu__item {
         -ms-flex: 0 auto;
         -webkit-flex: 0 auto;
@@ -2599,7 +2599,9 @@ a {
           background-color: transparent; }
       .uib-find-studies a {
         border: 0;
-        padding-top: 0.625rem; } }
+        padding-top: 0.625rem;
+        width: 13.75rem;
+        min-width: 13.75rem; } }
 
 .form-type-select p {
   margin: 0;
@@ -6887,13 +6889,12 @@ nav {
     flex-direction: column;
     position: absolute;
     z-index: 10;
-    padding: 0 0;
     left: 50%;
     height: calc(100% - 7.125rem);
     top: 0;
     width: 50%;
     max-width: 36rem;
-    padding: 0 10% 0 2rem;
+    padding: 0 10% 0 5%;
     text-align: left;
     background: none; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text .field-items,
@@ -6923,20 +6924,24 @@ nav {
       font-size: 2rem; }
       .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text a:hover {
         text-decoration: underline; } }
-@media (min-width: 600px) and (min-width: 1050px) {
-  .node-type-area.banner-image .content-top-wrapper .uib-find-studies {
-    margin: 0 auto;
-    position: absolute;
-    bottom: 1rem;
-    max-width: 36rem;
-    right: 50%; } }
-
 @media (min-width: 960px) {
   .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p, .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text a {
     font-size: 3rem; } }
 @media (min-width: 1050px) {
   .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
-    height: 100%; } }
+    height: 100%; }
+  .node-type-area.banner-image .content-top-wrapper .uib-find-studies {
+    margin: 0 auto;
+    position: absolute;
+    bottom: 1rem;
+    width: 50%;
+    max-width: 36rem;
+    right: 50%;
+    padding-left: 1.25rem; } }
+@media (min-width: 72rem) {
+  .node-type-area.banner-image .content-top-wrapper .uib-find-studies {
+    width: calc(50% - 1.25rem);
+    padding-left: 0; } }
 
 @media screen and (min-width: 600px) {
   .node-uib-article .field-name-field-uib-text, .node-uib-article .group-article-sidebar {
