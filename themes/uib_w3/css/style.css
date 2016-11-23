@@ -6940,7 +6940,9 @@ nav {
 @media (min-width: 72rem) {
   .node-type-area.banner-image .content-top-wrapper .uib-find-studies {
     width: calc(50% - 1.25rem);
-    padding-left: 0; } }
+    padding-left: 0; }
+  .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
+    padding-left: 3.6rem; } }
 
 @media screen and (max-width: 600px) {
   .uib-article__event .content-main-wrapper .region-content .content .node-uib-article .content {
