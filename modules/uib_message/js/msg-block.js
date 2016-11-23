@@ -58,7 +58,7 @@ jQuery( document ).ready(function ($) {
   function toggleMessageBox(newMessages) {
     $(".uib-collapsible-content").toggle();
     $(".uib-collapsible-handle").toggleClass('open closed');
-    $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html().startsWith(Drupal.t('Show messages')) ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
+    $(".uib-collapsible-handle").html($(".uib-collapsible-handle").html().match(Drupal.t('Show messages')) ? Drupal.t('Hide messages') : Drupal.t('Show messages'));
     if($(".uib-collapsible-handle").hasClass('open')) {
       now = new Date();
       document.cookie = "uib-messages-last-visit=" + now.getTime();
