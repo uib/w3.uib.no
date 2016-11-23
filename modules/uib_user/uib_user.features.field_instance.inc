@@ -177,7 +177,7 @@ function uib_user_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Phone number can be changed in PAGA',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -225,7 +225,7 @@ function uib_user_field_default_field_instances() {
       'module' => 'phone',
       'settings' => array(),
       'type' => 'phone_textfield',
-      'weight' => -1,
+      'weight' => -3,
     ),
   );
 
@@ -280,7 +280,7 @@ function uib_user_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -3,
+      'weight' => -4,
     ),
   );
 
@@ -1189,7 +1189,7 @@ function uib_user_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 9,
+      'weight' => 11,
     ),
   );
 
@@ -1544,7 +1544,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The system only shows the primary affiliation, and this comes from PAGA. Any changes to the affiliation has to be done in this system.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1599,7 +1599,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 31,
+      'weight' => -2,
     ),
   );
 
@@ -2100,6 +2100,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Optional tab content');
   t('Organisational unit');
   t('Phone');
+  t('Phone number can be changed in PAGA');
   t('Position');
   t('Position category');
   t('Position code');
@@ -2122,6 +2123,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('The first name(s) from PAGA');
   t('The last name(s) from PAGA');
   t('The maximum number of publications from CRIStin you want to display in the publications tab.');
+  t('The system only shows the primary affiliation, and this comes from PAGA. Any changes to the affiliation has to be done in this system.');
   t('This will override the institution address on your profile.');
   t('Title for optional tab');
   t('Upload a Curriculum Vitae document to be available for download from your user profile.');

@@ -152,6 +152,13 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     field_group_hide_field_groups($form, array('group_uib_hidden'));
     $profile_user = entity_metadata_wrapper('user', $form['#user']);
+    $message = t('Some of the information shown on the person page can not
+      be edited directly on uib.no. This information is gathered from other
+      systems and needs to be edited in these systems. See the tab at the
+      bottom called "Static information" to see which information cannot be
+      edited and where to edit them. Also, the email address cannot be
+      edited');
+    drupal_set_message($message);
 
     // No access to user cancel button unless level 1.
     if ($user->uid != 1 ) {
@@ -183,13 +190,13 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_position',
       'field_uib_position_code',
       'field_uib_position_category',
+      'field_uib_user_ou',
     );
     foreach ($synchronized_fields as $item) {
       $form[$item]['#disabled'] = TRUE;
     }
 
     $hidden_properties_level_2_and_3 = array(
-      'mail',
       'pass',
       'current_pass',
       'name',
@@ -213,13 +220,6 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
           $form[$item]['#access'] = FALSE;
         }
       }
-    }
-
-    $hidden_fields = array(
-      'field_uib_phone',
-    );
-    foreach ($hidden_fields as $item) {
-      $form[$item]['#access'] = FALSE;
     }
   }
 }

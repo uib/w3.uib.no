@@ -13,12 +13,104 @@ function uib_user_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_alt_address|user|user|form';
+  $field_group->group_name = 'group_alt_address';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Visitor address',
+    'weight' => '49',
+    'children' => array(
+      0 => 'field_uib_user_alt_address',
+      1 => 'field_uib_user_room',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Visitor address',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-alt-address field-group-tab',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_alt_address|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_bottom_tabs|user|user|form';
+  $field_group->group_name = 'group_bottom_tabs';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Bottom tabs',
+    'weight' => '41',
+    'children' => array(
+      0 => 'group_social_media',
+      1 => 'group_field',
+      2 => 'group_teaching',
+      3 => 'group_communication',
+      4 => 'group_alt_address',
+      5 => 'group_publications',
+      6 => 'group_static_information',
+      7 => 'group_opt_content',
+      8 => 'group_current_projects',
+      9 => 'group_resources',
+      10 => 'group_homepage_cv',
+    ),
+    'format_type' => 'tabs',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-bottom-tabs field-group-tabs',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_bottom_tabs|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_communication|user|user|form';
+  $field_group->group_name = 'group_communication';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Communication',
+    'weight' => '43',
+    'children' => array(
+      0 => 'field_uib_user_communication',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-communication field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_communication|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_cristin|user|user|form';
   $field_group->group_name = 'group_cristin';
   $field_group->entity_type = 'user';
   $field_group->bundle = 'user';
   $field_group->mode = 'form';
-  $field_group->parent_name = 'group_primary';
+  $field_group->parent_name = 'group_publications';
   $field_group->data = array(
     'label' => 'CRIStin settings',
     'weight' => '9',
@@ -38,6 +130,88 @@ function uib_user_field_group_info() {
     ),
   );
   $field_groups['group_cristin|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_current_projects|user|user|form';
+  $field_group->group_name = 'group_current_projects';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Current projects',
+    'weight' => '46',
+    'children' => array(
+      0 => 'field_uib_user_projects',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-current-projects field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_current_projects|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_field|user|user|form';
+  $field_group->group_name = 'group_field';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Research / Work',
+    'weight' => '42',
+    'children' => array(
+      0 => 'field_uib_user_field',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-field field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_field|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_homepage_cv|user|user|form';
+  $field_group->group_name = 'group_homepage_cv';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Home page and CV',
+    'weight' => '50',
+    'children' => array(
+      0 => 'field_uib_user_cv',
+      1 => 'field_uib_user_url',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-homepage-cv field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_homepage_cv|user|user|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -74,6 +248,35 @@ function uib_user_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_opt_content|user|user|form';
+  $field_group->group_name = 'group_opt_content';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Optional tab',
+    'weight' => '47',
+    'children' => array(
+      0 => 'field_uib_user_opt_title',
+      1 => 'field_uib_user_opt_content',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Optional tab',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-opt-content field-group-tab',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_opt_content|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_primary|user|user|form';
   $field_group->group_name = 'group_primary';
   $field_group->entity_type = 'user';
@@ -84,29 +287,12 @@ function uib_user_field_group_info() {
     'label' => 'Main information',
     'weight' => '0',
     'children' => array(
-      0 => 'field_uib_position',
-      1 => 'field_uib_user_alt_address',
-      2 => 'field_uib_user_projects',
-      3 => 'field_uib_user_communication',
-      4 => 'field_uib_user_opt_title',
-      5 => 'field_uib_user_teaching',
-      6 => 'field_uib_user_domain',
-      7 => 'field_uib_user_field',
-      8 => 'field_uib_user_publications',
-      9 => 'field_uib_user_alt_firstname',
-      10 => 'field_uib_user_cv',
-      11 => 'field_uib_user_social_media',
-      12 => 'field_uib_last_name',
-      13 => 'field_uib_first_name',
-      14 => 'field_uib_phone',
-      15 => 'field_uib_user_url',
-      16 => 'field_uib_user_alt_lastname',
-      17 => 'field_uib_user_alt_position',
-      18 => 'field_uib_user_opt_content',
-      19 => 'field_uib_user_room',
-      20 => 'account',
-      21 => 'picture',
-      22 => 'group_cristin',
+      0 => 'field_uib_user_domain',
+      1 => 'field_uib_last_name',
+      2 => 'field_uib_first_name',
+      3 => 'field_uib_user_alt_position',
+      4 => 'account',
+      5 => 'picture',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -129,6 +315,62 @@ function uib_user_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_publications|user|user|form';
+  $field_group->group_name = 'group_publications';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Publications',
+    'weight' => '45',
+    'children' => array(
+      0 => 'field_uib_user_publications',
+      1 => 'group_cristin',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => '',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_publications|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_resources|user|user|form';
+  $field_group->group_name = 'group_resources';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Resources',
+    'weight' => '51',
+    'children' => array(
+      0 => 'field_uib_user_docs',
+      1 => 'field_uib_user_feed',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-resources field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_resources|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_secondary|user|user|form';
   $field_group->group_name = 'group_secondary';
   $field_group->entity_type = 'user';
@@ -139,9 +381,7 @@ function uib_user_field_group_info() {
     'label' => 'Secondary information',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_user_docs',
-      1 => 'field_uib_user_competence',
-      2 => 'field_uib_user_feed',
+      0 => 'field_uib_user_competence',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -164,6 +404,92 @@ function uib_user_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_social_media|user|user|form';
+  $field_group->group_name = 'group_social_media';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Social media',
+    'weight' => '48',
+    'children' => array(
+      0 => 'field_uib_user_social_media',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'label' => 'Social media',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-social-media field-group-tab',
+        'description' => '',
+      ),
+      'formatter' => 'closed',
+    ),
+  );
+  $field_groups['group_social_media|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_static_information|user|user|form';
+  $field_group->group_name = 'group_static_information';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Static information',
+    'weight' => '52',
+    'children' => array(
+      0 => 'field_uib_position',
+      1 => 'field_uib_user_alt_firstname',
+      2 => 'field_uib_user_alt_lastname',
+      3 => 'field_uib_user_ou',
+      4 => 'field_uib_phone',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-static-information field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_static_information|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_teaching|user|user|form';
+  $field_group->group_name = 'group_teaching';
+  $field_group->entity_type = 'user';
+  $field_group->bundle = 'user';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_bottom_tabs';
+  $field_group->data = array(
+    'label' => 'Teaching',
+    'weight' => '44',
+    'children' => array(
+      0 => 'field_uib_user_teaching',
+    ),
+    'format_type' => 'tab',
+    'format_settings' => array(
+      'formatter' => 'closed',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-teaching field-group-tab',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_teaching|user|user|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_uib_hidden|user|user|form';
   $field_group->group_name = 'group_uib_hidden';
   $field_group->entity_type = 'user';
@@ -176,14 +502,13 @@ function uib_user_field_group_info() {
     'children' => array(
       0 => 'field_uib_position_category',
       1 => 'field_uib_position_code',
-      2 => 'field_uib_user_ou',
-      3 => 'field_uib_slug',
-      4 => 'field_uib_sort_name',
-      5 => 'googleanalytics',
-      6 => 'redirect',
-      7 => 'timezone',
-      8 => 'locale',
-      9 => 'wysiwyg',
+      2 => 'field_uib_slug',
+      3 => 'field_uib_sort_name',
+      4 => 'googleanalytics',
+      5 => 'redirect',
+      6 => 'timezone',
+      7 => 'locale',
+      8 => 'wysiwyg',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -471,18 +796,30 @@ function uib_user_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Bottom tabs');
   t('CRIStin settings');
+  t('Communication');
   t('Contact info');
   t('Contact info first');
   t('Contact info second');
   t('Contact wrapper');
+  t('Current projects');
   t('First');
   t('Hidden');
+  t('Home page and CV');
   t('Main information');
   t('Media element');
+  t('Optional tab');
   t('Personal media');
+  t('Publications');
+  t('Research / Work');
+  t('Resources');
   t('Second');
   t('Secondary information');
+  t('Social media');
+  t('Static information');
+  t('Teaching');
+  t('Visitor address');
   t('Work information');
 
   return $field_groups;

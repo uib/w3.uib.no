@@ -38,3 +38,8 @@
 #edit-field-uib-external-author-und-0-format {
   display: none;
 }
+.user-picture img {
+	max-width: 387px;
+	width: 100%;
+	height: auto;
+}
