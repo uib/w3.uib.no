@@ -2795,9 +2795,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'An author who is external to UiB may be added here. Always use the byline field for UiB authors.
-
-If you want to add a url to the external author this may be done in the form [author name](url) .',
+    'description' => 'An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -5556,9 +5554,7 @@ If you want to add a url to the external author this may be done in the form [au
   t('Add the author of the content. Use UiB usernames to search for people.');
   t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a rss feed to the right sidebar');
-  t('An author who is external to UiB may be added here. Always use the byline field for UiB authors.
-
-If you want to add a url to the external author this may be done in the form [author name](url) .');
+  t('An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)');
   t('Area');
   t('Areas might provide their own logo image.  It will be included in the header.  The logo ought to be about 80x80 pixels and have a transparent background.');
   t('Attach other pages to this page.');
