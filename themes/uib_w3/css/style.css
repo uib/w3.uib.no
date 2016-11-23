@@ -5764,6 +5764,9 @@ nav {
 .user-contact-info .item-list ul li {
   margin: 0; }
 
+.field-name-field-uib-user-cv a {
+  font-size: 1.25rem; }
+
 .user-media {
   display: -ms-flexbox;
   -ms-flex-direction: column;

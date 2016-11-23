@@ -638,6 +638,10 @@ EOD;
       $variables['page']['content_top']['user_ou']['#weight'] = -10;
       $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
       $variables['page']['content_top']['user_homepage']['#weight'] = 0;
+      $variables['page']['content_top']['user_cv'] = $variables['page']['content']['system_main']['field_uib_user_cv'];
+      $variables['page']['content_top']['user_cv']['#prefix'] = '<div class="field field-name-field-uib-user-cv field-type-file field-label-hidden"><div class="field-items"><div class="field-item even">';
+      $variables['page']['content_top']['user_cv']['#suffix'] = '</div></div></div>';
+      $variables['page']['content_top']['user_cv']['#weight'] = 5;
       $variables['page']['content_top']['social_media'] = $variables['page']['content']['system_main']['field_uib_user_social_media'];
       $variables['page']['content_top']['social_media']['#weight'] = 10;
       $items = array();
@@ -690,6 +694,7 @@ EOD;
         'field_uib_position',
         'field_uib_user_ou',
         'field_uib_user_url',
+        'field_uib_user_cv',
         'field_uib_user_social_media',
         'field_uib_user_feed',
         'field_uib_phone',
