@@ -1053,7 +1053,8 @@ function __uib_w3__author(&$node) {
         $tmp[] = $byline[$key]['#markup'];
       }
       else{
-        $tmp[] = '<span class="ext_auth">' . $b['safe_value'] . '</span>';
+        $ext_author = isset($b['safe_value']) ? $b['safe_value'] : $b['value'];
+        $tmp[] = '<span class="ext_auth">' . $ext_author . '</span>';
       }
     }
     if ($tmp) {
