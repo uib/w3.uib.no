@@ -6361,7 +6361,9 @@ nav {
     padding: 0.5rem; }
   .block-uib-message .uib-collapsible-container .uib-collapsible-handle {
     cursor: pointer;
-    height: 3.5rem; }
+    height: 3.5rem;
+    padding-right: 1.25rem;
+    padding-left: 1.25rem; }
   .block-uib-message .uib-collapsible-container .uib-collapsible-content {
     position: relative;
     padding: 1.25rem 0; }
