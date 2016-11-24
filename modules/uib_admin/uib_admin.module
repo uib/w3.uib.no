@@ -1,5 +1,8 @@
 <?php
   function uib_admin_preprocess_html (&$variables) {
+    if (drupal_static('uib_admin_unpublished')) {
+      $variables['classes_array'][] = 'unpublished';
+    }
     $suggestions = array(
       'html__node__add',
       'html__node__edit',

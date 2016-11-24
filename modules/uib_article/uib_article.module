@@ -1013,3 +1013,14 @@ function uib_article_form_node_delete_confirm_alter(&$form, $form_state) {
     unset($form['actions']['submit']);
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function uib_article_form_node_form_alter($form, $form_state, $form_id) {
+  $unpublished = &drupal_static('uib_admin_unpublished');
+  $unpublished = !$form['options']['status']['#default_value'];
+  if ($unpublished) {
+    drupal_set_message(t('This content item is unpublished'), 'warning');
+  }
+}
