@@ -878,12 +878,12 @@ function uib_study_block_view($delta = '') {
           }
           $start_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_START' : 'B_RE_START';
           $start = uib_study__extract_study_info($data_2, $start_info);
-          if ($start) {
+          if ($start && !empty($start['#text'])) {
             $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__text_markup($start, $is_course, TRUE));
           }
           $sprak_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_SPRAK' : 'B_RE_SPRAK';
           $sprak = uib_study__extract_study_info($data_2, $sprak_info);
-          if ($sprak) {
+          if ($sprak && !empty($sprak['#text'])) {
             $items[] = uib_study__get_study_facts_markup(t('Language'), uib_study__text_markup($sprak, $is_course, TRUE));
           }
           $fee = uib_study__extract_study_info($data_2, 'M_RE_FEE');
