@@ -923,6 +923,11 @@ function _get_weights($tree) {
   return $weightset;
 }
 
+/*
+ * TODO Function uib_article__get_article_info is obsolete, but is still
+ * referenced from the old uib_zen theme. Remove this function when theme
+ * uib_zen is removed.
+ */
 function uib_article__get_article_info($created, $updated) {
   $article_info = array(
     '#prefix' => '<div class="article-info clearfix">',
