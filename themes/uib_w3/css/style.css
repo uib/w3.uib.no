@@ -7554,9 +7554,9 @@ nav {
   -ms-flex-direction: row;
   -ms-flex-wrap: wrap;
   display: -webkit-flex;
+  display: flex;
   -webkit-flex-direction: row;
   -webkit-flex-wrap: wrap;
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap; }
   @media (min-width: 600px) {
@@ -7566,11 +7566,10 @@ nav {
       width: 75%;
       padding: 0; } }
   .page-node-news-archive .content-main-wrapper .block-system .view-recent-news .view-content .views-row {
-    width: 31%;
-    margin-right: 2%;
-    -webkit-flex: 1 1 31%;
-    flex: 1 1 31%;
-    min-width: 200px; }
+    margin: 0 2% 1.25rem 0;
+    -ms-flex: 1 0 12.5rem;
+    -webkit-flex: 1 0 12.5rem;
+    flex: 1 0 12.5rem; }
     .page-node-news-archive .content-main-wrapper .block-system .view-recent-news .view-content .views-row .views-field-field-uib-main-media > .field-content {
       text-indent: 100%;
       overflow: hidden;
