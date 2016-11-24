@@ -1,3 +1,23 @@
+# Release 59 _2016-11-24_
+
+I denne releasen har fokuset vært på å rette småfeil som har ligget lenge
+
+- Tomme feil viser ikke lengre på personsider (f.eks telefonnummer) #13495
+- Rettet en feil hvor ikoner på forsiden ikke var sentrert på mobil #13843
+- Fjernet filtersider som ikke brukes #14844
+- Områdeforsider som har tre nyhetssaker har fått ny layout #14089
+- Fjernet piler på områdemeny i kolofon på mobil #16228
+- Forenkelt edit-sidene for område, innhold og personsider. Flere felt er lagt i faner i bunn #14309 #14311 #14313
+- Eksterne forfattere på nyheter kan nå få en URL #16209
+- Rettet en feil knyttet til IE hvor teksten i meldingsboksen er feil #16970
+- Rettet en feil hvor CV plasserte seg feil på personder #13854
+- Fjernet gamle w2-felt som ikke trengs lenger #16859
+- Justert plassering av elementer i studentbanner på forsiden #15367
+- Oppgradert drupal til 7.52 #16935
+- Forbedringer av søkeresultat #16871
+- Gjort pilen på lokal meldingstjeneste litt mindre #16958
+- Forbedret visning av nyhetsarkiv på mobil #16123
+
 # Release 58 _2016-11-10_
 
 I denne versjonen har fokuset vært på videreutvikling av studieprogramsidene. I tillegg har vi jobbet videre med ferdigstillingen av ny søkefunksjon.
