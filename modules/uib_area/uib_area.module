@@ -2826,7 +2826,8 @@ function uib_area_node_view($node, $view_mode, $langcode) {
   );
   // If the view mode of the current article is short_teaser it is
   // safeish to assume that it is being shown as related content.
-  if ($view_mode == 'short_teaser' && $node->type != 'area' && $node->type != 'uib_ou') {
+  $current_node = menu_get_object();
+  if ($view_mode == 'short_teaser' && $node->type != 'area' && $node->type != 'uib_ou' && $current_node->type != 'uib_study' ) {
     $cur_area = uib_area__get_current();
     $cur_area_parents = array();
     uib_area__get_parentage($cur_area->nid, $cur_area_parents);
