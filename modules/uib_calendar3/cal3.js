@@ -120,11 +120,15 @@ jQuery(document).ready(function($) {
     recalculate_collapsed();
   }
 
+  var mtotfls = Drupal.t('M T W T F S S'); // English days, starting monday
+  mtotfls = mtotfls.split(' ');
+  mtotfls = mtotfls.slice(6,7).concat(mtotfls.slice(0, 6));
   $('#datepicker').datepicker({
     'onSelect': function(date, inst) {
       document.location.href = "?" + query_state(date);
     },
     'dateFormat': 'yy-mm-dd',
     'defaultDate': date,
+    'dayNamesMin': mtotfls,
   });
 });
