@@ -152,10 +152,9 @@ function uib_area_field_group_info() {
     'weight' => '22',
     'children' => array(
       0 => 'field_uib_contacts',
-      1 => 'field_uib_deadline',
-      2 => 'field_uib_location',
+      1 => 'field_uib_location',
+      2 => 'field_uib_deadline',
       3 => 'field_uib_registration_link',
-      4 => 'group_fields_not_available',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -398,20 +397,21 @@ function uib_area_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Resources',
+    'label' => 'Links and attachments',
     'weight' => '18',
     'children' => array(
-      0 => 'field_uib_links',
-      1 => 'field_uib_files',
+      0 => 'field_uib_files',
+      1 => 'field_uib_links',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Links and attachments',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-resources field-group-tab',
         'required_fields' => 1,
+        'classes' => 'group-resources field-group-tab',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $field_groups['group_resources|node|uib_article|form'] = $field_group;
@@ -539,11 +539,11 @@ function uib_area_field_group_info() {
   t('Contact');
   t('Event info');
   t('For level 1');
+  t('Links and attachments');
   t('Management');
   t('Office information');
   t('RSS');
   t('Relevant links');
-  t('Resources');
   t('Search');
   t('Social media');
   t('W2 profile text');
