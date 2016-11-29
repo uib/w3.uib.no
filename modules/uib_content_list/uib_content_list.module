@@ -120,6 +120,12 @@ function uib_content_list_preprocess_page(&$variables) {
           'settings' => array('view_mode' => 'short_teaser'),
           'weight' => '10',
         ));
+        $tmpVar = field_view_field('node',$node,'field_uib_related_content_label');
+        if (!empty($tmpVar)) {
+          $variables['page']['content_bottom']['field_uib_relation']['#label_display'] = 'display';
+          $variables['page']['content_bottom']['field_uib_relation']['#title'] = $tmpVar[0]['#markup'];
+        }
+
         $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $node, 'field_uib_links', array(
           'weight' => '20',
         ));
@@ -178,6 +184,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         $node_view = node_view($node);
         unset($node_view['field_uib_byline']);
         unset($node_view['field_uib_relation']);
+        unset($node_view['field_uib_related_content_label']);
         unset($node_view['field_uib_links']);
         $node_view['title'] = array(
           '#type' => 'html_tag',
