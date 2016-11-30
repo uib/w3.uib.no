@@ -94,6 +94,9 @@
   }
   // This function creates the elasticsearch query
   $.fn.createQuery = function (query) {
+      if ($.uib_search.debug) {
+        uib_timer = new Date().getTime();
+      }
       if(!$.uib_search.url){
           $('.lightbox .topbar .form-type-checkbox').css('display', 'none');
       }
@@ -126,20 +129,42 @@
       tmp = {match: {}};
       tmp.match["generic.title.ngrams"] = {
         query: query,
-        boost: 6,
-        minimum_should_match: "30%",
+        boost: 1,
         _name: "NGram-search",
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {match: {}}
+      tmp.match["generic.title." + lang] = {
+        query: query,
+        boost: 1,
+        _name: "Match-title",
       };
       searchquery.bool.should.push(tmp);
 
       tmp = {match: {}}
       tmp.match["generic.excerpt." + lang] = {
         query: query,
+        boost: 1,
+        _name: "Match-excerpt",
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {match: {}}
+      tmp.match["w3.search_keywords"] = {
+        query: query,
         boost: 2,
-        fuzziness: 1,
-        prefix_length: 3,
-        max_expansions: 50,
-        _name: "Fuzzy-match-excerpt",
+        fuzziness: 'auto',
+        _name: "Fuzzy-match-keywords",
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {match: {}}
+      tmp.match["w3.search_description"] = {
+        query: query,
+        boost: 2,
+        fuzziness: 'auto',
+        _name: "Fuzzy-match-description",
       };
       searchquery.bool.should.push(tmp);
 
@@ -147,10 +172,7 @@
       tmp.match["generic._searchable_text." + lang] = {
         query: query,
         boost: 1,
-        fuzziness: 1,
-        prefix_length: 3,
-        max_expansions: 50,
-        _name: "Fuzzy-match-searchable-text",
+        _name: "Match-searchable-text",
       };
       searchquery.bool.should.push(tmp);
 
@@ -228,11 +250,81 @@
 
       // Match direct hit on study code
       tmp = {
-        term: {
-          "w3.study_code": {
-            value: query,
-            boost: importance_levels[1],
-          }
+        constant_score: {
+          filter: {
+            term: {
+              "w3.study_code": {
+                value: query,
+              }
+            }
+          },
+          boost: importance_levels[1],
+        }
+      }
+      boostquery.bool.should.push(tmp);
+
+      // Boost study programs
+      tmp = {
+        constant_score: {
+          filter: {
+            term: {
+              "fs.study_type": {
+                value: 'program',
+              }
+            }
+          },
+          boost: importance_levels[1],
+        }
+      }
+      boostquery.bool.should.push(tmp);
+
+      // Boost study courses
+      tmp = {
+        constant_score: {
+          filter: {
+            term: {
+              "fs.study_type": {
+                value: 'course',
+              }
+            }
+          },
+          boost: importance_levels[2],
+        }
+      }
+      boostquery.bool.should.push(tmp);
+
+      // Boost exchange agreements
+      tmp = {
+        constant_score: {
+          filter: {
+            term: {
+              "fs.study_type": {
+                value: 'exchange',
+              }
+            }
+          },
+          boost: importance_levels[2],
+        }
+      }
+      boostquery.bool.should.push(tmp);
+
+      // Boost all hits in the study index
+      // not boosted otherwise
+      tmp = {
+        constant_score: {
+          filter: {
+            bool: {
+              must: {
+                term: { "_type": { value: 'study' } },
+              },
+              must_not: [
+                { term: { "fs.study_type": { value: 'course' } } },
+                { term: { "fs.study_type": { value: 'program' } } },
+                { term: { "fs.study_type": { value: 'exchange' } } },
+              ],
+            },
+          },
+          boost: importance_levels[3],
         }
       }
       boostquery.bool.should.push(tmp);
@@ -244,6 +336,21 @@
             term: {
               "w3.type": {
                 value: 'area'
+              },
+            },
+          },
+          boost: importance_levels[1],
+        },
+      };
+      boostquery.bool.should.push(tmp);
+
+      // Boost external content
+      tmp = {
+        constant_score: {
+          filter: {
+            term: {
+              "w3.type": {
+                value: 'uib_external_content'
               },
             },
           },
@@ -322,11 +429,74 @@
 
       // Boost relevanskriteriene i forhold til søkekriteriene
       // for å få rett effekt av relevanskriteriene
-      tmp = {bool: {should: boostquery, boost: 10}};
+      tmp = {bool: {should: boostquery, boost: 1}};
 
       // Adding relevance boost to should - clause. Some or none of these can
       // match.
       data.query.bool.should.push(tmp);
+
+      /**************************************
+       * Negative boosting
+       *
+       * Unboostqueries are added to the
+       * main query at the very end.
+       **************************************/
+      var unboost_past_events = {bool: {should: [], _name: "Unboost"}};
+
+      // Events where date.value2 is at least 1 month old
+      tmp = {
+        bool: {
+          must: [
+            {
+              term: {
+                "w3.article_type": {
+                  value: 'event'
+                },
+              },
+            },
+            {
+              range: {
+                "w3.date.value2":{
+                  lt: "now-1M/d",
+                },
+              },
+            },
+          ],
+        }
+      };
+      unboost_past_events.bool.should.push(tmp);
+
+      // Events where date.value2 does not exists and date.value is at least
+      // 1 month old
+      tmp = {
+        bool: {
+          must: [
+            {
+              term: {
+                "w3.article_type": {
+                  value: 'event'
+                },
+              },
+            },
+            {
+              range: {
+                "w3.date.value":{
+                  lt: "now-1M/d",
+                },
+              },
+            },
+          ],
+          must_not: [
+            {
+              exists: {
+                field: "w3.date.value2",
+              }
+            },
+          ],
+        }
+      };
+      unboost_past_events.bool.should.push(tmp);
+
       /**************************************
        * Filtering
        * The filtering will not affect
@@ -441,32 +611,24 @@
             },
           }
         }
-      }
 
+        // Negative boost for past events
+        data.query.bool.must = {
+          boosting: {
+            positive: data.query.bool.must,
+            negative: unboost_past_events,
+            negative_boost: 0.03,
+          }
+        };
+      }
+      if ($.uib_search.debug) {
+        console.log("JSON search query:\n" + JSON.stringify(data))
+      }
       return data;
   };
   $.fn.createResults = function (resultsselector, query) {
 
     return function (data, status, jqXHR) {
-      if (typeof debug !== 'undefined' && debug) {
-        console.log('Max score' + data.hits.max_score);
-        console.log('Returned data object: ');
-        console.log(data);
-        for (i in data.hits.hits) {
-          var changed =
-            typeof data.hits.hits[i]._source.w3 == 'undefined' ?
-              0 : data.hits.hits[i]._source.w3.changed;
-          var matched = typeof data.hits.hits[i].matched_queries == 'undefined' ?
-              '' : ' Queries: ' + data.hits.hits[i].matched_queries.join(', ');
-          var thetype = typeof data.hits.hits[i]._source.w3 == 'undefined' ?
-              data.hits.hits[i]._type : data.hits.hits[i]._source.w3.type;
-          console.log('score treff ' + i + ': ' + data.hits.hits[i]._score
-            + ' changed: ' + $.fn.df(new Date(changed*1000), 'd.m.Y')
-            + ' w3.type: ' + thetype
-            + matched
-            );
-        }
-      }
       var resultstag = $(resultsselector);
       if ($.trim($('form#uib-search-form .search-field').val())=='') {
         resultstag.html('');
@@ -762,7 +924,28 @@
           }
         });
       });
-
+      if ($.uib_search.debug) {
+        console.log('Returned data object: ');
+        console.log(data);
+        console.log("Metadata for hits:");
+        for (i in data.hits.hits) {
+          var changed =
+            typeof data.hits.hits[i]._source.w3 == 'undefined' ?
+              0 : data.hits.hits[i]._source.w3.changed;
+          var matched = typeof data.hits.hits[i].matched_queries == 'undefined' ?
+              '' : ' Queries: ' + data.hits.hits[i].matched_queries.join(', ');
+          var thetype = typeof data.hits.hits[i]._source.w3 == 'undefined' ?
+              data.hits.hits[i]._type : data.hits.hits[i]._source.w3.type;
+          console.log('score treff ' + i + ': ' + data.hits.hits[i]._score
+            + ' changed: ' + $.fn.df(new Date(changed*1000), 'd.m.Y')
+            + ' w3.type: ' + thetype
+            + matched
+            );
+        }
+        console.log("Execution time (with execution delay subtracted): " +
+          ((new Date().getTime() - uib_timer - $.uib_search.delay)/1000) + "sec"
+        );
+      }
     };
   };
 
@@ -795,6 +978,7 @@
       scroll: '',
       focus: '',
       select: '',
+      debug: 0,
     };
     $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
       + "/_search";
