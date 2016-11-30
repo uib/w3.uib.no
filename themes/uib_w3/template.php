@@ -286,7 +286,8 @@ EOD;
         'label' => 'hidden',
       ));
       $tmpVar = field_view_field('node',$variables['node'],'field_uib_related_content_label');
-      if (!empty($tmpVar)) {
+      $tmpVar2 = field_view_field('node',$variables['node'],'field_uib_relation');
+      if ($tmpVar && $tmpVar2) {
         $variables['page']['content_bottom']['field_uib_relation']['#label_display'] = 'display';
         $variables['page']['content_bottom']['field_uib_relation']['#title'] = $tmpVar[0]['#markup'];
       }
