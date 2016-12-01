@@ -901,8 +901,15 @@
             );
           }
           else {
+            var exlength = 300;
+            trim = $.trim(excerpt);
+            if (trim.length > exlength) {
+              var trim = excerpt.substring(0, exlength);
+              trim = trim.substr(0, Math.min(trim.length, trim.lastIndexOf(" ")));
+              trim += ' ' + '&hellip;';
+            }
             lft.append(
-              $('<div></div>').addClass('excerpt').html(excerpt)
+              $('<div></div>').addClass('excerpt').html(trim)
             );
           }
         }
