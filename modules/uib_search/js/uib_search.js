@@ -763,20 +763,26 @@
               $('<div></div>').addClass('link').append(displaylink)
             );
           if (article_type == 'event') {
-            var day = $('<span></span>').addClass('cal-date').text(
-                $.fn.df(event_from, 'd.m.Y')
+            var from = $('<span></span>').addClass('cal-from').text(
+                $.fn.df(event_from, 'd.m.Y H:i')
             );
-            var to = !isNaN(event_to) && event_to ?
-              '-' + $.fn.df(event_to, 'H:i')
-              : '';
-            var time = $('<span></span>').addClass('cal-time').text(
-                $.fn.df(event_from, 'H:i') + to
-            );
+            if ($.fn.df(event_from, 'd.m.Y') == $.fn.df(event_to, 'd.m.Y')) {
+              console.log('same day');
+              var to = !isNaN(event_to) && event_to ? $('<span></span>').addClass('cal-to').text($.fn.df(event_to, 'H:i')) : '';
+            } else {
+              var to = !isNaN(event_to) && event_to ? $('<span></span>').addClass('cal-to').text($.fn.df(event_to, 'd.m.Y H:i')) : '';
+            }
+            var str_datetime = $('<div></div>').addClass('datetime');
+            if (!isNaN(Number(new Date(event_from)))) {
+              str_datetime.append(from);
+            }
+            if (!isNaN(event_to) && event_to) {
+              str_datetime.append('-');
+              str_datetime.append(to);
+            }
             lft.append(
               $('<div></div>').addClass('excerpt')
-              .append($('<div></div>').addClass('datetime')
-                .append(day)
-                .append(time))
+                .append(str_datetime)
               .append($('<div></div>').addClass('location').html(location))
             );
           }
