@@ -959,6 +959,13 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
   if ($replace_url) {
     $output['url'] = $replace_url['url'];
   }
+  // URL - string for search
+  $pattern = array(
+      '/http.?\/\/[a-z0-9\.]+\/((en)|(nb))?\//',
+      '/\/[0-9]+\//'
+  );
+  $output['url_string'] = preg_replace($pattern, array('','/'), $output['url']);
+
   if ($wrapped_entity->getBundle() == 'uib_study') {
     $output['title'] = uib_search__null_if_empty($wrapped_entity->field_uib_study_title->value());
   }
