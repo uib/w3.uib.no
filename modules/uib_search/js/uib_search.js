@@ -924,10 +924,9 @@
             );
           }
           else {
-            var exlength = 300;
             trim = $.trim(excerpt);
-            if (trim.length > exlength) {
-              var trim = excerpt.substring(0, exlength);
+            if (trim.length > $.uib_search.excerpt_length) {
+              var trim = excerpt.substring(0, $.uib_search.excerpt_length);
               trim = trim.substr(0, Math.min(trim.length, trim.lastIndexOf(" ")));
               trim += ' ' + '&hellip;';
             }
@@ -1156,6 +1155,7 @@
       scroll: '',
       focus: '',
       select: '',
+      excerpt_length: 350,
       debug: 0,
     };
     $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
