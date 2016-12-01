@@ -185,6 +185,18 @@
         };
       searchquery.bool.should.push(tmp);
 
+      // Match url elements on nodes
+      tmp = {match: {}}
+      tmp.match["w3.url_string." + lang] = {
+        query: query,
+        boost: 3,
+        fuzziness: 'auto',
+        prefix_length: 3,
+        max_expansions: 50,
+        _name: "Match-url",
+      };
+      searchquery.bool.should.push(tmp);
+
       // Match on custom fields for persons
       tmp = {
         bool: {
