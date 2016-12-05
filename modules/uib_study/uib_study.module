@@ -593,9 +593,21 @@ function uib_study_block_view($delta = '') {
             }
           }
         }
-
+        $keep_list = array(
+          'FAVT_HIST',
+          'FAVT_MOB',
+          'FAVT_TYPE'
+        );
+        $type = $node->field_uib_study_type->value();
+        $study_category = $node->field_uib_study_category->value();
+        if ($type == 'exchange' && !in_array($study_category, array('forskningsavtale', 'mou'))) {
+          $splice_list = array_merge($splice_list, $keep_list);
+        }
         foreach ($splice_list as $splice_item) {
           uib_study__extract_study_info($data, $splice_item);
+        }
+        if (in_array($study_category, array('forskningsavtale', 'mou'))) {
+          uib_study__extract_agreement_info($data, $keep_list);
         }
 
         $render = array();
@@ -619,9 +631,7 @@ function uib_study_block_view($delta = '') {
           }, $nid);
         }
 
-        $type = $node->field_uib_study_type->value();
         $study_code = $node->field_uib_study_code->value();
-        $study_category = $node->field_uib_study_category->value();
         if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
           $tab_items_specialization_position = 0;
@@ -1635,6 +1645,24 @@ function uib_study__extract_study_info(&$data, $info_type = NULL) {
     }
   }
   return $text;
+}
+
+function uib_study__extract_agreement_info(&$data, $info_types = array()) {
+  if (empty($data) || empty($info_types)) {
+    return NULL;
+  }
+  foreach ($data as $inx => $group) {
+    if($group['#items']) {
+      foreach ($group['#items'] as $key => $info) {
+        if (!in_array($info['#type'], $info_types)) {
+          unset($data[$inx]['#items'][$key]);
+        }
+        if (empty($data[$inx]['#items'])) {
+          unset($data[$inx]);
+        }
+      }
+    }
+  }
 }
 
 /**
