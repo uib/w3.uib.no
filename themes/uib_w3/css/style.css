@@ -1487,7 +1487,7 @@ a {
 /* styled in _article-info.scss */
 .article-info {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
-  .field-name-field-uib-text .article-info {
+  .field-name-field-uib-text .article-info, .node-uib-content-list .article-info {
     border-bottom: solid 1px #b7b7b7;
     margin-bottom: 1.5625rem; }
   .article-info * {
@@ -7156,7 +7156,9 @@ nav {
   .node-uib-content-list .node-uib-article h2,
   .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
   .node-uib-content-list .node-uib-article .article-info {
-    clear: left; } }
+    clear: left; }
+  .node-uib-content-list .node-uib-article h2 {
+    margin-bottom: 1.25rem; } }
 .page-calendar .content-main-wrapper, .page-node-calendar .content-main-wrapper {
   position: relative; }
 .page-calendar .calendar-header, .page-node-calendar .calendar-header {
