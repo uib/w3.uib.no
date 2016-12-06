@@ -1024,7 +1024,8 @@ function uib_article_form_node_delete_confirm_alter(&$form, $form_state) {
  */
 function uib_article_form_node_form_alter($form, $form_state, $form_id) {
   $unpublished = &drupal_static('uib_admin_unpublished');
-  $unpublished = !$form['options']['status']['#default_value'];
+  $unpublished = !$form['options']['status']['#default_value']
+    && intval($form['nid']['#value']) > 0;
   if ($unpublished) {
     drupal_set_message(t('This content item is unpublished'), 'warning');
   }
