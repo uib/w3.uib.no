@@ -635,6 +635,7 @@ function uib_study_block_view($delta = '') {
         if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
           $tab_items_specialization_position = 0;
+          $first_tab = true;
           foreach ($data as $group) {
             $group_id = $group['#group'];
             $group_type = substr($group_id, strpos($group_id, '_') + 1);
@@ -663,6 +664,12 @@ function uib_study_block_view($delta = '') {
             }
             if ($group_type == 'presentasjon' || $group_type == 'introduksjon')
               $tab_items_specialization_position = count($tab_items);
+            if ($first_tab) {
+              if ($testimonial = uib_study__get_testimonial()) {
+                $render[$group_id]['testimonial']['#markup'] = render($testimonial);
+              }
+              $first_tab = false;
+            }
           }
           if ($type == 'program' || $type == 'specialization') {
             if ($type == 'program') {
@@ -1137,6 +1144,29 @@ function uib_study_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * Get a testimonial for the current study
+ */
+function uib_study__get_testimonial() {
+  $node = menu_get_object();
+  if ($node) {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+     ->entityCondition('bundle', 'uib_testimonial')
+     ->propertyCondition('status', 1)
+     ->fieldCondition('field_uib_study_programmes', 'target_id', $node->nid);
+    $result = $query->execute();
+    if (!empty($result)) {
+      $testimonials = array_keys($result['node']);
+      $max = count($testimonials) - 1;
+      $selected = rand(0, $max);
+      $selected_nid = $testimonials[$selected];
+      $output = node_view(node_load($selected_nid), 'teaser');
+      return $output;
+    }
+  }
+  return false;
+}
 /*
  * Creates the render array for the Construction plan of a Study
  * program.
