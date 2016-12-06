@@ -54,6 +54,7 @@ features[field_instance][] = field_collection_item-field_uib_link_section_2-fiel
 features[field_instance][] = node-uib_study-field_uib_feed
 features[field_instance][] = node-uib_study-field_uib_link_section
 features[field_instance][] = node-uib_study-field_uib_link_section_2
+features[field_instance][] = node-uib_study-field_uib_main_media
 features[field_instance][] = node-uib_study-field_uib_nus
 features[field_instance][] = node-uib_study-field_uib_ou
 features[field_instance][] = node-uib_study-field_uib_related_content_label

@@ -338,6 +338,71 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_main_media'.
+  $field_instances['node-uib_study-field_uib_main_media'] = array(
+    'bundle' => 'uib_study',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_main_media',
+    'label' => 'Study media',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'txt',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+          'vimeo' => 'vimeo',
+          'youtube' => 'youtube',
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 0,
+          'video' => 'video',
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 'media_internet',
+          'upload' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 24,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_nus'.
   $field_instances['node-uib_study-field_uib_nus'] = array(
     'bundle' => 'uib_study',
@@ -1602,6 +1667,7 @@ function uib_study_field_default_field_instances() {
   t('Responsible');
   t('Rss feed');
   t('Study label');
+  t('Study media');
   t('Study points rank');
   t('Title');
   t('Type');

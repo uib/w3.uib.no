@@ -572,6 +572,14 @@ function uib_study_block_view($delta = '') {
 
       $node = menu_get_object();
       if ($node) {
+        if (!empty($node->field_uib_main_media)) {
+          $study_media = field_view_field('node', $node, 'field_uib_main_media', array(
+            'type' => 'file_rendered',
+            'settings' => array('file_view_mode' => 'content_main'),
+            'label' => 'hidden',
+            'weight' => -30,
+          ));
+        }
         $node = entity_metadata_wrapper('node', $node);
         $data = uib_study__fspres_get_node_json($node->getIdentifier(), 'render.json', TRUE);
         if (empty($data)) {
@@ -665,6 +673,9 @@ function uib_study_block_view($delta = '') {
             if ($group_type == 'presentasjon' || $group_type == 'introduksjon')
               $tab_items_specialization_position = count($tab_items);
             if ($first_tab) {
+              if (isset($study_media)) {
+                $render[$group_id]['study_media']['#markup'] = render($study_media);
+              }
               if ($testimonial = uib_study__get_testimonial()) {
                 $render[$group_id]['testimonial']['#markup'] = render($testimonial);
               }
@@ -1620,6 +1631,9 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       '#value' => $study->field_uib_study_code->value() . ' ' . $study->language($language->language)->field_uib_study_title->value(),
       '#weight' => -3,
     );
+    if ($study->field_uib_study_type->value() != 'program') {
+      hide($form['field_uib_main_media']);
+    }
 
     if ($GLOBALS['user']->uid != 1) {
       // hide all fields that are fs-pres synchronised
