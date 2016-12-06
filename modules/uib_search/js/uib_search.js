@@ -126,30 +126,104 @@
        *************************************/
 
       // Match NGrams in title. Ngrams are made up of word triplets
-      tmp = {match: {}};
-      tmp.match["generic.title.ngrams"] = {
+      // This matches for user and node
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["user", "node"]}},
+          must: {
+            match: {}
+          },
+          _name: "NGram-search",
+        }
+      };
+      tmp.bool.must.match["generic.title.ngrams"] = {
         query: query,
-        boost: 1,
-        _name: "NGram-search",
+        minimum_should_match: "40%",
       };
       searchquery.bool.should.push(tmp);
 
-      tmp = {match: {}}
-      tmp.match["generic.title." + lang] = {
-        query: query,
-        boost: 1,
-        _name: "Match-title",
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["study"]}},
+          should: [
+            {
+              match: {
+                "generic.title_nb.ngrams": {
+                  query: query,
+                  minimum_should_match: "40%",
+                }
+              }
+            },
+            {
+              match: {
+                "generic.title_en.ngrams": {
+                  query: query,
+                  minimum_should_match: "40%",
+                }
+              }
+            },
+          ],
+          minimum_should_match: 1,
+          _name: "NGram-study",
+        }
       };
       searchquery.bool.should.push(tmp);
 
-      tmp = {match: {}}
-      tmp.match["generic.excerpt." + lang] = {
+      // Match full words in title
+      tmp = {
+          bool: {
+            filter: { terms: { _type: ["user", "node"]}},
+            must: {
+              match: {}
+            },
+            _name: "Match-title",
+          }
+        };
+      tmp.bool.must.match["generic.title." + lang] = {
         query: query,
-        boost: 1,
-        _name: "Match-excerpt",
       };
       searchquery.bool.should.push(tmp);
 
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["study"]}},
+          should: { match: {} },
+          _name: "Match-title-study(" + lang + ")",
+        }
+      };
+      tmp.bool.should.match["generic.title_" + lang] = {
+        query: query,
+      };
+      searchquery.bool.should.push(tmp);
+
+      // Match words in excerpt
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["user", "node"]}},
+          must: {
+            match: {}
+          },
+          _name: "Match-excerpt",
+        }
+      };
+      tmp.bool.must.match["generic.excerpt." + lang] = {
+        query: query,
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["study"]}},
+          should: { match: {} },
+          _name: "Match-excerpt-study(" + lang + ")",
+        }
+      };
+      tmp.bool.should.match["generic.excerpt_" + lang] = {
+        query: query,
+      };
+      searchquery.bool.should.push(tmp);
+
+      // Match keywords
       tmp = {match: {}}
       tmp.match["w3.search_keywords"] = {
         query: query,
@@ -159,6 +233,7 @@
       };
       searchquery.bool.should.push(tmp);
 
+      //Match search description
       tmp = {match: {}}
       tmp.match["w3.search_description"] = {
         query: query,
@@ -168,21 +243,46 @@
       };
       searchquery.bool.should.push(tmp);
 
+      //Match in _searchable text
       tmp = {match: {}}
       tmp.match["generic._searchable_text." + lang] = {
         query: query,
-        boost: 1,
         _name: "Match-searchable-text",
       };
       searchquery.bool.should.push(tmp);
 
       // Phrase-matching on title
-      tmp = {match_phrase_prefix: {}};
-      tmp.match_phrase_prefix["generic.title.nb"] = {
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["user", "node"]}},
+          must: {
+            match_phrase_prefix: {}
+          },
+          _name: "Phrase-search(" + lang + ")",
+        }
+      };
+      tmp.bool.must.match_phrase_prefix["generic.title." + lang] = {
         query: query,
-        boost: 1,
-        _name: "Phrase-nb-search",
-        };
+      };
+      searchquery.bool.should.push(tmp);
+
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["study"]}},
+          should: { match_phrase_prefix: {} },
+          _name: "Phrase-search-study(" + lang + ")",
+        }
+      };
+      tmp.bool.should.match_phrase_prefix["generic.title_" + lang] = {
+        query: query,
+      };
+      searchquery.bool.should.push(tmp);
+
+
+      // Prefix - matching on disipline
+      tmp = {prefix: {"fs.dicipline_nb": query, _name: 'Dicipline(nb)'}};
+      searchquery.bool.should.push(tmp);
+      tmp = {prefix: {"fs.dicipline_en": query, _name: 'Dicipline(en)'}};
       searchquery.bool.should.push(tmp);
 
       // Match url elements on nodes
@@ -237,7 +337,9 @@
        * Highlighted fields
        *************************************/
       data.highlight.fields["generic.title." + lang] = {};
+      data.highlight.fields["generic.title_" + lang] = {};
       data.highlight.fields["generic.excerpt." + lang] = {};
+      data.highlight.fields["generic.excerpt_" + lang] = {};
       data.highlight.fields.first_name = {};
       data.highlight.fields.last_name = {};
       data.highlight.fields['ou_' + lang] = {};
@@ -669,19 +771,28 @@
         var lang = $.uib_search.lang;
         var user_url = $().getVal(v._source, 'link_' + lang);
 
-        var link = $().getVal(v._source.generic, 'link');
+        var link = $().getVal(v._source.generic, 'link_' + lang) ||
+          $().getVal(v._source.generic, 'link');
         var study_code = '';
         if (v._type == 'study') {
           study_code = $().getVal(v.highlight, 'w3.study_code') ?
             $().getVal(v.highlight, 'w3.study_code') + ' / ' :
             $().getVal(v._source.w3, 'study_code') + ' / ';
         }
-        var title = $().getVal(v.highlight, 'generic.title.' + lang) ?
-          $().getVal(v.highlight, 'generic.title.' + lang) :
+
+        // Display priority (same for excerpt):
+        //  - highlights for correct language
+        //  - highlights
+        //  - title correct language
+        //  - other title
+        var title = $().getVal(v.highlight, 'generic.title_' + lang) ||
+          $().getVal(v.highlight, 'generic.title.' + lang) ||
+          $().getVal(v._source.generic, 'title_' + lang) ||
           $().getVal(v._source.generic, 'title');
         title = study_code + title;
-        var excerpt = $().getVal(v.highlight, 'generic.excerpt.' + lang) ?
-          $().getVal(v.highlight, 'generic.excerpt.' + lang) :
+        var excerpt = $().getVal(v.highlight, 'generic.excerpt_' + lang) ||
+          $().getVal(v.highlight, 'generic.excerpt.' + lang) ||
+          $().getVal(v._source.generic, 'excerpt_' + lang) ||
           $().getVal(v._source.generic, 'excerpt');
         var first_name = $().getVal(v.highlight, 'first_name') ?
           $().getVal(v.highlight, 'first_name') :

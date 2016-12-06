@@ -202,8 +202,8 @@
     },
     "study": {
       "properties": {
-		"search_manual_boost": {
-		  "type": "float"
+		    "search_manual_boost": {
+		      "type": "float"
         },
         "generic": {
           "properties": {
@@ -269,11 +269,23 @@
             },
             "title_en": {
               "type": "string",
-              "analyzer": "english"
+              "analyzer": "english",
+              "fields": {
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
+                }
+              }
             },
             "title_nb": {
               "type": "string",
-              "analyzer": "norwegian"
+              "analyzer": "norwegian",
+              "fields": {
+                "ngrams": {
+                  "type": "string",
+                  "analyzer":"trigrams"
+                }
+              }
             }
           }
         },
@@ -283,18 +295,43 @@
               "type": "string",
               "analyzer": "lowercase"
             },
-            "text": {
+            "study_code": {
               "type": "string",
-              "fields": {
-                "nb": {
-                  "type": "string",
-                  "analyzer": "norwegian"
-                },
-                "en": {
-                  "type": "string",
-                  "analyzer": "english"
-                }
-              }
+              "analyzer": "lowercase"
+            },
+            "text_en": {
+              "type": "string",
+              "analyzer": "english"
+            },
+            "text_nb": {
+              "type": "string",
+              "analyzer": "norwegian"
+            },
+            "credits": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "dicipline_en" : {
+              "type" : "string",
+              "analyzer": "english"
+            },
+            "dicipline_nb" : {
+              "type" : "string",
+              "analyzer": "norwegian"
+            },
+            "excerpt_en" : {
+              "type" : "string",
+              "analyzer": "english"
+            },
+            "excerpt_nb" : {
+              "type" : "string",
+              "analyzer": "norwegian"
+            },
+            "url_en" : {
+              "type" : "string"
+            },
+            "url_nb" : {
+              "type" : "string"
             }
           }
         },

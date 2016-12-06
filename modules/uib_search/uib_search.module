@@ -1180,16 +1180,35 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
   }
   $study_type = $wrapped_entity->field_uib_study_type->value();
   $render = uib_search__get_render_json($wrapped_entity);
+  $render['study_type'] = $study_type;
   $output = array(
-    'fs' => array(
-      'text' => $render['text'],
-      'study_type' => $study_type,
-    ),
     'generic' => array(
-      'excerpt' => $render['excerpt'],
+      'excerpt_en' => $render['excerpt_en'] ?
+        $render['excerpt_en'] :
+        $render['excerpt_nb'],
+      'excerpt_nb' => $render['excerpt_nb'] ?
+        $render['excerpt_nb'] :
+        $render['excerpt_en'],
+      'excerpt' => $render['excerpt_nb'] ?
+        $render['excerpt_nb'] :
+        $render['excerpt_en'],
       '_searchable_text' =>  $render['_searchable_text'],
+      'title_nb' => $render['title_nb'] ?
+        $render['title_nb'] :
+        $render['title_en'],
+      'title_en' => $render['title_en'] ?
+        $render['title_en'] :
+        $render['title_nb'],
+      'title' => $render['title_nb'] ?
+        $render['title_nb'] :
+        $render['title_en'],
+      'link_en' => $render['url_en'],
+      'link_nb' => $render['url_nb'],
+      'link' => $render['url_nb'] ? $render['url_nb'] : $render['url_en'],
     )
   );
+  unset($render['_searchable_text']);
+  $output['fs'] = $render;
 
   return $output;
 }
@@ -1202,7 +1221,8 @@ function uib_search__index_study($wrapped_entity) {
   $fsdata = uib_search__get_elastic_study_array($wrapped_entity);
   // Loading data from w3 as well
   $entitydata = uib_search__get_elastic_entity_array($wrapped_entity);
-  $data = uib_search__merge_study_arrays($entitydata, $fsdata);
+  //Merge arrays. Generic is overwritten by fsdata
+  $data = array_merge($entitydata, $fsdata);
   $url = "{$url}/{$index}/{$type}/" . $wrapped_entity->getIdentifier();
   $status = uib_search__run_elastic_request(
     $url,
@@ -1235,7 +1255,48 @@ function uib_search__split_key($key) {
 function uib_search__get_render_json($entity) {
   $nid = $entity->nid->value();
 
-  $courses = uib_study__fspres_get_node_json($nid, 'render.json');
+  $info = uib_study__fspres_get_node_json($nid, 'info.json', $l);
+
+  // Include some info-types
+  $include_info = array(
+      // Some language independent fields
+    'study_code' => 'emneid', // emnekode is fetched from this object
+    'credits' => 'studiepoeng',
+    // Language specific fields
+    'title_nb' => 'emnenavn',
+    'title_en' => 'emnenavn_en',
+    'dicipline_nb' => 'fagnavn',
+    'dicipline_en' => 'fagnavn:en',
+    'url_nb' => 'url',
+    'url_en' => 'url', // Special handling
+  );
+
+  // get installed languages
+  $langs = language_list();
+
+  // make a decent array
+  $output = array();
+  foreach ($include_info as $writekey => $readkey) {
+    switch ($readkey) {
+      case 'emneid':
+        $output[$writekey] = $info[$readkey]['emnekode'];
+        break;
+      case ($writekey == 'url_en' ? $readkey : FALSE):
+        $output[$writekey] = preg_replace('/^(https?:\/\/[^\/]+)\/emne\/(.*)$/', '\1/en/course/\2', $info[$readkey]);
+        break;
+      default:
+        $output[$writekey] = $info[$readkey];
+        break;
+    }
+  }
+
+
+  foreach ($langs as $l) {
+    $render = uib_study__fspres_get_node_json($nid, 'render.json', $l->language);
+    if ($render) {
+      $courses[$l->language] = $render;
+    }
+  }
 
   // Ignore some types
   $ignore_types = array(
@@ -1243,61 +1304,48 @@ function uib_search__get_render_json($entity) {
     'M_RE_SPRAK',
   );
 
-  // make a decent array
-  $output = array();
+
+
   $output['_searchable_text'] = '';
-  $output['text'] = '';
   if (!empty($courses)) {
-    $excerpt = FALSE;
-    foreach ($courses  as $course) {
-      if (array_key_exists('#title', $course)) {
-        $output['_searchable_text'] .= "{$course['#title']}\n\n";
-      }
-      foreach ($course['#items'] as $item) {
-        if (in_array($item['#type'], $ignore_types)) {
-          continue;
+    foreach ($courses as $lang => $cl) {
+      $output['text_' . $lang] = '';
+      ${'excerpt_' . $lang} = FALSE;
+      foreach ($cl  as $course) {
+        if (array_key_exists('#title', $course)) {
+          $output['_searchable_text'] .= "{$course['#title']}\n\n";
         }
-        if (array_key_exists('#title', $item)) {
-          $output['_searchable_text'] .= $item['#title'] . "\n\n";
-          $output['text'] .= $item['#title'] . "\n\n";
-        }
-        if (array_key_exists('#text', $item)) {
-          $output['_searchable_text'] .= $item['#text'] . "\n\n";
-          $output['text'] .= $item['#text'] . "\n\n";
-          if (!$excerpt) {
-            $output['excerpt'] = uib_search__strip_html($item['#text']);
-            $excerpt = TRUE;
+        foreach ($course['#items'] as $item) {
+          if (in_array($item['#type'], $ignore_types)) {
+            continue;
+          }
+          if (array_key_exists('#title', $item)) {
+            $output['_searchable_text'] .= $item['#title'] . "\n\n";
+            $output['text_' . $lang] .= $item['#title'] . "\n\n";
+          }
+          if (array_key_exists('#text', $item)) {
+            $output['_searchable_text'] .= $item['#text'] . "\n\n";
+            $output['text_' . $lang] .= $item['#text'] . "\n\n";
+            if (!${'excerpt_' . $lang}) {
+              $output['excerpt_' . $lang] =
+                uib_search__strip_html($item['#text']);
+              ${'excerpt_' . $lang} = TRUE;
+            }
           }
         }
       }
     }
     // strip HTML
     $output['_searchable_text'] = uib_search__strip_html($output['_searchable_text']);
-    $output['text'] = uib_search__strip_html($output['text']);
-
   }
-  if (!array_key_exists('excerpt', $output)) {
-    $output['excerpt'] = '';
+  foreach ($langs as $l) {
+    if (!array_key_exists('excerpt_' . $l->language, $output)) {
+      $output['excerpt_' . $l->language] = '';
+    }
+    $output['text_' . $l->language] =
+      uib_search__strip_html($output['text_' . $l->language]);
   }
-  $output['excerpt'] =
-    preg_replace('/\s+?(\S+)?$/', '...', substr($output['excerpt'], 0, 350));
   return $output;
-}
-
-/**
- * Merge study content from W3 and from FS into an array suitable for elastic.
- * @param array $nodearray Array with W3-data for study node
- * @param array $studyarray Array with FS-data for study
- * @return array Merged array for elastic search.
- */
-function uib_search__merge_study_arrays($nodearray, $studyarray) {
-  $nodearray['generic']['_searchable_text'] .= "\n\n" . $studyarray['generic']['_searchable_text'];
-  $nodearray['generic']['_searchable_text'] = trim($nodearray['generic']['_searchable_text']);
-  $nodearray['generic']['excerpt'] .= "\n\n" . $studyarray['generic']['excerpt'];
-  $nodearray['generic']['excerpt'] = trim($nodearray['generic']['excerpt']);
-  unset($studyarray['generic']);
-  $nodearray = array_merge($nodearray, $studyarray);
-  return $nodearray;
 }
 
 /**

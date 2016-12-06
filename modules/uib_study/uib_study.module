@@ -398,27 +398,37 @@ function uib_study__fspres_get_json($path) {
   return $data;
 }
 
-function uib_study__fspres_lang() {
-  global $language;
-  $lang = $language->language;
+
+function uib_study__fspres_lang($lang = FALSE) {
+  if (!$lang) {
+    global $language;
+    $lang = $language->language;
+  }
   if ($lang == 'nb') {
     $lang = 'nn'; // fs-pres Norwegian is ny-norsk
   }
   return $lang;
 }
 
-function uib_study__fspres_get_node_json($nid, $json, $lang = FALSE) {
-  $node = node_load($nid);
-  if ($node->type != 'uib_study')
+function uib_study__fspres_get_node_json($nid_entity, $json, $lang = FALSE) {
+
+  if (intval($nid_entity)>0) {
+    $node = node_load($nid_entity);
+    $study = entity_metadata_wrapper('node', $node);
+  }
+  else {
+    $study = $nid_entity;
+  }
+  if ($study->getBundle() != 'uib_study') {
     return FALSE;
-  $study = entity_metadata_wrapper('node', $node);
+  }
   $type = $study->field_uib_study_type->value();
   /* Fetch what to render from:
    * http://fs-pres.app.uib.no/[<lang>]/emne/<code>/render.json
    */
   $path = '';
   if ($lang) {
-    $path .= uib_study__fspres_lang() . '/';
+    $path .= uib_study__fspres_lang($lang) . '/';
   }
 
   $path_objects = array($study);

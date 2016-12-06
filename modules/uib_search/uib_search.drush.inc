@@ -152,7 +152,7 @@ function uib_search__search_any($type, $id){
     $output = uib_search__get_elastic_entity_array($entity);
     if ($study) {
       $fs = uib_search__get_elastic_study_array($entity);
-      $output = uib_search__merge_study_arrays($output, $fs);
+      $output = array_merge($output, $fs);
     }
   }
   return $output;
@@ -339,7 +339,7 @@ function drush_uib_search_index($type = 'user') {
     $nodearray = uib_search__get_elastic_entity_array($entity);
     $sarr = uib_search__get_elastic_study_array($entity);
     if($sarr && count($sarr)) {
-      $nodearray = uib_search__merge_study_arrays($nodearray, $sarr);
+      $nodearray = array_merge($nodearray, $sarr);
     }
     if (count($nodearray)) {
       uib_search__clean_utf8_string_array($nodearray);
