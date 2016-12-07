@@ -10,6 +10,11 @@
 function uib_w3_preprocess_html(&$variables) {
   drupal_add_js('//use.typekit.net/yfr2tzw.js', 'external');
   drupal_add_js('try{Typekit.load();}catch(e){}', 'inline');
+  drupal_add_js("(function() {
+var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+sz.src = '//siteimproveanalytics.com/js/siteanalyze_6000122.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+})();", array('type' => 'inline', 'scope' => 'footer'));
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
