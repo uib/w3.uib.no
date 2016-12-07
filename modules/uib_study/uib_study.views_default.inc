@@ -1037,15 +1037,16 @@ function uib_study_views_default_views() {
   );
   $handler->display->display_options['fields']['field_uib_study_country']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Taxonomy term: Name (field_uib_org_name) */
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['id'] = 'field_uib_org_name_value';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['table'] = 'field_data_field_uib_org_name';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['field'] = 'field_uib_org_name_value';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['relationship'] = 'field_uib_study_organisation_target_id';
-  /* Sort criterion: Content: Title (field_uib_study_title) */
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['relationship'] = 'field_uib_study_part_of_target_id';
+  /* Sort criterion: Taxonomy term: ISO country code (field_uib_iso_country) */
+  $handler->display->display_options['sorts']['field_uib_iso_country_value']['id'] = 'field_uib_iso_country_value';
+  $handler->display->display_options['sorts']['field_uib_iso_country_value']['table'] = 'field_data_field_uib_iso_country';
+  $handler->display->display_options['sorts']['field_uib_iso_country_value']['field'] = 'field_uib_iso_country_value';
+  $handler->display->display_options['sorts']['field_uib_iso_country_value']['relationship'] = 'field_uib_study_country_target_id';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
