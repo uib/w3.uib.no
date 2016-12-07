@@ -1021,7 +1021,7 @@
         var postdata = $().createQuery($.uib_search.currentquery);
         $().searchDelay(function() {
           $().executeQuery(postdata, $.uib_search.currentquery);
-        }, $.uib_search.delay );
+        }, 1 );
 
 
       });
@@ -1053,6 +1053,22 @@
           }
         });
       });
+
+      // Manipulate history when clicking links
+      $('.global-search .results .item a:not(.up,.down)').click(function (event) {
+        var checkboxes = {};
+        $('#search-filter-checkboxes input.form-checkbox:checked').each(function (index, obj) {
+            checkboxes[$(obj).val()] = 1;
+        });
+        var q = {
+          id: 'uib-search',
+          query: $.uib_search.currentquery,
+          from: $.uib_search.from,
+          checkboxes: checkboxes
+        };
+        history.replaceState(q, 'Search', window.location.href);
+      });
+
       if ($.uib_search.debug) {
         console.log('Returned data object: ');
         console.log(data);
@@ -1146,5 +1162,24 @@
 
       });
     }
+
+    // Prepopulate search
+    if (history.state && history.state.id  == 'uib-search') {
+      $.uib_search.currentquery = history.state.query;
+      $.uib_search.from = history.state.from;
+      $.fn.uibSearchOpen();
+      $('#search-filter-checkboxes input.form-checkbox').each( function(index, obj) {
+        if (history.state.checkboxes[$(obj).val()]) {
+          $(obj).checked = true;
+        }
+      });
+      $('form#uib-search-form .search-field').val($.uib_search.currentquery);
+
+      var postdata = $().createQuery($.uib_search.currentquery);
+      $().searchDelay(function() {
+        $().executeQuery(postdata, $.uib_search.currentquery);
+      }, 1 );
+    }
   });
+
 })(jQuery);
