@@ -2132,6 +2132,13 @@ return !empty($handler->argument);';
     'field_multiple_limit_offset' => '0',
   );
   $handler->display->display_options['fields']['field_uib_area']['delta_offset'] = '0';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -2188,6 +2195,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['style_options']['search_fields'] = array(
     'field_uib_study_code' => 'field_uib_study_code',
     'title' => 'title',
+    'nid' => 'nid',
+    'language' => 0,
+    'status' => 0,
     'field_uib_area' => 0,
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -2275,6 +2285,8 @@ return !empty($handler->argument);';
   $handler->display->display_options['style_options']['search_fields'] = array(
     'field_uib_study_code' => 'field_uib_study_code',
     'title' => 'title',
+    'nid' => 'nid',
+    'language' => 0,
     'status' => 0,
     'field_uib_area' => 0,
   );
@@ -2322,6 +2334,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['style_options']['search_fields'] = array(
     'field_uib_study_code' => 'field_uib_study_code',
     'title' => 'title',
+    'nid' => 'nid',
+    'language' => 0,
+    'status' => 0,
     'field_uib_area' => 0,
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -2382,6 +2397,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['style_options']['search_fields'] = array(
     'field_uib_study_code' => 'field_uib_study_code',
     'title' => 'title',
+    'nid' => 'nid',
+    'language' => 0,
+    'status' => 0,
     'field_uib_area' => 0,
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
