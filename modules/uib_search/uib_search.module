@@ -1259,16 +1259,21 @@ function uib_search__get_render_json($entity) {
 
   // Include some info-types
   $include_info = array(
-      // Some language independent fields
-    'study_code' => 'emneid', // emnekode is fetched from this object
-    'credits' => 'studiepoeng',
-    // Language specific fields
-    'title_nb' => 'emnenavn',
-    'title_en' => 'emnenavn_en',
-    'dicipline_nb' => 'fagnavn',
-    'dicipline_en' => 'fagnavn:en',
-    'url_nb' => 'url',
-    'url_en' => 'url', // Special handling
+    // Some language independent fields
+    'emneid' => 'study_code', // emnekode is fetched from this object
+    'studiepoeng' => 'credits',
+    // Utvekslingsavtaler
+    'avtalenavn' => 'title_nb',
+    'avtalenavn:en' => 'title_en',
+    'avtaleid' => 'study_code',
+      // Language specific fields
+    'emnenavn' => 'title_nb',
+    'emnenavn_en' => 'title_en',
+    'studieprogramnavn' => 'title_nb',
+    'studieprogramnavn_en' => 'title_en',
+    'fagnavn' => 'dicipline_nb',
+    'fagnavn:en' => 'dicipline_en',
+    'url' => array( 'nb' => 'url_nb', 'en' => 'url_en'),
   );
 
   // get installed languages
@@ -1276,18 +1281,38 @@ function uib_search__get_render_json($entity) {
 
   // make a decent array
   $output = array();
-  foreach ($include_info as $writekey => $readkey) {
+  foreach ($include_info as  $readkey => $writekey) {
+    if(!isset($info[$readkey])) continue;
     switch ($readkey) {
       case 'emneid':
         $output[$writekey] = $info[$readkey]['emnekode'];
         break;
-      case ($writekey == 'url_en' ? $readkey : FALSE):
-        $output[$writekey] = preg_replace('/^(https?:\/\/[^\/]+)\/emne\/(.*)$/', '\1/en/course/\2', $info[$readkey]);
+      case 'url':
+        $output[$writekey['nb']] = $info[$readkey];
+        $output[$writekey['en']] =
+          preg_replace(
+            array(
+              '/^(https?:\/\/[^\/]+)\/emne\/(.*)$/',
+              '/^(https?:\/\/[^\/]+)\/studieprogram\/(.*)$/'
+            ),
+            array(
+              '\1/en/course/\2',
+              '\1/en/studyprogramme/\2'
+            ),
+            $info[$readkey]
+          );
         break;
       default:
         $output[$writekey] = $info[$readkey];
         break;
     }
+  }
+  // TODO: URLs for exchange agreements are hard coded below:
+  if (!$output['url_nb']) {
+    $output['url_nb'] =
+      'http://www.uib.no/utvekslingsavtale/' . $output['study_code'];
+    $output['url_en'] =
+      'http://www.uib.no/en/exchange-agreement/' . $output['study_code'];
   }
 
 
