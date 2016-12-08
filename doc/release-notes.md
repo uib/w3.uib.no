@@ -1,3 +1,19 @@
+# Release 60 _2016-12-08_
+
+I denne releasen har vi ferdigstilt søket, gjort noen justeringer på studieprogram og generelle feilrettinger.
+
+- Rettet en feil hvor tomme felt fortsatt viste på innhold #16917
+- Endret navn på fanen “Resources” til “Links and attachments” på engelsk redigeringsside for innhold
+- Forbedret forkortelsen av dager i minikalender inne på kalendersidene #12430
+- Justert fargen for upublisert innhold slik at det blir tydligere når man redigerer innhold som ikke er publisert #13619
+- Lagt til styling som gjensto på arbeidsflyt #16254
+- Forbedring av søkeresultat #16998 #17016 #17045 #17000 #16737
+- Lagt til script for Siteimprove #17050
+- Rettet en feil hvor feil infotype viste på enkelte samarbeidsavtaler #19619
+- Støtte for å søke på selve nodenummeret i de forskjellige autocomplete-feltene #17060
+- Flyttet vitnesbyrd fra venstre til høyre kolonne på studieprogram og lagt på ny styling #16680
+- Opprettet et felt for video på studieprogram #16533
+
 # Release 59 _2016-11-24_
 
 I denne releasen har fokuset vært på å rette småfeil som har ligget lenge
