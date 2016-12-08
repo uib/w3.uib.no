@@ -944,7 +944,7 @@ function uib_study_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'field_uib_study_country',
+      'field' => 'field_uib_geographic_name',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
@@ -1012,17 +1012,15 @@ function uib_study_views_default_views() {
   $handler->display->display_options['fields']['nothing']['element_class'] = 'views-field views-field-field-uib-study-title';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
-  /* Field: Content: Country */
-  $handler->display->display_options['fields']['field_uib_study_country']['id'] = 'field_uib_study_country';
-  $handler->display->display_options['fields']['field_uib_study_country']['table'] = 'field_data_field_uib_study_country';
-  $handler->display->display_options['fields']['field_uib_study_country']['field'] = 'field_uib_study_country';
-  $handler->display->display_options['fields']['field_uib_study_country']['label'] = '';
-  $handler->display->display_options['fields']['field_uib_study_country']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_uib_study_country']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_uib_study_country']['settings'] = array(
-    'link' => 0,
-    'field_multiple_limit' => '-1',
-    'field_multiple_limit_offset' => '0',
+  /* Field: Taxonomy term: Geographic name */
+  $handler->display->display_options['fields']['field_uib_geographic_name']['id'] = 'field_uib_geographic_name';
+  $handler->display->display_options['fields']['field_uib_geographic_name']['table'] = 'field_data_field_uib_geographic_name';
+  $handler->display->display_options['fields']['field_uib_geographic_name']['field'] = 'field_uib_geographic_name';
+  $handler->display->display_options['fields']['field_uib_geographic_name']['relationship'] = 'field_uib_study_country_target_id';
+  $handler->display->display_options['fields']['field_uib_geographic_name']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_geographic_name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_geographic_name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_geographic_name']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
       'destination' => '',
@@ -1035,13 +1033,12 @@ function uib_study_views_default_views() {
       ),
     ),
   );
-  $handler->display->display_options['fields']['field_uib_study_country']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Taxonomy term: Name (field_uib_org_name) */
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['id'] = 'field_uib_org_name_value';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['table'] = 'field_data_field_uib_org_name';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['field'] = 'field_uib_org_name_value';
-  $handler->display->display_options['sorts']['field_uib_org_name_value']['relationship'] = 'field_uib_study_organisation_target_id';
+  /* Sort criterion: Taxonomy term: Geographic name (field_uib_geographic_name) */
+  $handler->display->display_options['sorts']['field_uib_geographic_name_value']['id'] = 'field_uib_geographic_name_value';
+  $handler->display->display_options['sorts']['field_uib_geographic_name_value']['table'] = 'field_data_field_uib_geographic_name';
+  $handler->display->display_options['sorts']['field_uib_geographic_name_value']['field'] = 'field_uib_geographic_name_value';
+  $handler->display->display_options['sorts']['field_uib_geographic_name_value']['relationship'] = 'field_uib_study_country_target_id';
   /* Sort criterion: Content: Title (field_uib_study_title) */
   $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
   $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
@@ -1097,6 +1094,14 @@ function uib_study_views_default_views() {
     'mou' => 'mou',
   );
   $handler->display->display_options['filters']['field_uib_study_category_value']['group'] = 1;
+  /* Filter criterion: Taxonomy term: Geographic name (field_uib_geographic_name:language) */
+  $handler->display->display_options['filters']['language_1']['id'] = 'language_1';
+  $handler->display->display_options['filters']['language_1']['table'] = 'field_data_field_uib_geographic_name';
+  $handler->display->display_options['filters']['language_1']['field'] = 'language';
+  $handler->display->display_options['filters']['language_1']['relationship'] = 'field_uib_study_country_target_id';
+  $handler->display->display_options['filters']['language_1']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
   $translatables['exchange_agreements'] = array(
     t('Master'),
     t('more'),
