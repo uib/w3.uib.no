@@ -961,8 +961,8 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
   }
   // URL - string for search
   $pattern = array(
-      '/http.?\/\/[a-z0-9\.]+\/((en)|(nb))?\//',
-      '/\/[0-9]+\//'
+    '/https?:\/\/[a-z0-9\.-]+\/((en)|(nb))?\//',
+    '/\/[0-9]+\//'
   );
   $output['url_string'] = preg_replace($pattern, array('','/'), $output['url']);
 
