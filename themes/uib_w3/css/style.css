@@ -2345,7 +2345,8 @@ a {
         display: flex;
         flex-direction: row; } }
     .view-exchange-agreements .view-content ul li > div > div > span {
-      display: block; }
+      display: block;
+      padding: 0 1rem; }
       @media screen and (min-width: 600px) {
         .view-exchange-agreements .view-content ul li > div > div > span.studentreport-ref {
           -ms-flex: 0 1 20%;
