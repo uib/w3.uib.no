@@ -1255,7 +1255,7 @@ function uib_search__split_key($key) {
 function uib_search__get_render_json($entity) {
   $nid = $entity->nid->value();
 
-  $info = uib_study__fspres_get_node_json($nid, 'info.json', $l);
+  $info = uib_study__fspres_get_node_json($nid, 'info.json', FALSE);
 
   // Include some info-types
   $include_info = array(

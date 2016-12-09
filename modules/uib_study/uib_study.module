@@ -400,7 +400,7 @@ function uib_study__fspres_get_json($path) {
 
 
 function uib_study__fspres_lang($lang = FALSE) {
-  if (!$lang) {
+  if (!is_string($lang)) {
     global $language;
     $lang = $language->language;
   }
