@@ -399,8 +399,8 @@ function uib_study__fspres_get_json($path) {
 }
 
 
-function uib_study__fspres_lang($lang = FALSE) {
-  if (!is_string($lang)) {
+function uib_study__fspres_lang($lang = '') {
+  if (!$lang) {
     global $language;
     $lang = $language->language;
   }
@@ -410,6 +410,14 @@ function uib_study__fspres_lang($lang = FALSE) {
   return $lang;
 }
 
+/**
+ * Retrieve a json file for a study node from fs-pres
+ *
+ * @param mixed $nid_entity Node id or entity wrapped in EntityMetadataWrapper
+ * @param string $json name of the file to load (render.json, info.json)
+ * @param mixed $lang can be FALSE (no language) TRUE (global language) or
+ * a language string, eg. 'en'
+ */
 function uib_study__fspres_get_node_json($nid_entity, $json, $lang = FALSE) {
 
   if (intval($nid_entity)>0) {
@@ -427,8 +435,11 @@ function uib_study__fspres_get_node_json($nid_entity, $json, $lang = FALSE) {
    * http://fs-pres.app.uib.no/[<lang>]/emne/<code>/render.json
    */
   $path = '';
-  if ($lang) {
+  if (is_string($lang)) {
     $path .= uib_study__fspres_lang($lang) . '/';
+  }
+  else if ($lang) {
+    $path .= uib_study__fspres_lang() . '/';
   }
 
   $path_objects = array($study);
