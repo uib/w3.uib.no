@@ -1,3 +1,11 @@
+# Release 60.2 _2016-12-12_
+
+Det nye søket sendte brukere til w3.uib.no som ikke er synlig utenfor UiBs nett. #17081
+
+# Release 60.1 _2016-12-09_
+
+Release 60 introduserte en feil som gjorde at studieprogrammer ikke viste engesk tekst. #17074
+
 # Release 60 _2016-12-08_
 
 I denne releasen har vi ferdigstilt søket, gjort noen justeringer på studieprogram og generelle feilrettinger.
