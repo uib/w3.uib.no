@@ -177,7 +177,21 @@ function drush_uib_search() {
   else {
     $q = array(
       'query' => array(
-        'match' => array('_all' => $query)
+        'bool' => array(
+          'should' => array(
+            array(
+              'match' => array('_all' => $query)
+            ),
+            array(
+              'term' => array(
+                '_id' => array(
+                  'value' => $query,
+                  'boost' => 10,
+                )
+              )
+            )
+          )
+        )
       ),
     );
   }
