@@ -17,10 +17,10 @@ function uib_webdesk__release_notes_page() {
   $page['heading'] = array('#markup' => '<h1>' . check_plain($heading) . '</h1>');
 
 
-  if (module_load_include('php', 'markdown')) {
+  if (module_load_include('inc.php', 'markdown', 'includes/MarkdownExtra')) {
     $notes_md = preg_replace('/^\#/m', '##', $notes_md);  // start headings at h2
-    $notes_html = Markdown($notes_md);
-    $notes_html = uibx_html_linkify('/#(\d+)/', function ($matches) {
+    $notes_html = \Michelf\MarkdownExtra::defaultTransform($notes_md);
+    $notes_html = preg_replace_callback('/#(\d+)/', function ($matches) {
       return '<a href="https://rts.uib.no/issues/' . $matches[1] . '">' . $matches[0] . '</a>';
     }, $notes_html);
     $page['text']['#markup'] = $notes_html;
