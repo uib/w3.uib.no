@@ -770,9 +770,12 @@
         var evenodd = index % 2 ? 'odd' : 'even';
         var lang = $.uib_search.lang;
         var user_url = $().getVal(v._source, 'link_' + lang);
+        user_url = user_url.replace(/^https?:\/\/(?:w3|www)\.uib\.no/, window.location.protocol + "//" + window.location.host);
 
         var link = $().getVal(v._source.generic, 'link_' + lang) ||
           $().getVal(v._source.generic, 'link');
+        link = link.replace(/^https?:\/\/(?:w3|www)\.uib\.no/, window.location.protocol + "//" + window.location.host);
+
         var study_code = '';
         if (v._type == 'study') {
           study_code = $().getVal(v.highlight, 'w3.study_code') ?
