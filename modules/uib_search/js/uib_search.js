@@ -650,7 +650,10 @@
           {bool:
             {must:
               [
-                {match: {ou_nb: { query: 'Fakultet for kunst, musikk og design'}}},
+                {match: {ou_nb: {
+                  query: 'Fakultet for kunst, musikk og design',
+                  operator: 'and'
+                }}},
                 {type: {value: 'user'}},
               ]
             }
