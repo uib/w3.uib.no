@@ -11,7 +11,9 @@ case $(pwd) in
 esac
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
-    bin/site-drush vset uib_display_employee_messages_block 1
+    bin/index-all-users
+    bin/index-all-studies
+    bin/index-all-nodes
 fi
 
 
