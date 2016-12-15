@@ -1320,14 +1320,25 @@ function uib_search__get_render_json($entity) {
     'B_RE_SPRAK',
     'M_RE_SPRAK',
   );
-
-
+  $use_as_excerpt = array(
+    'EB_INNHOLD', // Course
+    'EB_STUDRET', //   ''
+    'FKU_INNHLD', //   ''
+    'SP_INNHOLD', // Study-plan programme
+    'SPMALINNHA', //        ''
+    'B_RE_INTRO', //        ''
+    'RE_UTGAAT',  // Retired programme
+    'EVU_BESKRI', // EVU-course
+    'AVT_HVEM',   // Exchange agreement
+    'FAVT_HIST',  // Agreement - MOU
+    'FAVT_TYPE',  //       ''
+    'STE_STED',   // Exchange agreement
+  );
 
   $output['_searchable_text'] = '';
   if (!empty($courses)) {
     foreach ($courses as $lang => $cl) {
       $output['text_' . $lang] = '';
-      ${'excerpt_' . $lang} = FALSE;
       foreach ($cl  as $course) {
         if (array_key_exists('#title', $course)) {
           $output['_searchable_text'] .= "{$course['#title']}\n\n";
@@ -1343,10 +1354,10 @@ function uib_search__get_render_json($entity) {
           if (array_key_exists('#text', $item)) {
             $output['_searchable_text'] .= $item['#text'] . "\n\n";
             $output['text_' . $lang] .= $item['#text'] . "\n\n";
-            if (!${'excerpt_' . $lang}) {
+            if (in_array($item['#type'], $use_as_excerpt)
+              && !isset($output['excerpt_' . $lang])) {
               $output['excerpt_' . $lang] =
                 uib_search__strip_html($item['#text']);
-              ${'excerpt_' . $lang} = TRUE;
             }
           }
         }
