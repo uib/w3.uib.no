@@ -256,9 +256,9 @@ function uib_search__form(){
             '#options' => array(
               'everything' => t('Everything'),
               'news' => t('News'),
-              'study' => t('Study-information'),
-              'event' => t('Event'),
-              'user' => t('Person'),
+              'study' => t('Study information'),
+              'event' => t('Events'),
+              'user' => t('Persons'),
             ),
             '#default_value' => array(
               'everything'
