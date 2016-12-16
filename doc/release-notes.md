@@ -1,3 +1,7 @@
+# Release 60.3 _2016-12-16_
+
+Det nye søket filtrerte ut for mange personer #17095
+
 # Release 60.2 _2016-12-12_
 
 Det nye søket sendte brukere til w3.uib.no som ikke er synlig utenfor UiBs nett. #17081
