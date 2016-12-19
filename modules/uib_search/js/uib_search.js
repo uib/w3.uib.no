@@ -77,37 +77,9 @@
     }
   };
   $.fn.executeQuery = function (postdata, query){
-    // define which fields to return from elasticsearch
-    var filter_path = [
-      'hits.total',
-      'hits.hits._type',
-      'hits.hits.highlight.*',
-      'hits.hits._source.generic.title*',
-      'hits.hits._source.generic.excerpt*',
-      'hits.hits._source.generic.link*',
-      'hits.hits._source.search_manual_boost',
-      'hits.hits._source.w3.date.*',
-      'hits.hits._source.w3.type',
-      'hits.hits._source.w3.changed',
-      'hits.hits._source.w3.article_type',
-      'hits.hits._source.w3.location',
-      'hits.hits._source.w3.study_code',
-      'hits.hits._source.mail',
-      'hits.hits._source.first_name',
-      'hits.hits._source.last_name',
-      'hits.hits._source.phone',
-      'hits.hits._source.ou_*',
-      'hits.hits._source.*position*',
-      'hits.hits._source.competence*',
-    ];
-    if ($.uib_search.debug) {
-      filter_path.push('hits.hits.matched_queries');
-    }
-    filter_path = filter_path.join();
-
     // Options for jquery ajax-call
     var options = {
-      url: $.uib_search.fullurl + '?filter_path=' + filter_path,
+      url: $.uib_search.fullurl,
       type: 'POST',
       dataType: 'json',
       beforeSend: function (xhr) {
