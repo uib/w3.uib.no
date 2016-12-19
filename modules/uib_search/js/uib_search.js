@@ -356,16 +356,38 @@
       /**************************************
        * Highlighted fields
        *************************************/
-      data.highlight.fields["generic.title." + lang] = {};
-      data.highlight.fields["generic.title_" + lang] = {};
-      data.highlight.fields["generic.excerpt." + lang] = {};
-      data.highlight.fields["generic.excerpt_" + lang] = {};
-      data.highlight.fields.first_name = {};
-      data.highlight.fields.last_name = {};
-      data.highlight.fields['ou_' + lang] = {};
-      data.highlight.fields['position_' + lang] = {};
-      data.highlight.fields.mail = {};
-      data.highlight.fields['alt_position_' + lang] = {};
+      data.highlight.fields["generic.title." + lang] = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields["generic.title_" + lang] = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields["generic.excerpt." + lang] = {
+        number_of_fragments: 1,
+        fragment_size: $.uib_search.excerpt_length,
+      };
+      data.highlight.fields["generic.excerpt_" + lang] = {
+        number_of_fragments: 1,
+        fragment_size: $.uib_search.excerpt_length,
+      };
+      data.highlight.fields.first_name = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields.last_name = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields['ou_' + lang] = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields['position_' + lang] = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields.mail = {
+        number_of_fragments: 0,
+      };
+      data.highlight.fields['alt_position_' + lang] = {
+        number_of_fragments: 0,
+      };
 
       /**************************************
        * Boosting relevance
