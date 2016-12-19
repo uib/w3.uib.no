@@ -2060,59 +2060,24 @@ function uib_zen_field__area($variables) {
 
   return $output;
 }
+
 /**
  * Implements hook_query_TAG_alter().
  */
 function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $query) {
-  global $language;
-  $order_by = &$query->getOrderBy();
-  $view = $query->alterMetaData['view'];
-  if($language->language == 'nb' && (($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1') || ($view->name == 'courses' && ($view->current_display == 'study_programmes' || $view->current_display == 'study_programmes_all_page')))) {
-    $query2 = db_select('node', 'n');
-    $query2->addField('n', 'nid');
-    $query2->addField('n', 'title', 'field_data_field_uib_study_title_field_uib_study_title_value');
-    $query2->addExpression("'MAHF-LÆHR'", 'field_data_field_uib_study_code_field_uib_study_code_value');
-    $query2->addExpression("'node'", 'field_data_field_uib_study_category_node_entity_type');
-    $query2->addExpression("'node'", 'field_data_field_uib_study_title_node_entity_type');
-    $query2->addExpression('lower(n.title)', 'lower_title');
-
-    // include article on Lektorutdanning med master i historie
-    // eller religionsvitenskap if language is nb, and...
-    $run = $language->language == 'nb';
-    // Checking if category filter is set. If it is, then
-    // check that it contains integrertemasterpr-profesjonsst
-    $run = $run && ( count(@$_GET['category']) == 0 ||
-      in_array('integrertemasterpr-profesjonsst', $_GET['category']) );
-    // Checking if term_node_tid_depth filter is set. If it is, then
-    // check that it contains 8
-    $run = $run && ( count(@$_GET['term_node_tid_depth']) == 0 ||
-      in_array('8', $_GET['term_node_tid_depth']) );
-
-    if( $run ){
-      $query2->condition('n.nid', 94865, '=');
-    }
-    else {
-      $query2->condition('false');
-    }
-  }
+  $order_by =& $query->getOrderBy();
   if (isset($order_by['field_data_field_uib_study_title_field_uib_study_title_value'])) {
     $query->addExpression('lower(field_data_field_uib_study_title.field_uib_study_title_value)', 'lower_title');
 
     // replace orderBy entry with the lower case version
-    foreach ($order_by as $key => $value) {
-      $k = $key == 'field_data_field_uib_study_title_field_uib_study_title_value' ?
-      'lower_title' : $key;
-      if($language->language == 'nb' && ($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1')) {
-        unset($order_by[$key]);
-        $query2->orderBy($k, $value);
-      }
-      else{
-        $query->orderBy($k, $value);
-      }
+    $copy = $order_by;
+    $order_by = array();
+    foreach ($copy as $key => $value) {
+      $order_by[
+        $key == 'field_data_field_uib_study_title_field_uib_study_title_value' ?
+        'lower_title' : $key
+       ] = $value;
     }
-  }
-  if($language->language == 'nb' && ($view->name == 'study_blocks' && $view->current_display == 'studypr_all_b1')) {
-    $query->union($query2);
   }
 }
 
