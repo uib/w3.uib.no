@@ -116,6 +116,26 @@
         highlight: { fields: {}, },
         size: $.uib_search.size,
         from: $.uib_search.from,
+        _source: [
+          //define which _source - fields to return
+          'generic.title*',
+          'generic.excerpt*',
+          'generic.link*',
+          'search_manual_boost',
+          'w3.date.*',
+          'w3.type',
+          'w3.changed',
+          'w3.article_type',
+          'w3.location',
+          'w3.study_code',
+          'mail',
+          'first_name',
+          'last_name',
+          'phone',
+          'ou_*',
+          '*position*',
+          'competence*',
+        ],
       }
       var boostquery = {bool: {should: [], _name: "Boost"}};
       var searchquery =
