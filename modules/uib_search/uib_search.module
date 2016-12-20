@@ -1181,6 +1181,7 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
   $study_type = $wrapped_entity->field_uib_study_type->value();
   $render = uib_search__get_render_json($wrapped_entity);
   $render['study_type'] = $study_type;
+  $languages = language_list();
   $output = array(
     'generic' => array(
       'excerpt_en' => $render['excerpt_en'] ?
@@ -1202,11 +1203,26 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
       'title' => $render['title_nb'] ?
         $render['title_nb'] :
         $render['title_en'],
-      'link_en' => $render['url_en'],
-      'link_nb' => $render['url_nb'],
-      'link' => $render['url_nb'] ? $render['url_nb'] : $render['url_en'],
+      'link_en' => url(
+        'node/' . $wrapped_entity->getIdentifier(),
+        array(
+          'language' => $languages['en'],
+          'absolute' => TRUE
+        )
+      ),
+      'link_nb' => url(
+        'node/' . $wrapped_entity->getIdentifier(),
+        array(
+          'language' => $languages['nb'],
+          'absolute' => TRUE
+        )
+      ),
     )
   );
+  $output['generic']['link'] =
+    $output['generic']['link_nb'] ?
+    $output['generic']['link_nb'] :
+    $output['generic']['link_en'];
   unset($render['_searchable_text']);
   $output['fs'] = $render;
 
@@ -1273,7 +1289,6 @@ function uib_search__get_render_json($entity) {
     'studieprogramnavn_en' => 'title_en',
     'fagnavn' => 'dicipline_nb',
     'fagnavn:en' => 'dicipline_en',
-    'url' => array( 'nb' => 'url_nb', 'en' => 'url_en'),
   );
 
   // get installed languages
@@ -1287,34 +1302,11 @@ function uib_search__get_render_json($entity) {
       case 'emneid':
         $output[$writekey] = $info[$readkey]['emnekode'];
         break;
-      case 'url':
-        $output[$writekey['nb']] = $info[$readkey];
-        $output[$writekey['en']] =
-          preg_replace(
-            array(
-              '/^(https?:\/\/[^\/]+)\/emne\/(.*)$/',
-              '/^(https?:\/\/[^\/]+)\/studieprogram\/(.*)$/'
-            ),
-            array(
-              '\1/en/course/\2',
-              '\1/en/studyprogramme/\2'
-            ),
-            $info[$readkey]
-          );
-        break;
       default:
         $output[$writekey] = $info[$readkey];
         break;
     }
   }
-  // TODO: URLs for exchange agreements are hard coded below:
-  if (!$output['url_nb']) {
-    $output['url_nb'] =
-      'http://www.uib.no/utvekslingsavtale/' . $output['study_code'];
-    $output['url_en'] =
-      'http://www.uib.no/en/exchange-agreement/' . $output['study_code'];
-  }
-
 
   foreach ($langs as $l) {
     $render = uib_study__fspres_get_node_json($nid, 'render.json', $l->language);
