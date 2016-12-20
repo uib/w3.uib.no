@@ -4,21 +4,6 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-case $(pwd) in
-    /var/www/w3-prestaging.test.uib.no )
-    bin/site-drush vset uib_search_switch_to_elastic TRUE
-       ;;
-esac
-
-if [ "$(hostname)" = attilatest.uib.no ]; then
-    bin/index-all-users
-    bin/index-all-studies
-    bin/index-all-nodes
-fi
-
-
-# The rest is stuff that should only happen for the given release
-
 REL=61
 
 if git tag | grep -q R$REL; then
