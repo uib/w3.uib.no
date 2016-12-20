@@ -256,3 +256,24 @@ function uib_study_update_7017() {
   );
   path_save($path);
 }
+
+/**
+ * Add NUS term 1.6: Visual art and crafts
+ */
+function uib_study_update_7018() {
+  $id = "1.6";
+  $title_en = "Visual art and crafts";
+  $title_no = "Bildande kunst og kunsthandverk";
+
+  $nus16 = entity_create('taxonomy_term', array(
+      'name' => $id . ' ' . $title_no . ' / ' . $title_en,
+      'vocabulary_machine_name' => "uib_nus",
+      'parent' => 1,
+      'vid' => 1,
+    ));
+  $nus16->field_uib_nus_id['und'][0]['value'] = $id;
+  $nus16->field_uib_term_title['nb'][0]['value'] = $title_no;
+  $nus16->field_uib_term_title['en'][0]['value'] = $title_en;
+  taxonomy_term_save($nus16);
+  uib_study__add_taxonomy_aliases($nus16);
+}
