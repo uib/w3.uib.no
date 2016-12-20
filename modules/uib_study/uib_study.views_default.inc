@@ -667,6 +667,7 @@ function uib_study_views_default_views() {
     2294 => '2294',
     2318 => '2318',
     2308 => '2308',
+    5338 => '5338',
     2271 => '2271',
   );
   $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
@@ -860,6 +861,7 @@ function uib_study_views_default_views() {
     2294 => '2294',
     2318 => '2318',
     2308 => '2308',
+    5338 => '5338',
     2271 => '2271',
   );
   $handler->display->display_options['filters']['term_node_tid_depth_1']['group'] = 1;
