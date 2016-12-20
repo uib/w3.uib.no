@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /var/www/w3.uib.no
+
+date +'%H:%M ----------------------------------------------' >>/tmp/index-all-studies.$(date -I).log
+bin/index-all-studies -v 1>>/tmp/index-all-studies.$(date -I).log 2>&1
