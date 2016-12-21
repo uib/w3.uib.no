@@ -4,6 +4,12 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
+if [ "$(hostname)" = attilatest.uib.no ]; then
+    bin/index-all-users
+    bin/index-all-studies
+    bin/index-all-nodes
+fi
+
 REL=61
 
 if git tag | grep -q R$REL; then
