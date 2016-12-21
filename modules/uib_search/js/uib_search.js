@@ -838,8 +838,12 @@
             $().getVal(v.highlight, 'last_name') :
             $().getVal(v._source, 'last_name');
         if (article_type == 'event') {
-          var event_from = new Date($().getVal(v._source.w3.date, 'value'));
-          var event_to = new Date($().getVal(v._source.w3.date, 'value2'));
+          var event_from = $().getVal(v._source.w3.date, 'value') ?
+            new Date($().getVal(v._source.w3.date, 'value').substring(0,19)):
+            new Date($().getVal(v._source.w3.date, 'value'));
+          var event_to = $().getVal(v._source.w3.date, 'value2') ?
+            new Date($().getVal(v._source.w3.date, 'value2').substring(0,19)):
+            new Date($().getVal(v._source.w3.date, 'value2'));
           var location = $().getVal(v._source.w3, 'location');
         }
 
@@ -915,7 +919,6 @@
                 $.fn.df(event_from, 'd.m.Y H:i')
             );
             if ($.fn.df(event_from, 'd.m.Y') == $.fn.df(event_to, 'd.m.Y')) {
-              console.log('same day');
               var to = !isNaN(event_to) && event_to ? $('<span></span>').addClass('cal-to').text($.fn.df(event_to, 'H:i')) : '';
             } else {
               var to = !isNaN(event_to) && event_to ? $('<span></span>').addClass('cal-to').text($.fn.df(event_to, 'd.m.Y H:i')) : '';

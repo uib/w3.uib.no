@@ -341,11 +341,11 @@
               "properties": {
                 "value": {
                   "type":   "date",
-                  "format": "yyyy-MM-dd HH:mm:ss"
+                  "format": "date_optional_time||epoch_second"
                 },
                 "value2": {
                   "type":   "date",
-                  "format": "yyyy-MM-dd HH:mm:ss"
+                  "format": "date_optional_time||epoch_second"
                 }
               }
             },
@@ -591,11 +591,11 @@
               "properties": {
                 "value": {
                   "type":   "date",
-                  "format": "yyyy-MM-dd HH:mm:ss"
+                  "format": "date_optional_time||epoch_second"
                 },
                 "value2": {
                   "type":   "date",
-                  "format": "yyyy-MM-dd HH:mm:ss"
+                  "format": "date_optional_time||epoch_second"
                 }
               }
             },

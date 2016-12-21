@@ -910,6 +910,27 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
           $replace_url = uib_search__null_if_empty(current((array)$v->value()));
         }
         break;
+      case 'date':
+        $output[$key] = uib_search__null_if_empty($v->value());
+        unset($output[$key]['timezone']);
+        unset($output[$key]['timezone_db']);
+        unset($output[$key]['date_type']);
+        if (!isset($output[$key]['value']) || !$output[$key]['value']) {
+          unset($output[$key]);
+        }
+        else {
+          $output[$key]['value'] = format_date(
+            $v->value->value(),
+            'custom',
+            'c');
+          if (isset($output[$key]['value2']) && $output[$key]['value2']) {
+            $output[$key]['value2'] = format_date(
+              $v->value2->value(),
+              'custom',
+              'c');
+          }
+        }
+        break;
       case 'text':
       case 'text2':
       case 'primary_text':
