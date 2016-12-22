@@ -1,3 +1,16 @@
+# Release 61 _2016-12-22_
+
+I denne versjonen har vi lagt til rette for UiBs nye fakultet samt utført enkelte forbedringer og feilrettinger.
+
+- Lagt til Fakultet for kunst, musikk og design som alternativ på søkeside for utvekslingsavtaler #17158
+- Lagt til NUS-kategori for "Bildande kunst og kunsthandverk" #17156
+- Oversikten over samarbeidsavtaler er nå alfabetisert på land #16920
+- Forbedret utseende på siden for versjonsmerknader (release notes) #17091
+- Fjernet midlertidig infoside for utsatt studieprogram #17085
+- Forbedret koden som håndterer ulike språkversjoner av studieinformasjonen #17076
+- Søkefilterkategoriene står nå i ubestemt form flertall #17092
+- Diverse Drupal-oppdateringer #17143 #17075 (bl.a. virker dra-og-slipp-funksjonaliteten igjen i Chrome og Internet Explorer)
+
 # Release 60.3 _2016-12-16_
 
 Det nye søket filtrerte ut for mange personer #17095
