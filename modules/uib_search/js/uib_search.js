@@ -798,7 +798,10 @@
       }
       var showhits = $('<div></div>')
         .addClass('showhits')
-        .html(data.hits.total + Drupal.t(' hits for') + ' <em>"' + query + '"</em>');
+        .html(Drupal.t(
+          '@count hits for <em>@query</em>',
+          {'@count': data.hits.total, '@query': query })
+        );
       showhits.appendTo(resultstag);
 
       $.each(data.hits.hits, function (index, v) {
