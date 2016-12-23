@@ -208,11 +208,11 @@
       tmp = {
         bool: {
           filter: { terms: { _type: ["study"]}},
-          should: { match: {} },
+          must: { match: {} },
           _name: "Match-title-study(" + lang + ")",
         }
       };
-      tmp.bool.should.match["generic.title_" + lang] = {
+      tmp.bool.must.match["generic.title_" + lang] = {
         query: query,
       };
       searchquery.bool.should.push(tmp);
@@ -235,11 +235,11 @@
       tmp = {
         bool: {
           filter: { terms: { _type: ["study"]}},
-          should: { match: {} },
+          must: { match: {} },
           _name: "Match-excerpt-study(" + lang + ")",
         }
       };
-      tmp.bool.should.match["generic.excerpt_" + lang] = {
+      tmp.bool.must.match["generic.excerpt_" + lang] = {
         query: query,
       };
       searchquery.bool.should.push(tmp);
@@ -290,11 +290,11 @@
       tmp = {
         bool: {
           filter: { terms: { _type: ["study"]}},
-          should: { match_phrase_prefix: {} },
+          must: { match_phrase_prefix: {} },
           _name: "Phrase-search-study(" + lang + ")",
         }
       };
-      tmp.bool.should.match_phrase_prefix["generic.title_" + lang] = {
+      tmp.bool.must.match_phrase_prefix["generic.title_" + lang] = {
         query: query,
       };
       searchquery.bool.should.push(tmp);
