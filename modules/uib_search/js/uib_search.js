@@ -135,6 +135,7 @@
           'ou_*',
           '*position*',
           'competence*',
+          'link*',
         ],
       }
       var boostquery = {bool: {should: [], _name: "Boost"}};
