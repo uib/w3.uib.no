@@ -87,12 +87,16 @@
       });
     }
     $('.global-search .form-item-filters>label').click(function(event) {
-		if($(this).attr('data-toggle') == 'true'){
-		  $(this).attr('data-toggle', 'false')
-		}
-		else {
-		  $(this).attr('data-toggle', 'true')
-		}
+      if ($(this).css('background-image') !== 'none') {
+        if(
+          $(this).attr('data-toggle') == 'true'
+        ){
+          $(this).attr('data-toggle', 'false')
+        }
+        else {
+          $(this).attr('data-toggle', 'true')
+        }
+      }
     });
   uibDisableCheckboxes();
   });

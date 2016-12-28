@@ -993,6 +993,14 @@
           lft.append(boost);
         }
 
+        // Make whole item in result list clickable
+        entitywrapper.click(function(event) {
+          if(event.target.nodeName === 'A') return;
+          var link = $(this).find('a:not(.up,.down)').first();
+          link.click();
+          window.location.href = link.attr('href');
+        });
+
         // Showing hits for
         entitywrapper
           .addClass(evenodd)
@@ -1125,6 +1133,9 @@
           checkboxes: checkboxes
         };
         history.replaceState(q, 'Search', window.location.href);
+
+        // Prevent recursion
+        event.stopPropagation();
       });
 
       if ($.uib_search.debug) {

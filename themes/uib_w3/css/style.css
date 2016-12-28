@@ -4422,9 +4422,8 @@ div.field-item {
             text-transform: none;
             background-color: transparent;
             min-width: auto;
-            border: none; }
-            .block-uib-search .lightbox .results-wrapper .right-selector > div > label:after {
-              display: none; } }
+            border: none;
+            background-image: none; } }
       @media (min-width: 600px) {
         .block-uib-search .lightbox .results-wrapper {
           margin-top: 14px;
