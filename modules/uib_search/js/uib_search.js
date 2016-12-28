@@ -883,7 +883,7 @@
 
         var displaylink = $('<a></a>')
           .attr('href', user_url)
-          .text(user_url);
+          .text(decodeURIComponent(user_url).replace(/^https?:\/\//,''));
 
         // building markup
         var lft = $('<div></div>').addClass('lft')
@@ -915,7 +915,7 @@
           entitywrapper.addClass(v._source.w3.article_type);
           displaylink = $('<a></a>')
             .attr('href', link)
-            .text(link);
+            .text(decodeURIComponent(link).replace(/^https?:\/\//,''));
 
           name = $('<a></a>').attr('href', link).html(title);
           lft = $('<div></div>').addClass('lft')
