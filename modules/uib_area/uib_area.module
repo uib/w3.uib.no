@@ -582,14 +582,15 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
   $tabs_nav = '<ul>';
   $tabs_nav_mobile = '<select class="uib-tabs-nav-mobile">';
   $tabs_content = '';
+  $extra_key = 0;
   foreach ($items as $key => $item) {
     $node_title = $item->title;
     if ($item->type == 'uib_ou' && !empty($item->field_uib_ou_title[$language->language])) {
       $node_title = $item->field_uib_ou_title[$language->language][0]['value'];
     }
-    $tabs_nav .= '<li><a href="#uib-tab--' . $key . '">' . $node_title . '</a></li>';
-    $tabs_nav_mobile .= '<option value="uib-tab--' . $key . '">' . $node_title . '</option>';
-    $tabs_content .= '<div id="uib-tab--' . $key . '">';
+    $tabs_nav .= '<li><a href="#uib-tab--' . ($key + $extra_key) . '">' . $node_title . '</a></li>';
+    $tabs_nav_mobile .= '<option value="uib-tab--' . ($key + $extra_key) . '">' . $node_title . '</option>';
+    $tabs_content .= '<div id="uib-tab--' . ($key + $extra_key) . '">';
     $item_view = node_view($item, $view_mode);
     $item_view['field_uib_email'][0]['#markup'] =
       l($item_view['field_uib_email'][0]['#markup'], 'mailto:' . $item_view['field_uib_email'][0]['#markup']);
@@ -599,6 +600,12 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
     $item_view['field_uib_geolocation'][0]['#markup'] = $item_view['field_uib_geolocation'][0]['#markup'] . '<p>' . $google_maps_link . '</p>';
     $tabs_content .= render($item_view);
     $tabs_content .= '</div>';
+    if ($item->field_uib_ou_id['und'][0]['value'] == 321201) {
+      $tabs_nav .= uib_area__ub_khib_link($key + 1, $language->language);
+      $tabs_nav_mobile .= '<option value="uib-tab--' . ($key + 1) . '">' . uib_area__ub_khib_title($language->language) . '</option>';
+      $tabs_content .= '<div id="uib-tab--' . ($key + 1) . '"><p class="group-office-information">' . t('You will be redirected to an external page') . '</p></div>';
+      $extra_key = 1;
+    }
   }
   $tabs_nav .= '</ul>';
   $tabs_nav_mobile .= '</select>';
@@ -606,6 +613,15 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
   return $tabs;
 }
 
+function uib_area__ub_khib_link($key, $lang) {
+  $url = '#uib-tab--' . $key;
+  return '<li class="ub-khib"><a href="' . $url . '">' . uib_area__ub_khib_title($lang) . '</a></li>';
+}
+
+function uib_area__ub_khib_title($lang) {
+  $title = $lang == 'en' ? 'Art and Design Library' : 'Bibliotek for kunst og design';
+  return $title;
+}
 
 function uib_area__google_maps_link($item) {
   $url = 'https://www.google.no/maps/?q=';

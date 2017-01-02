@@ -1175,6 +1175,9 @@ jQuery( document ).ready( function($){
     window.location.hash = hash;
   }
   window.scrollTo(0, 0);
+  $(".ub-khib a").click(function() {
+    location.assign("http://www.khib.no/norsk/om-khib/biblioteket/");
+  });
 });
 EOD;
 return $jq;
