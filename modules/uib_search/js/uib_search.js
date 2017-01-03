@@ -351,12 +351,26 @@
       };
       searchquery.bool.should.push(tmp);
 
+      // Match direct hit on study code
+      tmp = {
+        bool: {
+          filter: { terms: { _type: ["study"]}},
+          must: { term: {"w3.study_code": query} },
+          _name: "Match-study-code",
+          boost: 5,
+        }
+      };
+      searchquery.bool.should.push(tmp);
+
       // Add the searchquery to the must clause, as something here must match
       data.query.bool.must = searchquery;
 
       /**************************************
        * Highlighted fields
        *************************************/
+      data.highlight.fields["w3.study_code"] = {
+        number_of_fragments: 0,
+      };
       data.highlight.fields["generic.title." + lang] = {
         number_of_fragments: 0,
       };
@@ -404,21 +418,6 @@
         5:2,
         6:1,
       };
-
-      // Match direct hit on study code
-      tmp = {
-        constant_score: {
-          filter: {
-            term: {
-              "w3.study_code": {
-                value: query,
-              }
-            }
-          },
-          boost: importance_levels[1],
-        }
-      }
-      boostquery.bool.should.push(tmp);
 
       // Boost study programs
       tmp = {
