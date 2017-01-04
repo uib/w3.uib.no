@@ -51,11 +51,13 @@ function drush_uib_study_uib_sync_fs() {
     $o3 = substr($oid, 4, 2);
     if ($o1 >= '19') # optimize; no need to look at adm/misc places
       continue;
-    if ($o3 != '00')
+    if ($o3 != '00' && $oid != '120005')
       continue;  # not an institute
 
     // look for fag belonging to this ou
     $fspres_oid = implode('.', array('184', (int)$o1, (int)$o2));
+    if ($o3 != '00')
+      $fspres_oid .= '.' . (int)$o3;
     if ($fspres_oid == '184.0.0')
       $fspres_oid = '184';
     $data = uib_study__fspres_get_json("sted/$fspres_oid/info.json");
