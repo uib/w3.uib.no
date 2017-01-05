@@ -1,3 +1,14 @@
+# Release 62 _2017-01-05_
+
+I denne versjonen har vi gjort justeringer knyttet til nytt fakultet, forbedringer på søk og videreutvikling av studieinformasjon.
+
+- Fjernet kode som gjorde at ansatte ved KMD ikke viste før 1. januar #17053
+- Tilrettelagt for visning av NAT-emner #14327
+- Rettet en feil hvor studietabellen viser på flere faner #16964
+- Forbedret styling på nyhetsarkiv på mobil og desktop #16985
+- Forbedringer på søk #17049 #17090 #17104 #17134 #17154 #17157 #17170 #17171 #17173 #17181 #17183 #17185 #17013 #17041 #17194
+- Lagt til nytt bibliotek på områdesiden til UB #17188
+
 # Release 61 _2016-12-22_
 
 I denne versjonen har vi lagt til rette for UiBs nye fakultet samt utført enkelte forbedringer og feilrettinger.
