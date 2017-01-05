@@ -2,7 +2,7 @@
 
   // Simple date formatter
   $.fn.df = function(d, f) {
-    if(!d instanceof Date || typeof f !== 'string') {
+    if(d == null || !d instanceof Date || typeof f !== 'string') {
       return '';
     }
     var months = [
@@ -838,12 +838,32 @@
             $().getVal(v.highlight, 'last_name') :
             $().getVal(v._source, 'last_name');
         if (article_type == 'event') {
-          var event_from = $().getVal(v._source.w3.date, 'value') ?
-            new Date($().getVal(v._source.w3.date, 'value').substring(0,19)):
-            new Date($().getVal(v._source.w3.date, 'value'));
-          var event_to = $().getVal(v._source.w3.date, 'value2') ?
-            new Date($().getVal(v._source.w3.date, 'value2').substring(0,19)):
-            new Date($().getVal(v._source.w3.date, 'value2'));
+          var t = $().getVal(v._source.w3.date, 'value');
+          var event_from = null;
+          if (t) {
+            // Produce a local time date object
+            event_from = new Date(
+              +t.substr(0,4), // year
+              +t.substr(5,2) - 1, // 0-based month
+              +t.substr(8,2), // day
+              +t.substr(11,2), // hour
+              +t.substr(14,2), // min
+              +t.substr(17,2) // sec
+            );
+          }
+          t = $().getVal(v._source.w3.date, 'value2');
+          var event_to = null;
+          if (t) {
+            // Produce a local time date object
+            event_to = new Date(
+              +t.substr(0,4), // year
+              +t.substr(5,2) - 1, // 0-based month
+              +t.substr(8,2), // day
+              +t.substr(11,2), // hour
+              +t.substr(14,2), // min
+              +t.substr(17,2) // sec
+            );
+          }
           var location = $().getVal(v._source.w3, 'location');
         }
 
