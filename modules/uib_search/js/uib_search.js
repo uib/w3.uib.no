@@ -355,7 +355,7 @@
       tmp = {
         bool: {
           filter: { terms: { _type: ["study"]}},
-          must: { term: {"w3.study_code": query} },
+          must: { term: {"w3.study_code": query.toLowerCase()} },
           _name: "Match-study-code",
           boost: 5,
         }
