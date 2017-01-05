@@ -1205,25 +1205,25 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
   $languages = language_list();
   $output = array(
     'generic' => array(
-      'excerpt_en' => $render['excerpt_en'] ?
+      'excerpt_en' => @$render['excerpt_en'] ?
         $render['excerpt_en'] :
-        $render['excerpt_nb'],
-      'excerpt_nb' => $render['excerpt_nb'] ?
+        @$render['excerpt_nb'],
+      'excerpt_nb' => @$render['excerpt_nb'] ?
         $render['excerpt_nb'] :
-        $render['excerpt_en'],
-      'excerpt' => $render['excerpt_nb'] ?
+        @$render['excerpt_en'],
+      'excerpt' => @$render['excerpt_nb'] ?
         $render['excerpt_nb'] :
-        $render['excerpt_en'],
-      '_searchable_text' =>  $render['_searchable_text'],
-      'title_nb' => $render['title_nb'] ?
+        @$render['excerpt_en'],
+      '_searchable_text' =>  @$render['_searchable_text'],
+      'title_nb' => @$render['title_nb'] ?
         $render['title_nb'] :
-        $render['title_en'],
-      'title_en' => $render['title_en'] ?
+        @$render['title_en'],
+      'title_en' => @$render['title_en'] ?
         $render['title_en'] :
-        $render['title_nb'],
-      'title' => $render['title_nb'] ?
+        @$render['title_nb'],
+      'title' => @$render['title_nb'] ?
         $render['title_nb'] :
-        $render['title_en'],
+        @$render['title_en'],
       'link_en' => url(
         'node/' . $wrapped_entity->getIdentifier(),
         array(
@@ -1392,7 +1392,7 @@ function uib_search__get_render_json($entity) {
       $output['excerpt_' . $l->language] = '';
     }
     $output['text_' . $l->language] =
-      uib_search__strip_html($output['text_' . $l->language]);
+      uib_search__strip_html(@$output['text_' . $l->language]);
   }
   return $output;
 }
