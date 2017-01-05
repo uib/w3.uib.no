@@ -3,13 +3,4 @@
 # Function to index all users in W3 once. Arguments are passed on to
 # the uib-search-index - script
 
-
-# Reset last-processed-user - variable to start at 0
-bin/site-drush vset uib_search_last_processed_user 0 2> /dev/null
-
-# Run function many times to prevent out of memory error
-# Currently 7000+ users in W3
-for i in {1..15};
-do
-  bin/site-drush uib-search-index user --stop=1000 $@
-done
+bin/index-all $@ user

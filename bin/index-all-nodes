@@ -3,13 +3,4 @@
 # Function to index all nodes in W3 once. Arguments are passed on to
 # the uib-search-index - script
 
-
-# Reset last-processed-node - variable to start at 0
-bin/site-drush vset uib_search_last_processed_node 0 2> /dev/null
-
-# Run function many times to prevent out of memory error
-# Currently 60000 + nodes in W3
-for i in {1..70};
-do
-  bin/site-drush uib-search-index node --stop=1000 $@
-done
+bin/index-all $@ node

@@ -1,0 +1,100 @@
+#!/bin/bash
+
+######################################################################
+# Index data in w3
+######################################################################
+
+valid_args="user node study"
+
+usage="
+Usage:
+$(basename "$0") [-v] [-n] [-h] data_to_index
+
+Index data type in w3 to elasticsearch
+
+where:
+data_to_index is one of: $valid_args
+-v Print more verbose output
+-n Do not reset counter, start from where the script last stopped
+-h Print usage and exit
+"
+
+size=1000
+reset=1
+verbose=''
+h=0
+while getopts ":vnh" opt; do
+  case $opt in
+    n)
+      reset=0
+      ;;
+    v)
+      verbose='-v'
+      ;;
+    h)
+      h=1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ $h -eq 1 ]; then
+  echo "$usage"
+  exit
+fi
+
+indextype=$1
+if [ -z "$indextype" ]; then
+  echo "Missing data type to index ($valid_args)"
+  echo "$usage"
+  exit
+fi
+
+valid=`echo $valid_args | grep -e "\b$indextype\b"`
+if [ -z "$valid" ]; then
+  echo "$1 not in the list of valid arguments ($valid_args)"
+  exit
+fi
+
+table="node"
+id="nid"
+if [ "$indextype" = "user" ]; then
+  table="users"
+  id="uid"
+fi
+
+sql="select count(*) from $table where status=1"
+
+if [ "$indextype" = "study" ]; then
+  sql="$sql and type='uib_study'";
+fi
+if [ $reset -eq 1 ]; then
+  current=0
+  if [ -n "$verbose" ]; then
+    echo "Reset counter for $indextype"
+    echo "Starting on $indextype $id $current"
+  fi
+  bin/site-drush vset uib_search_last_processed_$indextype 0 2> /dev/null
+else
+  current=`bin/site-drush vget uib_search_last_processed_$indextype`
+  current=`echo $current | grep -oe '[0-9]\+'` # get only the number
+  current=`echo $current | sed -n '1p'` # get only first line
+
+  if [ -n "$verbose" ]; then
+    echo "Starting on $indextype $id $current"
+  fi
+  sql="$sql and $id>=$current";
+fi
+
+count=`bin/site-drush sqlq "$sql" | tail -1`
+
+for i in `seq 0 $size $count`; do
+  if [ -n "$verbose" ]; then
+    echo "Counter starting on $i";
+  fi
+  bin/site-drush uib-search-index $1 $verbose --stop=$size
+done
