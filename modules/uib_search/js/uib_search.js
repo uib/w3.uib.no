@@ -82,10 +82,16 @@
       url: $.uib_search.fullurl,
       type: 'POST',
       dataType: 'json',
+      timeout: 5000,
       beforeSend: function (xhr) {
         xhr.setRequestHeader (
           "Authorization", "Basic " + btoa($.uib_search.user + ":" + $.uib_search.password)
         );
+        // Clear running request:
+        if ($.uib_search.current_request) {
+          $.uib_search.current_request.abort();
+        }
+        $.uib_search.current_request=xhr;
       },
       data: JSON.stringify(postdata),
       success: $().createResults($.uib_search.resultsselector, query),
@@ -105,6 +111,7 @@
       var all = false;
       var should = [];
       var tmp = {};
+      var shortquery = query.substr(0, 15);
       var data = {
         query: {
           bool: {
@@ -158,7 +165,7 @@
         }
       };
       tmp.bool.must.match["generic.title.ngrams"] = {
-        query: query,
+        query: shortquery,
         minimum_should_match: "40%",
       };
       searchquery.bool.should.push(tmp);
@@ -170,7 +177,7 @@
             {
               match: {
                 "generic.title_nb.ngrams": {
-                  query: query,
+                  query: shortquery,
                   minimum_should_match: "40%",
                 }
               }
@@ -178,7 +185,7 @@
             {
               match: {
                 "generic.title_en.ngrams": {
-                  query: query,
+                  query: shortquery,
                   minimum_should_match: "40%",
                 }
               }
@@ -247,7 +254,7 @@
       // Match keywords
       tmp = {match: {}}
       tmp.match["w3.search_keywords"] = {
-        query: query,
+        query: shortquery,
         boost: 2,
         fuzziness: 'auto',
         _name: "Fuzzy-match-keywords",
@@ -257,7 +264,7 @@
       //Match search description
       tmp = {match: {}}
       tmp.match["w3.search_description"] = {
-        query: query,
+        query: shortquery,
         boost: 2,
         fuzziness: 'auto',
         _name: "Fuzzy-match-description",
@@ -323,9 +330,9 @@
         bool: {
           should:[
             {match_phrase_prefix: {first_name: {query: query}}},
-            {match: {first_name: {query: query, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
+            {match: {first_name: {query: shortquery, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
             {match_phrase_prefix: {last_name: {query: query}}},
-            {match: {last_name: {query: query, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
+            {match: {last_name: {query: shortquery, fuzziness: 1, prefix_length: 3, max_expansions: 50,}}},
             {match_phrase_prefix: {mail: {query: query}}},
             {match_phrase_prefix: {ou_nb: {query: query}}},
             {match_phrase_prefix: {ou_en: {query: query}}},
@@ -773,6 +780,8 @@
   $.fn.createResults = function (resultsselector, query) {
 
     return function (data, status, jqXHR) {
+      $.uib_search.currentquery = query;
+
       var resultstag = $(resultsselector);
       if ($.trim($('form#uib-search-form .search-field').val())=='') {
         resultstag.html('');
@@ -1200,6 +1209,7 @@
       focus: '',
       select: '',
       excerpt_length: 350,
+      current_request: null,
       debug: 0,
     };
     $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
@@ -1226,7 +1236,6 @@
           $('.results').html('');
           return;
         }
-        $.uib_search.currentquery = query;
         $.uib_search.from = 0;
         $.uib_search.delay = 300;
         $.uib_search.scroll = false;
