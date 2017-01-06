@@ -62,6 +62,7 @@ projects[geocoder][version] = 1.3
 projects[geofield][version] = 2.3
 projects[geophp][version] = 1.7
 projects[google_analytics][version] = 2.3
+projects[google_tag][version] = 1.0
 projects[i18n][version] = 1.13
 projects[imagemagick][version] = 1.0
 projects[job_scheduler][version] = 2.0-alpha3
