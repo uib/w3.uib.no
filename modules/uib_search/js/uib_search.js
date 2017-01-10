@@ -76,10 +76,24 @@
       return '';
     }
   };
+
+  $.fn.encodeURIComponent = function (inputstring) {
+    return encodeURIComponent(inputstring).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    });
+  };
   $.fn.executeQuery = function (postdata, query){
+    // Query-string for server-logging the query
+    var q = $().encodeURIComponent(query);
+    // query filters:
+    var filters = $('[name="uib_search_filters[]"]:checked').map(function(){
+      return $(this).val();
+    }).get().join('-');
+    filters = $().encodeURIComponent(filters);
+
     // Options for jquery ajax-call
     var options = {
-      url: $.uib_search.fullurl,
+      url: $.uib_search.fullurl + '?query=' + query + '&filters=' + filters,
       type: 'POST',
       dataType: 'json',
       timeout: 5000,
