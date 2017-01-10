@@ -86,11 +86,12 @@ function uib_content_list_preprocess_page(&$variables) {
           $classes = array('uib-step');
           if ($key == $list_current_step) {
             $classes[] = 'uib-step__current';
-            $list_step_content = '<span class="' . implode(' ', $classes) . '"> '. $step->field_uib_title['und'][0]['value'] . '</span>';
+            $list_step_content = '<span class="' . implode(' ', $classes) . '"><span class="uib-content-list-step-text"> '. $step->field_uib_title['und'][0]['value'] . '</span></span>';
           }
           else {
             $classes[] = 'uib-step__not-current';
-            $list_step_content = l($step->field_uib_title['und'][0]['value'], 'node/' . $variables['node']->nid, array('query' => array('step' => $key + 1), 'attributes' => array('class' => $classes),));
+            $list_item = "<span class='uib-content-list-step-text'>".$step->field_uib_title['und'][0]['value']."</span>";
+            $list_step_content = l($list_item, 'node/' . $variables['node']->nid, array('query' => array('step' => $key + 1), 'html'=>TRUE, 'attributes' => array('class' => $classes),));
           }
           $variables['page']['content_top']['field_uib_step'][$key]['entity']['field_collection_item'][$step->item_id]['field_uib_title'][0]['#markup'] = $list_step_content;
           unset($variables['page']['content_top']['field_uib_step'][$key]['links']);

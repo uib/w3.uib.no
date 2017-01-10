@@ -1895,6 +1895,12 @@ a {
     margin-bottom: 0.1875rem;
     float: left;
     display: block; }
+    .node-type-uib-content-list .field-name-field-uib-step .field-items .field-item .uib-content-list-step-text {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 17.5rem; }
     .node-type-uib-content-list .field-name-field-uib-step .field-items .field-item .uib-step {
       color: #fff;
       box-sizing: border-box;
