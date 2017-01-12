@@ -209,7 +209,7 @@ function uib_search__form(){
         ),
         'searchtext' => array(
           '#type' => 'textfield',
-          '#value' => check_plain(@$_GET['qq']),
+          '#value' => check_plain(@$_GET['qq']) ? check_plain(@$_GET['qq']) : ' ',
           '#attributes' => array(
             'class' => array('search-field'),
             'name' => 'qq',

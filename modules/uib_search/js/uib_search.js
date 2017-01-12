@@ -1208,6 +1208,11 @@
 
   // Make sure dom is loaded
   $(document).ready(function ($) {
+    // Unset search field, workaround for safari:
+    if ($('#searchfield').val() == ' ') {
+      $('#searchfield').val('');
+    }
+
     // Reusable variables
     $.uib_search = {
       from: 0,
