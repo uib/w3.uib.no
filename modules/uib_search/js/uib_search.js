@@ -241,7 +241,7 @@
       // Match words in excerpt
       tmp = {
         bool: {
-          filter: { terms: { _type: ["user", "node"]}},
+          filter: { terms: { _type: ["node"]}},
           must: {
             match: {}
           },
@@ -370,6 +370,13 @@
         _name: 'Person-search',
         }
       };
+      var phonequery = query.replace(/\+47/g, '');
+      phonequery = phonequery.replace(/[^0-9]/g, '');
+      if (phonequery) {
+        tmp.bool.should.push(
+          {wildcard: {"phone.nospace": {value: '*' + phonequery + '*', boost: 10}}}
+        );
+      }
       searchquery.bool.should.push(tmp);
 
       // Match direct hit on study code

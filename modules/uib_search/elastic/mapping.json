@@ -30,6 +30,34 @@
           "filter":   [
             "lowercase"
           ]
+        },
+        "phonenumber": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter":   [
+            "lowercase"
+          ],
+          "char_filter": [
+            "kill_spaces"
+          ]
+        }
+      },
+      "char_filter": {
+        "kill_spaces": {
+          "type": "mapping",
+          "mappings": [
+            "+47\\u0020 => \\u0020",
+            "0\\u0020 => 0",
+            "1\\u0020 => 1",
+            "2\\u0020 => 2",
+            "3\\u0020 => 3",
+            "4\\u0020 => 4",
+            "5\\u0020 => 5",
+            "6\\u0020 => 6",
+            "7\\u0020 => 7",
+            "8\\u0020 => 8",
+            "9\\u0020 => 9"
+          ]
         }
       }
     }
@@ -177,7 +205,13 @@
         },
         "phone": {
           "type": "string",
-          "index": "not_analyzed"
+          "index": "not_analyzed",
+          "fields": {
+            "nospace": {
+              "type": "string",
+              "analyzer":"phonenumber"
+            }
+          }
         },
         "position_en": {
           "type": "string",
