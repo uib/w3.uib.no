@@ -619,7 +619,7 @@ function uib_area__ub_khib_link($key, $lang) {
 }
 
 function uib_area__ub_khib_title($lang) {
-  $title = $lang == 'en' ? 'Art and Design Library' : 'Bibliotek for kunst og design';
+  $title = $lang == 'en' ? 'Fine Art and Design Library' : 'Bibliotek for kunst og design';
   return $title;
 }
 
