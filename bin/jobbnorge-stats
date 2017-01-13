@@ -1,0 +1,72 @@
+#!/usr/bin/perl -w
+
+# This script reads through the list of log files and reports stats on how
+# the requests to jobbnorge performs.
+#
+# On attila.uib.no it can be run invoked with:
+#
+#    jobbnorge-stats /var/log/drupal.log*
+#
+
+use strict;
+
+my %stats;
+
+for my $file (@ARGV) {
+    if ($file =~ /\.gz$/) {
+	$file = "gunzip -c $file |";
+    }
+    #print "$file\n";
+    open(my $fh, $file) || die;
+    while (<$fh>) {
+	next unless /FEED GET http:\/\/www\.jobbnorge\.no/;
+	my $day = substr($_, 0, 6);
+	if (/=> 200 OK \((\d+)ms\)/) {
+	    my $ms = $1;
+	    #print "OK $ms\n";
+	    $stats{$day}{ok}{n}++;
+	    $stats{$day}{ok}{sum} += $ms;
+	    min_max(\$stats{$day}{ok}, $ms);
+	}
+	elsif (/request timed out errno=1 \((\d+)ms\)/) {
+	    my $ms = $1;
+	    $stats{$day}{timeout}{n}++;
+	    $stats{$day}{timeout}{sum} += $ms;
+	    min_max(\$stats{$day}{timeout}, $ms);
+	}
+	else {
+	    $stats{$day}{err}++;
+	}
+    }
+    close($fh);
+}
+
+#use Data::Dump; dd \%stats;
+
+print "day     #req fail     min     avg     max     min     avg      max  err\n";
+print "------ ----- ----  ------  ------  ------  ------  ------   ------  ---\n";
+for my $day (sort keys %stats) {
+    my $requests = $stats{$day}{ok}{n} + $stats{$day}{timeout}{n};
+    printf "%s %5d %3.0f%% %5.0fms %5.0fms %5.0fms %5.0fms %5.0fms %6.0fms %4d\n",
+        $day,
+	$requests,
+	100 * $stats{$day}{timeout}{n} / $requests,
+	$stats{$day}{ok}{min},
+	$stats{$day}{ok}{sum} / $stats{$day}{ok}{n},
+	$stats{$day}{ok}{max},
+	$stats{$day}{timeout}{min},
+	$stats{$day}{timeout}{sum} / $stats{$day}{timeout}{n},
+	$stats{$day}{timeout}{max},
+	$stats{$day}{err} || 0,
+    ;
+}
+
+sub min_max {
+    my($hash, $num) = @_;
+    if (!exists $$hash->{min} || $$hash->{min} > $num) {
+	$$hash->{min} = $num;
+    }
+    if (!exists $$hash->{max} || $$hash->{max} < $num) {
+	$$hash->{max} = $num;
+    }
+}
