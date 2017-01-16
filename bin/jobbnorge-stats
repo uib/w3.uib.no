@@ -19,7 +19,7 @@ for my $file (@ARGV) {
     #print "$file\n";
     open(my $fh, $file) || die;
     while (<$fh>) {
-	next unless /FEED GET http:\/\/www\.jobbnorge\.no/;
+	next unless /FEED GET https?:\/\/www\.jobbnorge\.no/;
 	my $day = substr($_, 0, 6);
 	if (/=> 200 OK \((\d+)ms\)/) {
 	    my $ms = $1;
