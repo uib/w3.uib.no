@@ -439,7 +439,7 @@ function uib_area_preprocess_page(&$variables) {
         switch($resource) {
         case 'uib.tabs':
           drupal_add_library('system' , 'ui.tabs');
-          drupal_add_js(drupal_get_path('theme', 'uib_zen') . '/js/tabs.js', array('group' => JS_THEME, ));
+          drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js', array('group' => JS_THEME, ));
           break;
         default:
           if (substr($resource, -3) == '.js') {
