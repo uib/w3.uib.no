@@ -562,6 +562,7 @@ EOD;
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
       unset($variables['page']['content']['study_content']['uib_study_study_content']['#contextual_links']);
       $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
+
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange' && (!in_array($variables['node']->field_uib_study_category['und'][0]['value'], array('mou', 'forskningsavtale')))) {
         $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
       }
@@ -595,7 +596,8 @@ EOD;
           'label' => 'hidden',
           'weight' => 3,
         ));
-        $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 4);
+        $variables['page']['content']['promocode'] = __uib_w3__render_block('uib_study', 'study_email_offers', 4);
+        $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 5);
         $link_section = $language->language == 'en' ? '_2' : '';
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
           'label' => 'hidden',
