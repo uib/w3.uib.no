@@ -27,7 +27,7 @@ function uib_feed__format($url, $title = '', $limit = 5, $pre_render = array() ,
  */
 function uib_feed__get($url) {
   $before = microtime(true);
-  $res = drupal_http_request($url, array('timeout' => 5));
+  $res = drupal_http_request($url, array('timeout' => variable_get('uib_feed_timeout', 6)));
   $log_message = "FEED GET $url => ";
   $log_message .= $res->code < 0 ? "$res->error errno=" . -$res->code : "$res->code $res->status_message";
   $log_message .= sprintf(" (%.0fms)", 1000 * (microtime(true) - $before));
