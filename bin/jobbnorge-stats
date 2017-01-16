@@ -9,6 +9,11 @@
 #
 
 use strict;
+use Getopt::Long qw(GetOptions);
+
+GetOptions(\my %opt,
+    'csv'
+) || die;
 
 my %stats;
 
@@ -43,22 +48,34 @@ for my $file (@ARGV) {
 
 #use Data::Dump; dd \%stats;
 
-print "day     #req fail     min     avg     max     min     avg      max  err\n";
-print "------ ----- ----  ------  ------  ------  ------  ------   ------  ---\n";
+if ($opt{csv}) {
+    print join("\t", qw(day req fail min avg max min avg max err)), "\n";
+}
+else {
+    print "day     #req fail     min     avg     max     min     avg      max  err\n";
+    print "------ ----- ----  ------  ------  ------  ------  ------   ------  ---\n";
+}
 for my $day (sort keys %stats) {
     my $requests = $stats{$day}{ok}{n} + $stats{$day}{timeout}{n};
-    printf "%s %5d %3.0f%% %5.0fms %5.0fms %5.0fms %5.0fms %5.0fms %6.0fms %4d\n",
+    my @row = (
         $day,
 	$requests,
-	100 * $stats{$day}{timeout}{n} / $requests,
+	sprintf("%.3f", $stats{$day}{timeout}{n} / $requests),
 	$stats{$day}{ok}{min},
-	$stats{$day}{ok}{sum} / $stats{$day}{ok}{n},
+	sprintf("%.0f", $stats{$day}{ok}{sum} / $stats{$day}{ok}{n}),
 	$stats{$day}{ok}{max},
 	$stats{$day}{timeout}{min},
-	$stats{$day}{timeout}{sum} / $stats{$day}{timeout}{n},
+	sprintf("%.0f", $stats{$day}{timeout}{sum} / $stats{$day}{timeout}{n}),
 	$stats{$day}{timeout}{max},
 	$stats{$day}{err} || 0,
-    ;
+    );
+    if ($opt{csv}) {
+	print join("\t", @row), "\n";
+    }
+    else {
+	$row[2] *= 100; # percent
+	printf "%s %5d %3.0f%% %5.0fms %5.0fms %5.0fms %5.0fms %5.0fms %6.0fms %4d\n", @row;
+    }
 }
 
 sub min_max {
