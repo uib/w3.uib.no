@@ -13,7 +13,7 @@ include_once 'uib_area.features.inc';
  */
 function uib_area_block_info() {
   return array(
-    'colophon' => array(
+    'colophon2' => array(
       'info' => t('Colophon'),
       'status' => TRUE,
     ),
@@ -190,90 +190,6 @@ function uib_area_block_view($delta='') {
         ),
       );
       break;
-    case 'colophon':
-      $block['subject'] = NULL;
-      $block['content'] = array(
-        'name' => array(
-          '#type' => 'html_tag',
-          '#tag' => 'h3',
-          '#value' => t('University of Bergen'),
-        ),
-        'postal_address' => array(
-          '#theme' => 'key_value',
-          '#key' => t('Postal Address'),
-          '#value' => t('P.O. Box 7800, NO-5020 BERGEN'),
-        ),
-        'visit_address' => array(
-          '#theme' => 'key_value',
-          '#key' => t('Visit Address'),
-        ),
-        'phone' => array(
-          '#theme' => 'key_value',
-          '#key' => t('Phone'),
-          '#value' => '+47 55 58 00 00',
-        ),
-        'fax' => array(
-          '#theme' => 'key_value',
-          '#key' => t('Fax'),
-        ),
-        'emergency' => array(
-          '#theme' => 'key_value',
-          '#key' => t('24-hour security hotline'),
-          '#value' => '+47 55 58 80 81',
-        ),
-        'contact' => array(
-          '#type' => 'link',
-          '#title' => t('post@uib.no'),
-          '#href' => 'mailto:post@uib.no',
-          '#prefix' => t('Contact') . ': ',
-        ),
-        'responsible' => array(
-          '#theme' => 'key_value',
-          '#key' => t('Responsible'),
-          '#value' => t('Director of Communications'),
-        ),
-        'cookies' => array(
-          '#markup' => '<p>' . l(t('About cookies'), ($language->language == 'nb' ? 'node/50897' : 'node/50970')) . '</p>',
-        ),
-      );
-      if ($area && isset($area->field_uib_ou['und'])) {
-        $place = node_load($area->field_uib_ou['und'][0]['target_id']);
-        $block['content']['name']['#value'] .= ' | ' . check_plain($area->title);
-        if (!empty($place->field_uib_phone)) {
-          $block['content']['phone']['#value'] =
-            $place->field_uib_phone['und'][0]['value'];
-        }
-        if (!empty($place->field_uib_fax)) {
-          $block['content']['fax']['#value'] =
-            $place->field_uib_fax['und'][0]['value'];
-        }
-        if (!empty($place->field_uib_mail_domain)) {
-          $block['content']['contact']['#title'] = 'post@' . $place->field_uib_mail_domain['und'][0]['safe_value'];
-          $block['content']['contact']['#href'] = 'mailto:post@' . $place->field_uib_mail_domain['und'][0]['safe_value'];
-        }
-        if (!empty($place->field_uib_postal_address)) {
-          $block['content']['postal_address']['#value'] = uib_area__format_postal_address($place);
-        }
-        if (!empty($place->field_uib_visit_address)) {
-          $block['content']['visit_address']['#value'] = uib_area__format_visit_address($place);
-        }
-      }
-      elseif ($area) {
-        if (isset($area->field_uib_area_parents['und'])) {
-          $parent = node_load($area->field_uib_area_parents['und'][0]['target_id']);
-          if (isset($parent->field_uib_ou['und'])) {
-            $place = node_load($parent->field_uib_ou['und'][0]['target_id']);
-            if (!empty($place->field_uib_postal_address)) {
-              $block['content']['postal_address']['#value'] = uib_area__format_postal_address($place);
-            }
-            if (!empty($place->field_uib_visit_address)) {
-              $block['content']['visit_address']['#value'] = uib_area__format_visit_address($place);
-            }
-          }
-        }
-      }
-      hide($block['content']['emergency']);
-    break;
     case 'jobbnorge':
       $whitelist = array('faculty', 'unit', 'institute');
       if ($area && in_array($area->field_uib_area_type['und'][0]['value'], $whitelist)) {
