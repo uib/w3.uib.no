@@ -303,17 +303,21 @@ function uib_setup_image_default_styles() {
 
   // Exported image style: wide_thumbnail.
   $styles['wide_thumbnail'] = array(
+    'label' => 'wide_thumbnail',
     'effects' => array(
-      2 => array(
-        'name' => 'image_scale_and_crop',
+      3 => array(
+        'name' => 'focal_point_scale_and_crop',
         'data' => array(
           'width' => 531,
           'height' => 375,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
         ),
         'weight' => 2,
       ),
     ),
-    'label' => 'wide_thumbnail',
   );
 
   return $styles;
