@@ -245,3 +245,11 @@ function uib_setup_update_7025() {
   field_delete_field('field_uib_menu_title_w2');
   field_delete_field('field_uib_w2_nav_parent_id');
 }
+
+/**
+ * Disable the uib_zen theme
+ */
+function uib_setup_update_7026() {
+  theme_disable(array('uib_zen'));
+  variable_del('theme_uib_zen_settings');
+}

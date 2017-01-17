@@ -580,7 +580,6 @@ features[variable][] = service_links_weight_in_node
 features[variable][] = site_default_country
 features[variable][] = site_mail
 features[variable][] = site_name
-features[variable][] = theme_uib_zen_settings
 features[variable][] = translation_language_type
 features[variable][] = uib_sws_url
 features[variable][] = update_check_disabled
