@@ -1074,7 +1074,7 @@ webdesk/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'service_links_path_icons';
-  $strongarm->value = 'sites/all/themes/uib/uib_zen/images/icons-social';
+  $strongarm->value = '';
   $export['service_links_path_icons'] = $strongarm;
 
   $strongarm = new stdClass();
