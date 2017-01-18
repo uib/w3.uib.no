@@ -811,7 +811,24 @@ html,
 
 html {
   font-size: 100%;
-  line-height: 1.5; }
+  line-height: 1.5;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word; }
+
+.header__wrapper,
+.subheader__wrapper,
+#main-menu,
+footer {
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-wrap: normal; }
 
 p {
   font-size: 1.25rem;
