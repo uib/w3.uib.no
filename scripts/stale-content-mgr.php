@@ -5,15 +5,15 @@
 #
 # See https://rts.uib.no/issues/15372
 
-$limit_level3 = mktime(0, 0, 0, 1, 1, 2016);
-$limit_level2 = mktime(0, 0, 0, 5, 1, 2016);
+$limit_level3 = mktime(0, 0, 0, 10, 1, 2016);
+$limit_level2 = mktime(0, 0, 0, 11, 1, 2016);
 
 if (0) {
   # calculate relative limits
   $month = 365.25 / 12 * 24 * 60 * 60;
 
-  $limit_level3 = time() - 6 * $month;
-  $limit_level2 = time() - 3 * $month;
+  $limit_level3 = time() - 3 * $month;
+  $limit_level2 = time() - 2 * $month;
 }
 
 $rid_level1 = 74573517;
