@@ -20,7 +20,7 @@ $rid_level1 = 74573517;
 $rid_level2 = 170699807;
 $rid_level3 = 64272948;
 
-$result = db_query("SELECT DISTINCT name, login FROM {users} AS u JOIN users_roles AS r ON u.uid = r.uid JOIN field_data_field_uib_user_domain AS d ON u.uid = d.entity_id WHERE created < :lim AND login < :lim AND field_uib_user_domain_value = 'uib' AND rid IN ($rid_level1, $rid_level2, $rid_level3) ORDER BY name", array(
+$result = db_query("SELECT DISTINCT name, login FROM {users} AS u JOIN users_roles AS r ON u.uid = r.uid JOIN field_data_field_uib_user_domain AS d ON u.uid = d.entity_id WHERE created < :lim AND login < :lim AND field_uib_user_domain_value = 'uib' AND rid IN ($rid_level2, $rid_level3) ORDER BY name", array(
   ':lim' => $limit_level3,
 ));
 
@@ -36,7 +36,7 @@ if ($delete_users) {
   print "DELETE FROM fd_omraade_rolle WHERE pseq IN (SELECT pseq FROM konto WHERE navn in (" . implode(', ', $delete_users) . "));\n";
 }
 
-$result = db_query("SELECT DISTINCT name, login FROM {users} AS u JOIN users_roles AS r ON u.uid = r.uid JOIN field_data_field_uib_user_domain AS d ON u.uid = d.entity_id WHERE created < :lim AND login < :lim AND field_uib_user_domain_value = 'uib' AND rid IN ($rid_level1, $rid_level2) ORDER BY name", array(
+$result = db_query("SELECT DISTINCT name, login FROM {users} AS u JOIN users_roles AS r ON u.uid = r.uid JOIN field_data_field_uib_user_domain AS d ON u.uid = d.entity_id WHERE created < :lim AND login < :lim AND field_uib_user_domain_value = 'uib' AND rid = $rid_level2 ORDER BY name", array(
   ':lim' => $limit_level2,
 ));
 
