@@ -96,7 +96,6 @@
       url: $.uib_search.fullurl + '?query=' + query + '&filters=' + filters,
       type: 'POST',
       dataType: 'json',
-      timeout: 5000,
       beforeSend: function (xhr) {
         xhr.setRequestHeader (
           "Authorization", "Basic " + btoa($.uib_search.user + ":" + $.uib_search.password)
