@@ -637,7 +637,7 @@ EOD;
           '#type' => 'html_tag',
           '#tag' => 'span',
           '#value' => t('Recieve news regarding study offers at UiB, and recieve
-            a free UiB eco bag'),
+            a free UiB tote bag'),
           '#attributes' => array(
             'class' => array('study_promo_info'),
           ),
