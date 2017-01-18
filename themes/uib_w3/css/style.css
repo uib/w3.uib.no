@@ -5011,6 +5011,15 @@ nav {
     #block-uib-study-study-contact ul li {
       list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>");
       margin-bottom: .75rem; }
+  #block-uib-study-study-contact .content {
+    font-size: 1.25rem;
+    padding: 0 0 2rem 12%; }
+    #block-uib-study-study-contact .content h3 + p {
+      margin: 0; }
+    #block-uib-study-study-contact .content h3 {
+      margin: 0 0 0.5rem; }
+    #block-uib-study-study-contact .content p {
+      margin: 1.5rem 0; }
 
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) p, #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) ul {
   font-size: 1.25rem; }
