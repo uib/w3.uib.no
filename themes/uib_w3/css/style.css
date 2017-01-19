@@ -818,6 +818,7 @@ html {
 .header__wrapper,
 .subheader__wrapper,
 #main-menu,
+.pagination-wrapper,
 footer {
   overflow-wrap: normal;
   word-wrap: normal; }
