@@ -109,25 +109,17 @@ function uib_search_block_view($delta) {
       'setting'
     );
 
-    // TODO: This if-block should be removed when the switch to elasticsearch
-    // has been completed, keeping the if - part, and removing the else-part.
-    if (variable_get('uib_search_switch_to_elastic', FALSE)) {
-      drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
-      drupal_add_js(
-        array('uib_search' => array(
-          'uib_search_boost_max' => 10,
-          'uib_search_boost_min' => pow(.5,10),
-          )
-        ),
-        'setting'
-      );
-      $retval['content']['noscript'] = drupal_get_form('uib_search__noscript_form');
-      $retval['content']['normal'] = drupal_get_form('uib_search__form');
-
-    }
-    else {
-      $retval = uib_search__form_old();
-    }
+    drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
+    drupal_add_js(
+      array('uib_search' => array(
+        'uib_search_boost_max' => 10,
+        'uib_search_boost_min' => pow(.5,10),
+        )
+      ),
+      'setting'
+    );
+    $retval['content']['noscript'] = drupal_get_form('uib_search__noscript_form');
+    $retval['content']['normal'] = drupal_get_form('uib_search__form');
 
     break;
   }
@@ -317,155 +309,6 @@ function uib_search__noscript_form(){
   return $form;
 }
 
-// TODO: This function should be removed when the switch to elasticsearch
-// is completed.
-function uib_search__form_old($delta = 'global-searchform'){
-  global $language;
-  $retval=array();
-  $retval['subject']=t('Search');
-  switch ($delta) {
-  case 'global-searchform':
-    drupal_add_js(drupal_get_path('module', 'uib_search') . '/js/uib_search.js');
-    $action=$GLOBALS['base_path'] . $language->language . "/search";
-    $retval['content']=array(
-      '#type' => 'container',
-      '#weight' => -45,
-      '#attributes' => array(
-        'class' => array('global-search'),
-      ),
-      'form' => array(
-        '#type' => 'form',
-        '#name' => 'noscriptform',
-        '#id' => 'uib-search-noscript-form',
-        '#action' => 'https://www.google.com/search',
-        '#method' => "get",
-        '#attributes' => array(
-          'name' => 'noscriptform',
-        ),
-        'link' => array(
-          "#markup" => '<input class="search-button" type="submit" value="'
-          . t("Search") . '" />',
-        ),
-        'noscript' => array(
-          'site' => array(
-            '#type' => 'hidden',
-            '#attributes' => array(
-              'name' => 'as_sitesearch',
-              'value' => 'uib.no',
-            ),
-          ),
-        ),
-      ),
-      'lightbox-form' => array(
-        '#type' => 'form',
-        '#name' => 'lbform',
-        '#id' => 'uib-search-form',
-        '#action' => $action,
-        '#method' => "get",
-        '#attributes' => array(
-          'name' => 'lbform',
-        ),
-        'lightbox' => array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('lightbox'),
-          ),
-          'top' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('topbar-wrapper'),
-            ),
-            'top' => array(
-              '#type' => 'container',
-              '#attributes' => array(
-                'class' => array('topbar'),
-              ),
-              'typeswitcher' => array(
-                '#type' => 'checkbox',
-                '#value' => 'user',
-                '#title' => t('Search for person'),
-                '#default_value' => 'user',
-                '#id' => 'switch_type_button',
-                '#attributes' => array(
-                  'name' => 'searchtype',
-                  'data-toggle-title' => t('Back to search'),
-                  'data-title' => t('Search for person'),
-                ),
-              ),
-              'right' => array(
-                '#type' => 'container',
-                '#attributes' => array(
-                  'class' => array('top-right'),
-                ),
-                'close' => array(
-                  '#type' => 'container',
-                  'link' => array(
-                    '#type' => 'link',
-                    '#href' => '',
-                    '#attributes' => array(
-                      'class' => 'closeme',
-                    ),
-                    '#title' => t('Close'),
-                  ),
-                  '#attributes' => array(
-                    'class' => array('close-lightbox'),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          'search' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('search-wrapper'),
-            ),
-            'searchfield' => array(
-              '#type' => 'html_tag',
-              '#tag' => 'label',
-              '#value' => t('Search field'),
-              '#attributes' => array(
-                'for' => 'searchfield',
-                'class' => 'element-invisible',
-              ),
-            ),
-            'searchtext' => array(
-              '#type' => 'textfield',
-              '#value' => check_plain(@$_GET['qq']),
-              '#attributes' => array(
-                'class' => array('search-field'),
-                'name' => 'qq',
-                'autocomplete' => 'off',
-                'placeholder' => t('Search uib.no'),
-                'data-placeholder' => t('Search for person'),
-                'id' => 'searchfield',
-              ),
-            ),
-            'submit' => array(
-              '#type' => 'submit',
-              '#value' => t('Search'),
-            ),
-          ),
-          'results' => array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => 'results',
-            ),
-          ),
-          'results-bottom-anchor' => array(
-            '#type' => 'html_tag',
-            '#tag' => 'span',
-            '#value' => '',
-            '#attributes' => array(
-              'class' => 'results-bottom-anchor',
-            ),
-          ),
-        ),
-      ),
-    );
-    break;
-  }
-  return $retval;
-}
 
 /**
  * Implements hook_user_update().

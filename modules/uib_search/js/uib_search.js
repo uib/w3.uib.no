@@ -707,8 +707,7 @@
       // Users
       if (
         all ||
-        $('#search-filter-checkboxes input[value=user]').is(':checked') ||
-        $('#switch_type_button').is(':checked')
+        $('#search-filter-checkboxes input[value=user]').is(':checked')
       ) {
 
         if (!all) {
@@ -769,29 +768,26 @@
           );
         }
       }
-      // Use manual boosting only if new search is enabled. Affects
-      // only the search part of the query (not other boosts)
-      if (!$('#switch_type_button').length) {
-        data.query.bool.must = {
-          function_score: {
-            query: data.query.bool.must,
-            field_value_factor: {
-              field: 'search_manual_boost',
-              modifier: "square",
-              factor: 1,
-            },
-          }
+      // Affects only the search part of the query (not other boosts)
+      data.query.bool.must = {
+        function_score: {
+          query: data.query.bool.must,
+          field_value_factor: {
+            field: 'search_manual_boost',
+            modifier: "square",
+            factor: 1,
+          },
         }
-
-        // Negative boost for past events
-        data.query.bool.must = {
-          boosting: {
-            positive: data.query.bool.must,
-            negative: unboost_past_events,
-            negative_boost: 0.03,
-          }
-        };
       }
+
+      // Negative boost for past events
+      data.query.bool.must = {
+        boosting: {
+          positive: data.query.bool.must,
+          negative: unboost_past_events,
+          negative_boost: 0.03,
+        }
+      };
       if ($.uib_search.debug) {
         console.log("JSON search query:\n" + JSON.stringify(data))
       }
@@ -1246,13 +1242,6 @@
     }
     else{
       $('form#uib-search-form .search-field').keyup(function (e) {
-        // TODO: Remove if block when switching to new search
-        if (
-          $('#switch_type_button').length &&
-          !$('#switch_type_button').is(':checked')
-        ) {
-          return;
-        }
         $(".global-search").submit(function(e){
           return false;
         });
