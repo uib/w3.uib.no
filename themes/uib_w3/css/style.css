@@ -823,6 +823,11 @@ footer {
   overflow-wrap: normal;
   word-wrap: normal; }
 
+.pager {
+  overflow-wrap: none;
+  word-wrap: none;
+  white-space: nowrap; }
+
 p {
   font-size: 1.25rem;
   color: #333;
@@ -7783,10 +7788,13 @@ body #mc_embed_signup div.mce_inline_error {
       text-decoration: none; }
   .page-node-news-archive .content-main-wrapper .block-system .view-recent-news .item-list ul.pager {
     width: 100%;
-    float: none; }
-    .page-node-news-archive .content-main-wrapper .block-system .view-recent-news .item-list ul.pager li {
-      width: 43px;
-      float: left; }
+    float: none;
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap; }
 
 .view-ansatte .profile {
   margin-bottom: 2rem;
