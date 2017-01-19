@@ -1,3 +1,22 @@
+# Release 63 _2017-01-19_
+
+I denne oppdateringen har vi gjort litt forskjellige småendringer på studiesidene, lagt til fokuspunkt på store og små bilder og forbedret søket.
+
+- Rettet en feil hvor kontaktinformasjon på studieprogram ikke endret seg ved semesterbytte #13179
+- Fjernet gammel kode fra det gamle designet #13657 #13663 #13666 #17280
+- Forbedret lange titler på innholdslistesteg på mobil #15635
+- Lagt til felt for e-post på studieprogram #17057
+- Lagt til lenke på tuition fee på engelske studieprogram #17096
+- Lagt til modul for google tag manager #17193
+- Lagt til manglende luft på kontaktboks på studieprogram #17205
+- Rettet navn på nytt bibliotek på engelsk #17252
+- Lagt til fokussted på store og små bilder på innhold og vitnesbyrd #17273
+- Lagt til manglende begrensning på antall artikler i profilerte artikler-feltet #17234
+- Oppdatering av diverse moduler #17296 #17292 #17288 #17287 #17286 #17283
+- Lagt til styling på inaktiv forrige/neste lenke på søk når de ikke er i bruk #17180
+- Forbedret orddeling på smale skjermer #16227
+- Forbedret søk #16657 #17179 #17182 #17218 #17225
+
 # Release 62 _2017-01-05_
 
 I denne versjonen har vi gjort justeringer knyttet til nytt fakultet, forbedringer på søk og videreutvikling av studieinformasjon.
