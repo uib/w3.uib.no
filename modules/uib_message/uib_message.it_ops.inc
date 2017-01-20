@@ -28,7 +28,7 @@ function uib_message__it_ops_recent() {
     );
     $msg['date'] = array(
       '#type' => 'html_tag',
-      '#tag' => 'h2',
+      '#tag' => 'h4',
       '#value' => date('j.n.Y', $node->created) . ' kl ' . date('H:i', $node->created),
     );
     $msg['text_no'] = array(
@@ -45,7 +45,7 @@ function uib_message__it_ops_recent() {
       '#value' => check_plain($node->field_uib_message_text_en['und'][0]['value']),
     );
     if (!empty($node->field_uib_message_link_en)) {
-      $msg['text_en']['#value'] .= '<br><a href="' . check_plain($node->field_uib_message_link_nb['und'][0]['url']) . '">Read more...</a>';
+      $msg['text_en']['#value'] .= '<br><a href="' . check_plain($node->field_uib_message_link_en['und'][0]['url']) . '">Read more...</a>';
     }
 
     $page['msg'][$nid] = $msg;
@@ -68,6 +68,7 @@ function uib_message__it_ops_recent() {
         url('node/' . $ITA_NID . '/messages', array(
           'query' => array('tag' => 'Drift'),
           'language' => $languages['nb'],
+          'absolute' => TRUE,
         )) .
         '">Arkiv</a>',
     ),
