@@ -101,8 +101,6 @@ function uib_market_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -204,7 +202,6 @@ function uib_market_views_default_views() {
     t('Ascending'),
     t('Descending'),
     t('Avanserte valgmuligheter'),
-    t('Select any filter and click on Apply to see results'),
     t('Displaying @total notices'),
     t('Filter by category'),
     t('Page'),

@@ -151,8 +151,6 @@ function uib_study_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'list';
@@ -495,8 +493,6 @@ function uib_study_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -1113,7 +1109,6 @@ function uib_study_views_default_views() {
     t('Stigende'),
     t('Synkende'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('Translations'),
     t('Taxonomy term entity referenced from field_uib_study_country'),
     t('Read student report'),
@@ -1277,8 +1272,6 @@ function uib_study_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
@@ -1528,7 +1521,6 @@ function uib_study_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('Found @total courses'),
     t('term'),
     t('Translations'),
@@ -2011,8 +2003,6 @@ return !empty($handler->argument);';
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
@@ -2459,8 +2449,6 @@ return !empty($handler->argument);';
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -2643,7 +2631,6 @@ return !empty($handler->argument);';
     t('All courses block'),
     t('Listing all courses'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('Found @total courses'),
     t('<a href="[path]">[field_uib_study_code] / [field_uib_study_title]</a>'),
     t('Type'),

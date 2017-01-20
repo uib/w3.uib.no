@@ -3009,7 +3009,6 @@ return !empty($handler->argument);';
     t('Desc'),
     t('Advanced options'),
     t('Sort options'),
-    t('Select any filter and click on Apply to see results'),
     t('[title] ([field_uib_date])'),
     t('<div class="phd-lead-title-wrapper">
 <div class="phd-title">[title]</div>

@@ -1888,8 +1888,6 @@ function uib_webdesk_views_default_views() {
     'any_label' => NULL,
     'filter_rewrite_values' => NULL,
   );
-  $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
-  $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'plain_text';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -2215,7 +2213,6 @@ function uib_webdesk_views_default_views() {
     t('Stigende'),
     t('Synkende'),
     t('Advanced options'),
-    t('Select any filter and click on Apply to see results'),
     t('Elementer per side'),
     t('- Alle -'),
     t('Offset'),
