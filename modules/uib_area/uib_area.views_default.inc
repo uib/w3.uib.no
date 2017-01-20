@@ -3473,7 +3473,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
   $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
-    'guid_field' => 'nid',
+    'guid_field' => 'field_uib_message_link_en',
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3660,7 +3660,7 @@ return true;';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
   $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
-    'guid_field' => 'nid',
+    'guid_field' => 'field_uib_message_link_en',
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3809,7 +3809,7 @@ return true;';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
   $handler->display->display_options['row_options']['date_field'] = 'timestamp';
   $handler->display->display_options['row_options']['guid_field_options'] = array(
-    'guid_field' => 'nid',
+    'guid_field' => 'field_uib_message_link_nb',
     'guid_field_is_permalink' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -3922,7 +3922,7 @@ return true;';
   $handler->display->display_options['style_plugin'] = 'rss';
   $handler->display->display_options['row_plugin'] = 'rss_fields';
   $handler->display->display_options['row_options']['title_field'] = 'field_uib_message_text_nb';
-  $handler->display->display_options['row_options']['link_field'] = 'nid';
+  $handler->display->display_options['row_options']['link_field'] = 'field_uib_message_link_nb';
   $handler->display->display_options['row_options']['description_field'] = 'field_uib_message_tag';
   $handler->display->display_options['row_options']['creator_field'] = 'field_uib_message_area';
   $handler->display->display_options['row_options']['date_field'] = 'timestamp';
