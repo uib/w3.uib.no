@@ -1,3 +1,8 @@
+# Release 63.1 _2017-01-20_
+
+Lenkene i APIene for meldingstjenesten var feil.  Disse ble eksponert nå som
+meldinger.uib.no er lagt ned. #17335 #17345
+
 # Release 63 _2017-01-19_
 
 I denne oppdateringen har vi gjort litt forskjellige småendringer på studiesidene, lagt til fokuspunkt på store og små bilder og forbedret søket.
