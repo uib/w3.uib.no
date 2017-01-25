@@ -34,6 +34,19 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
       $variables['classes_array'][] = 'uib-area-expanded-menu';
     }
   }
+  // Adding meta element for last modified to head section
+  $node_timestamp = $node->revision_timestamp;
+  if ($node_timestamp) {
+    $meta_last_modified = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'Last-Modified',
+        'content' =>  date('Y-m-d\TH:i:s\Z', $node_timestamp)
+      )
+    );
+    drupal_add_html_head($meta_last_modified, 'meta_last_modified');
+  }
 }
 
 /**
