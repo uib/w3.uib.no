@@ -30,7 +30,7 @@ function _uib_h2tabs_filter_h2_prepare($text, $filter) {
 /**
  * process callback.
  *
- * do the real filtering. Note that themes/uib_zen/sass/nodes.scss has corresponding formatting
+ * do the real filtering.
  */
 function _uib_h2tabs_filter_h2_process($text, $filter) {
   // Recode markup

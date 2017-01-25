@@ -45,7 +45,6 @@ fi
 
 bundle check || bundle install || exit
 
-bundle exec compass compile --force -q themes/uib_zen
 find site/files/{css,js,languages} -type f -print | xargs rm -f
 ## CC all cleans out the deleted files from DB that was deleted above
 bin/site-drush cc all

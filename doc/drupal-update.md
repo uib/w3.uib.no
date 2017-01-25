@@ -19,9 +19,6 @@ This procedure shal first be updated on test first.
   'bin/site-drush vset maintenance_mode 1'
 * Update GIT-repo
   (git pull)
-* Update CSS-files 
-  (cd /var/www/w3.uib.no/themes/uib_zen/ ; 
-  compass compile -q -c config-prod.rb)
 * List what module needs updating
   (bin/site-drush fl)
 * Update one and one listed update

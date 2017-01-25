@@ -42,33 +42,6 @@ and then visit <http://localhost/phpinfo.php>.
 Download the latest version from <https://getcomposer.org/download/>.
 Users of Homebrew on Mac can install it simply with `brew install composer`.
 
-### Bundler
-
-[Bundler](http://bundler.io/) is used to mange the dependencies on Ruby
-applications and libraries used for w3 development. Our current dependencies are
-[SASS](http://sass-lang.com/) and [Compass](http://compass-style.org/).
-
-Bundler is installed by running:
-
-    $ gem update --system
-    $ gem install bundle
-
-Run `"bundler version"` to verify that it worked.
-
-The w3-application‘s install and reset scripts will automatically install all
-dependencies under `vendor/` the first time they run. If you want to do it
-manually run:
-
-    $ bundle install
-
-To use any of the dependencies specified in the Gemfile, run:
-
-    $ bundle exec <command>
-
-For instance to run `compass compile` you have to run it as:
-
-    $ bundle exec compass compile
-
 ### ImageMagick
 
 The application  uses ImageMagick for converting between image files formats.
@@ -241,8 +214,6 @@ do, please ask:
     $ bin/site-prod-reset
     $ bin/site-snapshot
     $ bin/site-snapshot pop
-
-    $ compass compile --force themes/uib_zen
 
 ## Using [Grunt.js](http://gruntjs.com/) in frontend development
 

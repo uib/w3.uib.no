@@ -106,8 +106,7 @@ Our [custom modules](modules.html).  Many of these written by
 
 ### `themes/`
 
-Our custom themes.  Currently there is only one; `themes/uib_zen/`
-based on the [Zen theme](http://drupal.org/project/zen).
+Our custom themes.
 
 ### `scripts/`
 

@@ -14,6 +14,3 @@ bin/site-drush site-install uib --site-mail="w3@it.uib.no" --site-name="Universi
 # The installer sometimes override variables that we try to enforce with uib_setup.
 # Fix that by explictly reverting those changes.
 bin/site-drush features-revert --yes uib_setup
-
-bundle exec compass compile --force themes/uib_zen
-

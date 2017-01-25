@@ -1,3 +1,0 @@
-#!/bin/bash
-cd /var/www/w3.uib.no/themes/uib_zen/
-su w3-drupal -c 'compass compile -q -c config-prod.rb' &>> /tmp/compass.compile.$(date -I).log

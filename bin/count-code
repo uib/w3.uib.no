@@ -66,14 +66,6 @@ my %COUNTERS;
 
 find(sub {
     if (-d $_) {
-	if ($File::Find::name eq "themes/uib_zen/css" ||
-	    $File::Find::name eq "themes/uib_zen/images" ||
-	    $File::Find::name eq "themes/uib_zen/sass-extensions/zen-grids" ||
-	    $File::Find::name eq "themes/uib_zen/.sass-cache" ||
-	    0)
-	{
-	    $File::Find::prune++;
-	}
 	next;
     }
     if (/\.(php|inc|module|install|test)$/) {

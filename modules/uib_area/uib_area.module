@@ -1955,45 +1955,6 @@ function uib_area__has_bg_box($field_name) {
 }
 
 /**
- * Overrides theme_field on area pages
- */
-function uib_zen_field__area($variables) {
-  $output = '';
-
-  if (!$variables['label_hidden']) {
-    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ': </div>';
-  }
-  $imagemap_prefix = '';
-  if ($variables['element']['#field_name'] == 'field_uib_primary_media') {
-    if (!empty($variables['element']['#object']->field_uib_image_map)) {
-      if (count($variables['items']) == 1) {
-        $imagemap_prefix = $variables['element']['#object']->field_uib_image_map['und'][0]['safe_value'];
-        $variables['classes'] .= ' imageMap';
-      }
-    }
-  }
-  // Render the items.
-  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
-  foreach ($variables['items'] as $delta => $item) {
-    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
-    $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
-  }
-  $output .= '</div>';
-
-  $prefix = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $imagemap_prefix;
-  if (!empty($variables['element']['#field_name']) && uib_area__has_bg_box($variables['element']['#field_name'])) {
-    if (!empty($variables['element']['#object']->$variables['element']['#field_name'])) {
-      $output = $prefix . '<div class="opaque-box">' . $output . '</div></div>';
-    }
-  }
-  else {
-    $output = $prefix . $output . '</div>';
-  }
-
-  return $output;
-}
-
-/**
  * Implements hook_query_TAG_alter().
  */
 function uib_area_query_uib_study_order_by_title_alter(QueryAlterableInterface $query) {

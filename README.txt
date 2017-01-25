@@ -13,8 +13,6 @@ to grab the rest of the code.
 To set up a test site, configure Apache to serve the 'drupal' directory at the
 root of some virtual host.
 
-Make sure you have 'composer' and Ruby's 'bundler' installed before you proceed.
-
 Then set up the Drupal site by invoking:
 
     bin/site-init w3.uib.example.com
