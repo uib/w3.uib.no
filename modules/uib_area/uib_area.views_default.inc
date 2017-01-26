@@ -2696,7 +2696,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_uib_main_media]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['nothing']['empty'] = '<img src="/sites/all/themes/uib/uib_zen/images/Recent_High.png">';
+  $handler->display->display_options['fields']['nothing']['empty'] = '<img src="/sites/all/modules/uib/uib_area/placeholder_media.png">';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -2821,7 +2821,7 @@ return !empty($handler->argument);';
     t('Post date'),
     t('[field_uib_media]'),
     t('[field_uib_main_media]'),
-    t('<img src="/sites/all/themes/uib/uib_zen/images/Recent_High.png">'),
+    t('<img src="/sites/all/modules/uib/uib_area/placeholder_media.png">'),
     t('[title] ([created_1])'),
     t('Read more'),
     t('Feed'),
