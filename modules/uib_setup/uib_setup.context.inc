@@ -27,30 +27,7 @@ function uib_setup_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'uib_area-colophon' => array(
-          'module' => 'uib_area',
-          'delta' => 'colophon',
-          'region' => 'bottom',
-          'weight' => '-10',
-        ),
-        'views-relevant_links-block_1' => array(
-          'module' => 'views',
-          'delta' => 'relevant_links-block_1',
-          'region' => 'bottom',
-          'weight' => '-9',
-        ),
-        'uib_area-colophon_logos' => array(
-          'module' => 'uib_area',
-          'delta' => 'colophon_logos',
-          'region' => 'bottom',
-          'weight' => '-8',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables
@@ -79,12 +56,6 @@ function uib_setup_context_default_contexts() {
           'delta' => 'language',
           'region' => 'header',
           'weight' => '-9',
-        ),
-        'uib_area-area_banner' => array(
-          'module' => 'uib_area',
-          'delta' => 'area_banner',
-          'region' => 'above_content',
-          'weight' => '-10',
         ),
         'system-main' => array(
           'module' => 'system',

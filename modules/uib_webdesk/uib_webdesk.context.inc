@@ -26,17 +26,30 @@ function uib_webdesk_context_default_contexts() {
   );
   $context->reactions = array(
     'region' => array(
-      'uib_zen' => array(
+      'adminimal' => array(
         'disable' => array(
-          'sidebar_second' => 'sidebar_second',
-          'header' => 0,
-          'navigation' => 0,
-          'highlighted' => 0,
-          'help' => 0,
+          'hidden' => 0,
+          'content_before' => 0,
+          'sidebar_left' => 0,
           'content' => 0,
-          'footer' => 0,
-          'bottom' => 0,
+          'sidebar_right' => 0,
+          'content_after' => 0,
+          'help' => 0,
           'page_top' => 0,
+          'page_bottom' => 0,
+        ),
+      ),
+      'uib_w3' => array(
+        'disable' => array(
+          'header' => 0,
+          'subheader' => 0,
+          'content_top' => 0,
+          'content' => 0,
+          'content_bottom' => 0,
+          'footer_top' => 0,
+          'footer' => 0,
+          'footer_bottom' => 0,
+          'help' => 0,
           'page_bottom' => 0,
         ),
       ),

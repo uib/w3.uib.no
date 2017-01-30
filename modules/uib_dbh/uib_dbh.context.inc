@@ -24,18 +24,7 @@ function uib_dbh_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'uib_dbh-dbh' => array(
-          'module' => 'uib_dbh',
-          'delta' => 'dbh',
-          'region' => 'sidebar_second',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables

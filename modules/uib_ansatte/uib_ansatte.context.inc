@@ -23,18 +23,7 @@ function uib_ansatte_context_default_contexts() {
       ),
     ),
   );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'views--exp-ansatte-page_1' => array(
-          'module' => 'views',
-          'delta' => '-exp-ansatte-page_1',
-          'region' => 'highlighted',
-          'weight' => '-10',
-        ),
-      ),
-    ),
-  );
+  $context->reactions = array();
   $context->condition_mode = 0;
 
   // Translatables
