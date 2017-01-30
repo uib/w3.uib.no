@@ -16,7 +16,6 @@ projects[drupal][patch][] = https://drupal.org/files/issues/node-sql-rewrite-196
 projects[drupal][patch][] = https://drupal.org/files/issues/drupal-require_subdomain_for_mailto_links-2016739-49.patch
 
 ; themes
-projects[zen][version] = 5.5
 projects[adminimal_theme][version] = 1.24
 
 ; modules
