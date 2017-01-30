@@ -13,31 +13,6 @@ function uib_setup_context_default_contexts() {
   $context = new stdClass();
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
-  $context->name = 'colofon';
-  $context->description = '';
-  $context->tag = 'block';
-  $context->conditions = array(
-    'path' => array(
-      'values' => array(
-        '~webdesk' => '~webdesk',
-        '~webdesk/*' => '~webdesk/*',
-        '~node/*/edit' => '~node/*/edit',
-        '~node/*/delete' => '~node/*/delete',
-        '~node/add/*' => '~node/add/*',
-      ),
-    ),
-  );
-  $context->reactions = array();
-  $context->condition_mode = 0;
-
-  // Translatables
-  // Included for use with string extractors like potx.
-  t('block');
-  $export['colofon'] = $context;
-
-  $context = new stdClass();
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
   $context->name = 'navigation';
   $context->description = 'Basic navigation for the whole site';
   $context->tag = 'block';

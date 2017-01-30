@@ -74,7 +74,6 @@ dependencies[] = views
 dependencies[] = views_bulk_operations
 dependencies[] = views_content
 dependencies[] = wysiwyg
-features[context][] = colofon
 features[context][] = navigation
 features[ctools][] = context:context:3
 features[ctools][] = field_group:field_group:1
