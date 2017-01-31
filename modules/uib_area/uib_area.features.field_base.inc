@@ -495,6 +495,7 @@ function uib_area_field_default_field_bases() {
         'consert' => 'Concert',
         'course' => 'Course',
         'course_economy' => 'Course - economy',
+        'course_for_teachers' => 'Course - for teachers',
         'course_leadership' => 'Course - leadership',
         'course_language' => 'Course - language',
         'course_research_management' => 'Course - research management',
