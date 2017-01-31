@@ -66,8 +66,6 @@ if [ $(pwd) == '/var/www/w3-testsrv.test.uib.no' ] ;then
     fi
 fi
 
-bundle check || bundle install || exit
-
 find site/files/{css,js,languages} -type f -print | xargs rm -f 
 ## CC all cleans out the deleted files from DB that was deleted above
 bin/site-drush cc all

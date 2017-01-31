@@ -5,8 +5,6 @@ if [ ! -f site/settings.php ]; then
     exit 1
 fi
 
-bundle check || bundle install || exit
-
 set -x
 
 bin/site-drush site-install uib --site-mail="w3@it.uib.no" --site-name="Universitetet i Bergen" --account-name=admin --account-mail="w3@it.uib.no" --account-pass=admin --clean-url --verbose --yes || exit 1
