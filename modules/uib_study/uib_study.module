@@ -997,6 +997,7 @@ EOD;
           $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
           $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
           if ($points && $language->language == 'nb') {
+            $points['#text'] = l($points['#text'], 'node/101938');
             $items[] = uib_study__get_study_facts_markup('Poenggrense', $points['#text']);
           }
           $varighet = $language->language == 'en' ? 'varighet:en' : 'varighet';
