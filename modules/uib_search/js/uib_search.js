@@ -1241,10 +1241,10 @@
       $('.lightbox .topbar .form-type-checkbox').css('display', 'none');
     }
     else{
+      $(".global-search").submit(function(e){
+        return false;
+      });
       $('form#uib-search-form .search-field').keyup(function (e) {
-        $(".global-search").submit(function(e){
-          return false;
-        });
         var query = $(e.target).val().trim();
         if (query.length == 0) {
           $('.results').html('');
