@@ -1623,6 +1623,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'service_links',
   );
 
+  // Exported permission: 'use manualcrop'.
+  $permissions['use manualcrop'] = array(
+    'name' => 'use manualcrop',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'manualcrop',
+  );
+
   // Exported permission: 'use page manager'.
   $permissions['use page manager'] = array(
     'name' => 'use page manager',
