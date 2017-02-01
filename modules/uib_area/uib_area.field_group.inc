@@ -152,9 +152,9 @@ function uib_area_field_group_info() {
     'weight' => '22',
     'children' => array(
       0 => 'field_uib_contacts',
-      1 => 'field_uib_location',
-      2 => 'field_uib_deadline',
-      3 => 'field_uib_registration_link',
+      1 => 'field_uib_deadline',
+      2 => 'field_uib_registration_link',
+      3 => 'field_uib_location',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -400,8 +400,8 @@ function uib_area_field_group_info() {
     'label' => 'Links and attachments',
     'weight' => '18',
     'children' => array(
-      0 => 'field_uib_files',
-      1 => 'field_uib_links',
+      0 => 'field_uib_links',
+      1 => 'field_uib_files',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
