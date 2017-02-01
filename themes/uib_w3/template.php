@@ -767,6 +767,14 @@ EOD;
         unset($variables['page']['content'][$unset]);
       }
       break;
+    case ($variables['node']->type == 'uib_views_page'):
+      $title = current((array)field_get_items('node', $variables['node'],
+          'field_uib_node_title'));
+      if (isset($title['value'])) {
+        $title = $title['value'];
+        drupal_set_title($title);
+      }
+      break;
   }
   $unset_blocks = array(
     'uib_area_paahoyden_logo',
