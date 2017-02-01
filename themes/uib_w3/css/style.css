@@ -4292,6 +4292,9 @@ div.field-item {
         .block-uib-search .lightbox .search-wrapper .form-type-textfield :-ms-input-placeholder {
           color: #333333; }
     .block-uib-search .lightbox .form-submit, .block-uib-search .lightbox .form-submit#edit-submit {
+      -moz-border-radius: 0;
+      -webkit-border-radius: 0;
+      border-radius: 0;
       height: 70px;
       border: none;
       padding: 0 0 0 61px;
