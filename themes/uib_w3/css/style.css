@@ -823,7 +823,8 @@ footer {
   overflow-wrap: normal;
   word-wrap: normal; }
 
-.pager {
+.pager,
+.calendar-year h2 {
   overflow-wrap: none;
   word-wrap: none;
   white-space: nowrap; }
