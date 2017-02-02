@@ -1,3 +1,20 @@
+# Release 64 _2017-02-02_
+
+I denne versjonen har vi gjort diverse forbedringer og feilrettinger.
+
+- Rettet feil i kalendervisningen som følge av orddelingssaken i Release 63 #17365 #17444
+- Rettet feil i visningen av studieprogrammenes varighet #17360
+- Rettet feil som viste engelsk tittel (title-element) på norske sider #15912
+- Fjernet pil i hovedmenypunkter uten underpunkter #17372
+- Lagt til meta-element med informasjon om når sider sist ble oppdatert #17378
+- Lagt til "Kurs - for lærere" som ny arragementstype #17371
+- Lagt til lenke til side med poengrenser på sider for studieprogram #17319
+- Lagt til oppdatert utgave av UiBs fargestripe #17334
+- Tilrettelagt for beskjæring av bilder #15411
+- Vedlikehold tilknyttet egenutviklede drupal-moduler #16862 #17381 #17382
+- Saker tilknyttet søk #17088 #17315 #17317 #17415
+- Oppdatering av drupal-modul #17433
+
 # Release 63.1 _2017-01-20_
 
 Lenkene i APIene for meldingstjenesten var feil.  Disse ble eksponert nå som
