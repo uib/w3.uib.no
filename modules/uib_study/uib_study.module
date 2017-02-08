@@ -674,7 +674,20 @@ EOD;
 
       $node = menu_get_object();
       if ($node) {
-        if (!empty($node->field_uib_main_media)) {
+        if (!empty($node->{'field_uib_main_media_' . $language->language})) {
+          $study_media = field_view_field(
+            'node',
+            $node,
+            'field_uib_main_media_' . $language->language,
+            array(
+              'type' => 'file_rendered',
+              'settings' => array('file_view_mode' => 'content_main'),
+              'label' => 'hidden',
+              'weight' => -30,
+            )
+          );
+        }
+        else if (!empty($node->field_uib_main_media)) {
           $study_media = field_view_field('node', $node, 'field_uib_main_media', array(
             'type' => 'file_rendered',
             'settings' => array('file_view_mode' => 'content_main'),
@@ -1749,6 +1762,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
     );
     if ($study->field_uib_study_type->value() != 'program') {
       hide($form['field_uib_main_media']);
+      hide($form['field_uib_main_media_en']);
     }
 
     if ($GLOBALS['user']->uid != 1) {

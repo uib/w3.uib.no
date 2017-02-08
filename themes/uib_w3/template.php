@@ -885,6 +885,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_kicker',
       'field_uib_lead',
       'field_uib_main_media',
+      'field_uib_main_media_en',
       'field_uib_primary_media',
       'field_uib_primary_text',
       'field_uib_secondary_text',
