@@ -31,6 +31,7 @@ projects[bot][revision] = d0e10c65616f267543e717addc17422979f83bd2
 projects[breakpoints][version] = 1.4
 projects[browsersync][version] = 1.1
 projects[coder][version] = 2.6
+projects[colorbox][version] = 2.12
 projects[context][version] = 3.7
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.12
