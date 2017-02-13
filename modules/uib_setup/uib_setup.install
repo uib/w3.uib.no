@@ -260,3 +260,10 @@ function uib_setup_update_7026() {
 function uib_setup_update_7027() {
   module_disable(array('manualcrop'));
 }
+
+/**
+ * Enable colobox module
+ */
+function uib_setup_update_7028() {
+  module_enable(array('colorbox'));
+}
