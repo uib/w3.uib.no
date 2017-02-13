@@ -271,9 +271,9 @@ EOD;
       if ($variables['node']->language != $variables['language']->language) {
         drupal_set_message($not_trans, 'warning');
       }
-      drupal_add_library('system' , 'ui.tabs');
+      drupal_add_library('system' , 'ui.accordion');
       // set menu to appear as tabs
-      $jq = uib_w3__tabsScript();
+      $jq = uib_w3__accordion_script();
       drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
         'label' => 'hidden',
@@ -385,9 +385,9 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
-      drupal_add_library('system' , 'ui.tabs');
+      drupal_add_library('system' , 'ui.accordion');
       // set menu to appear as tabs
-      $jq = uib_w3__tabsScript();
+      $jq = uib_w3__accordion_script();
       drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
       if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
@@ -1176,7 +1176,12 @@ function uib_w3__tabsScript(){
   $jq = <<<'EOD'
 jQuery( document ).ready( function($){
   // Loading jquery ui.tabs
-  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs(
+  var selectors = [
+    '.profile .uib-tabs-container',
+    '.uib-tabs-container.offices',
+    '#block-uib-study-study-content>.content',
+  ];
+  $(selectors.join()).tabs(
     {
       beforeActivate: function(event, ui){
         if(history.pushState) {
@@ -1191,7 +1196,7 @@ jQuery( document ).ready( function($){
   if (navigator.userAgent.search('MSIE') != -1 && hash.length > 0) {
     location.hash='';
   }
-  $(".uib-tabs-container,#block-uib-study-study-content>.content").tabs('option', 'active', hash);
+  $(selectors.join()).tabs('option', 'active', hash);
   if(history.pushState && hash.length > 0) {
     setTimeout(function(){
       history.pushState(null, null, hash);
@@ -1206,6 +1211,25 @@ jQuery( document ).ready( function($){
   });
 });
 EOD;
+//   $jq='';
+return $jq;
+}
+
+function uib_w3__accordion_script(){
+  $jq = <<<'EOD'
+jQuery( document ).ready( function($){
+  // Loading accordion (previously tabs)
+  // Create an independent accordion for each div
+  container = $(".uib-tabs-container > .tabs-content > div");
+  container.accordion({
+    header: "h2",
+    collapsible: true,
+    heightStyle: "content",
+    active: false,
+  });
+});
+EOD;
+//   $jq='';
 return $jq;
 }
 

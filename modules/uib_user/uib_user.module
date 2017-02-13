@@ -355,6 +355,8 @@ function uib_user_preprocess_page(&$vars) {
 function uib_user_user_view_alter(&$build) {
   drupal_add_library('system' , 'ui.tabs');
   drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js', array('group' => JS_THEME, ));
+  $jq = uib_w3__tabsScript();
+  drupal_add_js($jq, 'inline');
 
   $profile_user = entity_metadata_wrapper('user', $build['#account']);
 

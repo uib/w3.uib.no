@@ -491,6 +491,9 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
   drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js',
     array('group' => JS_THEME, )
   );
+  $jq = uib_w3__tabsScript();
+  drupal_add_js($jq, 'inline');
+
   global $language;
   $tabs = '<div class="uib-tabs-container';
   $tabs .= $class ? ' ' . $class : '';
