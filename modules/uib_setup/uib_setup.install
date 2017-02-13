@@ -253,3 +253,10 @@ function uib_setup_update_7026() {
   theme_disable(array('uib_zen'));
   variable_del('theme_uib_zen_settings');
 }
+
+/**
+ * Disable manualcrop module
+ */
+function uib_setup_update_7027() {
+  module_disable(array('manualcrop'));
+}

@@ -64,14 +64,6 @@ function uib_setup_image_default_styles() {
   $styles['area_main'] = array(
     'label' => 'area_main',
     'effects' => array(
-      9 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => -1,
-      ),
       8 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -104,17 +96,6 @@ function uib_setup_image_default_styles() {
   $styles['content_main'] = array(
     'label' => 'content_main',
     'effects' => array(
-      7 => array(
-        'name' => 'manualcrop_crop',
-        'data' => array(
-          'width' => '',
-          'height' => '',
-          'keepproportions' => 0,
-          'reuse_crop_style' => '',
-          'style_name' => 'content_main',
-        ),
-        'weight' => 0,
-      ),
       6 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -131,14 +112,6 @@ function uib_setup_image_default_styles() {
   $styles['content_main_mobile_1x'] = array(
     'label' => 'content_main_mobile_1x',
     'effects' => array(
-      15 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => 0,
-      ),
       14 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -155,14 +128,6 @@ function uib_setup_image_default_styles() {
   $styles['content_main_narrow_1x'] = array(
     'label' => 'content_main_narrow_1x',
     'effects' => array(
-      13 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => 0,
-      ),
       12 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -179,14 +144,6 @@ function uib_setup_image_default_styles() {
   $styles['content_main_wide_1x'] = array(
     'label' => 'content_main_wide_1x',
     'effects' => array(
-      11 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => 0,
-      ),
       10 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -203,14 +160,6 @@ function uib_setup_image_default_styles() {
   $styles['content_sidebar'] = array(
     'label' => 'content_sidebar',
     'effects' => array(
-      17 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => 0,
-      ),
       16 => array(
         'name' => 'image_scale',
         'data' => array(
@@ -356,15 +305,7 @@ function uib_setup_image_default_styles() {
   $styles['wide_thumbnail'] = array(
     'label' => 'wide_thumbnail',
     'effects' => array(
-      19 => array(
-        'name' => 'manualcrop_reuse',
-        'data' => array(
-          'reuse_crop_style' => 'content_main',
-          'apply_all_effects' => 0,
-        ),
-        'weight' => 1,
-      ),
-      18 => array(
+      3 => array(
         'name' => 'focal_point_scale_and_crop',
         'data' => array(
           'width' => 531,
