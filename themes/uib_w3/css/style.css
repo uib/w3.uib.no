@@ -646,7 +646,7 @@ button {
 .font-family-secondary {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
 
-.content * {
+.region-content .content * {
   font-size: 1.25rem; }
 
 .input-text, input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="url"], input[type="number"], textarea,
