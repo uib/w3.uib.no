@@ -63,6 +63,10 @@ function uib_study_block_info() {
       'info' => t('Provides code for mail-promos to students'),
       'status' => TRUE,
     ),
+    'study_reading_lists' => array(
+      'info' => t('Provides a block for multiple reading lists'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -578,6 +582,39 @@ function uib_study_block_view($delta = '') {
   $is_evu_course = uib_study__is_course('evu');
 
   switch ($delta) {
+    case 'study_reading_lists':
+      if ($is_course) {
+        $node = menu_get_object();
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
+        list($previous, $current, $next) = uib_study__get_adjacent_semesters();
+        $lang = $language->language == 'nb' ? 'no' : 'en';
+        $semester = isset($_GET['sem']) ? $_GET['sem'] : uib_study__get_current_semester();
+        if (isset($data['reading-lists:' . $lang . ':' . $previous]) && $semester == $previous) {
+          if (count($data['reading-lists:' . $lang . ':' . $previous]) > 1) {
+            $block['content'] = 'Forrige';
+          }
+        }
+        if (isset($data['reading-lists:' . $lang . ':' . $current]) && $semester == $current) {
+          if (count($data['reading-lists:' . $lang . ':' . $current]) > 1) {
+            $items = array();
+            foreach($data['reading-lists:' . $lang . ':' . $current] as $d) {
+              $items[] = l(t('Class of ') . $d['class_label'], $d['url']);
+            }
+            $block['content'] = array(
+              '#items' => $items,
+              '#theme' => 'item_list',
+              '#attributes' => array('class' => 'uib-reading-lists'),
+            );
+          }
+        }
+        if (isset($data['reading-lists:' . $lang . ':' . $next]) && $semester == $next) {
+          if (count($data['reading-lists:' . $lang . ':' . $next]) > 1) {
+            $block['content'] = 'Neste';
+          }
+        }
+        if (isset($block['content'])) $block['title'] = t('Reading list');
+      }
+      break;
     case 'study_email_offers':
       if ($language->language == 'en') {
         break;
@@ -1681,15 +1718,31 @@ function uib_study__get_resource_links($type, $data) {
   }
   else {
     global $language;
+    $current_path = drupal_get_path_alias();
     $lang = $language->language == 'nb' ? 'no' : 'en';
-    if (isset($data['reading-list-url:' . $lang . ':' . $previous])) {
-      $previous_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $previous], array('previous-semester'));
+    if (isset($data['reading-lists:' . $lang . ':' . $previous])) {
+      if (count($data['reading-lists:' . $lang . ':' . $previous]) > 1) {
+        $previous_semester = uib_study__get_reading_list_link($current_path, array('previous-semester') , TRUE);
+      }
+      else {
+        $previous_semester = uib_study__get_reading_list_link($data['reading-lists:' . $lang . ':' . $previous][0]['url'], array('previous-semester'));
+      }
     }
-    if (isset($data['reading-list-url:' . $lang . ':' . $current])) {
-      $current_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $current], array('current', 'previous-exists', 'next-exists', 'variants-exist'));
+    if (isset($data['reading-lists:' . $lang . ':' . $current])) {
+      if (count($data['reading-lists:' . $lang . ':' . $current]) > 1) {
+        $current_semester = uib_study__get_reading_list_link($current_path, array('current', 'previous-exists', 'next-exists', 'variants-exist') , TRUE);
+      }
+      else {
+        $current_semester = uib_study__get_reading_list_link($data['reading-lists:' . $lang . ':' . $current][0]['url'], array('current', 'previous-exists', 'next-exists', 'variants-exist'));
+      }
     }
-    if (isset($data['reading-list-url:' . $lang . ':' . $next])) {
-      $next_semester = uib_study__get_reading_list_link($data['reading-list-url:' . $lang . ':' . $next], array('next-semester'));
+    if (isset($data['reading-lists:' . $lang . ':' . $next])) {
+      if (count($data['reading-lists:' . $lang . ':' . $next]) > 1) {
+        $next_semester = uib_study__get_reading_list_link($current_path, array('next-semester') , TRUE);
+      }
+      else {
+        $next_semester = uib_study__get_reading_list_link($data['reading-lists:' . $lang . ':' . $next][0]['url'], array('next-semester'));
+      }
     }
   }
   if (isset($_GET['sem']) && $_GET['sem'] == $previous) {
@@ -1722,7 +1775,7 @@ function uib_study__get_schedule_link($study_code, $semester, $classes) {
   return $schedule;
 }
 
-function uib_study__get_reading_list_link($path, $classes) {
+function uib_study__get_reading_list_link($path, $classes, $fragment = FALSE) {
   $reading_list = array(
     '#theme' => 'link',
     '#text' => t('Reading list'),
@@ -1732,6 +1785,7 @@ function uib_study__get_reading_list_link($path, $classes) {
       'html' => TRUE,
     ),
   );
+  if ($fragment) $reading_list['#options']['fragment'] = 'block-uib-study-study-reading-lists';
   return $reading_list;
 }
 

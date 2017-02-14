@@ -5401,6 +5401,72 @@ body #mc_embed_signup div.mce_inline_error {
   margin: 0 0 .5rem 0;
   line-height: 1.5rem; }
 
+#block-uib-study-study-reading-lists {
+  background: #fff; }
+  #block-uib-study-study-reading-lists h2 {
+    background: #cf3c3a;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1.4rem;
+    position: relative;
+    margin: 0 0 40px 0;
+    padding: 16px 5% 0 5%;
+    line-height: 1.4rem;
+    font-weight: normal; }
+    #block-uib-study-study-reading-lists h2:empty {
+      display: none; }
+    #block-uib-study-study-reading-lists h2 a {
+      color: #fff; }
+    #block-uib-study-study-reading-lists h2:after {
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 16px solid #cf3c3a;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      bottom: -1rem;
+      overflow: hidden; }
+  #block-uib-study-study-reading-lists p + h2 {
+    margin-top: 2rem; }
+  #block-uib-study-study-reading-lists h3 {
+    margin: 1.5rem 10% 1.5rem 12%;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  #block-uib-study-study-reading-lists h3 + ul,
+  #block-uib-study-study-reading-lists h3 + p {
+    margin-top: .5rem; }
+  #block-uib-study-study-reading-lists p {
+    margin: 1.5rem 10% 1.5rem 12%;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333;
+    word-wrap: break-word; }
+  #block-uib-study-study-reading-lists ul {
+    margin: 1.5rem 10% 1.5rem 12%;
+    padding: 0;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333; }
+    #block-uib-study-study-reading-lists ul li {
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>");
+      margin-bottom: .75rem; }
+  #block-uib-study-study-reading-lists ul {
+    list-style: none; }
+    #block-uib-study-study-reading-lists ul li {
+      list-style-image: none;
+      margin: 0 0 0.75rem; }
+
 #block-uib-study-study-related .field-label {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   text-transform: uppercase;
@@ -7883,6 +7949,9 @@ body #mc_embed_signup div.mce_inline_error {
   .node-type-uib-study .region-content #block-uib-study-study-period-phd {
     -webkit-order: 12;
     order: 12; }
+  .node-type-uib-study .region-content #block-uib-study-study-reading-lists {
+    -webkit-order: 13;
+    order: 13; }
 @media (min-width: 780px) {
   .node-type-uib-study .region-content {
     display: block; }
@@ -7906,6 +7975,7 @@ body #mc_embed_signup div.mce_inline_error {
   .node-type-uib-study #block-uib-study-study-evu,
   .node-type-uib-study #block-uib-study-study-period-phd,
   .node-type-uib-study #block-uib-study-study-so-code,
+  .node-type-uib-study #block-uib-study-study-reading-lists,
   .node-type-uib-study .uib-study-belongs-to {
     width: 31.91489%;
     float: right;
