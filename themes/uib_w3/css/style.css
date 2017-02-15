@@ -646,8 +646,13 @@ button {
 .font-family-secondary {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
 
-.region-content .content * {
+#block-uib-study-study-content .content * {
   font-size: 1.25rem; }
+#block-uib-study-study-content p {
+  margin-top: 1.5rem; }
+#block-uib-study-study-content h3 + p,
+#block-uib-study-study-content p + p {
+  margin-top: 0; }
 
 .input-text, input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="url"], input[type="number"], textarea,
 select {
