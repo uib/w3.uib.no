@@ -608,7 +608,7 @@ function uib_study_block_view($delta = '') {
         if (isset($data['reading-lists:' . $lang . ':' . $next]) && $semester == $next) {
           if (count($data['reading-lists:' . $lang . ':' . $next]) > 1) {
             $items = array();
-            foreach($data['reading-lists:' . $lang . ':' . $current] as $d) {
+            foreach($data['reading-lists:' . $lang . ':' . $next] as $d) {
               $items[] = l(t('Class of ') . $d['class_label'], $d['url']);
             }
           }
