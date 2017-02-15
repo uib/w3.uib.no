@@ -1226,7 +1226,18 @@ jQuery( document ).ready( function($){
     collapsible: true,
     heightStyle: "content",
     active: false,
+    activate: function(event, ui) {
+      if (ui.newHeader.size()) {
+        if(history.pushState) {
+          history.pushState(null, null, '#' + $(event.target).attr('id'));
+        }
+      }
+    }
   });
+  if (window.location.hash) {
+    $(".uib-tabs-container > .tabs-content > div"
+      + window.location.hash).accordion('option', 'active', 0);
+  }
 });
 EOD;
 //   $jq='';

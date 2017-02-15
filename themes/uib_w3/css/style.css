@@ -5655,11 +5655,24 @@ body #mc_embed_signup div.mce_inline_error {
   border: none;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjEycHgiIGhlaWdodD0iN3B4IiB2aWV3Qm94PSIwIDAgMTIgNyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJPbXLDpWRlZm9yc2lkZS1qdXJpZGlzayIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM2Ni4wMDAwMDAsIC0yOTEuMDAwMDAwKSIgc3Ryb2tlPSIjMzMzMzMzIiBzdHJva2Utd2lkdGg9IjIiPgogICAgICAgICAgICA8ZyBpZD0iT21yw6VkZWlkZW50aWZpa2F0b3IvbWVueSIgc2tldGNoOnR5cGU9Ik1TTGF5ZXJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuMDAwMDAwLCA5Ni4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJPbXLDpWRlbWVueS1OT1JNQUwiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNC4wMDAwMDAsIDE3MC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMTUxLDIzIEwxNTUuMjU5NzY2LDI3Ljk3Mzc0NTUgTDE1MS4wNDEyNywzMi44OTkzMDMzIiBpZD0icGlsLTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1My4xMjk4ODMsIDI3Ljk0OTY1Mikgcm90YXRlKC0yNzAuMDAwMDAwKSB0cmFuc2xhdGUoLTE1My4xMjk4ODMsIC0yNy45NDk2NTIpICI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K');
   background-position: right 24px center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  -moz-transition-property: color, background-color;
+  -o-transition-property: color, background-color;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s; }
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header:hover, .node-type-uib-article .uib-tabs-container .ui-corner-all:hover {
+    background-color: #606060;
+    color: #f5f5f5; }
   .node-type-uib-article .uib-tabs-container .ui-accordion-header .ui-icon, .node-type-uib-article .uib-tabs-container .ui-corner-all .ui-icon {
     display: none; }
   .node-type-uib-article .uib-tabs-container .ui-accordion-header:last-child, .node-type-uib-article .uib-tabs-container .ui-corner-all:last-child {
     margin: 0; }
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header strong, .node-type-uib-article .uib-tabs-container .ui-corner-all strong {
+    font-weight: normal; }
 .node-type-uib-article .uib-tabs-container .ui-accordion-header.ui-state-active {
   border: none;
   background-color: #606060;
