@@ -250,7 +250,7 @@ function uib_setup_file_default_displays() {
     'colorbox_node_style' => 'content_sidebar',
     'colorbox_node_style_first' => '',
     'colorbox_image_style' => 'content_main_wide_1x',
-    'colorbox_gallery' => 'post',
+    'colorbox_gallery' => 'field_page',
     'colorbox_gallery_custom' => '',
     'colorbox_caption' => 'auto',
     'colorbox_caption_custom' => '',
