@@ -591,7 +591,10 @@ function uib_study_block_view($delta = '') {
         $semester = isset($_GET['sem']) ? $_GET['sem'] : uib_study__get_current_semester();
         if (isset($data['reading-lists:' . $lang . ':' . $previous]) && $semester == $previous) {
           if (count($data['reading-lists:' . $lang . ':' . $previous]) > 1) {
-            $block['content'] = 'Forrige';
+            $items = array();
+            foreach($data['reading-lists:' . $lang . ':' . $previous] as $d) {
+              $items[] = l(t('Class of ') . $d['class_label'], $d['url']);
+            }
           }
         }
         if (isset($data['reading-lists:' . $lang . ':' . $current]) && $semester == $current) {
@@ -600,19 +603,25 @@ function uib_study_block_view($delta = '') {
             foreach($data['reading-lists:' . $lang . ':' . $current] as $d) {
               $items[] = l(t('Class of ') . $d['class_label'], $d['url']);
             }
-            $block['content'] = array(
-              '#items' => $items,
-              '#theme' => 'item_list',
-              '#attributes' => array('class' => 'uib-reading-lists'),
-            );
           }
         }
         if (isset($data['reading-lists:' . $lang . ':' . $next]) && $semester == $next) {
           if (count($data['reading-lists:' . $lang . ':' . $next]) > 1) {
-            $block['content'] = 'Neste';
+            $items = array();
+            foreach($data['reading-lists:' . $lang . ':' . $current] as $d) {
+              $items[] = l(t('Class of ') . $d['class_label'], $d['url']);
+            }
           }
         }
-        if (isset($block['content'])) $block['title'] = t('Reading list');
+        if (!empty($items)) {
+          $block['title'] = t('Reading list');
+          $block['content'] = array(
+            '#items' => $items,
+            '#theme' => 'item_list',
+            '#attributes' => array('class' => 'uib-reading-lists'),
+          );
+
+        }
       }
       break;
     case 'study_email_offers':
