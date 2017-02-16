@@ -2818,3 +2818,76 @@ function uib_area__inferred_ou_parent(&$known_ids, $org_type, $ou_id) {
   }
   return $parent_id;
 }
+
+function uib_w3__tabsScript(){
+  $jq = <<<'EOD'
+jQuery( document ).ready( function($){
+  // Loading jquery ui.tabs
+  var selectors = [
+    '.profile .uib-tabs-container',
+    '.uib-tabs-container.offices',
+    '#block-uib-study-study-content>.content',
+  ];
+  $(selectors.join()).tabs(
+    {
+      beforeActivate: function(event, ui){
+        if(history.pushState) {
+          history.pushState(null, null, ui.newPanel.selector);
+        }
+        else {
+          window.location.hash = ui.newPanel.selector;
+        }
+      }
+  });
+  hash = location.hash;
+  if (navigator.userAgent.search('MSIE') != -1 && hash.length > 0) {
+    location.hash='';
+  }
+  $(selectors.join()).tabs('option', 'active', hash);
+  if(history.pushState && hash.length > 0) {
+    setTimeout(function(){
+      history.pushState(null, null, hash);
+    }, 1);
+  }
+  else if(hash.length > 0) {
+    window.location.hash = hash;
+  }
+  window.scrollTo(0, 0);
+  $(".ub-khib a").click(function() {
+    location.assign("http://www.khib.no/norsk/om-khib/biblioteket/");
+  });
+});
+EOD;
+//   $jq='';
+return $jq;
+}
+
+function uib_w3__accordion_script(){
+  $jq = <<<'EOD'
+jQuery( document ).ready( function($){
+  // Loading accordion (previously tabs)
+  // Create an independent accordion for each div
+  container = $(".uib-tabs-container > .tabs-content > div");
+  container.accordion({
+    header: "h2",
+    collapsible: true,
+    heightStyle: "content",
+    active: false,
+    activate: function(event, ui) {
+      if (ui.newHeader.size()) {
+        if(history.pushState) {
+          history.pushState(null, null, '#' + $(event.target).attr('id'));
+        }
+      }
+    }
+  });
+  if (window.location.hash) {
+    $(".uib-tabs-container > .tabs-content > div"
+      + window.location.hash).accordion('option', 'active', 0);
+  }
+});
+EOD;
+//   $jq='';
+return $jq;
+}
+
