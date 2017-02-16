@@ -1,3 +1,13 @@
+# Release 65 _2017_02_16_
+
+- Oppgradert moduler #17482
+- Fjernet crop-modulen som trenger litt mer arbeid før den kan brukes #17479
+- Lagt til en regel på studieprogram slik at alle p element får samme størrelse #17468
+- Støtte for video på norsk og engelsk på studieprogram #17390
+- Fjernet e-postboks på engelske studieprogram #17347
+- Lagt til støtte for visning av flere litteraturlister på emner #17142
+- Ny utforming på h2-tabs #16783
+
 # Release 64 _2017-02-02_
 
 I denne versjonen har vi gjort diverse forbedringer og feilrettinger.
