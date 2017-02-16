@@ -245,7 +245,7 @@ function uib_setup_file_default_displays() {
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_colorbox';
   $file_display->weight = 0;
-  $file_display->status = TRUE;
+  $file_display->status = FALSE;
   $file_display->settings = array(
     'colorbox_node_style' => 'content_sidebar',
     'colorbox_node_style_first' => '',
