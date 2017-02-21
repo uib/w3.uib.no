@@ -871,10 +871,12 @@ blockquote p {
 blockquote p::first-line {
   margin-left: 70px; }
 
-a {
+a,
+.ui-widget-content a {
   color: #00769e;
   text-decoration: none; }
-  a:hover {
+  a:hover,
+  .ui-widget-content a:hover {
     color: #00769e;
     text-decoration: underline; }
 
