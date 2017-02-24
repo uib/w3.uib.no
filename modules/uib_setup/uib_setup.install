@@ -267,3 +267,10 @@ function uib_setup_update_7027() {
 function uib_setup_update_7028() {
   module_enable(array('colorbox'));
 }
+
+/**
+ * Disable google_tag module
+ */
+function uib_setup_update_7029() {
+  module_disable(array('google_tag'));
+}
