@@ -614,7 +614,7 @@ function uib_study_block_view($delta = '') {
           }
         }
         if (!empty($items)) {
-          $block['title'] = t('Reading list');
+          $block['title'] = t('Reading lists');
           $block['content'] = array(
             '#items' => $items,
             '#theme' => 'item_list',
@@ -1785,9 +1785,10 @@ function uib_study__get_schedule_link($study_code, $semester, $classes) {
 }
 
 function uib_study__get_reading_list_link($path, $classes, $fragment = FALSE) {
+  $link_text = $fragment ? t('Reading lists') : t('Reading list');
   $reading_list = array(
     '#theme' => 'link',
-    '#text' => t('Reading list'),
+    '#text' => $link_text,
     '#path' => $path,
     '#options' => array(
       'attributes' => array('class' => $classes),
