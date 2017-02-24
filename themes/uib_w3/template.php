@@ -8,6 +8,9 @@
  *   The name of the template being rendered ("html" in this case.)
  */
 function uib_w3_preprocess_html(&$variables) {
+  if (!$variables['logged_in']) {
+    drupal_add_js("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(), event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window, document, 'script', 'dataLayer', 'GTM-KLPBXPW');", array('type' => 'inline', 'scope' => 'header', 'weight' => -99));
+  }
   drupal_add_js('//use.typekit.net/yfr2tzw.js', 'external');
   drupal_add_js('try{Typekit.load();}catch(e){}', 'inline');
   drupal_add_js("(function() {
@@ -815,6 +818,28 @@ EOD;
   if (__uib_w3__empty_region($variables['page']['footer_top'])) $variables['page']['footer_top'] = array();
 }
 
+
+/**
+ * Implements hook_page_alter().
+ */
+function uib_w3_page_alter(&$page) {
+  global $user;
+  if (in_array('anonymous user', $user->roles)) {
+    $page['#post_render'][] = 'uib_w3_gt_callback';
+  }
+}
+
+/**
+ * Implements callback_post_render()
+ */
+function uib_w3_gt_callback(&$children, $elements) {
+  $gt = '<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLPBXPW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->';
+  $children = preg_replace('@<body[^>]*>@', '$0' . $gt, $children, 1);
+  return $children;
+}
 /**
  * Override or insert variables into the node templates.
  *
