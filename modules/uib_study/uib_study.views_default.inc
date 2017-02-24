@@ -1459,6 +1459,7 @@ function uib_study_views_default_views() {
     2294 => '2294',
     2318 => '2318',
     2308 => '2308',
+    5338 => '5338',
   );
   $handler->display->display_options['filters']['term_node_tid_depth']['exposed'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator_id'] = 'term_node_tid_depth_op';
