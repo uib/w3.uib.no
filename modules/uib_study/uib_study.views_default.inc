@@ -673,10 +673,11 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['description'] = '- exchange agreements through which most UiB students may apply for exchange.';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['operator'] = 'term_node_tid_depth_1_op';
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['identifier'] = 'term_node_tid_depth_1';
+  $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth_1']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -697,9 +698,10 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by country or continent';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -735,9 +737,10 @@ function uib_study_views_default_views() {
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['label'] = 'Filter by study programme';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['operator'] = 'field_uib_study_code_value_op';
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['identifier'] = 'field_uib_study_code_value';
+  $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_code_value']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2119,10 +2122,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['label'] = 'Filter by ECTS credits';
   $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['operator'] = 'field_uib_study_points_rank_value_op';
   $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['identifier'] = 'studypoints_rank';
+  $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_points_rank_value']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2145,10 +2149,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['label'] = 'Filter by level';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator'] = 'field_uib_study_category_value_op';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['identifier'] = 'field_uib_study_category_value';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2173,10 +2178,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid']['expose']['label'] = 'Humanities and aesthetic studies';
   $handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
   $handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+  $handler->display->display_options['filters']['tid']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2209,10 +2215,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_1']['expose']['label'] = 'Teacher training and pedagogy';
   $handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
   $handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'tid_1';
+  $handler->display->display_options['filters']['tid_1']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['tid_1']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['tid_1']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2242,10 +2249,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_2']['expose']['label'] = 'Social sciences, law and psychology';
   $handler->display->display_options['filters']['tid_2']['expose']['operator'] = 'tid_2_op';
   $handler->display->display_options['filters']['tid_2']['expose']['identifier'] = 'tid_2';
+  $handler->display->display_options['filters']['tid_2']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['tid_2']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['tid_2']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2272,10 +2280,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_3']['expose']['label'] = 'Natural sciences and techincal subjects';
   $handler->display->display_options['filters']['tid_3']['expose']['operator'] = 'tid_3_op';
   $handler->display->display_options['filters']['tid_3']['expose']['identifier'] = 'tid_3';
+  $handler->display->display_options['filters']['tid_3']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['tid_3']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['tid_3']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2303,10 +2312,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['tid_4']['expose']['label'] = 'Health and welfare';
   $handler->display->display_options['filters']['tid_4']['expose']['operator'] = 'tid_4_op';
   $handler->display->display_options['filters']['tid_4']['expose']['identifier'] = 'tid_4';
+  $handler->display->display_options['filters']['tid_4']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['tid_4']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['tid_4']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2321,6 +2331,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['field'] = 'field_uib_study_code_value';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['operator'] = '!=';
   $handler->display->display_options['filters']['field_uib_study_code_value_1']['value'] = 'EKSTWEB100';
+  $handler->display->display_options['filters']['field_uib_study_code_value_1']['group'] = 1;
 
   /* Display: All studyprogrammes block */
   $handler = $view->new_display('block', 'All studyprogrammes block', 'studypr_all_b1');
@@ -2570,10 +2581,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['label'] = 'Filter by subject';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['operator'] = 'term_node_tid_depth_op';
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['identifier'] = 'term_node_tid_depth';
+  $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['term_node_tid_depth']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
@@ -2588,10 +2600,10 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
   $handler->display->display_options['filters']['field_uib_study_category_value']['field'] = 'field_uib_study_category_value';
   $handler->display->display_options['filters']['field_uib_study_category_value']['value'] = array(
-    'integrertemasterpr-profesjonsst' => 'integrertemasterpr-profesjonsst',
     'bachelorprogram' => 'bachelorprogram',
-    'arsstudium' => 'arsstudium',
     'masterprogram' => 'masterprogram',
+    'integrertemasterpr-profesjonsst' => 'integrertemasterpr-profesjonsst',
+    'arsstudium' => 'arsstudium',
   );
   $handler->display->display_options['filters']['field_uib_study_category_value']['group'] = 1;
   $handler->display->display_options['filters']['field_uib_study_category_value']['exposed'] = TRUE;
@@ -2599,10 +2611,11 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['label'] = 'Filter by level';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['operator'] = 'field_uib_study_category_value_op';
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['identifier'] = 'category';
+  $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_uib_study_category_value']['expose']['remember_roles'] = array(
     2 => '2',
-    1 => 0,
+    1 => '1',
     64272948 => 0,
     170699807 => 0,
     74573517 => 0,
