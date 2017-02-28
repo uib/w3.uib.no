@@ -6463,6 +6463,17 @@ body #mc_embed_signup div.mce_inline_error {
 .page-node-87344 .field-name-field-uib-view-information {
   font-size: 1.25rem;
   font-color: #606060; }
+.page-node-87344 .views-widget-filter-term_node_tid_depth .bef-checkboxes {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  display: flex;
+  flex-direction: column; }
+.page-node-87344 .views-widget-filter-term_node_tid_depth .form-item-edit-term-node-tid-depth-5338 {
+  -ms-order: -5;
+  -webkit-order: -5;
+  order: -5; }
 
 #uib-study-evu-courses-page-form {
   background: #fff;
