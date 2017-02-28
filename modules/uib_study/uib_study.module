@@ -823,7 +823,12 @@ EOD;
               if ($type == 'program' || $type == 'specialization') {
                 $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
                 if (!empty($plan['rows'])) {
-                  $construction_table_tab = $group_id;
+                  if ($group_type == 'oppbygging') {
+                    $construction_table_tab = $group_id;
+                  }
+                  else {
+                    $construction_table_tab = count($tab_items);
+                  }
                 }
               }
             }
@@ -862,15 +867,33 @@ EOD;
           );
           if ($construction_table_tab) {
             $table = uib_study__construction_table($plan, $type, $study_code);
-
-            $construction_table = array(
-              '#theme' => 'table',
-              '#caption' => $table['caption'],
-              '#rows' => $table['t_rows'],
-              '#attributes' => array('class' => 'uib-study-construction'),
-            );
-            if (isset($render[$construction_table_tab])) {
-              $render[$construction_table_tab]['construction']['#markup'] = render($construction_table);
+            if (is_numeric($construction_table_tab)) {
+              $group_title = t('Construction');
+              array_splice($tab_items, $construction_table_tab, 0, '<a href="#uib-tabs-construction">' . $group_title . '</a>');
+              $render['construction'] = array(
+                '#type' => 'html_tag',
+                '#tag' => 'h2',
+                '#value' => t('Programme structure'),
+              );
+              $render['construction table'] = array(
+                '#theme' => 'table',
+                '#caption' => $table['caption'],
+                '#rows' => $table['t_rows'],
+                '#attributes' => array('class' => 'uib-study-construction'),
+                '#prefix' => '<div id="uib-tabs-construction">',
+                '#suffix' => '</div>',
+              );
+            }
+            else {
+              $construction_table = array(
+                '#theme' => 'table',
+                '#caption' => $table['caption'],
+                '#rows' => $table['t_rows'],
+                '#attributes' => array('class' => 'uib-study-construction'),
+              );
+              if (isset($render[$construction_table_tab])) {
+                $render[$construction_table_tab]['construction']['#markup'] = render($construction_table);
+              }
             }
           }
           if ($type == 'program' || $type == 'specialization') {
