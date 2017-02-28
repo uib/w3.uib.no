@@ -429,7 +429,34 @@ function uib_user_user_view_alter(&$build) {
     // Add a relevant area link to name of connected ou
     if ($relevant_area = uib_user__ou_area($ou_nid, $build['#account']->uid)) {
       $area = entity_load_single('node', $relevant_area);
-      $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup'] = l($area->title, 'node/' . $relevant_area);
+
+      // Load all other connected areas:
+      $sql = db_select('node', 'n');
+      $sql->addField('n', 'nid');
+      $sql->innerJoin('field_data_field_uib_staff', 's', 's.entity_id=n.nid');
+      $sql->condition('n.language', array($language->language, 'und'));
+      $sql->condition('s.field_uib_staff_target_id', $build['#account']->uid);
+      $sql->condition('n.nid', $relevant_area, '<>');
+      $sql->orderBy('n.title');
+      $result = $sql->execute();
+      $areas = array();
+      foreach ($result as $key => $value) {
+        $a = entity_load_single('node', $value->nid);
+        $areas[] = $a;
+      }
+      // Prepend the most relevant area first
+      array_unshift($areas, $area);
+      for ($i = 0; $i<count($areas); $i++) {
+        if ($i == 0) {
+          $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup'] = '';
+        }
+        $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup']
+          .= l($areas[$i]->title, 'node/' . $areas[$i]->nid) . ' ';
+      }
+      $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#prefix'] =
+        '<div class="connected_areas">';
+      $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#suffix'] = '</div>';
+
     }
   }
   $position = $build['#account']->field_uib_position['nb'][0]['value'];

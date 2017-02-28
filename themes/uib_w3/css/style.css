@@ -6329,7 +6329,8 @@ body #mc_embed_signup div.mce_inline_error {
           line-height: 1; } }
 
 .field-name-field-uib-ou-title a {
-  font-size: 1.25rem; }
+  font-size: 1.25rem;
+  display: block; }
 
 .field-name-field-uib-position {
   font-size: 1.25rem; }
