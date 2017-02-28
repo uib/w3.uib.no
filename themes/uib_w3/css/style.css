@@ -648,6 +648,8 @@ button {
 
 #block-uib-study-study-content .content * {
   font-size: 1.25rem; }
+#block-uib-study-study-content .node-uib-testimonial .content * {
+  font-size: inherit; }
 #block-uib-study-study-content p {
   margin-top: 1.5rem; }
 #block-uib-study-study-content h3 + p,
