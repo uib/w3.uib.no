@@ -722,6 +722,7 @@ EOD;
       );
 
       $node = menu_get_object();
+      $dropdown = array();
       if ($node) {
         if (!empty($node->{'field_uib_main_media_' . $language->language})) {
           $study_media = field_view_field(
@@ -817,6 +818,7 @@ EOD;
               continue;
             $group_title_html_id = uib_study__clean_id_string($group_title);
             $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
+            $dropdown["uib-tabs-{$group_title_html_id}"] = $group_title;
             if ($group_type == 'presentasjon' || $group_type == 'oppbygging') {
               if ($type == 'program' || $type == 'specialization') {
                 $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
@@ -837,6 +839,27 @@ EOD;
               $first_tab = false;
             }
           }
+          $selectdropdown = array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('tabs-dropdown-menu'),
+            ),
+            'label' => array(
+              '#type' => 'html_tag',
+              '#tag' => 'label',
+              '#value' => reset($dropdown),
+              '#attributes' => array(
+                'for' => 'tabs-dropdown-menu-id',
+                'class' => 'tabs-dropdown-menu-label',
+              ),
+            ),
+            'selectbox' => array(
+              '#label' => 'Select section',
+              '#type' => 'select',
+              '#id' => 'tabs-dropdown-menu-id',
+              '#options' => $dropdown,
+            ),
+          );
           if ($construction_table_tab) {
             $table = uib_study__construction_table($plan, $type, $study_code);
 
@@ -948,9 +971,16 @@ EOD;
             ),
           );
         }
-        $block['content']['fspres'][] = $render;
+        if (count($dropdown)) {
+          $block['content'][] = $selectdropdown;
+        }
+         $block['content']['tabs'] = array(
+           '#type' =>'container',
+           '#attributes' => array('class' => array('studytabs')),
+         );
+        $block['content']['tabs']['fspres'][] = $render;
         if (isset($toc)) {
-          $block['content']['fspres']['#prefix'] = render($toc);
+          $block['content']['tabs']['fspres']['#prefix'] = render($toc);
         }
       }
       break;

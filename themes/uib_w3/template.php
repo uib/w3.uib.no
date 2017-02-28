@@ -554,6 +554,22 @@ EOD;
         // set menu to appear as tabs
         $jq = uib_w3__tabsScript();
         drupal_add_js($jq, 'inline');
+
+        // Script to enable dropdown instead of tabs on mobile phones
+        $js = <<<SCRIPT
+(function ($) {
+  $(document).ready(function ($) {
+    var hash = $('.ui-tabs li.ui-tabs-active > a').attr('href').substr(1);
+    $('#tabs-dropdown-menu-id').val(hash);
+    $('#tabs-dropdown-menu-id').change(function (event){
+      var id = $(this).find('option:selected').val();
+      var index = $('.ui-tabs-nav a[href="#' + id + '"]').parent().index();
+      $('.ui-tabs').tabs('option', 'active', index);
+    });
+  });
+})(jQuery);
+SCRIPT;
+        drupal_add_js($js, 'inline');
       }
       $variables['page']['content_top']['field_uib_study_type'] =
         field_view_field('node', $variables['node'], 'field_uib_study_category',

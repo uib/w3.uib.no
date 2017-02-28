@@ -5687,12 +5687,59 @@ body #mc_embed_signup div.mce_inline_error {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmVyc2lvbj0iMS4xIgogICB3aWR0aD0iMTIiCiAgIGhlaWdodD0iNyIKICAgdmlld0JveD0iMCAwIDEyIDciCiAgIGlkPSJzdmcyIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzOCIgLz4KICA8ZwogICAgIHRyYW5zZm9ybT0ibWF0cml4KC0xLDAsMCwtMSwxMi4yNTk3NjcsNS44OTkzMDQpIgogICAgIGlkPSJTa2lzc2VyLXNpZGVtYWxlciIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTpub25lIj4KICAgIDxnCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzY2LC0yOTEpIgogICAgICAgaWQ9Ik9tcsOlZGVmb3JzaWRlLWp1cmlkaXNrIgogICAgICAgc3R5bGU9InN0cm9rZTojZjVmNWY1O3N0cm9rZS13aWR0aDoyIj4KICAgICAgPGcKICAgICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUsOTYpIgogICAgICAgICBpZD0iT21yw6VkZWlkZW50aWZpa2F0b3IvbWVueSI+CiAgICAgICAgPGcKICAgICAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjQsMTcwKSIKICAgICAgICAgICBpZD0iT21yw6VkZW1lbnktTk9STUFMIj4KICAgICAgICAgIDxwYXRoCiAgICAgICAgICAgICBkPSJtIDE1MSwyMyA0LjI1OTc3LDQuOTczNzQ1IC00LjIxODUsNC45MjU1NTgiCiAgICAgICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLDEsLTEsMCwxODEuMDc5NTQsLTEyNS4xODAyMykiCiAgICAgICAgICAgICBpZD0icGlsLTEiIC8+CiAgICAgICAgPC9nPgogICAgICA8L2c+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K');
   margin: 0; }
 
-.node-type-uib-study.study-tabs .content-main-wrapper,
-.page-user.page-user- .content-main-wrapper {
-  border-top: solid 2px #d5d5d5; }
-  .node-type-uib-study.study-tabs .content-main-wrapper .region-content,
-  .page-user.page-user- .content-main-wrapper .region-content {
-    position: relative; }
+.node-type-uib-study.study-tabs .content-main-wrapper .region-content,
+.page-user.page-user- .content-main-wrapper .region-content {
+  position: relative; }
+.node-type-uib-study.study-tabs .tabs-dropdown-menu,
+.page-user.page-user- .tabs-dropdown-menu {
+  position: relative;
+  width: calc(100% + 2.5rem);
+  left: -1.25rem;
+  padding: 0 25% 0 1.25rem;
+  height: 40px;
+  border-bottom: 2px solid #d5d5d5;
+  background-color: #fff; }
+  .node-type-uib-study.study-tabs .tabs-dropdown-menu > label,
+  .page-user.page-user- .tabs-dropdown-menu > label {
+    display: none; }
+  .node-type-uib-study.study-tabs .tabs-dropdown-menu .form-item,
+  .page-user.page-user- .tabs-dropdown-menu .form-item {
+    border: 2px solid #d5d5d5;
+    border-bottom: 2px solid #f5f5f5;
+    background-color: #f5f5f5;
+    height: 40px;
+    margin: 0; }
+  .node-type-uib-study.study-tabs .tabs-dropdown-menu #tabs-dropdown-menu-id,
+  .page-user.page-user- .tabs-dropdown-menu #tabs-dropdown-menu-id {
+    display: block;
+    width: calc(100% - 36px);
+    color: #00769e;
+    font-size: 1.25rem;
+    background-color: transparent;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmVyc2lvbj0iMS4xIgogICB3aWR0aD0iMjciCiAgIGhlaWdodD0iMTYiCiAgIGlkPSJzdmcyIj4KICA8ZwogICAgIGlkPSJsYXllcjEiPgogICAgPHJlY3QKICAgICAgIHdpZHRoPSIyNyIKICAgICAgIGhlaWdodD0iMiIKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgaWQ9InJlY3QzODEyIgogICAgICAgc3R5bGU9ImZpbGw6IzAwNzY5ZTtzdHJva2U6bm9uZSIgLz4KICAgIDxyZWN0CiAgICAgICB3aWR0aD0iMjciCiAgICAgICBoZWlnaHQ9IjIiCiAgICAgICB4PSIwIgogICAgICAgeT0iNyIKICAgICAgIGlkPSJyZWN0MzgxMi0xIgogICAgICAgc3R5bGU9ImZpbGw6IzAwNzY5ZTtzdHJva2U6bm9uZSIgLz4KICAgIDxyZWN0CiAgICAgICB3aWR0aD0iMjciCiAgICAgICBoZWlnaHQ9IjIiCiAgICAgICB4PSIwIgogICAgICAgeT0iMTQiCiAgICAgICBpZD0icmVjdDM4MTItMiIKICAgICAgIHN0eWxlPSJmaWxsOiMwMDc2OWU7c3Ryb2tlOm5vbmUiIC8+CiAgPC9nPgo8L3N2Zz4K');
+    background-repeat: no-repeat;
+    background-position: right 0px top 6px;
+    border: none;
+    border-bottom: 2px solid #00769e;
+    margin: 5px 18px 2px 18px;
+    padding: 0;
+    height: 31px; }
+    .node-type-uib-study.study-tabs .tabs-dropdown-menu #tabs-dropdown-menu-id:hover,
+    .page-user.page-user- .tabs-dropdown-menu #tabs-dropdown-menu-id:hover {
+      cursor: pointer; }
+    .node-type-uib-study.study-tabs .tabs-dropdown-menu #tabs-dropdown-menu-id:focus,
+    .page-user.page-user- .tabs-dropdown-menu #tabs-dropdown-menu-id:focus {
+      outline: none; }
+.node-type-uib-study.study-tabs .item-list,
+.page-user.page-user- .item-list {
+  display: none; }
+@media (min-width: 600px) {
+  .node-type-uib-study.study-tabs .tabs-dropdown-menu,
+  .page-user.page-user- .tabs-dropdown-menu {
+    display: none; }
+  .node-type-uib-study.study-tabs .item-list,
+  .page-user.page-user- .item-list {
+    display: block; } }
 .node-type-uib-study.study-tabs .ui-tabs,
 .page-user.page-user- .ui-tabs {
   position: static;
