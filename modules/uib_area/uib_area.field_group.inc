@@ -141,6 +141,43 @@ function uib_area_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_event_info|node|uib_article|default';
+  $field_group->group_name = 'group_event_info';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_article_sidebar';
+  $field_group->data = array(
+    'label' => 'Event info',
+    'weight' => '33',
+    'children' => array(
+      0 => 'field_uib_registration_link',
+      1 => 'field_uib_location',
+      2 => 'field_uib_date',
+      3 => 'field_uib_event_type',
+      4 => 'field_uib_contacts',
+      5 => 'field_uib_deadline',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Event info',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group_event_info',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_event_info|node|uib_article|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_event_info|node|uib_article|form';
   $field_group->group_name = 'group_event_info';
   $field_group->entity_type = 'node';

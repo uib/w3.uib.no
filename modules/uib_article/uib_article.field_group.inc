@@ -23,16 +23,11 @@ function uib_article_field_group_info() {
     'label' => 'article-sidebar',
     'weight' => '5',
     'children' => array(
-      0 => 'field_uib_deadline',
-      1 => 'field_uib_files',
-      2 => 'field_uib_event_type',
-      3 => 'field_uib_date',
-      4 => 'field_uib_location',
-      5 => 'field_uib_media',
-      6 => 'field_uib_contacts',
-      7 => 'field_uib_fact_box',
-      8 => 'field_uib_registration_link',
-      9 => 'field_uib_links',
+      0 => 'field_uib_files',
+      1 => 'field_uib_fact_box',
+      2 => 'field_uib_links',
+      3 => 'field_uib_media',
+      4 => 'group_event_info',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -108,8 +103,8 @@ function uib_article_field_group_info() {
     'label' => 'Related content group',
     'weight' => '7',
     'children' => array(
-      0 => 'field_uib_relation',
-      1 => 'field_uib_related_content_label',
+      0 => 'field_uib_related_content_label',
+      1 => 'field_uib_relation',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -164,8 +159,8 @@ function uib_article_field_group_info() {
     'label' => 'Related persons group',
     'weight' => '6',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
