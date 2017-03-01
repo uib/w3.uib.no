@@ -868,8 +868,8 @@ EOD;
           if ($construction_table_tab) {
             $table = uib_study__construction_table($plan, $type, $study_code);
             if (is_numeric($construction_table_tab)) {
-              $group_title = t('Construction');
-              array_splice($tab_items, $construction_table_tab, 0, '<a href="#uib-tabs-construction">' . $group_title . '</a>');
+              $group_title = t('Programme structure');
+              array_splice($tab_items, $construction_table_tab, 0, '<a href="#uib-tabs-programme-structure">' . $group_title . '</a>');
               $render['construction'] = array(
                 '#type' => 'html_tag',
                 '#tag' => 'h2',
@@ -880,7 +880,7 @@ EOD;
                 '#caption' => $table['caption'],
                 '#rows' => $table['t_rows'],
                 '#attributes' => array('class' => 'uib-study-construction'),
-                '#prefix' => '<div id="uib-tabs-construction">',
+                '#prefix' => '<div id="uib-tabs-programme-structure">',
                 '#suffix' => '</div>',
               );
             }
