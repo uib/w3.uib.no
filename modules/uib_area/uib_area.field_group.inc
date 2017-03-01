@@ -151,8 +151,8 @@ function uib_area_field_group_info() {
     'label' => 'Event info',
     'weight' => '33',
     'children' => array(
-      0 => 'field_uib_registration_link',
-      1 => 'field_uib_location',
+      0 => 'field_uib_location',
+      1 => 'field_uib_registration_link',
       2 => 'field_uib_date',
       3 => 'field_uib_event_type',
       4 => 'field_uib_contacts',
@@ -163,7 +163,7 @@ function uib_area_field_group_info() {
       'label' => 'Event info',
       'instance_settings' => array(
         'id' => '',
-        'classes' => 'group_event_info',
+        'classes' => 'group-event-info',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
