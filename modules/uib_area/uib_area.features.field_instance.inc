@@ -2598,7 +2598,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'entityreference_label',
-        'weight' => 24,
+        'weight' => 42,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2665,7 +2665,7 @@ function uib_area_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 21,
+        'weight' => 40,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2739,7 +2739,7 @@ function uib_area_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 22,
+        'weight' => 43,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2808,7 +2808,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'i18n_list_default',
-        'weight' => 26,
+        'weight' => 39,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2944,7 +2944,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 27,
+        'weight' => 40,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3031,7 +3031,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 29,
+        'weight' => 42,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3305,7 +3305,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'uiblink_formatter',
-        'weight' => 30,
+        'weight' => 43,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3381,7 +3381,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 25,
+        'weight' => 41,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3595,7 +3595,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 28,
+        'weight' => 41,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -3737,7 +3737,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'link_default',
-        'weight' => 23,
+        'weight' => 44,
       ),
       'short_teaser' => array(
         'label' => 'above',
