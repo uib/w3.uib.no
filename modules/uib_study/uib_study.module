@@ -818,7 +818,8 @@ EOD;
               continue;
             $group_title_html_id = uib_study__clean_id_string($group_title);
             $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
-            $dropdown["uib-tabs-{$group_title_html_id}"] = $group_title;
+            $dropdown_titles[] = $group_title;
+            $dropdown_keys[] = "uib-tabs-{$group_title_html_id}";
             if ($group_type == 'presentasjon' || $group_type == 'oppbygging') {
               if ($type == 'program' || $type == 'specialization') {
                 $plan = uib_study__fspres_get_node_json($node->getIdentifier(), 'plan.json', TRUE);
@@ -844,27 +845,6 @@ EOD;
               $first_tab = false;
             }
           }
-          $selectdropdown = array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('tabs-dropdown-menu'),
-            ),
-            'label' => array(
-              '#type' => 'html_tag',
-              '#tag' => 'label',
-              '#value' => reset($dropdown),
-              '#attributes' => array(
-                'for' => 'tabs-dropdown-menu-id',
-                'class' => 'tabs-dropdown-menu-label',
-              ),
-            ),
-            'selectbox' => array(
-              '#label' => 'Select section',
-              '#type' => 'select',
-              '#id' => 'tabs-dropdown-menu-id',
-              '#options' => $dropdown,
-            ),
-          );
           if ($construction_table_tab) {
             $table = uib_study__construction_table($plan, $type, $study_code);
             if (is_numeric($construction_table_tab)) {
@@ -882,6 +862,18 @@ EOD;
                 '#attributes' => array('class' => 'uib-study-construction'),
                 '#prefix' => '<div id="uib-tabs-programme-structure">',
                 '#suffix' => '</div>',
+              );
+              array_splice(
+                $dropdown_titles,
+                $construction_table_tab,
+                0,
+                $group_title
+              );
+              array_splice(
+                $dropdown_keys,
+                $construction_table_tab,
+                0,
+                "uib-tabs-programme-structure"
               );
             }
             else {
@@ -915,6 +907,19 @@ EOD;
                   '#prefix' => '<div id="uib-tabs-specialization">',
                   '#suffix' => '</div>',
                 );
+                array_splice(
+                  $dropdown_titles,
+                  $tab_items_specialization_position,
+                  0,
+                  $group_title
+                );
+                array_splice(
+                  $dropdown_keys,
+                  $tab_items_specialization_position,
+                  0,
+                  "uib-tabs-specialization"
+                );
+
               }
             }
           }
@@ -982,6 +987,8 @@ EOD;
                   '#type' => 'markup',
                   '#markup' => '<div id="uib-tabs-student-reports">' . render($reports) . '</div>',
                 );
+                $dropdown_titles[] = $group_title;
+                $dropdown_keys[] = 'uib-tabs-student-reports';
               }
             }
           }
@@ -994,6 +1001,28 @@ EOD;
             ),
           );
         }
+        $dropdown = array_combine($dropdown_keys, $dropdown_titles);
+        $selectdropdown = array(
+          '#type' => 'container',
+          '#attributes' => array(
+            'class' => array('tabs-dropdown-menu'),
+          ),
+          'label' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'label',
+            '#value' => reset($dropdown),
+            '#attributes' => array(
+              'for' => 'tabs-dropdown-menu-id',
+              'class' => 'tabs-dropdown-menu-label',
+            ),
+          ),
+          'selectbox' => array(
+            '#label' => 'Select section',
+            '#type' => 'select',
+            '#id' => 'tabs-dropdown-menu-id',
+            '#options' => $dropdown,
+          ),
+        );
         if (count($dropdown)) {
           $block['content'][] = $selectdropdown;
         }
