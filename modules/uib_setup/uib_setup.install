@@ -274,3 +274,10 @@ function uib_setup_update_7028() {
 function uib_setup_update_7029() {
   module_disable(array('google_tag'));
 }
+
+/**
+ * Update file_type for files of mimetype application/rtf
+ */
+function uib_setup_update_7030() {
+  db_query("update file_managed set type = 'document' where filemime = 'application/rtf'");
+}
