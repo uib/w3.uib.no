@@ -1,4 +1,25 @@
-# Release 65 _2017_02_16_
+# Release 66 _2017-03-02_
+
+- Rettet en feil hvor studieløpstabellen viste på første fane på master #17510
+- Lagt til "er" på litteraturlister med mer enn én liste #17598
+- Lagt til ny kode for google tag manager #17609
+- Lagt til Fakultet for kunst, musikk og design som alternativ på søkeside for utvekslingsemner #17615
+- Rettet feil hvor vitnesbyrdene hadde for stor skrift på sider for studieprogram #17640
+- Rettet feil hvor tekstdokumenter ikke ble vist under fanene "Bibliotek" og "Mine filer" i forbindelse med bruk av vedlegg #17647
+- Justert visning av billedtekst på sider for studieprogram #17650
+- Flyttet boksen for arrangementsinformasjon over annen informasjon i sidespalten. Den nye rekkefølgen gjelder også i mobilmodus #17471
+- Rettet feil hvor brukere ikke var i stand til å slette RTF-filer #17646
+- Forbedret fanene på sider for studieinformasjon ved bruk av mobil #14817
+- Lagt til rette for visning av flere relaterte områder på personside #13822
+
+# Release 65.1 _2017-02-22_
+
+Endringer relatert til [h2-tabs-saken](https://rts.uib.no/issues/16783) i Release 65:
+
+- Justerte visningen av tabeller under faner #17612
+- Rettet feil som gjorde at lenker under faner ikke fikk blå farge #17605
+
+# Release 65 _2017-02-16_
 
 - Oppgradert moduler #17482
 - Fjernet crop-modulen som trenger litt mer arbeid før den kan brukes #17479
