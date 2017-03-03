@@ -244,12 +244,12 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_colorbox';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
+  $file_display->weight = -43;
+  $file_display->status = TRUE;
   $file_display->settings = array(
     'colorbox_node_style' => 'content_sidebar',
-    'colorbox_node_style_first' => '',
-    'colorbox_image_style' => 'content_main_wide_1x',
+    'colorbox_node_style_first' => 'content_main',
+    'colorbox_image_style' => 'content_main',
     'colorbox_gallery' => 'field_page',
     'colorbox_gallery_custom' => '',
     'colorbox_caption' => 'auto',
@@ -260,7 +260,7 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_file_default';
-  $file_display->weight = 0;
+  $file_display->weight = -44;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__content_sidebar__file_field_file_default'] = $file_display;
@@ -278,7 +278,7 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_file_table';
-  $file_display->weight = 0;
+  $file_display->weight = -49;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__content_sidebar__file_field_file_table'] = $file_display;
@@ -286,7 +286,7 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_file_url_plain';
-  $file_display->weight = 0;
+  $file_display->weight = -48;
   $file_display->status = FALSE;
   $file_display->settings = '';
   $export['image__content_sidebar__file_field_file_url_plain'] = $file_display;
@@ -294,7 +294,7 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__content_sidebar__file_field_media_large_icon';
-  $file_display->weight = 0;
+  $file_display->weight = -47;
   $file_display->status = FALSE;
   $file_display->settings = array(
     'image_style' => '',

@@ -442,6 +442,7 @@ features[user_role][] = admin
 features[user_role][] = level 1
 features[user_role][] = level 2
 features[user_role][] = level 3
+features[variable][] = colorbox_style
 features[variable][] = configurable_timezones
 features[variable][] = date_api_use_iso8601
 features[variable][] = date_default_timezone

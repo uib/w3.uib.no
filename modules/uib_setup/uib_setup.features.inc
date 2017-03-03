@@ -160,7 +160,7 @@ function uib_setup_image_default_styles() {
   $styles['content_sidebar'] = array(
     'label' => 'content_sidebar',
     'effects' => array(
-      16 => array(
+      2 => array(
         'name' => 'image_scale',
         'data' => array(
           'width' => 400,
