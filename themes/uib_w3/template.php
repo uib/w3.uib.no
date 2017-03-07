@@ -70,6 +70,32 @@ function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
+
+  // A wrapped node to be used by convienience
+  $wrapped_node = entity_metadata_wrapper('node', $variables['node']);
+
+  // Alternative image captions
+  $main_media_captions = array();
+  for (
+    $i = 0;
+    isset($wrapped_node->field_uib_imagecaptions)
+      && ($i < $wrapped_node->field_uib_imagecaptions->count());
+    $i++) {
+    $index =
+    $wrapped_node
+    ->field_uib_imagecaptions[$i]
+    ->field_uib_imageindex
+    ->value();
+    $caption =
+    $wrapped_node
+    ->field_uib_imagecaptions[$i]
+    ->field_uib_imagecaption
+    ->value();
+    $caption = trim($caption);
+    if ($caption == '' || $index == '') continue;
+    $main_media_captions[$index-1] = $caption == '0' ? '' : $caption;
+  }
+
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     $global_menu_lang = $variables['language']->language == 'nb' ? '-no' : '';
@@ -304,6 +330,16 @@ EOD;
         'label' => 'hidden',
         'weight' => -30,
       ));
+
+      //  Replace image description with node-specific image caption
+      $mm = &$variables['page']['content_top']['field_uib_main_media'];
+      for( $i = 0; $i < count($mm['#items']); $i++) {
+        if (array_key_exists($i, $main_media_captions)) {
+          $mm[$i]['field_uib_description'][0]['#markup'] =
+            $main_media_captions[$i];
+        }
+      }
+
       $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
         'weight' => '25',
       ));

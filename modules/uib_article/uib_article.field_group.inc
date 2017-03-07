@@ -23,10 +23,10 @@ function uib_article_field_group_info() {
     'label' => 'article-sidebar',
     'weight' => '5',
     'children' => array(
-      0 => 'field_uib_files',
-      1 => 'field_uib_fact_box',
-      2 => 'field_uib_links',
-      3 => 'field_uib_media',
+      0 => 'field_uib_fact_box',
+      1 => 'field_uib_media',
+      2 => 'field_uib_files',
+      3 => 'field_uib_links',
       4 => 'group_event_info',
     ),
     'format_type' => 'div',
@@ -58,20 +58,20 @@ function uib_article_field_group_info() {
     'label' => 'Information',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_area',
-      1 => 'field_uib_date',
-      2 => 'field_uib_text',
-      3 => 'field_uib_published_timestamp',
-      4 => 'field_uib_article_type',
-      5 => 'field_uib_kicker',
-      6 => 'field_uib_event_type',
-      7 => 'field_uib_external_author',
-      8 => 'field_uib_main_media',
-      9 => 'field_uib_lead',
-      10 => 'field_uib_search_keywords',
+      0 => 'field_uib_byline',
+      1 => 'field_uib_published_timestamp',
+      2 => 'field_uib_search_keywords',
+      3 => 'field_uib_kicker',
+      4 => 'field_uib_event_type',
+      5 => 'field_uib_lead',
+      6 => 'field_uib_date',
+      7 => 'field_uib_article_type',
+      8 => 'field_uib_area',
+      9 => 'field_uib_text',
+      10 => 'field_uib_external_author',
       11 => 'field_uib_show_global_calendar',
-      12 => 'field_uib_byline',
-      13 => 'title',
+      12 => 'title',
+      13 => 'group_main_media',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -93,6 +93,35 @@ function uib_article_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_main_media|node|uib_article|form';
+  $field_group->group_name = 'group_main_media';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_information';
+  $field_group->data = array(
+    'label' => 'Main media',
+    'weight' => '10',
+    'children' => array(
+      0 => 'field_uib_main_media',
+      1 => 'field_uib_imagecaptions',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-main-media field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_main_media|node|uib_article|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_related_content|node|uib_article|default';
   $field_group->group_name = 'group_related_content';
   $field_group->entity_type = 'node';
@@ -103,8 +132,8 @@ function uib_article_field_group_info() {
     'label' => 'Related content group',
     'weight' => '7',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -131,8 +160,8 @@ function uib_article_field_group_info() {
     'label' => 'Related content',
     'weight' => '20',
     'children' => array(
-      0 => 'field_uib_relation',
-      1 => 'field_uib_related_content_label',
+      0 => 'field_uib_related_content_label',
+      1 => 'field_uib_relation',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -159,8 +188,8 @@ function uib_article_field_group_info() {
     'label' => 'Related persons group',
     'weight' => '6',
     'children' => array(
-      0 => 'field_related_persons_label',
-      1 => 'field_uib_related_persons',
+      0 => 'field_uib_related_persons',
+      1 => 'field_related_persons_label',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -234,6 +263,7 @@ function uib_article_field_group_info() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Information');
+  t('Main media');
   t('Related content');
   t('Related content group');
   t('Related persons');

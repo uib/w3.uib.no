@@ -46,3 +46,65 @@
 .unpublished #page {
 	background-color: rgba(255, 0, 0, 0.08);
 }
+
+/**
+* Simple styling for main media with optional custom image caption
+*/
+.group-main-media fieldset{
+  border: none;
+  box-shadow: none;
+}
+.group-main-media fieldset legend{
+  margin-left: 0;
+  padding: 0;
+}
+html.js
+fieldset.collapsible.group-main-media
+.field-name-field-uib-imagecaptions
+.fieldset-legend{
+  background: none;
+  padding-left: 0;
+}
+.field-name-field-uib-imagecaptions .tabledrag-handle {
+  display: none;
+}
+.group-main-media .field-name-field-uib-main-media legend{
+  display: none;
+}
+.field-name-field-uib-imagecaptions
+.field-multiple-table
+td:not(.field-multiple-drag),
+.field-name-field-uib-imagecaptions
+.field-multiple-table
+td:not(.delta-order),
+.field-name-field-uib-imagecaptions
+.field-multiple-table
+td:not(.field-multiple-drag) > .ajax-new-content,
+.field-name-field-uib-imagecaptions
+.field-multiple-table
+td:not(.delta-order) > .ajax-new-content {
+	display: flex;
+	align-items: end;
+	flex-wrap: wrap;
+}
+.field-name-field-uib-imagecaption {
+  flex-grow: 2;
+}
+.field-name-field-uib-imagecaption textarea{
+	height: 46px;
+}
+.field-name-field-uib-imageindex {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+.field-name-field-uib-imageindex select{
+	height: 21px;
+	margin-bottom: 23px;
+}
+.field-name-field-uib-imagecaptions
+.field-multiple-table input.form-submit {
+  flex-grow: 1;
+  height: 23px;
+  margin-bottom: 41px;
+}
+
