@@ -764,6 +764,8 @@ img {
       border-top: solid 1px #d5d5d5;
       padding-top: 1rem; } }
 
+.field-name-field-uib-primary-media .element-invisible,
+.field-name-field-uib-bottom-media .element-invisible,
 .field-name-field-uib-main-media .element-invisible,
 .field-name-field-uib-media .element-invisible,
 .field-name-field-uib-study-image .element-invisible {
