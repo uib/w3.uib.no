@@ -236,14 +236,14 @@ function uib_search__form(){
           ),
         ),
         'right' => array(
-          '#type' => 'container',
+          '#type' => 'fieldset',
+          '#title' => t('Filter on content'),
           '#attributes' => array(
             'class' => array('right-selector'),
           ),
           'filters' => array(
             '#type' => 'checkboxes',
             '#id' => 'search-filter-checkboxes',
-            '#title' => t('Filter on content'),
             '#description' => t('Choose what results to return'),
             '#options' => array(
               'everything' => t('Everything'),

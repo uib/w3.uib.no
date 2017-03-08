@@ -86,7 +86,7 @@
           }, 300 );
       });
     }
-    $('.global-search .form-item-filters>label').click(function(event) {
+    $('.global-search .right-selector>legend').click(function(event) {
       if ($(this).css('background-image') !== 'none') {
         if(
           $(this).attr('data-toggle') == 'true'

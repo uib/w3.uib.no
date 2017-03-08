@@ -4503,8 +4503,9 @@ div.field-item {
         margin: 0; }
       .block-uib-search .lightbox .results-wrapper .right-selector {
         order: 1;
-        width: 100%; }
-        .block-uib-search .lightbox .results-wrapper .right-selector > div > label {
+        width: 100%;
+        border: 0; }
+        .block-uib-search .lightbox .results-wrapper .right-selector > legend {
           margin-bottom: 10px;
           font-size: 1.25rem;
           font-weight: bold;
@@ -4514,7 +4515,7 @@ div.field-item {
           background-position: right center;
           padding-right: 25px;
           display: inline-block; }
-          .block-uib-search .lightbox .results-wrapper .right-selector > div > label[data-toggle=true] {
+          .block-uib-search .lightbox .results-wrapper .right-selector > legend[data-toggle=true] {
             background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIGlkPSJzdmcyIgogICB2ZXJzaW9uPSIxLjEiCiAgIHZpZXdCb3g9IjAgMCAxMiA3IgogICBoZWlnaHQ9IjdweCIKICAgd2lkdGg9IjEycHgiPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTE3Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT5waWwgMTwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICA8dGl0bGUKICAgICBpZD0idGl0bGU0Ij5waWwgMTwvdGl0bGU+CiAgPGRlc2MKICAgICBpZD0iZGVzYzYiPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM4IiAvPgogIDxnCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MSIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMSwwLDAsLTEsMTIuMjU5NzY3LDYuNDU2NDE0OCkiCiAgICAgc2tldGNoOnR5cGU9Ik1TUGFnZSIKICAgICBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiPgogICAgPGcKICAgICAgIHN0eWxlPSJzdHJva2U6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MiIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0zNjYsLTI5MSkiCiAgICAgICBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIgogICAgICAgaWQ9Ik9tcsOlZGVmb3JzaWRlLWp1cmlkaXNrIj4KICAgICAgPGcKICAgICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUsOTYpIgogICAgICAgICBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIgogICAgICAgICBpZD0iT21yw6VkZWlkZW50aWZpa2F0b3IvbWVueSI+CiAgICAgICAgPGcKICAgICAgICAgICBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIgogICAgICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyNCwxNzApIgogICAgICAgICAgIGlkPSJPbXLDpWRlbWVueS1IT1ZFUi1vZy1BS1RJViI+CiAgICAgICAgICA8cGF0aAogICAgICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMCwxLC0xLDAsMTgxLjA3OTU0LC0xMjUuMTgwMjMpIgogICAgICAgICAgICAgaWQ9InBpbC0xIgogICAgICAgICAgICAgZD0ibSAxNTEsMjMgNC4yNTk3Nyw0Ljk3Mzc0NSAtNC4yMTg1LDQuOTI1NTU4IiAvPgogICAgICAgIDwvZz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg=='); }
         .block-uib-search .lightbox .results-wrapper .right-selector .form-checkboxes {
           height: 0;
@@ -4532,7 +4533,7 @@ div.field-item {
             padding-bottom: 8px; }
           .block-uib-search .lightbox .results-wrapper .right-selector .form-checkboxes label {
             color: #333; }
-        .block-uib-search .lightbox .results-wrapper .right-selector > div > label[data-toggle="true"] + .form-checkboxes {
+        .block-uib-search .lightbox .results-wrapper .right-selector > legend[data-toggle="true"] + div > div > div {
           height: 240px;
           overflow: visible; }
         .block-uib-search .lightbox .results-wrapper .right-selector .description {
@@ -4550,7 +4551,7 @@ div.field-item {
             flex-wrap: wrap; }
             .block-uib-search .lightbox .results-wrapper .right-selector .form-checkboxes label {
               color: #fff; }
-          .block-uib-search .lightbox .results-wrapper .right-selector > div > label {
+          .block-uib-search .lightbox .results-wrapper .right-selector > legend {
             font-size: 1.5rem;
             margin-bottom: 3px;
             height: auto;
