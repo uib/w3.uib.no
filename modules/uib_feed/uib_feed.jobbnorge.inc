@@ -36,6 +36,15 @@ function uib_feed__format_jobbnorge_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
   $content = uib_feed__get($url);
   if (!$content) {
+    $element['list'] = array(
+      '#items' => array(),
+      '#theme' => 'item_list',
+      '#attributes' => array(
+        'class' => 'uib-vacancies',
+      ),
+    );
+    $element['list']['title'] = "No response";
+    $element['list']['#items'][] = t('Open position entries cannot be retrieved at this moment');
     return $element;
   }
 
