@@ -12,3 +12,10 @@ function uib_sebra_update_7000() {
     ->execute();
   uibx_log("Fixed language for $n position field values");
 }
+
+/**
+ * Update variable holding the sebra cache url
+ */
+function uib_sebra_update_7001() {
+  variable_set('uib_sws_url', 'http://sws_cache.fd.uib.no/sws/');
+}
