@@ -868,6 +868,8 @@ p {
     font-size: 1.5rem; }
   p:last-child {
     margin-bottom: 0; }
+  p a {
+    word-break: break-all; }
 
 .content-top-wrapper p.field-name-field-uib-lead, .content-main-wrapper p.field-name-field-uib-lead {
   font-size: 1.5em;
