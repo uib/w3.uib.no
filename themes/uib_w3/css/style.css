@@ -5761,11 +5761,14 @@ body #mc_embed_signup div.mce_inline_error {
     font-size: 1.25rem;
     margin: 0; }
 
-.node-type-uib-article .uib-tabs-container .ui-accordion .ui-accordion-content {
+.node-type-uib-article .uib-tabs-container .ui-accordion .ui-accordion-content,
+.node-type-uib-content-list .uib-tabs-container .ui-accordion .ui-accordion-content {
   border: none;
   background: #FFF;
   padding: 29px 17px; }
-.node-type-uib-article .uib-tabs-container .ui-accordion-header, .node-type-uib-article .uib-tabs-container .ui-corner-all {
+.node-type-uib-article .uib-tabs-container .ui-accordion-header, .node-type-uib-article .uib-tabs-container .ui-corner-all,
+.node-type-uib-content-list .uib-tabs-container .ui-accordion-header,
+.node-type-uib-content-list .uib-tabs-container .ui-corner-all {
   padding: 14px 50px 17px 16px;
   color: #333333;
   background-color: #d5d5d5;
@@ -5784,16 +5787,25 @@ body #mc_embed_signup div.mce_inline_error {
   -o-transition-duration: 1s;
   -webkit-transition-duration: 1s;
   transition-duration: 1s; }
-  .node-type-uib-article .uib-tabs-container .ui-accordion-header:hover, .node-type-uib-article .uib-tabs-container .ui-corner-all:hover {
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header:hover, .node-type-uib-article .uib-tabs-container .ui-corner-all:hover,
+  .node-type-uib-content-list .uib-tabs-container .ui-accordion-header:hover,
+  .node-type-uib-content-list .uib-tabs-container .ui-corner-all:hover {
     background-color: #606060;
     color: #f5f5f5; }
-  .node-type-uib-article .uib-tabs-container .ui-accordion-header .ui-icon, .node-type-uib-article .uib-tabs-container .ui-corner-all .ui-icon {
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header .ui-icon, .node-type-uib-article .uib-tabs-container .ui-corner-all .ui-icon,
+  .node-type-uib-content-list .uib-tabs-container .ui-accordion-header .ui-icon,
+  .node-type-uib-content-list .uib-tabs-container .ui-corner-all .ui-icon {
     display: none; }
-  .node-type-uib-article .uib-tabs-container .ui-accordion-header:last-child, .node-type-uib-article .uib-tabs-container .ui-corner-all:last-child {
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header:last-child, .node-type-uib-article .uib-tabs-container .ui-corner-all:last-child,
+  .node-type-uib-content-list .uib-tabs-container .ui-accordion-header:last-child,
+  .node-type-uib-content-list .uib-tabs-container .ui-corner-all:last-child {
     margin: 0; }
-  .node-type-uib-article .uib-tabs-container .ui-accordion-header strong, .node-type-uib-article .uib-tabs-container .ui-corner-all strong {
+  .node-type-uib-article .uib-tabs-container .ui-accordion-header strong, .node-type-uib-article .uib-tabs-container .ui-corner-all strong,
+  .node-type-uib-content-list .uib-tabs-container .ui-accordion-header strong,
+  .node-type-uib-content-list .uib-tabs-container .ui-corner-all strong {
     font-weight: normal; }
-.node-type-uib-article .uib-tabs-container .ui-accordion-header.ui-state-active {
+.node-type-uib-article .uib-tabs-container .ui-accordion-header.ui-state-active,
+.node-type-uib-content-list .uib-tabs-container .ui-accordion-header.ui-state-active {
   border: none;
   background-color: #606060;
   color: #f5f5f5;
