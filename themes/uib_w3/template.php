@@ -266,7 +266,7 @@ EOD;
         '#attributes' => array('class' => 'uib_market_title'),
       );
     break;
-    case isset($variables['node']) && in_array($variables['node']->type, array('uib_content_list', 'uib_article')):
+    case isset($variables['node']) && $variables['node']->type == 'uib_content_list':
       drupal_add_library('system' , 'ui.accordion');
       // set menu to appear as tabs
       $jq = uib_w3__accordion_script();
@@ -280,6 +280,10 @@ EOD;
       if ($variables['node']->language != $variables['language']->language) {
         drupal_set_message($not_trans, 'warning');
       }
+      drupal_add_library('system' , 'ui.accordion');
+      // set menu to appear as tabs
+      $jq = uib_w3__accordion_script();
+      drupal_add_js($jq, 'inline');
       $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
         'label' => 'hidden',
         'weight' => -50,
