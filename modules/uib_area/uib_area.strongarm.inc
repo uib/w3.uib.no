@@ -96,6 +96,10 @@ function uib_area_strongarm() {
             'weight' => '23',
             'visible' => FALSE,
           ),
+          'short_teaser' => array(
+            'weight' => '0',
+            'visible' => FALSE,
+          ),
         ),
       ),
     ),

@@ -1087,6 +1087,22 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['content']['field_uib_main_media']['#suffix'] = '</div>';
       $variables['theme_hook_suggestions'][] = 'node__content_list__short_teaser';
     }
+    if ($variables['type'] == 'area' && $variables['view_mode'] == 'short_teaser') {
+      $variables['content']['field_uib_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
+        'label' => 'hidden',
+        'type' => 'file_rendered',
+        'settings' => array('file_view_mode' => 'wide_thumbnail'),
+        'weight' => 3,
+      ));
+      $variables['content']['field_uib_teaser'] = field_view_field('node', $variables['node'], 'field_uib_search_description', array(
+        'label' => 'hidden',
+        'weight' => 5,
+      ));
+      if (!empty($variables['content']['field_uib_teaser'])) {
+        $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
+      }
+      $variables['theme_hook_suggestions'][] = 'node__area__short_teaser';
+    }
   }
   if($variables['view_mode']=='short_teaser'){
     unset($variables['content']['links']);

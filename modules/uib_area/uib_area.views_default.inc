@@ -777,7 +777,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  /* Contextual filter: Content: Responsible (field_uib_ou) */
+  /* Contextual filter: Content: Place (field_uib_ou) */
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['id'] = 'field_uib_ou_target_id';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['table'] = 'field_data_field_uib_ou';
   $handler->display->display_options['arguments']['field_uib_ou_target_id']['field'] = 'field_uib_ou_target_id';
@@ -2355,6 +2355,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
+    'area' => 'area',
     'uib_article' => 'uib_article',
     'uib_content_list' => 'uib_content_list',
     'uib_testimonial' => 'uib_testimonial',
