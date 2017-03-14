@@ -948,6 +948,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['content']['field_uib_contacts']['#label_display'] = 'hidden';
       $article_info = __uib_w3__article_info($variables['node']);
       if (isset($variables['content']['field_uib_text'])) {
+        $variables['content']['field_uib_text'][0]['#markup'] = __uib_w3__add_table_wrapper($variables['content']['field_uib_text'][0]['#markup']);
         $variables['content']['field_uib_text'][0]['#markup'] = render($article_info) . $variables['content']['field_uib_text'][0]['#markup'];
       }
       else {
@@ -1293,4 +1294,9 @@ function __uib_w3__download_image_link($file) {
   $image_link = l($link_text, $uri['path'], $uri['options']);
   $output = '<div class="image--download-original clearfix">' . $image_link . '</div>';
   return $output;
+}
+
+function __uib_w3__add_table_wrapper($text) {
+  $text = str_replace(array('<table', '</table>'), array('<div class="uib-table-wrapper"><table', '</table></div>'), $text);
+  return $text;
 }
