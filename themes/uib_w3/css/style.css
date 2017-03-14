@@ -871,8 +871,6 @@ p {
     font-size: 1.5rem; }
   p:last-child {
     margin-bottom: 0; }
-  p a {
-    word-break: break-all; }
 
 .content-top-wrapper p.field-name-field-uib-lead, .content-main-wrapper p.field-name-field-uib-lead {
   font-size: 1.5em;
@@ -915,6 +913,10 @@ a,
 
 .content-main-wrapper #uib-tabs-studieplan {
   font-size: 1.25rem; }
+
+.content-bottom-wrapper a,
+.content-main-wrapper a {
+  word-break: break-all; }
 
 .node-type-area .media-vimeo-video,
 .node-type-area .media-youtube-video,
