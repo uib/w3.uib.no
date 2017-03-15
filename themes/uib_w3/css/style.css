@@ -820,7 +820,7 @@ th, td {
   width: 100%;
   overflow-x: scroll; }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 960px) {
   .uib-table-wrapper {
     max-width: 100%;
     width: 100%;
