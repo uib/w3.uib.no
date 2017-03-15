@@ -771,12 +771,6 @@ img {
 .field-name-field-uib-study-image .element-invisible {
   word-break: break-all; }
 
-.field-type-image .content .field {
-  font-size: 1.17rem; }
-  @media (min-width: 600px) {
-    .field-type-image .content .field {
-      font-size: 1rem; } }
-
 label {
   color: #333;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
@@ -840,13 +834,10 @@ html,
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
 
 html {
-  font-size: 85%;
+  font-size: 100%;
   line-height: 1.5;
   overflow-wrap: break-word;
   word-wrap: break-word; }
-  @media (min-width: 600px) {
-    html {
-      font-size: 100%; } }
 
 .header__wrapper,
 .subheader__wrapper,
@@ -1561,12 +1552,7 @@ a,
   .article-info .uib-date-info {
     padding: 0 1rem 0.5rem 1.875rem;
     background-size: 24px 24px;
-    display: inline-block;
-    font-size: 1.17rem; }
-    @media (min-width: 600px) {
-      .article-info .uib-news-byline,
-      .article-info .uib-date-info {
-        font-size: 1rem; } }
+    display: inline-block; }
   .article-info .uib-news-byline {
     background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjNweCIgdmlld0JveD0iMCAwIDIwIDIzIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5CbHlhbnQ8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJBcnRpa2tlbC0iIHNrZXRjaDp0eXBlPSJNU0FydGJvYXJkR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MjAuMDAwMDAwLCAtNTMyLjAwMDAwMCkiIGZpbGw9IiM2MDYwNjAiPgogICAgICAgICAgICA8ZyBpZD0iT3ZlcnNrcmlmdC1vZy1pbmdyZXNzIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjEuMDAwMDAwLCAzNDAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQnlsaW5lIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTkuMDAwMDAwLCAxOTIuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9IkJseWFudCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOS42MzQ4MTQ4LDIxLjk0NjQ1MTYgQzE5LjYzNDgxNDgsMjEuNzQzOTAzMiAxOS40NzU1NTU2LDIxLjU3OTkzNTUgMTkuMTQ0NDQ0NCwyMS41Nzk5MzU1IEwzLjczMTExMTExLDIxLjU3OTkzNTUgQzMuNCwyMS41Nzk5MzU1IDMuMjU0ODE0ODEsMjEuNzQzOTAzMiAzLjI1NDgxNDgxLDIxLjk0NjQ1MTYgQzMuMjU0ODE0ODEsMjIuMTQ5NzQxOSAzLjQsMjIuMzE0NDUxNiAzLjczMTExMTExLDIyLjMxNDQ1MTYgTDE5LjE0NDQ0NDQsMjIuMzE0NDUxNiBDMTkuNDc1NTU1NiwyMi4zMTQ0NTE2IDE5LjYzNDgxNDgsMjIuMTQ5NzQxOSAxOS42MzQ4MTQ4LDIxLjk0NjQ1MTYiIGlkPSJGaWxsLTEiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTQuODg1OTI1OTMsMTkuMjY1ODM4NyBMMy45NzI1OTI1OSwxOC42MTIxOTM1IEwxMi4yNTMzMzMzLDcuMDY2OTM1NDggTDExLjIyODg4ODksNi4zMzI0MTkzNSBMMi45NDgxNDgxNSwxNy44NzkxNjEzIEwyLjAzOTI1OTI2LDE3LjIyODQ4MzkgTDEwLjMxOTI1OTMsNS42ODE3NDE5NCBMOS40NDgxNDgxNSw1LjA1NzAzMjI2IEwxLjE2NzQwNzQxLDE2LjYwNTI1ODEgTDAuNjU2Mjk2Mjk2LDE5LjYwMDQ1MTYgTDAuNjYxNDgxNDgxLDE5LjYwOTM1NDggTDAuNjU0ODE0ODE1LDE5LjYwMzQxOTQgTDAuMzY1MTg1MTg1LDIxLjI2ODMyMjYgQzAuMzY1MTg1MTg1LDIxLjI2ODMyMjYgMC4xOTAzNzAzNywyMS44MjYyNTgxIDAuNjU5MjU5MjU5LDIyLjE2MDg3MSBDMS4xMjgxNDgxNSwyMi40OTg0NTE2IDEuNjAyMjIyMjIsMjIuMTUxOTY3NyAxLjYwMjIyMjIyLDIyLjE1MTk2NzcgTDMuMDg2NjY2NjcsMjEuMzQ0IEwzLjA3ODUxODUyLDIxLjMzODA2NDUgTDMuMDg3NDA3NDEsMjEuMzQxMDMyMyBMNS43NjI5NjI5NiwxOS44OTU3NDE5IEw1Ljc2NDQ0NDQ0LDE5Ljg5NTc0MTkgTDE0LjA0MzcwMzcsOC4zNDk3NDE5NCBMMTMuMTY1MTg1Miw3LjcyMDU4MDY1IEw0Ljg4NTkyNTkzLDE5LjI2NTgzODcgTDQuODg1OTI1OTMsMTkuMjY1ODM4NyBaIE0xNC45MzcwMzcsNi4xMDI0MTkzNSBMMTUuNDExMTExMSw2LjQ0Mjk2Nzc0IEwxNy4wMzE4NTE5LDQuMTgyMjkwMzIgQzE3LjQ0ODE0ODEsMy42MDUwNjQ1MiAxNy4xOTMzMzMzLDIuNzE0IDE2LjQ2NzQwNzQsMi4xOTM5MDMyMyBMMTQuNTE3MDM3LDAuNzk4MzIyNTgxIEMxMy43OTI1OTI2LDAuMjc4MjI1ODA2IDEyLjg2ODE0ODEsMC4zMjQyMjU4MDYgMTIuNDUzMzMzMywwLjkwMTQ1MTYxMyBMMTAuODMyNTkyNiwzLjE2MjEyOTAzIEwxNC40ODk2Mjk2LDUuNzgxOTAzMjMgTDE0LjkzNzAzNyw2LjEwMjQxOTM1IFogTTE0LjUzNDgxNDgsNi45NDE1NDgzOSBMMTAuNjM5MjU5Myw0LjE1MTg3MDk3IEMxMC40NDgxNDgxLDQuMDEzODcwOTcgMTAuMjA1OTI1OSw0LjAyNzIyNTgxIDEwLjA5NjI5NjMsNC4xNzc4Mzg3MSBMMTAuMDI2NjY2Nyw0LjI3NjUxNjEzIEM5LjkxNzAzNzA0LDQuNDI4NjEyOSA5Ljk4MzcwMzcsNC42NjMwNjQ1MiAxMC4xNzQ4MTQ4LDQuNzk5NTgwNjUgTDE0LjA3MDM3MDQsNy41ODkyNTgwNiBDMTQuMjYsNy43MjUwMzIyNiAxNC41MDQ0NDQ0LDcuNzE0NjQ1MTYgMTQuNjEyNTkyNiw3LjU2MjU0ODM5IEwxNC42ODIyMjIyLDcuNDY0NjEyOSBDMTQuNzkyNTkyNiw3LjMxMjUxNjEzIDE0LjcyNjY2NjcsNy4wNzg4MDY0NSAxNC41MzQ4MTQ4LDYuOTQxNTQ4MzkgTDE0LjUzNDgxNDgsNi45NDE1NDgzOSBaIiBpZD0iRmlsbC0yIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=') 0 0 no-repeat; }
   .article-info .uib-date-info {
@@ -1734,10 +1720,7 @@ a,
     margin: 0;
     padding: 0; }
     .uib_breadcrumb ol li {
-      font-size: 1.17rem; }
-      @media (min-width: 600px) {
-        .uib_breadcrumb ol li {
-          font-size: 1rem; } }
+      font-size: 1rem; }
   .uib_breadcrumb li {
     padding: 0; }
   .uib_breadcrumb li:not(:first-child):before {
@@ -1810,11 +1793,8 @@ a,
     .main-menu__expanded .menu__item li {
       border-bottom: solid 1px #dcd5cf;
       background: #fff;
-      font-size: 1.17rem;
+      font-size: 1rem;
       padding-left: 1rem; }
-      @media (min-width: 600px) {
-        .main-menu__expanded .menu__item li {
-          font-size: 1rem; } }
     .main-menu__expanded .menu__item a,
     .main-menu__expanded .menu__item li a {
       display: block;
@@ -5272,7 +5252,6 @@ nav {
   background: #eae6e2; }
 
 #block-uib-study-study-email-offers {
-  font-size: 1.17rem;
   color: #606060;
   margin-bottom: 1.25rem;
   clear: right; }
@@ -5319,9 +5298,6 @@ nav {
       clear: none; }
       #block-uib-study-study-email-offers.block {
         clear: right; } }
-  @media (min-width: 600px) {
-    #block-uib-study-study-email-offers {
-      font-size: 1rem; } }
   #block-uib-study-study-email-offers .study_promo_info {
     display: block;
     margin: 0 0 9px 0; }
