@@ -1088,6 +1088,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = 'node__content_list__short_teaser';
     }
     if ($variables['type'] == 'area' && $variables['view_mode'] == 'short_teaser') {
+      hide($variables['content']['language']);
       $variables['content']['field_uib_media'] = field_view_field('node', $variables['node'], 'field_uib_primary_media', array(
         'label' => 'hidden',
         'type' => 'file_rendered',
