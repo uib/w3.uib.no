@@ -972,7 +972,7 @@
               str_datetime.append(from);
             }
             if (!isNaN(event_to) && event_to) {
-              str_datetime.append('-');
+              str_datetime.append('&ndash;');
               str_datetime.append(to);
             }
             lft.append(
