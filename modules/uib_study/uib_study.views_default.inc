@@ -1132,7 +1132,7 @@ function uib_study_views_default_views() {
     176168899 => 0,
   );
   $handler->display->display_options['filters']['term_node_tid_depth']['vocabulary'] = 'uib_geography';
-  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '0';
+  $handler->display->display_options['filters']['term_node_tid_depth']['depth'] = '1';
   $translatables['exchange_agreements'] = array(
     t('Master'),
     t('more'),
