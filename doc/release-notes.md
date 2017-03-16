@@ -1,3 +1,18 @@
+# Release 67 _2017-03-16_
+
+- Rettet feil hvor faner (h2-tabs) ikke ble vist på sider i innholdslister #17726
+- Rettet feil hvor lange filnavn ødela visning på mobil #16989 #17693
+- Lagt til nytt felt for billedtekst (man kan nå overstyre teksten som følger med bildet) #17613
+- Lagt til mulighet for å filtrere på land eller kontinent på side for samarbeidsavtaler #16921
+- Lagt til mulighet for større (lightbox) visning av mindre bilder i sidespalten #15523
+- Lagt til rette for at også områder kan legges til som tilknyttet innhold #5871
+- Forbedret universell utforming av søket #17700
+- Forbedret visning av tabeller på mobil #17648
+- Forbedret visning av søkefelt og avkrysningsbokser på smale skjermer #17172
+- Forbedret visning av tid og sted ved søk etter arrangement #17161
+- Oppdatering av integrasjonen mot Sebra #17710
+- Sikkerhetsoppdatering av media-modulen #17282
+
 # Release 66 _2017-03-02_
 
 - Rettet en feil hvor studieløpstabellen viste på første fane på master #17510
