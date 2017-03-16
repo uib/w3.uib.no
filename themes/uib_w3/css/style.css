@@ -915,7 +915,9 @@ a,
 .node-type-uib-study .media-vimeo-video,
 .node-type-uib-study .media-youtube-video,
 .node-type-uib-article .media-vimeo-video,
-.node-type-uib-article .media-youtube-video {
+.node-type-uib-article .media-youtube-video,
+.node-type-uib-testimonial .media-vimeo-video,
+.node-type-uib-testimonial .media-youtube-video {
   position: relative;
   padding-bottom: 56.25%;
   height: 0; }
@@ -924,7 +926,9 @@ a,
   .node-type-uib-study .media-vimeo-video iframe,
   .node-type-uib-study .media-youtube-video iframe,
   .node-type-uib-article .media-vimeo-video iframe,
-  .node-type-uib-article .media-youtube-video iframe {
+  .node-type-uib-article .media-youtube-video iframe,
+  .node-type-uib-testimonial .media-vimeo-video iframe,
+  .node-type-uib-testimonial .media-youtube-video iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -932,7 +936,8 @@ a,
     height: 100%; }
 .node-type-area .full-width,
 .node-type-uib-study .full-width,
-.node-type-uib-article .full-width {
+.node-type-uib-article .full-width,
+.node-type-uib-testimonial .full-width {
   width: 100%; }
 
 .node-type-uib-study .field-name-field-uib-main-media {
