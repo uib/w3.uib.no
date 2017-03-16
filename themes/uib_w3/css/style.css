@@ -905,7 +905,9 @@ a,
 .content-main-wrapper #uib-tabs-studieplan {
   font-size: 1.25rem; }
 
-.content-main-wrapper a {
+.node-type-uib-article .region-content a,
+.node-type-uib-testimonial .region-content a,
+.page-user .region-content a {
   word-break: break-all; }
 
 .node-type-area .media-vimeo-video,
