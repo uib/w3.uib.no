@@ -107,4 +107,7 @@ td:not(.delta-order) > .ajax-new-content {
   height: 23px;
   margin-bottom: 41px;
 }
-
+.page-webdesk .more-link {
+  padding: 0.5rem 0.625rem;
+  text-align: left;
+}

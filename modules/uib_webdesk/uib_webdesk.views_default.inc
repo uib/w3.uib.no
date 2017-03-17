@@ -83,6 +83,10 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
   $handler->display->display_options['fields']['delete_node']['label'] = '';
   $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -125,7 +129,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['link_url'] = 'webdesk/my';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
@@ -173,6 +177,57 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Area */
+  $handler->display->display_options['fields']['field_uib_area']['id'] = 'field_uib_area';
+  $handler->display->display_options['fields']['field_uib_area']['table'] = 'field_data_field_uib_area';
+  $handler->display->display_options['fields']['field_uib_area']['field'] = 'field_uib_area';
+  $handler->display->display_options['fields']['field_uib_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_area']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Content: Published */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['not'] = 0;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = '';
+  $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
@@ -322,13 +377,13 @@ function uib_webdesk_views_default_views() {
     t('Title'),
     t('Area'),
     t('Published'),
+    t('Type'),
     t('Alle'),
     t('My simple content'),
     t('View panes'),
     t('Block'),
     t('Page'),
     t('more'),
-    t('Type'),
     t('Post date'),
   );
   $export['my_content'] = $view;
@@ -416,7 +471,7 @@ function uib_webdesk_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['block_description'] = 'my_uploaded_files';
 
@@ -597,6 +652,24 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
   /* Field: Scheduler: Publish on */
   $handler->display->display_options['fields']['publish_on']['id'] = 'publish_on';
   $handler->display->display_options['fields']['publish_on']['table'] = 'scheduler';
@@ -648,7 +721,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['use_more_text'] = 'mer';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
@@ -696,6 +769,50 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Scheduler: Publish on */
+  $handler->display->display_options['fields']['publish_on']['id'] = 'publish_on';
+  $handler->display->display_options['fields']['publish_on']['table'] = 'scheduler';
+  $handler->display->display_options['fields']['publish_on']['field'] = 'publish_on';
+  $handler->display->display_options['fields']['publish_on']['label'] = 'Publish';
+  $handler->display->display_options['fields']['publish_on']['date_format'] = 'short';
+  /* Field: Content: Delete link */
+  $handler->display->display_options['fields']['delete_node']['id'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['delete_node']['field'] = 'delete_node';
+  $handler->display->display_options['fields']['delete_node']['label'] = '';
+  $handler->display->display_options['fields']['delete_node']['element_label_colon'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $translatables['scheduled_content'] = array(
     t('Master'),
     t('My scheduled content'),
@@ -720,6 +837,7 @@ function uib_webdesk_views_default_views() {
     t('Alle'),
     t('Page'),
     t('more'),
+    t('Type'),
     t('Unpublish'),
     t('Area'),
     t('Block'),
@@ -2341,7 +2459,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['use_more_text'] = 'mer';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
