@@ -432,9 +432,11 @@ EOD;
     case isset($variables['node']) && $variables['node']->type == 'area':
       drupal_add_library('system' , 'ui.accordion');
       // set menu to appear as tabs
-      $jq = uib_w3__accordion_script();
-      drupal_add_js($jq, 'inline');
-      $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
+      if (!in_array($variables['node']->nid, array(1,2))) {
+        $jq = uib_w3__accordion_script();
+        drupal_add_js($jq, 'inline');
+        $variables['page']['content_top']['uib_area_offices'] = __uib_w3__render_block('uib_area', 'area_offices', -35);
+      }
       if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
         $view_mode = 'full_width_banner';
       }
