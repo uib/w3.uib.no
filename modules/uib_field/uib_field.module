@@ -49,6 +49,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'github' => array('https://github.com/', 'https://github.com/uib'),
     'linkedin' => array('https://linkedin.com/in/', 'https://linkedin.com/edu/school/15492'),
     'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net'),
+    'snapchat' => array('https://www.snapchat.com/add/', 'https://www.snapchat.com/add/'),
   );
   foreach ($items as $delta => $item) {
     $sm = explode(':', $item['safe_value']);
