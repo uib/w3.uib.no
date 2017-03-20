@@ -248,6 +248,14 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
 
   switch (true) {
+    case in_array('page__foremployees__market', $variables['theme_hook_suggestions']):
+      $variables['page']['content_top']['title'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => t('Internal market'),
+        '#weight' => -45,
+      );
+      break;
     case @$variables['page']['content']['views_recent_news-block_date_selector']:
       $jq = <<<'EOD'
       (function($) {
