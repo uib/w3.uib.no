@@ -2288,111 +2288,6 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-area-field_uib_text2'.
-  $field_instances['node-area-field_uib_text2'] = array(
-    'bundle' => 'area',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'This field contains the text that was known as "profiltekster" in the old version and was shown on the left side of the area page. ',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 19,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'module' => 'office_hours',
-        'settings' => array(
-          'closedformat' => 'Closed',
-          'compress' => FALSE,
-          'current_status' => array(
-            'closed_text' => 'Currently closed',
-            'open_text' => 'Currently open!',
-            'position' => 'hide',
-          ),
-          'date_first_day' => 1,
-          'daysformat' => 'long',
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'grouped' => FALSE,
-          'hoursformat' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-          'separator_day_hours' => ': ',
-          'separator_days' => '<br />',
-          'separator_grouped_days' => ' - ',
-          'separator_hours_hours' => '-',
-          'separator_more_hours' => ', ',
-          'showclosed' => 'all',
-          'timezone_field' => '',
-        ),
-        'type' => 'office_hours',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_text2',
-    'label' => 'w2 profile text',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'basic_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -7,
-            ),
-            'plain_text' => array(
-              'weight' => -10,
-            ),
-            'restricted_html' => array(
-              'weight' => -8,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_article-field_uib_area'.
   $field_instances['node-uib_article-field_uib_area'] = array(
     'bundle' => 'uib_article',
@@ -5723,7 +5618,6 @@ function uib_area_field_default_field_instances() {
   t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
-  t('This field contains the text that was known as "profiltekster" in the old version and was shown on the left side of the area page. ');
   t('This field is shown at the bottom of the area front page. ');
   t('This is a field level 1 users may use to add an image map to main media in an area.');
   t('This is a short category title which highlights the subject of the article. ');
@@ -5737,7 +5631,6 @@ function uib_area_field_default_field_instances() {
   t('Visit Address');
   t('Weight');
   t('w2 profile images');
-  t('w2 profile text');
 
   return $field_instances;
 }
