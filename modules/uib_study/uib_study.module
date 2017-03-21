@@ -1421,10 +1421,12 @@ EOD;
 function uib_study__get_testimonial() {
   $node = menu_get_object();
   if ($node) {
+    global $language;
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
      ->entityCondition('bundle', 'uib_testimonial')
      ->propertyCondition('status', 1)
+     ->propertyCondition('language', $language->language, '=')
      ->fieldCondition('field_uib_study_programmes', 'target_id', $node->nid);
     $result = $query->execute();
     if (!empty($result)) {
