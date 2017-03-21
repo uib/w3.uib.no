@@ -326,7 +326,7 @@ function uib_message_node_view($node, $view_mode, $langcode) {
     $message_area_print = '<span class="message-area-from">' . l(check_plain($message_area->title), "node/$message_area->nid") . '</span> ';
   }
   if ($link) {
-    $message .= ' <span class="message-link">' . l(t('Read more') . '…', $link) . '</span>';
+    $message .= ' <span class="message-link">' . l(htmlspecialchars(urldecode(substr(str_replace('http://','',$link),0,140))), $link) . '</span>';
   }
   $node->content['message_text'] = array(
     '#markup' => '<div class="message-text">' . $message . '</div>',

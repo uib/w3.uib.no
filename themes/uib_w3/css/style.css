@@ -7054,6 +7054,10 @@ body #mc_embed_signup div.mce_inline_error {
   .node-uib-message .message-text,
   .block-uib-message li .message-text {
     margin: 0.5rem 0; }
+    .node-uib-message .message-text .message-link,
+    .block-uib-message li .message-text .message-link {
+      clear: both;
+      display: block; }
   .node-uib-message .message-age,
   .block-uib-message li .message-age {
     color: #606060;

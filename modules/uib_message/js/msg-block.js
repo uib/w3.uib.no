@@ -170,7 +170,7 @@ function messageMarkup(i, json_obj, language) {
   markup +=  "<div class='message-tag'>" + Drupal.checkPlain(json_obj[i].tag) + "</div>"
          + " <div class='message-text'><span class='text'>" + Drupal.checkPlain(json_obj[i].text) + "</span>";
   if(json_obj[i].link) {
-    markup += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + Drupal.t('Read more') + "...</a></span></div>";
+    markup += " <span class='message-link'><a href='" + json_obj[i].link + "'>" + decodeURI(json_obj[i].link.replace("http://","").substring(0,140)) + "</a></span></div>";
   }
   markup += "<div class='message-area'><a href='"
           + arealink(Drupal.checkPlain(json_obj[i].area_link), language, Drupal.checkPlain(json_obj[i].tag))+ "'>"
