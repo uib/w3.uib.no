@@ -450,8 +450,10 @@ function uib_user_user_view_alter(&$build) {
         if ($i == 0) {
           $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup'] = '';
         }
-        $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup']
-          .= l($areas[$i]->title, 'node/' . $areas[$i]->nid) . ' ';
+        if (in_array($areas[$i]->field_uib_area_type['und'][0]['value'], array('faculty', 'institute', 'unit'))) {
+          $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#markup']
+            .= l($areas[$i]->title, 'node/' . $areas[$i]->nid) . ' ';
+        }
       }
       $build['field_uib_user_ou'][0]['node'][$ou_nid]['field_uib_ou_title'][0]['#prefix'] =
         '<div class="connected_areas">';
