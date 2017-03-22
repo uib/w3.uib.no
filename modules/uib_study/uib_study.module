@@ -2502,3 +2502,20 @@ function uib_study__get_study_facts_markup($label, $value) {
   $item .= '<span class="study-facts__value">' . $value . '</span>';
   return $item;
 }
+
+/**
+ * Returns value for study kicker
+ */
+function uib_study__get_study_kicker($value, $name) {
+  $values = array(
+    'undergraduate' => t('Undergraduate course'),
+    'postgraduate' => t('Postgraduate course'),
+    'phdkurs' => t('PhD course'),
+    'bachelorprogram' => t('Bachelor'),
+    'masterprogram' => t('Master'),
+    'integrertemasterpr-profesjonsst' => t('Integrated Master/Professional degree'),
+    'arsstudium' => t('One-year study'),
+    'forskningsavtale' => t('Bilateral'),
+  );
+  return array_key_exists($value, $values) ? $values[$value] : i18n_string_translate($name, $value);
+}

@@ -633,7 +633,7 @@ SCRIPT;
       $name = "field:field_uib_study_category:#allowed_values:" .
         $category;
       $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
-      i18n_string_translate($name, $category);
+      uib_study__get_study_kicker($category, $name);
 
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
