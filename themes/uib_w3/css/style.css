@@ -911,7 +911,14 @@ a,
 .node-type-uib-article .region-content a,
 .node-type-uib-testimonial .region-content a,
 .page-user .region-content a {
-  word-break: break-all; }
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  word-break: break-word;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto; }
 
 .node-type-area .media-vimeo-video,
 .node-type-area .media-youtube-video,
