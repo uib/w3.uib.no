@@ -281,3 +281,17 @@ function uib_setup_update_7029() {
 function uib_setup_update_7030() {
   db_query("update file_managed set type = 'document' where filemime = 'application/rtf'");
 }
+
+/**
+ * Delete w2 fields
+ */
+function uib_setup_update_7031() {
+  field_delete_field('field_uib_text2');
+  $instance = array(
+    'field_name' => 'field_uib_media',
+    'entity_type' => 'node',
+    'bundle' => 'area',
+  );
+  field_delete_instance($instance);
+  field_purge_batch(10);
+}
