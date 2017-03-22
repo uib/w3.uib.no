@@ -771,6 +771,9 @@ img {
 .field-name-field-uib-study-image .element-invisible {
   word-break: break-all; }
 
+.field-name-field-uib-media, .field-name-field-uib-study-image {
+  overflow: hidden; }
+
 label {
   color: #333;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
