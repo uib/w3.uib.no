@@ -49,6 +49,11 @@ function uib_feed__format_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
   $content = uib_feed__get($url);
   if (!$content) {
+    if ($title == 'Open Positions' || $title == 'Ledige stillinger') {
+      $element['list'] = array('#items' => array(),'#theme' => 'item_list');
+      $element['list']['#title'] = $title;
+      $element['list']['#items'][] = t('Open position entries cannot be retrieved at this moment');
+    }
     return $element;
   }
   $xml = @simplexml_load_string($content);
