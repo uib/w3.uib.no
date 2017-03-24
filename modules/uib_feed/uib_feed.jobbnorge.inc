@@ -40,7 +40,7 @@ function uib_feed__format_jobbnorge_pre_render($element) {
       '#items' => array(),
       '#theme' => 'item_list',
       '#attributes' => array(
-        'class' => 'uib-vacancies',
+        'class' => 'uib-vacancies-no-response',
       ),
     );
     $element['list']['title'] = "No response";
