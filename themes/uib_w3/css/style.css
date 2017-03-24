@@ -1722,7 +1722,7 @@ a,
     display: none; }
   @media (min-width: 600px) {
     .uib_breadcrumb {
-      margin-bottom: 3.125rem; } }
+      margin-bottom: 1.875rem; } }
   .banner-image .uib_breadcrumb {
     margin: 0 auto 3.125rem;
     max-width: 72rem; }
