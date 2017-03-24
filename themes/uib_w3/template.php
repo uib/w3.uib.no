@@ -586,15 +586,14 @@ EOD;
         $variables['page']['content_bottom']['field_uib_study_relation']['#title'] = $tmpVar[0]['#markup'];
       }
 
-      foreach (
-        $variables['page']['content_bottom']['field_uib_study_relation']['#items']
-          as $k => $e
-      ) {
-        if (
-          $e['entity']->language != 'und' &&
-          $e['entity']->language != $variables['language']->language
-        ) {
-          unset($variables['page']['content_bottom']['field_uib_study_relation']['#items'][$k]);
+      if (!empty($variables['page']['content_bottom']['field_uib_study_relation']['#items'])) {
+        foreach ($variables['page']['content_bottom']['field_uib_study_relation']['#items'] as $k => $e) {
+          if (
+            $e['entity']->language != 'und' &&
+            $e['entity']->language != $variables['language']->language
+          ) {
+            unset($variables['page']['content_bottom']['field_uib_study_relation']['#items'][$k]);
+          }
         }
       }
 

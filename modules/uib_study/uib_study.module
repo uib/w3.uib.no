@@ -804,6 +804,8 @@ EOD;
           }, $nid);
         }
 
+        $dropdown_titles = array();
+        $dropdown_keys = array();
         $study_code = $node->field_uib_study_code->value();
         if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
