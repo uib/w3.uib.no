@@ -24,6 +24,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -89,6 +90,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -303,6 +305,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'area_bottom',
           'linked_field' => array(
             'advanced' => array(
@@ -398,6 +401,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -718,6 +722,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -809,6 +814,7 @@ function uib_area_field_default_field_instances() {
           'edit' => 'Edit',
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -1093,6 +1099,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'area_main',
           'linked_field' => array(
             'advanced' => array(
@@ -1189,6 +1196,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -1281,6 +1289,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
           'linked_field' => array(
             'advanced' => array(
@@ -1351,6 +1360,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => 1,
           'linked_field' => array(
             'advanced' => array(
@@ -1419,6 +1429,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -1449,6 +1460,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             0 => 'address',
           ),
@@ -1779,6 +1791,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -1806,6 +1819,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -1930,6 +1944,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -2136,6 +2151,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -2328,6 +2344,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => 1,
           'linked_field' => array(
             'advanced' => array(
@@ -2401,6 +2418,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => 1,
           'linked_field' => array(
             'advanced' => array(
@@ -2463,6 +2481,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_type' => 'long',
           'fromto' => 'both',
           'linked_field' => array(
@@ -2537,6 +2556,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_type' => 'long',
           'fromto' => 'both',
           'linked_field' => array(
@@ -2612,6 +2632,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -2748,6 +2769,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -2834,6 +2856,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'default',
           'linked_field' => array(
             'advanced' => array(
@@ -2916,6 +2939,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -2943,6 +2967,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3018,6 +3043,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3039,6 +3065,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3060,6 +3087,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3109,6 +3137,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3185,6 +3214,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3271,6 +3301,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'content_main',
           'linked_field' => array(
             'advanced' => array(
@@ -3293,6 +3324,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'wide_thumbnail',
           'linked_field' => array(
             'advanced' => array(
@@ -3315,6 +3347,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'wide_thumbnail',
           'linked_field' => array(
             'advanced' => array(
@@ -3398,6 +3431,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'content_sidebar',
           'linked_field' => array(
             'advanced' => array(
@@ -3541,6 +3575,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3619,6 +3654,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3739,6 +3775,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3826,6 +3863,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3913,6 +3951,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -3940,6 +3979,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4015,6 +4055,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4078,6 +4119,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'geofield_map_baselayers_hybrid' => 1,
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
@@ -4128,6 +4170,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'geofield_map_baselayers_hybrid' => 0,
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
@@ -4208,6 +4251,7 @@ function uib_area_field_default_field_instances() {
           'daysformat' => 'long',
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'grouped' => FALSE,
           'hoursformat' => 0,
           'linked_field' => array(
@@ -4253,6 +4297,7 @@ function uib_area_field_default_field_instances() {
           'daysformat' => 'short',
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'grouped' => 0,
           'hoursformat' => 0,
           'linked_field' => array(
@@ -4308,6 +4353,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4335,6 +4381,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4411,6 +4458,7 @@ function uib_area_field_default_field_instances() {
           'decimal_separator' => '.',
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4476,6 +4524,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4536,6 +4585,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'file_view_mode' => 'default',
           'linked_field' => array(
             'advanced' => array(
@@ -4632,6 +4682,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4693,6 +4744,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4720,6 +4772,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4769,6 +4822,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4790,6 +4844,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4871,6 +4926,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4898,6 +4954,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -4949,6 +5006,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             0 => 'address',
           ),
@@ -4974,6 +5032,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 'address-hide-country',
@@ -5043,6 +5102,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             0 => 'address',
           ),
@@ -5068,6 +5128,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 'address-hide-country',
@@ -5094,6 +5155,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             0 => 'address',
           ),
@@ -5208,6 +5270,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
           'linked_field' => array(
             'advanced' => array(
@@ -5267,6 +5330,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -5349,6 +5413,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
           'linked_field' => array(
             'advanced' => array(
@@ -5408,6 +5473,7 @@ function uib_area_field_default_field_instances() {
         'settings' => array(
           'field_multiple_limit' => -1,
           'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
