@@ -36,16 +36,15 @@ function uib_feed__format_jobbnorge_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
   $content = uib_feed__get($url);
   if (!$content) {
-    $element['list'] = array(
-      '#items' => array(),
-      '#theme' => 'item_list',
+    $elm['empty']['jobbnorge']['no_response'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => t('Open position entries cannot be retrieved at this moment'),
       '#attributes' => array(
         'class' => 'uib-vacancies-no-response',
       ),
     );
-    $element['list']['title'] = "No response";
-    $element['list']['#items'][] = t('Open position entries cannot be retrieved at this moment');
-    return $element;
+    return $elm;
   }
 
   $content = str_replace('jn:', '', $content);  // make namespaced element regular elements
