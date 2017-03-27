@@ -4443,11 +4443,9 @@ div.field-item {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap; }
-      @media (min-width: 600px) {
+      @media (min-width: 780px) {
         .block-uib-search .lightbox .search-wrapper {
-          padding: 1.75rem 0 0; } }
-      @media (min-width: 72rem) {
-        .block-uib-search .lightbox .search-wrapper {
+          padding: 1.75rem 0 0;
           margin: 0 auto; } }
       .block-uib-search .lightbox .search-wrapper .form-type-textfield {
         -ms-flex: 0 1 80%;
