@@ -2336,7 +2336,7 @@ function uib_area_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => 'entityreference_prepopulate_field_default_value',
     'deleted' => 0,
-    'description' => 'Add the author of the content. Use UiB usernames to search for people.',
+    'description' => 'Add the author of the content. Use UiB usernames to search for people. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -2384,7 +2384,10 @@ function uib_area_field_default_field_instances() {
           'action' => 'none',
           'action_on_edit' => 0,
           'fallback' => 'none',
-          'og_context' => 0,
+          'providers' => array(
+            'og_context' => FALSE,
+            'url' => 1,
+          ),
           'skip_perm' => 0,
           'status' => 1,
         ),
@@ -2409,8 +2412,9 @@ function uib_area_field_default_field_instances() {
   $field_instances['node-uib_article-field_uib_contacts'] = array(
     'bundle' => 'uib_article',
     'default_value' => NULL,
+    'default_value_function' => '',
     'deleted' => 0,
-    'description' => 'The person to contact for information related to the event. Use UiB usernames to search for people. ',
+    'description' => 'The person to contact for information related to the event. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2453,6 +2457,11 @@ function uib_area_field_default_field_instances() {
     'label' => 'Contacts',
     'required' => 0,
     'settings' => array(
+      'behaviors' => array(
+        'prepopulate' => array(
+          'status' => 0,
+        ),
+      ),
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
     ),
@@ -2761,7 +2770,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box. ',
+    'description' => 'Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -2809,6 +2818,7 @@ function uib_area_field_default_field_instances() {
           'full_html' => 'full_html',
           'plain_text' => 0,
           'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
@@ -2826,6 +2836,9 @@ function uib_area_field_default_field_instances() {
             'restricted_html' => array(
               'weight' => -50,
             ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
           ),
         ),
       ),
@@ -2837,6 +2850,10 @@ function uib_area_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -3767,7 +3784,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Note: Typing text in "Heading 2" creates an accordion tab on the webpage (not an ordinary heading). This is useful if you want to save space and make an accordion menu.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3815,6 +3832,7 @@ function uib_area_field_default_field_instances() {
           'full_html' => 'full_html',
           'plain_text' => 0,
           'restricted_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
@@ -3832,6 +3850,9 @@ function uib_area_field_default_field_instances() {
             'restricted_html' => array(
               'weight' => -49,
             ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
           ),
         ),
       ),
@@ -3843,6 +3864,10 @@ function uib_area_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 30,
       ),
       'type' => 'text_textarea',
@@ -5520,7 +5545,7 @@ function uib_area_field_default_field_instances() {
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
-  t('Add the author of the content. Use UiB usernames to search for people.');
+  t('Add the author of the content. Use UiB usernames to search for people. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a rss feed to the right sidebar');
   t('An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)');
@@ -5569,6 +5594,7 @@ function uib_area_field_default_field_instances() {
   t('Media');
   t('Menu style');
   t('Name');
+  t('Note: Typing text in "Heading 2" creates an accordion tab on the webpage (not an ordinary heading). This is useful if you want to save space and make an accordion menu.');
   t('Offices');
   t('Organisational unit');
   t('Parents');
@@ -5602,7 +5628,7 @@ function uib_area_field_default_field_instances() {
   t('Tertiary text');
   t('Text');
   t('The address for the location of the event. ');
-  t('The person to contact for information related to the event. Use UiB usernames to search for people. ');
+  t('The person to contact for information related to the event. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
@@ -5615,7 +5641,7 @@ function uib_area_field_default_field_instances() {
   t('Title');
   t('Type');
   t('Use this field for important messages that requires the immediate attention of the reader like for instance in case of a crisis or other important events. ');
-  t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box. ');
+  t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
   t('Visit Address');
   t('Weight');
 

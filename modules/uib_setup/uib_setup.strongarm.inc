@@ -848,7 +848,8 @@ webdesk/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_extra_info';
-  $strongarm->value = 'Use these fields if you wish to set a specific time to publish or unpublish an article. It is possible to decide both date and time. It is only possible to publish on whole hours. ';
+  $strongarm->value = '<p>Bruk disse feltene hvis du ønsker å legge inn et spesifikt publiserings- eller avpubliseringstidspunkt. Det er mulig å bestemme både dato og klokkeslett. Det er bare mulig å publisere hver hele time.</p>
+<p>Use these fields if you wish to set a specific time to publish or unpublish an article. It is possible to decide both date and time. It is only possible to publish on whole hours.</p>';
   $export['scheduler_extra_info'] = $strongarm;
 
   $strongarm = new stdClass();
