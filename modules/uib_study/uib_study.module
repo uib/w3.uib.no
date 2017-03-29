@@ -804,8 +804,6 @@ EOD;
           }, $nid);
         }
 
-        $dropdown_titles = array();
-        $dropdown_keys = array();
         $study_code = $node->field_uib_study_code->value();
         if ($type == 'program' || $type == 'specialization' || ($type == 'exchange' && (!in_array($study_category, array('forskningsavtale', 'mou'))))) {
           $tab_items = array();
@@ -1003,30 +1001,32 @@ EOD;
             ),
           );
         }
-        $dropdown = array_combine($dropdown_keys, $dropdown_titles);
-        $selectdropdown = array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('tabs-dropdown-menu'),
-          ),
-          'label' => array(
-            '#type' => 'html_tag',
-            '#tag' => 'label',
-            '#value' => reset($dropdown),
+        if (isset($dropdown_keys) && isset($dropdown_titles)) {
+          $dropdown = array_combine($dropdown_keys, $dropdown_titles);
+          $selectdropdown = array(
+            '#type' => 'container',
             '#attributes' => array(
-              'for' => 'tabs-dropdown-menu-id',
-              'class' => 'tabs-dropdown-menu-label',
+              'class' => array('tabs-dropdown-menu'),
             ),
-          ),
-          'selectbox' => array(
-            '#label' => 'Select section',
-            '#type' => 'select',
-            '#id' => 'tabs-dropdown-menu-id',
-            '#options' => $dropdown,
-          ),
-        );
-        if (count($dropdown)) {
-          $block['content'][] = $selectdropdown;
+            'label' => array(
+              '#type' => 'html_tag',
+              '#tag' => 'label',
+              '#value' => reset($dropdown),
+              '#attributes' => array(
+                'for' => 'tabs-dropdown-menu-id',
+                'class' => 'tabs-dropdown-menu-label',
+              ),
+            ),
+            'selectbox' => array(
+              '#label' => 'Select section',
+              '#type' => 'select',
+              '#id' => 'tabs-dropdown-menu-id',
+              '#options' => $dropdown,
+            ),
+          );
+          if (count($dropdown)) {
+            $block['content'][] = $selectdropdown;
+          }
         }
          $block['content']['tabs'] = array(
            '#type' =>'container',
