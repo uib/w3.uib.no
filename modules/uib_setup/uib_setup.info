@@ -581,7 +581,6 @@ features[variable][] = site_default_country
 features[variable][] = site_mail
 features[variable][] = site_name
 features[variable][] = translation_language_type
-features[variable][] = uib_sws_url
 features[variable][] = update_check_disabled
 features[variable][] = update_check_frequency
 features[variable][] = update_notification_threshold
