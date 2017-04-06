@@ -339,10 +339,12 @@ EOD;
         'weight' => -30,
       ));
 
-      //  Replace image description with node-specific image caption
       $mm = &$variables['page']['content_top']['field_uib_main_media'];
       for( $i = 0; $i < count($mm['#items']); $i++) {
         if (array_key_exists($i, $main_media_captions)) {
+          if (empty($mm[$i]['field_uib_description'])) {
+            $mm['#items'][$i]['field_uib_description'] = array('#type' => 'html_tag', '#tag' => 'div');
+          }
           $mm[$i]['field_uib_description'][0]['#markup'] =
             $main_media_captions[$i];
         }
