@@ -71,7 +71,7 @@ function uib_testimonial_strongarm() {
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '4',
             'visible' => FALSE,
           ),
           'teaser' => array(

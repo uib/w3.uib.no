@@ -22,7 +22,7 @@ function uib_testimonial_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -103,7 +103,7 @@ function uib_testimonial_field_default_field_instances() {
           'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
-        'weight' => 3,
+        'weight' => 18,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -173,7 +173,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 21,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -235,7 +235,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 22,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -297,7 +297,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 23,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -437,7 +437,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 4,
+        'weight' => 1,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -553,7 +553,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 17,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -631,7 +631,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 20,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -693,7 +693,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 19,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -878,7 +878,7 @@ function uib_testimonial_field_default_field_instances() {
           'view_mode' => 'short_teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -944,7 +944,7 @@ function uib_testimonial_field_default_field_instances() {
           'uib_study_link' => 1,
         ),
         'type' => 'uib_study_title_formatter',
-        'weight' => 11,
+        'weight' => 24,
       ),
       'short_teaser' => array(
         'label' => 'above',

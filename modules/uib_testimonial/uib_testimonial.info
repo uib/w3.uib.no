@@ -33,6 +33,7 @@ features[field_group][] = group_article_main|node|uib_testimonial|default
 features[field_group][] = group_article_sidebar|node|uib_testimonial|default
 features[field_group][] = group_information|node|uib_testimonial|form
 features[field_group][] = group_sidebar|node|uib_testimonial|form
+features[field_group][] = group_uib_testimonial_personalia|node|uib_testimonial|default
 features[field_instance][] = node-uib_testimonial-field_uib_area
 features[field_instance][] = node-uib_testimonial-field_uib_birth_year
 features[field_instance][] = node-uib_testimonial-field_uib_education

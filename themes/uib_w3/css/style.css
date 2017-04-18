@@ -1680,6 +1680,69 @@ a,
       color: #333;
       line-height: 1.25; }
 
+.group-uib-testimonial-personalia {
+  background: #fff; }
+  .group-uib-testimonial-personalia h3 {
+    background: #cf3c3a;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1.4rem;
+    position: relative;
+    margin: 0 0 40px 0;
+    padding: 16px 5% 0 5%;
+    line-height: 1.4rem;
+    font-weight: normal; }
+    .group-uib-testimonial-personalia h3:empty {
+      display: none; }
+    .group-uib-testimonial-personalia h3 a {
+      color: #fff; }
+    .group-uib-testimonial-personalia h3:after {
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 16px solid #cf3c3a;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      bottom: -1rem;
+      overflow: hidden; }
+  .group-uib-testimonial-personalia p + h3 {
+    margin-top: 2rem; }
+  .group-uib-testimonial-personalia h4 {
+    margin: 1.5rem 10% 1.5rem 12%;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  .group-uib-testimonial-personalia h4 + ul,
+  .group-uib-testimonial-personalia h4 + p {
+    margin-top: .5rem; }
+  .group-uib-testimonial-personalia p {
+    margin: 1.5rem 10% 1.5rem 12%;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333;
+    word-wrap: break-word; }
+  .group-uib-testimonial-personalia ul {
+    margin: 1.5rem 10% 1.5rem 12%;
+    padding: 0;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333; }
+    .group-uib-testimonial-personalia ul li {
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>");
+      margin-bottom: .75rem; }
+  .group-uib-testimonial-personalia .field-group-format-wrapper {
+    padding: 0 2rem 2rem 2rem; }
+
 .group-article-sidebar .field-name-field-uib-media, .group-article-sidebar .field-name-field-uib-study-image {
   padding: 0 1rem;
   background: #fff; }

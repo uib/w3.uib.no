@@ -24,8 +24,8 @@ function uib_testimonial_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'field_uib_text',
-      1 => 'field_uib_lead',
-      2 => 'field_uib_quote',
+      1 => 'field_uib_quote',
+      2 => 'field_uib_lead',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -54,17 +54,10 @@ function uib_testimonial_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'article-sidebar',
-    'weight' => '1',
+    'weight' => '2',
     'children' => array(
-      0 => 'field_uib_position',
-      1 => 'field_uib_exchange_text',
-      2 => 'field_uib_study_programmes',
-      3 => 'field_uib_media',
-      4 => 'field_uib_birth_year',
-      5 => 'field_uib_education',
-      6 => 'field_uib_exchange_place',
-      7 => 'field_uib_name',
-      8 => 'field_uib_organization',
+      0 => 'field_uib_media',
+      1 => 'group_uib_testimonial_personalia',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -157,9 +150,48 @@ function uib_testimonial_field_group_info() {
   );
   $field_groups['group_sidebar|node|uib_testimonial|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_uib_testimonial_personalia|node|uib_testimonial|default';
+  $field_group->group_name = 'group_uib_testimonial_personalia';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_testimonial';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_article_sidebar';
+  $field_group->data = array(
+    'label' => 'Personalia',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_uib_exchange_text',
+      1 => 'field_uib_organization',
+      2 => 'field_uib_position',
+      3 => 'field_uib_name',
+      4 => 'field_uib_study_programmes',
+      5 => 'field_uib_education',
+      6 => 'field_uib_exchange_place',
+      7 => 'field_uib_birth_year',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'group-uib-testimonial-personalia field-group-div',
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_uib_testimonial_personalia|node|uib_testimonial|default'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Information');
+  t('Personalia');
   t('Sidebar');
   t('article-main');
   t('article-sidebar');
