@@ -91,6 +91,9 @@ function uib_setup_wysiwyg_default_profiles() {
           'Table' => 1,
           'Maximize' => 1,
         ),
+        'eqneditor' => array(
+          'EqnEditor' => 1,
+        ),
       ),
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
@@ -102,7 +105,7 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,h2,h3,h4',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );

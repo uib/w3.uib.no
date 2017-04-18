@@ -4,3 +4,21 @@
       $settings['customConfig'] = base_path() . drupal_get_path('module', 'uib_ckeditor_config') . '/ckeditor-config.js';
     }
   }
+  function uib_ckeditor_config_wysiwyg_plugin($editor, $version) {
+    switch ($editor) {
+      case 'ckeditor':
+        return array(
+          'eqneditor' => array(
+            'url' => '',
+            'path' => drupal_get_path('module', 'uib_ckeditor_config') . '/plugins/eqneditor',
+            'filename' => 'plugin.js',
+            'buttons' => array(
+              'EqnEditor' => t('Equation Editor'),
+            ),
+            'load' => TRUE,
+            'internal' => FALSE,
+          ),
+        );
+        break;
+    }
+  }

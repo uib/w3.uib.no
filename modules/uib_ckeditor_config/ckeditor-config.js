@@ -1,6 +1,7 @@
 CKEDITOR.editorConfig = function( config ) {
   config.removeDialogTabs = 'table:advanced;tableProperties:advanced';
   config.contentsCss = 'sites/all/modules/uib/uib_ckeditor_config/ckeditor.css';
+  config.extraPlugins = 'dialog,dialogui';
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
