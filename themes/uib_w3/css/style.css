@@ -682,7 +682,8 @@ h6 {
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
 
 .content-top-wrapper h1 {
-  margin: 0 0 1.25rem; }
+  margin: 0 0 1.25rem;
+  line-height: 1.3; }
   .node-type-uib-study .content-top-wrapper h1 {
     margin: 0 0 3.75rem; }
   @media (min-width: 600px) {
@@ -774,6 +775,12 @@ img {
 .field-name-field-uib-media, .field-name-field-uib-study-image {
   overflow: hidden; }
 
+.field-type-image .content .field {
+  font-size: 1.176470588rem; }
+  @media (min-width: 600px) {
+    .field-type-image .content .field {
+      font-size: 1rem; } }
+
 label {
   color: #333;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
@@ -791,7 +798,7 @@ label {
   *display: inline; }
 
 .logo__image {
-  width: 2.5rem; }
+  width: 2.9411rem; }
 
 @media only screen and (min-width: 780px) {
   .logo__image {
@@ -837,10 +844,13 @@ html,
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
 
 html {
-  font-size: 100%;
+  font-size: 85%;
   line-height: 1.5;
   overflow-wrap: break-word;
   word-wrap: break-word; }
+  @media (min-width: 600px) {
+    html {
+      font-size: 100%; } }
 
 .header__wrapper,
 .subheader__wrapper,
@@ -861,14 +871,20 @@ p {
   font-size: 1.25rem;
   color: #333;
   margin: 0 0 1.5rem 0; }
-  .field-name-field-uib-secondary-text p, .field-name-field-uib-tertiary-text p {
+  .field-name-field-uib-secondary-text p {
     font-size: 1.5rem; }
+  .field-name-field-uib-tertiary-text p {
+    font-size: 1.25rem; }
+    @media only screen and (min-width: 600px) {
+      .field-name-field-uib-tertiary-text p {
+        font-size: 1.5rem; } }
   p:last-child {
     margin-bottom: 0; }
 
 .content-top-wrapper p.field-name-field-uib-lead, .content-main-wrapper p.field-name-field-uib-lead {
   font-size: 1.5em;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  line-height: 1.3; }
 .content-top-wrapper p:last-child, .content-main-wrapper p:last-child {
   margin-bottom: 0; }
 .content-top-wrapper .field-name-field-uib-kicker, .content-main-wrapper .field-name-field-uib-kicker {
@@ -903,7 +919,11 @@ a,
   color: #cf3c3a;
   letter-spacing: 0.2em;
   text-align: center;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-size: 1.176470588rem; }
+  @media only screen and (min-width: 600px) {
+    .field-name-field-uib-kicker {
+      font-size: 1rem; } }
 
 .content-main-wrapper #uib-tabs-studieplan {
   font-size: 1.25rem; }
@@ -1205,12 +1225,15 @@ a,
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      #block-uib-calendar3-calendar3 a.more-link {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       #block-uib-calendar3-calendar3 a.more-link {
         width: 236px; } }
@@ -1253,9 +1276,16 @@ a,
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMycHgiIGhlaWdodD0iNDJweCIgdmlld0JveD0iMCAwIDMyIDQyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjEgKDE1NjgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5JS09OIEJFU8OYSyBPU1M8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJBa3R1ZWx0LTIiIHNrZXRjaDp0eXBlPSJNU0FydGJvYXJkR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02MjkuMDAwMDAwLCAtMzMyMy4wMDAwMDApIiBmaWxsPSIjQ0YzQzNBIj4KICAgICAgICAgICAgPGcgaWQ9Ik1FTlktQlVOTi0rLUtPTlRBTlRJTkZPIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNC4wMDAwMDAsIDMwNDIuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iS09OVEFLVElORk8iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwOS41MDAwMDAsIDI3Ny41MDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iQkVTw5hLLU9TUyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDI0LjAwMDAwMCwgMC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE1LjYyMDQzMTUsNDUgTDI5LjIzNTEzNTcsMjYuNDQwOTU4IEMzMC41MDg5NjQ4LDI0LjI2MDExODkgMzEuMjM4NTMyMSwyMS43NDEwODY4IDMxLjIzODUzMjEsMTkuMDU5MTM3OSBDMzEuMjM4NTMyMSwxMC43NDI1MTE5IDI0LjI0NzA0LDQgMTUuNjE5MjY2MSw0IEM2Ljk5NDk4ODQyLDQgMCwxMC43NDI1MTE5IDAsMTkuMDU5MTM3OSBDMCwyMS44MDg1MDA3IDAuNzY1Njk2LDI0LjM4NTk1ODIgMi4xMDEyOTM1OSwyNi42MDQ5OTg1IEwxNS42MjA0MzE1LDQ1IE0xNS42MjE1OTY5LDI2LjczNjQ1NTYgQzExLjM3MDA2MTIsMjYuNzM2NDU1NiA3LjkyNjE3NzMyLDIzLjQxNjMyMTggNy45MjYxNzczMiwxOS4zMjA5Mjg0IEM3LjkyNjE3NzMyLDE1LjIyNDQxMTUgMTEuMzcwMDYxMiwxMS45MDMxNTQyIDE1LjYyMTU5NjksMTEuOTAzMTU0MiBDMTkuODY3MzA1NSwxMS45MDMxNTQyIDIzLjMxMjM1NDgsMTUuMjI0NDExNSAyMy4zMTIzNTQ4LDE5LjMyMDkyODQgQzIzLjMxMjM1NDgsMjMuNDE2MzIxOCAxOS44NjczMDU1LDI2LjczNjQ1NTYgMTUuNjIxNTk2OSwyNi43MzY0NTU2IiBpZD0iSUtPTi1CRVPDmEstT1NTIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=');
   background-position: 5px 65px;
   background-repeat: no-repeat;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  min-height: 8.088rem; }
+  @media screen and (min-width: 600px) {
+    #block-uib-area-colophon-2 .visit {
+      min-height: 6.8748rem; } }
   #block-uib-area-colophon-2 .visit > *:not(h3) {
     padding-left: 50px; }
+  #block-uib-area-colophon-2 .visit a:nth-child(2) {
+    margin-top: 10px;
+    display: block; }
 @media screen and (min-width: 600px) {
   #block-uib-area-colophon-2 .contact {
     padding-top: 0;
@@ -1325,11 +1355,16 @@ a,
     flex: 1; } }
 #block-uib-area-frontpage-links a {
   display: block;
-  padding: 10.0625rem 1rem 1rem;
-  background-size: 129px 129px;
-  min-width: 10.0625rem;
+  padding: 11.8382rem 1.1764rem 1.1764rem;
+  background-size: 9.48529rem 9.48529rem;
+  min-width: 11.8382rem;
   text-align: center;
   text-transform: uppercase; }
+  @media (min-width: 600px) {
+    #block-uib-area-frontpage-links a {
+      padding: 10.0625rem 1rem 1rem;
+      background-size: 8.0625rem 8.0625rem;
+      min-width: 10.0625rem; } }
   #block-uib-area-frontpage-links a:hover {
     text-decoration: underline; }
 #block-uib-area-frontpage-links .uib-frontpage-organization {
@@ -1365,12 +1400,15 @@ a,
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      .news-and-calendar a.more-link__news {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       .news-and-calendar a.more-link__news {
         width: 236px; } }
@@ -1398,12 +1436,15 @@ a,
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      .news-and-calendar a.more-link__calendar {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       .news-and-calendar a.more-link__calendar {
         width: 236px; } }
@@ -1535,7 +1576,8 @@ a,
 
 .field-name-field-uib-tertiary-text {
   background: #fff;
-  text-align: center; }
+  text-align: center;
+  padding: 0 1.102941176rem; }
   .field-name-field-uib-tertiary-text h3 {
     font-size: 2rem;
     margin-bottom: 10px; }
@@ -1569,7 +1611,12 @@ a,
   .article-info .uib-date-info {
     padding: 0 1rem 0.5rem 1.875rem;
     background-size: 24px 24px;
-    display: inline-block; }
+    display: inline-block;
+    font-size: 1.176470588rem; }
+    @media (min-width: 600px) {
+      .article-info .uib-news-byline,
+      .article-info .uib-date-info {
+        font-size: 1rem; } }
   .article-info .uib-news-byline {
     background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjIwcHgiIGhlaWdodD0iMjNweCIgdmlld0JveD0iMCAwIDIwIDIzIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5CbHlhbnQ8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJBcnRpa2tlbC0iIHNrZXRjaDp0eXBlPSJNU0FydGJvYXJkR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MjAuMDAwMDAwLCAtNTMyLjAwMDAwMCkiIGZpbGw9IiM2MDYwNjAiPgogICAgICAgICAgICA8ZyBpZD0iT3ZlcnNrcmlmdC1vZy1pbmdyZXNzIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjEuMDAwMDAwLCAzNDAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQnlsaW5lIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOTkuMDAwMDAwLCAxOTIuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+CiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9IkJseWFudCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOS42MzQ4MTQ4LDIxLjk0NjQ1MTYgQzE5LjYzNDgxNDgsMjEuNzQzOTAzMiAxOS40NzU1NTU2LDIxLjU3OTkzNTUgMTkuMTQ0NDQ0NCwyMS41Nzk5MzU1IEwzLjczMTExMTExLDIxLjU3OTkzNTUgQzMuNCwyMS41Nzk5MzU1IDMuMjU0ODE0ODEsMjEuNzQzOTAzMiAzLjI1NDgxNDgxLDIxLjk0NjQ1MTYgQzMuMjU0ODE0ODEsMjIuMTQ5NzQxOSAzLjQsMjIuMzE0NDUxNiAzLjczMTExMTExLDIyLjMxNDQ1MTYgTDE5LjE0NDQ0NDQsMjIuMzE0NDUxNiBDMTkuNDc1NTU1NiwyMi4zMTQ0NTE2IDE5LjYzNDgxNDgsMjIuMTQ5NzQxOSAxOS42MzQ4MTQ4LDIxLjk0NjQ1MTYiIGlkPSJGaWxsLTEiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTQuODg1OTI1OTMsMTkuMjY1ODM4NyBMMy45NzI1OTI1OSwxOC42MTIxOTM1IEwxMi4yNTMzMzMzLDcuMDY2OTM1NDggTDExLjIyODg4ODksNi4zMzI0MTkzNSBMMi45NDgxNDgxNSwxNy44NzkxNjEzIEwyLjAzOTI1OTI2LDE3LjIyODQ4MzkgTDEwLjMxOTI1OTMsNS42ODE3NDE5NCBMOS40NDgxNDgxNSw1LjA1NzAzMjI2IEwxLjE2NzQwNzQxLDE2LjYwNTI1ODEgTDAuNjU2Mjk2Mjk2LDE5LjYwMDQ1MTYgTDAuNjYxNDgxNDgxLDE5LjYwOTM1NDggTDAuNjU0ODE0ODE1LDE5LjYwMzQxOTQgTDAuMzY1MTg1MTg1LDIxLjI2ODMyMjYgQzAuMzY1MTg1MTg1LDIxLjI2ODMyMjYgMC4xOTAzNzAzNywyMS44MjYyNTgxIDAuNjU5MjU5MjU5LDIyLjE2MDg3MSBDMS4xMjgxNDgxNSwyMi40OTg0NTE2IDEuNjAyMjIyMjIsMjIuMTUxOTY3NyAxLjYwMjIyMjIyLDIyLjE1MTk2NzcgTDMuMDg2NjY2NjcsMjEuMzQ0IEwzLjA3ODUxODUyLDIxLjMzODA2NDUgTDMuMDg3NDA3NDEsMjEuMzQxMDMyMyBMNS43NjI5NjI5NiwxOS44OTU3NDE5IEw1Ljc2NDQ0NDQ0LDE5Ljg5NTc0MTkgTDE0LjA0MzcwMzcsOC4zNDk3NDE5NCBMMTMuMTY1MTg1Miw3LjcyMDU4MDY1IEw0Ljg4NTkyNTkzLDE5LjI2NTgzODcgTDQuODg1OTI1OTMsMTkuMjY1ODM4NyBaIE0xNC45MzcwMzcsNi4xMDI0MTkzNSBMMTUuNDExMTExMSw2LjQ0Mjk2Nzc0IEwxNy4wMzE4NTE5LDQuMTgyMjkwMzIgQzE3LjQ0ODE0ODEsMy42MDUwNjQ1MiAxNy4xOTMzMzMzLDIuNzE0IDE2LjQ2NzQwNzQsMi4xOTM5MDMyMyBMMTQuNTE3MDM3LDAuNzk4MzIyNTgxIEMxMy43OTI1OTI2LDAuMjc4MjI1ODA2IDEyLjg2ODE0ODEsMC4zMjQyMjU4MDYgMTIuNDUzMzMzMywwLjkwMTQ1MTYxMyBMMTAuODMyNTkyNiwzLjE2MjEyOTAzIEwxNC40ODk2Mjk2LDUuNzgxOTAzMjMgTDE0LjkzNzAzNyw2LjEwMjQxOTM1IFogTTE0LjUzNDgxNDgsNi45NDE1NDgzOSBMMTAuNjM5MjU5Myw0LjE1MTg3MDk3IEMxMC40NDgxNDgxLDQuMDEzODcwOTcgMTAuMjA1OTI1OSw0LjAyNzIyNTgxIDEwLjA5NjI5NjMsNC4xNzc4Mzg3MSBMMTAuMDI2NjY2Nyw0LjI3NjUxNjEzIEM5LjkxNzAzNzA0LDQuNDI4NjEyOSA5Ljk4MzcwMzcsNC42NjMwNjQ1MiAxMC4xNzQ4MTQ4LDQuNzk5NTgwNjUgTDE0LjA3MDM3MDQsNy41ODkyNTgwNiBDMTQuMjYsNy43MjUwMzIyNiAxNC41MDQ0NDQ0LDcuNzE0NjQ1MTYgMTQuNjEyNTkyNiw3LjU2MjU0ODM5IEwxNC42ODIyMjIyLDcuNDY0NjEyOSBDMTQuNzkyNTkyNiw3LjMxMjUxNjEzIDE0LjcyNjY2NjcsNy4wNzg4MDY0NSAxNC41MzQ4MTQ4LDYuOTQxNTQ4MzkgTDE0LjUzNDgxNDgsNi45NDE1NDgzOSBaIiBpZD0iRmlsbC0yIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=') 0 0 no-repeat; }
   .article-info .uib-date-info {
@@ -1737,7 +1784,10 @@ a,
     margin: 0;
     padding: 0; }
     .uib_breadcrumb ol li {
-      font-size: 1rem; }
+      font-size: 1.176470588rem; }
+      @media (min-width: 600px) {
+        .uib_breadcrumb ol li {
+          font-size: 1rem; } }
   .uib_breadcrumb li {
     padding: 0; }
   .uib_breadcrumb li:not(:first-child):before {
@@ -1810,8 +1860,11 @@ a,
     .main-menu__expanded .menu__item li {
       border-bottom: solid 1px #dcd5cf;
       background: #fff;
-      font-size: 1rem;
+      font-size: 1.176470588rem;
       padding-left: 1rem; }
+      @media (min-width: 600px) {
+        .main-menu__expanded .menu__item li {
+          font-size: 1rem; } }
     .main-menu__expanded .menu__item a,
     .main-menu__expanded .menu__item li a {
       display: block;
@@ -2297,12 +2350,15 @@ a,
   height: 45px;
   padding: 7px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.176470588rem;
   text-transform: uppercase;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   background-color: transparent;
   text-decoration: none;
   width: 150px; }
+  @media only screen and (min-width: 600px) {
+    #edit-submit {
+      font-size: 1rem; } }
   #edit-submit:hover {
     text-decoration: none;
     background-color: #cf3c3a;
@@ -2377,12 +2433,15 @@ a,
       height: 45px;
       padding: 7px 0;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.176470588rem;
       text-transform: uppercase;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       background-color: transparent;
       text-decoration: none;
       min-width: 236px; }
+      @media only screen and (min-width: 600px) {
+        .uib-study-evu-offer .sign-up a.sign-up-button {
+          font-size: 1rem; } }
       @media (min-width: 600px) {
         .uib-study-evu-offer .sign-up a.sign-up-button {
           width: 236px; } }
@@ -2509,7 +2568,11 @@ a,
   font-size: 1.3rem;
   color: #0da6a3;
   list-style: none;
-  margin: 0 0 .6rem 0; }
+  margin: 0; }
+  @media (min-width: 600px) {
+    #block-uib-area-feed li,
+    #block-uib-user-feed li {
+      margin: 0 0 .6rem 0; } }
 #block-uib-area-feed a,
 #block-uib-user-feed a {
   text-decoration: none; }
@@ -2544,12 +2607,15 @@ a,
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      .uib-find-studies a {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       .uib-find-studies a {
         width: 236px; } }
@@ -2582,12 +2648,15 @@ a,
         height: 45px;
         padding: 7px 0;
         text-align: center;
-        font-size: 1rem;
+        font-size: 1.176470588rem;
         text-transform: uppercase;
         font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
         background-color: transparent;
         text-decoration: none;
         min-width: 236px; } }
+    @media only screen and (min-width: 600px) and (min-width: 600px) {
+      .uib-find-studies a {
+        font-size: 1rem; } }
     @media (min-width: 600px) and (min-width: 600px) {
       .uib-find-studies a {
         width: 236px; } }
@@ -2651,12 +2720,15 @@ a,
         height: 45px;
         padding: 7px 0;
         text-align: center;
-        font-size: 1rem;
+        font-size: 1.176470588rem;
         text-transform: uppercase;
         font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
         background-color: #cf3c3a;
         text-decoration: none;
         min-width: 236px; } }
+    @media only screen and (min-width: 1050px) and (min-width: 600px) {
+      .uib-find-studies a {
+        font-size: 1rem; } }
     @media (min-width: 1050px) and (min-width: 600px) {
       .uib-find-studies a {
         width: 236px; } }
@@ -2765,12 +2837,15 @@ a,
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     width: 150px; }
+    @media only screen and (min-width: 600px) {
+      .view-internal-market #edit-submit-internal-market {
+        font-size: 1rem; } }
     .view-internal-market #edit-submit-internal-market:hover {
       text-decoration: none;
       background-color: #cf3c3a;
@@ -2830,43 +2905,49 @@ a,
 /* styled in atoms/_texts.scss and molecules/_area-profiled-articles.scss */
 #block-locale-language {
   letter-spacing: 1px;
-  font-size: .8rem;
-  text-transform: none; }
+  position: absolute;
+  text-transform: none;
+  right: 8.8235rem;
+  top: 0.941176471rem;
+  width: 4.2rem; }
+  @media only screen and (min-width: 600px) {
+    #block-locale-language {
+      right: 7.5rem;
+      top: 0.8rem;
+      width: 3.3rem; } }
+  @media only screen and (min-width: 600px) {
+    #block-locale-language {
+      width: 4.8rem; } }
+  #block-locale-language .language-switcher-locale-url {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none; }
+    #block-locale-language .language-switcher-locale-url .language-link {
+      text-align: left; }
   #block-locale-language a {
     overflow: hidden;
     display: block;
-    width: 8.125rem;
-    height: 1.35rem;
-    text-align: right; }
-  #block-locale-language li.en a:before {
-    color: #fff;
-    content: "English\00a0\00a0website \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
-  #block-locale-language li.nb a:before {
-    color: #fff;
-    content: "Norsk\00a0\00a0\00a0nettside \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
+    height: 1.6176rem;
+    font-size: 1.176470588rem;
+    text-align: right;
+    color: #fff; }
+    @media only screen and (min-width: 600px) {
+      #block-locale-language a {
+        font-size: 1rem;
+        height: 1.45rem; } }
+  #block-locale-language.block-locale .active {
+    display: none; }
 
-.block-locale .active {
-  display: none; }
-
-@media only screen and (max-width: 780px) {
+@media only screen and (min-width: 780px) {
   #block-locale-language {
-    position: absolute;
-    right: 7.5rem;
-    top: 0.8rem;
-    width: 3.3rem; }
-    #block-locale-language .language-switcher-locale-url {
-      margin-left: 0;
-      padding-left: 0;
-      list-style: none; }
-      #block-locale-language .language-switcher-locale-url .language-link {
-        text-align: left; }
+    width: auto; }
     #block-locale-language a {
-      width: 3.4rem;
-      font-size: 1rem; }
-    #block-locale-language li.en .language-link {
-      content: "English"; }
-    #block-locale-language li.no .language-link {
-      content: "Norsk"; } }
+      width: 6.6rem;
+      font-size: .8rem; }
+    #block-locale-language li.en a:before {
+      content: "English\00a0\00a0website \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
+    #block-locale-language li.nb a:before {
+      content: "Norsk\00a0\00a0\00a0nettside \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; } }
 @media (min-width: 600px) {
   .field-collection-container {
     border-bottom: none;
@@ -2984,9 +3065,15 @@ a,
 #block-views-recent-news-block .views-row {
   font-size: 1.3rem;
   line-height: 1.5;
-  padding-bottom: 1rem; }
+  padding-bottom: 0; }
+  @media (min-width: 600px) {
+    #block-views-recent-news-block .views-row {
+      padding-bottom: 1rem; } }
 #block-views-recent-news-block .view-content {
-  margin-bottom: 1rem; }
+  margin-bottom: 1.5rem; }
+  @media (min-width: 600px) {
+    #block-views-recent-news-block .view-content {
+      margin-bottom: 1rem; } }
 #block-views-recent-news-block .more-link a {
   display: block;
   color: #cf3c3a;
@@ -2994,12 +3081,15 @@ a,
   height: 45px;
   padding: 7px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.176470588rem;
   text-transform: uppercase;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   background-color: transparent;
   text-decoration: none;
   min-width: 236px; }
+  @media only screen and (min-width: 600px) {
+    #block-views-recent-news-block .more-link a {
+      font-size: 1rem; } }
   @media (min-width: 600px) {
     #block-views-recent-news-block .more-link a {
       width: 236px; } }
@@ -3049,12 +3139,15 @@ a,
       height: 45px;
       padding: 7px 0;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.176470588rem;
       text-transform: uppercase;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       background-color: transparent;
       text-decoration: none;
       width: 150px; }
+      @media only screen and (min-width: 600px) {
+        .view-ansatte .views-exposed-widgets > * input.form-submit {
+          font-size: 1rem; } }
       .view-ansatte .views-exposed-widgets > * input.form-submit:hover {
         text-decoration: none;
         background-color: #cf3c3a;
@@ -4350,23 +4443,30 @@ div.field-item {
   .block-uib-search #uib-search-noscript-form .search-button {
     border: none;
     background: transparent url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQ0cHgiIGhlaWdodD0iNDRweCIgdmlld0JveD0iMCAwIDQ0IDQ0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5Tw7hrZWJva3M8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU2tpc3Nlci1zaWRlbWFsZXIiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJPbXLDpWRlZm9yc2lkZS1qdXJpZGlzayIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTExNzkuMDAwMDAwLCAtMjYuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJTw7hrZWJva3MiIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDExNzkuMDAwMDAwLCAyNi4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJTw7hrZWJva3MtYmcta3ZhZHJhdGlzayIgZmlsbD0iI0ZGRkZGRiIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCIgeD0iMCIgeT0iMCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iNDAiPjwvcmVjdD4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMi4zMjE3NTMxLDI3Ljk5ODg2MjMgQzIxLjAyNjMyODQsMjguNjk3OTAwOSAxOS41MzAzMzQsMjkuMDk2NzY1IDE3LjkzNjk0NTQsMjkuMDk2NzY1IEMxMy4wMDEyMDY3LDI5LjA5Njc2NSA5LDI1LjI2OTUyMzggOSwyMC41NDgzODI1IEM5LDE3LjcwMzMzMTcgMTAuNDUzMDM4MywxNS4xODI5MDA3IDEyLjY4OCwxMy42MjkwMjU0IEMxNC4xNjE3ODQsMTIuNjA0MzY1MSAxNS45NzU1NzgsMTIgMTcuOTM2OTQ1NCwxMiBDMjIuODcyNjg0LDEyIDI2Ljg3Mzg5MDcsMTUuODI3MjQxMiAyNi44NzM4OTA3LDIwLjU0ODM4MjUgQzI2Ljg3Mzg5MDcsMjIuMjQ4Mzg0MSAyNi4zNTUwOTU5LDIzLjgzMjQ4MyAyNS40NjA2ODM3LDI1LjE2MzcyNjggTDI2LjAyOTc3MjksMjUuNjg0Mzg1MiBMMzAuNDQwNTUzNSwyOS43MTk3OTgyIEwzMiwzMS4xNDY1MzIxIEwyOC44ODExMDcxLDM0IEwyNy4zMjE2NjA2LDMyLjU3MzI2NjEgTDIyLjkxMDg4LDI4LjUzNzg1MzEgTDIyLjMyMTc1MzEsMjcuOTk4ODYyMyBaIE0xNy45MzY5NDU0LDI1LjY3NzQxMiBDMjAuODk4Mzg4NSwyNS42Nzc0MTIgMjMuMjk5MTEyNiwyMy4zODEwNjczIDIzLjI5OTExMjYsMjAuNTQ4MzgyNSBDMjMuMjk5MTEyNiwxNy43MTU2OTc3IDIwLjg5ODM4ODUsMTUuNDE5MzUzIDE3LjkzNjk0NTQsMTUuNDE5MzUzIEMxNi43NjAxMjUsMTUuNDE5MzUzIDE1LjY3MTg0ODUsMTUuNzgxOTcyMSAxNC43ODc1NzgxLDE2LjM5Njc2ODMgQzEzLjQ0NjYwMTEsMTcuMzI5MDkzNCAxMi41NzQ3NzgxLDE4Ljg0MTM1MiAxMi41NzQ3NzgxLDIwLjU0ODM4MjUgQzEyLjU3NDc3ODEsMjMuMzgxMDY3MyAxNC45NzU1MDIyLDI1LjY3NzQxMiAxNy45MzY5NDU0LDI1LjY3NzQxMiBaIiBpZD0iSWtvbi10ZWduZXQiIGZpbGw9IiNDRjNDM0EiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwLjUwMDAwMCwgMjMuMDAwMDAwKSBzY2FsZSgtMSwgMSkgdHJhbnNsYXRlKC0yMC41MDAwMDAsIC0yMy4wMDAwMDApICI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K') 0 0 no-repeat;
-    background-size: 2rem 2rem;
-    background-position: top 0.5rem left 0;
+    font-size: 1.176470588rem;
+    background-size: 2.3529rem 2.3529rem;
+    background-position: top .5882rem left 0;
     width: 0;
     height: 0;
     overflow: hidden;
     padding: 47px 0 0 47px; }
+    @media (min-width: 600px) {
+      .block-uib-search [name=noscriptform] .search-button,
+      .block-uib-search #uib-search-noscript-form .search-button {
+        background-size: 2rem 2rem;
+        background-position: top .5rem left 0;
+        font-size: 1rem; } }
     @media (max-width: 780px) {
       .block-uib-search [name=noscriptform] .search-button,
       .block-uib-search #uib-search-noscript-form .search-button {
         position: absolute;
-        background-position: 0.75rem 0.5rem;
+        background-position: .882352941rem .588235294rem;
         text-transform: uppercase;
-        width: 3.5rem;
-        padding: 2.5rem 0 0 0rem;
+        width: 4.117647059rem;
+        padding: 3.61rem 0 0 0;
         top: 0;
         height: 100%;
-        max-height: 7.5rem;
+        max-height: 8.823529412rem;
         right: 0;
         color: #fff; } }
   .block-uib-search > h2 {
@@ -4614,7 +4714,7 @@ div.field-item {
           .block-uib-search .lightbox .results-wrapper .right-selector .form-checkboxes label {
             color: #333; }
         .block-uib-search .lightbox .results-wrapper .right-selector > legend[data-toggle="true"] + div > div > div {
-          height: 240px;
+          height: 200px;
           overflow: visible; }
         .block-uib-search .lightbox .results-wrapper .right-selector .description {
           display: none; }
@@ -4771,12 +4871,15 @@ div.field-item {
       height: 45px;
       padding: 7px 0;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.176470588rem;
       text-transform: uppercase;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       background-color: #333;
       text-decoration: none;
       min-width: 236px; }
+      @media only screen and (min-width: 600px) {
+        .block-uib-search .lightbox label[for="switch_type_button"] {
+          font-size: 1rem; } }
       @media (min-width: 600px) {
         .block-uib-search .lightbox label[for="switch_type_button"] {
           width: 236px; } }
@@ -5055,7 +5158,7 @@ nav {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   margin-left: 0;
   position: absolute;
-  top: 1.5rem; }
+  top: 1.764705882rem; }
 
 @media only screen and (min-width: 780px) {
   .site-name a {
@@ -5178,7 +5281,11 @@ nav {
     background: #cf3c3a;
     color: #fff;
     text-transform: uppercase;
-    padding: 0.1875rem 0.625rem; }
+    padding: 0.1875rem 0.625rem;
+    font-size: 1.176470588rem; }
+    @media only screen and (min-width: 600px) {
+      .field-name-field-uib-study-type .field-item, .field-name-field-uib-study-category .field-item {
+        font-size: 1rem; } }
 
 #block-uib-study-study-contact {
   background: #fff; }
@@ -5287,6 +5394,7 @@ nav {
   background: #eae6e2; }
 
 #block-uib-study-study-email-offers {
+  font-size: 1.176470588rem;
   color: #606060;
   margin-bottom: 1.25rem;
   clear: right; }
@@ -5297,12 +5405,15 @@ nav {
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     width: 150px; }
+    @media only screen and (min-width: 600px) {
+      #block-uib-study-study-email-offers #mc-embedded-subscribe {
+        font-size: 1rem; } }
     #block-uib-study-study-email-offers #mc-embedded-subscribe:hover {
       text-decoration: none;
       background-color: #cf3c3a;
@@ -5333,6 +5444,9 @@ nav {
       clear: none; }
       #block-uib-study-study-email-offers.block {
         clear: right; } }
+  @media (min-width: 600px) {
+    #block-uib-study-study-email-offers {
+      font-size: 1rem; } }
   #block-uib-study-study-email-offers .study_promo_info {
     display: block;
     margin: 0 0 9px 0; }
@@ -5587,7 +5701,11 @@ body #mc_embed_signup div.mce_inline_error {
     border-bottom: solid 1px #b7b7b7; }
   .view-study-blocks ul li a {
     text-decoration: none;
-    line-height: 2.5rem; }
+    line-height: 1.5;
+    display: block; }
+    @media (min-width: 600px) {
+      .view-study-blocks ul li a {
+        display: inline; } }
 .view-study-blocks .attachment-before {
   font-weight: bold;
   margin: 0 0 30px 0; }
@@ -6733,36 +6851,41 @@ body #mc_embed_signup div.mce_inline_error {
   position: relative;
   z-index: 11;
   min-height: 5rem; }
+  .header__wrapper .header .mobile-menu {
+    font-size: 1.176470588rem; }
+    @media (min-width: 600px) {
+      .header__wrapper .header .mobile-menu {
+        font-size: 1rem; } }
   @media only screen and (max-width: 780px) {
     .header__wrapper {
-      height: 5rem; }
+      height: 5.882352941rem; }
       .header__wrapper .header {
-        padding: 1rem 1.25rem 0rem 1.25rem; }
+        padding: 1.176470588rem 1.470588235rem 0; }
         .header__wrapper .header > a:first-child {
-          height: 4rem; }
+          height: 4.705882353rem; }
         .header__wrapper .header .mobile-menu {
           position: absolute;
-          right: 3.5rem;
+          right: 4.117647059rem;
           top: 0px;
           height: 100%;
-          width: 3.5rem;
+          width: 4.117647059rem;
           margin-right: 0;
           border-top: 0;
           border-bottom: 0;
           border-color: #ae2f2f; }
           .header__wrapper .header .mobile-menu:after {
-            padding-top: 2.5rem;
+            padding-top: 2.941176471rem;
             position: absolute;
-            background-position: 0.25rem 0.5rem;
+            background-position: .294117647rem .588235294rem;
             background-repeat: no-repeat;
-            background-size: 2rem 2.5rem;
-            padding-left: 0.1rem;
-            padding-right: 1rem; }
+            background-size: 2.352941176rem 2.941176471rem;
+            padding-left: .117647059rem;
+            padding-right: 1.176470588rem; }
         .header__wrapper .header .active {
           background-color: #ae2f2f; } }
 
 .header {
-  padding: 1rem 1.25rem;
+  padding: 1.176470588rem 1.470588235rem;
   display: -ms-flexbox;
   -ms-flex-direction: row;
   -ms-flex-pack: distribute;
@@ -6777,8 +6900,14 @@ body #mc_embed_signup div.mce_inline_error {
   align-items: center; }
   .header > h1 {
     margin: 0; }
+  @media (min-width: 600px) {
+    .header {
+      padding: 1rem 1.25rem; } }
   .header > a:first-child {
-    height: 4.4375rem; }
+    height: 5.220588235rem; }
+    @media (min-width: 600px) {
+      .header > a:first-child {
+        height: 4.4375rem; } }
   .header .mobile-menu {
     display: block;
     flex: 0 0 auto;
@@ -6835,11 +6964,15 @@ body #mc_embed_signup div.mce_inline_error {
     .header .site-name a:after {
       content: 'UiB';
       color: #fff;
-      letter-spacing: 0.178125rem;
-      font-size: 1.3125rem;
+      letter-spacing: 0.209558824rem;
+      font-size: 1.54412rem;
       font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
       text-transform: none;
-      margin-left: 0.625rem; } }
+      margin-left: .735294118rem; } }
+  @media only screen and (max-width: 1050px) and (min-width: 600px) {
+    .header .site-name a:after {
+      font-size: 1.3125rem; } }
+
   @media only screen and (min-width: 780px) {
     .header {
       position: relative;
@@ -6891,7 +7024,7 @@ body #mc_embed_signup div.mce_inline_error {
         .header .region-header #block-locale-language {
           display: block;
           position: absolute;
-          top: -1.4rem;
+          top: -22px;
           right: 0; }
       .header form {
         display: none; }
@@ -6955,12 +7088,15 @@ body #mc_embed_signup div.mce_inline_error {
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      .block-uib-message .message-archive {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       .block-uib-message .message-archive {
         width: 236px; } }
@@ -7007,12 +7143,15 @@ body #mc_embed_signup div.mce_inline_error {
     height: 45px;
     padding: 7px 0;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.176470588rem;
     text-transform: uppercase;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; }
+    @media only screen and (min-width: 600px) {
+      .block-uib-message .uib-feide-login {
+        font-size: 1rem; } }
     @media (min-width: 600px) {
       .block-uib-message .uib-feide-login {
         width: 236px; } }
@@ -7263,7 +7402,11 @@ body #mc_embed_signup div.mce_inline_error {
   .node-uib-views-page .view-content .item-list ul {
     margin: 0; }
     .node-uib-views-page .view-content .item-list ul li {
-      line-height: 2.8125rem; }
+      line-height: 2.8125rem;
+      padding: .735294118rem 0; }
+      @media (min-width: 600px) {
+        .node-uib-views-page .view-content .item-list ul li {
+          padding: 0; } }
 
 .page-node-102270 .field-name-field-uib-node-title,
 .page-node-102270 .field-name-field-uib-view-information,
@@ -7895,12 +8038,15 @@ body #mc_embed_signup div.mce_inline_error {
   height: 45px;
   padding: 7px 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.176470588rem;
   text-transform: uppercase;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   background-color: transparent;
   text-decoration: none;
   width: 150px; }
+  @media only screen and (min-width: 600px) {
+    [href*=evuweb].sign-up-button {
+      font-size: 1rem; } }
   [href*=evuweb].sign-up-button:hover {
     text-decoration: none;
     background-color: #cf3c3a;
