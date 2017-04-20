@@ -1,3 +1,8 @@
+# Release 69 _2017-04-20_
+
+- Redusert skriftstørrelsen på mobil #17470
+- Lagt til mulighet for å sette inn formler i brødtekstfeltet #17875
+
 # Release 68 _2017-03-30_
 
 - Endring av hjelpetekster i Webdesk #17829
@@ -5,12 +10,12 @@
 - Rettet feil i visning av bildetekst på vitensbyrd i Internet Explorer #17815
 - Lagt til visning av publiseringsdato på nyheter i globalsøk #17740
 - Lagt til visning av alle tilknyttede områder til personen på personsider #17737
-- Lagt til mulighet for Snapchat i sosiale medier-feltet i kolofon #17281
+- Lagt til mulighet for Snapchat som sosialt medium #17281
 - Lagt til informativ melding på områdesider hvis ikke Jobbnorge-strømmen responderer/viser resultat #17256
 - Endret utseende på ikonet på lukkeknappen i globalsøk #17177
 - Endret "les mer…” i meldingstjenesten til å vise selve lenken #16959
 - Lagt til mulighet for video på vitensbyrd #16938
-- Korrigert stikktekster på studieinformasjon #16926
+- Korrigert stikktitler på studieinformasjon #16926
 - Lagt til kolonne som viser innholdstype under “Mitt innhold” i Webdesk #16865
 - Lagt til overskrift på "Indre marked" og "Internal market” #16422
 - Rettet feil med at hjelpetekster i redigeringsmodus på Webdesk ikke kunne oversettes til norsk #16231
@@ -20,6 +25,10 @@
 - Fjernet "W2 profiltekst”-fane fra Webdesk #14318
 - Økt antall forhåndsvisninger av nyheter i nyhetsarkivet #12953
 - Drupal-oppdateringer (moduler og kjerne) #17838, #17836, #17835, #17834, #17833, #17832, #17831 #17828 #17827 #17826 #17825 #17823
+
+# Release 67.1 _2017-03-17_
+
+- Rettet feil som gjorde det umulig å logge inn på meldingstjenesten #17789
 
 # Release 67 _2017-03-16_
 
