@@ -2,6 +2,63 @@
   function uib_ckeditor_config_wysiwyg_editor_settings_alter(&$settings, $context) {
     if ($context['profile']->editor == 'ckeditor' ) {
       $settings['customConfig'] = base_path() . drupal_get_path('module', 'uib_ckeditor_config') . '/ckeditor-config.js';
+      // Modified the default list of special characters.
+      $settings['specialChars'] = array(
+        'ƒ', '^', '|', '¦', '`', '´', '‘', '’', '‚', '“', '”', '„', '–', '—', '_', '¨', '¡', '¤', '$', '¢', '£', '€', '¥', '₹', '₩', '₱', '§', '©', '®', '™', 'ª', 'º', '¬', '~', '¯', '°', '¹', '²', '³', 'µ', '¶', '·', '¸', '«', '»', '¼', '½', '¾', '‰', '¿', '►', '•', '…', '′', '″', '‾', '⁄', '℘', 'ℑ', 'ℜ', 'ℵ', '←', '→', '↓', '↔', '↵', '⇐', '⇒', '⇑', '⇔', '∀', '∂', '∃', '∅', '∇', '∈', '∉', '∋', '∏', '∑', '√', '∝', '∞', '∠', '∧', '∨', '∩', '∪', '∫', '∴', '∼', '≅', '≈', '≠', '≡', '≤', '≥', '⊂', '⊃', '⊄', '⊆', '⊇', '⊕', '⊗', '⊥', '⋅', '⌈', '⌉', '⌊', '⌋', '〈', '〉', '◊', '♠', '♣', '♥', '♦', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', '×', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ', 'Œ', 'œ', 'Ŵ', 'Ŷ', 'ŵ', 'ŷ',
+      );
+      // Greek characters
+      $settings['specialChars'][] = array('Α', 'Alpha');
+      $settings['specialChars'][] = array('Β', 'Beta');
+      $settings['specialChars'][] = array('Γ', 'Gamma');
+      $settings['specialChars'][] = array('Δ', 'Delta');
+      $settings['specialChars'][] = array('Ε', 'Epsilon');
+      $settings['specialChars'][] = array('Ζ', 'Zeta');
+      $settings['specialChars'][] = array('Η', 'Eta');
+      $settings['specialChars'][] = array('Θ', 'Theta');
+      $settings['specialChars'][] = array('Ι', 'Iota');
+      $settings['specialChars'][] = array('Κ', 'Kappa');
+      $settings['specialChars'][] = array('Λ', 'Lambda');
+      $settings['specialChars'][] = array('Μ', 'Mu');
+      $settings['specialChars'][] = array('Ν', 'Nu');
+      $settings['specialChars'][] = array('Ξ', 'Xi');
+      $settings['specialChars'][] = array('Ο', 'Omicron');
+      $settings['specialChars'][] = array('Π', 'Pi');
+      $settings['specialChars'][] = array('Ρ', 'Rho');
+      $settings['specialChars'][] = array('Σ', 'Sigma');
+      $settings['specialChars'][] = array('Τ', 'Tau');
+      $settings['specialChars'][] = array('Υ', 'Upsilon');
+      $settings['specialChars'][] = array('Φ', 'Phi');
+      $settings['specialChars'][] = array('Χ', 'Chi');
+      $settings['specialChars'][] = array('Ψ', 'Psi');
+      $settings['specialChars'][] = array('Ω', 'Omega');
+      $settings['specialChars'][] = array('α', 'alpha');
+      $settings['specialChars'][] = array('β', 'beta');
+      $settings['specialChars'][] = array('γ', 'gamma');
+      $settings['specialChars'][] = array('δ', 'delta');
+      $settings['specialChars'][] = array('ε', 'epsilon');
+      $settings['specialChars'][] = array('ζ', 'zeta');
+      $settings['specialChars'][] = array('η', 'eta');
+      $settings['specialChars'][] = array('θ', 'theta');
+      $settings['specialChars'][] = array('ι', 'iota');
+      $settings['specialChars'][] = array('κ', 'kappa');
+      $settings['specialChars'][] = array('λ', 'lambda');
+      $settings['specialChars'][] = array('μ', 'mu');
+      $settings['specialChars'][] = array('ν', 'nu');
+      $settings['specialChars'][] = array('ξ', 'xi');
+      $settings['specialChars'][] = array('ο', 'omicron');
+      $settings['specialChars'][] = array('π', 'pi');
+      $settings['specialChars'][] = array('ρ', 'rho');
+      $settings['specialChars'][] = array('ς', 'sigmaf');
+      $settings['specialChars'][] = array('σ', 'sigma');
+      $settings['specialChars'][] = array('τ', 'tau');
+      $settings['specialChars'][] = array('υ', 'upsilon');
+      $settings['specialChars'][] = array('φ', 'phi');
+      $settings['specialChars'][] = array('χ', 'chi');
+      $settings['specialChars'][] = array('ψ', 'psi');
+      $settings['specialChars'][] = array('ω', 'omega');
+      $settings['specialChars'][] = array('ϑ', 'thetasym');
+      $settings['specialChars'][] = array('ϒ', 'upsih');
+      $settings['specialChars'][] = array('ϖ', 'piv');
     }
   }
   function uib_ckeditor_config_wysiwyg_plugin($editor, $version) {
