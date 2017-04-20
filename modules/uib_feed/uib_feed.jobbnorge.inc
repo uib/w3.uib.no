@@ -36,10 +36,14 @@ function uib_feed__format_jobbnorge_pre_render($element) {
   list($url, $title, $limit) = $element['#cache']['keys'];
   $content = uib_feed__get($url);
   if (!$content) {
+    $external_url = 'https://www.jobbnorge.no/en/available-jobs/university-of-bergen';
+    $external_link = l('Jobbnorge', $external_url);
+    $external_text = '<br />' . t('Please see the complete list at') . ' ';
+    $external = $external_text . $external_link;
     $elm['empty']['jobbnorge']['no_response'] = array(
       '#type' => 'html_tag',
       '#tag' => 'p',
-      '#value' => t('Open position entries cannot be retrieved at this moment'),
+      '#value' => t('Open position entries cannot be retrieved at this moment') . $external,
       '#attributes' => array(
         'class' => 'uib-vacancies-no-response',
       ),
