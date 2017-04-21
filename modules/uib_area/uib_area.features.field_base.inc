@@ -493,7 +493,7 @@ function uib_area_field_default_field_bases() {
         'guest_lecturer' => 'Guest lecture',
         'conference' => 'Conference',
         'consert' => 'Concert',
-        'course' => 'Course',
+        'course' => 'Course&#8203',
         'course_economy' => 'Course - economy',
         'course_for_teachers' => 'Course - for teachers',
         'course_leadership' => 'Course - leadership',
