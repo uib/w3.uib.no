@@ -338,19 +338,20 @@ EOD;
         'label' => 'hidden',
         'weight' => -30,
       ));
-
-      $mm = &$variables['page']['content_top']['field_uib_main_media'];
-      for( $i = 0; $i < count($mm['#items']); $i++) {
-        if (array_key_exists($i, $main_media_captions)) {
-          if (empty($mm[$i]['field_uib_description'])) {
-            $mm['#items'][$i]['field_uib_description'][$variables['language']->language][] = array('value' => $main_media_captions[$i]);
-            $mm[$i]['field_uib_description'] = field_view_field('node', $variables['node'], 'field_uib_imagecaptions', array(
-              'type'=>'text_summary_or_trimmed',
-              'label'=>'hidden',
-            ));
+      if (!empty($variables['page']['content_top']['field_uib_main_media'])) {
+        $mm = &$variables['page']['content_top']['field_uib_main_media'];
+        for( $i = 0; $i < count($mm['#items']); $i++) {
+          if (array_key_exists($i, $main_media_captions)) {
+            if (empty($mm[$i]['field_uib_description'])) {
+              $mm['#items'][$i]['field_uib_description'][$variables['language']->language][] = array('value' => $main_media_captions[$i]);
+              $mm[$i]['field_uib_description'] = field_view_field('node', $variables['node'], 'field_uib_imagecaptions', array(
+                'type'=>'text_summary_or_trimmed',
+                'label'=>'hidden',
+              ));
+            }
+            $mm[$i]['field_uib_description'][0]['#markup'] =
+              $main_media_captions[$i];
           }
-          $mm[$i]['field_uib_description'][0]['#markup'] =
-            $main_media_captions[$i];
         }
       }
 
