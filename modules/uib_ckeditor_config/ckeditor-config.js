@@ -30,4 +30,14 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
       info.remove( toRemove[key] );
     }
   }
+
+  if ( dialogName == 'image' ) {
+    dialogDefinition.removeContents('Link');
+    dialogDefinition.removeContents('advanced');
+    var infoTab = dialogDefinition.getContents( 'info' );
+    var toRemove = [ 'txtWidth', 'txtHeight', 'txtBorder', 'cmbAlign', 'txtHSpace', 'txtVSpace', 'ratioLock', 'htmlPreview' ];
+    for ( key in toRemove ) {
+      infoTab.remove( toRemove[key] );
+    }
+  }
 });
