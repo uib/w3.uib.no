@@ -1,0 +1,50 @@
+<?php
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
+function uib_file_form_file_entity_delete_form_alter(&$form, $form_state) {
+  $file = file_load($form['fid']['#value']);
+  $usage = file_usage_list($file);
+  if ($keys = array_keys($usage['file']['node'])) {
+    $nodes = entity_load('node', $keys);
+    $node_titles = array();
+    foreach ($nodes as $node) {
+      $in_node = FALSE;
+      if (!empty($node->field_uib_main_media)) {
+        foreach($node->field_uib_main_media['und'] as $key => $file) {
+          if ($file['fid'] == $form['fid']['#value']) $in_node = TRUE;
+        }
+      }
+      if (!empty($node->field_uib_media)) {
+        foreach($node->field_uib_media['und'] as $key => $file) {
+          if ($file['fid'] == $form['fid']['#value']) $in_node = TRUE;
+        }
+      }
+      if (!empty($node->field_uib_study_image)) {
+        foreach($node->field_uib_study_image['und'] as $key => $file) {
+          if ($file['fid'] == $form['fid']['#value']) $in_node = TRUE;
+        }
+      }
+      if (!empty($node->field_uib_files)) {
+        foreach($node->field_uib_files['und'] as $key => $file) {
+          if ($file['fid'] == $form['fid']['#value']) $in_node = TRUE;
+        }
+      }
+      if ($in_node) $node_titles[] = l($node->title, 'node/' . $node->nid);
+    }
+    if (!empty($node_titles)) {
+      $node_titles_list = array(
+        '#theme' => 'item_list',
+        '#items' => $node_titles,
+        '#attributes' => array(),
+      );
+      $message = t('This file is used in the following content: !message It must be removed before it can be deleted', array('!message' => render($node_titles_list)));
+      drupal_set_message($message, 'error');
+      unset($form['description']);
+      unset($form['actions']['submit']);
+    }
+    else {
+      $message = t('This file is not in use and may be deleted. This action is not reversible.');
+    }
+  }
+}

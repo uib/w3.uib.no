@@ -61,6 +61,7 @@ dependencies[] = uib_content_list
 dependencies[] = uib_cristin
 dependencies[] = uib_dbh
 dependencies[] = uib_field
+dependencies[] = uib_file
 dependencies[] = uib_filter
 dependencies[] = uib_h2tabs
 dependencies[] = uib_media

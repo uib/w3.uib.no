@@ -1,0 +1,4 @@
+name = UiB File
+description = Contains modifications to file module
+package = UiB
+core = 7.x
