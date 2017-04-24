@@ -156,6 +156,7 @@
           '*position*',
           'competence*',
           'link*',
+          'w3.published_timestamp',
         ],
       }
       var boostquery = {bool: {should: [], _name: "Boost"}};
@@ -862,6 +863,7 @@
             $().getVal(v.highlight, 'last_name') :
             $().getVal(v._source, 'last_name');
         var changed = $().getVal(v._source.w3, 'changed');
+        var published_timestamp = $().getVal(v._source.w3, 'published_timestamp');
         if (article_type == 'event') {
           var t = $().getVal(v._source.w3.date, 'value');
           var event_from = null;
@@ -951,8 +953,15 @@
             .attr('href', link)
             .text(decodeURIComponent(link).replace(/^https?:\/\//,''));
 
+          var updated = $.fn.df(new Date(changed*1000), 'd.m.Y');
+          var published = $.fn.df(new Date(published_timestamp*1000), 'd.m.Y');
+          if (updated != published) {
+            var last_updated = ' (' + Drupal.t('Last updated') + ': ' + updated + ')';
+          } else {
+            var last_updated = '';
+          }
           var changedtag = $('<div/>')
-            .text(Drupal.t('Published ') + $.fn.df(new Date(changed*1000), 'd. M Y'))
+            .text(Drupal.t('Published') + ': ' + published + last_updated)
             .addClass('published');
           name = $('<a></a>').attr('href', link).html(title);
           lft = $('<div></div>').addClass('lft')
