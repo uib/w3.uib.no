@@ -105,8 +105,6 @@ function uib_search_block_view($delta) {
     drupal_add_js(
       array('uib_search' =>
         array(
-          'user' => uib_search__get_setup('user'),
-          'password' => uib_search__get_setup('password'),
           'url' => uib_search__get_setup('url'),
           'index' => uib_search__get_setup('index'),
         )
