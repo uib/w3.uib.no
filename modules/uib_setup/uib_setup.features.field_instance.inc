@@ -659,7 +659,7 @@ function uib_setup_field_default_field_instances() {
     'bundle' => 'image',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Copyright credits for images is mandatory to ensure that all images are cleared for use at uib.no',
     'display' => array(
       'area_bottom' => array(
         'label' => 'inline',
@@ -1725,6 +1725,7 @@ function uib_setup_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Alt Text');
   t('Copyright');
+  t('Copyright credits for images is mandatory to ensure that all images are cleared for use at uib.no');
   t('Description');
   t('Photo');
   t('Producer');
