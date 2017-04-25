@@ -378,26 +378,58 @@ function uib_search__run_elastic_request(
   $timeout = 1
 )
 {
-  $user = uib_search__get_setup('user', $run_as_administrator);
-  $password = uib_search__get_setup('password', $run_as_administrator);
+  $a = $run_as_administrator ? '_admin' : '';
+  if (variable_get('uib_elasticsearch_useindex' . $a, '')) {
+    $user = uib_search__get_setup('user', $run_as_administrator);
+    $password = uib_search__get_setup('password', $run_as_administrator);
+    $auth = 'Basic ' . base64_encode("{$user}:{$password}");
+  }
+  else {
+    $token = uib_search__get_setup('token', $run_as_administrator);
+    $auth = "Bearer {$token}";
+  }
   if (!uib_search__check_elastic_settings($run_as_administrator)) {
     $admin = $run_as_administrator ? 'Administrator s' : 'S';
     uibx_log($admin . 'ettings for elasticsearch is missing', 'error');
     return;
   }
-  $token = "{$user}:{$password}";
-  $token = base64_encode($token);
 
-  return drupal_http_request($url,
-    array(
-      'headers' => array(
-        'Authorization' => "Basic {$token}"
-      ),
-      'method' => $method,
-      'data' => $data,
-      'timeout' => $timeout,
-    )
+  $options = array(
+    'headers' => array(
+      'Authorization' => $auth,
+      'Content-type' => 'application/json',
+      'Accept' => 'application/json',
+      'Cookie' => strtok(variable_get('uib_search_jwt', ''), ';'),
+    ),
+    'method' => $method,
+    'data' => $data,
+    'timeout' => $timeout,
   );
+
+  if (variable_get('uib_search_jwt', '')) {
+    $elements = explode(';', variable_get('uib_search_jwt', ''));
+    $cookie = trim($elements[0]);
+    for ($i = 1; $i<count($elements); $i++) {
+      $arr = explode('=', trim($elements[$i]));
+      if (strtolower(trim($arr[0])) == 'expires'){
+        $expires = strtotime(trim($arr[1]));
+        if ($expires > time() + 60) { // Use cookie if not expired
+          $options['headers']['Cookie'] = $cookie;
+        }
+        else {
+          variable_del('uib_search_jwt');
+        }
+        break;
+      }
+    }
+  }
+
+  $result = drupal_http_request($url, $options);
+
+  if (isset($result->headers['set-cookie'])) {
+    variable_set('uib_search_jwt',$result->headers['set-cookie']);
+  }
+  return $result;
 }
 
 /**
