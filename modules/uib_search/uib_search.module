@@ -433,61 +433,31 @@ function uib_search__run_elastic_request(
 }
 
 /**
- * Get a setup property for elasticsearch. This function expects the
- * variables uib_elasticsearch_useindex and uib_elasticsearch_useindex_admin
- * to be set. 'index1' is used as a default if uib_elasticsearch_useindex
- * is not set. Setup is fetched from the variable uib_elasticsearch, and
- * is on the form below.
- * Read only:
- * $conf['uib_elasticsearch'] = array(
- *   'index1' => array(
- *     'url' => 'https://api.search.uib.no',
- *     'user' => 'w3_user',
- *     'password' => '**********',
- *     'index' => 'w3',
- *   ),
- *   'index2' => array(
- *     'url' => 'https://api.test.search.uib.no',
- *     'user' => 'w3_2_user',
- *     'password' => '**********',
- *     'index' => 'w3_2',
- *   )
- * );
+ * Get a setup property for elasticsearch. The following properties can exist:
+ * uib_elasticsearch_token
+ * uib_elasticsearch_url
+ * uib_elasticsearch_index
+ * uib_elasticsearch_admin_token
+ * uib_elasticsearch_admin_index
  *
- * Admin:
- * $conf['uib_elasticsearch_admin'] = array(
- *   'index1' => array(
- *     'url' => 'https://api.search.uib.no',
- *     'user' => 'w3_admin',
- *     'password' => '**********',
- *     'index' => 'w3',
- *   ),
- *   'index2' => array(
- *     'url' => 'https://api.test.search.uib.no',
- *     'user' => 'w3_2_admin',
- *     'password' => '**********',
- *     'index' => 'w3_2',
- *   )
- * );
- * The variables uib_elasticsearch_useindex and uib_elasticsearch_useindex_admin
- * are used to set which index is used.
  *
- * Indexes can be setup on https://token.test.search.uib.no (testing) or
- * https://token.search.uib.no (prod). See the docs for more info.
- * @param string $name Setup type, can be user, password, url or index.
+ * Tokens and indexes can be setup on https://shield.devapp.uib.no/.
+ * @param string $name Setup type, can be token, url or index.
  * @param boolean $admin Set to TRUE for the admin setup
  */
 function uib_search__get_setup($name, $admin = FALSE) {
-  if (!in_array($name, array('user', 'password', 'url', 'index'))) {
-    return;
-  }
   $a = $admin ? '_admin' : '';
-  $setup = variable_get('uib_elasticsearch' . $a);
-  $use = variable_get('uib_elasticsearch_useindex' . $a, 'index1');
-  if (!$setup || !array_key_exists($use, $setup)) {
-    return;
+  if (variable_get('uib_elasticsearch_useindex' . $a, '')) {
+    $setup = variable_get('uib_elasticsearch' . $a);
+    $use = variable_get('uib_elasticsearch_useindex' . $a, 'index1');
+    if (!$setup || !array_key_exists($use, $setup)) {
+      return;
+    }
+    return $setup[$use][$name];
   }
-  return $setup[$use][$name];
+  $elastic = 'uib_elasticsearch_';
+  $elastic .= $admin ? 'admin_' : '';
+  return variable_get($elastic.$name, '');
 }
 
 /**
