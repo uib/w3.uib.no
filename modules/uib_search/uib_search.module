@@ -399,7 +399,6 @@ function uib_search__run_elastic_request(
       'Authorization' => $auth,
       'Content-type' => 'application/json',
       'Accept' => 'application/json',
-      'Cookie' => strtok(variable_get('uib_search_jwt' . $a, ''), ';'),
     ),
     'method' => $method,
     'data' => $data,
@@ -417,7 +416,7 @@ function uib_search__run_elastic_request(
           $options['headers']['Cookie'] = $cookie;
         }
         else {
-          variable_del('uib_search_jwt');
+          variable_del('uib_search_jwt' . $a);
         }
         break;
       }
