@@ -84,6 +84,7 @@ projects[media_vimeo][version] = 2.1
 projects[media_youtube][version] = 3.0
 projects[menu_admin_per_menu][version] = 1.1
 projects[menu_block][version] = 2.7
+projects[metatag][version] = 1.21
 projects[module_filter][version] = 2.0
 projects[node_revision_delete][version] = 2.6
 projects[node_revision_delete][patch][] = https://www.drupal.org/files/issues/postgresql_pdoexception-2333555-1.patch
