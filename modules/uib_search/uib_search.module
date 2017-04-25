@@ -598,9 +598,7 @@ function uib_search__get_elastic_user_array($wrapped_entity) {
 function uib_search__check_elastic_settings($admin = false) {
   if (
     uib_search__get_setup('url', $admin) &&
-    uib_search__get_setup('index', $admin) &&
-    uib_search__get_setup('user', $admin) &&
-    uib_search__get_setup('password', $admin)
+    uib_search__get_setup('index', $admin)
   ) {
     return true;
   }
