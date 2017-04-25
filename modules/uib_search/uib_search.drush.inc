@@ -78,11 +78,16 @@ function uib_search_drush_command() {
       'stop=n' => 'Stop after n iterations. Defaults to 10.',
     ),
   );
-  $items['uib-search-url'] = array(
-    'description' => 'Print URL that can be used to access the elastic server.',
+  $items['uib-search-curl'] = array(
+    'description' => 'Print curl-string for easy access to the elastic server.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(
+      'method' => 'http - method (GET, POST, PUT, DELETE). Defaults to GET.',
+      'elasticmethod' => 'Elasticsearch rest-api method. Defaults to _search.',
+    ),
     'options' => array(
-      'admin' => 'Return URL that gives you admin access',
+      'admin' => 'Return with token to give you admin access',
+      'size' => 'Size of results list',
     ),
   );
   return $items;
@@ -394,10 +399,10 @@ function drush_uib_search_index($type = 'user') {
   print("Tried updating $rowcount ${type}s; $remaining remaining.\n");
 }
 
-
-
-function drush_uib_search_url() {
+function drush_uib_search_curl($method = 'GET', $elasticmethod = '_search') {
   $admin = drush_get_option('admin');
+  $size = drush_get_option('size', 5);
+
   if (!uib_search__check_elastic_settings($admin)) {
     $a = $admin ? 'Administrator s' : 'S';
     uibx_log($a . 'ettings for elasticsearch is missing', 'error');
@@ -405,11 +410,13 @@ function drush_uib_search_url() {
   }
   $url = uib_search__get_setup('url', $admin) . '/'
     . uib_search__get_setup('index', $admin) . '/';
-  if (substr($url, 0, 8) == 'https://') {
-    $url = substr($url, 0, 8) . uib_search__get_setup('user', $admin) . ':'
-      . uib_search__get_setup('password', $admin) . '@' . substr($url, 8);
-  }
-  return $url;
+  $token = uib_search__get_setup('token', $admin);
+  $curl = "curl ";
+  $curl .= "-H 'Content-Type: application/json' ";
+  $curl .= "-H 'Accept: application/json' ";
+  $curl .= "-H 'Authorization: Bearer {$token}' ";
+  $curl .= "-X{$method} '{$url}/{$elasticmethod}?pretty&size={$size}'";
+  return $curl;
 }
 
 /**
