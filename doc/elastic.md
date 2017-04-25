@@ -7,73 +7,36 @@ interface built on top of [Apache Lucene](https://lucene.apache.org) that
 provide fast and precise search results from large amounts of semi-structured
 data.
 
-## Disable frontend search
-You can disable the instant search in the uib.no frontend by deleting
-variable `uib_elasticsearch_index`, for instance with the command
-
-    bin/site-drush vdel uib_elasticsearch_index
-
 ## Setup
 
 Variables for the administrative setup will generally be set up in drupals
 settings.php - file:
 
-    $conf['uib_elasticsearch_admin'] = array(
-      'index1' => array(
-        'url' => 'https://api.search.uib.no',
-        'user' => 'w3_admin',
-        'password' => '*********',
-        'index' => 'w3',
-      ),
-      'index2' => array(
-        'url' => 'https://api.test.search.uib.no',
-        'user' => 'w3_2_admin',
-        'password' => '*********',
-        'index' => 'w3_2',
-      ),
-    );
+    $conf['uib_elasticsearch_admin_url'] = 'https://api.test.search.uib.no';
+    $conf['uib_elasticsearch_admin_index'] = 'anyindex';
+    $conf['uib_elasticsearch_admin_token'] = 'thisisa1078characterslongtoken';
 
 ...while the read only setup can be set in the database using variable_set
+(For a development-setup, using settings.php for both settings will be fine)
 
-    bin/site-drush ev '
-    $arr = array(
-      "index1" => array(
-        "url" => "https://api.search.uib.no",
-        "user" => "w3",
-        "password" => "*********",
-        "index" => "w3",
-      ),
-      "index2" => array(
-        "url" => "https://api.test.search.uib.no",
-        "user" => "w3_2",
-        "password" => "*********",
-        "index" => "w3_2",
-      ),
-    );
-    variable_set("uib_elasticsearch", $arr);
-    '
+    bin/site-drush vset uib_elasticsearch_url https://api.test.search.uib.no
+    bin/site-drush vset uib_elasticsearch_index anyindex
+    bin/site-drush vset uib_elasticsearch_token thisisalso1078characterslongtoken
 
-The variables `uib_elasticsearch_useindex` and
-`uib_elasticsearch_useindex_admin` determine which index to use. Default
-for these are 'index1'. You can set these using drush
+It is important that the admin-variables are defined in settings.php on the
+production system, to prevent these values from leaking to development systems
+when running `bin/site-prod-reset`.
 
-    bin/site-drush vset uib_elasticsearch_useindex index2
-    bin/site-drush vset uib_elasticsearch_useindex_admin index2
+In the old authentication scheme, the variables `uib_elasticsearch_useindex` and
+`uib_elasticsearch_useindex_admin` would determine which index to use. If these
+variables are set, old auth-scheme is still used. To use the new scheme, change
+these variables to capital letters FALSE:
 
-If you don't have a database available visit
-[token.test.search.uib.no](https://token.test.search.uib.no) (testing) or
-[token.search.uib.no](https://token.search.uib.no) (production)
-and fill in the variables from the values it provide you after you
-create a new index.
+    bin/site-drush vset uib_elasticsearch_useindex FALSE
+    bin/site-drush vset uib_elasticsearch_useindex_admin FALSE
 
-The admin-variables are defined in settings.php on the production system, to
-prevent these values from leaking to development systems when running
-`bin/site-prod-reset`.
-
-You can list the currently set variable with
-`bin/site-drush vget elastic`.
-You can change variable values with
-`bin/site-drush vset <variablename> <variablevalue>`.
+To to create and / or review your available indexes, visit
+[shield.devapp.uib.no](https://shield.devapp.uib.no).
 
 ## Drush functionality
 
@@ -149,6 +112,7 @@ structure as `somefield`.
         _searchable_text,
       }
     }
+
 
 Generic fields are populated by combining relevant fields for the entity.
 
