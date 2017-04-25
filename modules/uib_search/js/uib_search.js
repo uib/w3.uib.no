@@ -82,31 +82,33 @@
       return '%' + c.charCodeAt(0).toString(16);
     });
   };
-  $.fn.executeQuery = function (postdata, query){
-    // Query-string for server-logging the query
-    var q = $().encodeURIComponent(query);
+  $.fn.executeQuery = function (query){
+    // Starting timer for debugging
+    if ($.uib_search.debug) {
+      uib_timer = new Date().getTime();
+    }
     // query filters:
     var filters = $('[name="uib_search_filters[]"]:checked').map(function(){
       return $(this).val();
-    }).get().join('-');
-    filters = $().encodeURIComponent(filters);
+    }).get();
 
     // Options for jquery ajax-call
     var options = {
-      url: $.uib_search.fullurl + '?query=' + query + '&filters=' + filters,
-      type: 'POST',
+      url: '/api/search',
+      method: 'GET',
+      data: {
+        query: query,
+        filters: filters,
+        size: $.uib_search.size,
+        from: $.uib_search.from,
+        lang: $.uib_search.lang,
+      },
       dataType: 'json',
       beforeSend: function (xhr) {
-        xhr.setRequestHeader (
-          "Authorization", "Basic " + btoa($.uib_search.user + ":" + $.uib_search.password)
-        );
-        // Clear running request:
         if ($.uib_search.current_request) {
           $.uib_search.current_request.abort();
         }
-        $.uib_search.current_request=xhr;
       },
-      data: JSON.stringify(postdata),
       success: $().createResults($.uib_search.resultsselector, query),
     };
     $.ajax(options);
@@ -1099,7 +1101,7 @@
       else if(data.hits.total>7) {
         $('<a></a>')
           .addClass('no_more_results')
-          .attr('href', $.uib_search.fullurl)
+          .attr('href', '#')
           .text(Drupal.t('No more results for this query. Click to refine your search.'))
           .appendTo(resultstag);
         $('.no_more_results').click(function(event){
@@ -1132,9 +1134,8 @@
             $.uib_search.from = $(this).data('from');
           break;
         }
-        var postdata = $().createQuery($.uib_search.currentquery);
         $().searchDelay(function() {
-          $().executeQuery(postdata, $.uib_search.currentquery);
+          $().executeQuery($.uib_search.currentquery);
         }, 1 );
 
 
@@ -1235,10 +1236,6 @@
     $.uib_search = {
       from: 0,
       size: 15,
-      password: Drupal.settings.uib_search.password,
-      user: Drupal.settings.uib_search.user,
-      index: Drupal.settings.uib_search.index,
-      url: Drupal.settings.uib_search.url,
       resultsselector: 'form#uib-search-form .results',
       lang: $('html').attr('lang'),
       currentquery: '',
@@ -1249,14 +1246,8 @@
       current_request: null,
       debug: 0,
     };
-    $.uib_search.fullurl = $.uib_search.url + "/" + $.uib_search.index
-      + "/_search";
 
-    if(!$.uib_search.url){
-      // Hide switch button if elastic url is not set
-      $('.lightbox .topbar .form-type-checkbox').css('display', 'none');
-    }
-    else{
+
       $(".global-search").submit(function(e){
         return false;
       });
@@ -1271,13 +1262,11 @@
         $.uib_search.scroll = false;
         $.uib_search.focus = false;
         $.uib_search.select = false;
-        var postdata = $().createQuery(query);
         $().searchDelay(function() {
-          $().executeQuery(postdata, query);
+          $().executeQuery(query);
         }, $.uib_search.delay );
 
       });
-    }
 
     // Prepopulate search
     if (history.state && history.state.id  == 'uib-search') {
@@ -1291,9 +1280,8 @@
       });
       $('form#uib-search-form .search-field').val($.uib_search.currentquery);
 
-      var postdata = $().createQuery($.uib_search.currentquery);
       $().searchDelay(function() {
-        $().executeQuery(postdata, $.uib_search.currentquery);
+        $().executeQuery($.uib_search.currentquery);
       }, 1 );
     }
   });
