@@ -243,6 +243,16 @@ function uib_setup_user_default_permissions() {
     'module' => 'menu',
   );
 
+  // Exported permission: 'administer meta tags'.
+  $permissions['administer meta tags'] = array(
+    'name' => 'administer meta tags',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+    ),
+    'module' => 'metatag',
+  );
+
   // Exported permission: 'administer module filter'.
   $permissions['administer module filter'] = array(
     'name' => 'administer module filter',
@@ -860,6 +870,16 @@ function uib_setup_user_default_permissions() {
       'level 3' => 'level 3',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'edit meta tags'.
+  $permissions['edit meta tags'] = array(
+    'name' => 'edit meta tags',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+    ),
+    'module' => 'metatag',
   );
 
   // Exported permission: 'edit own area content'.
