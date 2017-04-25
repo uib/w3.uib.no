@@ -8,6 +8,11 @@ function uib_search_menu() {
     'page callback' => 'uib_search__page',
     'access callback' => TRUE,
   );
+  $items["api/search"] = array(
+    'page callback' => 'uib_search__proxy_search',
+    'page arguments' => array(),
+    'access callback' => TRUE,
+  );
   $items["searchboost/up/%/%"] = array(
     'page callback' => 'uib_search__boost_item_search',
     'page arguments' => array(1,2,3),
@@ -1323,4 +1328,927 @@ function uib_search__clean_utf8_string_array(&$array) {
       }
     }
   );
+}
+
+
+function uib_search__proxy_search() {
+  $query = $_REQUEST['query'];
+  $filter = (array)$_REQUEST['filters'];
+  $size = isset($_REQUEST['size']) ? $_REQUEST['size'] : '10';
+  $from = isset($_REQUEST['from']) ? $_REQUEST['from'] : '0';
+  $lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : 'nb';
+
+
+  $url = rtrim(uib_search__get_setup('url'), '/');
+  $url .= '/' . uib_search__get_setup('index');
+  $url .= '/_search';
+
+  $all = FALSE;
+  $should = array();
+  $tmp = array();
+  $shortquery = substr($query, 0, 15);
+  $excerpt_length = 350;
+  $data = array(
+    'query' => array(
+      'bool' => array(
+        'should' => array(),
+        'must' => array(),
+        'filter' => array(
+          'bool' => array(
+            'should' => array(),
+          ),
+        ),
+      ),
+    ),
+    'highlight' => array(
+      'fields' => array(),
+    ),
+    'size' => $size,
+    'from' => $from,
+    '_source' => array(
+      'generic.title*',
+      'generic.excerpt*',
+      'generic.link*',
+      'search_manual_boost',
+      'w3.date.*',
+      'w3.type',
+      'w3.changed',
+      'w3.article_type',
+      'w3.location',
+      'w3.study_code',
+      'mail',
+      'first_name',
+      'last_name',
+      'phone',
+      'ou_*',
+      '*position*',
+      'competence*',
+      'link*',
+    ),
+  );
+
+  $boostquery = array(
+    'bool' => array(
+      'should'=> array(),
+      '_name'=> 'Boost',
+    ),
+  );
+  $searchquery = array(
+    'bool' => array(
+      'should' => [],
+      '_name' => 'Search',
+      'minimum_should_match' => 1,
+    ),
+  );
+
+  /**************************************
+   * Query matching
+   *************************************/
+
+  // Match NGrams in title. Ngrams are made up of word triplets
+  // This matches for user and node
+  $tmp = array(
+    'bool' => array(
+      'filter' => array(
+        'terms' => array(
+          '_type' => array(
+            'user',
+            'node',
+          ),
+        ),
+      ),
+      'must' => array(
+        'match' => array(
+          'generic.title.ngrams' => array(
+            'query' => $shortquery,
+            'minimum_should_match' => '40%',
+          ),
+        ),
+      ),
+      '_name' => 'NGram-search',
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+
+  $tmp = array(
+    'bool' => array(
+      'filter' => array(
+        'terms' => array(
+          '_type' =>  array("study"),
+        ),
+      ),
+      'should' =>  array(
+        array(
+          'match' => array(
+            "generic.title_nb.ngrams" => array(
+              'query' => $shortquery,
+              'minimum_should_match' => "40%",
+            ),
+          ),
+        ),
+        array(
+          'match' => array(
+            "generic.title_en.ngrams" => array(
+              'query' => $shortquery,
+              'minimum_should_match' => "40%",
+            ),
+          ),
+        ),
+      ),
+      'minimum_should_match' => 1,
+      '_name' => "NGram-study",
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match full words in title
+  $tmp = array(
+      'bool' => array(
+        'filter' => array(
+          'terms' => array(
+            '_type' => array(
+              "user",
+              "node",
+            ),
+          ),
+        ),
+        'must' => array(
+          'match' => array(
+            "generic.title.{$lang}" => array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        '_name' => "Match-title",
+      ),
+    );
+  $searchquery['bool']['should'][] = $tmp;
+
+  $tmp = array(
+    'bool' => array(
+      'filter' => array(
+        'terms' => array(
+          '_type' => array("study"),
+        ),
+      ),
+      'must' => array(
+        'match' => array(
+          "generic.title_{$lang}" => array(
+            'query' => $query,
+          ),
+        ),
+      ),
+      '_name' => "Match-title-study({$lang})",
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match words in excerpt
+  $tmp = array(
+    'bool' =>  array(
+      'filter' =>  array(
+        'terms' =>  array(
+          '_type' =>  array('node'),
+        ),
+      ),
+      'must' =>  array(
+        'match' =>  array(
+          "generic.excerpt.{$lang}" => array(
+            'query' => $query,
+          ),
+        ),
+      ),
+      '_name' =>  'Match-excerpt',
+    )
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  $tmp = array(
+    'bool' =>  array(
+      'filter' =>  array(
+        'terms' =>  array(
+          '_type' =>  array('study'),
+        ),
+      ),
+      'must' =>  array(
+        'match' =>  array(
+          "generic.excerpt_{$lang}" => array(
+            'query' =>  $query,
+          )
+        ),
+      ),
+      '_name' =>  "Match-excerpt-study({$lang})",
+    )
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match keywords
+  $tmp = array(
+    'match' =>  array(
+      'w3.search_keywords' => array(
+        'query' =>  $shortquery,
+        'boost' =>  2,
+        'fuzziness' =>  'auto',
+        '_name' =>  'Fuzzy-match-keywords',
+      ),
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  //Match search description
+  $tmp = array(
+    'match' =>  array(
+      'w3.search_description' => array(
+        'query' =>  $shortquery,
+        'boost' =>  2,
+        'fuzziness' =>  'auto',
+        '_name' =>  'Fuzzy-match-description',
+      ),
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  //Match in _searchable text
+  $tmp = array(
+    'match' =>  array(
+      "generic._searchable_text.{$lang}" => array(
+        'query' => $query,
+        '_name' =>  'Match-searchable-text',
+      ),
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Phrase-matching on title
+  $tmp = array(
+    'bool' =>  array(
+      'filter' =>  array(
+        'terms' =>  array(
+          '_type' =>  array(
+            'user',
+            'node'
+          ),
+        ),
+      ),
+      'must' =>  array(
+        'match_phrase_prefix' =>  array(
+          "generic.title.{$lang}" => array(
+            'query' => $query,
+          ),
+        ),
+      ),
+      '_name' =>  "Phrase-search({$lang})",
+    )
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  $tmp = array(
+    'bool' =>  array(
+      'filter' =>  array( 'terms' =>  array( '_type' =>  array('study'))),
+      'must' =>  array(
+        'match_phrase_prefix' =>  array(
+          "generic.title_{$lang}" => array(
+            'query' => $query,
+          ),
+        ),
+      ),
+      '_name' =>  "Phrase-search-study({$lang})",
+    )
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Prefix - matching on disipline
+  $tmp = array(
+    'prefix' =>  array(
+      'fs.dicipline_nb' => $query,
+      '_name' =>  'Dicipline(nb)',
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  $tmp = array(
+    'prefix' =>  array(
+      'fs.dicipline_en' => $query,
+      '_name' =>  'Dicipline(en)',
+    ),
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match url elements on nodes
+  $tmp = array('match' =>  array());
+  $tmp['match']["w3.url_string.{$lang}"] = array(
+    'query' => $query,
+    'boost' =>  3,
+    'fuzziness' =>  'auto',
+    'prefix_length' =>  3,
+    'max_expansions' =>  50,
+    '_name' =>  'Match-url',
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match on custom fields for persons
+  $tmp = array(
+    'bool' =>  array(
+      'should' => array(
+        array(
+          'match_phrase_prefix' => array(
+            'first_name' => array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match' => array(
+            'first_name' =>  array(
+              'query' =>  $shortquery,
+              'fuzziness' =>  1,
+              'prefix_length' =>  3,
+              'max_expansions' =>  50,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' => array(
+            'last_name' => array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match' =>  array(
+            'last_name' =>  array(
+              'query' =>  $shortquery,
+              'fuzziness' =>  1,
+              'prefix_length' => 3,
+              'max_expansions' =>  50,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'mail' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'ou_nb' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'ou_en' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'position_nb' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'position_en' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'alt_position_nb' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'alt_position_en' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'competence_nb' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'match_phrase_prefix' =>  array(
+            'competence_en' =>  array(
+              'query' => $query,
+            ),
+          ),
+        ),
+        array(
+          'multi_match' =>  array(
+            'query' => $query,
+            'fields' =>  array(
+              'ou_nb',
+              'ou_en',
+              'position_nb',
+              'position_en',
+              'alt_position_nb',
+              'alt_position_en',
+              'competence_nb',
+              'competence_en',
+            ),
+          ),
+        ),
+      ),
+    '_name' =>  'Person-search',
+    )
+  );
+  $patterns = array('/\+47/','/[^0-9]/');
+  $phonequery = preg_replace($patterns, '', $query);
+  // $phonequery = $query.replace(/\+47/g, '');
+  // phonequery = phonequery.replace(/[^0-9]/g, '');
+  if ($phonequery) {
+    $tmp['bool']['should'][] = array(
+      'wildcard' =>  array(
+        'phone.nospace' => array(
+          'value' =>  '*' . $phonequery . '*',
+          'boost' =>  10,
+        ),
+      ),
+    );
+  }
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match direct hit on study code
+  $tmp = array(
+    'bool' =>  array(
+      'filter' =>  array(
+        'terms' =>  array(
+          '_type' =>  array('study'),
+        ),
+      ),
+      'must' =>  array(
+        'term' =>  array(
+          'w3.study_code' => strtolower($query),
+        ),
+      ),
+      '_name' =>  'Match-study-code',
+      'boost' =>  5,
+    )
+  );
+  $searchquery['bool']['should'][] = $tmp;
+
+
+
+  // Add the searchquery to the must clause, as something here must match
+  $data['query']['bool']['must'] = $searchquery;
+
+
+
+  /**************************************
+   * Highlighted fields
+   *************************************/
+  $data['highlight']['fields']['w3.study_code'] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['generic.title.' . $lang] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['generic.title_' . $lang] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['generic.excerpt.' . $lang] = array(
+    'number_of_fragments' => 1,
+    'fragment_size' => $excerpt_length,
+  );
+  $data['highlight']['fields']['generic.excerpt_' . $lang] = array(
+    'number_of_fragments' => 1,
+    'fragment_size' => $excerpt_length,
+  );
+  $data['highlight']['fields']['first_name'] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['last_name'] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['ou_' . $lang] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['position_' . $lang] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['mail'] = array(
+    'number_of_fragments' => 0,
+  );
+  $data['highlight']['fields']['alt_position_' . $lang] = array(
+    'number_of_fragments' => 0,
+  );
+
+  /**************************************
+   * Boosting relevance
+   *************************************/
+  // Importance levels are found in this doc https://goo.gl/yw9mzP
+  // The boost levels associated with the importance levels are subject
+  // to change.
+  $importance_levels = array(
+    1 => 6, // Most important: Area pages etc
+    2 => 5, // Less important: News from latest month etc
+    3 => 4, // Even less important: News from last year?
+    4 => 3, // ...etc
+    5 => 2,
+    6 => 1,
+  );
+
+  // Boost study programs
+  $tmp = array(
+    'constant_score' => array(
+      'filter' => array(
+        'term' => array(
+          'fs.study_type' => array(
+            'value' => 'program',
+          ),
+        ),
+      ),
+      'boost' => $importance_levels[1],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+
+  // Boost study courses
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'term' =>  array(
+          'fs.study_type' => array(
+            'value' =>  'course',
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[2],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost exchange agreements
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'term' =>  array(
+          'fs.study_type' => array(
+            'value' =>  'exchange',
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[2],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost all hits in the study index
+  // not boosted otherwise
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'bool' =>  array(
+          'must' =>  array(
+            'term' =>  array(
+              '_type' => array(
+                'value' =>  'study',
+              ),
+            ),
+          ),
+          'must_not' =>  array(
+            array(
+              'term' =>  array(
+                'fs.study_type' => array(
+                  'value' =>  'course',
+                ),
+              ),
+            ),
+            array(
+              'term' =>  array(
+                'fs.study_type' => array(
+                  'value' =>  'program',
+                ),
+              ),
+            ),
+            array(
+              'term' =>  array(
+                'fs.study_type' => array(
+                  'value' =>  'exchange',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[3],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost hits on content type area
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'term' =>  array(
+          'w3.type' => array(
+            'value' =>  'area'
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[1],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost external content
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'term' =>  array(
+          'w3.type' => array(
+            'value' =>  'uib_external_content'
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[1],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost recent content
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'bool' =>  array(
+          'must' =>  array(
+            array(
+              'range' =>  array(
+                'w3.changed' => array(
+                  'gte' =>  'now-1M',
+                ),
+              ),
+            ),
+            array(
+              'term' =>  array(
+                'w3.article_type' => array(
+                  'value' =>  'news',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      'boost' =>  $importance_levels[2],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+  // Boost upcoming events
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'bool' =>  array(
+          'should' =>  array(
+            array(
+              'range' =>  array(
+                'w3.date.value' => array(
+                  'gte' =>  'now/d',
+                ),
+              ),
+            ),
+            array(
+              'range' =>  array(
+                'w3.date.value2' => array(
+                  'gte' =>  'now/d',
+                ),
+              ),
+            ),
+          ),
+          'must' =>  array(
+            array(
+              'term' =>  array(
+                'w3.article_type' => array(
+                  'value' =>  'event',
+                ),
+              ),
+            ),
+          ),
+          'minimum_should_match' =>  1,
+        ),
+      ),
+      'boost' =>  $importance_levels[2],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
+
+
+  // Boost relevanskriteriene i forhold til søkekriteriene
+  // for å få rett effekt av relevanskriteriene
+  $tmp = array(
+    'bool' => array(
+      'should' => $boostquery,
+      'boost' => 1,
+    ),
+  );
+
+  // Adding relevance boost to should - clause. Some or none of these can
+  // match.
+  $data['query']['bool']['should'][] = $tmp;
+
+  /**************************************
+   * Negative boosting
+   *
+   * Unboostqueries are added to the
+   * main query at the very end.
+   **************************************/
+  $unboost_past_events = array(
+    'bool' =>  array(
+      'should' =>  [],
+      '_name' =>  'Unboost',
+    ),
+  );
+
+  // Events where date.value2 is at least 1 month old
+  $tmp = array(
+    'bool' =>  array(
+      'must' =>  array(
+        array(
+          'term' =>  array(
+            'w3.article_type' => array(
+              'value' =>  'event',
+            ),
+          ),
+        ),
+        array(
+          'range' =>  array(
+            'w3.date.value2' => array(
+              'lt' =>  'now-1M/d',
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+  $unboost_past_events['bool']['should'][] = $tmp;
+
+  // Events where date.value2 does not exists and date.value is at least
+  // 1 month old
+  $tmp = array(
+    'bool' =>  array(
+      'must' =>  array(
+        array(
+          'term' =>  array(
+            'w3.article_type' => array(
+              'value' =>  'event'
+            ),
+          ),
+        ),
+        array(
+          'range' =>  array(
+            'w3.date.value' => array(
+              'lt' =>  'now-1M/d',
+            ),
+          ),
+        ),
+      ),
+      'must_not' =>  array(
+        array(
+          'exists' =>  array(
+            'field' =>  'w3.date.value2',
+          )
+        ),
+      ),
+    )
+  );
+  $unboost_past_events['bool']['should'][] = $tmp;
+
+  /**************************************
+   * Filtering
+   * The filtering will not affect
+   * relevance scores.
+   *************************************/
+  // All content
+  if (in_array('everything', $filter)) {
+    $all = TRUE;
+    // Study
+    $data['query']['bool']['filter']['bool']['should'][] =
+      array('type' => array('value' => 'study'));
+    // User
+    $data['query']['bool']['filter']['bool']['should'][] =
+      array('type' => array('value' => 'user'));
+    // Node
+    $data['query']['bool']['filter']['bool']['should'][] =
+      array('type' => array('value' => 'node'));
+  }
+
+  // Users
+  if ( $all || in_array('user', $filter)) {
+
+    if (!$all) {
+      // Document type must be user
+      $data['query']['bool']['filter']['bool']['should'][] = array(
+        'type' => array(
+          'value' => 'user',
+        ),
+      );
+    }
+  }
+
+  // News, study, events
+  if ($all ||
+    in_array('news', $filter) ||
+    in_array('study', $filter) ||
+    in_array('event', $filter)
+  ) {
+    // News
+    if (!$all && in_array('news', $filter)) {
+      // Document type: node, and w3 article-type: news
+      $data['query']['bool']['filter']['bool']['should'][] = array(
+        'bool' => array(
+          'should' => array(
+            array(
+              'type' => array(
+                'value' => 'node',
+              ),
+            ),
+            array(
+              'term' => array(
+                'w3.article_type' => array(
+                  'value' => 'news',
+                ),
+              ),
+            ),
+          ),
+          'minimum_should_match' => 2,
+        ),
+      );
+    }
+
+    // Events
+    if (!$all && in_array('event', $filter)) {
+      // Document type: node, and w3 article-type: event
+      $data['query']['bool']['filter']['bool']['should'][] = array(
+        'bool' => array(
+          'should' => array(
+            array(
+              'type' => array(
+                'value' => 'node',
+              ),
+            ),
+            array(
+              'term' => array(
+                'w3.article_type' => array(
+                  'value' => 'event',
+                ),
+              ),
+            ),
+          ),
+          'minimum_should_match' => 2,
+        ),
+      );
+    }
+
+    // Study
+    if (!$all && in_array('study', $filter)) {
+      // Document type: study
+      $data['query']['bool']['filter']['bool']['should'][] = array(
+        'type' => array(
+          'value' => 'study',
+        ),
+      );
+    }
+  }
+  // Affects only the search part of the query (not other boosts)
+  $data['query']['bool']['must'] = array(
+    'function_score' =>  array(
+      'query' =>  $data['query']['bool']['must'],
+      'field_value_factor' =>  array(
+        'field' =>  'search_manual_boost',
+        'modifier' =>  'square',
+        'factor' =>  1,
+      ),
+    ),
+  );
+
+  // Negative boost for past events
+  $data['query']['bool']['must'] = array(
+    'boosting' =>  array(
+      'positive' =>  $data['query']['bool']['must'],
+      'negative' =>  $unboost_past_events,
+      'negative_boost' =>  0.03,
+    ),
+  );
+
+  $result = uib_search__run_elastic_request($url, json_encode($data), 'GET', FALSE, 5);
+  drupal_json_output();
+  print $result->data;
+  drupal_exit();
 }
