@@ -3784,7 +3784,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Note: Typing text in "Heading 2" creates an accordion tab on the webpage (not an ordinary heading). This is useful if you want to save space and make an accordion menu.',
+    'description' => 'Note: When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary heading).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -5594,7 +5594,7 @@ function uib_area_field_default_field_instances() {
   t('Media');
   t('Menu style');
   t('Name');
-  t('Note: Typing text in "Heading 2" creates an accordion tab on the webpage (not an ordinary heading). This is useful if you want to save space and make an accordion menu.');
+  t('Note: When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary heading).');
   t('Offices');
   t('Organisational unit');
   t('Parents');

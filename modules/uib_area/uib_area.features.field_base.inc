@@ -493,7 +493,7 @@ function uib_area_field_default_field_bases() {
         'guest_lecturer' => 'Guest lecture',
         'conference' => 'Conference',
         'consert' => 'Concert',
-        'course' => 'Course​', // Note: String includes a trailing zero-width space character
+        'course' => 'Course​',
         'course_economy' => 'Course - economy',
         'course_for_teachers' => 'Course - for teachers',
         'course_leadership' => 'Course - leadership',
