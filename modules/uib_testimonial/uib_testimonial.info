@@ -39,6 +39,7 @@ features[field_instance][] = node-uib_testimonial-field_uib_birth_year
 features[field_instance][] = node-uib_testimonial-field_uib_education
 features[field_instance][] = node-uib_testimonial-field_uib_exchange_place
 features[field_instance][] = node-uib_testimonial-field_uib_exchange_text
+features[field_instance][] = node-uib_testimonial-field_uib_fact_box
 features[field_instance][] = node-uib_testimonial-field_uib_lead
 features[field_instance][] = node-uib_testimonial-field_uib_media
 features[field_instance][] = node-uib_testimonial-field_uib_name

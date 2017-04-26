@@ -67,11 +67,17 @@ function uib_testimonial_strongarm() {
         'path' => array(
           'weight' => '8',
         ),
+        'language' => array(
+          'weight' => '0',
+        ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '0',
             'visible' => FALSE,
           ),
           'teaser' => array(

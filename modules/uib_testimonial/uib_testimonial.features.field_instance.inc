@@ -332,6 +332,102 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_testimonial-field_uib_fact_box'.
+  $field_instances['node-uib_testimonial-field_uib_fact_box'] = array(
+    'bundle' => 'uib_testimonial',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_fact_box',
+    'label' => 'Fact box',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 0,
+          'full_html' => 'full_html',
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 0,
+        ),
+        'allowed_formats_toggle' => 1,
+        'default_order_toggle' => 1,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -49,
+            ),
+            'full_html' => array(
+              'weight' => -48,
+            ),
+            'plain_text' => array(
+              'weight' => -47,
+            ),
+            'restricted_html' => array(
+              'weight' => -50,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => -46,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_testimonial-field_uib_lead'.
   $field_instances['node-uib_testimonial-field_uib_lead'] = array(
     'bundle' => 'uib_testimonial',
@@ -1081,6 +1177,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Education');
   t('Exchange place');
   t('Exchange text');
+  t('Fact box');
   t('Here you should type which area this content belongs to');
   t('Lead');
   t('Name');
@@ -1092,6 +1189,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Relation');
   t('Text');
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
+  t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
 
   return $field_instances;
 }
