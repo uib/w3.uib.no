@@ -39,6 +39,7 @@ dependencies[] = media_wysiwyg
 dependencies[] = media_youtube
 dependencies[] = menu
 dependencies[] = metatag
+dependencies[] = metatag_twitter_cards
 dependencies[] = module_filter
 dependencies[] = node_revision_delete
 dependencies[] = override_node_options
