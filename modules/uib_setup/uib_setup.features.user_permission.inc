@@ -248,6 +248,7 @@ function uib_setup_user_default_permissions() {
     'name' => 'administer meta tags',
     'roles' => array(
       'admin' => 'admin',
+      'level 1' => 'level 1',
     ),
     'module' => 'metatag',
   );
@@ -876,6 +877,7 @@ function uib_setup_user_default_permissions() {
     'name' => 'edit meta tags',
     'roles' => array(
       'admin' => 'admin',
+      'level 1' => 'level 1',
     ),
     'module' => 'metatag',
   );
