@@ -1,3 +1,19 @@
+# Release 70 _2017-04-27_
+
+- Rettet feil som gjorde at "Kurs" fremstod som "Emne" i kalenderoppføringer #14276
+- Rettet feil som gjorde at billedtekst ble vist under og ikke til høyre for bildet #17895
+- Rettet feil som gjorde at brukere var i stand til å slette filer som var i bruk #17971
+- Lagt til mulighet for å sette inn spesialtegn i brødtekstfeltet #17874
+- Lagt til mulighet for faktaboks på sider for vitnesbyrd #17873
+- Lagt til lenke til jobbnorge.no når RSS-strømmen deres ikke svarer tidsnok #17905
+- Lagt til modul for metadata #17969
+- Gjort feltet "Opphavsrett" obligatorisk ved opplasting av bilder #17872
+- Forbedret datovisningen i søkeresultater #17977
+- Fjernet uønskede faner og felt fra dialogboksen for billedegenskaper #17978
+- Designjustert sidespalten på sider for vitnesbyrd #15930
+- Justert skriftstørrelsen på mobil #17961
+- Endret hjelpetekster #17940
+
 # Release 69 _2017-04-20_
 
 - Redusert skriftstørrelsen på mobil #17470
