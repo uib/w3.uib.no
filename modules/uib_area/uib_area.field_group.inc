@@ -218,16 +218,17 @@ function uib_area_field_group_info() {
     'label' => 'For level 1',
     'weight' => '1',
     'children' => array(
-      0 => 'field_uib_area_banner',
-      1 => 'field_uib_area_parents',
-      2 => 'field_uib_area_type',
+      0 => 'field_uib_area_parents',
+      1 => 'field_uib_search_manual_boost',
+      2 => 'field_uib_menu_style',
       3 => 'field_uib_image_map',
-      4 => 'field_uib_menu_style',
+      4 => 'field_uib_area_type',
       5 => 'field_uib_offices',
       6 => 'field_uib_ou',
-      7 => 'field_uib_search_manual_boost',
+      7 => 'field_uib_search_keywords',
       8 => 'field_uib_sebra_id',
-      9 => 'title',
+      9 => 'field_uib_area_banner',
+      10 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -252,14 +253,14 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Management',
-    'weight' => '6',
+    'weight' => '5',
     'children' => array(
-      0 => 'field_uib_colophone_logos',
-      1 => 'field_uib_content_manager',
+      0 => 'field_uib_content_manager',
+      1 => 'field_uib_colophone_logos',
       2 => 'field_uib_important_message',
       3 => 'field_uib_logo',
-      4 => 'field_uib_show_staff',
-      5 => 'field_uib_staff',
+      4 => 'field_uib_staff',
+      5 => 'field_uib_show_staff',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -481,7 +482,7 @@ function uib_area_field_group_info() {
   $field_groups['group_rss|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_search|node|area|form';
   $field_group->group_name = 'group_search';

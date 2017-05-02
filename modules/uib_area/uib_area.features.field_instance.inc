@@ -242,7 +242,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -384,7 +384,7 @@ function uib_area_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 17,
+      'weight' => 14,
     ),
   );
 
@@ -472,7 +472,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 18,
+      'weight' => 15,
     ),
   );
 
@@ -983,7 +983,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1036,7 +1036,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -1083,7 +1083,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -1179,7 +1179,7 @@ function uib_area_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 10,
+      'weight' => 6,
     ),
   );
 
@@ -1271,7 +1271,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 11,
+      'weight' => 7,
     ),
   );
 
@@ -1341,7 +1341,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 10,
     ),
   );
 
@@ -1412,7 +1412,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 19,
+      'weight' => 16,
     ),
   );
 
@@ -1498,7 +1498,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 16,
+      'weight' => 13,
     ),
   );
 
@@ -1551,7 +1551,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 14,
+      'weight' => 11,
     ),
   );
 
@@ -1560,7 +1560,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ',
+    'description' => 'This description will be displayed as text in search results. The description text will also be shown on pages where areas are used as related content.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1583,7 +1583,7 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_search_description',
-    'label' => 'Search description',
+    'label' => 'Description',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
@@ -1592,6 +1592,7 @@ function uib_area_field_default_field_instances() {
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
@@ -1608,6 +1609,9 @@ function uib_area_field_default_field_instances() {
             ),
             'restricted_html' => array(
               'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -1677,7 +1681,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 9,
+      'weight' => 5,
     ),
   );
 
@@ -1878,7 +1882,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 12,
+      'weight' => 9,
     ),
   );
 
@@ -2134,7 +2138,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 20,
+      'weight' => 19,
     ),
   );
 
@@ -2222,7 +2226,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 12,
     ),
   );
 
@@ -5565,6 +5569,7 @@ function uib_area_field_default_field_instances() {
   t('Custom opening hours for holidays etc');
   t('Date');
   t('Deadline for event registration.');
+  t('Description');
   t('Email');
   t('Event type');
   t('Every event must have both a start date and an end date. Remember to fill out both date fields and time fields.');
@@ -5574,7 +5579,6 @@ function uib_area_field_default_field_instances() {
   t('Follow us');
   t('Here you should type which area this content belongs to');
   t('Hours');
-  t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
   t('Illustration that goes together with the bottom text.');
   t('Image map');
   t('Important message');
@@ -5613,7 +5617,6 @@ function uib_area_field_default_field_instances() {
   t('Related content');
   t('Relevant links');
   t('Rss feed');
-  t('Search description');
   t('Search keywords');
   t('Sebra ID');
   t('Secondary text');
@@ -5632,6 +5635,7 @@ function uib_area_field_default_field_instances() {
   t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
+  t('This description will be displayed as text in search results. The description text will also be shown on pages where areas are used as related content.');
   t('This field is shown at the bottom of the area front page. ');
   t('This is a field level 1 users may use to add an image map to main media in an area.');
   t('This is a short category title which highlights the subject of the article. ');

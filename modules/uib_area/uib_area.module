@@ -1050,7 +1050,6 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_image_map',
       'field_uib_search_manual_boost',
       'field_uib_search_keywords',
-      'field_uib_search_description',
     );
     // list of fields that should be hidden from
     // level 3 users
