@@ -186,12 +186,12 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Event info',
-    'weight' => '22',
+    'weight' => '13',
     'children' => array(
       0 => 'field_uib_contacts',
-      1 => 'field_uib_deadline',
+      1 => 'field_uib_registration_link',
       2 => 'field_uib_location',
-      3 => 'field_uib_registration_link',
+      3 => 'field_uib_deadline',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -436,7 +436,7 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links and attachments',
-    'weight' => '18',
+    'weight' => '10',
     'children' => array(
       0 => 'field_uib_files',
       1 => 'field_uib_links',

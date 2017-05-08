@@ -50,37 +50,44 @@
 /**
 * Simple styling for main media with optional custom image caption
 */
-.group-main-media fieldset{
+.group-main-media fieldset,
+.group-small-images fieldset
+{
   border: none;
   box-shadow: none;
 }
-.group-main-media fieldset legend{
+.group-main-media fieldset legend,
+.group-small-images fieldset legend
+{
   margin-left: 0;
   padding: 0;
 }
 html.js
-fieldset.collapsible.group-main-media
-.field-name-field-uib-imagecaptions
-.fieldset-legend{
+fieldset.collapsible.[class^="group-"]
+[class^="field-name-field-uib-imagecaptions"]
+.fieldset-legend
+{
   background: none;
   padding-left: 0;
 }
-.field-name-field-uib-imagecaptions .tabledrag-handle {
+[class^="field-name-field-uib-imagecaptions"] .tabledrag-handle {
   display: none;
 }
-.group-main-media .field-name-field-uib-main-media legend{
+.group-main-media .field-name-field-uib-main-media legend,
+.group-small-images .field-name-field-uib-main-media legend
+{
   display: none;
 }
-.field-name-field-uib-imagecaptions
+[class^="field-name-field-uib-imagecaptions"]
 .field-multiple-table
 td:not(.field-multiple-drag),
-.field-name-field-uib-imagecaptions
+[class^="field-name-field-uib-imagecaptions"]
 .field-multiple-table
 td:not(.delta-order),
-.field-name-field-uib-imagecaptions
+[class^="field-name-field-uib-imagecaptions"]
 .field-multiple-table
 td:not(.field-multiple-drag) > .ajax-new-content,
-.field-name-field-uib-imagecaptions
+[class^="field-name-field-uib-imagecaptions"]
 .field-multiple-table
 td:not(.delta-order) > .ajax-new-content {
 	display: flex;
@@ -101,7 +108,7 @@ td:not(.delta-order) > .ajax-new-content {
 	height: 21px;
 	margin-bottom: 23px;
 }
-.field-name-field-uib-imagecaptions
+[class^="field-name-field-uib-imagecaptions"]
 .field-multiple-table input.form-submit {
   flex-grow: 1;
   height: 23px;

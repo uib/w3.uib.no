@@ -71,6 +71,71 @@ function uib_external_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'node-uib_external_content-field_uib_imagecaptions2'.
+  $field_instances['node-uib_external_content-field_uib_imagecaptions2'] = array(
+    'bundle' => 'uib_external_content',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 6,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_imagecaptions2',
+    'label' => 'Image captions',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_external_content-field_uib_kicker'.
   $field_instances['node-uib_external_content-field_uib_kicker'] = array(
     'bundle' => 'uib_external_content',
@@ -346,21 +411,9 @@ function uib_external_field_default_field_instances() {
           'media_internet' => 0,
           'upload' => 'upload',
         ),
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
-        'manualcrop_require_cropping' => array(),
-        'manualcrop_styles_list' => array(),
-        'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -524,11 +577,13 @@ function uib_external_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Area');
   t('External URL');
+  t('Image captions');
   t('Kicker');
   t('Manual Search Boost');
   t('Photo');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value. If field is set to 0 or not set for external content types, then the item will not be indexed to elasticsearch.');
   t('Teaser');
+  t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
 
   return $field_instances;
 }

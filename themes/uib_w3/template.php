@@ -74,28 +74,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   // A wrapped node to be used by convienience
   $wrapped_node = entity_metadata_wrapper('node', $variables['node']);
 
-  // Alternative image captions
-  $main_media_captions = array();
-  for (
-    $i = 0;
-    isset($wrapped_node->field_uib_imagecaptions)
-      && ($i < $wrapped_node->field_uib_imagecaptions->count());
-    $i++) {
-    $index =
-    $wrapped_node
-    ->field_uib_imagecaptions[$i]
-    ->field_uib_imageindex
-    ->value();
-    $caption =
-    $wrapped_node
-    ->field_uib_imagecaptions[$i]
-    ->field_uib_imagecaption
-    ->value();
-    $caption = trim($caption);
-    if ($caption == '' || $index == '') continue;
-    $main_media_captions[$index-1] = $caption == '0' ? '' : $caption;
-  }
-
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     $global_menu_lang = $variables['language']->language == 'nb' ? '-no' : '';
@@ -339,23 +317,11 @@ EOD;
         'label' => 'hidden',
         'weight' => -30,
       ));
-      if (!empty($variables['page']['content_top']['field_uib_main_media'])) {
-        $mm = &$variables['page']['content_top']['field_uib_main_media'];
-        for( $i = 0; $i < count($mm['#items']); $i++) {
-          if (array_key_exists($i, $main_media_captions)) {
-            if (empty($mm[$i]['field_uib_description'])) {
-              $mm['#items'][$i]['field_uib_description'][$variables['language']->language][] = array('value' => $main_media_captions[$i]);
-              $mm[$i]['field_uib_description'] = field_view_field('node', $variables['node'], 'field_uib_imagecaptions', array(
-                'type'=>'text_summary_or_trimmed',
-                'label'=>'hidden',
-              ));
-            }
-            $mm[$i]['field_uib_description'][0]['#markup'] =
-              $main_media_captions[$i];
-          }
-        }
-      }
-
+      uib_w3__add_image_caption(
+        $variables['page']['content_top']['field_uib_main_media'],
+        $variables['node'],
+        'field_uib_imagecaptions'
+      );
       $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
         'weight' => '25',
       ));
@@ -927,6 +893,12 @@ function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
   if ($variables['page'])  {
+    uib_w3__add_image_caption(
+      $variables['content']['field_uib_media'],
+      $variables['node'],
+      'field_uib_imagecaptions2'
+    );
+
     if ($variables['type'] == 'area') {
       $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
         'settings' => array('view_mode' => 'teaser'),
@@ -1004,6 +976,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_study_image',
       'field_uib_study_relation',
       'field_uib_important_message',
+      'field_uib_imagecaptions2',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);
@@ -1333,4 +1306,71 @@ function __uib_w3__download_image_link($file) {
 function __uib_w3__add_table_wrapper($text) {
   $text = str_replace(array('<table', '</table>'), array('<div class="uib-table-wrapper"><table', '</table></div>'), $text);
   return $text;
+}
+
+function uib_w3__get_image_caption_array($obj, $fieldname) {
+  $static =  &drupal_static(__FUNCTION__);
+  if (isset($static[$fieldname])) {
+    return $static[$fieldname];
+  }
+
+  $retval = array();
+  for (
+    $i = 0;
+    isset($obj->{$fieldname})
+      && ($i < $obj->{$fieldname}->count());
+    $i++) {
+    $index = $obj->{$fieldname}[$i]->field_uib_imageindex->value();
+    $caption = $obj->{$fieldname}[$i]->field_uib_imagecaption->value();
+    $caption = trim($caption);
+    if ($caption == '' || $index == '') continue;
+    $retval[$index-1] = $caption == '0' ? '' : $caption;
+  }
+  $static[$fieldname] = $retval;
+  return $retval;
+}
+
+function uib_w3__add_image_caption(
+  &$imagefield,
+  $node,
+  $captionfieldname
+) {
+
+  $wrapped_node = entity_metadata_wrapper('node', $node);
+  $other_media_captions = uib_w3__get_image_caption_array(
+    $wrapped_node, $captionfieldname
+  );
+
+  foreach ((array)$other_media_captions as $key => $value) {
+    if (isset($imagefield[$key]['field_uib_description'][0]['#markup'])) {
+      $imagefield[$key]['field_uib_description'][0] =
+        array(
+          '#markup' => $value,
+        );
+    }
+    else {
+      $imagefield[$key]['field_uib_description'] =
+        array(
+          '#type' => 'container',
+          '#weight' => 1,
+          '#attributes' => array(
+            'class' => array('field-name-field-uib-description', 'field'),
+          ),
+          'fields' => array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('field-items'),
+            ),
+            'field-item' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array('field-item even'),
+              ),
+              'item' => array('#markup' => $value),
+            ),
+          ),
+        );
+    }
+  }
+
 }

@@ -90,9 +90,9 @@ function uib_testimonial_field_group_info() {
     'weight' => '3',
     'children' => array(
       0 => 'field_uib_lead',
-      1 => 'field_uib_quote',
-      2 => 'field_uib_area',
-      3 => 'field_uib_text',
+      1 => 'field_uib_area',
+      2 => 'field_uib_text',
+      3 => 'field_uib_quote',
       4 => 'title',
     ),
     'format_type' => 'div',
@@ -124,15 +124,15 @@ function uib_testimonial_field_group_info() {
     'label' => 'Sidebar',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_exchange_text',
-      1 => 'field_uib_organization',
-      2 => 'field_uib_media',
-      3 => 'field_uib_birth_year',
-      4 => 'field_uib_education',
+      0 => 'field_uib_organization',
+      1 => 'field_uib_name',
+      2 => 'field_uib_position',
+      3 => 'field_uib_study_programmes',
+      4 => 'field_uib_birth_year',
       5 => 'field_uib_exchange_place',
-      6 => 'field_uib_position',
-      7 => 'field_uib_study_programmes',
-      8 => 'field_uib_name',
+      6 => 'field_uib_exchange_text',
+      7 => 'field_uib_education',
+      8 => 'group_small_images',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -150,6 +150,35 @@ function uib_testimonial_field_group_info() {
     ),
   );
   $field_groups['group_sidebar|node|uib_testimonial|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_small_images|node|uib_testimonial|form';
+  $field_group->group_name = 'group_small_images';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_testimonial';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_sidebar';
+  $field_group->data = array(
+    'label' => 'Images',
+    'weight' => '13',
+    'children' => array(
+      0 => 'field_uib_imagecaptions2',
+      1 => 'field_uib_media',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-small-images field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_small_images|node|uib_testimonial|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -191,6 +220,7 @@ function uib_testimonial_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Images');
   t('Information');
   t('Personalia');
   t('Sidebar');

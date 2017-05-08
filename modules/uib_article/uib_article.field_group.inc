@@ -58,17 +58,17 @@ function uib_article_field_group_info() {
     'label' => 'Information',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_byline',
-      1 => 'field_uib_published_timestamp',
-      2 => 'field_uib_search_keywords',
-      3 => 'field_uib_kicker',
-      4 => 'field_uib_event_type',
-      5 => 'field_uib_lead',
-      6 => 'field_uib_date',
-      7 => 'field_uib_article_type',
+      0 => 'field_uib_search_keywords',
+      1 => 'field_uib_external_author',
+      2 => 'field_uib_text',
+      3 => 'field_uib_event_type',
+      4 => 'field_uib_lead',
+      5 => 'field_uib_kicker',
+      6 => 'field_uib_article_type',
+      7 => 'field_uib_date',
       8 => 'field_uib_area',
-      9 => 'field_uib_text',
-      10 => 'field_uib_external_author',
+      9 => 'field_uib_published_timestamp',
+      10 => 'field_uib_byline',
       11 => 'field_uib_show_global_calendar',
       12 => 'title',
       13 => 'group_main_media',
@@ -158,10 +158,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related content',
-    'weight' => '20',
+    'weight' => '12',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -213,10 +213,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related persons',
-    'weight' => '19',
+    'weight' => '11',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -260,6 +260,35 @@ function uib_article_field_group_info() {
   );
   $field_groups['group_sidebar|node|uib_article|form'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_small_images|node|uib_article|form';
+  $field_group->group_name = 'group_small_images';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_article';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Small images',
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_uib_imagecaptions2',
+      1 => 'field_uib_media',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-small-images field-group-fieldset',
+        'required_fields' => 1,
+        'id' => '',
+      ),
+    ),
+  );
+  $field_groups['group_small_images|node|uib_article|form'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Information');
@@ -269,6 +298,7 @@ function uib_article_field_group_info() {
   t('Related persons');
   t('Related persons group');
   t('Sidebar');
+  t('Small images');
   t('article-sidebar');
 
   return $field_groups;

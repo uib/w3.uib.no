@@ -204,7 +204,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -266,7 +266,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -328,7 +328,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -425,6 +425,70 @@ function uib_testimonial_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 42,
+    ),
+  );
+
+  // Exported field_instance: 'node-uib_testimonial-field_uib_imagecaptions2'.
+  $field_instances['node-uib_testimonial-field_uib_imagecaptions2'] = array(
+    'bundle' => 'uib_testimonial',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Legg til',
+          'delete' => 'Slett',
+          'description' => TRUE,
+          'edit' => 'Rediger',
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 25,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_imagecaptions2',
+    'label' => 'Image captions',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 15,
     ),
   );
 
@@ -618,7 +682,7 @@ function uib_testimonial_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -758,7 +822,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -836,7 +900,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 15,
     ),
   );
 
@@ -1179,6 +1243,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Exchange text');
   t('Fact box');
   t('Here you should type which area this content belongs to');
+  t('Image captions');
   t('Lead');
   t('Name');
   t('Organization');
@@ -1190,6 +1255,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Text');
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
   t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
+  t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
 
   return $field_instances;
 }
