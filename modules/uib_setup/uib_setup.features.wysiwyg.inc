@@ -69,7 +69,7 @@ function uib_setup_wysiwyg_default_profiles() {
     'settings' => array(
       'default' => 1,
       'user_choose' => 0,
-      'show_toggle' => 1,
+      'show_toggle' => 0,
       'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
@@ -120,7 +120,7 @@ function uib_setup_wysiwyg_default_profiles() {
     'settings' => array(
       'default' => 1,
       'user_choose' => 0,
-      'show_toggle' => 1,
+      'show_toggle' => 0,
       'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
