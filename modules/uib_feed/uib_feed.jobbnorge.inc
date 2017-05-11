@@ -74,11 +74,13 @@ function uib_feed__format_jobbnorge_pre_render($element) {
     foreach ($xml->channel->item as $item) {
       $place = '';
       $description = (string) $item->description;
+      $item_title = $description;
       if (strpos($description, ' - ') !== FALSE) {
         $description = explode(' - ', $description);
         $place = trim(array_pop($description)) . ' - ';
+        $item_title = implode(" - ",$description);
       }
-      $entry = '<h2>' . l($item->title, $item->link) . '</h2>';
+      $entry = '<h2>' . l($item_title, $item->link) . '</h2>';
       $entry .= '<p>' . $place . t('Application deadline') . ': ' . $item->deadline . '</p>';
 
       $element['list']['#items'][] = $entry;
