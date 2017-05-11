@@ -276,6 +276,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
               current=$('<ul></ul>');
               li.append(current);
               $(this).before(li);
+              li.click(function(){$(this).toggleClass('open')});
             }
             $(this).children('a').first().text(month+' '+numart);
             var ali=$('<li></li>').append($(this).children('a').first());
