@@ -1,3 +1,11 @@
+# Release 71 _2017-05-11_
+
+- Rettet feil som gjorde at titler ikke ble vist på sider med studieinformasjon #18044
+- Rettet feil som gjorde at billedtekst ikke lot seg endre #17962
+- Lagt til mulighet for hevet og senket tekst i brødtekst og faktaboksfelt #18033
+- Gjort et nytt felt som beskriver områdesider tilgjengelig for redaktører og innholdsprodusenter. Teksten fra dette feltet blir vist i søkeresultater og på sider hvor områder er lagt inn som tilknyttet innhold. #18015
+- Fjernet lenken "Vis kun kildekode" #18051
+
 # Release 70 _2017-04-27_
 
 - Rettet feil som gjorde at "Kurs" fremstod som "Emne" i kalenderoppføringer #14276
