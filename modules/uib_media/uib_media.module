@@ -6,3 +6,20 @@ function uib_media_admin_paths_alter(&$paths) {
   // Don't treat as admin path otherwise admin theme loads when modal appears.
   $paths['media/*/edit/*'] = FALSE;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function uib_media_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  if (
+    !(
+      in_array('level 1', $user->roles)
+      || in_array('admin', $user->roles)
+      || $user->uid == 1
+      )
+    ) {
+    // Hide replace image button if not super user
+    hide($form['replace_upload']);
+  }
+}
