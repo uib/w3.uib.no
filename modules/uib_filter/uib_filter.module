@@ -78,6 +78,14 @@ function uib_filter__process($text, $filter) {
       case 'jobbnorge':
         $positions = uib_feed__jobbnorge_positions_full($arg);
         return render($positions);
+      case 'exams':
+        $a = preg_split('/[ ]+/', trim($arg));
+        // Section id (like 184.12.31 is Kjemisk institutt)
+        $alias = isset($a[0]) ? $a[0] : '';
+        // Term, can be like 2017v or simply NEXT to always display next term.
+        $term = isset($a[1]) ? $a[1] : '';
+        $arr = uib_area__exam_list_render_array($alias, $term);
+        return render($arr, 1);
       case 'offjournal':
         $data = drupal_json_decode(file_get_contents('http://webber.uib.no/api/offjournal.php'));
         $block = array();

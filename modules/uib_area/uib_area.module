@@ -2896,3 +2896,164 @@ EOD;
 return $jq;
 }
 
+/**
+ * Get the organisation unit id, like 184.10 for Det humanistiske fakultet.
+ * @param $ou_id the OU node id
+ */
+function uib_area__get_organisation_unit($ou_id) {
+  $sql = "SELECT substring(field_uib_ou_id_value FROM 1 FOR 2)::int AS toplevel,
+    substring(field_uib_ou_id_value FROM 3 FOR 2)::int AS sublevel
+    FROM field_data_field_uib_ou_id
+    WHERE entity_id = :entity_id";
+  $result = db_query($sql, array('entity_id' => intval($ou_id)));
+  $o = $result->fetchObject();
+  $retval = '184';
+  if ($o->toplevel == 0) return $retval;
+  $retval .= ".{$o->toplevel}";
+  if ($o->sublevel > 0) {
+    $retval .= ".{$o->sublevel}";
+  }
+  return $retval;
+}
+
+/**
+ * Return a json object with exam information for a faculty or a department
+ * at uib.
+ */
+function uib_area__get_faculty_exams_json($ou_id, $term = '') {
+  global $language;
+  $term = strtolower($term);
+  if (!$term) {
+    $term = date('Y') . (date('n') < 7 ? 'v' : 'h');
+  }
+  else if ($term == 'next') {
+    $term = date('n') < 7 ? date('Y') . 'h' :  (date('Y') + 1) . 'v';
+  }
+  $path = '/sted/';
+  $path .= $ou_id;
+  $path .= '/emner-eksamen.json';
+  $path .= $term ? "?semester=$term" : '';
+  $retval = uib_study__fspres_get_json($path);
+  uib_area__languagify($retval, $language->language);
+  return $retval;
+}
+
+/**
+ * This recursive function is used to get set the correct language as the default for
+ * fields returned from the fs-pres api. For example an returned array like
+ * this:
+ *
+ *  array(
+ *    'emnenavn' => 'Et norsk emnenavn',
+ *    'emnenavn:en' => 'English topic name',
+ *    'rom' => array(
+ *      'navn' => 'Snøhetta',
+ *      'navn:en' => 'Snowhood',
+ *      ...
+ *    )
+ *    ...
+ *  );
+ *
+ * when language is 'en', will be transformed to this:
+ *
+ *  array(
+ *    'emnenavn' => 'English topic name',
+ *    'emnenavn:en' => 'English topic name',
+ *    'rom' => array(
+ *      'navn' => 'Snowhood',
+ *      'navn:en' => 'Snowhood',
+ *      ...
+ *    )
+ *    ...
+ *  );
+ */
+function uib_area__languagify(&$array, $lang) {
+  foreach ($array as $key => &$value) {
+    if (is_array($value)) {
+      uib_area__languagify($value, $lang);
+    }
+    else {
+      $llang = ':' . $lang;
+      if (substr($key, -strlen($llang)) == $llang && $value) {
+        $array[substr($key, 0, -strlen($llang))] = $value;
+      }
+    }
+  }
+}
+/**
+ * Return a render array of exams
+ */
+function uib_area__exam_list_render_array($alias, $term = '') {
+  global $language;
+  $path = explode('/', drupal_lookup_path('source',$alias));
+  $nid = end($path);
+  if (!intval($nid)) {
+    return;
+  }
+  $ou_id = uib_area__get_ou_nid(node_load($nid));
+  $org = uib_area__get_organisation_unit($ou_id);
+  $data = uib_area__get_faculty_exams_json($org, $term);
+  $retval = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('faculty-exams-list')),
+    'table' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('rtable')),
+      'body' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('rbody')),
+      ),
+    ),
+  );
+  foreach ($data['eksamensliste'] as $exam) {
+    $date = strtotime($exam['tid']);
+    $datestr = strftime( '%d.%m.%Y', $date);
+    $starttime = strftime('%H:%M', $date);
+    $enddate = $date + $exam['varighet'] * 3600; // 3600 sek i en time
+    $endtime = strftime('%H:%M', $enddate);
+    $location = array();
+    $location[] = '<ul>';
+    foreach ((array)$exam['rom'] as $room) {
+      if (isset($room['name'])) {
+        $location[] = "<li>{$room['name']}</li>";
+      }
+    }
+    $location[] = '</ul>';
+    $comments = $exam['navn'];
+    $row = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('rrow')),
+      'course' => array(
+        '#type' => 'container',
+        '#weight' => 1,
+        '#attributes' => array('class' => array('course')),
+        1 => array('#markup' => "<h3>{$exam['emne']} / {$exam['emnenavn']}</h3>"),
+      ),
+      'time' => array(
+        '#type' => 'container',
+        '#weight' => 2,
+        '#attributes' => array('class' => array('datetime')),
+        0 => array('#markup' => "<span class=\"label\">".t('Time').": </span>"),
+        1 => array('#markup' => "<span class=\"date\">{$datestr}</span>" .
+        " / <span class=\"time\">{$starttime}&ndash;{$endtime}</span>"),
+      ),
+      'comments' => array(
+        '#type' => 'container',
+        '#weight' => 4,
+        '#attributes' => array('class' => array('comments')),
+        0 => array('#markup' => $comments),
+      ),
+    );
+    if (count($location) > 2) {
+      $row['location'] = array(
+        '#type' => 'container',
+        '#weight' => 3,
+        '#attributes' => array('class' => array('location')),
+        0 => array('#markup' => "<span class=\"label\">".t('Place').": </span>"),
+        1 => array('#markup' => implode($location)),
+      );
+    }
+    $retval['table']['body'][] = $row; //referencing element n
+  }
+  return $retval;
+}
