@@ -1807,7 +1807,6 @@ function uib_study__get_current_semester_long() {
 function uib_study__get_resource_links($type, $data) {
   list ($previous, $current, $next) = uib_study__get_adjacent_semesters();
   if ($type == 'schedule') {
-    $previous_semester = uib_study__get_schedule_link($data, $previous, array('previous-semester'));
     $current_semester = uib_study__get_schedule_link($data, $current, array('current', 'previous-exists', 'next-exists', 'variants-exist'));
     $next_semester = uib_study__get_schedule_link($data, $next, array('next-semester'));
   }
@@ -1858,10 +1857,16 @@ function uib_study__get_resource_links($type, $data) {
 function uib_study__get_schedule_link($study_code, $semester, $classes) {
   global $language;
   $lang = ($language->language == 'nb' ? '' : 'en');
+  $semester = substr($semester, 2);
+  if ($semester == '17v') {
+    $path = 'http://rom.app.uib.no/timeplanliste.php?emne='. $study_code . '&periode=2017v&lang=' . $lang . '&simple=1';
+  } else {
+    $path = 'https://tp.uio.no/uib/timeplan/calendar2.php?id='. $study_code . '&sem=' . $semester . '&sort=cal';
+  }
   $schedule = array(
     '#theme' => 'link',
     '#text' => t('Schedule'),
-    '#path' => 'http://rom.app.uib.no/timeplanliste.php?emne='. $study_code . '&periode=' . $semester . '&lang=' . $lang . '&simple=1',
+    '#path' => $path,
     '#options' => array(
       'attributes' => array('class' => $classes),
       'html' => TRUE,
