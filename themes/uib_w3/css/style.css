@@ -270,13 +270,13 @@ th {
     margin: 0 auto;
     width: 100%; }
   .content-top-wrapper + .content-bottom-wrapper {
-    padding: 0 1% 1rem; }
+    padding: 0 1.25rem 1rem; }
     @media (min-width: 600px) {
       .content-top-wrapper + .content-bottom-wrapper {
-        padding: 0 1% 2.5rem; } }
+        padding: 0 1.25rem 2.5rem; } }
     @media (min-width: 960px) {
       .content-top-wrapper + .content-bottom-wrapper {
-        padding: 0 0 5rem; } }
+        padding: 0 1.25rem 5rem; } }
 
 .footer-top-wrapper {
   padding: 1rem 1.25rem; }
