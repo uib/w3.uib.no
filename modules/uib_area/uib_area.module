@@ -522,7 +522,7 @@ function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 
     if ($item->field_uib_ou_id['und'][0]['value'] == 321201) {
       $tabs_nav .= uib_area__ub_khib_link($key + 1, $language->language);
       $tabs_nav_mobile .= '<option value="uib-tab--' . ($key + 1) . '">' . uib_area__ub_khib_title($language->language) . '</option>';
-      $tabs_content .= '<div id="uib-tab--' . ($key + 1) . '"><p class="group-office-information">' . t('You will be redirected to an external page') . '</p></div>';
+      $tabs_content .= '<div id="uib-tab--' . ($key + 1) . '"><p class="group-office-information">' . t('You will be redirected to a new page') . '</p></div>';
       $extra_key = 1;
     }
   }
@@ -2853,8 +2853,13 @@ jQuery( document ).ready( function($){
     window.location.hash = hash;
   }
   window.scrollTo(0, 0);
+  if($('.i18n-en').length) {
+    var link = 'http://www.uib.no/en/ub/107392/contact-fine-art-and-design-library';
+  } else {
+    var link = 'http://www.uib.no/ub/107391/kontakt-bibliotek-kunst-og-design';
+  }
   $(".ub-khib a").click(function() {
-    location.assign("http://www.khib.no/norsk/om-khib/biblioteket/");
+    location.assign(link);
   });
 });
 EOD;
