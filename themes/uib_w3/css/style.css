@@ -5725,6 +5725,89 @@ body #mc_embed_signup div.mce_inline_error {
   #block-uib-study-study-evu .sign-up {
     margin: 0.5rem 0 0.5rem 12%; }
 
+#block-uib-study-study-exam-info {
+  background: #fff;
+  padding-bottom: 2.1875rem; }
+  #block-uib-study-study-exam-info h2 {
+    background: #cf3c3a;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1.4rem;
+    position: relative;
+    margin: 0;
+    padding: 16px 5% 0 5%;
+    line-height: 1.4rem;
+    font-weight: normal; }
+    #block-uib-study-study-exam-info h2:empty {
+      display: none; }
+    #block-uib-study-study-exam-info h2 a {
+      color: #fff; }
+    #block-uib-study-study-exam-info h2:after {
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 16px solid #cf3c3a;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      top: 15px;
+      overflow: hidden; }
+  #block-uib-study-study-exam-info h3 {
+    margin: 1.5625rem;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    color: #cf3c3a;
+    line-height: 1.4rem; }
+  #block-uib-study-study-exam-info h3 + ul,
+  #block-uib-study-study-exam-info h3 + p {
+    margin-top: .5rem; }
+  #block-uib-study-study-exam-info h2 {
+    margin-bottom: 2.1875rem; }
+    #block-uib-study-study-exam-info h2:nth-child(n+2) {
+      margin-top: 2.1875rem; }
+  #block-uib-study-study-exam-info p {
+    margin: 1.5625rem;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333;
+    word-wrap: break-word; }
+  #block-uib-study-study-exam-info ul {
+    margin: 0 1.5625rem;
+    padding: 0 .75rem;
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #333333; }
+    #block-uib-study-study-exam-info ul li {
+      list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10px' height='10px'><circle cx='5' cy='5' r='2' stroke-width='0' fill='$color-grey-90' /></svg>");
+      margin-bottom: .75rem; }
+      #block-uib-study-study-exam-info ul li p {
+        margin: 1.5625rem 1.5625rem 1.5625rem 0; }
+  #block-uib-study-study-exam-info div.content {
+    margin: 1.5625rem; }
+    #block-uib-study-study-exam-info div.content h3 {
+      margin: 0; }
+  #block-uib-study-study-exam-info p:last-child, #block-uib-study-study-exam-info p:last-child > li:last-child, #block-uib-study-study-exam-info ul:last-child, #block-uib-study-study-exam-info ul:last-child > li:last-child, #block-uib-study-study-exam-info ol:last-child, #block-uib-study-study-exam-info ol:last-child > li:last-child, #block-uib-study-study-exam-info table:last-child, #block-uib-study-study-exam-info table:last-child > li:last-child, #block-uib-study-study-exam-info div.content:last-child, #block-uib-study-study-exam-info div.content:last-child > li:last-child {
+    margin-bottom: 0; }
+  #block-uib-study-study-exam-info ul, #block-uib-study-study-exam-info dl, #block-uib-study-study-exam-info li {
+    margin: 0; }
+  #block-uib-study-study-exam-info .uib-assessment {
+    padding: 0; }
+    #block-uib-study-study-exam-info .uib-assessment > li {
+      list-style: none; }
+  #block-uib-study-study-exam-info dt {
+    font-weight: bold;
+    margin: 0 0 0.25rem; }
+  #block-uib-study-study-exam-info div.content h3, #block-uib-study-study-exam-info div.content dd {
+    margin: 0 0 0.5rem; }
+
 #block-uib-study-study-facts-exchange {
   background: #fff;
   padding-bottom: 2.1875rem; }
@@ -8537,7 +8620,7 @@ body #mc_embed_signup div.mce_inline_error {
   .node-type-uib-study .region-content #block-uib-study-study-trivia {
     -webkit-order: 5;
     order: 5; }
-  .node-type-uib-study .region-content .uib-study-specialization {
+  .node-type-uib-study .region-content #block-uib-study-study-exam-info {
     -webkit-order: 6;
     order: 6; }
   .node-type-uib-study .region-content #block-uib-study-study-testimonial {

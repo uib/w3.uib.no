@@ -67,6 +67,10 @@ function uib_study_block_info() {
       'info' => t('Provides a block for multiple reading lists'),
       'status' => TRUE,
     ),
+    'study_exam_info' => array(
+      'info' => t('Provides information on exams in a course'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -1068,6 +1072,23 @@ EOD;
         }
       }
       break;
+    case 'study_exam_info':
+      $node = menu_get_object();
+      if ($node && $node->field_uib_study_type['und'][0]['value'] == 'course') {
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
+        if (!empty($data)) {
+          if (!empty($data['eksamensinfo'])) {
+            $examinfo = uib_study__get_exam_info($data['eksamensinfo']);
+            $block['title'] = t('Exam information');
+            $block['content'] = array(
+              '#theme' => 'item_list',
+              '#items' => $examinfo,
+              '#attributes' => array('class' => array('uib-assessment')),
+            );
+          }
+        }
+      }
+      break;
     case 'study_contact':
       $node = menu_get_object();
       if ($node) {
@@ -1441,6 +1462,145 @@ function uib_study__get_testimonial() {
     }
   }
   return false;
+}
+/**
+ * Create the items for the examinformation list
+ */
+function uib_study__get_exam_info($data) {
+  $examinfo = array();
+  global $language;
+  $lang = $language->language == 'en' ? ':en' : '';
+  list($previous_semester, $current_semester, $next_semester) = uib_study__get_adjacent_semesters();
+  if (isset($_GET['sem'])) {
+    $semester = $_GET['sem'];
+  }
+  else {
+    $semester = $current_semester;
+  }
+
+  if (!empty($data[$semester])) {
+    $current_data = uib_study__semester_exam_information($data[$semester], $lang);
+    $examinfo = array_merge($examinfo, $current_data);
+
+  }
+  return $examinfo;
+}
+/**
+ * Returns render array for exam information for a semeste
+ */
+function uib_study__semester_exam_information($data, $lang) {
+  foreach ($data as $ei) {
+    $render = array();
+    $items = array();
+    $eval = t('Assessment');
+    $render['title'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => $eval . ': ' . $ei['navn' . $lang] . ' (' . $ei['status' . $lang] . ')',
+      '#attributes' => array(),
+    );
+    if (isset($ei['datoEksamen'])) {
+      $term = t('Date');
+      $data = date('d.m.Y', strtotime($ei['datoEksamen']));
+      if (isset($ei['klokkeslettEksamen'])) {
+        $data .= ', ' . $ei['klokkeslettEksamen'];
+      }
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['oppmoteFor'])) {
+      $term = t('Latest attendance');
+      $data = t('@minutes minutes before', array('@minutes' => $ei['oppmoteFor']));
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['varighetTimer'])) {
+      $term = t('Duration');
+      $data = t('@duration hours', array('@duration' => $ei['varighetTimer']));
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['trekkfrist'])) {
+      $term = t('Withdrawal deadline');
+      $data = date('d.m.Y', strtotime($ei['trekkfrist']));
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['kunngjoring'])) {
+      $term = t('Results announcement');
+      $data = date('d.m.Y', strtotime($ei['kunngjoring']));
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['kommentar'])) {
+      $term = t('Additional information');
+      $data = $ei['kommentar' . $lang];
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['datasystem'])) {
+      $term = t('Exam system');
+      $data = $ei['datasystem'];
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['rom'])) {
+      $term = t('Place');
+      $rooms = array();
+      foreach($ei['rom'] as $room) {
+        if (isset($room['name'])) $rooms[] = $room['name'];
+      }
+      if (!empty($rooms)) {
+        $data = array(
+          '#theme' => 'item_list',
+          '#items' => $rooms,
+        );
+        $items[] = array(
+          '#type' => 'markup',
+          '#markup' => uib_study__definition_list_item($term, render($data)),
+        );
+      }
+    }
+    $render['info'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'dl',
+      '#attributes' => array('class' => array('uib-study-exam-assessment')),
+      '#value' => render($items),
+    );
+    $examinfo[] = render($render);
+  }
+  return $examinfo;
+}
+
+/**
+ * Returns markup for a definition list item
+ */
+function uib_study__definition_list_item($term, $data) {
+  $item['term'] = array(
+    '#type' => 'html_tag',
+    '#tag' => 'dt',
+    '#value' => $term,
+  );
+  $item['data'] = array(
+    '#type' => 'html_tag',
+    '#tag' => 'dd',
+    '#value' => $data,
+  );
+  return render($item);
 }
 /*
  * Creates the render array for the Construction plan of a Study

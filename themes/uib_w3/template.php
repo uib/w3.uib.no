@@ -646,6 +646,9 @@ SCRIPT;
           $variables['page']['content']['study_period'] = __uib_w3__render_block('uib_study', 'study_period_phd', 25);
         }
         $variables['page']['content']['study_reading_lists'] = __uib_w3__render_block('uib_study', 'study_reading_lists', 50);
+        if (variable_get('uib_show_exam_info')) {
+          $variables['page']['content']['study_exam_info'] = __uib_w3__render_block('uib_study', 'study_exam_info', 8);
+        }
       }
       if (in_array($variables['node']->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
         $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
