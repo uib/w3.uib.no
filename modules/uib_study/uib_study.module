@@ -1492,7 +1492,7 @@ function uib_study__semester_exam_information($data, $lang) {
   foreach ($data as $ei) {
     $render = array();
     $items = array();
-    $eval = t('Assessment');
+    $eval = t('Type of assessment');
     $render['title'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h3',
@@ -1511,7 +1511,7 @@ function uib_study__semester_exam_information($data, $lang) {
       );
     }
     if (isset($ei['oppmoteFor'])) {
-      $term = t('Latest attendance');
+      $term = t('Attendance');
       $data = t('@minutes minutes before', array('@minutes' => $ei['oppmoteFor']));
       $items[] = array(
         '#type' => 'markup',
@@ -1535,7 +1535,7 @@ function uib_study__semester_exam_information($data, $lang) {
       );
     }
     if (isset($ei['kunngjoring'])) {
-      $term = t('Results announcement');
+      $term = t('Examination result announcement');
       $data = date('d.m.Y', strtotime($ei['kunngjoring']));
       $items[] = array(
         '#type' => 'markup',
@@ -1551,7 +1551,7 @@ function uib_study__semester_exam_information($data, $lang) {
       );
     }
     if (isset($ei['datasystem'])) {
-      $term = t('Exam system');
+      $term = t('Examination system');
       $data = $ei['datasystem'];
       $items[] = array(
         '#type' => 'markup',
@@ -1559,7 +1559,7 @@ function uib_study__semester_exam_information($data, $lang) {
       );
     }
     if (isset($ei['rom'])) {
-      $term = t('Place');
+      $term = t('Location');
       $rooms = array();
       foreach($ei['rom'] as $room) {
         if (isset($room['name'])) $rooms[] = $room['name'];
