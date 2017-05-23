@@ -1731,7 +1731,7 @@ a,
     color: #333333;
     word-wrap: break-word; }
   .group-uib-testimonial-personalia ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -2065,7 +2065,7 @@ a,
     color: #333333;
     word-wrap: break-word; }
   .field-name-field-uib-user-competence ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -2343,7 +2343,7 @@ a,
       color: #333333;
       word-wrap: break-word; }
     html .uib-article__event .group-article-sidebar .group-event-info ul {
-      margin: 0 1.5625rem;
+      margin: 0 1.75rem;
       padding: 0 .75rem;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
       font-size: 1.25rem;
@@ -2689,7 +2689,7 @@ a,
     color: #333333;
     word-wrap: break-word; }
   .field-name-field-uib-fact-box ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -5545,7 +5545,7 @@ nav {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-contact ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -5753,7 +5753,7 @@ body #mc_embed_signup div.mce_inline_error {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-evu ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -5830,7 +5830,7 @@ body #mc_embed_signup div.mce_inline_error {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-exam-info ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -5913,7 +5913,7 @@ body #mc_embed_signup div.mce_inline_error {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-facts-exchange ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -6105,7 +6105,7 @@ body #mc_embed_signup div.mce_inline_error {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-reading-lists ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
@@ -6142,11 +6142,10 @@ body #mc_embed_signup div.mce_inline_error {
 
 #block-uib-study-study-semester-toggle {
   background: #fff;
-  padding: 1rem; }
+  padding: 1.5625rem; }
   #block-uib-study-study-semester-toggle h2 {
     font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     text-transform: uppercase;
-    margin-top: 0.375rem;
     font-weight: normal; }
   #block-uib-study-study-semester-toggle ul {
     list-style: none;
@@ -6208,7 +6207,7 @@ body #mc_embed_signup div.mce_inline_error {
     color: #333333;
     word-wrap: break-word; }
   #block-uib-study-study-so-code ul {
-    margin: 0 1.5625rem;
+    margin: 0 1.75rem;
     padding: 0 .75rem;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     font-size: 1.25rem;
