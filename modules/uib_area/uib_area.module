@@ -402,7 +402,7 @@ function uib_area_block_view($delta='') {
           'en' => array(
             array('Contact UiB', 74388, 'link-contact-info'),
             array('Available positions', 84777, 'link-vacant-positions'),
-            array('Press', 50857, 'link-press'),
+            array('Press', 107460, 'link-press'),
             array('About cookies', 50970, 'link-info-cookies'),
           ),
         );
