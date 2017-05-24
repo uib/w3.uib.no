@@ -1,3 +1,18 @@
+# Release 72 _2017-05-24_
+
+- Rettet feil som gjorde at opphavsrett ble vist under forside-banner #18080
+- Rettet feil som gjorde at tilknyttet innhold ble vist uten luft på smale skjermer #18014
+- Rettet feil som gjorde at filteret havnet under nyhetene på sider for nyhetsarkiv #18007
+- Lagt til nytt felt for billedtekst for mindre bilder og for bilder på vitnesbyrd #18012
+- Lagt til rette for visning av eksamensinformasjon på emnesidene (vil først bli synlig 1. juni) #18066
+- Lagt til rette for listevisning av eksamensinformasjon pr. fakultet (vil først bli synlig 1. juni) #18063
+- Gjort funksjonen "Erstatt fil" i forbindelse med bilder utilgjengelig for redaktører og innholdsprodusenter #17972
+- Designjustert bokser i sidespalten #16204
+- Fjernet måned og år fra lenketekst under Ledige stillinger #18030
+- Endret lenke til timeplan på emnesider for neste semester #18058
+- Endret lenke til "Bibliotek for kunst og design" på uib.no/ub #18100
+- Endret lenke til "Press services" i menyen helt nederst på sidene #18133
+
 # Release 71 _2017-05-11_
 
 - Rettet feil som gjorde at titler ikke ble vist på sider med studieinformasjon #18044
