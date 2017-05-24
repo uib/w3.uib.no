@@ -1076,15 +1076,24 @@ EOD;
       $node = menu_get_object();
       if ($node && $node->field_uib_study_type['und'][0]['value'] == 'course') {
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
-        if (!empty($data)) {
+        list($previous_semester, $current_semester, $next_semester) = uib_study__get_adjacent_semesters();
+        if (isset($_GET['sem'])) {
+          $semester = $_GET['sem'];
+        }
+        else {
+          $semester = $current_semester;
+        }
+        if ($semester != $previous_semester && !empty($data)) {
           if (!empty($data['eksamensinfo'])) {
-            $examinfo = uib_study__get_exam_info($data['eksamensinfo']);
-            $block['title'] = t('Exam information');
-            $block['content'] = array(
-              '#theme' => 'item_list',
-              '#items' => $examinfo,
-              '#attributes' => array('class' => array('uib-assessment')),
-            );
+            if (!empty($data['eksamensinfo'][$semester])) {
+              $examinfo = uib_study__get_exam_info($data['eksamensinfo'][$semester]);
+              $block['title'] = t('Exam information');
+              $block['content'] = array(
+                '#theme' => 'item_list',
+                '#items' => $examinfo,
+                '#attributes' => array('class' => array('uib-assessment')),
+              );
+            }
           }
         }
       }
@@ -1470,33 +1479,22 @@ function uib_study__get_exam_info($data) {
   $examinfo = array();
   global $language;
   $lang = $language->language == 'en' ? ':en' : '';
-  list($previous_semester, $current_semester, $next_semester) = uib_study__get_adjacent_semesters();
-  if (isset($_GET['sem'])) {
-    $semester = $_GET['sem'];
-  }
-  else {
-    $semester = $current_semester;
-  }
-
-  if (!empty($data[$semester])) {
-    $current_data = uib_study__semester_exam_information($data[$semester], $lang);
-    $examinfo = array_merge($examinfo, $current_data);
-
-  }
+  $examinfo = uib_study__semester_exam_information($data, $lang);
   return $examinfo;
 }
 /**
  * Returns render array for exam information for a semeste
  */
-function uib_study__semester_exam_information($data, $lang) {
+function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
   foreach ($data as $ei) {
     $render = array();
     $items = array();
-    $eval = t('Type of assessment');
+    $eval = $part ? t('Exam part') : t('Type of assessment');
+    $status = $part ? '' : ' (' . $ei['status' . $lang] . ')';
     $render['title'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h3',
-      '#value' => $eval . ': ' . $ei['navn' . $lang] . ' (' . $ei['status' . $lang] . ')',
+      '#value' => $eval . ': ' . $ei['navn' . $lang] . $status,
       '#attributes' => array(),
     );
     if (isset($ei['datoEksamen'])) {
@@ -1521,6 +1519,28 @@ function uib_study__semester_exam_information($data, $lang) {
     if (isset($ei['varighetTimer'])) {
       $term = t('Duration');
       $data = t('@duration hours', array('@duration' => $ei['varighetTimer']));
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['datoUtlevert'])) {
+      $term = t('Assignment handed out');
+      $data = date('d.m.Y', strtotime($ei['datoUtlevert']));
+      if (isset($ei['klokkeslettUtlevert'])) {
+        $data .= ', ' . $ei['klokkeslettUtlevert'];
+      }
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
+    if (isset($ei['datoInnlevering'])) {
+      $term = t('Submission deadline');
+      $data = date('d.m.Y', strtotime($ei['datoInnlevering']));
+      if (isset($ei['klokkeslettInnlevering'])) {
+        $data .= ', ' . $ei['klokkeslettInnlevering'];
+      }
       $items[] = array(
         '#type' => 'markup',
         '#markup' => uib_study__definition_list_item($term, $data),
@@ -1562,7 +1582,9 @@ function uib_study__semester_exam_information($data, $lang) {
       $term = t('Location');
       $rooms = array();
       foreach($ei['rom'] as $room) {
-        if (isset($room['name'])) $rooms[] = $room['name'];
+        if (isset($room['bygning'])) {
+          $rooms[] = isset($room['url']) ? l($room['bygning'], $room['url']) : $room['bygning'];
+        }
       }
       if (!empty($rooms)) {
         $data = array(
@@ -1574,6 +1596,13 @@ function uib_study__semester_exam_information($data, $lang) {
           '#markup' => uib_study__definition_list_item($term, render($data)),
         );
       }
+    }
+    if (!$part && isset($ei['eksamensdel'])) {
+      $parts = uib_study__semester_exam_information($ei['eksamensdel'], $lang, TRUE);
+      $items[] = array(
+        '#theme' => 'item_list',
+        '#items' => $parts,
+      );
     }
     $render['info'] = array(
       '#type' => 'html_tag',
