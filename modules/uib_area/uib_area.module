@@ -3005,55 +3005,108 @@ function uib_area__exam_list_render_array($alias, $term = '') {
       ),
     ),
   );
-  foreach ($data['eksamensliste'] as $exam) {
-    $date = strtotime($exam['tid']);
-    $datestr = strftime( '%d.%m.%Y', $date);
-    $starttime = strftime('%H:%M', $date);
-    $enddate = $date + $exam['varighet'] * 3600; // 3600 sek i en time
-    $endtime = strftime('%H:%M', $enddate);
-    $location = array();
-    $location[] = '<ul>';
-    foreach ((array)$exam['rom'] as $room) {
-      if (isset($room['name'])) {
-        $location[] = "<li>{$room['name']}</li>";
-      }
+
+  $tmp = array();
+  foreach ((array)$data['eksamensliste'] as $exam) {
+    if (!isset($tmp[$exam['emne']])) {
+      $tmp[$exam['emne']] = array();
     }
-    $location[] = '</ul>';
-    $comments = $exam['navn'];
+    $tmp[$exam['emne']][] = $exam;
+  }
+  $data['eksamensliste'] = $tmp;
+  ksort($data['eksamensliste']);
+  foreach ($data['eksamensliste'] as $topic) {
     $row = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('rrow')),
       'course' => array(
         '#type' => 'container',
-        '#weight' => 1,
         '#attributes' => array('class' => array('course')),
-        1 => array('#markup' => "<h3>{$exam['emne']} / {$exam['emnenavn']}</h3>"),
+        1 => array('#markup' => "<h3> {$topic[0]['emne']} / {$topic[0]['emnenavn']}</h3>"),
       ),
-      'time' => array(
+      'exams' => array(
         '#type' => 'container',
-        '#weight' => 2,
-        '#attributes' => array('class' => array('datetime')),
-        0 => array('#markup' => "<span class=\"label\">".t('Time').": </span>"),
-        1 => array('#markup' => "<span class=\"date\">{$datestr}</span>" .
-        " / <span class=\"time\">{$starttime}&ndash;{$endtime}</span>"),
-      ),
-      'comments' => array(
-        '#type' => 'container',
-        '#weight' => 4,
-        '#attributes' => array('class' => array('comments')),
-        0 => array('#markup' => $comments),
+        '#attributes' => array('class' => array('exams')),
       ),
     );
-    if (count($location) > 2) {
-      $row['location'] = array(
-        '#type' => 'container',
-        '#weight' => 3,
-        '#attributes' => array('class' => array('location')),
-        0 => array('#markup' => "<span class=\"label\">".t('Place').": </span>"),
-        1 => array('#markup' => implode($location)),
+    foreach ($topic as $exam) {
+      $date = strtotime($exam['tid']);
+      $datestr = strftime( '%d.%m.%Y', $date);
+      $starttime = strftime('%H:%M', $date);
+      $enddate = $date + $exam['varighet'] * 3600; // 3600 sek i en time
+      $endtime = strftime('%H:%M', $enddate);
+      if (strpos($exam['tid'], 'T') === FALSE) {
+          $starttime = $endtime = '';
+      }
+      else if (!isset($exam['varighet']) || intval($exam['varighet']) == 0) {
+        $endtime = '';
+      }
+      $location = array();
+      $location[] = '<ul>';
+      foreach ((array)$exam['rom'] as $room) {
+        $l = '';
+        if (isset($room['bygning'])) {
+          $l = "{$room['bygning']}";
+          if (isset($room['navn'])) {
+            $l .= ", {$room['navn']}";
+          }
+        }
+        if ($l && isset($room['url'])) {
+          $l = l($l, $room['url']);
+        }
+        if ($l) {
+          $location[] = "<li>$l</li>";
+        }
+      }
+      $location[] = '</ul>';
+      $n = "{$exam['navn']}";
+      if (isset($exam['status'])) {
+        $n .= " ({$exam['status']})";
+      }
+      $r = array(
+        'name' => array(
+          '#type' => 'container',
+          '#weight' => 1,
+          '#attributes' => array('class' => array('exam-name')),
+          0 => array('#markup' => "<span class=\"exam-header\">{$n}:</span>"),
+        ),
+        'time' => array(
+          '#type' => 'container',
+          '#weight' => 2,
+          '#attributes' => array('class' => array('datetime')),
+          0 => array('#markup' => "<span class=\"label\">".t('Time').": </span>"),
+          1 => array('#markup' => "<span class=\"date\">{$datestr}</span>"),
+        ),
       );
+      if ($starttime) {
+        $r['time'][2] = array('#markup' => $starttime);
+        if ($endtime) {
+          $r['time'][2]['#markup'] = $r['time'][2]['#markup'] . "&ndash;{$endtime}";
+        }
+      }
+      if (isset($r['time'][2])) {
+        $r['time'][2]['#markup'] = " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
+      }
+      if (isset($exam['kommentar'])) {
+        $r['comments'] = array(
+          '#type' => 'container',
+          '#weight' => 4,
+          '#attributes' => array('class' => array('comments')),
+          0 => array('#markup' => "<em>{$exam['kommentar']}</em>"),
+        );
+      }
+      if (count($location) > 2) {
+        $r['location'] = array(
+          '#type' => 'container',
+          '#weight' => 3,
+          '#attributes' => array('class' => array('location')),
+          0 => array('#markup' => "<span class=\"label\">".t('Place').": </span>"),
+          1 => array('#markup' => implode($location)),
+        );
+      }
+      $row['exams'][] = $r;
     }
-    $retval['table']['body'][] = $row; //referencing element n
+    $retval['table']['body'][] = $row;
   }
   return $retval;
 }
