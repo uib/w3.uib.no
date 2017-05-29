@@ -317,6 +317,13 @@ EOD;
         'label' => 'hidden',
         'weight' => -30,
       ));
+      if (isset($variables['page']['content_top']['field_uib_main_media']) && isset($variables['page']['content_top']['field_uib_main_media'][1])) {
+        $cycle_path = libraries_get_path('jquery.cycle2');
+        drupal_add_js($cycle_path . '/jquery.cycle2.min.js');
+        drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/uib_cycle.js', 'file');
+        $variables['page']['content_top']['field_uib_main_media']['#prefix'] = '<div class="uib-slideshow"><div class="uib-slideshow__nav--next">' . t('Next') . '</div>';
+        $variables['page']['content_top']['field_uib_main_media']['#suffix'] = '<div class="uib-slideshow__nav--prev">' . t('Previous') . '</div></div>';
+      }
       uib_w3__add_image_caption(
         $variables['page']['content_top']['field_uib_main_media'],
         $variables['node'],
@@ -350,24 +357,6 @@ EOD;
       $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
         'weight' => '26',
       ));
-
-      /**
-       * Slideshow thingy.
-       */
-      $slideshow = @$variables['page']['content']['system_main']['nodes'][$variables['node']->nid]['field_uib_main_media'][1];
-      if (!is_null($slideshow)) {
-        $cycle_path = libraries_get_path('jquery.cycle');
-        drupal_add_js($cycle_path . '/jquery.cycle.all.js');
-        drupal_add_js('jQuery(function($) {
-          $( ".field-name-field-uib-main-media .field-items" ).cycle(
-            {
-              containerResize: 1,
-              fit: 1,
-              fx: "scrollHorz",
-            }
-          );
-        }); ', 'inline');
-      }
 
       // Article types with social media links
       $types = array('event', 'news', 'press_release', 'phd_press_release');
@@ -1108,16 +1097,73 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     unset($variables['content']['field_uib_media'][0]['links']);
   }
 }
-
-/*
+/**
+ * Implementing theme_field()
+ */
+function uib_w3_field($variables) {
+  $output = '';
+  if (!$variables['label_hidden']) {
+    $output .= '<div ' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+  }
+  $output .= '<div ' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= '<div ' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+  }
+  $output .= '</div>';
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+  return $output;
+}
+/**
  * Implementing hook_preprocess_field()
  */
 function uib_w3_preprocess_field(&$vars) {
-  if ($vars['element']['#field_name'] == 'field_uib_main_media') {
-    if (@$vars['items'][0]['#view_mode'] == 'content_main' && $vars['items'][0]['#bundle'] == 'image') {
-      if (!empty($vars['items'][0]['field_uib_description'])) {
-        $vars['classes_array'][] = 'description';
+  $name = $vars['element']['#field_name'];
+  $bundle = $vars['element']['#bundle'];
+  $elements_bundle = &$vars['element'][0]['#bundle'];
+  $mode = $vars['element']['#view_mode'];
+  $elements_mode = &$vars['element'][0]['#view_mode'];
+  $classes = &$vars['classes_array'];
+  $title_classes = &$vars['title_attributes_array']['class'];
+  $content_classes = &$vars['content_attributes_array']['class'];
+  $item_classes = array();
+
+  $classes[] = 'field-wrapper';
+  $title_clases[] = 'field-label';
+  $content_classes[] = 'field-items';
+  $item_classes[] = 'field-item';
+
+  switch($name) {
+    case 'field_uib_main_media':
+      if ($elements_mode == 'content_main' && $elements_bundle == 'image') {
+        if (count($vars['items']) > 1) {
+          $content_classes[] = 'cycle-slideshow';
+          $vars['content_attributes_array']['data-cycle-slides'] = '> div';
+          $vars['content_attributes_array']['data-cycle-fx'] = 'scrollHorz';
+          $vars['content_attributes_array']['data-cycle-timeout'] = '0';
+          $vars['content_attributes_array']['data-cycle-prev'] = '.uib-slideshow__nav--prev';
+          $vars['content_attributes_array']['data-cycle-next'] = '.uib-slideshow__nav--next';
+          $vars['content_attributes_array']['data-cycle-auto-height'] = 'container';
+        }
+        elseif (!empty($vars['items'][0]['field_uib_description'])) {
+          $classes[] = 'description';
+        }
       }
+      break;
+  }
+
+  foreach ($vars['items'] as $delta => $item) {
+    $vars['item_attributes_array'][$delta]['class'] = $item_classes;
+    $vars['item_attributes_array'][$delta]['class'][] = $delta % 2 ? 'even' : 'odd';
+    if ($name == 'field_uib_main_media' && count($vars['items']) > 1) {
+      $imagecounter = array(
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => array('class' => 'uib-slideshow__info--counter'),
+        '#value' => $delta + 1 . '/' . count($vars['items']),
+        '#weight' => 50,
+      );
+      $vars['items'][$delta]['imagecounter'] = $imagecounter;
+      $vars['items'][$delta]['#group_children']['imagecounter'] = 'group_media_info';
     }
   }
 }
