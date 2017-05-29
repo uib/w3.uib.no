@@ -5,6 +5,7 @@
 # and configuration of the site.
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
+    bin/site-drush vset uib_show_exam_info TRUE
     bin/index-all-users
     bin/index-all-studies
     bin/index-all-nodes
