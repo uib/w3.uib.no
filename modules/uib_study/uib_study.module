@@ -2715,3 +2715,11 @@ function uib_study__get_study_kicker($value, $name) {
   );
   return array_key_exists($value, $values) ? $values[$value] : i18n_string_translate($name, $value);
 }
+
+/**
+ * Dont show location information until 8 days before exam
+ */
+function uib_study__check_show_exam_location_information($exam_date) {
+  $days_before = 5;
+  return date('Ymd') >= date('Ymd', $exam_date - $days_before * 24 * 60 * 60);
+}
