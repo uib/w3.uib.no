@@ -1158,12 +1158,6 @@ EOD;
             '#items' => array(),
           );
           $schedule = uib_study__get_resource_links('schedule', $study_code);
-          // TODO: remove after 19. june
-          if (date('Ymd')<'20170619') {
-            $schedule .= '*';
-          }
-          //TODO end
-
           $resources['#items'][] = render($schedule);
           $reading_list = uib_study__get_resource_links('reading_list', $data);
           $resources['#items'][] = render($reading_list);
@@ -1279,17 +1273,19 @@ EOD;
 
         $block['content']['fspres'][] = $render;
         // TODO: remove after 19. june
-        if (date('Ymd')<'20170619') {
-          $block['content']['fspres'][] = array(
-            '#type' => 'container',
-            '#attributes' => array(
-              'class' => array('subject-to-change'),
-            ),
-            'message' => array(
-              '#markup' => '<em style="font-size: 95%;">*'
-              . t('Subject to changes until Studentweb opens.') . '</em>',
-            ),
-          );
+        if (isset($_GET['sem']) && $_GET['sem'] == '2017h') {
+          if (date('Ymd')<'20170619') {
+            $block['content']['fspres'][] = array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array('subject-to-change'),
+              ),
+              'message' => array(
+                '#markup' => '<em style="font-size: 95%;">*'
+                . t('Subject to changes until Studentweb opens.') . '</em>',
+              ),
+            );
+          }
         }
         // TODO end
       }
@@ -2108,9 +2104,12 @@ function uib_study__get_schedule_link($study_code, $semester, $classes) {
   } else {
     $path = 'https://tp.uio.no/uib/timeplan/calendar2.php?id='. $study_code . '&sem=' . $semester . '&sort=cal';
   }
+  // TODO: remove after 19. june
+  $appendix = $semester == '17h' && date('Ymd')<'20170619' ? '*' : '';
+  //TODO end
   $schedule = array(
     '#theme' => 'link',
-    '#text' => t('Schedule'),
+    '#text' => t('Schedule') . $appendix,
     '#path' => $path,
     '#options' => array(
       'attributes' => array('class' => $classes),
