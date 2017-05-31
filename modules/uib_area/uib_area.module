@@ -3044,14 +3044,19 @@ function uib_area__exam_list_render_array($alias, $term = '') {
       }
       $location = array();
 
-      if (uib_study__check_show_exam_location_information($date)) {
         $location[] = '<ul>';
+        $buildings = array();
         foreach ((array)$exam['rom'] as $room) {
           $l = '';
-          if (isset($room['bygning'])) {
+          if (isset($room['bygning'])
+          #  && !isset($buildings[$room['bygning']])
+          ) {
+            #$buildings[$room['bygning']] = TRUE;
             $l = "{$room['bygning']}";
-            if (isset($room['navn'])) {
-              $l .= ", {$room['navn']}";
+            if (uib_area__check_show_exam_location_information($date)) {
+              if (isset($room['navn'])) {
+                $l .= ", {$room['navn']}";
+              }
             }
           }
           if ($l && isset($room['url'])) {
