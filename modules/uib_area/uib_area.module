@@ -3044,30 +3044,37 @@ function uib_area__exam_list_render_array($alias, $term = '') {
       }
       $location = array();
 
-        $location[] = '<ul>';
-        $buildings = array();
-        foreach ((array)$exam['rom'] as $room) {
-          $l = '';
-          if (isset($room['bygning'])
-          #  && !isset($buildings[$room['bygning']])
-          ) {
-            #$buildings[$room['bygning']] = TRUE;
-            $l = "{$room['bygning']}";
-            if (uib_area__check_show_exam_location_information($date)) {
-              if (isset($room['navn'])) {
-                $l .= ", {$room['navn']}";
-              }
-            }
-          }
-          if ($l && isset($room['url'])) {
-            $l = l($l, $room['url']);
-          }
+      $location[] = '<ul>';
+      $buildings = array();
+      $l = '';
+      $prevurl = '';
+      foreach ((array)$exam['rom'] as $room) {
+        if (isset($room['bygning'])
+        && !isset($buildings[$room['bygning']])
+        ) {
           if ($l) {
+            if ($l && $prevurl) {
+              $l = l($l, $prevurl);
+            }
             $location[] = "<li>$l</li>";
           }
+          $buildings[$room['bygning']] = TRUE;
+          $l = "{$room['bygning']}";
         }
-        $location[] = '</ul>';
+        if (uib_study__check_show_exam_location_information($date)) {
+          if (isset($room['navn']) && $l) {
+            $l .= ", {$room['navn']}";
+          }
+        }
+        $prevurl = $room['url'];
       }
+      if ($l) {
+        if ($l && $prevurl) {
+          $l = l($l, $prevurl);
+        }
+        $location[] = "<li>$l</li>";
+      }
+      $location[] = '</ul>';
       $n = "{$exam['navn']}";
       if (isset($exam['status'])) {
         $n .= " ({$exam['status']})";
