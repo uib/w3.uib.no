@@ -1497,9 +1497,11 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       '#value' => $eval . ': ' . $ei['navn' . $lang] . $status,
       '#attributes' => array(),
     );
+    $datoEksamen=0;
     if (isset($ei['datoEksamen'])) {
+      $datoEksamen = strtotime($ei['datoEksamen']);
       $term = t('Date');
-      $data = date('d.m.Y', strtotime($ei['datoEksamen']));
+      $data = date('d.m.Y', $datoEksamen);
       if (isset($ei['klokkeslettEksamen'])) {
         $data .= ', ' . $ei['klokkeslettEksamen'];
       }
@@ -1578,7 +1580,9 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
         '#markup' => uib_study__definition_list_item($term, $data),
       );
     }
-    if (isset($ei['rom'])) {
+
+    if (isset($ei['rom'])
+      && uib_study__check_show_exam_location_information($datoEksamen)) {
       $term = t('Location');
       $rooms = array();
       foreach($ei['rom'] as $room) {
