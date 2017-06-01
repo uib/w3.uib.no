@@ -144,5 +144,8 @@
   .field-name-field-uib-relation .field-items {
     display: block;
   }
+  .field-name-field-uib-area-banner #search {
+    display: none;
+  }
 }
 /* End @media print */
