@@ -1505,22 +1505,23 @@ function uib_study__get_exam_info($data) {
  */
 function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
   $examinfo = array();
-
   // TODO: Remove this notice after 17. of june
-  if (date('Ymd') < '20170619') {
-    $stoc =  t('Subject to changes until Studentweb opens, due to the introduction of a new system.');
-    $r = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array('subject-to-change'),
-      ),
-      'text' => array(
-        '#type' => 'html_tag',
-        '#tag' => 'em',
-        '#value' => $stoc,
-      ),
-    );
-    $examinfo[] = render($r);
+  if (date('Ymd') < '20170619' && !$part) {
+    if (isset($_GET['sem']) && $_GET['sem'] == '2017h') {
+      $stoc =  t('Subject to changes until Studentweb opens, due to the introduction of a new system.');
+      $r = array(
+        '#type' => 'container',
+        '#attributes' => array(
+          'class' => array('subject-to-change'),
+        ),
+        'text' => array(
+          '#type' => 'html_tag',
+          '#tag' => 'em',
+          '#value' => $stoc,
+        ),
+      );
+      $examinfo[] = render($r);
+    }
   }
   // TODO end ...
 
