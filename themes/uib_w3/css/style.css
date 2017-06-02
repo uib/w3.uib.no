@@ -2801,6 +2801,9 @@ a,
       padding: 0 5px 0 0; }
     .faculty-exams-list .rbody .rrow .label {
       display: none; }
+    .faculty-exams-list .rbody .rrow .submission .label {
+      display: inline;
+      font-weight: bold; }
     .faculty-exams-list .rbody .rrow .datetime {
       position: relative;
       padding: 0 0 0 30px; }
@@ -2830,7 +2833,7 @@ a,
         left: 0;
         top: 3px; }
     .faculty-exams-list .rbody .rrow .exam-name {
-      padding: 0 0 0 30px;
+      padding: 0;
       margin: 1rem 0 0 0; }
     .faculty-exams-list .rbody .rrow > div {
       margin: .3rem 0; }

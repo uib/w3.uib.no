@@ -1619,7 +1619,10 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
     }
     if (isset($ei['datasystem'])) {
       $term = t('Examination system');
-      $data = $ei['datasystem'];
+      $data = array($ei['datasystem']);
+      if (strtolower($data[0]) == 'inspera') {
+        $data[] = t('Digital exam');
+      }
       $items[] = array(
         '#type' => 'markup',
         '#markup' => uib_study__definition_list_item($term, $data),
@@ -1670,6 +1673,9 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
 
 /**
  * Returns markup for a definition list item
+ * @param $term string title. Marked up in <td> tag.
+ * @param $data string or array of data elements. If data is an array, multiple
+ * dd tags are created.
  */
 function uib_study__definition_list_item($term, $data) {
   $item['term'] = array(
@@ -1677,11 +1683,13 @@ function uib_study__definition_list_item($term, $data) {
     '#tag' => 'dt',
     '#value' => $term,
   );
-  $item['data'] = array(
-    '#type' => 'html_tag',
-    '#tag' => 'dd',
-    '#value' => $data,
-  );
+  foreach ((array)$data as $d) {
+    $item[] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'dd',
+      '#value' => $d,
+    );
+  }
   return render($item);
 }
 /*
@@ -1911,12 +1919,13 @@ function uib_study__nid_from_study_code($study_code) {
 
 /**
  *  Returns the path to the page for given study code.  Returns FALSE for codes
- *  that are not in use.
+ *  that are not in use. If $term is used, this is appended to the returned path.
  */
-function uib_study__study_path($code) {
+function uib_study__study_path($code, $term = NULL) {
   $study_nid = &uib_study__study_map();
+  $term = isset($term) ? "?sem={$term}" : '';
   if (isset($study_nid[$code])) {
-    return "node/$study_nid[$code]";
+    return "node/{$study_nid[$code]}{$term}";
   }
   return FALSE;
 }
@@ -2801,4 +2810,285 @@ function uib_study__get_study_kicker($value, $name) {
 function uib_study__check_show_exam_location_information($exam_date) {
   $days_before = 8;
   return date('Ymd') >= date('Ymd', $exam_date - $days_before * 24 * 60 * 60);
+}
+
+/**
+ * Return a json object with exam information for a faculty or a department
+ * at uib.
+ */
+function uib_study__get_faculty_exams_json($ou_id, $term = '', $lang = 'nb') {
+  $path = '/sted/';
+  $path .= $ou_id;
+  $path .= '/emner-eksamen.json';
+  $path .= $term ? "?semester=$term" : '';
+  $retval = uib_study__fspres_get_json($path);
+  uib_study__languagify($retval, $lang);
+  return $retval;
+}
+
+/**
+ * This recursive function is used to get set the correct language as the default for
+ * fields returned from the fs-pres api. For example an returned array like
+ * this:
+ *
+ *  array(
+ *    'emnenavn' => 'Et norsk emnenavn',
+ *    'emnenavn:en' => 'English topic name',
+ *    'rom' => array(
+ *      'navn' => 'Snøhetta',
+ *      'navn:en' => 'Snowhood',
+ *      ...
+ *    )
+ *    ...
+ *  );
+ *
+ * when language is 'en', will be transformed to this:
+ *
+ *  array(
+ *    'emnenavn' => 'English topic name',
+ *    'emnenavn:en' => 'English topic name',
+ *    'rom' => array(
+ *      'navn' => 'Snowhood',
+ *      'navn:en' => 'Snowhood',
+ *      ...
+ *    )
+ *    ...
+ *  );
+ */
+function uib_study__languagify(&$array, $lang) {
+  foreach ($array as $key => &$value) {
+    if (is_array($value)) {
+      uib_study__languagify($value, $lang);
+    }
+    else {
+      $llang = ':' . $lang;
+      if (substr($key, -strlen($llang)) == $llang && $value) {
+        $array[substr($key, 0, -strlen($llang))] = $value;
+      }
+    }
+  }
+}
+
+/**
+ * Return a render array of exams
+ */
+function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
+  $path = explode('/', drupal_lookup_path('source',$alias));
+  $nid = end($path);
+  if (!intval($nid)) {
+    return;
+  }
+  $term = strtolower($term);
+  if (!$term) {
+    $term = date('Y') . (date('n') < 7 ? 'v' : 'h');
+  }
+  else if ($term == 'next') {
+    $term = date('n') < 7 ? date('Y') . 'h' :  (date('Y') + 1) . 'v';
+  }
+  $ou_id = uib_area__get_ou_nid(node_load($nid));
+  $org = uib_area__get_organisation_unit($ou_id);
+  $data = uib_study__get_faculty_exams_json($org, $term, $lang);
+  $retval = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('faculty-exams-list')),
+    'table' => array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('rtable')),
+      'body' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('rbody')),
+      ),
+    ),
+  );
+
+  $tmp = array();
+  foreach ((array)$data['eksamensliste'] as $exam) {
+    if (!isset($tmp[$exam['emne']])) {
+      $tmp[$exam['emne']] = array();
+    }
+    $tmp[$exam['emne']][] = $exam;
+  }
+  $data['eksamensliste'] = $tmp;
+  ksort($data['eksamensliste']);
+
+  foreach ($data['eksamensliste'] as $topic) {
+    $path = uib_study__study_path($topic[0]['emne']);
+    $thisterm = date('Y') . (date('m')<7 ? 'v' : 'h');
+    if ($term == $thisterm) {
+      $path = url($path);
+    }
+    else {
+      $path = url($path, array('query' => array('sem' => $term)));
+    }
+    $code = "<a href=\"{$path}\" >{$topic[0]['emne']}</a>";
+    $row = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('rrow')),
+      'course' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('course')),
+        1 => array('#markup' => "<h3> {$code} / {$topic[0]['emnenavn']}</h3>"),
+      ),
+      'exams' => array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('exams')),
+      ),
+    );
+    foreach ($topic as $exam) {
+      $date = strtotime($exam['tid']);
+      $datestr = strftime( '%d.%m.%Y', $date);
+      $starttime = strftime('%H:%M', $date);
+      $enddate = FALSE;
+      if (isset($exam['tidslutt'])) {
+        $enddate = strtotime($exam['tidslutt']);
+      }
+      else if (isset($exam['varighet'])) {
+        $enddate = $date + $exam['varighet'] * 3600; // 3600 sek i en time
+      }
+      // start and end on different dates:
+      $twodates = date('Ymd', $enddate) != date('Ymd', $date);
+      $enddatestr = '';
+      $endtime = '';
+      if ($enddate) {
+        if($twodates) {
+          $enddatestr = strftime('%d.%m.%Y ', $enddate);
+        }
+        $endtime = strftime('%H:%M', $enddate);
+      }
+      if (strpos($exam['tid'], 'T') === FALSE) {
+          $starttime = $endtime = '';
+      }
+      else if (
+        (!isset($exam['varighet']) || intval($exam['varighet']) == 0)
+        && !isset($exam['tidslutt'])
+      ) {
+        $endtime = '';
+      }
+      $location = array();
+
+      $location[] = '<ul>';
+      $buildings = array();
+      $l = '';
+      $prevurl = '';
+      if (uib_study__check_show_exam_location_information($date)) {
+        foreach ((array)$exam['rom'] as $room) {
+          if (isset($room['bygning'])
+          && !isset($buildings[$room['bygning']])
+          ) {
+            if ($l) {
+              if ($l && $prevurl) {
+                $l = l($l, $prevurl);
+              }
+              $location[] = "<li>$l</li>";
+            }
+            $buildings[$room['bygning']] = TRUE;
+            $l = "{$room['bygning']}";
+          }
+          if (isset($room['navn']) && $l) {
+            $l .= ", {$room['navn']}";
+          }
+          $prevurl = isset($room['url']) ? $room['url'] : '';
+        }
+      }
+      if ($l) {
+        if ($l && $prevurl) {
+          $l = l($l, $prevurl);
+        }
+        $location[] = "<li>$l</li>";
+      }
+      $location[] = '</ul>';
+      $n = "{$exam['navn']}";
+      if (isset($exam['status'])) {
+        $n .= " ({$exam['status']})";
+      }
+      $timelabel = t('Time', array(), array('langcode' => $lang));
+      $endtimelabel = '';
+      $datetimeclass = array('datetime');
+      if (isset($exam['innlevering'])) {
+        $timelabel = t('Assignment handed out', array(), array('langcode' => $lang));
+        $endtimelabel = t('Submission deadline', array(), array('langcode' => $lang));
+        $datetimeclass[] = 'submission';
+      }
+      $r = array(
+        'name' => array(
+          '#type' => 'container',
+          '#weight' => 1,
+          '#attributes' => array('class' => array('exam-name')),
+          0 => array('#markup' => "<span class=\"exam-header\">{$n}:</span>"),
+        ),
+        'time' => array(
+          '#type' => 'container',
+          '#weight' => 2,
+          '#attributes' => array('class' => $datetimeclass),
+          0 => array('#markup' => "<span class=\"label\">" .
+            $timelabel . ": </span>"),
+          1 => array('#markup' => "<span class=\"date\">{$datestr}</span>"),
+        ),
+      );
+      if ($starttime) {
+        $r['time'][2] = array('#markup' => $starttime);
+        if ($endtime && !$twodates) {
+          $r['time'][2]['#markup'] = $r['time'][2]['#markup'] . "&ndash;{$endtime}";
+        }
+      }
+      if (isset($r['time'][2])) {
+        $r['time'][2]['#markup'] = " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
+      }
+      if ($twodates) {
+        $r['time'][3] = array(
+          '#type' => 'container',
+          '#attributes' => array('class' => array('twodates')),
+        );
+        if ($endtimelabel) {
+          $r['time'][3]['label'] = array('#markup' => "<span class=\"label\">" .
+            $endtimelabel . ": </span>");
+        }
+        $r['time'][3][0] = array('#markup' => "<span class=\"date2\">{$enddatestr}</span>");
+        if ($endtime) {
+          $r['time'][3][1] = array('#markup' => " / <span class=\"time2\">{$endtime}</span>");
+        }
+      }
+      if (isset($exam['datasystem'])) {
+        $r['datasystem'] = array(
+          '#type' => 'container',
+          '#weight' => 4,
+          '#attributes' => array('class' => array('datasystem')),
+          0 => array('#markup' => "<span>"
+            . t('Examination system', array(), array('langcode' => $lang))
+            . ": {$exam['datasystem']}</span>"),
+        );
+        if (strtolower($exam['datasystem']) == 'inspera') {
+          $r['digital exam'] = array(
+            '#type' => 'container',
+            '#weight' => 5,
+            '#attributes' => array('class' => array('digital_exam')),
+            0 => array('#markup' => "<span>"
+              . t('Digital exam', array(), array('langcode' => $lang))
+              . "</span>"),
+          );
+        }
+      }
+      if (isset($exam['kommentar'])) {
+        $r['comments'] = array(
+          '#type' => 'container',
+          '#weight' => 6,
+          '#attributes' => array('class' => array('comments')),
+          0 => array('#markup' => "<em>{$exam['kommentar']}</em>"),
+        );
+      }
+      if (count($location) > 2) {
+        $r['location'] = array(
+          '#type' => 'container',
+          '#weight' => 3,
+          '#attributes' => array('class' => array('location')),
+          0 => array('#markup' => "<span class=\"label\">"
+            . t('Place', array(), array('langcode' => $lang)).": </span>"),
+          1 => array('#markup' => implode($location)),
+        );
+      }
+      $row['exams'][] = $r;
+    }
+    $retval['table']['body'][] = $row;
+  }
+  return $retval;
 }

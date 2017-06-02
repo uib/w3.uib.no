@@ -84,7 +84,16 @@ function uib_filter__process($text, $filter) {
         $alias = isset($a[0]) ? $a[0] : '';
         // Term, can be like 2017v or simply NEXT to always display next term.
         $term = isset($a[1]) ? $a[1] : '';
-        $arr = uib_area__exam_list_render_array($alias, $term);
+        // Language, can be nb or en or nothing, defaults to nb.
+        $lang = 'nb';
+        if (isset($a[2])) {
+          $lang = $a[2];
+        }
+        else if (isset($a[1]) && in_array($a[1], array('en', 'nb'))) {
+          $lang = $a[1];
+          $term = '';
+        }
+        $arr = uib_study__exam_list_render_array($alias, $term, $lang);
         return render($arr, 1);
       case 'offjournal':
         $data = drupal_json_decode(file_get_contents('http://webber.uib.no/api/offjournal.php'));
