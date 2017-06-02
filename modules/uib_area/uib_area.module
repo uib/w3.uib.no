@@ -3048,25 +3048,25 @@ function uib_area__exam_list_render_array($alias, $term = '') {
       $buildings = array();
       $l = '';
       $prevurl = '';
-      foreach ((array)$exam['rom'] as $room) {
-        if (isset($room['bygning'])
-        && !isset($buildings[$room['bygning']])
-        ) {
-          if ($l) {
-            if ($l && $prevurl) {
-              $l = l($l, $prevurl);
+      if (uib_study__check_show_exam_location_information($date)) {
+        foreach ((array)$exam['rom'] as $room) {
+          if (isset($room['bygning'])
+          && !isset($buildings[$room['bygning']])
+          ) {
+            if ($l) {
+              if ($l && $prevurl) {
+                $l = l($l, $prevurl);
+              }
+              $location[] = "<li>$l</li>";
             }
-            $location[] = "<li>$l</li>";
+            $buildings[$room['bygning']] = TRUE;
+            $l = "{$room['bygning']}";
           }
-          $buildings[$room['bygning']] = TRUE;
-          $l = "{$room['bygning']}";
-        }
-        if (uib_study__check_show_exam_location_information($date)) {
           if (isset($room['navn']) && $l) {
             $l .= ", {$room['navn']}";
           }
+          $prevurl = $room['url'];
         }
-        $prevurl = $room['url'];
       }
       if ($l) {
         if ($l && $prevurl) {

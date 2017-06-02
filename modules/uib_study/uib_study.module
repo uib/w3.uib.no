@@ -1620,7 +1620,8 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       );
     }
 
-    if (isset($ei['rom'])) {
+    if (isset($ei['rom'])
+      && uib_study__check_show_exam_location_information($datoEksamen)) {
       $term = t('Location');
       $rooms = array();
       foreach($ei['rom'] as $room) {
@@ -1629,9 +1630,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
           if (!array_key_exists($bid, $rooms)) {
             $rooms[$bid] = isset($room['url']) ? l($room['bygning'], $room['url']) : $room['bygning'];
           }
-          if (uib_study__check_show_exam_location_information($datoEksamen)) {
-            $rooms[$bid] .= ', ' . $room['navn'];
-          }
+          $rooms[$bid] .= ', ' . $room['navn'];
         }
       }
       if (!empty($rooms)) {
@@ -2794,6 +2793,6 @@ function uib_study__get_study_kicker($value, $name) {
  * Dont show location information until 8 days before exam
  */
 function uib_study__check_show_exam_location_information($exam_date) {
-  $days_before = 5;
+  $days_before = 8;
   return date('Ymd') >= date('Ymd', $exam_date - $days_before * 24 * 60 * 60);
 }
