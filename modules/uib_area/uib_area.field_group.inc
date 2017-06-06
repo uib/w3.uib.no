@@ -21,10 +21,10 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Bottom wrapper',
-    'weight' => '7',
+    'weight' => '9',
     'children' => array(
-      0 => 'field_uib_bottom_media',
-      1 => 'field_uib_bottom_text',
+      0 => 'field_uib_bottom_text',
+      1 => 'field_uib_bottom_media',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -43,7 +43,7 @@ function uib_area_field_group_info() {
   $field_groups['group_bottom_wrapper|node|area|default'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_column_first|node|area|default';
   $field_group->group_name = 'group_column_first';
@@ -74,7 +74,7 @@ function uib_area_field_group_info() {
   $field_groups['group_column_first|node|area|default'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_column_second|node|area|default';
   $field_group->group_name = 'group_column_second';
@@ -537,7 +537,7 @@ function uib_area_field_group_info() {
   $field_groups['group_social_media|node|area|form'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_two_column|node|area|default';
   $field_group->group_name = 'group_two_column';

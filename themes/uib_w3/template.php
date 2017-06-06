@@ -459,13 +459,13 @@ EOD;
       ));
       $nid = $variables['node']->nid;
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'phdpresspage') {
-        $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 51);
+        $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 6);
       }
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'frontpage') {
         if (($nid == 1 || $nid == 2) && variable_get('uib_display_employee_messages_block', 0)) {
           $variables['page']['content']['uib_messages'] = __uib_w3__render_block('uib_message', 'uib_message_block', -30);
         }
-        $variables['page']['content']['system_main']['nodes'][$nid]['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 50);
+        $variables['page']['content']['system_main']['nodes'][$nid]['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 5);
         $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 50);
         $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 100);
         $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
