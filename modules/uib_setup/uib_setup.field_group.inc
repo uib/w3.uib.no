@@ -44,6 +44,39 @@ function uib_setup_field_group_info() {
   );
   $field_groups['group_media_info|file|image|content_main'] = $field_group;
 
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_media_info|file|video|content_main';
+  $field_group->group_name = 'group_media_info';
+  $field_group->entity_type = 'file';
+  $field_group->bundle = 'video';
+  $field_group->mode = 'content_main';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Media info',
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_uib_description',
+      1 => 'field_uib_owner',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Media info',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'uib-media-info',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_media_info|file|video|content_main'] = $field_group;
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Media info');

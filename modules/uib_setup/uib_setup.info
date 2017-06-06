@@ -93,6 +93,7 @@ features[field_base][] = field_uib_copyright
 features[field_base][] = field_uib_description
 features[field_base][] = field_uib_owner
 features[field_group][] = group_media_info|file|image|content_main
+features[field_group][] = group_media_info|file|video|content_main
 features[field_instance][] = file-audio-field_uib_copyright
 features[field_instance][] = file-audio-field_uib_description
 features[field_instance][] = file-audio-field_uib_owner
