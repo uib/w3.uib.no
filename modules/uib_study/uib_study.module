@@ -1369,6 +1369,7 @@ EOD;
       $node = menu_get_object();
       if ($node && uib_study__is_course() && $node->field_uib_study_category['und'][0]['value'] != 'evu') {
         $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $data2 = uib_study__fspres_get_node_json($node->nid, 'info.json');
         if (empty($data))
           break;
         list($previous_semester, $current_semester, $next_semester) = uib_study__get_adjacent_semesters();
@@ -1396,6 +1397,11 @@ EOD;
                 }
               }
             }
+          }
+        }
+        if (!empty($data2) && array_key_exists('eksamensinfo', $data2)) {
+          if (array_key_exists($next_semester, $data2['eksamensinfo'])) {
+            $is_empty[$next_semester] = FALSE;
           }
         }
         {
