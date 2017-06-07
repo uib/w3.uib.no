@@ -635,15 +635,14 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
     && $wrapped_entity->type->value() == 'uib_external_content') {
     $delete = TRUE;
   }
+  if ($wrapped_entity->getBundle() == 'uib_study') {
+    $type = 'study';
+  }
+  else {
+    $type = $entity_type;
+  }
   if ($delete) {
     // Delete doc from users in search index, and return
-    if ($wrapped_entity->getBundle() == 'uib_study') {
-      $type = 'study';
-    }
-    else {
-      $type = $entity_type;
-    }
-
     $stat = uib_search__run_elastic_request(
       "{$url}/{$index}/{$type}/{$id}",
       NULL,
@@ -654,7 +653,7 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
     return;
   }
 
-  $url = "{$url}/{$index}/{$entity_type}/$id";
+  $url = "{$url}/{$index}/{$type}/$id";
   $output = uib_search__get_elastic_entity_array($wrapped_entity);
 
   uib_search__clean_utf8_string_array($output);
