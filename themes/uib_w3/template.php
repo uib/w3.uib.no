@@ -1135,7 +1135,8 @@ function uib_w3_preprocess_field(&$vars) {
           $vars['content_attributes_array']['data-cycle-timeout'] = '0';
           $vars['content_attributes_array']['data-cycle-prev'] = '.uib-slideshow__nav--prev';
           $vars['content_attributes_array']['data-cycle-next'] = '.uib-slideshow__nav--next';
-          $vars['content_attributes_array']['data-cycle-auto-height'] = 'container';
+          $vars['content_attributes_array']['data-cycle-auto-height'] = false;
+          $vars['content_attributes_array']['data-cycle-log'] = false;
         }
         elseif (!empty($vars['items'][0]['field_uib_description'])) {
           $classes[] = 'description';
