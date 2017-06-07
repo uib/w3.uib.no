@@ -1068,10 +1068,9 @@ a,
   margin-bottom: 1rem; }
 
 #block-uib-calendar3-calendar3 {
-  padding: 35px 0 72px 0;
+  padding: 2.1875rem 0 0 0;
   border-top: 1px solid #b7b7b7;
-  border-bottom: 1px solid #b7b7b7;
-  margin: 0 0 54px 0; }
+  margin: 0 0 2.8125rem 0; }
   #block-uib-calendar3-calendar3 > .content {
     display: block; }
     @media screen and (min-width: 960px) {
@@ -1559,7 +1558,7 @@ a,
 
 @media screen and (min-width: 600px) {
   .item-list .news-and-calendar {
-    margin: 0 0 2.8125rem; }
+    margin: 0 0 3.4375rem; }
     .front .item-list .news-and-calendar {
       margin: 0; }
     .item-list .news-and-calendar .first {
