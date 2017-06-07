@@ -1,3 +1,24 @@
+# Release 73 _2017-06-08_
+
+- Forbedret karusellvisning ved bruk av flere hovedbilder #17786
+- Eksamensinformasjon: Lagt til rette for visning av hjemmeeksamener i de fakultetsvise oversiktene #18166
+- Eksamensinformasjon: Lagt til rette for visning av eksamenssystem (Inspera - Digital eksamen) på emnesidene og i de fakultetsvise oversiktene #18166
+- Eksamensinformasjon: Lagt til språk-parameter i de fakultetsvise oversiktene #18166
+- Eksamensinformasjon: Lagt til semester-parameter i lenkene i de fakultetsvise oversiktene #18166
+- Eksamensinformasjon: Lagt til midlertidig tidssperre for visning av eksamenslokaler #18146
+- Endret rutinen som viser lenke til neste semester på emnesider #18206
+- Rettet feil som gjorde at kalenderen ble plassert for langt nede på områdesider #18064
+- Endret UBs områdeside ved å fjerne spesialvisning av åpningstider og kontaktinformasjon #18205
+- Forbedret støtte for utskrift på sider under uib.no/ub #18078
+
+# Release 72.1 _2017-06-01_
+
+- Rettet feil som gjorde at billedtekst ble vist under og ikke til høyre for hovedbildet #18141
+- Lagt til lenke til eksamensinformasjon under "Ressurser" i faktalinjen på emnesider #18167
+- Lagt til asterisk (som viser til fotnote om forbehold) i lenke til timeplan på emnesider for neste semester #18170
+- Lagt til tekst om forbehold i boksen med eksamensinformasjon på emnesider for neste semester #18172
+- Lagt til midlertidig tidssperre for visning av rom under eksamensinformasjon #18149
+
 # Release 72 _2017-05-24_
 
 - Rettet feil som gjorde at opphavsrett ble vist under forside-banner #18080
