@@ -320,6 +320,7 @@ EOD;
       if (isset($variables['page']['content_top']['field_uib_main_media']) && isset($variables['page']['content_top']['field_uib_main_media'][1])) {
         $cycle_path = libraries_get_path('jquery.cycle2');
         drupal_add_js($cycle_path . '/jquery.cycle2.min.js');
+        drupal_add_js($cycle_path . '/jquery.cycle2.swipe.min.js');
         drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/uib_cycle.js', 'file');
         $variables['page']['content_top']['field_uib_main_media']['#prefix'] = '<div class="uib-slideshow"><div class="uib-slideshow__nav--next">' . t('Next') . '</div>';
         $variables['page']['content_top']['field_uib_main_media']['#suffix'] = '<div class="uib-slideshow__nav--prev">' . t('Previous') . '</div></div>';
@@ -1132,6 +1133,8 @@ function uib_w3_preprocess_field(&$vars) {
           $content_classes[] = 'cycle-slideshow';
           $vars['content_attributes_array']['data-cycle-slides'] = '> div';
           $vars['content_attributes_array']['data-cycle-fx'] = 'scrollHorz';
+          $vars['content_attributes_array']['data-cycle-swipe'] = 'true';
+          $vars['content_attributes_array']['data-cycle-swipe-fx'] = 'scrollHorz';
           $vars['content_attributes_array']['data-cycle-timeout'] = '0';
           $vars['content_attributes_array']['data-cycle-prev'] = '.uib-slideshow__nav--prev';
           $vars['content_attributes_array']['data-cycle-next'] = '.uib-slideshow__nav--next';
