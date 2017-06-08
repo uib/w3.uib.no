@@ -1121,7 +1121,7 @@ function uib_w3_preprocess_field(&$vars) {
   $item_classes = array();
 
   $classes[] = 'field-wrapper';
-  $title_clases[] = 'field-label';
+  $title_classes[] = 'field-label';
   $content_classes[] = 'field-items';
   $item_classes[] = 'field-item';
 
