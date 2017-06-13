@@ -65,6 +65,7 @@ projects[geophp][version] = 1.7
 projects[google_analytics][version] = 2.3
 projects[google_tag][version] = 1.0
 projects[i18n][version] = 1.15
+projects[imagecache_token][version] = 1.0-rc2
 projects[imagemagick][version] = 1.0
 projects[job_scheduler][version] = 2.0-alpha3
 projects[jquery_update][version] = 2.7
