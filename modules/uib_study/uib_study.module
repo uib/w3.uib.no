@@ -1535,7 +1535,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
     $render = array();
     $items = array();
     $eval = $part ? t('Exam part') : t('Type of assessment');
-    $status = $part ? '' : ' (' . $ei['status' . $lang] . ')';
+    $status = $part || $ei['status'] == 'Ordinær eksamen' ? '' : ' (' . $ei['status' . $lang] . ')';
     $render['title'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h3',
@@ -2998,7 +2998,7 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
       }
       $location[] = '</ul>';
       $n = "{$exam['navn']}";
-      if (isset($exam['status'])) {
+      if (isset($exam['status']) && ($exam['status'] != 'Ordinær eksamen' && $exam['status'] != 'Ordinary exam')) {
         $n .= " ({$exam['status']})";
       }
       $timelabel = t('Time', array(), array('langcode' => $lang));
