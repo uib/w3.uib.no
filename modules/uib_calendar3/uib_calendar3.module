@@ -290,15 +290,20 @@ function uib_calendar3_menu() {
     'access callback' => TRUE,
     'page arguments' => array(1),
   );
+  $items["node/%/eventlist.ics"] = array(
+    'page callback' => 'uib_calendar3__index_page',
+    'access callback' => TRUE,
+    'page arguments' => array(1, 'ics'),
+  );
   $items["calrss.xml"] = array(
     'page callback' => 'uib_calendar3__index_page',
     'access callback' => TRUE,
-    'page arguments' => array(1, TRUE),
+    'page arguments' => array(1, 'rss'),
   );
   $items["node/%/calrss.xml"] = array(
     'page callback' => 'uib_calendar3__index_page',
     'access callback' => TRUE,
-    'page arguments' => array(1, TRUE),
+    'page arguments' => array(1, 'rss'),
   );
   return $items;
 }
@@ -308,7 +313,7 @@ function uib_calendar3_menu() {
 /**
  * Generate main page
  */
-function uib_calendar3__index_page($area_nid = NULL, $rss = FALSE) {
+function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
   global $language, $base_url;
   $param = drupal_get_query_parameters();
   if (isset($param['d'])) {
@@ -372,64 +377,12 @@ function uib_calendar3__index_page($area_nid = NULL, $rss = FALSE) {
   // filter and order by date
   $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));
 
-  if($rss){
-    $select->orderBy('field_uib_date_value');
-
-    $feed = <<<RSS
-<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xml:base="{$base_url}" xmlns:dc = "http://purl.org/dc/elements/1.1/" >
-
-RSS;
-    $feed_end = "</rss>";
-    $channel_title = t('Upcoming events at the university');
-    if ($area) {
-      $channel_title = t('Upcoming events for !area', array('!area' => $area->title));
-    }
-    $channel_url = $base_url;
-
-    $items = "";
-    foreach ($select->execute() as $row) {
-      $node[$row->nid] = $row;
-      $type = $row->field_uib_event_type_value;
-      $url = url("node/$row->nid", array('absolute' => TRUE));
-      $unixtime = strtotime($row->field_uib_date_value. 'Z');
-      $unixtime2 = strtotime($row->field_uib_date_value2. 'Z');
-      $pubdate = date("D, d M Y H:i:s T", $row->created);
-
-      // Formatted timestamps
-      $y = format_date($unixtime, 'custom', 'Y');
-      $y = $y == date('Y') ? ' ' : " $y ";
-      $t = format_date($unixtime, 'custom', 'k\l H:i');
-      $d = format_date($unixtime, 'custom', 'j. M');
-      $d = date('Y-m-d', $unixtime) == date('Y-m-d') ? t('today') : $d;
-      $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d;
-      $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d;
-
-      $y2 = format_date($unixtime2, 'custom', 'Y');
-      $y2 = $y2 == date('Y') ? ' ' : " $y2 ";
-      $t2 = format_date($unixtime2, 'custom', 'k\l H:i');
-      $d2 = format_date($unixtime2, 'custom', 'j. M');
-      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d') ? t('today') : $d2;
-      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d2;
-      $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d2;
-
-      // Title including start time
-      $title = ucfirst($d) . $y . $t . ' - ' . $row->title;
-
-      // Teaser, adding timespan at end of teaser.
-      $teaser = $row->field_uib_lead_value . "\n<br/><br/>";
-      $teaser .= t('From') . " {$d}{$y}{$t} " . t('to') . " {$d2}{$y2}{$t2} ";
-      $item = format_rss_item($title, $url, $teaser,
-        array('pubDate'=>$pubdate));
-      $items .= $item;
-    }
-    $feed .= format_rss_channel($channel_title, $channel_url, "", $items);
-    $feed .= $feed_end;
-
-    drupal_add_http_header('Accept','application/rss+xml, application/xhtml+xml'
-      . ', text/html');
-    drupal_add_http_header('Content-Type', 'application/rss+xml; charset=utf-8');
-    echo $feed;
+  if ($format == 'rss') {
+    uib_calendar3__rss_output($select, $area);
+    return;
+  }
+  if ($format == 'ics') {
+    uib_calendar3__webcal_page($select, $area);
     return;
   }
   // indexed by day
@@ -546,6 +499,7 @@ RSS;
     '#tag' => 'h1',
     '#value' => t('Upcoming events at the university'),
   );
+
   if ($area) {
     $page['calendar_header']['header']['#value'] = t('Upcoming events for !area', array('!area' => $area->title));
   }
@@ -590,6 +544,25 @@ RSS;
   }
 
   $page['types'] = $type_list_block;
+
+  // Add link to download .ics file
+  $url = url('node/' . $area_nid . '/eventlist.ics', array('absolute' => TRUE));
+  //Use webcal - protocol:
+  $url = preg_replace('/https?:\/\//', 'webcal://', $url);
+  $page['types']['add_this_calendar'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('ical-link'),
+    ),
+    'link' => array(
+      '#markup' => l(
+        t('Download or copy this link to add events from @area to your calendar',
+          array('@area' => $area->title)
+        ),
+        $url
+      ),
+    ),
+  );
 
   $page['calendar'] = array(
     '#type' => 'container',
@@ -782,4 +755,150 @@ function uib_calendar3__get_calendar_card_render_array($utc_datestring){
 </svg>
 ';
 return $markup;
+}
+
+function uib_calendar3__rss_output($select, $area) {
+  global $base_url;
+  $select->orderBy('field_uib_date_value');
+
+  $feed = <<<RSS
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xml:base="{$base_url}" xmlns:dc = "http://purl.org/dc/elements/1.1/" >
+
+RSS;
+  $feed_end = "</rss>";
+  $channel_title = t('Upcoming events at the university');
+  if ($area) {
+    $channel_title = t('Upcoming events for !area', array('!area' => $area->title));
+  }
+  $channel_url = $base_url;
+
+  $items = "";
+  foreach ($select->execute() as $row) {
+    $type = $row->field_uib_event_type_value;
+    $url = url("node/$row->nid", array('absolute' => TRUE));
+    $unixtime = strtotime($row->field_uib_date_value. 'Z');
+    $unixtime2 = strtotime($row->field_uib_date_value2. 'Z');
+    $pubdate = date("D, d M Y H:i:s T", $row->created);
+
+    // Formatted timestamps
+    $y = format_date($unixtime, 'custom', 'Y');
+    $y = $y == date('Y') ? ' ' : " $y ";
+    $t = format_date($unixtime, 'custom', 'k\l H:i');
+    $d = format_date($unixtime, 'custom', 'j. M');
+    $d = date('Y-m-d', $unixtime) == date('Y-m-d') ? t('today') : $d;
+    $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d;
+    $d = date('Y-m-d', $unixtime) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d;
+
+    $y2 = format_date($unixtime2, 'custom', 'Y');
+    $y2 = $y2 == date('Y') ? ' ' : " $y2 ";
+    $t2 = format_date($unixtime2, 'custom', 'k\l H:i');
+    $d2 = format_date($unixtime2, 'custom', 'j. M');
+    $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d') ? t('today') : $d2;
+    $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() + 86400 ) ? t('tomorrow') : $d2;
+    $d2 = date('Y-m-d', $unixtime2) == date('Y-m-d', time() - 86400 ) ? t('yesterday') : $d2;
+
+    // Title including start time
+    $title = ucfirst($d) . $y . $t . ' - ' . $row->title;
+
+    // Teaser, adding timespan at end of teaser.
+    $teaser = $row->field_uib_lead_value . "\n<br/><br/>";
+    $teaser .= t('From') . " {$d}{$y}{$t} " . t('to') . " {$d2}{$y2}{$t2} ";
+    $item = format_rss_item($title, $url, $teaser,
+      array('pubDate'=>$pubdate));
+    $items .= $item;
+  }
+  $feed .= format_rss_channel($channel_title, $channel_url, "", $items);
+  $feed .= $feed_end;
+
+  drupal_add_http_header('Accept','application/rss+xml, application/xhtml+xml'
+    . ', text/html');
+  drupal_add_http_header('Content-Type', 'application/rss+xml; charset=utf-8');
+  echo $feed;
+}
+
+function uib_calendar3__webcal_page($select, $area) {
+  drupal_add_http_header('Content-Type', 'text/calendar; charset="utf-8"');
+  $result = $select->execute();
+  if ($result->rowCount() == 0) {
+    return;
+  }
+  $area = entity_metadata_wrapper('node', $area);
+  $url = url("node/" . $area->getIdentifier() . "/calendar", array('absolute' => TRUE));
+  $name =  t('Calendar for @area', array('@area'=>lcfirst($area->label())));
+  $ical = new uib_calendar3__ical(
+    "uib.no-w3-{$area->getIdentifier()}",
+    $url,
+    $name
+  );
+  foreach ($result as $row) {
+    $url = url("node/$row->nid", array('absolute' => TRUE));
+    $unixtime = strtotime($row->field_uib_date_value. 'Z');
+    $unixtime2 = strtotime($row->field_uib_date_value2. 'Z');
+    $ical->add_event(
+      $row->nid,
+      $row->created,
+      $unixtime,
+      $unixtime2,
+      $row->title,
+      $row->field_uib_lead_value,
+      $row->field_uib_location_value,
+      $url
+    );
+  }
+  echo $ical;
+}
+
+class uib_calendar3__ical {
+  private $headers = array();
+  private $events = array();
+
+  function __construct($unique_ident, $url = 'uib.no', $name = '') {
+    $this->headers['BEGIN'] = 'VCALENDAR';
+    $this->headers['VERSION'] = '2.0';
+    $this->headers['TIMEZONE'] = 'Europe/Oslo';
+    $this->headers['PRODID'] = $unique_ident;
+    $this->headers['URL'] = $url;
+    if ($name) {
+      $this->headers['NAME'] = $name;
+    }
+  }
+
+  function add_event($nid, $created, $start, $end, $title, $desc, $location, $url) {
+    $e = array();
+    $e["BEGIN"] = "VEVENT";
+    $e["UID"] = "w3-{$nid}@uib.no";
+    $e["DTSTAMP"] = gmdate('Ymd\THis\Z', $created);
+    $e["DTSTART"] = gmdate('Ymd\THis\Z', $start);
+    $e["DTEND"] = gmdate('Ymd\THis\Z', $end);
+    if (isset($title)) {
+      $e["SUMMARY"] = $title;
+    }
+    if (isset($desc)) {
+      $e["DESCRIPTION"] = $desc;
+    }
+    if (isset($location)) {
+      $e["LOCATION"] = $location;
+    }
+    $e["URL"] = $url;
+
+    $e["CLASS"] = "PUBLIC";
+    $e["TRANSP"] = "TRANSPARENT"; // this event dont show owner as busy
+    $e["END"] = "VEVENT";
+    $this->events[] = $e;
+  }
+
+  function __toString() {
+    $s = '';
+    foreach ($this->headers as $key => $value) {
+      $s .= "$key:$value\n";
+    }
+    foreach ($this->events as $value) {
+      foreach ($value as $k => $v) {
+        $s .= "$k:$v\n";
+      }
+    }
+    $s .= "END:VCALENDAR\n";
+    return $s;
+  }
 }
