@@ -2911,15 +2911,21 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
   $data['eksamensliste'] = $tmp;
   ksort($data['eksamensliste']);
 
+  $fakelang = new stdClass();
+  $fakelang->language = $lang;
   foreach ($data['eksamensliste'] as $topic) {
     $path = uib_study__study_path($topic[0]['emne']);
     $thisterm = date('Y') . (date('m')<7 ? 'v' : 'h');
     if ($term == $thisterm) {
-      $path = url($path);
+      $path = url($path, array('language' => $fakelang));
     }
     else {
-      $path = url($path, array('query' => array('sem' => $term)));
+      $path = url($path, array(
+        'query' => array('sem' => $term),
+        'language' => $fakelang
+      ));
     }
+    $path = "/{$lang}{$path}"; // Adding language to link
     $code = "<a href=\"{$path}\" >{$topic[0]['emne']}</a>";
     $row = array(
       '#type' => 'container',
