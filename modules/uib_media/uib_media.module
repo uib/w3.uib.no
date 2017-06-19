@@ -22,4 +22,12 @@ function uib_media_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
     // Hide replace image button if not super user
     hide($form['replace_upload']);
   }
+  hide($form['field_uib_description']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function uib_media_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
+  hide($form['field_uib_description']);
 }
