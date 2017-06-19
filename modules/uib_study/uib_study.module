@@ -1297,6 +1297,7 @@ EOD;
         global $language;
         if (empty($data))
           break;
+        uib_study__languagify($data, $language->language);
         $items = array();
         if (!empty($data['betingelse'])) {
           foreach ($data['betingelse'] as $place) {
@@ -1316,6 +1317,10 @@ EOD;
                   }
                 }
               }
+              $items[] = uib_study__get_study_facts_markup(
+                t('Subject name'),
+                check_plain($place['fagnavn'])
+              );
             }
           }
         }
