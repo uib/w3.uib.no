@@ -813,7 +813,7 @@ EOD;
           $tab_items = array();
           $tab_items_specialization_position = 0;
           $first_tab = true;
-          $contruction_table_tab = false;
+          $construction_table_tab = FALSE;
           foreach ($data as $group) {
             $group_id = $group['#group'];
             $group_type = substr($group_id, strpos($group_id, '_') + 1);

@@ -113,9 +113,13 @@ function uib_area_block_view($delta='') {
       $mail_href = 'mailto:post@uib.no';
       if(isset($area->field_uib_ou['und'])) {
         $place = node_load($area->field_uib_ou['und'][0]['target_id']);
-        $mail_title = $place->field_uib_email['und'][0]['safe_value'];
+        $mail_title = isset($place->field_uib_email['und'][0]['safe_value'])
+          ? $place->field_uib_email['und'][0]['safe_value']
+          : '';
         $mail_href = 'mailto:' . $mail_title;
-        $phone = $place->field_uib_phone['und'][0]['value'];
+        $phone = isset($place->field_uib_phone['und'][0]['value'])
+          ? $place->field_uib_phone['und'][0]['value']
+          : '';
       }
       elseif (isset($area->field_uib_area_parents['und'])) {
         $parent = node_load($area->field_uib_area_parents['und'][0]['target_id']);

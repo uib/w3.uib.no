@@ -38,14 +38,13 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
     }
   }
   // Adding meta element for last modified to head section
-  $node_timestamp = $node->revision_timestamp;
-  if ($node_timestamp) {
+  if ($node && isset($node->revision_timestamp)) {
     $meta_last_modified = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
       '#attributes' => array(
         'name' => 'Last-Modified',
-        'content' =>  date('Y-m-d\TH:i:s\Z', $node_timestamp)
+        'content' =>  date('Y-m-d\TH:i:s\Z', $node->revision_timestamp)
       )
     );
     drupal_add_html_head($meta_last_modified, 'meta_last_modified');
@@ -70,9 +69,6 @@ function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
-
-  // A wrapped node to be used by convienience
-  $wrapped_node = entity_metadata_wrapper('node', $variables['node']);
 
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
@@ -798,7 +794,7 @@ SCRIPT;
         unset($variables['page']['content'][$unset]);
       }
       break;
-    case ($variables['node']->type == 'uib_views_page'):
+    case (isset($variables['node']) && $variables['node']->type == 'uib_views_page'):
       $title = current((array)field_get_items('node', $variables['node'],
           'field_uib_node_title'));
       if (isset($title['value'])) {
@@ -916,7 +912,14 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
     if ($variables['type'] == 'uib_article') {
       $variables['content']['field_uib_date']['#label_display'] = 'hidden';
-      $variables['content']['field_uib_date'][0]['#markup'] = str_replace(array(' to ', ' til '), '–', $variables['content']['field_uib_date'][0]['#markup']);
+      if (isset($variables['content']['field_uib_date'][0]['#markup'])) {
+        $variables['content']['field_uib_date'][0]['#markup'] =
+          str_replace(
+            array(' to ', ' til '),
+            '–',
+            $variables['content']['field_uib_date'][0]['#markup']
+          );
+      }
       $variables['content']['field_uib_registration_link']['#label_display'] = 'hidden';
       $variables['content']['field_uib_location']['#label_display'] = 'hidden';
       $variables['content']['field_uib_event_type']['#label_display'] = 'hidden';
@@ -976,7 +979,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['theme_hook_suggestions'][] = 'node__testimonial__teaser';
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
-      $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
+      if (isset($variables['content']['field_uib_lead'][0]['#markup'])) {
+        $variables['content']['field_uib_lead'][0]['#markup'] =
+        truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
+      }
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
         $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
           'type' => 'file_rendered',
@@ -1004,7 +1010,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
-      $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
+      if (isset($variables['content']['field_uib_lead'][0]['#markup'])) {
+        $variables['content']['field_uib_lead'][0]['#markup'] =
+          truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
+      }
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
         $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
           'type' => 'file_rendered',
@@ -1042,7 +1051,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       ));
       $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
     }
-    if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
+    if ($variables['type'] == 'uib_external_content'
+      && $variables['view_mode'] == 'short_teaser'
+      && isset($variables['content']['field_uib_teaser'][0]['#markup'])
+    ) {
       $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
 
