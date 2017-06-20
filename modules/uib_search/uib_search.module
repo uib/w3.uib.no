@@ -1393,7 +1393,7 @@ function uib_search__proxy_search() {
   );
   $searchquery = array(
     'bool' => array(
-      'should' => [],
+      'should' => array(),
       '_name' => 'Search',
       'minimum_should_match' => 1,
     ),
@@ -2069,7 +2069,7 @@ function uib_search__proxy_search() {
    **************************************/
   $unboost_past_events = array(
     'bool' =>  array(
-      'should' =>  [],
+      'should' =>  array(),
       '_name' =>  'Unboost',
     ),
   );
