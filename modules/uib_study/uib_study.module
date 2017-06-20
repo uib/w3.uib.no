@@ -1616,6 +1616,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       $term = t('Examination system');
       $data = array($ei['datasystem']);
       if (strtolower($data[0]) == 'inspera') {
+        $data[0] = ucfirst(strtolower($data[0]));
         $data[] = t('Digital exam');
       }
       $items[] = array(
@@ -3039,24 +3040,16 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
         }
       }
       if (isset($exam['datasystem'])) {
+        $pre_datasystem = strtolower($exam['datasystem']) == 'inspera' ? t('Digital exam', array(), array('langcode' => $lang)) . '. ' : '';
+        $datasystem = ucfirst(strtolower($exam['datasystem']));
         $r['datasystem'] = array(
           '#type' => 'container',
           '#weight' => 4,
           '#attributes' => array('class' => array('datasystem')),
-          0 => array('#markup' => "<span>"
+          0 => array('#markup' => "<span>" . $pre_datasystem
             . t('Examination system', array(), array('langcode' => $lang))
-            . ": {$exam['datasystem']}</span>"),
+            . ": {$datasystem}</span>"),
         );
-        if (strtolower($exam['datasystem']) == 'inspera') {
-          $r['digital exam'] = array(
-            '#type' => 'container',
-            '#weight' => 5,
-            '#attributes' => array('class' => array('digital_exam')),
-            0 => array('#markup' => "<span>"
-              . t('Digital exam', array(), array('langcode' => $lang))
-              . "</span>"),
-          );
-        }
       }
       if (isset($exam['kommentar'])) {
         $r['comments'] = array(
