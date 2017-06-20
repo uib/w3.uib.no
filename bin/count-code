@@ -66,15 +66,16 @@ my %COUNTERS;
 
 find(sub {
     if (-d $_) {
+	$File::Find::prune++ if $_ eq "jso";
 	next;
     }
     if (/\.(php|inc|module|install|test)$/) {
 	count_php($_);
 	next
     }
-    elsif (/\.scss$/ || /\.css$/) {
+    elsif (/\.css$/) {
 	my $lines = count_lines($_);
-	$COUNTERS{lines}{sass} += $lines;
+	$COUNTERS{lines}{css} += $lines;
 	$COUNTERS{lines}{code} += $lines;
     }
     elsif (/\.js$/) {
@@ -87,7 +88,7 @@ find(sub {
 	$COUNTERS{lines}{ruby} += $lines;
 	$COUNTERS{lines}{code} += $lines;
     }
-    elsif (/\.(info|gitignore|json|yml|csv|txt|png|gif|ico|svg|psd|DS_Store)$/) {
+    elsif (/\.(info|gitignore|html|md|json|yml|csv|txt|png|gif|ico|svg|psd|xml|DS_Store)$/) {
 	# ignore
     }
     elsif ($File::Find::dir =~ /^(bin|area-walker)$/) {
