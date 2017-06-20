@@ -1381,6 +1381,7 @@ function uib_search__proxy_search() {
       '*position*',
       'competence*',
       'link*',
+      'w3.published_timestamp',
     ),
   );
 
