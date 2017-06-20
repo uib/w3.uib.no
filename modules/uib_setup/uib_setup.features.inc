@@ -286,6 +286,25 @@ function uib_setup_image_default_styles() {
     ),
   );
 
+  // Exported image style: twittercard.
+  $styles['twittercard'] = array(
+    'label' => 'twittercard',
+    'effects' => array(
+      2 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 400,
+          'height' => 300,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: user_thumbnail.
   $styles['user_thumbnail'] = array(
     'label' => 'user_thumbnail',

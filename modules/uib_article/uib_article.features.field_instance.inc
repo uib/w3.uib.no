@@ -368,6 +368,75 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_article-field_twitter_card_image'.
+  $field_instances['node-uib_article-field_twitter_card_image'] = array(
+    'bundle' => 'uib_article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 46,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_twitter_card_image',
+    'label' => 'Twitter Card Image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+          'vimeo' => 0,
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 0,
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 41,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_article-field_uib_imagecaptions'.
   $field_instances['node-uib_article-field_uib_imagecaptions'] = array(
     'bundle' => 'uib_article',
@@ -808,6 +877,7 @@ function uib_article_field_default_field_instances() {
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Show in global calendar');
   t('Small images caption');
+  t('Twitter Card Image');
   t('Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
 

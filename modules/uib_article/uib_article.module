@@ -492,6 +492,15 @@ function uib_article_node_validate($node, $form, &$form_state) {
 function uib_article_node_presave($node) {
   if ($node->type != 'uib_article')
     return;
+  if (!empty($node->field_uib_main_media['und'])) {
+    $file = file_load($node->field_uib_main_media['und'][0]['fid']);
+    if ($file->type == 'image') {
+      $node->field_twitter_card_image['und'][0] = $node->field_uib_main_media['und'][0];
+    }
+    elseif ($file->type == 'video') {
+      $node->field_twitter_card_image['und'] = array();
+    }
+  }
   if ($node->is_new) {
     if ($node->field_uib_article_type['und'][0]['value'] != 'infopage') {
       if (!$node->anti_bubbling) {

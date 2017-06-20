@@ -233,6 +233,7 @@ features[image][] = full_width_image_full_width_1x
 features[image][] = full_width_image_mobile_1x
 features[image][] = full_width_image_narrow_1x
 features[image][] = full_width_image_wide_1x
+features[image][] = twittercard
 features[image][] = user_thumbnail
 features[image][] = wide_thumbnail
 features[ldap_servers][] = uib_ldap
