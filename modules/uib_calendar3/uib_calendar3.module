@@ -201,6 +201,12 @@ function uib_calendar3_block_view($delta) {
             '#value' => $time_from_to,
           ),
         );
+        $ra['data'][$key]['add_cal']['#markup'] =
+          l(
+            t('Add to calendar'),
+            "node/{$node->nid}/event.ics",
+            array('attributes' => array('class' => array('add_link')))
+          );
       else:
         if(!@$ra['data']['column']){
           $ra['data']['column'] = array(
@@ -294,6 +300,11 @@ function uib_calendar3_menu() {
     'page callback' => 'uib_calendar3__index_page',
     'access callback' => TRUE,
     'page arguments' => array(1, 'ics'),
+  );
+  $items["node/%/event.ics"] = array(
+    'page callback' => 'uib_calendar3__get_event',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
   );
   $items["calrss.xml"] = array(
     'page callback' => 'uib_calendar3__index_page',
@@ -699,6 +710,7 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
         }
         $info[] = '<div class="event-entry-info--place" aria-label="'.t('Location').'">' . $location . '</div>';
       }
+      $info[] = '<div class="event-entry-info--ical" aria-label="'.t('Add event').'">' . l(t('Add event'), "node/$nid/event.ics") . '</div>';
       $info = "<div class='event-entry-info'>" . implode('', $info) . "</div>";
       $markup = "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . " ($event_types[$type])";
       if (!empty($suffix)) {
@@ -846,6 +858,27 @@ function uib_calendar3__webcal_page($select, $area) {
       $url
     );
   }
+  echo $ical;
+}
+
+function uib_calendar3__get_event($nid) {
+  drupal_add_http_header('Content-Type', 'text/calendar; charset="utf-8"');
+  $node = entity_metadata_wrapper('node', node_load($nid));
+  $url = url("node/$nid", array('absolute'=>TRUE));
+  $ical = new uib_calendar3__ical("uib.no-" . $nid, $url, $node->label());
+  $dates = $node->field_uib_date->value();
+  $start = strtotime($dates['value'] . 'Z');
+  $end = strtotime($dates['value2'] . 'Z');
+  $ical->add_event(
+    $nid,
+    $node->created->value(),
+    $start,
+    $end,
+    $node->label(),
+    $node->field_uib_lead->value(),
+    $node->field_uib_location->value(),
+    $url
+  );
   echo $ical;
 }
 
