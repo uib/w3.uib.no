@@ -791,14 +791,7 @@ EOD;
         $nid = $node->nid->value();
         if ($is_exchange) {
           $info_data = uib_study__fspres_get_node_json($node->getIdentifier(), 'info.json', FALSE);
-          if (uib_study__exchange_is_network($info_data)) {
-            uib_study__infotyper_render($render, $data, function ($group) {
-              return $group != 'avt_sted';
-            }, $nid);
-          }
-          else {
-            uib_study__infotyper_render($render, $data, NULL, $nid);
-          }
+          uib_study__infotyper_render($render, $data, NULL, $nid);
         }
         else {
           uib_study__infotyper_render($render, $data, function ($group) use ($is_evu_course) {
@@ -818,8 +811,9 @@ EOD;
             $group_id = $group['#group'];
             $group_type = substr($group_id, strpos($group_id, '_') + 1);
             $group_title = check_plain($group['#title']);
-            if ($group_type == 'studieplan' || (uib_study__exchange_is_network($info_data) && $group_id == 'avt_sted'))
+            if ($group_type == 'studieplan') {
               continue;
+            }
             $group_title_html_id = uib_study__clean_id_string($group_title);
             $tab_items[] = '<a href="#uib-tabs-' . $group_title_html_id . '">' . $group_title . '</a>';
             $dropdown_titles[] = $group_title;
@@ -1222,21 +1216,19 @@ EOD;
           if (!empty($data['betingelse'])) {
             foreach ($data['betingelse'] as $key => $betingelse) {
               if ($betingelse['personkategori'] == 'STUDENT' && !in_array($study_category, array('forskningsavtale', 'mou'))) {
-                if (!uib_study__exchange_is_network($data)) {
-                  foreach ($betingelse['sted'] as $place) {
-                    if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
-                      $items[] = uib_study__get_study_facts_markup(t('Country'),uib_geography_get_country($place['landnr'], $language->language));
-                      if (!empty($data['restinfo']['bynavn']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
-                        // Note: it is not clear what language the town name is in
-                        // Note: there seems to be only a single town name available
-                        $items[] = uib_study__get_study_facts_markup(t('Town'), check_plain($data['restinfo']['bynavn']));
-                      }
-                      if (!empty($place['antall_ut'])) {
-                        $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($place['antall_ut']));
-                      }
-                      elseif (!empty($betingelse['antall_ut'])) {
-                        $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($betingelse['antall_ut']));
-                      }
+                foreach ($betingelse['sted'] as $place) {
+                  if ($place['_type'] == 'eksternt' && $place['institusjonsnr'] != 184) {
+                    $items[] = uib_study__get_study_facts_markup(t('Country'),uib_geography_get_country($place['landnr'], $language->language));
+                    if (!empty($data['restinfo']['bynavn']) && $data['restinfo']['utvpersonkatkode'] == 'STUDENT') {
+                      // Note: it is not clear what language the town name is in
+                      // Note: there seems to be only a single town name available
+                      $items[] = uib_study__get_study_facts_markup(t('Town'), check_plain($data['restinfo']['bynavn']));
+                    }
+                    if (!empty($place['antall_ut'])) {
+                      $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($place['antall_ut']));
+                    }
+                    elseif (!empty($betingelse['antall_ut'])) {
+                      $items[] = uib_study__get_study_facts_markup(t('Number of exchange places'), check_plain($betingelse['antall_ut']));
                     }
                   }
                 }
@@ -1304,15 +1296,13 @@ EOD;
             if ($place['personkategori'] == 'STUDENT') {
               foreach ($place['sted'] as $key ) {
                 if ($key['_type'] == 'eksternt' && $key['institusjonsnr'] != 184) {
-                  if (!uib_study__exchange_is_network($data)) {
-                    $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
-                  }
+                  $items[] = uib_study__get_study_facts_markup(t('Homepage'), l($key['url'],$key['url']));
                   $items[] = uib_study__get_study_facts_markup(t('How do I apply'), l(t('Instructions on Søknadsweb'),'utdanning/49395/søknadsweb-instruksjonar'));
                   $items[] = uib_study__get_study_facts_markup(t('Submit your application here'), l(t('Søknadsweb'),'https://soknadsweb.uib.no/'));
                   if (!empty($data['restinfo']['studietypenr'])) {
                     $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), check_plain($data['restinfo']['studietypenr']));
                   }
-                  elseif ($data['utvprogramkode'] != 'NORDPLUS') {
+                  else {
                     $items[] = uib_study__get_study_facts_markup(t('Kode i Søknadsweb'), t('Not open for admission'));
                   }
                 }
@@ -2675,17 +2665,6 @@ function uib_study__is_exchange($node = FALSE) {
     }
   }
   return $is_exchange;
-}
-
-/**
- * Determine if exchange agreement is a network
- */
-function uib_study__exchange_is_network(&$info) {
-  $is_network = FALSE;
-  if ($info['utvprogramkode'] == 'NORDPLUS' || count($info['sted']) > 2) {
-    $is_network = TRUE;
-  }
-  return $is_network;
 }
 
 function uib_study__has_study_plan(&$data) {
