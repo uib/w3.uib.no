@@ -471,6 +471,100 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_testimonial-field_uib_kicker'.
+  $field_instances['node-uib_testimonial-field_uib_kicker'] = array(
+    'bundle' => 'uib_testimonial',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This is a short category title which highlights the subject of the article.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_kicker',
+    'label' => 'Kicker',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_testimonial-field_uib_lead'.
   $field_instances['node-uib_testimonial-field_uib_lead'] = array(
     'bundle' => 'uib_testimonial',
@@ -545,7 +639,7 @@ function uib_testimonial_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -983,7 +1077,7 @@ function uib_testimonial_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -1208,7 +1302,7 @@ function uib_testimonial_field_default_field_instances() {
         'rows' => 18,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -1223,6 +1317,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Fact box');
   t('Here you should type which area this content belongs to');
   t('Image captions');
+  t('Kicker');
   t('Lead');
   t('Name');
   t('Organization');
@@ -1233,6 +1328,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Relation');
   t('Text');
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
+  t('This is a short category title which highlights the subject of the article.');
   t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
   t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
 

@@ -91,9 +91,10 @@ function uib_testimonial_field_group_info() {
     'children' => array(
       0 => 'field_uib_lead',
       1 => 'field_uib_area',
-      2 => 'field_uib_text',
-      3 => 'field_uib_quote',
-      4 => 'title',
+      2 => 'field_uib_quote',
+      3 => 'field_uib_text',
+      4 => 'field_uib_kicker',
+      5 => 'title',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -124,14 +125,14 @@ function uib_testimonial_field_group_info() {
     'label' => 'Sidebar',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_organization',
-      1 => 'field_uib_name',
-      2 => 'field_uib_position',
-      3 => 'field_uib_study_programmes',
-      4 => 'field_uib_birth_year',
-      5 => 'field_uib_exchange_place',
+      0 => 'field_uib_education',
+      1 => 'field_uib_birth_year',
+      2 => 'field_uib_name',
+      3 => 'field_uib_exchange_place',
+      4 => 'field_uib_study_programmes',
+      5 => 'field_uib_organization',
       6 => 'field_uib_exchange_text',
-      7 => 'field_uib_education',
+      7 => 'field_uib_position',
       8 => 'group_small_images',
     ),
     'format_type' => 'div',
@@ -162,10 +163,10 @@ function uib_testimonial_field_group_info() {
   $field_group->parent_name = 'group_sidebar';
   $field_group->data = array(
     'label' => 'Images',
-    'weight' => '13',
+    'weight' => '14',
     'children' => array(
-      0 => 'field_uib_imagecaptions2',
-      1 => 'field_uib_media',
+      0 => 'field_uib_media',
+      1 => 'field_uib_imagecaptions2',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
