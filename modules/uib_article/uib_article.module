@@ -412,16 +412,20 @@ if (!empty($variables['page']['content']['system_main']['#form_id'])
  * Implements hook_preprocess_node
  */
 function uib_article_preprocess_node(&$variables) {
-  $link = l(t('Add to calendar'), current_path() . '/event.ics');
-  $iCal_link = array(
-    '#type' => 'html_tag',
-    '#tag' => 'div',
-    '#attributes' => array('class' => 'uib-article-ical-link'),
-    '#value' => $link,
-    '#weight' => 50,
-  );
-  $variables['content']['ical_link'] = $iCal_link;
-  $variables['elements']['#group_children']['ical_link'] = 'group_event_info';
+  if ($variables['page'] && $variables['type'] == 'uib_article') {
+    if ($variables['field_uib_article_type']['und'][0]['value'] == 'event') {
+      $link = l(t('Add to calendar'), current_path() . '/event.ics');
+      $iCal_link = array(
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => array('class' => 'uib-article-ical-link'),
+        '#value' => $link,
+        '#weight' => 50,
+      );
+      $variables['content']['ical_link'] = $iCal_link;
+      $variables['elements']['#group_children']['ical_link'] = 'group_event_info';
+    }
+  }
 }
 
 /**
