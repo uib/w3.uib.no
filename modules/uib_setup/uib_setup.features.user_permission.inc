@@ -1126,7 +1126,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override area authored by option'.
   $permissions['override area authored by option'] = array(
     'name' => 'override area authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1172,7 +1177,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_article authored by option'.
   $permissions['override uib_article authored by option'] = array(
     'name' => 'override uib_article authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1219,7 +1229,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_content_list authored by option'.
   $permissions['override uib_content_list authored by option'] = array(
     'name' => 'override uib_content_list authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1266,7 +1281,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_external_content authored by option'.
   $permissions['override uib_external_content authored by option'] = array(
     'name' => 'override uib_external_content authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1355,7 +1375,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_study authored by option'.
   $permissions['override uib_study authored by option'] = array(
     'name' => 'override uib_study authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
@@ -1397,7 +1422,12 @@ function uib_setup_user_default_permissions() {
   // Exported permission: 'override uib_testimonial authored by option'.
   $permissions['override uib_testimonial authored by option'] = array(
     'name' => 'override uib_testimonial authored by option',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'override_node_options',
   );
 
