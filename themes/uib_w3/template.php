@@ -22,8 +22,16 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
     if ($node->type == 'uib_article') {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
     }
-    if ($node->type == 'area' && $node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
-      $variables['classes_array'][] = 'banner-image';
+    if ($node->type == 'area') {
+      if ($node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+        $variables['classes_array'][] = 'banner-image';
+      }
+      if (empty($node->field_uib_show_twitter_feed)) {
+        $variables['classes_array'][] = 'no-twitter';
+      }
+      if (empty($node->field_uib_profiled_testimonial)) {
+        $variables['classes_array'][] = 'no-testimonial';
+      }
     }
     if ($node->type == 'uib_study') {
       $variables['classes_array'][] = 'uib-study__' . $node->field_uib_study_type['und'][0]['value'];
@@ -456,18 +464,36 @@ EOD;
           $variables['page']['content']['uib_messages'] = __uib_w3__render_block('uib_message', 'uib_message_block', -30);
         }
         $variables['page']['content']['system_main']['nodes'][$nid]['uib_area_calendar'] = __uib_w3__render_block('uib_calendar3', 'calendar3', 5);
-        $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 50);
-        $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 100);
+        $variables['page']['content_bottom']['uib_area_twitter'] = __uib_w3__render_block('uib_area', 'area_twitter', 0);
         $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
-          'weight' => 300,
+          'weight' => 5,
           'type' => 'entityreference_entity_view',
           'settings' => array('view_mode' => 'teaser'),
           'label' => 'hidden',
         ));
-        $variables['page']['footer_top']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
+        $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 10);
+        $variables['page']['content_bottom']['uib_area_newspage_recent_news'] = __uib_w3__render_block('views', 'recent_news-block', 15);
+        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section', array(
           'label' => 'hidden',
-          'weight' => 100,
+          'weight' => 20,
         ));
+        if (!empty($variables['page']['content_bottom']['field_uib_link_section'])) {
+          $link_sections = array();
+          $render_array = array();
+          foreach($variables['page']['content_bottom']['field_uib_link_section'] as $key => $value) {
+            if (is_numeric($key)) $link_sections[] = $value;
+            else $render_array[$key] = $value;
+          }
+          if (count($link_sections) > 1) {
+            $variables['page']['content_bottom']['field_uib_link_section'] = NULL;
+            foreach ($link_sections as $key => $ls) {
+              $variables['page']['content_bottom']['field_uib_link_section'][$key] = $render_array;
+              $variables['page']['content_bottom']['field_uib_link_section']['#weight'] = 20;
+              $variables['page']['content_bottom']['field_uib_link_section'][$key]['#weight'] = $key;
+              $variables['page']['content_bottom']['field_uib_link_section'][$key][0] = $ls;
+            }
+          }
+        }
       }
       /**
        * Include list of area employee.
@@ -482,8 +508,8 @@ EOD;
           = "<div class=\"staff-view\">" . $markup . "</div>";
         $variables['page']['footer_top']['field_uib_front_staff']['#weight'] = 1200;
       }
-      $variables['page']['footer_top']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge',200);
-      $variables['page']['footer_top']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 150);
+      $variables['page']['content_bottom']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge', 25);
+      $variables['page']['content_bottom']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 30);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
         'type' => 'socialmedia_formatter',
         'settings' => array('link' => TRUE),

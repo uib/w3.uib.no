@@ -89,6 +89,9 @@ function uib_area_strongarm() {
         'redirect' => array(
           'weight' => '19',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
       ),
       'display' => array(
         'language' => array(

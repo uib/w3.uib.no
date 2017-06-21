@@ -1931,6 +1931,55 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-area-field_uib_show_twitter_feed'.
+  $field_instances['node-area-field_uib_show_twitter_feed'] = array(
+    'bundle' => 'area',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'If you check this box the twitter feed specified in your social media settings will be displayed on this areas front page.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 92,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_show_twitter_feed',
+    'label' => 'Show twitter feed',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-area-field_uib_social_media'.
   $field_instances['node-area-field_uib_social_media'] = array(
     'bundle' => 'area',
@@ -5575,6 +5624,7 @@ function uib_area_field_default_field_instances() {
   t('Here you should type which area this content belongs to');
   t('Hours');
   t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
+  t('If you check this box the twitter feed specified in your social media settings will be displayed on this areas front page.');
   t('Illustration that goes together with the bottom text.');
   t('Image map');
   t('Important message');
@@ -5622,6 +5672,7 @@ function uib_area_field_default_field_instances() {
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Short name');
   t('Show staff');
+  t('Show twitter feed');
   t('Small images');
   t('Staff');
   t('Staff sync status');

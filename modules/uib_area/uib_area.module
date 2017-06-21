@@ -66,6 +66,10 @@ function uib_area_block_info() {
         '/ Press / About cookies'),
       'status' => TRUE,
     ),
+    'area_twitter' => array(
+      'info' => t('Tweets from the account related to this area'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -77,6 +81,28 @@ function uib_area_block_view($delta='') {
   $area = uib_area__get_current();
   $block = array();
   switch ($delta) {
+    case 'area_twitter':
+      if (!empty($area)) {
+        if (!empty($area->field_uib_show_twitter_feed) &&  $area->field_uib_show_twitter_feed['und'][0]['value']) {
+          $twitter = FALSE;
+          if (!empty($area->field_uib_social_media)) {
+            foreach($area->field_uib_social_media['und'] as $sm) {
+              list($media, $user) = explode(':', $sm['safe_value']);
+              if ($media == 'twitter') {
+                $twitter = $user;
+                continue;
+              }
+            }
+          }
+          if ($twitter) {
+            $content = l('', 'https://twitter.com/' . $twitter, array('attributes' => array('class' => 'twitter-timeline')));
+            $content .= '<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
+            $block['subject'] = NULL;#t('Twitter');
+            $block['content'] = $content;
+          }
+        }
+      }
+      break;
     case 'news_and_calendar':
       if (!empty($area)) {
         $block['subject'] = NULL;
@@ -562,7 +588,6 @@ function uib_area__feed_format_post_render($markup) {
   if ($markup && strpos($markup, 'item-list') !== FALSE) {
     $markup = preg_replace('/<h3(.*?)>(.*?)<\/h3>/','<h2\1>\2</h2>', $markup);
     $markup = preg_replace('/<h2>/', '<h2><span></span>', $markup, 1);
-    $markup = '<div class="blue-block">' . $markup . '</div>';
   }
   return $markup;
 }
