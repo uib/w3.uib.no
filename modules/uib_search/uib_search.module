@@ -959,9 +959,9 @@ function uib_search__report_status($status, $type, $id = 0, $action = 'update') 
     return FALSE;
   }
   else if (in_array($status->code, array(200))) {
-    if (isset($data->errors)) {
+    if (isset($data->errors) && $data->errors) {
       uibx_log(
-        "There where errors during {$action} of elastic {$type}:",
+        "There where {$data->errors} error(s) during {$action} of elastic {$type}:",
         'error'
       );
       foreach ($data->items as $item) {
