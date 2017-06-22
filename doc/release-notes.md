@@ -1,3 +1,22 @@
+# Release 74 _2017-06-22_
+
+- Lagt til funksjon som gjør det mulig å abonnere på kalender for hele uib.no eller på spesifikke områder #17948
+- Lagt til funksjon som gjør at man kan legge et arrangement fra uib.no inn i personlig kalender #17914
+- Lagt til funksjon som gjør det mulig å "swipe" gjennom bildekarusell på touch-skjermer #18222
+- Lagt til nytt felt på utvekslingsavtaler som sier hvilket fag avtalen tilhører #18268
+- Justert plassering av informasjon om eksamen i utlistingen av eksamensinformasjon på fakultetssider #18310
+- Forbedret visning av innhold på uib.no når det blir delt på Twitter #18101
+- Endret hvilke felt som viser på NORDPLUS-avtaler slik at de er viser samme informasjon som de andre utvekslingsavtalene #18267
+- Fjernet "Ordinær eksamen" fra eksamensinformasjon #18266
+- Fjernet feilmeldinger som viste på lokale instanser #17894
+- Fjernet "beskrivelse"-feltet fra dialogboksen til bildeopplastninger #17981
+- Rettet en feil hvor studiekodene av og til lenker til feil språk i utlistingen av eksamensinformasjon på fakultetssider #18271
+- Rettet en feil hvor avstanden på kulepunkt på studieprogram var inkonsekvent #18226
+- Rettet en feil som gjorde at studieprogram viste som vanlige artikler i søk #18182
+- Rettet en feil hvor "Følg oss" i feltet for sosiale medier nederst på sidene ble vist med fete typer #18280
+- Feilretting knyttet til søk #18314
+- Sikkerhetsoppdatering av Drupal #18324
+
 # Release 73 _2017-06-08_
 
 - Forbedret karusellvisning ved bruk av flere hovedbilder #17786
