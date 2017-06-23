@@ -965,13 +965,19 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_study_image',
       'field_uib_study_relation',
       'field_uib_important_message',
-      'field_uib_imagecaptions2',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);
     }
   }
   else {
+    if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'full') {
+      uib_w3__add_image_caption(
+        $variables['content']['field_uib_media'],
+        $variables['node'],
+        'field_uib_imagecaptions2'
+      );
+    }
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'teaser') {
       if (count($variables['field_uib_media']) > 1) {
         $variables['content']['field_uib_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_media']);
@@ -1400,6 +1406,10 @@ function uib_w3__add_image_caption(
   );
 
   foreach ((array)$other_media_captions as $key => $value) {
+    if (!isset($imagefield[$key]) || !$imagefield[$key]) {
+      // Field is not set
+      continue;
+    }
     if (isset($imagefield[$key]['field_uib_description'][0]['#markup'])) {
       $imagefield[$key]['field_uib_description'][0] =
         array(
