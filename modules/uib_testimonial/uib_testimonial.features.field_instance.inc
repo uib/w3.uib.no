@@ -437,30 +437,9 @@ function uib_testimonial_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Legg til',
-          'delete' => 'Slett',
-          'description' => TRUE,
-          'edit' => 'Rediger',
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
-        'weight' => 25,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1038,7 +1017,7 @@ function uib_testimonial_field_default_field_instances() {
           'view_mode' => 'short_teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'short_teaser' => array(
         'label' => 'above',

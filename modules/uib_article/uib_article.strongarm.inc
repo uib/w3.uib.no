@@ -49,14 +49,11 @@ function uib_article_strongarm() {
         'redirect' => array(
           'weight' => '9',
         ),
-        'metatags' => array(
-          'weight' => '40',
-        ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '12',
+            'weight' => '13',
             'visible' => FALSE,
           ),
           'teaser' => array(

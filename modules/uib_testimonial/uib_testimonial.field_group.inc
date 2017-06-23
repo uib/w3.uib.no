@@ -54,10 +54,10 @@ function uib_testimonial_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'article-sidebar',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
-      0 => 'field_uib_media',
-      1 => 'field_uib_fact_box',
+      0 => 'field_uib_fact_box',
+      1 => 'field_uib_media',
       2 => 'group_uib_testimonial_personalia',
     ),
     'format_type' => 'div',
@@ -193,14 +193,14 @@ function uib_testimonial_field_group_info() {
     'label' => 'Personalia',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_exchange_text',
-      1 => 'field_uib_organization',
+      0 => 'field_uib_birth_year',
+      1 => 'field_uib_name',
       2 => 'field_uib_exchange_place',
-      3 => 'field_uib_birth_year',
-      4 => 'field_uib_education',
-      5 => 'field_uib_study_programmes',
-      6 => 'field_uib_position',
-      7 => 'field_uib_name',
+      3 => 'field_uib_study_programmes',
+      4 => 'field_uib_organization',
+      5 => 'field_uib_exchange_text',
+      6 => 'field_uib_education',
+      7 => 'field_uib_position',
     ),
     'format_type' => 'div',
     'format_settings' => array(
