@@ -1057,11 +1057,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       ));
       $variables['content']['field_uib_lead'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
     }
-    if ($variables['type'] == 'uib_external_content'
-      && $variables['view_mode'] == 'short_teaser'
-      && isset($variables['content']['field_uib_teaser'][0]['#markup'])
-    ) {
-      $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
+    if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'short_teaser') {
+      if (isset($variables['content']['field_uib_teaser'][0]['#markup'])) {
+        $variables['content']['field_uib_teaser'][0]['#markup'] = truncate_utf8($variables['content']['field_uib_teaser'][0]['#markup'], 303, TRUE, TRUE);
+      }
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
 
     }
