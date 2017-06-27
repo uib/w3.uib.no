@@ -186,6 +186,8 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     // Always hide field_uib_published_timestamp in the default position
     hide($form['field_uib_published_timestamp']);
 
+    hide($form['field_twitter_card_image']);
+
     // Hiding $form['language']
     hide($form['language']);
     if (strstr($form['#action'], 'uib-article?translation')) {
