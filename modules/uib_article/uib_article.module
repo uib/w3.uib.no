@@ -1059,3 +1059,55 @@ function uib_article_form_node_form_alter($form, $form_state, $form_id) {
     drupal_set_message(t('This content item is unpublished'), 'warning');
   }
 }
+
+/*
+ * Implements hook_ctools_plugin_directory
+ */
+function uib_article_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'entityreference') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
+* Implements hook_query_TAG_alter
+*/
+function uib_article_query_autocompleteuser_alter(&$query) {
+  $join = 'users.uid';
+  $has_user = TRUE;
+  if ($query->hasTag('field_data_field_uib_sort_name')) {
+    $join = 'field_data_field_uib_sort_name0.entity_id';
+    $has_user = FALSE;
+  }
+  $query->leftJoin('field_data_field_uib_first_name', 'fn', $join . ' = fn.entity_id');
+  $query->leftJoin('field_data_field_uib_last_name', 'ln', $join . ' = ln.entity_id');
+  $match = explode(' ', $query->getMetaData('match'));
+  if (count($match) == 1) {
+    $m0 = '%' . end($match) . '%';
+    $or = db_or();
+    $or->condition('fn.field_uib_first_name_value', $m0, 'LIKE');
+    $or->condition('ln.field_uib_last_name_value', $m0, 'LIKE');
+    if ($has_user){
+      $or->condition('users.name', $m0, 'LIKE');
+    }
+    $query->condition($or);
+  }
+  else if (count($match) > 1) {
+    $m0 = '%' . implode('%', array_slice($match, 0, -1)) . '%';
+    $m1 = '%' . end($match) . '%';
+    $m2 = '%' . implode('%', $match) . '%';
+    $and = db_and()->
+      condition('fn.field_uib_first_name_value', $m0, 'LIKE') ->
+      condition('ln.field_uib_last_name_value', $m1, 'LIKE');
+    $or = db_or()->condition($and);
+    $and = db_and()->
+      condition('fn.field_uib_first_name_value', $m1, 'LIKE') ->
+      condition('ln.field_uib_last_name_value', $m0, 'LIKE');
+    $or->condition($and);
+    $or->condition('fn.field_uib_first_name_value', $m2, 'LIKE');
+    $or->condition('ln.field_uib_last_name_value', $m2, 'LIKE');
+    $query->condition($or);
+  }
+  $query->orderBy('fn.field_uib_first_name_value');
+  $query->orderBy('ln.field_uib_last_name_value');
+}
