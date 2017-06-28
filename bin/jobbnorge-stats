@@ -52,21 +52,25 @@ if ($opt{csv}) {
     print join("\t", qw(day req fail min avg max min avg max err)), "\n";
 }
 else {
+    print "                   +++++++++++ok+++++++++  +++++++timeout+++++++++\n";
     print "day     #req fail     min     avg     max     min     avg      max  err\n";
     print "------ ----- ----  ------  ------  ------  ------  ------   ------  ---\n";
 }
 for my $day (sort keys %stats) {
+    $stats{$day}{ok}{n} ||= 0;
+    $stats{$day}{timeout}{n} ||= 0;
     my $requests = $stats{$day}{ok}{n} + $stats{$day}{timeout}{n};
+    next unless $requests;
     my @row = (
         $day,
 	$requests,
 	sprintf("%.3f", $stats{$day}{timeout}{n} / $requests),
-	$stats{$day}{ok}{min},
+	$stats{$day}{ok}{min} || -1,
 	sprintf("%.0f", $stats{$day}{ok}{sum} / $stats{$day}{ok}{n}),
-	$stats{$day}{ok}{max},
-	$stats{$day}{timeout}{min},
-	sprintf("%.0f", $stats{$day}{timeout}{sum} / $stats{$day}{timeout}{n}),
-	$stats{$day}{timeout}{max},
+	$stats{$day}{ok}{max} || -1,
+	$stats{$day}{timeout}{min} || -1,
+	$stats{$day}{timeout}{n} ? sprintf("%.0f", $stats{$day}{timeout}{sum} / $stats{$day}{timeout}{n}) : -1,
+	$stats{$day}{timeout}{max} || -1,
 	$stats{$day}{err} || 0,
     );
     if ($opt{csv}) {
