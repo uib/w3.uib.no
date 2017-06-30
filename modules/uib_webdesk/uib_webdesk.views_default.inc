@@ -71,6 +71,10 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['status']['table'] = 'node';
   $handler->display->display_options['fields']['status']['field'] = 'status';
   $handler->display->display_options['fields']['status']['not'] = 0;
+  /* Field: Content: Language */
+  $handler->display->display_options['fields']['language']['id'] = 'language';
+  $handler->display->display_options['fields']['language']['table'] = 'node';
+  $handler->display->display_options['fields']['language']['field'] = 'language';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -381,6 +385,7 @@ function uib_webdesk_views_default_views() {
     t('Title'),
     t('Area'),
     t('Published'),
+    t('Language'),
     t('Type'),
     t('Alle'),
     t('My simple content'),
@@ -389,7 +394,6 @@ function uib_webdesk_views_default_views() {
     t('Page'),
     t('more'),
     t('Post date'),
-    t('Language'),
   );
   $export['my_content'] = $view;
 
@@ -2437,6 +2441,10 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
   $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  /* Field: Content: Language */
+  $handler->display->display_options['fields']['language']['id'] = 'language';
+  $handler->display->display_options['fields']['language']['table'] = 'node';
+  $handler->display->display_options['fields']['language']['field'] = 'language';
   /* Sort criterion: Content: Title */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -2532,6 +2540,7 @@ function uib_webdesk_views_default_views() {
     t('next ›'),
     t('last »'),
     t('You are not content manager for any areas.'),
+    t('Language'),
     t('Alle'),
     t('Content pane'),
     t('View panes'),
