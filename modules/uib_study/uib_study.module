@@ -2803,10 +2803,9 @@ function uib_study__check_show_exam_location_information($exam_date) {
  * at uib.
  */
 function uib_study__get_faculty_exams_json($ou_id, $term = '', $lang = 'nb') {
-  $path = '/sted/';
-  $path .= $ou_id;
-  $path .= '/emner-eksamen.json';
-  $path .= $term ? "?semester=$term" : '';
+  $path = '/eksamen.json';
+  $path .= "?sted=$ou_id";
+  $path .= $term ? "&semester=$term" : '';
   $retval = uib_study__fspres_get_json($path);
   uib_study__languagify($retval, $lang);
   return $retval;
@@ -2887,20 +2886,11 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
     ),
   );
 
-  $tmp = array();
-  foreach ((array)$data['eksamensliste'] as $exam) {
-    if (!isset($tmp[$exam['emne']])) {
-      $tmp[$exam['emne']] = array();
-    }
-    $tmp[$exam['emne']][] = $exam;
-  }
-  $data['eksamensliste'] = $tmp;
-  ksort($data['eksamensliste']);
 
   $fakelang = new stdClass();
   $fakelang->language = $lang;
-  foreach ($data['eksamensliste'] as $topic) {
-    $path = uib_study__study_path($topic[0]['emne']);
+  foreach ($data['emne'] as $topiccode => $topic) {
+    $path = uib_study__study_path($topiccode);
     $thisterm = date('Y') . (date('m')<7 ? 'v' : 'h');
     if ($term == $thisterm) {
       $path = url($path, array('language' => $fakelang));
@@ -2912,167 +2902,279 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
       ));
     }
     $path = "/{$lang}{$path}"; // Adding language to link
-    $code = "<a href=\"{$path}\" >{$topic[0]['emne']}</a>";
+    $code = "<a href=\"{$path}\" >{$topiccode}</a>";
     $row = array(
       '#type' => 'container',
       '#attributes' => array('class' => array('rrow')),
       'course' => array(
         '#type' => 'container',
         '#attributes' => array('class' => array('course')),
-        1 => array('#markup' => "<h3> {$code} / {$topic[0]['emnenavn']}</h3>"),
+        1 => array('#markup' => "<h3> {$code} / {$topic['emnenavn']}</h3>"),
       ),
       'exams' => array(
         '#type' => 'container',
         '#attributes' => array('class' => array('exams')),
       ),
     );
-    foreach ($topic as $exam) {
-      $date = strtotime($exam['tid']);
-      $datestr = strftime( '%d.%m.%Y', $date);
-      $starttime = strftime('%H:%M', $date);
-      $enddate = FALSE;
-      if (isset($exam['tidslutt'])) {
-        $enddate = strtotime($exam['tidslutt']);
-      }
-      else if (isset($exam['varighet'])) {
-        $enddate = $date + $exam['varighet'] * 3600; // 3600 sek i en time
-      }
-      // start and end on different dates:
-      $twodates = date('Ymd', $enddate) != date('Ymd', $date);
-      $enddatestr = '';
-      $endtime = '';
-      if ($enddate) {
-        if($twodates) {
-          $enddatestr = strftime('%d.%m.%Y ', $enddate);
-        }
-        $endtime = strftime('%H:%M', $enddate);
-      }
-      if (strpos($exam['tid'], 'T') === FALSE) {
-          $starttime = $endtime = '';
-      }
-      else if (
-        (!isset($exam['varighet']) || intval($exam['varighet']) == 0)
-        && !isset($exam['tidslutt'])
-      ) {
-        $endtime = '';
-      }
-      $location = array();
 
-      $location[] = '<ul>';
-      $buildings = array();
-      $l = '';
-      $prevurl = '';
-      if (uib_study__check_show_exam_location_information($date)) {
-        foreach ((array)$exam['rom'] as $room) {
-          if (isset($room['bygning'])
-          && !isset($buildings[$room['bygning']])
+
+    foreach ($topic['eksamensinfo'] as $t => $exams) {
+      foreach ($exams as $exam) {
+        if (!isset($exam['eksamensdel'])) {
+          $exam['eksamensdel'] = array(array(0));
+        }
+        foreach ($exam['eksamensdel'] as $exampart) {
+          // Merge the part from the eksamendsdel with eksamensinfo
+          // This will overwrite values in eksamensinfo with values from
+          // eksamensdel. I assume this is the desired behavior.
+          $merge = array_merge($exam, $exampart);
+          // Fix date for oral exams. These cannot have a datoInnlevering or
+          // datoUtlevert
+          if (
+            isset($merge['form']) &&
+            in_array(
+              $merge['form'],
+              array('Muntlig eksamen', 'Oral examination')
+            )
           ) {
+            unset($merge['datoInnlevering']);
+            unset($merge['datoUtlevert']);
+          }
+          // If statusObligatoriskAktivitet set to 'J'
+          if (
+            isset($merge['statusObligatoriskAktivitet'])
+            && strtolower($merge['statusObligatoriskAktivitet']) == 'j'
+          ) {
+            continue;
+          }
+          // Display the exam type
+          $r = array();
+          $var = 'navn';
+          if (isset($merge[$var])) {
+            $text = $merge[$var];
+            if (
+              isset($merge['status'])
+              && (
+                $merge['status'] != 'Ordinær eksamen'
+                && $merge['status'] != 'Ordinary exam'
+              )
+            ) {
+              $text .= " ({$merge['status']})";
+            }
+            $text = check_plain($text);
+            $r[$var] = array(
+              '#type' => 'container',
+              '#weight' => 1,
+              '#attributes' => array('class' => array('exam-name')),
+              0 => array(
+                '#markup' => "<span class=\"exam-header\">{$text}:</span>"
+              ),
+            );
+          }
+
+          // Display time information
+          $var = 'datoEksamen';
+          $var2 = 'klokkeslettEksamen';
+          $var3 = 'varighetTimer';
+          $dateformat = 'd.m.Y';
+          $timeformat = 'H:i';
+          $r['time'] =  array(
+            '#type' => 'container',
+            '#weight' => 2,
+            '#attributes' => array('class' => array('datetime')),
+          );
+          if (isset($merge[$var])) {
+            // Display date and time as dd.mm.YYYY / HH:ii (- HH:ii)
+            $date = strtotime($merge[$var]);
+            $enddate = @strtotime("{$merge[$var]} {$merge[$var2]}")
+              + (@$merge[$var3] * 3600);
+            $datestr = date($dateformat, $date);
+            $r['time'][0] = array('#markup' => "<span class=\"label\">" .
+                t('Time', array(), array('langcode' => $lang)) . ": </span>");
+            $r['time'][1] = array(
+              '#markup' => "<span class=\"date\">{$datestr}</span>"
+            );
+            $starttime = date(
+              $timeformat,
+              @strtotime("{$merge[$var]} {$merge[$var2]}")
+            );
+            $r['time'][2] = array('#markup' => $starttime);
+            // If varighetTimer is set
+            if (isset($merge[$var3]) && intval($merge[$var3]) > 0) {
+              // ...and exam is on a single day
+              if (date('Ymd', $enddate) == date('Ymd', $date)) {
+                $endtime = date("{$timeformat}", $enddate);
+                $r['time'][2]['#markup'] = $r['time'][2]['#markup']
+                  . "&ndash;{$endtime}";
+              }
+            }
+            $r['time'][2]['#markup'] =
+              " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
+            // If exam lasts for several days (Eg. Oral exams)
+            if (date('Ymd', $enddate) > date('Ymd', $date)) {
+              $enddatestr = date($dateformat, $enddate);
+              $r['time'][3] = array(
+                '#type' => 'container',
+                '#attributes' => array('class' => array('twodates')),
+                0 => array(
+                  '#markup' => "<span class=\"date2\">{$enddatestr}</span>"
+                ),
+              );
+              // ...and a specific time is set
+              if (isset($merge[$var2])) {
+                $endtimestr = date($timeformat, $enddate);
+                $r['time'][3][1] = array(
+                  '#markup' => " / <span class=\"time2\">{$endtimestr}</span>"
+                );
+              }
+            }
+          }
+
+          // Assignment date
+          // Hide this until SA wants to show it
+          if (!variable_get('uib_study_hide_datoUtlevert_in_exams_list', FALSE)) {
+            $var = 'datoUtlevert';
+            $var2 = 'klokkeslettUtlevert';
+            if (isset($merge[$var])) {
+              $date = strtotime($merge[$var]);
+              $datestr = date($dateformat, $date);
+              $tmp =  array();
+              $tmp[] = array('#markup' => "<span class=\"label\">" .
+                  t('Assignment handed out', array(), array('langcode' => $lang))
+                  . ": </span>");
+              $tmp[] = array(
+                '#markup' => "<span class=\"date\">{$datestr}</span>"
+              );
+              if (isset($merge[$var2])) {
+                $date = strtotime("{$merge[$var]} {$merge[$var2]}");
+                $timestr = date($timeformat, $date);
+                $tmp[] = array(
+                  '#markup' => " / <span class=\"time\">{$timestr}</span>"
+                );
+              }
+              $r['time']['#attributes']['class'][1] = 'submission';
+              $r['time'] = array_merge($r['time'], $tmp);
+            }
+          }
+
+          // Submission date
+          $var = 'datoInnlevering';
+          $var2 = 'klokkeslettInnlevering';
+          if (isset($merge[$var])) {
+            $date = strtotime($merge[$var]);
+            $datestr = date($dateformat, $date);
+            $tmp =  array();
+            $tmp[] = array('#markup' => "<span class=\"label\">" .
+                t('Submission deadline', array(), array('langcode' => $lang))
+                . ": </span>");
+            $tmp[] = array(
+              '#markup' => "<span class=\"date\">{$datestr}</span>"
+            );
+            if (isset($merge[$var2])) {
+              $date = strtotime("{$merge[$var]} {$merge[$var2]}");
+              $timestr = date($timeformat, $date);
+              $tmp[] = array(
+                '#markup' => " / <span class=\"time\">{$timestr}</span>"
+              );
+            }
+            $r['time']['#attributes']['class'][1] = 'submission';
+            $r['time'] = array_merge($r['time'], $tmp);
+          }
+          // end of time iformation
+
+          // Digital exam and datasystem
+          $var = 'datasystem';
+          if (isset($merge[$var])) {
+            $pre_datasystem = strtolower($merge[$var]) == 'inspera' ?
+              t('Digital exam', array(), array('langcode' => $lang)) . '. ' :
+              '';
+            $datasystem = ucfirst(strtolower($merge[$var]));
+            $r[$var] = array(
+              '#type' => 'container',
+              '#weight' => 4,
+              '#attributes' => array('class' => array($var)),
+              0 => array('#markup' => "<span>" . $pre_datasystem
+                . t('Examination system', array(), array('langcode' => $lang))
+                . ": {$datasystem}</span>"),
+            );
+          }
+          $var = 'kommentar';
+          if (isset($merge[$var])) {
+            $r['comments'] = array(
+              '#type' => 'container',
+              '#weight' => 6,
+              '#attributes' => array('class' => array('comments')),
+              0 => array('#markup' => "<em>{$merge[$var]}</em>"),
+            );
+          }
+
+          // Exam location(s)
+          $location = FALSE;
+          $l = '';
+          $prevurl = '';
+          if (isset($merge['datoEksamen'])
+            && uib_study__check_show_exam_location_information(
+              strtotime($merge['datoEksamen'])
+            )
+            && isset($merge['rom'])
+          ) {
+            $tmp = array();
+            $buildings = array();
+            foreach ((array)$merge['rom'] as $room) {
+              if (isset($room['bygning'])
+              && !isset($buildings[$room['bygning']])
+              ) {
+                $rombygning = check_plain($room['bygning']);
+                if ($l) {
+                  if ($l && $prevurl) {
+                    $l = l($l, $prevurl);
+                  }
+                  $tmp[] = "<li>$l</li>";
+                }
+                $buildings[$rombygning] = TRUE;
+                $l = "{$rombygning}";
+              }
+              if (isset($room['navn']) && $l) {
+                $romnavn = check_plain($room['navn']);
+                $l .= ", {$romnavn}";
+              }
+              $prevurl = isset($room['url']) ? check_url($room['url']) : '';
+            }
             if ($l) {
               if ($l && $prevurl) {
                 $l = l($l, $prevurl);
               }
-              $location[] = "<li>$l</li>";
+              $tmp[] = "<li>$l</li>";
             }
-            $buildings[$room['bygning']] = TRUE;
-            $l = "{$room['bygning']}";
+            if (count($tmp)) {
+              $location = array_merge((array)'<ul>', $tmp, (array)'</ul>');
+            }
           }
-          if (isset($room['navn']) && $l) {
-            $l .= ", {$room['navn']}";
+          $var = 'location';
+          if ($location) {
+            $r[$var] = array(
+              '#type' => 'container',
+              '#weight' => 3,
+              '#attributes' => array('class' => array($var)),
+              0 => array('#markup' => "<span class=\"label\">"
+                . t('Place', array(), array('langcode' => $lang)).": </span>"),
+              1 => array('#markup' => implode($location)),
+            );
           }
-          $prevurl = isset($room['url']) ? $room['url'] : '';
+          // If no time info exists, skip this exam:
+          if (!isset($r['time'][0])) {
+            continue;
+          }
+          $row['exams'][] = $r;
         }
       }
-      if ($l) {
-        if ($l && $prevurl) {
-          $l = l($l, $prevurl);
-        }
-        $location[] = "<li>$l</li>";
-      }
-      $location[] = '</ul>';
-      $n = "{$exam['navn']}";
-      if (isset($exam['status']) && ($exam['status'] != 'Ordinær eksamen' && $exam['status'] != 'Ordinary exam')) {
-        $n .= " ({$exam['status']})";
-      }
-      $timelabel = t('Time', array(), array('langcode' => $lang));
-      $endtimelabel = '';
-      $datetimeclass = array('datetime');
-      if (isset($exam['innlevering'])) {
-        $timelabel = t('Assignment handed out', array(), array('langcode' => $lang));
-        $endtimelabel = t('Submission deadline', array(), array('langcode' => $lang));
-        $datetimeclass[] = 'submission';
-      }
-      $r = array(
-        'name' => array(
-          '#type' => 'container',
-          '#weight' => 1,
-          '#attributes' => array('class' => array('exam-name')),
-          0 => array('#markup' => "<span class=\"exam-header\">{$n}:</span>"),
-        ),
-        'time' => array(
-          '#type' => 'container',
-          '#weight' => 2,
-          '#attributes' => array('class' => $datetimeclass),
-          0 => array('#markup' => "<span class=\"label\">" .
-            $timelabel . ": </span>"),
-          1 => array('#markup' => "<span class=\"date\">{$datestr}</span>"),
-        ),
-      );
-      if ($starttime) {
-        $r['time'][2] = array('#markup' => $starttime);
-        if ($endtime && !$twodates) {
-          $r['time'][2]['#markup'] = $r['time'][2]['#markup'] . "&ndash;{$endtime}";
-        }
-      }
-      if (isset($r['time'][2])) {
-        $r['time'][2]['#markup'] = " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
-      }
-      if ($twodates) {
-        $r['time'][3] = array(
-          '#type' => 'container',
-          '#attributes' => array('class' => array('twodates')),
-        );
-        if ($endtimelabel) {
-          $r['time'][3]['label'] = array('#markup' => "<span class=\"label\">" .
-            $endtimelabel . ": </span>");
-        }
-        $r['time'][3][0] = array('#markup' => "<span class=\"date2\">{$enddatestr}</span>");
-        if ($endtime) {
-          $r['time'][3][1] = array('#markup' => " / <span class=\"time2\">{$endtime}</span>");
-        }
-      }
-      if (isset($exam['datasystem'])) {
-        $pre_datasystem = strtolower($exam['datasystem']) == 'inspera' ? t('Digital exam', array(), array('langcode' => $lang)) . '. ' : '';
-        $datasystem = ucfirst(strtolower($exam['datasystem']));
-        $r['datasystem'] = array(
-          '#type' => 'container',
-          '#weight' => 4,
-          '#attributes' => array('class' => array('datasystem')),
-          0 => array('#markup' => "<span>" . $pre_datasystem
-            . t('Examination system', array(), array('langcode' => $lang))
-            . ": {$datasystem}</span>"),
-        );
-      }
-      if (isset($exam['kommentar'])) {
-        $r['comments'] = array(
-          '#type' => 'container',
-          '#weight' => 6,
-          '#attributes' => array('class' => array('comments')),
-          0 => array('#markup' => "<em>{$exam['kommentar']}</em>"),
-        );
-      }
-      if (count($location) > 2) {
-        $r['location'] = array(
-          '#type' => 'container',
-          '#weight' => 3,
-          '#attributes' => array('class' => array('location')),
-          0 => array('#markup' => "<span class=\"label\">"
-            . t('Place', array(), array('langcode' => $lang)).": </span>"),
-          1 => array('#markup' => implode($location)),
-        );
-      }
-      $row['exams'][] = $r;
+    }
+    // If no exams for this course, skip course
+    if (!isset($row['exams'][0])) {
+      continue;
     }
     $retval['table']['body'][] = $row;
   }
+  // print_r($retval);
   return $retval;
 }

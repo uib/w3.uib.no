@@ -2852,6 +2852,9 @@ a,
     .faculty-exams-list .rbody .rrow .submission .label {
       display: inline;
       font-weight: bold; }
+      .faculty-exams-list .rbody .rrow .submission .label:before {
+        display: table;
+        content: ""; }
     .faculty-exams-list .rbody .rrow .datetime {
       position: relative;
       padding: 0 0 0 30px; }
