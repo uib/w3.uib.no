@@ -338,6 +338,10 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['field_uib_area']['settings'] = array(
     'link' => 0,
   );
+  /* Field: Content: Language */
+  $handler->display->display_options['fields']['language']['id'] = 'language';
+  $handler->display->display_options['fields']['language']['table'] = 'node';
+  $handler->display->display_options['fields']['language']['field'] = 'language';
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
@@ -385,6 +389,7 @@ function uib_webdesk_views_default_views() {
     t('Page'),
     t('more'),
     t('Post date'),
+    t('Language'),
   );
   $export['my_content'] = $view;
 
