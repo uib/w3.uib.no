@@ -264,9 +264,7 @@ function uib_article_field_default_field_bases() {
           ),
         ),
         'sort' => array(
-          'direction' => 'ASC',
-          'field' => 'field_uib_sort_name:value',
-          'type' => 'field',
+          'type' => 'none',
         ),
         'target_bundles' => array(),
       ),
