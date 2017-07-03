@@ -1527,6 +1527,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
   // TODO end ...
 
   foreach ($data as $ei) {
+    if ($part && @$ei['statusObligatoriskAktivitet'] == 'J') continue;
     $render = array();
     $items = array();
     $eval = $part ? t('Exam part') : t('Type of assessment');
