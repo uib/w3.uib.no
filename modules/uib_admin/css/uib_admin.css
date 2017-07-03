@@ -21,6 +21,9 @@
   max-height: 200px;
   width: auto;
 }
+.adminimal-theme .field-name-field-uib-relation .form-text.form-autocomplete {
+  width: 95%;
+}
 
 .field-name-field-uib-published-timestamp fieldset,
 .field-name-field-uib-published-timestamp legend,
