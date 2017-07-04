@@ -262,6 +262,7 @@ function uib_webdesk_views_default_views() {
     'field_uib_article_type' => 'field_uib_article_type',
     'created' => 'created',
     'field_uib_area' => 'field_uib_area',
+    'language' => 'language',
     'status' => 'status',
     'edit_node' => 'edit_node',
     'delete_node' => 'delete_node',
@@ -290,9 +291,14 @@ function uib_webdesk_views_default_views() {
       'empty_column' => 0,
     ),
     'field_uib_area' => array(
+      'align' => 'views-align-left',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'language' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
-      'align' => 'views-align-left',
+      'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
