@@ -1538,6 +1538,21 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       '#value' => $eval . ': ' . $ei['navn' . $lang] . $status,
       '#attributes' => array(),
     );
+    if ($ei['status'] == 'Ny eksamen') {
+      if ($lang == ':en') {
+        $path = 'node/108982';
+      }
+      else {
+        $path = 'node/108981';
+      }
+      $infolink = array(
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#value' => l(t('Entitled to a new exam'), $path),
+        '#attributes' => array('class' => array('uib-study-new-exam-info')),
+      );
+      $render['title']['#suffix'] = render($infolink);
+    }
     $datoEksamen=0;
     if (isset($ei['datoEksamen'])) {
       $datoEksamen = strtotime($ei['datoEksamen']);

@@ -6149,6 +6149,9 @@ body #mc_embed_signup div.mce_inline_error {
 .view-study-blocks .studentreport-ref {
   float: right; }
 
+.uib-study-new-exam-info {
+  margin-bottom: 0.25rem; }
+
 #block-uib-study-study-period-phd {
   background: #fff;
   padding: 1rem; }
