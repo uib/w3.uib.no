@@ -510,6 +510,10 @@ EOD;
       }
       $variables['page']['content_bottom']['uib_area_jobbnorge'] = __uib_w3__render_block('uib_area','jobbnorge', 25);
       $variables['page']['content_bottom']['field_uib_feed'] = __uib_w3__render_block('uib_area', 'feed', 30);
+      if (!empty($variables['page']['content_bottom']['field_uib_feed'])) {
+         $variables['page']['content_bottom']['field_uib_feed'] = uib_w3__break_up_collection($variables['page']['content_bottom']['field_uib_feed'], 'uib_area_feed');
+      }
+      //dpm($variables['page']['content_bottom']['field_uib_feed']);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
         'type' => 'socialmedia_formatter',
         'settings' => array('link' => TRUE),
@@ -1209,6 +1213,17 @@ function uib_w3_preprocess_field(&$vars) {
 }
 
 /**
+ * Implementing hook_preprocess_block()
+ */
+function uib_w3_preprocess_block(&$vars) {
+  if (in_array('block__uib_area__feed', $vars['theme_hook_suggestions'])) {
+    if (empty($vars['elements']['#children'])) {
+      $vars['theme_hook_suggestions'][] = 'block__uib_area__feed__empty';
+    }
+  }
+}
+
+/**
  * Function returning render array for article info
  */
 function __uib_w3__article_info(&$node) {
@@ -1466,4 +1481,22 @@ function uib_w3__add_image_caption(
     }
   }
 
+}
+
+function uib_w3__break_up_collection($collection, $field) {
+  $sections = array();
+  $render_array = array();
+  foreach ($collection[$field] as $key => $value) {
+    if (is_numeric($key)) $sections[] = $value;
+    else $render_array[$key] = $value;
+  }
+  if (count($sections) > 1) {
+    $collection[$field] = NULL;
+    foreach ($sections as $key => $section) {
+      $collection[$field][$key] = $render_array;
+      $collection[$field][$key]['#weight'] = $key;
+      $collection[$field][$key][0] = $section;
+    }
+  }
+  return $collection;
 }
