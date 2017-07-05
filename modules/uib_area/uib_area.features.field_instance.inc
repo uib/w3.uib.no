@@ -2385,7 +2385,7 @@ function uib_area_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => 'entityreference_prepopulate_field_default_value',
     'deleted' => 0,
-    'description' => 'Add the author of the content. Use UiB usernames to search for people. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
+    'description' => 'Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -2463,7 +2463,7 @@ function uib_area_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => 'The person to contact for information related to the event. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
+    'description' => 'Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2503,7 +2503,7 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_contacts',
-    'label' => 'Contacts',
+    'label' => 'Contact person',
     'required' => 0,
     'settings' => array(
       'behaviors' => array(
@@ -5594,7 +5594,6 @@ function uib_area_field_default_field_instances() {
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
-  t('Add the author of the content. Use UiB usernames to search for people. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a rss feed to the right sidebar');
   t('An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)');
@@ -5608,7 +5607,7 @@ function uib_area_field_default_field_instances() {
   t('Byline');
   t('Choose which type of event you are creating.');
   t('Colophone logos');
-  t('Contacts');
+  t('Contact person');
   t('Content Manager');
   t('Custom hours');
   t('Custom opening hours for holidays etc');
@@ -5663,6 +5662,7 @@ function uib_area_field_default_field_instances() {
   t('Related content');
   t('Relevant links');
   t('Rss feed');
+  t('Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)');
   t('Search description');
   t('Search keywords');
   t('Sebra ID');
@@ -5679,7 +5679,6 @@ function uib_area_field_default_field_instances() {
   t('Tertiary text');
   t('Text');
   t('The address for the location of the event. ');
-  t('The person to contact for information related to the event. Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');

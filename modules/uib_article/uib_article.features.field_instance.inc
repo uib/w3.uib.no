@@ -674,10 +674,10 @@ function uib_article_field_default_field_instances() {
   // Exported field_instance: 'node-uib_article-field_uib_related_persons'.
   $field_instances['node-uib_article-field_uib_related_persons'] = array(
     'bundle' => 'uib_article',
-    'default_value' => array(),
+    'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => 'Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>',
+    'description' => 'Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -853,11 +853,11 @@ function uib_article_field_default_field_instances() {
   t('Related content label');
   t('Related persons');
   t('Related persons label');
+  t('Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Show in global calendar');
   t('Small images caption');
   t('Twitter Card Image');
-  t('Use UiB usernames to search for people. You will find the usernames on <a href="https://bs.uib.no/?module=users&action=tsearch&nokerb=1">bs.uib.no</a>');
   t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
 
   return $field_instances;
