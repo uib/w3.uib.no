@@ -2998,7 +2998,7 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
             '#weight' => 2,
             '#attributes' => array('class' => array('datetime')),
           );
-          if (isset($merge[$var])) {
+          if (isset($merge[$var]) && !isset($merge['datoEksamenFra'])) {
             // Display date and time as dd.mm.YYYY / HH:ii (- HH:ii)
             $date = strtotime($merge[$var]);
             $enddate = @strtotime("{$merge[$var]} {$merge[$var2]}")
@@ -3095,6 +3095,30 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
             $r['time']['#attributes']['class'][1] = 'submission';
             $r['time'] = array_merge($r['time'], $tmp);
           }
+
+          // Dates for oral exams
+          $var = 'datoEksamenFra';
+          $var2 = 'datoEksamenTil';
+          if (isset($merge[$var])) {
+            // Display date and time as dd.mm.YYYY / HH:ii (- HH:ii)
+            $date = strtotime($merge[$var]);
+            $datestr = date($dateformat, $date);
+            $r['time'][0] = array('#markup' => "<span class=\"label\">" .
+                t('Time', array(), array('langcode' => $lang)) . ": </span>");
+            $r['time'][1] = array(
+              '#markup' => "<span class=\"date\">{$datestr}</span>"
+            );
+            // DatoEksamenTil
+            // If exam lasts for several days
+            if (isset($merge[$var2]) && $merge[$var2] != $merge[$var]) {
+              $enddate = @strtotime($merge[$var2]);
+              $enddatestr = date($dateformat, $enddate);
+              $r['time'][1]['#markup'] .= "&ndash;{$enddatestr}";
+            }
+            $r['time'][1]['#markup'] = "<span class=\"date\">{$r['time'][1]['#markup']}</span>";
+          }
+
+
           // end of time iformation
 
           // Digital exam and datasystem
