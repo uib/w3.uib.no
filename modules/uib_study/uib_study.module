@@ -1502,7 +1502,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       '#value' => $eval . ': ' . $ei['navn' . $lang] . $status,
       '#attributes' => array(),
     );
-    if ($ei['status'] == 'Ny eksamen') {
+    if (!$part && $ei['status'] == 'Ny eksamen') {
       if ($lang == ':en') {
         $path = 'node/108982';
       }
@@ -1559,16 +1559,20 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
         '#markup' => uib_study__definition_list_item($term, $data),
       );
     }
-    if (isset($ei['datoUtlevert'])) {
-      $term = t('Assignment handed out');
-      $data = date('d.m.Y', strtotime($ei['datoUtlevert']));
-      if (isset($ei['klokkeslettUtlevert'])) {
-        $data .= ', ' . $ei['klokkeslettUtlevert'];
+    // Assignment date
+    // Hide this until SA wants to show it
+    if (!variable_get('uib_study_hide_datoUtlevert_in_exams_list', FALSE)) {
+      if (isset($ei['datoUtlevert'])) {
+        $term = t('Assignment handed out');
+        $data = date('d.m.Y', strtotime($ei['datoUtlevert']));
+        if (isset($ei['klokkeslettUtlevert'])) {
+          $data .= ', ' . $ei['klokkeslettUtlevert'];
+        }
+        $items[] = array(
+          '#type' => 'markup',
+          '#markup' => uib_study__definition_list_item($term, $data),
+        );
       }
-      $items[] = array(
-        '#type' => 'markup',
-        '#markup' => uib_study__definition_list_item($term, $data),
-      );
     }
     if (isset($ei['datoInnlevering'])) {
       $term = t('Submission deadline');
