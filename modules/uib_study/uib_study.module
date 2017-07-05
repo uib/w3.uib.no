@@ -1532,7 +1532,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
     }
     if (isset($ei['datoEksamenFra'])) {
       $datoEksamen = strtotime($ei['datoEksamenFra']);
-      $term = t('Date');
+      $term = t('Exam period');
       $data = date('d.m.Y', $datoEksamen);
 
       if (isset($ei['datoEksamenTil'])) {
