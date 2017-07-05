@@ -1566,6 +1566,19 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
         '#markup' => uib_study__definition_list_item($term, $data),
       );
     }
+    if (isset($ei['datoEksamenFra'])) {
+      $datoEksamen = strtotime($ei['datoEksamenFra']);
+      $term = t('Date');
+      $data = date('d.m.Y', $datoEksamen);
+
+      if (isset($ei['datoEksamenTil'])) {
+        $data .= '&ndash;' . date('d.m.Y', strtotime($ei['datoEksamenTil']));
+      }
+      $items[] = array(
+        '#type' => 'markup',
+        '#markup' => uib_study__definition_list_item($term, $data),
+      );
+    }
     if (isset($ei['oppmoteFor'])) {
       $term = t('Attendance');
       $data = t('@minutes minutes before', array('@minutes' => $ei['oppmoteFor']));
