@@ -674,7 +674,7 @@ function uib_article_field_default_field_instances() {
   // Exported field_instance: 'node-uib_article-field_uib_related_persons'.
   $field_instances['node-uib_article-field_uib_related_persons'] = array(
     'bundle' => 'uib_article',
-    'default_value' => NULL,
+    'default_value' => array(),
     'default_value_function' => '',
     'deleted' => 0,
     'description' => 'Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)',
@@ -738,7 +738,7 @@ function uib_article_field_default_field_instances() {
         'path' => '',
         'size' => 60,
       ),
-      'type' => 'entityreference_autocomplete_tags',
+      'type' => 'entityreference_autocomplete',
       'weight' => 14,
     ),
   );

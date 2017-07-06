@@ -49,6 +49,9 @@ function uib_article_strongarm() {
         'redirect' => array(
           'weight' => '9',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
       ),
       'display' => array(
         'language' => array(
