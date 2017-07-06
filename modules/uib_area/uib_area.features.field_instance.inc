@@ -987,59 +987,6 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-area-field_uib_offices'.
-  $field_instances['node-area-field_uib_offices'] = array(
-    'bundle' => 'area',
-    'default_value' => NULL,
-    'default_value_function' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 29,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_offices',
-    'label' => 'Offices',
-    'required' => 0,
-    'settings' => array(
-      'behaviors' => array(
-        'prepopulate' => array(
-          'status' => 0,
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'entityreference',
-      'settings' => array(
-        'match_operator' => 'CONTAINS',
-        'path' => '',
-        'size' => 60,
-      ),
-      'type' => 'entityreference_autocomplete',
-      'weight' => 6,
-    ),
-  );
-
   // Exported field_instance: 'node-area-field_uib_ou'.
   $field_instances['node-area-field_uib_ou'] = array(
     'bundle' => 'area',
@@ -4303,221 +4250,6 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_ou-field_uib_hours'.
-  $field_instances['node-uib_ou-field_uib_hours'] = array(
-    'bundle' => 'uib_ou',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'office_hours',
-        'settings' => array(
-          'closedformat' => 'Closed',
-          'compress' => FALSE,
-          'current_status' => array(
-            'closed_text' => 'Currently closed',
-            'open_text' => 'Currently open!',
-            'position' => 'hide',
-          ),
-          'date_first_day' => 1,
-          'daysformat' => 'long',
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'grouped' => FALSE,
-          'hoursformat' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-          'separator_day_hours' => ': ',
-          'separator_days' => '<br />',
-          'separator_grouped_days' => ' - ',
-          'separator_hours_hours' => '-',
-          'separator_more_hours' => ', ',
-          'showclosed' => 'all',
-          'timezone_field' => '',
-        ),
-        'type' => 'office_hours',
-        'weight' => 10,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'module' => 'office_hours',
-        'settings' => array(
-          'closedformat' => 'Closed',
-          'compress' => 0,
-          'current_status' => array(
-            'closed_text' => 'Currently closed',
-            'open_text' => 'Currently open!',
-            'position' => 'hide',
-          ),
-          'date_first_day' => 1,
-          'daysformat' => 'short',
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'grouped' => 0,
-          'hoursformat' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-          'separator_day_hours' => '.',
-          'separator_days' => '<br />',
-          'separator_grouped_days' => ' - ',
-          'separator_hours_hours' => '-',
-          'separator_more_hours' => ', ',
-          'showclosed' => 'all',
-          'timezone_field' => '',
-        ),
-        'type' => 'office_hours',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_hours',
-    'label' => 'Hours',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'office_hours',
-      'settings' => array(),
-      'type' => 'office_hours',
-      'weight' => 14,
-    ),
-  );
-
-  // Exported field_instance: 'node-uib_ou-field_uib_hours_custom'.
-  $field_instances['node-uib_ou-field_uib_hours_custom'] = array(
-    'bundle' => 'uib_ou',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Custom opening hours for holidays etc',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
-        'weight' => 11,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
-        'weight' => 4,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_hours_custom',
-    'label' => 'Custom hours',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'basic_html' => 0,
-          'full_html' => 0,
-          'plain_text' => 0,
-          'restricted_html' => 'restricted_html',
-        ),
-        'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'basic_html' => array(
-              'weight' => -9,
-            ),
-            'full_html' => array(
-              'weight' => -7,
-            ),
-            'plain_text' => array(
-              'weight' => -10,
-            ),
-            'restricted_html' => array(
-              'weight' => -8,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 15,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_ou-field_uib_jobbnorge_id'.
   $field_instances['node-uib_ou-field_uib_jobbnorge_id'] = array(
     'bundle' => 'uib_ou',
@@ -5609,8 +5341,6 @@ function uib_area_field_default_field_instances() {
   t('Colophone logos');
   t('Contact person');
   t('Content Manager');
-  t('Custom hours');
-  t('Custom opening hours for holidays etc');
   t('Date');
   t('Deadline for event registration.');
   t('Email');
@@ -5621,7 +5351,6 @@ function uib_area_field_default_field_instances() {
   t('Fax');
   t('Follow us');
   t('Here you should type which area this content belongs to');
-  t('Hours');
   t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
   t('If you check this box the twitter feed specified in your social media settings will be displayed on this areas front page.');
   t('Illustration that goes together with the bottom text.');
@@ -5644,7 +5373,6 @@ function uib_area_field_default_field_instances() {
   t('Menu style');
   t('Name');
   t('Note: When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary heading).');
-  t('Offices');
   t('Organisational unit');
   t('Parents');
   t('Phone');

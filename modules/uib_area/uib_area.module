@@ -49,10 +49,6 @@ function uib_area_block_info() {
       'info' => t('Area global html container'),
       'status' => TRUE,
     ),
-    'area_offices' => array(
-      'info' => t('Area offices in different locations'),
-      'status' => TRUE,
-    ),
     'frontpage_links' => array(
       'info' => t('Graphic links used only in the frontpage'),
       'status' => TRUE,
@@ -378,15 +374,6 @@ function uib_area_block_view($delta='') {
         }
       }
     break;
-    case 'area_offices':
-      if(!empty($area)) {
-        $wrapped_area = entity_metadata_wrapper('node', $area);
-        $block['subject'] = NULL;
-        if ($wrapped_area->field_uib_offices->value()) {
-          $block['content'] = uib_area__display_offices_as_tabs($wrapped_area->field_uib_offices->value(), 'offices');
-        }
-      }
-    break;
     case 'frontpage_links':
       if(!empty($area)) {
         $links = array(
@@ -508,77 +495,6 @@ function uib_area__format_visit_address($place) {
     return;
   $address = $place->field_uib_visit_address['und'][0]['thoroughfare'];
   return $address;
-}
-
-/**
- * @param   array   $items      The content of the tabs
- * @param   string  $class      Additional classnames needed for the tabs container
- * @param   string  $view_mode  The view mode of the node displayed
- * @return  string  html        The markup needed for the tabs
- */
-function uib_area__display_offices_as_tabs($items, $class = FALSE, $view_mode = 'teaser') {
-  drupal_add_library('system' , 'ui.tabs');
-  drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js',
-    array('group' => JS_THEME, )
-  );
-  $jq = uib_w3__tabsScript();
-  drupal_add_js($jq, 'inline');
-
-  global $language;
-  $tabs = '<div class="uib-tabs-container';
-  $tabs .= $class ? ' ' . $class : '';
-  $tabs .= '">';
-  $tabs_nav = '<ul>';
-  $tabs_nav_mobile = '<select class="uib-tabs-nav-mobile">';
-  $tabs_content = '';
-  $extra_key = 0;
-  foreach ($items as $key => $item) {
-    $node_title = $item->title;
-    if ($item->type == 'uib_ou' && !empty($item->field_uib_ou_title[$language->language])) {
-      $node_title = $item->field_uib_ou_title[$language->language][0]['value'];
-    }
-    $tabs_nav .= '<li><a href="#uib-tab--' . ($key + $extra_key) . '">' . $node_title . '</a></li>';
-    $tabs_nav_mobile .= '<option value="uib-tab--' . ($key + $extra_key) . '">' . $node_title . '</option>';
-    $tabs_content .= '<div id="uib-tab--' . ($key + $extra_key) . '">';
-    $item_view = node_view($item, $view_mode);
-    $item_view['field_uib_email'][0]['#markup'] =
-      l($item_view['field_uib_email'][0]['#markup'], 'mailto:' . $item_view['field_uib_email'][0]['#markup']);
-    unset($item_view['links']);
-    unset($item_view['#contextual_links']);
-    $google_maps_link = uib_area__google_maps_link($item);
-    $item_view['field_uib_geolocation'][0]['#markup'] = $item_view['field_uib_geolocation'][0]['#markup'] . '<p>' . $google_maps_link . '</p>';
-    $tabs_content .= render($item_view);
-    $tabs_content .= '</div>';
-    if ($item->field_uib_ou_id['und'][0]['value'] == 321201) {
-      $tabs_nav .= uib_area__ub_khib_link($key + 1, $language->language);
-      $tabs_nav_mobile .= '<option value="uib-tab--' . ($key + 1) . '">' . uib_area__ub_khib_title($language->language) . '</option>';
-      $tabs_content .= '<div id="uib-tab--' . ($key + 1) . '"><p class="group-office-information">' . t('You will be redirected to a new page') . '</p></div>';
-      $extra_key = 1;
-    }
-  }
-  $tabs_nav .= '</ul>';
-  $tabs_nav_mobile .= '</select>';
-  $tabs .= $tabs_nav_mobile . $tabs_nav . $tabs_content . '</div>';
-  return $tabs;
-}
-
-function uib_area__ub_khib_link($key, $lang) {
-  $url = '#uib-tab--' . $key;
-  return '<li class="ub-khib"><a href="' . $url . '">' . uib_area__ub_khib_title($lang) . '</a></li>';
-}
-
-function uib_area__ub_khib_title($lang) {
-  $title = $lang == 'en' ? 'Fine Art and Design Library' : 'Bibliotek for kunst og design';
-  return $title;
-}
-
-function uib_area__google_maps_link($item) {
-  $url = 'https://www.google.no/maps/?q=';
-  $url .= urlencode($item->field_uib_visit_address['und'][0]['thoroughfare']);
-  $url .= '&center=' .$item->field_uib_geolocation['und'][0]['lat'];
-  $url .= ',' . $item->field_uib_geolocation['und'][0]['lon'];
-  $text = t('Show in Google Maps');
-  return l($text, $url);
 }
 
 /**
@@ -1075,7 +991,6 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_logo', // Logo
       'field_uib_area_banner', // Banner
       'field_uib_colophone_logos', // Colophone logos
-      'field_uib_offices',
       'field_uib_image_map',
       'field_uib_search_manual_boost',
       'field_uib_search_keywords',
@@ -2853,7 +2768,6 @@ jQuery( document ).ready( function($){
   // Loading jquery ui.tabs
   var selectors = [
     '.profile .uib-tabs-container',
-    '.uib-tabs-container.offices',
     '#block-uib-study-study-content .studytabs',
   ];
   $(selectors.join()).tabs(

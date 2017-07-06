@@ -437,3 +437,18 @@ function uib_area_update_7014() {
     print_r($path);
   }
 }
+/**
+ * Disable office hours module
+ */
+function uib_area_update_7015() {
+  module_disable(array('office_hours'));
+}
+
+/**
+ * Remove fields used by office hours module
+ */
+function uib_area_update_7016() {
+ field_delete_field('field_uib_offices');
+ field_delete_field('field_uib_hours');
+ field_delete_field('field_uib_hours_custom');
+}
