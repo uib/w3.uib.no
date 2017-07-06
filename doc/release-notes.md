@@ -1,3 +1,29 @@
+# Release 75 _2017-07-06_
+
+- Endret feltene for forfatter, tilknyttede personer og kontaktperson for arragementer slik at det nå er mulig å søke etter navn (ikke bare brukernavn) #240
+- Økt antallet treff som vises i resultatlisten til autofullfør-felt #18384
+- Økt bredden på feltet for "Tilknyttet innhold" #18463
+- Rettet feil der lenker under Oversett-fanen på område- og artikkelsider pekte mot ukorrekt språkversjon #18363
+- Lagt til rette for visning av Twitter-modul på områdesidene #18011
+- Designjustert nedre del av områdesidene #18011
+- Rettet feil der felt for twitter card-bilde ble vist i redigeringsmodus #18373
+- Åpnet opp for at redaktører og innholdsprodusenter blir i stand til å endre eierskapet til artikler #18247
+- Lagt til kolonne for språkversjon på webdesken #18381
+- Lagt til felt for stikktittel på vitnesbyrd (vil foreløpig ikke vises) #15933
+- Fjernet overflødig kode i tilknytning til UBs områdeside #18225
+- Endret enkelte hjelpetekster #18479
+- Eksamensinformasjon: Lagt til funksjon som gjør at eksamensperioden for muntlige eksamener blir vist #18372
+- Eksamensinformasjon: Lagt til funksjon som gjør at obligatoriske aktiviter ikke blir vist #18387
+- Eksamensinformasjon: Lagt til funksjon som gjør at feltet "Oppgave utleveres" ikke blir vist #18462
+- Eksamensinformasjon: Lagt til lenke til side med ytterligere informasjon om ordningen med ny eksamen #18467
+- Eksamensinformasjon: Rettet feil der enkelte emner (som bacheloroppgaver) ikke ble vist i den fakultetsvise oversikten #18322 #18429
+- Eksamensinformasjon: Forbedret integrasjonen mellom W3 og FS #18429
+- Eksamensinformasjon: Fjernet rutine som viste tekster om forbehold #18478
+
+# Release 74.1 _2017-06-26_
+- Rettet feil der billedtekst ble vist på innholdslister #18333
+- Rettet feil der eksternt innhold fikk ukorrekte lenker og layout når lagt inn som tilknyttet innhold #18342
+
 # Release 74 _2017-06-22_
 
 - Lagt til funksjon som gjør det mulig å abonnere på kalender for hele uib.no eller på spesifikke områder #17948
