@@ -360,7 +360,8 @@ function __uib_get_breadcrumb($nid, $crumbs=array(), $current_area, $menu_ids) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'uib_article')
-    ->fieldCondition('field_uib_relation', 'target_id', $nid, '=');
+    ->fieldCondition('field_uib_relation', 'target_id', $nid, '=')
+    ->fieldCondition('field_uib_article_type', 'value', 'infopage', '=');
   $result = $query->execute();
   if (!empty($result['node'])) {
     $ids = array_keys($result['node']);
