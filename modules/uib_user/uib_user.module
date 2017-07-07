@@ -932,3 +932,15 @@ function uib_user_get_user_connections($user_name = NULL) {
   }
   return $connected_to;
 }
+
+function uib_user__allow_level_1() {
+  global $user;
+  if (
+      in_array('level 1', $user->roles)
+      || in_array('admin', $user->roles)
+      || $user->uid == 1
+  ) {
+    return TRUE;
+  }
+  return FALSE;
+}

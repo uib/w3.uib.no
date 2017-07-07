@@ -25,6 +25,11 @@ function uib_webdesk_menu() {
     'file' => 'uib_webdesk.release_notes.inc',
     'access callback' => TRUE,
   );
+  $items["webdesk/userconn"] = array(
+    'page callback' => 'uib_webdesk__connections',
+    'access callback' => 'uib_user__allow_level_1',
+    'page arguments' => array(2),
+  );
   return $items;
 }
 
@@ -93,4 +98,85 @@ function uib_webdesk_preprocess_views_view(&$variables) {
       }
     }
   }
+}
+
+function uib_webdesk__connections($user = '') {
+  if (!$user) {
+    $user = isset($_POST['user']) ? $_POST['user'] : '';
+  }
+  $render = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => array('area_connections'),
+    ),
+    'title' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'H2',
+      '#value' => t('Check users connections to areas in W3'),
+    ),
+    'form' => array(
+      '#type' => 'form',
+      '#attributes' => array(
+        'class' => array('area_connections'),
+      ),
+      '#action' => '/webdesk/userconn',
+      '#method' => 'post',
+      '#id' => 'uib-user-connections-form',
+      'query' => array(
+        '#type' => 'textfield',
+        '#value' => $user,
+        '#attributes' => array(
+          'class' => array('query-field'),
+          'name' => 'user',
+          'autocomplete' => 'off',
+          'placeholder' => t('Type username'),
+        ),
+      ),
+      'submit' => array(
+        '#type' => 'submit',
+        '#value' => t('List users connections'),
+      ),
+    ),
+  );
+  if ($user) {
+    $conns = uib_user_get_user_connections($user);
+    $content_manager = array();
+    $tpl = array(
+      'break' => array('#markup' => '<br/>'),
+      '#type' => 'container',
+      'title' => array(
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+      ),
+      'list' => array('#markup' => '<ul>'),
+    );
+    $t = FALSE;
+    if (isset($conns['content_manager'])) {
+      $t = $tpl;
+      $t['title']['#value'] = t('User is content manager for');
+      foreach ($conns['content_manager'] as $key => $value) {
+        $link = l(check_plain($value->title) . " ({$key})", "node/$key");
+        $t['list']['#markup'] .= "<li>$link</li>";
+      }
+      $t['list']['#markup'] .= '</ul>';
+    }
+    if ($t) {
+      $render['content_manager'] = $t;
+    }
+    $t = FALSE;
+    if (isset($conns['staff'])) {
+      $t = $tpl;
+      $t['title']['#value'] = t('User is staff on');
+      foreach ($conns['staff'] as $key => $value) {
+        $link = l(check_plain($value->title) . " ({$key})", "node/$key");
+        $t['list']['#markup'] .= "<li>$link</li>";
+      }
+      $t['list']['#markup'] .= '</ul>';
+    }
+    if ($t) {
+      $render['staff'] = $t;
+    }
+
+  }
+  return $render;
 }
