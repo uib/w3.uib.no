@@ -2111,22 +2111,20 @@ function uib_study__get_resource_links($type, $data) {
 function uib_study__get_schedule_link($study_code, $semester, $classes) {
   global $language;
   $lang = ($language->language == 'nb' ? '' : 'en');
-  $semester = substr($semester, 2);
-  if ($semester == '17v') {
-    $path = 'http://rom.app.uib.no/timeplanliste.php?emne='. $study_code . '&periode=2017v&lang=' . $lang . '&simple=1';
-  } else {
-    $path = 'https://tp.uio.no/uib/timeplan/calendar2.php?id='. $study_code . '&sem=' . $semester . '&sort=cal';
-  }
-  $schedule = array(
-    '#theme' => 'link',
-    '#text' => t('Schedule'),
-    '#path' => $path,
-    '#options' => array(
-      'attributes' => array('class' => $classes),
-      'html' => TRUE,
-    ),
-  );
+  // Make sure that the schedule link is not displayed until one month before semester start
+  if (isset($_GET['sem']) && ((substr($_GET['sem'], -1) == 'v' && (date('n') < 7 || date('n') > 11)) || (substr($_GET['sem'], -1) == 'h' && date('n') > 5))) {
+    $semester = substr($semester, 2);
+    $schedule = array(
+      '#theme' => 'link',
+      '#text' => t('Schedule'),
+      '#path' => 'https://tp.uio.no/uib/timeplan/calendar2.php?id='. $study_code . '&sem=' . $semester . '&sort=cal',
+      '#options' => array(
+        'attributes' => array('class' => $classes),
+        'html' => TRUE,
+      ),
+    );
   return $schedule;
+  }
 }
 
 function uib_study__get_reading_list_link($path, $classes, $fragment = FALSE) {
