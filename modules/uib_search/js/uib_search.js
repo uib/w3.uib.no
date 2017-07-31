@@ -241,6 +241,9 @@
           $().getVal(v._source, 'ou_' + lang);
 
         var phone = $().getVal(v._source, 'phone');
+        // Strip spaces and +47 from phone numbers for nice appearence on
+        // narrow displays.
+        var narrowphone = phone.replace(/\+47 ?/g, '').replace(/([^,]) /g, '$1');
 
         var displaylink = $('<a></a>')
           .attr('href', user_url)
@@ -266,7 +269,16 @@
             )
           )
           .append(
-            $('<div></div>').addClass('phone').text(phone)
+            $('<div></div>').addClass('phone').html(
+              [
+                '<span class="wide">',
+                phone,
+                '</span>',
+                '<span class="narrow">',
+                narrowphone,
+                '</span>',
+              ].join("\n")
+            )
           );
 
         // Rewrite markup if document type = node
