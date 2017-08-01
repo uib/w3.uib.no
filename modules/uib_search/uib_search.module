@@ -1548,7 +1548,7 @@ function uib_search__proxy_search() {
       'w3.search_keywords' => array(
         'query' =>  $shortquery,
         'boost' =>  2,
-        'fuzziness' =>  'auto',
+        'fuzziness' =>  1,
         '_name' =>  'Fuzzy-match-keywords',
       ),
     ),
