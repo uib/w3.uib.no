@@ -1334,6 +1334,7 @@ function uib_search__proxy_search() {
   $size = isset($_REQUEST['size']) ? $_REQUEST['size'] : '10';
   $from = isset($_REQUEST['from']) ? $_REQUEST['from'] : '0';
   $lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : 'nb';
+  $querynum = $_REQUEST['querynum'];
 
 
   $url = rtrim(uib_search__get_setup('url'), '/');
@@ -2247,6 +2248,7 @@ function uib_search__proxy_search() {
 
   $result = uib_search__run_elastic_request($url, json_encode($data), 'GET', FALSE, 5);
   drupal_json_output();
-  print $result->data;
+  $qstr = '"querynum":' . intval($_REQUEST['querynum']) . ',';
+  print preg_replace('/\{/', '{' . $qstr, $result->data, 1);
   drupal_exit();
 }

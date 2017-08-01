@@ -92,6 +92,8 @@
       return $(this).val();
     }).get();
 
+    // Keep count of queries, and dont overwrite newer queries
+    $.uib_search.querynum++;
     // Options for jquery ajax-call
     var options = {
       url: '/api/search',
@@ -102,6 +104,7 @@
         size: $.uib_search.size,
         from: $.uib_search.from,
         lang: $.uib_search.lang,
+        querynum: $.uib_search.querynum,
       },
       dataType: 'json',
       beforeSend: function (xhr) {
@@ -116,6 +119,9 @@
   $.fn.createResults = function (resultsselector, query) {
 
     return function (data, status, jqXHR) {
+      // Don't process if a new query is underway
+      if ($.uib_search.querynum > data.querynum) return;
+
       $.uib_search.currentquery = query;
 
       var resultstag = $(resultsselector);
@@ -561,6 +567,7 @@
       select: '',
       excerpt_length: 350,
       current_request: null,
+      querynum: 0,
       debug: 0,
     };
 
