@@ -2220,7 +2220,7 @@ function uib_search__create_query() {
       'field_value_factor' =>  array(
         'field' =>  'search_manual_boost',
         'modifier' =>  'square',
-        'factor' =>  1,
+        'factor' =>  1.5,  // Determine how much manual boost affect results
       ),
     ),
   );

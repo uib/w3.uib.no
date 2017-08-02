@@ -11,7 +11,7 @@ if [ "$(hostname)" = attilatest.uib.no ]; then
     bin/index-all-nodes
 fi
 
-REL=75
+REL=77
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -20,4 +20,9 @@ fi
 
 set -x
 
-bin/site-drush vset uib_study_hide_datoUtlevert_in_exams_list TRUE
+# Get nid's where manual boost is set to 10
+ids="$(bin/site-drush sqlq --extra=-t 'select entity_id from field_data_field_uib_search_manual_boost where field_uib_search_manual_boost_value=10')"
+for id in $ids; do
+  # Set manual boost to 3 instead of 10
+  bin/site-drush ev '$w=entity_metadata_wrapper("node",'$id'); $w->field_uib_search_manual_boost->set(3); $w->save();';
+done
