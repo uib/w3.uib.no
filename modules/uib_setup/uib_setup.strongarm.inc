@@ -918,6 +918,13 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_time_only_format';
+  $strongarm->value = 'H:i';
+  $export['scheduler_time_only_format'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_unpublish_enable_uib_article';
   $strongarm->value = 1;
   $export['scheduler_unpublish_enable_uib_article'] = $strongarm;
