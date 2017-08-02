@@ -510,16 +510,7 @@
             },
             "url_string": {
               "type": "string",
-              "fields": {
-                "nb": {
-                  "type": "string",
-                  "analyzer": "norwegian"
-                },
-                "en": {
-                  "type": "string",
-                  "analyzer": "english"
-                }
-              }
+              "index": "not_analyzed"
             },
             "study_code": {
               "type": "string",
@@ -760,16 +751,7 @@
             },
             "url_string": {
               "type": "string",
-              "fields": {
-                "nb": {
-                  "type": "string",
-                  "analyzer": "norwegian"
-                },
-                "en": {
-                  "type": "string",
-                  "analyzer": "english"
-                }
-              }
+              "index": "not_analyzed"
             },
             "study_code": {
               "type": "string",
