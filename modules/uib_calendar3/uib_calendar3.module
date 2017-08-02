@@ -567,7 +567,7 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
     ),
     'link' => array(
       '#markup' => l(
-        t('Download or copy this link to add events from @area to your calendar',
+        t('Subscribe to calendar',
           array('@area' => $area->title)
         ),
         $url
