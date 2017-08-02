@@ -849,16 +849,16 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     $output['url'] = $replace_url['url'];
   }
   // URL - string for search
-  $pattern = array(
-    '/https?:\/\/[a-z0-9\.-]+\/((en)|(nb))?\//',
-    '/\/[0-9]+\//'
-  );
-  $output['url_string'] = preg_replace($pattern, array('','/'), $output['url']);
+  // Remove query string if exists
+  $output['url_string'] = preg_replace('/\?.*/', '', $output['url']);
+  // Extract last part of url
+  $output['url_string'] =  strtolower(basename($output['url_string']));
 
   if ($wrapped_entity->getBundle() == 'uib_study') {
     $output['title'] = uib_search__null_if_empty($wrapped_entity->field_uib_study_title->value());
   }
   unset($wrapped_entity);
+
   if (@$output['article_type']) {
     $type .= " - " . $output['article_type'];
   }
@@ -1681,15 +1681,15 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   );
   $searchquery['bool']['should'][] = $tmp;
 
-  // Match url elements on nodes
-  $tmp = array('match' =>  array());
-  $tmp['match']["w3.url_string.{$lang}"] = array(
-    'query' => $query,
-    'boost' =>  $boosting[$px . 'match-url'],
-    'fuzziness' =>  'auto',
-    'prefix_length' =>  3,
-    'max_expansions' =>  50,
-    '_name' =>  'Match-url',
+  // Exact match url elements on nodes
+  $tmp = array(
+    'term' =>  array(
+      'w3.url_string' => array(
+        'value' => strtolower($query),
+        'boost' => $boosting[$px . 'match-url'],
+        '_name' =>  'Match-url',
+      ),
+    ),
   );
   $searchquery['bool']['should'][] = $tmp;
 
