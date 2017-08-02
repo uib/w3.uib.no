@@ -1536,6 +1536,7 @@ function uib_search__create_query() {
         'query' =>  $shortquery,
         'boost' =>  2,
         'fuzziness' =>  1,
+        'prefix_length' => 4,
         '_name' =>  'Fuzzy-match-keywords',
       ),
     ),
