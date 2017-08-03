@@ -176,7 +176,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     }
     if (
       $form_state['node']->status == 1
-      || count($form_state['node']->field_uib_published_timestamp)
+      || (isset($form_state['node']->field_uib_published_timestamp) && count($form_state['node']->field_uib_published_timestamp))
     ) {
       $form['options']['field_uib_published_timestamp'] = $form['field_uib_published_timestamp'];
       $form['options']['field_uib_published_timestamp']['#weight'] = 1000;
