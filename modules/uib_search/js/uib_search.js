@@ -96,7 +96,7 @@
     $.uib_search.querynum++;
     // Options for jquery ajax-call
     var options = {
-      url: '/api/search',
+      url: $.uib_search.url,
       method: 'GET',
       data: {
         query: query,
@@ -528,8 +528,8 @@
             + matched
             );
         }
-        console.log("Execution time (with execution delay subtracted): " +
-          ((new Date().getTime() - uib_timer - $.uib_search.delay)/1000) + "sec"
+        console.log("Execution time: " +
+          ((new Date().getTime() - uib_timer)/1000) + "sec"
         );
       }
     };
@@ -569,6 +569,7 @@
       current_request: null,
       querynum: 0,
       debug: 0,
+      url: '/sites/all/modules/uib/uib_search/php/qs.php',
     };
 
 

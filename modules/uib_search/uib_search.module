@@ -8,11 +8,6 @@ function uib_search_menu() {
     'page callback' => 'uib_search__page',
     'access callback' => TRUE,
   );
-  $items["api/search"] = array(
-    'page callback' => 'uib_search__proxy_search',
-    'page arguments' => array(),
-    'access callback' => TRUE,
-  );
   $items["searchboost/up/%/%"] = array(
     'page callback' => 'uib_search__boost_item_search',
     'page arguments' => array(1,2,3),
@@ -1327,20 +1322,13 @@ function uib_search__clean_utf8_string_array(&$array) {
   );
 }
 
-
-function uib_search__proxy_search() {
+function uib_search__create_query() {
   $query = $_REQUEST['query'];
   $filter = (array)$_REQUEST['filters'];
   $size = isset($_REQUEST['size']) ? $_REQUEST['size'] : '10';
   $from = isset($_REQUEST['from']) ? $_REQUEST['from'] : '0';
   $lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : 'nb';
   $querynum = $_REQUEST['querynum'];
-
-
-  $url = rtrim(uib_search__get_setup('url'), '/');
-  $url .= '/' . uib_search__get_setup('index');
-  $url .= '/_search';
-
   $all = FALSE;
   $should = array();
   $tmp = array();
@@ -1385,7 +1373,6 @@ function uib_search__proxy_search() {
       'w3.published_timestamp',
     ),
   );
-
   $boostquery = array(
     'bool' => array(
       'should'=> array(),
@@ -2245,10 +2232,5 @@ function uib_search__proxy_search() {
       'negative_boost' =>  0.03,
     ),
   );
-
-  $result = uib_search__run_elastic_request($url, json_encode($data), 'GET', FALSE, 5);
-  drupal_json_output();
-  $qstr = '"querynum":' . intval($_REQUEST['querynum']) . ',';
-  print preg_replace('/\{/', '{' . $qstr, $result->data, 1);
-  drupal_exit();
+  return $data;
 }
