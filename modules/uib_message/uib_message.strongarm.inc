@@ -14,7 +14,7 @@ function uib_message_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_uib_message';
-  $strongarm->value = 'edit-diff';
+  $strongarm->value = 'edit-scheduler';
   $export['additional_settings__active_tab_uib_message'] = $strongarm;
 
   $strongarm = new stdClass();
