@@ -31,6 +31,13 @@
             "lowercase"
           ]
         },
+        "lowercase_nospace": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "filter":   [
+            "lowercase"
+          ]
+        },
         "phonenumber": {
           "type": "custom",
           "tokenizer": "standard",
@@ -331,7 +338,7 @@
             },
             "study_code": {
               "type": "string",
-              "analyzer": "lowercase"
+              "analyzer": "lowercase_nospace"
             },
             "text_en": {
               "type": "string",
@@ -514,7 +521,7 @@
             },
             "study_code": {
               "type": "string",
-              "analyzer": "lowercase"
+              "analyzer": "lowercase_nospace"
             },
             "study_title": {
               "type": "string",
@@ -755,7 +762,7 @@
             },
             "study_code": {
               "type": "string",
-              "analyzer": "lowercase"
+              "analyzer": "lowercase_nospace"
             },
             "study_title": {
               "type": "string",
