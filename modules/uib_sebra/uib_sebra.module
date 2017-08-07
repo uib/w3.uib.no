@@ -1001,10 +1001,6 @@ function uib_sebra__area_diff($list = TRUE) {
   $sebra_areas = uib_sebra__sws_get('omraader');
   foreach ($sebra_areas->omraade as $omr) {
     $sebra_area_code = (string)$omr->OMRAADEKODE;
-    $area_info = uib_sebra__sws_get('omraader?omraadekode=' . $omr->OMRAADEKODE);
-    if (!empty($area_info->STATUS)) {
-      var_dump($area_info);
-    }
     if (!empty($sebra_areas_in_w3[$sebra_area_code])) {
       // area is in w3
       $sebra_areas_confirmed[$sebra_area_code] = array($sebra_areas_in_w3[$sebra_area_code], $omr->OMRAADE_NAVN);
