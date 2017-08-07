@@ -78,9 +78,7 @@
   };
 
   $.fn.encodeURIComponent = function (inputstring) {
-    return encodeURIComponent(inputstring).replace(/[!'()*]/g, function(c) {
-      return '%' + c.charCodeAt(0).toString(16);
-    });
+    return encodeURIComponent(inputstring.replace(/[!~*'()/]+/g,'_'));
   };
   $.fn.executeQuery = function (query){
     // Starting timer for debugging
@@ -96,10 +94,9 @@
     $.uib_search.querynum++;
     // Options for jquery ajax-call
     var options = {
-      url: $.uib_search.url,
-      method: 'GET',
+      url: $.uib_search.url + "/" + $.fn.encodeURIComponent(query),
+      method: 'POST',
       data: {
-        query: query,
         filters: filters,
         size: $.uib_search.size,
         from: $.uib_search.from,
