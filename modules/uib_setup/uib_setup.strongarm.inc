@@ -155,6 +155,12 @@ function uib_setup_strongarm() {
         'custom settings' => 1,
       ),
     ),
+    'node' => array(
+      'quote' => array(
+        'label' => 'Quote',
+        'custom settings' => 1,
+      ),
+    ),
   );
   $export['entity_view_modes'] = $strongarm;
 

@@ -468,7 +468,7 @@ EOD;
         $variables['page']['content_bottom']['uib_area_testimonial'] = field_view_field('node', $variables['node'], 'field_uib_profiled_testimonial', array(
           'weight' => 5,
           'type' => 'entityreference_entity_view',
-          'settings' => array('view_mode' => 'teaser'),
+          'settings' => array('view_mode' => 'quote'),
           'label' => 'hidden',
         ));
         $variables['page']['content_bottom']['uib_area_exhibitions'] = __uib_w3__render_block('uib_calendar3', 'exhibitions3', 10);
@@ -1013,6 +1013,12 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         $variables['content']['field_uib_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_media']);
       }
       $variables['theme_hook_suggestions'][] = 'node__testimonial__teaser';
+    }
+    if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'quote') {
+      if (count($variables['field_uib_media']) > 1) {
+        $variables['content']['field_uib_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_media']);
+      }
+      $variables['theme_hook_suggestions'][] = 'node__testimonial__quote';
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'teaser') {
       if (isset($variables['content']['field_uib_lead'][0]['#markup'])) {

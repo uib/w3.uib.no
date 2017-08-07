@@ -74,6 +74,9 @@ function uib_area_strongarm() {
       'short_teaser' => array(
         'custom_settings' => TRUE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -127,6 +130,9 @@ function uib_area_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'quote' => array(
         'custom_settings' => FALSE,
       ),
     ),

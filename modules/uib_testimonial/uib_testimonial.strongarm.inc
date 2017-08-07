@@ -55,6 +55,9 @@ function uib_testimonial_strongarm() {
       'short_teaser' => array(
         'custom_settings' => TRUE,
       ),
+      'quote' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -86,6 +89,10 @@ function uib_testimonial_strongarm() {
           ),
           'short_teaser' => array(
             'weight' => '0',
+            'visible' => FALSE,
+          ),
+          'quote' => array(
+            'weight' => '4',
             'visible' => FALSE,
           ),
         ),

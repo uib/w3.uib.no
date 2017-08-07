@@ -5024,6 +5024,12 @@ function uib_area_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'quote' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'short_teaser' => array(
         'label' => 'above',
         'settings' => array(),
