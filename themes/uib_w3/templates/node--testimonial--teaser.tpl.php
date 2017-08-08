@@ -80,9 +80,11 @@
 ?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content clearfix"<?php print $content_attributes; ?>>
+    <?php print render($content['group_media_wrapper']['group_media_content']['field_uib_kicker']); ?>
     <?php print render($content['field_uib_media']); ?>
-    <a href="<?php print $node_url; ?>"><?php print render($content['field_uib_quote']); ?></a>
-    <?php print render($content['field_uib_name']); ?>
-    <?php print render($content['field_uib_position']); ?>
+    <h2<?php print $title_attributes; ?>>
+      <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+    </h2>
+    <?php print render($content['group_media_wrapper']['group_media_content']['field_uib_lead']); ?>
   </div>
 </div>

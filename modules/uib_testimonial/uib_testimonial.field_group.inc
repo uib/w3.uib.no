@@ -115,6 +115,71 @@ function uib_testimonial_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_media_content|node|uib_testimonial|teaser';
+  $field_group->group_name = 'group_media_content';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_testimonial';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = 'group_media_wrapper';
+  $field_group->data = array(
+    'label' => '',
+    'weight' => '22',
+    'children' => array(
+      0 => 'field_uib_kicker',
+      1 => 'field_uib_lead',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => '',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-media-content field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_media_content|node|uib_testimonial|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_media_wrapper|node|uib_testimonial|teaser';
+  $field_group->group_name = 'group_media_wrapper';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'uib_testimonial';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => '',
+    'weight' => '19',
+    'children' => array(
+      0 => 'group_media_content',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => '',
+      'instance_settings' => array(
+        'id' => '',
+        'classes' => 'group-media-wrapper field-group-div',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'none',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $field_groups['group_media_wrapper|node|uib_testimonial|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_sidebar|node|uib_testimonial|form';
   $field_group->group_name = 'group_sidebar';
   $field_group->entity_type = 'node';
