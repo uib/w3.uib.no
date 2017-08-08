@@ -1439,7 +1439,7 @@ function uib_area_field_default_field_bases() {
   // Exported field_base: 'field_uib_profiled_message'.
   $field_bases['field_uib_profiled_message'] = array(
     'active' => 1,
-    'cardinality' => 5,
+    'cardinality' => 6,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_uib_profiled_message',
@@ -1454,6 +1454,7 @@ function uib_area_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'handler' => 'base',
       'handler_settings' => array(
+        'autocomplete_items_limit' => 10,
         'behaviors' => array(
           'views-select-list' => array(
             'status' => 0,
@@ -1464,6 +1465,7 @@ function uib_area_field_default_field_bases() {
         ),
         'target_bundles' => array(
           'uib_article' => 'uib_article',
+          'uib_external_content' => 'uib_external_content',
         ),
       ),
       'target_type' => 'node',

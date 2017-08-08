@@ -25,3 +25,15 @@ function uib_external_form_alter(&$form, &$form_state, $form_id) {
   }
 
 }
+
+/**
+ * Implements hook_entity_info_alter
+ */
+function uib_external_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes'] += array(
+    'front_page_icons' => array(
+      'label' => t('Front page icons'),
+      'custom settings' => FALSE,
+    ),
+  );
+}

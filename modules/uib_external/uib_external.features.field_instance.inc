@@ -24,6 +24,12 @@ function uib_external_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 8,
       ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'short_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -85,6 +91,12 @@ function uib_external_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'short_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -143,6 +155,12 @@ function uib_external_field_default_field_instances() {
         ),
         'type' => 'text_default',
         'weight' => 3,
+      ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -248,6 +266,28 @@ function uib_external_field_default_field_instances() {
         'type' => 'link_default',
         'weight' => 0,
       ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 0,
+      ),
       'short_teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -325,6 +365,12 @@ function uib_external_field_default_field_instances() {
         ),
         'type' => 'file_rendered',
         'weight' => 2,
+      ),
+      'front_page_icons' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -405,6 +451,12 @@ function uib_external_field_default_field_instances() {
     'description' => 'If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'front_page_icons' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -491,6 +543,12 @@ function uib_external_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 4,
       ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'short_teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -545,6 +603,12 @@ function uib_external_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 7,
+      ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -608,6 +672,12 @@ function uib_external_field_default_field_instances() {
         ),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'front_page_icons' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'short_teaser' => array(
         'label' => 'hidden',

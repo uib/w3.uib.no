@@ -598,7 +598,6 @@ EOD;
           ));
           break;
         case 'frontpage':
-          $variables['page']['content_bottom']['frontpage_links'] = __uib_w3__render_block('uib_area', 'frontpage_links', 0);
           if (!empty($variables['page']['content_top']['field_uib_primary_media'])) {
             if ($variables['language']->language == 'en') {
               $find_studies = __uib_w3__get_renderable_menu('menu-uib-find-studies-en');
@@ -614,6 +613,26 @@ EOD;
               '#tag' => 'nav',
             );
           }
+
+          // Move everything in [content_top] to [content_top][top_banner]
+          $top = $variables['page']['content_top'];
+          $variables['page']['content_top'] = array(
+            'top_banner' => array(
+              '#type' => 'container',
+              '#attributes' => array(
+                'class' => array('top-banner'),
+              ),
+            ),
+          );
+          $variables['page']['content_top']['top_banner'] += $top;
+
+          $variables['page']['content_top']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
+            'weight' => 400,
+            'type' => 'entityreference_entity_view',
+            'settings' => array('view_mode' => 'front_page_icons'),
+            'label' => 'hidden',
+          ));
+
           break;
       }
       break;
@@ -1144,6 +1163,10 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
     if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'teaser') {
       $variables['theme_hook_suggestions'][] = 'node__external_content__teaser';
+      $variables['title'] =
+        isset($variables['field_uib_links']['und'][0]['title']) ?
+          $variables['field_uib_links']['und'][0]['title'] :
+          $variables['title'];
       $variables['content']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_media', array(
         'type' => 'file_rendered',
         'settings' => array('file_view_mode' => 'wide_thumbnail'),
@@ -1165,6 +1188,20 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
       $variables['theme_hook_suggestions'][] = 'node__external_content__short_teaser';
 
+    }
+    if ($variables['type'] == 'uib_external_content' && $variables['view_mode'] == 'front_page_icons') {
+      $variables['theme_hook_suggestions'][] = 'node__external_content__front_page_icons';
+      $variables['title'] =
+        isset($variables['field_uib_links'][0]['title']) ?
+          $variables['field_uib_links'][0]['title'] :
+          $variables['title'];
+
+      $variables['content']['field_uib_media'] = field_view_field(
+        'node',
+        $variables['node'],
+        'field_uib_media',
+        'default'
+      );
     }
     if ($variables['type'] == 'uib_testimonial' && $variables['view_mode'] == 'short_teaser') {
       $variables['theme_hook_suggestions'][] = 'node__testimonial__short_teaser';

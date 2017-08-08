@@ -1544,6 +1544,102 @@ a,
           background: rgba(56, 56, 56, 0.4);
           text-decoration: none; } }
 
+.front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
+  margin: 3.5rem 0 0;
+  width: auto; }
+  @media (min-width: 600px) {
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
+      margin: 2.975rem 0 0; } }
+  .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-pack: center;
+    -ms-flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: center;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap; }
+    @media (min-width: 1050px) {
+      .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
+        flex-wrap: nowrap; } }
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even {
+      width: 11.625rem;
+      max-width: 11.625rem;
+      min-width: 11.625rem;
+      height: 10.294117647rem;
+      overflow-y: hidden;
+      margin: 0;
+      padding: 0;
+      border: none;
+      flex: 0 1 13.235294118rem; }
+      .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:visited, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:visited {
+        text-decoration: none;
+        color: #333; }
+      @media (min-width: 400px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(odd), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(odd) {
+          margin-left: 7%; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(even), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(odd):last-child, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(even), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(odd):last-child {
+          margin-right: 7%; } }
+      @media (min-width: 600px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even {
+          height: 8.75rem;
+          flex: 0 1 11.25rem; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(odd), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(odd) {
+            margin-left: 0; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(even), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(odd):last-child, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(even), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(odd):last-child {
+            margin-right: 0; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(4) {
+            margin-left: 19%; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(2):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(2):nth-last-child(3) {
+            margin-right: 19%; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(5), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(5) {
+            margin-left: 2.5%; }
+          .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(3) {
+            margin-right: 2.5%; } }
+      @media (min-width: 780px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(4) {
+          margin-left: 0; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(2):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(2):nth-last-child(3) {
+          margin-right: 0; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(5), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(5) {
+          margin-left: 12%; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(3) {
+          margin-right: 12%; } }
+      @media (min-width: 960px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(5), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(5) {
+          margin-left: 16%; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(3) {
+          margin-right: 16%; } }
+      @media (min-width: 1050px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(1):nth-last-child(5), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(6), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(1):nth-last-child(5) {
+          margin-left: 0; }
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(3):nth-last-child(3), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(4), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(3):nth-last-child(3) {
+          margin-right: 0; } }
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .node > h2 {
+      margin: .75rem 0 0 0;
+      font-size: 1.102941176rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #333;
+      text-align: center;
+      width: 11.625rem;
+      text-decoration: none; }
+      @media (min-width: 600px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .node > h2 {
+          font-size: .9375rem; } }
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-media, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-study-image {
+      max-width: 11.625rem; }
+      @media (min-width: 600px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-media:before, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-study-image:before {
+          display: none; } }
+      .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-media img, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field.field-type-file.field-wrapper.field-name-field-uib-study-image img {
+        width: auto;
+        margin: 0 auto; }
+
 #block-uib-area-frontpage-links ul {
   list-style: none;
   display: -ms-flexbox;
@@ -7800,6 +7896,8 @@ body #mc_embed_signup div.mce_inline_error {
   .content-main-wrapper .region-content .field-name-field-uib-user-competence:nth-child(2), .content-main-wrapper .region-content .block-uib-user:nth-child(2) {
     margin-top: 2.75rem; } }
 
+.node-type-area.front .content-top .top-banner {
+  position: relative; }
 .node-type-area .field-name-field-uib-primary-text {
   padding: 1rem 2%;
   margin-bottom: 1rem; }

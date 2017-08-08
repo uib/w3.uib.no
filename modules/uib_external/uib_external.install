@@ -40,3 +40,11 @@ function uib_external_update_7000() {
     }
   }
 }
+/**
+ * Add new view mode to external content nodes.
+ */
+function uib_external_update_7001() {
+  $settings = field_bundle_settings('node', 'uib_external_content');
+  $settings['view_modes']['front_page_icons']['custom_settings'] = TRUE;
+  field_bundle_settings('node', 'uib_external_content', $settings);
+}
