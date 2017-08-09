@@ -7702,15 +7702,19 @@ body #mc_embed_signup div.mce_inline_error {
     font-size: 1.25rem;
     display: block;
     float: left;
-    color: #333; }
+    color: #00769e; }
 .node-uib-views-page .fieldset-wrapper .bef-toggle {
-  padding: 0 0 0 35px; }
+  padding: 10px 0 0 35px;
+  display: block; }
 
 #block-views-study-blocks-courses-all-b1 [class*=views-widget-filter-tid] {
   margin-bottom: 1rem; }
   #block-views-study-blocks-courses-all-b1 [class*=views-widget-filter-tid] .fieldset-title {
-    display: inline-block;
-    float: none; }
+    display: block;
+    float: none;
+    position: relative;
+    left: -33px;
+    padding-left: 33px; }
   #block-views-study-blocks-courses-all-b1 [class*=views-widget-filter-tid] .summary {
     display: none; }
 #block-views-study-blocks-courses-all-b1 fieldset.collapsed {
