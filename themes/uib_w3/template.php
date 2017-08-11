@@ -86,8 +86,16 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['global_menu']['#prefix'] = '<nav class="global-menu">';
     $variables['page']['header']['global_menu']['#suffix'] = '</nav>';
     $variables['page']['header']['global_menu']['#weight'] = -10;
+    $variables['page']['header']['mobile_menu'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => array('class' => 'menu-button'),
+      '#value' => t('Menu'),
+    );
+    $variables['page']['header']['mobile_menu']['#prefix'] = '<nav class="mobile-menu">';
+    $variables['page']['header']['mobile_menu']['#suffix'] = '</nav>';
+    $variables['page']['header']['mobile_menu']['#weight'] = -11;
   }
-
   $current_area = uib_area__get_current();
   $frontpage = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
