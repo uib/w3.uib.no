@@ -1157,12 +1157,14 @@ a,
     justify-content: flex-start; }
     #block-uib-calendar3-calendar3 .event:nth-last-child(2) {
       border-bottom: none; }
-    @media screen and (min-width: 600px) {
-      #block-uib-calendar3-calendar3 .event.first.noimage > a {
-        -ms-flex: 0 0 96%;
-        -webkit-flex: 0 0 96%;
-        flex: 0 0 96%;
-        max-width: 96%; } }
+    #block-uib-calendar3-calendar3 .event.first.noimage {
+      display: block; }
+      @media screen and (min-width: 600px) {
+        #block-uib-calendar3-calendar3 .event.first.noimage > a {
+          -ms-flex: 0 0 96%;
+          -webkit-flex: 0 0 96%;
+          flex: 0 0 96%;
+          max-width: 96%; } }
     #block-uib-calendar3-calendar3 .event.first {
       padding: 0 0 25px 0;
       display: block;
