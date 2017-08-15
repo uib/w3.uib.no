@@ -8083,7 +8083,29 @@ body #mc_embed_signup div.mce_inline_error {
     float: right;
     margin-left: 0;
     margin-right: 0;
-    clear: none; } }
+    clear: none; }
+
+  .node-type-uib-article .content-main-wrapper:after, .node-type-area .content-main-wrapper:after, .node-type-uib-testimonial .content-main-wrapper:after, .node-type-uib-study .content-main-wrapper:after, .node-type-uib-content-list .content-main-wrapper:after, .node-type-uib-views-page .content-main-wrapper:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    position: relative;
+    left: calc(50% - 15px);
+    background-color: inherit; }
+  .node-type-uib-article .content-main-wrapper:after {
+    bottom: -5.7rem; }
+  .node-type-area .content-main-wrapper:after {
+    bottom: -3.6rem; }
+  .node-type-uib-testimonial .content-main-wrapper:after {
+    bottom: -8.2rem; }
+  .node-type-uib-study .content-main-wrapper:after {
+    bottom: -5.7rem; }
+  .node-type-uib-content-list .content-main-wrapper:after {
+    bottom: -8.2rem; }
+  .node-type-uib-views-page .content-main-wrapper:after {
+    bottom: -8.2rem; } }
 @media screen and (min-width: 960px) {
   .content-top-wrapper > * {
     max-width: 72rem;
@@ -8096,25 +8118,6 @@ body #mc_embed_signup div.mce_inline_error {
       content: "";
       display: table;
       clear: both; }
-    .node-type-uib-article .content-main-wrapper:after, .node-type-area .content-main-wrapper:after, .node-type-uib-testimonial .content-main-wrapper:after, .node-type-uib-study .content-main-wrapper:after, .node-type-uib-content-list .content-main-wrapper:after, .node-type-uib-views-page .content-main-wrapper:after {
-      width: 30px;
-      height: 30px;
-      transform: rotate(45deg);
-      position: relative;
-      left: 50%;
-      background-color: inherit; }
-    .node-type-uib-article .content-main-wrapper:after {
-      bottom: -5.7rem; }
-    .node-type-area .content-main-wrapper:after {
-      bottom: -3.6rem; }
-    .node-type-uib-testimonial .content-main-wrapper:after {
-      bottom: -8.2rem; }
-    .node-type-uib-study .content-main-wrapper:after {
-      bottom: -5.7rem; }
-    .node-type-uib-content-list .content-main-wrapper:after {
-      bottom: -8.2rem; }
-    .node-type-uib-views-page .content-main-wrapper:after {
-      bottom: -8.2rem; }
     .content-main-wrapper > * {
       max-width: 72rem;
       margin-left: auto;
