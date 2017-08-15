@@ -953,7 +953,7 @@ webdesk/*';
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_time_only_format';
-  $strongarm->value = 1;
+  $strongarm->value = 'H:i';
   $export['scheduler_time_only_format'] = $strongarm;
 
   $strongarm = new stdClass();
