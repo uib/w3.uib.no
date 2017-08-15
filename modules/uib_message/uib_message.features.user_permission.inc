@@ -134,7 +134,12 @@ function uib_message_user_default_permissions() {
   // Exported permission: 'view any unpublished uib_message content'.
   $permissions['view any unpublished uib_message content'] = array(
     'name' => 'view any unpublished uib_message content',
-    'roles' => array(),
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
     'module' => 'view_unpublished',
   );
 

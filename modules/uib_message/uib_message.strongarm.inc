@@ -62,6 +62,9 @@ function uib_message_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
