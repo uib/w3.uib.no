@@ -1454,7 +1454,6 @@ function uib_search__create_query() {
         'filter' => array(
           'terms' => array(
             '_type' => array(
-              "user",
               "node",
             ),
           ),
@@ -1466,9 +1465,35 @@ function uib_search__create_query() {
             ),
           ),
         ),
+        'boost' => 2,
         '_name' => "Match-title",
       ),
     );
+  $searchquery['bool']['should'][] = $tmp;
+
+  // Match full words in name
+  $tmp = array(
+    'bool' => array(
+      'filter' => array(
+        'terms' => array(
+          '_type' => array(
+            "user",
+          ),
+        ),
+      ),
+      'must' => array(
+        'multi_match' => array(
+          'query' => $query,
+          'fields' => array(
+            'first_name',
+            'last_name',
+          ),
+        ),
+      ),
+      'boost' => 3,
+      '_name' => "Match-name-user",
+    ),
+  );
   $searchquery['bool']['should'][] = $tmp;
 
   $tmp = array(
