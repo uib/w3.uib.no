@@ -8085,27 +8085,19 @@ body #mc_embed_signup div.mce_inline_error {
     margin-right: 0;
     clear: none; }
 
-  .node-type-uib-article .content-main-wrapper:after, .node-type-area .content-main-wrapper:after, .node-type-uib-testimonial .content-main-wrapper:after, .node-type-uib-study .content-main-wrapper:after, .node-type-uib-content-list .content-main-wrapper:after, .node-type-uib-views-page .content-main-wrapper:after {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 30px;
-    transform: rotate(45deg);
-    position: relative;
-    left: calc(50% - 15px);
-    background-color: inherit; }
-  .node-type-uib-article .content-main-wrapper:after {
-    bottom: -5.7rem; }
-  .node-type-area .content-main-wrapper:after {
-    bottom: -3.6rem; }
-  .node-type-uib-testimonial .content-main-wrapper:after {
-    bottom: -8.2rem; }
-  .node-type-uib-study .content-main-wrapper:after {
-    bottom: -5.7rem; }
-  .node-type-uib-content-list .content-main-wrapper:after {
-    bottom: -8.2rem; }
-  .node-type-uib-views-page .content-main-wrapper:after {
-    bottom: -8.2rem; } }
+  .content-main-wrapper + .content-bottom-wrapper {
+    position: relative; }
+    .node-type-uib-article .content-main-wrapper + .content-bottom-wrapper:before, .node-type-area .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-testimonial .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-study .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-content-list .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-views-page .content-main-wrapper + .content-bottom-wrapper:before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 1rem solid transparent;
+      border-right: 1rem solid transparent;
+      border-top: 1rem solid #f5f5f5;
+      position: absolute;
+      left: calc(50% - 1rem);
+      top: 0; } }
 @media screen and (min-width: 960px) {
   .content-top-wrapper > * {
     max-width: 72rem;
