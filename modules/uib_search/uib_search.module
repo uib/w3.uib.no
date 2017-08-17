@@ -1,11 +1,18 @@
 <?php
 
+// Administration features is included in a separate file
+require_once __DIR__ . '/php/admin.php';
+
 /**
  * Implements hook_menu().
  */
 function uib_search_menu() {
   $items["search"] = array(
     'page callback' => 'uib_search__page',
+    'access callback' => TRUE,
+  );
+  $items["compare_search"] = array(
+    'page callback' => 'uib_search__compare_all_pages',
     'access callback' => TRUE,
   );
   $items["searchboost/up/%/%"] = array(
@@ -18,9 +25,20 @@ function uib_search_menu() {
     'page arguments' => array(1,2,3),
     'access callback' => TRUE,
   );
+  $items["admin/config/uib_search/boosting"] = array(
+    'title' => t('Search boosting Administration'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uib_search__boosting_admin_form'),
+    'access callback' => 'uib_search__admin_access',
+  );
   return $items;
 }
-
+function uib_search__admin_access() {
+  global $user;
+  return $user->uid == 1
+    || user_has_role(176168899)
+    || in_array('level 1', $user->roles);
+}
 /**
  * Returns the search page.
  */
@@ -369,10 +387,15 @@ function uib_search__run_elastic_request(
   $url = '',
   $data,
   $method = 'POST',
-  $run_as_administrator = false,
-  $timeout = 1
+  $run_as_administrator = FALSE,
+  $timeout = 1,
+  $preference = FALSE
 )
 {
+  if ($preference !== FALSE) {
+    $sep = strstr($url, '?') === FALSE ? '?' : '&';
+    $url .= "{$sep}preference=" . md5(session_id());
+  }
   $a = $run_as_administrator ? '_admin' : '';
   if (variable_get('uib_elasticsearch_useindex' . $a, '')) {
     $user = uib_search__get_setup('user', $run_as_administrator);
@@ -1322,7 +1345,18 @@ function uib_search__clean_utf8_string_array(&$array) {
   );
 }
 
-function uib_search__create_query() {
+function uib_search__create_query($use_post_boosting = FALSE) {
+  $boosting = array_map(
+    function($v) {return $v->value;},
+    uib_search__get_boosting()
+  );
+  if ($use_post_boosting) {
+    $boosting = array_merge(
+      $boosting,
+      array_map(function($v) {return floatval($v);}, $_POST)
+    );
+  }
+  $px = 'uib_search_boosting__';
   $query = $_REQUEST['query'];
   $filter = (array)$_REQUEST['filters'];
   $size = isset($_REQUEST['size']) ? $_REQUEST['size'] : '10';
@@ -1465,7 +1499,7 @@ function uib_search__create_query() {
             ),
           ),
         ),
-        'boost' => 2,
+        'boost' => $boosting[$px . 'match-title'],
         '_name' => "Match-title",
       ),
     );
@@ -1490,7 +1524,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' => 3,
+      'boost' => $boosting[$px . 'match-name-user'],
       '_name' => "Match-name-user",
     ),
   );
@@ -1559,7 +1593,7 @@ function uib_search__create_query() {
     'match' =>  array(
       'w3.search_keywords' => array(
         'query' =>  $shortquery,
-        'boost' =>  5,
+        'boost' =>  $boosting[$px . 'match-keywords'],
         'fuzziness' =>  1,
         'prefix_length' => 4,
         '_name' =>  'Fuzzy-match-keywords',
@@ -1573,7 +1607,7 @@ function uib_search__create_query() {
     'match' =>  array(
       'w3.search_description' => array(
         'query' =>  $shortquery,
-        'boost' =>  2,
+        'boost' =>  $boosting[$px . 'match-search-description'],
         'fuzziness' =>  'auto',
         '_name' =>  'Fuzzy-match-description',
       ),
@@ -1651,7 +1685,7 @@ function uib_search__create_query() {
   $tmp = array('match' =>  array());
   $tmp['match']["w3.url_string.{$lang}"] = array(
     'query' => $query,
-    'boost' =>  3,
+    'boost' =>  $boosting[$px . 'match-url'],
     'fuzziness' =>  'auto',
     'prefix_length' =>  3,
     'max_expansions' =>  50,
@@ -1788,7 +1822,7 @@ function uib_search__create_query() {
       'wildcard' =>  array(
         'phone.nospace' => array(
           'value' =>  '*' . $phonequery . '*',
-          'boost' =>  10,
+          'boost' =>  $boosting[$px . 'match-phone'],
         ),
       ),
     );
@@ -1809,7 +1843,7 @@ function uib_search__create_query() {
         ),
       ),
       '_name' =>  'Match-study-code',
-      'boost' =>  5,
+      'boost' =>  $boosting[$px . 'match-study-code'],
     )
   );
   $searchquery['bool']['should'][] = $tmp;
@@ -1885,7 +1919,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' => $importance_levels[1],
+      'boost' => $boosting[$px . 'study-type-programme'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -1901,7 +1935,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[2],
+      'boost' =>  $boosting[$px . 'study-type-course'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -1916,7 +1950,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[2],
+      'boost' =>  $boosting[$px . 'study-type-exchange'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -1959,7 +1993,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[3],
+      'boost' =>  $boosting[$px . 'study-whatever-study'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -1974,7 +2008,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[1],
+      'boost' =>  $boosting[$px . 'node-area'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -1989,7 +2023,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[1],
+      'boost' =>  $boosting[$px . 'node-external-content'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -2017,7 +2051,7 @@ function uib_search__create_query() {
           ),
         ),
       ),
-      'boost' =>  $importance_levels[2],
+      'boost' =>  $boosting[$px . 'recent-content'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -2055,7 +2089,7 @@ function uib_search__create_query() {
           'minimum_should_match' =>  1,
         ),
       ),
-      'boost' =>  $importance_levels[2],
+      'boost' =>  $boosting[$px . 'upcoming-events'],
     ),
   );
   $boostquery['bool']['should'][] = $tmp;
@@ -2067,7 +2101,7 @@ function uib_search__create_query() {
   $tmp = array(
     'bool' => array(
       'should' => $boostquery,
-      'boost' => 1,
+      'boost' => $boosting[$px . 'relevance-vs-criteria-boosting'],
     ),
   );
 
@@ -2245,7 +2279,8 @@ function uib_search__create_query() {
       'field_value_factor' =>  array(
         'field' =>  'search_manual_boost',
         'modifier' =>  'square',
-        'factor' =>  1.5,  // Determine how much manual boost affect results
+        // Determine how much manual boost affect results:
+        'factor' =>  $boosting[$px . 'manual-boost-factor'],
       ),
     ),
   );
@@ -2255,7 +2290,7 @@ function uib_search__create_query() {
     'boosting' =>  array(
       'positive' =>  $data['query']['bool']['must'],
       'negative' =>  $unboost_past_events,
-      'negative_boost' =>  0.03,
+      'negative_boost' =>  $boosting[$px . 'unboost-past-events'],
     ),
   );
   return $data;

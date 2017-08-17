@@ -15,10 +15,9 @@
       'html__webdesk',
       'html__media__browser',
     );
-    foreach ($suggestions as $suggestion) {
-      if (in_array($suggestion, $variables['theme_hook_suggestions'])) {
-        drupal_add_css(drupal_get_path('module','uib_admin') . '/css/uib_admin.css', array('group' => CSS_THEME));
-      }
+    global $theme;
+    if ($theme == 'adminimal') {
+      drupal_add_css(drupal_get_path('module','uib_admin') . '/css/uib_admin.css', array('group' => CSS_THEME));
     }
   }
   function uib_admin_admin_paths () {

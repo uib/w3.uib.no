@@ -121,3 +121,26 @@ td:not(.delta-order) > .ajax-new-content {
   padding: 0.5rem 0.625rem;
   text-align: left;
 }
+
+/* Styling search boost admin ui */
+#uib-search-boosting-admin-form .boost-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#uib-search-boosting-admin-form .boost-fields .form-item {
+  flex: 1 1 300px;
+  border: 1px solid #DDD;
+  max-width: 300px;
+  padding: 10px;
+}
+#uib-search-boosting-admin-form .boost-fields .form-type-textfield input {
+  width: 50px;
+}
+#uib-search-boosting-admin-form > div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+#uib-search-boosting-admin-form .test-results {
+  order: 2; /* end */
+}
