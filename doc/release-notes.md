@@ -1,3 +1,21 @@
+# Release 76 _2017-08-17_
+
+- Forbedret brødsmulestiene #16088
+- Forbedret søkefunksjonen #16743 #17314 #17330 #18698 #18716 #18720 #18838
+- Lagt til rette for tidsplanleggingsvalg for meldinger (en kan nå velge publisering- og avpubliseringsdato på samme måte som for artikler) #16918
+- Lagt til rette for visninger av meldinger under "Mitt innhold" på webdesken #16864
+- Forbedret brukervennligheten under "Filtrer på fag" på siden "Finn emner" #15950
+- Forbedret visningen av vitnesbyrd når brukt som fremhevet artikkel på områdesider #18178
+- Endret rutinen som viser personnavn i brødsmulestien på personsider #18561
+- Endret rutinen som viser lenke til timeplan på emnesider #18594
+- Rettet feil som gjorde at lenken "Legg til i din egen kalender" ble feilplassert i visse tilfeller under fremhevet arrangement på områdesider #18643
+- Rettet feil som gjorde at klokkeslett-feltet under tidsplanleggingsvalg ikke kunne være tomt #12370
+- Byttet ut "Abonner"-lenken på kalendersider med en ny knapp #18593
+- Lagt til luft mellom avsnitt i bokser for kontaktinformasjon fra FS #18723
+- Lagt til pil som indikerer ytterligere innhold nede på sidene #16991
+- Lagt til funksjon som gir level 1-brukere mulighet til å finne ut hvilke områder brukere er knyttet til #10951
+- Fjernet feilmelding som ble vist på lokale utviklingsinstanser #18719
+
 # Release 75 _2017-07-06_
 
 - Endret feltene for forfatter, tilknyttede personer og kontaktperson for arragementer slik at det nå er mulig å søke etter navn (ikke bare brukernavn) #240
