@@ -138,6 +138,7 @@ function uib_area_field_default_field_bases() {
         'newspage' => 'Newspage',
         'phdpresspage' => 'PhD press page',
         'focus area' => 'Focus area',
+        'feature area' => 'Feature area',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
@@ -580,6 +581,59 @@ function uib_area_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'phone',
+  );
+
+  // Exported field_base: 'field_uib_feature_heading_style'.
+  $field_bases['field_uib_feature_heading_style'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_feature_heading_style',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'w' => 'White text',
+        'wtb' => 'White text with transparent background',
+        'b' => 'Black text',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_uib_feature_mobile_media'.
+  $field_bases['field_uib_feature_mobile_media'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_feature_mobile_media',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'display_default' => 0,
+      'display_field' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'file',
   );
 
   // Exported field_base: 'field_uib_feed'.

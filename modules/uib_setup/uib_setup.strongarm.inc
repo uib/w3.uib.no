@@ -154,6 +154,10 @@ function uib_setup_strongarm() {
         'label' => 'Full width banner',
         'custom settings' => 1,
       ),
+      'feature_image' => array(
+        'label' => 'Feature image',
+        'custom settings' => 1,
+      ),
     ),
     'node' => array(
       'quote' => array(

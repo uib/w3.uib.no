@@ -13,6 +13,58 @@ function uib_setup_default_picture_mapping() {
   $picture_mapping = new PictureMapping();
   $picture_mapping->disabled = FALSE; /* Edit this to true to make a default picture_mapping disabled initially */
   $picture_mapping->api_version = 2;
+  $picture_mapping->label = 'Feature image';
+  $picture_mapping->machine_name = 'feature_image';
+  $picture_mapping->breakpoint_group = 'feature_breakpoints';
+  $picture_mapping->mapping = array(
+    'custom.user.portrait_medium' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_mobile_2x',
+      ),
+    ),
+    'custom.user.portrait_narrow' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_mobile_1_5x',
+      ),
+    ),
+    'breakpoints.theme.uib_w3.full_width' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_full_width_1x',
+      ),
+    ),
+    'breakpoints.theme.uib_w3.wide' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_wide_1x',
+      ),
+    ),
+    'breakpoints.theme.uib_w3.narrow' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_narrow_1x',
+      ),
+    ),
+    'breakpoints.theme.uib_w3.mobile' => array(
+      '1x' => array(
+        'mapping_type' => 'image_style',
+        'image_style' => 'feature_mobile_1x',
+      ),
+      '2x' => array(
+        'mapping_type' => '_none',
+      ),
+      '1.5x' => array(
+        'mapping_type' => '_none',
+      ),
+    ),
+  );
+  $export['feature_image'] = $picture_mapping;
+
+  $picture_mapping = new PictureMapping();
+  $picture_mapping->disabled = FALSE; /* Edit this to true to make a default picture_mapping disabled initially */
+  $picture_mapping->api_version = 2;
   $picture_mapping->label = 'w3 banner full width';
   $picture_mapping->machine_name = 'w3_banner_full_width';
   $picture_mapping->breakpoint_group = 'uib_w3';

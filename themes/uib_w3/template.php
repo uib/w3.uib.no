@@ -26,6 +26,18 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
       if ($node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
         $variables['classes_array'][] = 'banner-image';
       }
+      if ($node->field_uib_area_type['und'][0]['value'] == 'feature area') {
+        $variables['classes_array'][] = 'feature-area';
+        if (!empty($node->field_uib_feature_heading_style)) {
+          $variables['classes_array'][] = 'feature-area-style-' . $node->field_uib_feature_heading_style['und'][0]['value'];
+        }
+        if (!empty($node->field_uib_primary_media) && $node->field_uib_primary_media['und'][0]['type'] == 'video') {
+          $variables['classes_array'][] = 'feature-video';
+        }
+        else {
+          $variables['classes_array'][] = 'feature-image';
+        }
+      }
       if (empty($node->field_uib_show_twitter_feed)) {
         $variables['classes_array'][] = 'no-twitter';
       }
@@ -97,10 +109,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['mobile_menu']['#weight'] = -11;
   }
   $current_area = uib_area__get_current();
-  $frontpage = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? true : false;
+  $no_area_menu_top_areas = array('frontpage', 'feature area');
+  $no_area_menu_top = $current_area && in_array($current_area->field_uib_area_type['und'][0]['value'], $no_area_menu_top_areas) ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!$frontpage) {
+    if (!$no_area_menu_top) {
       $variables['area_menu'] = $area_menu;
     }
     $variables['area_menu_footer'] = $area_menu;
@@ -112,7 +125,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $variables['mobile']['area_menu']['#suffix'] = '</nav>';
       $variables['mobile']['area_menu']['#weight'] = -15;
     }
-    if ($frontpage) unset($variables['mobile']['area_menu']);
+    if ($variables['is_front']) unset($variables['mobile']['area_menu']);
     if ($variables['language']->language == 'nb') {
       $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
     }
@@ -127,7 +140,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['#suffix'] = '</nav>';
     $variables['mobile']['#weight'] = 0;
   }
-  if ($current_area && !$variables['is_front']) {
+  if ($current_area && !$variables['is_front'] && $current_area->field_uib_area_type['und'][0]['value'] != 'feature area') {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
@@ -137,6 +150,23 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       '#href' => $base_path . drupal_get_path_alias("node/{$current_area->nid}",
         $variables['language']->language ),
     );
+  }
+  if ($current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area') {
+    $variables['page']['content_top']['area'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'h2',
+      '#attributes' => array(),
+      '#value' => $current_area->title,
+      '#weight' => -27,
+      '#prefix' => '<div class="uib-feature-area__title">',
+      '#suffix' => '</div>',
+    );
+    if (isset($area_menu)) {
+      $variables['page']['content_top']['area_menu'] = $area_menu;
+      $variables['page']['content_top']['area_menu']['#prefix'] = '<nav class="uib-feature-area-menu">';
+      $variables['page']['content_top']['area_menu']['#suffix'] = '</nav>';
+    }
+    drupal_add_js('sites/all/themes/uib/uib_w3/js/paralax.js');
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
@@ -414,8 +444,26 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'area':
-      if ($variables['node']->field_uib_area_type['und'][0]['value'] == 'frontpage') {
+      if (in_array($variables['node']->field_uib_area_type['und'][0]['value'], array('frontpage'))) {
         $view_mode = 'full_width_banner';
+      }
+      elseif (in_array($variables['node']->field_uib_area_type['und'][0]['value'], array('feature area'))) {
+        $view_mode = 'feature_image';
+        if ($variables['node']->field_uib_primary_media['und'][0]['type'] == 'video') {
+          $variables['page']['content_top']['field_uib_feature_mobile_media'] = field_view_field('node', $variables['node'], 'field_uib_feature_mobile_media', array(
+            'type' => 'file_rendered',
+            'settings' => array('file_view_mode' => $view_mode),
+            'label' => 'hidden',
+            'weight' => -30,
+          ));
+          $variables['page']['content_top']['uib_play_video'] = array(
+            '#type' => 'html_tag',
+            '#tag' => 'div',
+            '#attributes' => array('class' => array('uib-play-video')),
+            '#value' => l('spill video', '#'),
+            '#weight' => -20,
+          );
+        }
       }
       else {
         $view_mode = empty($variables['node']->field_uib_primary_text) ? 'content_main' : 'area_main';
@@ -521,7 +569,6 @@ EOD;
       if (!empty($variables['page']['content_bottom']['field_uib_feed'])) {
          $variables['page']['content_bottom']['field_uib_feed'] = uib_w3__break_up_collection($variables['page']['content_bottom']['field_uib_feed'], 'uib_area_feed');
       }
-      //dpm($variables['page']['content_bottom']['field_uib_feed']);
       $variables['page']['footer']['social_media'] = field_view_field('node', $variables['node'], 'field_uib_social_media', array(
         'type' => 'socialmedia_formatter',
         'settings' => array('link' => TRUE),

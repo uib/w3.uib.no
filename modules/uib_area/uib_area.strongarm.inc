@@ -93,7 +93,7 @@ function uib_area_strongarm() {
           'weight' => '19',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '22',
         ),
       ),
       'display' => array(

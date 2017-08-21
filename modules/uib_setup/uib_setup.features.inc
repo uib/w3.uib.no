@@ -188,6 +188,123 @@ function uib_setup_image_default_styles() {
     'label' => 'custom_logo',
   );
 
+  // Exported image style: feature_full_width_1x.
+  $styles['feature_full_width_1x'] = array(
+    'label' => 'feature_full_width_1x',
+    'effects' => array(
+      25 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 3400,
+          'height' => 1700,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_image.
+  $styles['feature_image'] = array(
+    'label' => 'Feature image',
+    'effects' => array(
+      26 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 4800,
+          'height' => 2550,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_mobile_1_5x.
+  $styles['feature_mobile_1_5x'] = array(
+    'label' => 'feature_mobile_1_5x',
+    'effects' => array(
+      23 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 800,
+          'height' => 1100,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_mobile_1x.
+  $styles['feature_mobile_1x'] = array(
+    'label' => 'feature_mobile_1x',
+    'effects' => array(
+      24 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 500,
+          'height' => 800,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_mobile_2x.
+  $styles['feature_mobile_2x'] = array(
+    'label' => 'feature_mobile_2x',
+    'effects' => array(
+      22 => array(
+        'name' => 'focal_point_scale_and_crop',
+        'data' => array(
+          'width' => 1280,
+          'height' => 1600,
+          'focal_point_advanced' => array(
+            'shift_x' => '',
+            'shift_y' => '',
+          ),
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_narrow_1x.
+  $styles['feature_narrow_1x'] = array(
+    'label' => 'feature_narrow_1x',
+    'effects' => array(
+      28 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 860,
+          'height' => 480,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: feature_wide_1x.
+  $styles['feature_wide_1x'] = array(
+    'label' => 'feature_wide_1x',
+    'effects' => array(
+      27 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1280,
+          'height' => 720,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: full_width_16_9.
   $styles['full_width_16_9'] = array(
     'effects' => array(
