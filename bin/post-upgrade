@@ -26,3 +26,5 @@ for id in $ids; do
   # Set manual boost to 3 instead of 10
   bin/site-drush ev '$w=entity_metadata_wrapper("node",'$id'); $w->field_uib_search_manual_boost->set(3); $w->save();';
 done
+
+bin/site-drush uib-sync-fs
