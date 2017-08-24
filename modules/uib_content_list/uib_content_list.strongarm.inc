@@ -34,6 +34,9 @@ function uib_content_list_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -49,11 +52,14 @@ function uib_content_list_strongarm() {
         'redirect' => array(
           'weight' => '30',
         ),
+        'metatags' => array(
+          'weight' => '40',
+        ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '0',
+            'weight' => '5',
             'visible' => FALSE,
           ),
           'short_teaser' => array(

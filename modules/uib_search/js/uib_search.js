@@ -353,6 +353,7 @@
                   w3_type == 'area'
                   || w3_type == 'uib_article'
                   || w3_type == 'uib_external_content'
+                  || w3_type == 'uib_content_list'
                 )
               )
             )

@@ -34,6 +34,9 @@ function uib_external_strongarm() {
       'short_teaser' => array(
         'custom_settings' => TRUE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
