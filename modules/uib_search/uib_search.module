@@ -2013,6 +2013,21 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   );
   $boostquery['bool']['should'][] = $tmp;
 
+  // Boost hits on content type uib_content_list
+  $tmp = array(
+    'constant_score' =>  array(
+      'filter' =>  array(
+        'term' =>  array(
+          'w3.type' => array(
+            'value' =>  'uib_content_list'
+          ),
+        ),
+      ),
+      'boost' =>  $boosting[$px . 'node-content-list'],
+    ),
+  );
+  $boostquery['bool']['should'][] = $tmp;
+
   // Boost external content
   $tmp = array(
     'constant_score' =>  array(

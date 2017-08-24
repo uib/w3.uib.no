@@ -181,6 +181,14 @@ function uib_search__get_boosting() {
   $items[$item->name] = $item;
 
   $item = new uib_search__boost_value (
+    'node-content-list',
+    t('Boost node type uib_content_list'),
+    t('Boost if node type is a content-list'),
+    6
+  );
+  $items[$item->name] = $item;
+
+  $item = new uib_search__boost_value (
     'node-external-content',
     t('Boost external content'),
     t('Boost external content. This is used to point to internal content that is
