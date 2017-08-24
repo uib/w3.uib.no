@@ -191,11 +191,36 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['empty'] = '[type]';
   $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Area */
+  $handler->display->display_options['fields']['field_uib_message_area']['id'] = 'field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['table'] = 'field_data_field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['field'] = 'field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_message_area']['settings'] = array(
+    'link' => 0,
     'linked_field' => array(
       'linked' => 0,
       'destination' => '',
@@ -213,9 +238,25 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['field_uib_area']['table'] = 'field_data_field_uib_area';
   $handler->display->display_options['fields']['field_uib_area']['field'] = 'field_uib_area';
   $handler->display->display_options['fields']['field_uib_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_area']['empty'] = '[field_uib_message_area]';
   $handler->display->display_options['fields']['field_uib_area']['settings'] = array(
     'link' => 0,
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'field_multiple_limit_order' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_area']['delta_offset'] = '0';
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
   $handler->display->display_options['fields']['status']['table'] = 'node';
@@ -396,6 +437,8 @@ function uib_webdesk_views_default_views() {
     t('Type'),
     t('Alle'),
     t('My simple content'),
+    t('[type]'),
+    t('[field_uib_message_area]'),
     t('View panes'),
     t('Block'),
     t('Page'),
@@ -669,10 +712,16 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['empty'] = '[type]';
   $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -794,10 +843,16 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_article_type']['empty'] = '[type]';
   $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -854,6 +909,7 @@ function uib_webdesk_views_default_views() {
     t('Page'),
     t('more'),
     t('Type'),
+    t('[type]'),
     t('Unpublish'),
     t('Area'),
     t('Block'),
