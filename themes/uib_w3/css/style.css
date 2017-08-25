@@ -876,6 +876,9 @@ label {
   *zoom: 1;
   *display: inline; }
 
+.item-list ul li a:hover {
+  text-decoration: underline; }
+
 .logo__image {
   width: 2.9411rem; }
 
@@ -2770,6 +2773,8 @@ a,
     .view-exchange-agreements .view-content ul li a {
       text-decoration: none;
       line-height: 2.5rem; }
+      .view-exchange-agreements .view-content ul li a:hover {
+        text-decoration: underline; }
 
 .field-name-field-uib-fact-box {
   background: #fff;
@@ -3442,6 +3447,8 @@ a,
   border-top: solid 1px #d5d5d5;
   margin-top: 2rem;
   padding-top: 1rem; }
+#block-views-recent-news-block .field-content a:hover {
+  text-decoration: underline; }
 
 .view-ansatte .views-exposed-widgets {
   display: -ms-flexbox;
@@ -6095,6 +6102,8 @@ body #mc_embed_signup div.mce_inline_error {
     display: block; }
   #block-uib-study-study-facts-2 li.last ul li a {
     text-decoration: none; }
+    #block-uib-study-study-facts-2 li.last ul li a:hover {
+      text-decoration: underline; }
 #block-uib-study-study-facts-2 .study-facts__label {
   display: block;
   font-weight: bold; }
@@ -7610,6 +7619,8 @@ body #mc_embed_signup div.mce_inline_error {
         flex: 0 0 50%; } }
     .page-node-87343 .views-exposed-widgets .study-tids fieldset {
       border: none 0; }
+    .page-node-87343 .views-exposed-widgets .study-tids a:hover {
+      text-decoration: underline; }
   .page-node-87343 .views-exposed-widgets .study-points-category {
     -ms-order: 2;
     -webkit-order: 2;
