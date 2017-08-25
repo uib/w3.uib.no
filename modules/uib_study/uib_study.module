@@ -1469,7 +1469,7 @@ function uib_study__get_testimonial() {
       $max = count($testimonials) - 1;
       $selected = rand(0, $max);
       $selected_nid = $testimonials[$selected];
-      $output = node_view(node_load($selected_nid), 'teaser');
+      $output = node_view(node_load($selected_nid), 'quote');
       return $output;
     }
   }

@@ -1050,7 +1050,7 @@ function uib_testimonial_field_default_field_instances() {
         'weight' => 19,
       ),
       'quote' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(
           'field_multiple_limit' => -1,
