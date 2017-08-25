@@ -402,13 +402,48 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['created']['field'] = 'created';
   $handler->display->display_options['fields']['created']['date_format'] = 'long';
   /* Field: Content: Area */
+  $handler->display->display_options['fields']['field_uib_message_area']['id'] = 'field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['table'] = 'field_data_field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['field'] = 'field_uib_message_area';
+  $handler->display->display_options['fields']['field_uib_message_area']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_message_area']['settings'] = array(
+    'link' => 0,
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
+  /* Field: Content: Area */
   $handler->display->display_options['fields']['field_uib_area']['id'] = 'field_uib_area';
   $handler->display->display_options['fields']['field_uib_area']['table'] = 'field_data_field_uib_area';
   $handler->display->display_options['fields']['field_uib_area']['field'] = 'field_uib_area';
   $handler->display->display_options['fields']['field_uib_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_uib_area']['empty'] = '[field_uib_message_area]';
   $handler->display->display_options['fields']['field_uib_area']['settings'] = array(
     'link' => 0,
+    'field_multiple_limit' => '-1',
+    'field_multiple_limit_offset' => '0',
+    'field_multiple_limit_order' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_area']['delta_offset'] = '0';
   /* Field: Content: Language */
   $handler->display->display_options['fields']['language']['id'] = 'language';
   $handler->display->display_options['fields']['language']['table'] = 'node';
