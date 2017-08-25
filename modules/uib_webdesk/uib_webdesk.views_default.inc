@@ -374,9 +374,28 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  /* Field: Content: Type */
   $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
+  $handler->display->display_options['fields']['field_uib_article_type']['empty'] = '[type]';
+  $handler->display->display_options['fields']['field_uib_article_type']['settings'] = array(
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
+  );
   /* Field: Content: Post date */
   $handler->display->display_options['fields']['created']['id'] = 'created';
   $handler->display->display_options['fields']['created']['table'] = 'node';
