@@ -644,6 +644,15 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
   $id = $wrapped_entity->getIdentifier();
   $entity_type = $wrapped_entity->info();
   $entity_type = $entity_type['type'];
+  if($entity_type == 'node' && $wrapped_entity->getBundle() == 'uib_article') {
+    $sql = "select 1
+    from field_data_field_uib_step_content
+    where field_uib_step_content_target_id=:nid";
+    $res = db_query($sql, array(':nid' => $id));
+    if($res->fetchField() == 1) {
+      return; // this entity is part of a content list
+    }
+  }
   $index = uib_search__get_setup('index', TRUE);
   $url = rtrim(uib_search__get_setup('url', TRUE), '/');
   if ($wrapped_entity->status->value() == 0) {
