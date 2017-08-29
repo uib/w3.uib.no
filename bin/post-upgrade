@@ -11,7 +11,7 @@ if [ "$(hostname)" = attilatest.uib.no ]; then
     bin/index-all-nodes
 fi
 
-REL=77
+REL=78
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -20,11 +20,48 @@ fi
 
 set -x
 
-# Get nid's where manual boost is set to 10
-ids="$(bin/site-drush sqlq --extra=-t 'select entity_id from field_data_field_uib_search_manual_boost where field_uib_search_manual_boost_value=10')"
-for id in $ids; do
-  # Set manual boost to 3 instead of 10
-  bin/site-drush ev '$w=entity_metadata_wrapper("node",'$id'); $w->field_uib_search_manual_boost->set(3); $w->save();';
-done
+# Unpublish empty nodes
+# This will unpublish all nodes which:
+# * Have no content in text, primary_text, secondary_text, lead, teaser,
+#   tertiary_text
+# * ...and also have no related content
+# * ...and also have no attachments (files)
 
-bin/site-drush uib-sync-fs
+
+sql="SELECT nid, title
+  FROM node
+  left join field_data_field_uib_lead l on nid=l.entity_id
+  left join field_data_field_uib_teaser t on nid=t.entity_id
+  left join field_data_field_uib_text t2 on nid=t2.entity_id
+  left join field_data_field_uib_tertiary_text t3 on nid=t3.entity_id
+  left join field_data_field_uib_primary_text t4 on nid=t4.entity_id
+  left join field_data_field_uib_secondary_text t5 on nid=t5.entity_id
+  left join field_data_field_uib_relation t6 on nid=t6.entity_id
+  left join field_data_field_uib_files t7 on nid=t7.entity_id
+  where type='uib_article' and status=1
+  and t6.entity_id is null
+  and t7.entity_id is null
+  and char_length(concat(
+l.field_uib_lead_value,
+t.field_uib_teaser_value,
+t2.field_uib_text_value,
+t3.field_uib_tertiary_text_value,
+t4.field_uib_primary_text_value,
+t5.field_uib_secondary_text_value
+) ) < 20
+  order by char_length(concat(
+l.field_uib_lead_value,
+t.field_uib_teaser_value,
+t2.field_uib_text_value,
+t3.field_uib_tertiary_text_value,
+t4.field_uib_primary_text_value,
+t5.field_uib_secondary_text_value
+) )
+"
+DIR=`dirname "$0"`
+filename=$DIR'/../doc/empty_nodes_unpublished_rel78.txt'
+
+# Save empty node ids and titles to file
+bin/site-drush sqlq --extra=-t "$sql" > $filename
+
+$DIR'/'unpublish_nodes $filename

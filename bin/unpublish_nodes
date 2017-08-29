@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+# unpublish_nodes filename [status=0]
+# Script to unpublish node id's in a file
+# Argument is a file name.
+# If second argument is set, this should be a 0 or 1, indicating status to set.
+# 0 is default for second argument.
+# File format: Each line must start with nid, but can contain other text after this
+# example
+# 13233 | Eksempel node
+# 132 | Eksempel node2 og mer
+# 1434 | Eksempel node3
+
+
+# Read file with nodes and unpublish
+if [[ $# -eq 0 ]] ; then
+    echo 'Takes filename as argument'
+    exit 0
+fi
+status='0'
+case "$2" in
+    1) status='1'
+esac
+
+while read -r line; do
+  nid=`echo $line | sed -e 's/|.*$//g' -e 's/ //g'`
+  echo 'Processing ' $nid
+  if [ -n "$nid" ]
+    then
+    bin/site-drush ev "\$n=node_load('$nid'); \$n->status='$status'; node_save(\$n)"
+  fi
+done < $1
