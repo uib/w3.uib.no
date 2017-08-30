@@ -811,19 +811,28 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         break;
       case 'step':
         $titles = array();
+        $output[$key] = array();
         foreach ($v as $step) {
-          $tmp = $step->field_uib_step_content->field_uib_text->value();
-          if (array_key_exists('safe_value', (array)$tmp)) {
-            $tmp = $tmp['safe_value'];
+          try {
+            if (isset($step->field_uib_step_content->field_uib_text)) {
+              $tmp = $step->field_uib_step_content->field_uib_text->value();
+              if (array_key_exists('safe_value', (array)$tmp)) {
+                $tmp = $tmp['safe_value'];
+              }
+              else if (array_key_exists('value', (array)$tmp)) {
+                $tmp = $tmp['value'];
+              }
+              $tmp = uib_search__strip_html($tmp);
+              $output[$key][] = uib_search__null_if_empty($tmp);
+            }
+            if (isset($step->field_uib_step_content->title)) {
+              $titles[] = $step->field_uib_step_content->title->value();
+            }
+          } catch (Exception $e) {
+            // No action. See https://www.drupal.org/node/1596594 for info
           }
-          else if (array_key_exists('value', (array)$tmp)) {
-            $tmp = $tmp['value'];
-          }
-          $tmp = uib_search__strip_html($tmp);
-          $output[$key][] = uib_search__null_if_empty($tmp);
-          $titles[] = $step->field_uib_step_content->title->value();
         }
-        $output[$key . '_texts'] = implode('', $output[$key]);
+        $output[$key . '_texts'] = implode(' ', $output[$key]);
         $output[$key . '_titles'] = implode(', ', $titles);
         unset($output[$key]);
         break;
