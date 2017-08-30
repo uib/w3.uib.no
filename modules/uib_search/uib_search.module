@@ -751,6 +751,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'location',
     'search_keywords',
     'links',
+    'step',
   );
   $usefields = variable_get('uib_search_nodefields', $fields);
   $search_manual_boost = 1;
@@ -807,6 +808,24 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
               'c');
           }
         }
+        break;
+      case 'step':
+        $titles = array();
+        foreach ($v as $step) {
+          $tmp = $step->field_uib_step_content->field_uib_text->value();
+          if (array_key_exists('safe_value', (array)$tmp)) {
+            $tmp = $tmp['safe_value'];
+          }
+          else if (array_key_exists('value', (array)$tmp)) {
+            $tmp = $tmp['value'];
+          }
+          $tmp = uib_search__strip_html($tmp);
+          $output[$key][] = uib_search__null_if_empty($tmp);
+          $titles[] = $step->field_uib_step_content->title->value();
+        }
+        $output[$key . '_texts'] = implode('', $output[$key]);
+        $output[$key . '_titles'] = implode(', ', $titles);
+        unset($output[$key]);
         break;
       case 'text':
       case 'text2':
@@ -880,6 +899,8 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
       @$output['w3']['search_description']
       ?: @$output['w3']['teaser']
       ?: @$output['w3']['lead']
+        . (isset($output['w3']['step_titles']) ?
+        ' ' . t('Includes titles: ') . $output['w3']['step_titles'] : '')
       ?: strip_tags(@$output['w3']['text'])
       ?: strip_tags(@$output['w3']['primary_text'])
       ?: strip_tags(@$output['w3']['text2'])
@@ -897,6 +918,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         'primary_text',
         'secondary_text',
         'market_text',
+        'step_texts',
       )
     ),
   );
