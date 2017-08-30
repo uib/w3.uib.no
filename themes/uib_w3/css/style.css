@@ -3583,6 +3583,14 @@ a,
     height: 1rem;
     width: 1.25rem;
     display: inline-block; }
+.global-menu ul.menu .menu__item {
+  margin: 0 0 0 0.5rem; }
+.global-menu ul.menu .expanded li {
+  margin: 0; }
+  .global-menu ul.menu .expanded li a {
+    text-transform: none; }
+.global-menu ul.menu .expanded .last {
+  margin-bottom: 2rem; }
 .global-menu li {
   padding: 0 0.5rem 0 0; }
   .global-menu li a {
@@ -3600,10 +3608,9 @@ a,
     display: none;
     position: absolute;
     top: 55px;
-    right: -60px;
+    right: -2.5rem;
     width: 200px;
     height: auto;
-    padding-bottom: 2rem;
     background: #cf3c3a;
     border: 1px solid #fff;
     text-align: left;
@@ -4777,8 +4784,9 @@ div.field-item {
   @media (min-width: 780px) {
     .block-uib-search [name=noscriptform] .search-button,
     .block-uib-search #uib-search-noscript-form .search-button {
-      background-position: center;
-      padding: 1rem 0 1rem 100%;
+      background-position: center center;
+      background-size: 2rem;
+      padding: 1rem 0 1rem 2.125rem;
       overflow: hidden;
       width: 2.125rem; } }
 .block-uib-search > h2 {
@@ -7067,12 +7075,12 @@ body #mc_embed_signup div.mce_inline_error {
       -webkit-flex: 0 0 2.9375rem;
       flex: 0 0 2.9375rem; }
     .header__wrapper .header .site-name {
-      -webkit-flex: 1 1;
-      flex: 1 1;
+      -webkit-flex: 1 1 auto;
+      flex: 1 1 auto;
       padding-left: 0.75rem; }
     .header__wrapper .header .region-header {
-      -webkit-flex: 0 0;
-      flex: 0 0;
+      -webkit-flex: 0 0 auto;
+      flex: 0 0 auto;
       display: -ms-flexbox;
       -ms-flex-direction: row;
       display: -webkit-flex;
