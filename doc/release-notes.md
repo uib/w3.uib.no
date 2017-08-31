@@ -1,3 +1,14 @@
+# Release 77 _2017-08-31_
+- Gjort forbedringer i koden på headeren slik at den er mer stabil #15982
+- Justert rettigheter på admin-funksjoner, slik at funksjoner som ikke skal brukes av rolle 2 og 3 viser for alle #18902
+- Lagt til underline på lenker #18830
+- Rettet en feil som gjorde at vitnesbyrd så feil ut på studieprogram #18850
+- Lagt til visning av type på meldinger i webdesk på "mitt innhold" og "mitt planlagte innhold" #18831
+- Videreutviklet søk. Justeringer for å få bedre treff på url og innholdslister. Mulighet å få treff på eksternt innhold. Grensesnitt for justering av treff på søk for lettere justering. #18904 #18874 #18869 #18866 #18840 #18732 #18726 #18707
+
+# Release 76.1 _2017-08-24_
+- Lagt til rette for visning av ERASMUS+ICM-avtaler #18865
+
 # Release 76 _2017-08-17_
 
 - Forbedret brødsmulestiene #16088
