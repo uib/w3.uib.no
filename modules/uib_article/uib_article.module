@@ -252,6 +252,11 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       }
     }
 
+    //Hide Gmap link option for everyone except lvl 1 and admin
+    if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
+      unset($form['field_uib_gmap_link']);
+    }
+
     //Fields to be hidden/required if event is not chosen
     $form['field_uib_event_type']['#states'] = array(
       'visible' => array(
@@ -427,6 +432,11 @@ function uib_article_preprocess_node(&$variables) {
       $variables['content']['ical_link'] = $iCal_link;
       $variables['elements']['#group_children']['ical_link'] = 'group_event_info';
     }
+  }
+  //adding gmap, changing the content of the rendered item
+  if ($variables['page'] && !empty($variables['field_uib_gmap_link'])) {
+    $article_gmap = __uib_w3__article_gmap($variables['field_uib_gmap_link'][0]['url']);
+    $variables['content']['field_uib_gmap_link'] = $article_gmap;
   }
 }
 
@@ -1103,4 +1113,24 @@ function uib_article_query_autocompleteuser_alter(&$query) {
   }
   $query->orderBy('fn.field_uib_first_name_value');
   $query->orderBy('ln.field_uib_last_name_value');
+}
+
+/**
+ * Function returning a static gmap
+ */
+function __uib_w3__article_gmap(&$map_link) {
+  if (empty($map_link)) return;
+  $url = $map_link;//['und'][0]['url'];
+  $ex = explode("@",$url);
+  $excoords = explode(",",$ex[1]);
+  $coordloc = $excoords[0].",".$excoords[1];
+  $imgurl = 'https://maps.googleapis.com/maps/api/staticmap?size=371x247&scale=1&zoom=11&center='.$coordloc.'&markers='.$coordloc;
+  $element = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="article-gmap">',
+    '#weight' => '0',
+  );
+  $element['#markup'] .= '<a href="'.$url.'"><img src="'.$imgurl.'"></a>';
+  $element['#markup'] .= '</div>';
+  return $element;
 }

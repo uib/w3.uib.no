@@ -149,14 +149,14 @@ function uib_area_field_group_info() {
   $field_group->parent_name = 'group_article_sidebar';
   $field_group->data = array(
     'label' => 'Event info',
-    'weight' => '33',
+    'weight' => '46',
     'children' => array(
-      0 => 'field_uib_registration_link',
-      1 => 'field_uib_contacts',
-      2 => 'field_uib_location',
-      3 => 'field_uib_deadline',
-      4 => 'field_uib_event_type',
-      5 => 'field_uib_date',
+      0 => 'field_uib_contacts',
+      1 => 'field_uib_deadline',
+      2 => 'field_uib_registration_link',
+      3 => 'field_uib_date',
+      4 => 'field_uib_location',
+      5 => 'field_uib_event_type',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -186,11 +186,11 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Event info',
-    'weight' => '13',
+    'weight' => '12',
     'children' => array(
-      0 => 'field_uib_location',
-      1 => 'field_uib_contacts',
-      2 => 'field_uib_registration_link',
+      0 => 'field_uib_contacts',
+      1 => 'field_uib_registration_link',
+      2 => 'field_uib_location',
       3 => 'field_uib_deadline',
     ),
     'format_type' => 'tab',
@@ -436,10 +436,10 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links and attachments',
-    'weight' => '10',
+    'weight' => '9',
     'children' => array(
-      0 => 'field_uib_links',
-      1 => 'field_uib_files',
+      0 => 'field_uib_files',
+      1 => 'field_uib_links',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

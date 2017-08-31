@@ -34,6 +34,9 @@ function uib_article_strongarm() {
       'short_teaser' => array(
         'custom_settings' => TRUE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -44,19 +47,19 @@ function uib_article_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '6',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '13',
         ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '13',
+            'weight' => '14',
             'visible' => FALSE,
           ),
           'teaser' => array(

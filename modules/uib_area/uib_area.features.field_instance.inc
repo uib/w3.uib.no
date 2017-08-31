@@ -2234,7 +2234,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 17,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2294,7 +2294,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2400,7 +2400,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 11,
     ),
   );
 
@@ -2694,7 +2694,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2757,7 +2757,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 12,
     ),
   );
 
@@ -2788,7 +2788,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 40,
+        'weight' => 47,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2853,7 +2853,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 4,
     ),
   );
 
@@ -2884,7 +2884,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 42,
+        'weight' => 49,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3133,7 +3133,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 13,
     ),
   );
 
@@ -3164,7 +3164,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'uiblink_formatter',
-        'weight' => 43,
+        'weight' => 50,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3459,7 +3459,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 41,
+        'weight' => 48,
       ),
       'short_teaser' => array(
         'label' => 'hidden',
@@ -3539,7 +3539,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3736,7 +3736,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 19,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3771,7 +3771,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 18,
+      'weight' => 16,
     ),
   );
 
@@ -3867,7 +3867,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 30,
       ),
       'type' => 'text_textarea',
-      'weight' => 16,
+      'weight' => 14,
     ),
   );
 
