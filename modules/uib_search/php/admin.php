@@ -27,8 +27,9 @@ function uib_search__boosting_admin_form($form, &$form_state) {
         saved setup vs your suggested setup. You can add test queries yourself,
         but please dont remove those that are already there, unless you know
         what you are doing.'),
-      '#default_value' => 'mat, master, bio, psykologi, bachelor, psyk, geo, '
-        . 'medisin, inf, kjem, timeplan',
+      '#default_value' => variable_get('uib_search_testing__keywords',
+        'mat, master, bio, psykologi, bachelor, psyk, geo, '
+        . 'medisin, inf, kjem, timeplan'),
     ),
     'test-submit' => array(
       '#type' => 'button',
