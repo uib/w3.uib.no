@@ -1878,7 +1878,7 @@ function uib_search__create_query($use_post_boosting = FALSE) {
         ),
       ),
       'must' =>  array(
-        'term' =>  array(
+        'prefix' =>  array(
           'w3.study_code' => strtolower($query),
         ),
       ),
