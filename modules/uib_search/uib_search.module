@@ -1937,17 +1937,6 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   /**************************************
    * Boosting relevance
    *************************************/
-  // Importance levels are found in this doc https://goo.gl/yw9mzP
-  // The boost levels associated with the importance levels are subject
-  // to change.
-  $importance_levels = array(
-    1 => 6, // Most important: Area pages etc
-    2 => 5, // Less important: News from latest month etc
-    3 => 4, // Even less important: News from last year?
-    4 => 3, // ...etc
-    5 => 2,
-    6 => 1,
-  );
 
   // Boost study programs
   $tmp = array(
