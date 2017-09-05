@@ -87,7 +87,7 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'match-title',
     t('Match title'),
-    t('Boost when matching title of nodes and studies'),
+    t('Boost when having a full word match in the title of nodes'),
     2
   );
   $items[$item->name] = $item;
@@ -103,7 +103,8 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'match-keywords',
     t('Match a keyword'),
-    t('Boost when matching a keyword'),
+    t('Boost when matching a keyword. Matching is fuzzy with fuzziness=1 and
+    prefix=4, meaning one letter can be wrong after first four letters.'),
     5
   );
   $items[$item->name] = $item;
@@ -111,7 +112,8 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'match-search-description',
     t('Fuzzy match of search description'),
-    t('Boost when matching a search description added to this object'),
+    t('Boost when matching a search description added to this object. Search is
+    fuzzy with fuzziness=auto'),
     2
   );
   $items[$item->name] = $item;
@@ -119,15 +121,17 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'match-url',
     t('Match end of url'),
-    t('Boost when matching the last element of the url'),
+    t('Boost when exactly matching (term query) the last element of the url, transformed to
+    lowercase'),
     3
   );
   $items[$item->name] = $item;
 
   $item = new uib_search__boost_value (
     'match-phone',
-    t('Match phone number'),
-    t('Boost when the query partially or exactly matches a phone number '),
+    t('Match user phone number'),
+    t('Boost when query matches users first part of phone number,
+    excluding +47'),
     10
   );
   $items[$item->name] = $item;
@@ -140,6 +144,10 @@ function uib_search__get_boosting() {
   );
   $items[$item->name] = $item;
 
+  /*
+  * Relevance boosting. These don't include the actual search term: boosting
+  * is done as a filter on the returned results, depending on their properties.
+  */
   $item = new uib_search__boost_value (
     'study-type-programme',
     t('Boost if study programme'),
@@ -167,7 +175,8 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'study-whatever-study',
     t('Boost if in the study index'),
-    t('Boost other items in the study index'),
+    t('Boost other items in the study index, that are not a course,
+    a study programme, or an exchange agreement'),
     4
   );
   $items[$item->name] = $item;
@@ -191,16 +200,16 @@ function uib_search__get_boosting() {
   $item = new uib_search__boost_value (
     'node-external-content',
     t('Boost external content'),
-    t('Boost external content. This is used to point to internal content that is
-      normally not indexed, like content lists, views etc.'),
+    t('Boost external content. This is normally used to point to internal
+      content that is not indexed, like views etc.'),
     6
   );
   $items[$item->name] = $item;
 
   $item = new uib_search__boost_value (
     'recent-content',
-    t('Boost recent content'),
-    t('Boost content changed in the last month.'),
+    t('Boost recent news'),
+    t('Boost nodes with article type = news, changed in the last month.'),
     5
   );
   $items[$item->name] = $item;
