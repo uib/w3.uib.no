@@ -108,6 +108,7 @@
         if ($.uib_search.current_request) {
           $.uib_search.current_request.abort();
         }
+        $.uib_search.current_request = xhr;
       },
       success: $().createResults($.uib_search.resultsselector, query),
     };
