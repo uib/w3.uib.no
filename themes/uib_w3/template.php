@@ -1158,7 +1158,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
 function uib_w3_field($variables) {
   $output = '';
   if (!$variables['label_hidden']) {
-    $output .= '<div ' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+    $output .= '<div ' . $variables['title_attributes'] . '>' . $variables['label'] . '&nbsp;</div>';
   }
   $output .= '<div ' . $variables['content_attributes'] . '>';
   foreach ($variables['items'] as $delta => $item) {
