@@ -360,3 +360,33 @@ function uib_search__compare_all_pages() {
     print implode('', $output);
   }
 }
+
+/**
+* Create a new elasticsearch index
+*
+*/
+function uib_search__create_index($name = FALSE) {
+  if (!$name) {
+    // If name is not given, generate a unique name
+    $name = substr(md5(uniqid()), -13);
+  }
+  else if (!preg_match('/^[a-zA-Z0-9]*$/', $name)) {
+    uibx_log('Name can only contain characters in range [a-zA-Z0-9]', 'error');
+    return FALSE;
+  }
+  $url = 'https://shield.testapp.uib.no'; // Server
+  $url .= "/api/oauthshield/indices"; // Endpoint
+  $data = json_encode(array('name' => $name));
+  $result = uib_search__run_elastic_request( $url, $data, 'POST', 'TRUE');
+  $output = json_decode($result->data);
+  if ($result->code == 200) {
+    return $output->name;
+  }
+  uibx_log('Something went wrong with index generation:', 'error');
+  uibx_log($result->status_message, 'error');
+  if ($result->code == 401) {
+    uibx_log('Make sure you are using the shield/OAuth2 setup, '
+    . 'look in doc/elastic.md for info', 'error');
+  }
+  return FALSE;
+}

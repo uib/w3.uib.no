@@ -90,6 +90,14 @@ function uib_search_drush_command() {
       'size' => 'Size of results list',
     ),
   );
+  $items['uib-search-createix'] = array(
+    'description' => 'Create a new elasticsearch index and print the index '
+      . 'name. Return an empty string on failure.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(
+      'name' => 'Optional name of the new index.',
+    ),
+  );
   return $items;
 }
 
@@ -528,4 +536,11 @@ function prettyPrint( $json )
   }
 
   return $result;
+}
+
+function drush_uib_search_createix($name = FALSE) {
+  if ($output = uib_search__create_index($name)) {
+    uibx_log('Creted new index: ', 'notice');
+    echo $output . "\n";
+  }
 }
