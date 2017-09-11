@@ -3259,13 +3259,10 @@ a,
 
 /* styled in atoms/_texts.scss and molecules/_area-profiled-articles.scss */
 #block-locale-language {
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+  padding-right: 1rem; }
   #block-locale-language .language-switcher-locale-url {
-    margin: 0;
-    padding: 0;
     list-style: none; }
-    #block-locale-language .language-switcher-locale-url li {
-      padding-right: 1rem; }
   #block-locale-language a {
     color: #fff; }
   #block-locale-language .active {
@@ -3276,24 +3273,10 @@ a,
     display: block;
     position: absolute;
     right: 0;
-    top: 0.5rem; }
-    #block-locale-language a {
-      display: block;
-      width: 7rem;
-      padding: 0 0 0 100%;
-      font-size: .8rem;
-      overflow: hidden; }
-    #block-locale-language li a:before {
-      position: absolute;
-      right: 1.25rem;
-      text-align: right; }
-    #block-locale-language li.en a:before {
-      content: "English\00a0\00a0website \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; }
-    #block-locale-language li.nb a:before {
-      content: "Norsk\00a0\00a0\00a0nettside \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"; } }
-@media (min-width: 72rem) {
-  #block-locale-language li a:before {
-    right: 0; } }
+    top: 0.5rem; } }
+@media only screen and (min-width: 72rem) {
+  #block-locale-language {
+    padding-right: 0; } }
 .field-collection-container {
   border-bottom: 0 none; }
   @media (min-width: 600px) {
