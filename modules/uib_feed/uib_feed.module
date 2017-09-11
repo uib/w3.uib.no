@@ -69,14 +69,6 @@ function uib_feed__format_pre_render($element) {
     if ($title != '')
       $element['list']['#title'] = $title;
     foreach ($xml->channel->item as $entry) {
-      $pubDate = $entry->pubDate;
-      if (!empty($pubDate)) {
-        $pubDate_t = strtotime($pubDate);
-        if ($pubDate_t) {
-          $pubDate_f = strftime("%Y-%m-%d", $pubDate_t);
-          $entry->title .= " ($pubDate_f)";
-        }
-      }
       $element['list']['#items'][] = l($entry->title, $entry->link);
       if (--$limit == 0)
         break;
