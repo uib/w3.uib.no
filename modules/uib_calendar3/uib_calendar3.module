@@ -344,49 +344,7 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
       return MENU_NOT_FOUND;
     }
   }
-
-  $select = db_select('node', 'n');
-  $select->fields('n', array('nid', 'title', 'created'));
-
-  // only published articles of type events
-  $select->where('n.status = 1');
-  $select->where('n.type = :type', array(':type' => 'uib_article'));
-  $select->join('field_data_field_uib_article_type', 'at', 'at.entity_id = n.nid AND at.field_uib_article_type_value = \'event\'');
-
-  // only current language
-  $select->where('n.language = :language', array(':language' => $language->language));
-
-  if ($area_nid) {
-    $select->join('field_data_field_uib_area', 'area', 'area.entity_id = n.nid AND area.field_uib_area_target_id = :area',
-      array(':area' => $area_nid));
-  }
-  else {
-    $select->join('field_data_field_uib_show_global_calendar', 'show', 'show.entity_id = n.nid AND show.field_uib_show_global_calendar_value = 1');
-  }
-
-  // include the event type
-  $select->leftJoin('field_data_field_uib_event_type', 'et', 'et.entity_id = n.nid');
-  $select->fields('et', array('field_uib_event_type_value'));
-
-  // include the date fields
-  $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
-  $select->fields('d', array('field_uib_date_value', 'field_uib_date_value2'));
-
-  // include deadlines
-  $select->leftJoin('field_data_field_uib_deadline', 'dead', 'dead.entity_id = n.nid');
-  $select->fields('dead', array('field_uib_deadline_value'));
-  //$select->where('field_uib_deadline_value is not null'); // XXX while debugging
-
-  // include location
-  $select->leftJoin('field_data_field_uib_location', 'loc', 'loc.entity_id = n.nid');
-  $select->fields('loc', array('field_uib_location_value'));
-
-  // include teaser
-  $select->leftJoin('field_data_field_uib_lead', 'lead', 'lead.entity_id = n.nid');
-  $select->fields('lead', array('field_uib_lead_value'));
-
-  // filter and order by date
-  $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));
+  $select = uib_calendar3__get_index_page_query($area_nid, $from_date, $language->language);
 
   if ($format == 'rss') {
     uib_calendar3__rss_output($select, $area);
@@ -934,4 +892,72 @@ class uib_calendar3__ical {
     $s .= "END:VCALENDAR\n";
     return $s;
   }
+}
+
+/**
+* Helper function generating an sql query to get all events for an area
+*/
+function uib_calendar3__get_index_page_query($area_nid = FALSE, $from_date, $langcode = FALSE) {
+  $select = db_select('node', 'n');
+  $select->fields('n', array('nid', 'title', 'created'));
+
+  // only published articles of type events
+  $select->where('n.status = 1');
+  $select->where('n.type = :type', array(':type' => 'uib_article'));
+  $select->join('field_data_field_uib_article_type', 'at', 'at.entity_id = n.nid AND at.field_uib_article_type_value = \'event\'');
+
+  if ($langcode) {
+    $select->where('n.language = :language', array(':language' => $langcode));
+  }
+
+  if ($area_nid) {
+    $select->join('field_data_field_uib_area', 'area', 'area.entity_id = n.nid AND area.field_uib_area_target_id = :area',
+      array(':area' => $area_nid));
+    if (!$langcode) {
+      $select->join(
+        'node',
+        'an',
+        'area.field_uib_area_target_id = an.nid and an.language = n.language'
+      );
+    }
+  }
+  else {
+    $select->join('field_data_field_uib_show_global_calendar', 'show', 'show.entity_id = n.nid AND show.field_uib_show_global_calendar_value = 1');
+  }
+
+  // include the event type
+  $select->leftJoin('field_data_field_uib_event_type', 'et', 'et.entity_id = n.nid');
+  $select->fields('et', array('field_uib_event_type_value'));
+
+  // include the date fields
+  $select->join('field_data_field_uib_date', 'd', 'd.entity_id = n.nid');
+  $select->fields('d', array('field_uib_date_value', 'field_uib_date_value2'));
+
+  // include deadlines
+  $select->leftJoin('field_data_field_uib_deadline', 'dead', 'dead.entity_id = n.nid');
+  $select->fields('dead', array('field_uib_deadline_value'));
+  //$select->where('field_uib_deadline_value is not null'); // XXX while debugging
+
+  // include location
+  $select->leftJoin('field_data_field_uib_location', 'loc', 'loc.entity_id = n.nid');
+  $select->fields('loc', array('field_uib_location_value'));
+
+  // include teaser
+  $select->leftJoin('field_data_field_uib_lead', 'lead', 'lead.entity_id = n.nid');
+  $select->fields('lead', array('field_uib_lead_value'));
+
+  // filter and order by date
+  $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));
+  return $select;
+}
+
+/**
+* Check how many calendar events an area has.
+*/
+function uib_calendar3__area_count_events(
+  $area_nid,
+  $from_date = '1970-01-01'
+) {
+  $select = uib_calendar3__get_index_page_query($area_nid, $from_date);
+  return $select->countQuery()->execute()->fetchField();
 }

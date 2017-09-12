@@ -112,14 +112,24 @@ function uib_area_block_view($delta='') {
           $calendar_url = 'node/' . $area->nid . '/calendar';
           $news_archive_url = 'node/' . $area->nid . '/news-archive';
         }
-        $calendar_link = l(t('See all events'), $calendar_url, array(
-          'attributes' => array('class' => array('more-link__calendar')),
-        ));
-        $news_archive_link = l(t('See all news'), $news_archive_url, array(
-          'attributes' => array('class' => array('more-link__news')),
-        ));
-        $items[] = $calendar_link;
-        $items[] = $news_archive_link;
+        if (
+          uib_calendar3__area_count_events($area->nid) ||
+          $area->field_uib_area_type['und'][0]['value'] == 'frontpage'
+        ) {
+          $calendar_link = l(t('See all events'), $calendar_url, array(
+            'attributes' => array('class' => array('more-link__calendar')),
+          ));
+          $items[] = $calendar_link;
+        }
+        if (
+          uib_area__count_news_articles($area->nid) ||
+          $area->field_uib_area_type['und'][0]['value'] == 'frontpage'
+        ) {
+          $news_archive_link = l(t('See all news'), $news_archive_url, array(
+            'attributes' => array('class' => array('more-link__news')),
+          ));
+          $items[] = $news_archive_link;
+        }
         $block['content'] = theme_item_list(array(
           'items' => $items,
           'title' => NULL,
@@ -2857,4 +2867,22 @@ function uib_area__get_organisation_unit($ou_id) {
     $retval .= ".{$o->sublevel}";
   }
   return $retval;
+}
+
+/**
+* Get the number of news articles linked to this area
+*/
+function uib_area__count_news_articles($area_nid = -1) {
+  $sql = "SELECT count(news.entity_id) as news
+    FROM node n
+    inner join field_data_field_uib_area a on a.field_uib_area_target_id=n.nid
+    inner join node c on a.entity_id=c.nid and n.language = c.language
+    left join field_data_field_uib_article_type news on news.entity_id=c.nid
+    where
+    n.nid='{$area_nid}'
+    and n.status=1
+    and c.status=1
+    and news.field_uib_article_type_value = 'news'";
+  $res = db_query($sql);
+  return $res->fetchField(0);
 }
