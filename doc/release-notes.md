@@ -1,3 +1,14 @@
+# Release 78 _2017-09-14_
+- Fjernet visningen av knapper for "Kalender" og "Nyhetsarkiv" i de tilfellene der det ikke finnes kalenderoppføringer eller nyhetssaker #18958
+- Fjernet kolonet fra overskrifter som "Tilknyttet innhold" og "Tilknyttede personer" #18970
+- Fjernet publiseringsdato fra lenketekst i importerte RSS-feeder #18972
+- Fjernet "Universitetet i Bergen" fra tittel når innhold fra uib.no blir delt på Facebook #18941
+- Endret språkversjonenes lenketekst fra henholdsvis "English website" og "Norsk nettside" til "English" og "Norsk" #18915
+- Justert plasseringen av undermenyen til hovedmenypunktet "Om" ("About") #18967
+- Lagt til rette for visning av Google Maps i artikler (URL-feltet vil foreløpig ikke vises for redaktører og innholdsprodusenter) #6919
+- Lagt til rette for maskinell avpublisering av noder uten innhold #18899 #18995
+- Forbedret søkefunksjonen #17174 #18928 #18938 #18939 #18947 #18948 #18952
+
 # Release 77 _2017-08-31_
 - Gjort forbedringer i koden på headeren slik at den er mer stabil #15982
 - Justert rettigheter på admin-funksjoner, slik at funksjoner som ikke skal brukes av rolle 2 og 3 viser for alle #18902
