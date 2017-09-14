@@ -3270,13 +3270,11 @@ a,
 
 @media only screen and (min-width: 780px) {
   #block-locale-language {
+    padding-right: 0;
     display: block;
     position: absolute;
     right: 0;
     top: 0.5rem; } }
-@media only screen and (min-width: 72rem) {
-  #block-locale-language {
-    padding-right: 0; } }
 .field-collection-container {
   border-bottom: 0 none; }
   @media (min-width: 600px) {
@@ -3591,7 +3589,7 @@ a,
     display: none;
     position: absolute;
     top: 55px;
-    right: -2.5rem;
+    right: -3.4rem;
     width: 200px;
     height: auto;
     background: #cf3c3a;
@@ -3614,11 +3612,13 @@ a,
       border-bottom-color: #fff;
       border-width: 22px;
       margin-left: -22px; }
-    .global-menu li ul li a, .global-menu li * ul li a {
-      margin: 0 1rem;
-      padding: 1rem 1rem 1rem 0;
-      border-bottom: 1px solid #fff;
-      display: block; }
+    .global-menu li ul li, .global-menu li * ul li {
+      padding: 0; }
+      .global-menu li ul li a, .global-menu li * ul li a {
+        margin: 0 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #fff;
+        display: block; }
   .global-menu li:hover > ul, .global-menu li *:hover > ul {
     display: block;
     z-index: 1000; }
@@ -7087,19 +7087,21 @@ body #mc_embed_signup div.mce_inline_error {
       -webkit-flex: 0 0 2.9375rem;
       flex: 0 0 2.9375rem; } }
   @media (min-width: 780px) {
-    .header__wrapper .header {
-      padding: 1rem 1.25rem; }
-      .header__wrapper .header ul {
-        list-style: none;
-        margin: 0;
-        padding: 0; }
-      .header__wrapper .header .logo__link {
-        -webkit-flex: 0 0 4.70588rem;
-        flex: 0 0 4.70588rem; }
-      .header__wrapper .header .region-header .mobile-menu {
-        display: none; }
-      .header__wrapper .header .region-header .global-menu {
-        display: block; } }
+    .header__wrapper {
+      padding: 0 1.25rem; }
+      .header__wrapper .header {
+        padding: 1rem 0; }
+        .header__wrapper .header ul {
+          list-style: none;
+          margin: 0;
+          padding: 0; }
+        .header__wrapper .header .logo__link {
+          -webkit-flex: 0 0 4.70588rem;
+          flex: 0 0 4.70588rem; }
+        .header__wrapper .header .region-header .mobile-menu {
+          display: none; }
+        .header__wrapper .header .region-header .global-menu {
+          display: block; } }
   @media (min-width: 72rem) {
     .header__wrapper .header {
       padding: 1rem 0; } }
