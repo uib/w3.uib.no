@@ -64,4 +64,5 @@ filename=$DIR'/../doc/empty_nodes_unpublished_rel78.txt'
 # Save empty node ids and titles to file
 bin/site-drush sqlq --extra=-t "$sql" > $filename
 
-$DIR'/'unpublish_nodes $filename
+# After production upgrade is complete, this script should be run manually:
+# bin/unpublish_nodes doc/empty_nodes_unpublished_rel78.txt
