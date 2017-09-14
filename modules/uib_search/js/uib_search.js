@@ -107,6 +107,7 @@
       beforeSend: function (xhr) {
         if ($.uib_search.current_request) {
           $.uib_search.current_request.abort();
+          $.uib_search.current_request = false;
         }
         $.uib_search.current_request = xhr;
       },
@@ -120,7 +121,6 @@
       // Don't process if a new query is underway
       if ($.uib_search.querynum > data.querynum) return;
 
-      $.uib_search.currentquery = query;
 
       var resultstag = $(resultsselector);
       if ($.trim($('form#uib-search-form .search-field').val())=='') {
@@ -596,6 +596,7 @@
         if (query == $.uib_search.currentquery) {
           return;
         }
+        $.uib_search.currentquery = query;
         $.uib_search.from = 0;
         $.uib_search.delay = 300;
         $.uib_search.scroll = false;
