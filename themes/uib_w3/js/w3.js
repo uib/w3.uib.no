@@ -48,7 +48,10 @@
             .prop('checked', true)
         }
       }
-      $('form#uib-search-form .search-field').keyup();
+      var e = $.Event('keyup');
+      e.which = 0;
+      $('form#uib-search-form .search-field').trigger(e);
+
       $('.block-uib-search .lightbox .search-field').focus();
     });
 

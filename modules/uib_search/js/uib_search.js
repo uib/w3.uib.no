@@ -593,7 +593,7 @@
           $('.results').html('');
           return;
         }
-        if (query == $.uib_search.currentquery) {
+        if (query == $.uib_search.currentquery && e.which != 0) {
           return;
         }
         $.uib_search.currentquery = query;
