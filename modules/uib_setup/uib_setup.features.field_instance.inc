@@ -63,6 +63,12 @@ function uib_setup_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 3,
       ),
+      'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'full' => array(
         'label' => 'above',
         'settings' => array(),
@@ -190,6 +196,12 @@ function uib_setup_field_default_field_instances() {
         ),
         'type' => 'text_default',
         'weight' => 5,
+      ),
+      'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full_width_banner' => array(
         'label' => 'above',
@@ -326,6 +338,12 @@ function uib_setup_field_default_field_instances() {
         ),
         'type' => 'text_default',
         'weight' => 2,
+      ),
+      'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -575,7 +593,7 @@ function uib_setup_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -736,10 +754,10 @@ function uib_setup_field_default_field_instances() {
         'weight' => 3,
       ),
       'feature_image' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -922,7 +940,7 @@ function uib_setup_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 0,
       ),
       'full_width_banner' => array(
         'label' => 'above',
@@ -1077,10 +1095,10 @@ function uib_setup_field_default_field_instances() {
         'weight' => 2,
       ),
       'feature_image' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',

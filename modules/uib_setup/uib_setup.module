@@ -90,5 +90,9 @@ function uib_setup_entity_info_alter(&$entity_info) {
     'label' => t('Area main'),
     'custom settings' => TRUE,
   );
+  $entity_info['file']['view modes']['feature_image'] = array(
+    'label' => t('Feature image'),
+    'custom settings' => TRUE,
+  );
 }
 
