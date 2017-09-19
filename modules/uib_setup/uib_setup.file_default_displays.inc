@@ -985,12 +985,12 @@ function uib_setup_file_default_displays() {
     'color' => '',
     'protocol_specify' => 0,
     'protocol' => 'https://',
-    'autoplay' => 1,
+    'autoplay' => 0,
     'loop' => 1,
     'title' => 0,
     'byline' => 0,
     'portrait' => 0,
-    'api' => 0,
+    'api' => 1,
   );
   $export['video__feature_image__media_vimeo_video'] = $file_display;
 
@@ -1024,8 +1024,8 @@ function uib_setup_file_default_displays() {
     'nocookie' => 0,
     'protocol_specify' => 0,
     'protocol' => 'https:',
-    'enablejsapi' => 0,
-    'origin' => '',
+    'enablejsapi' => 1,
+    'origin' => 'http://w3.d1.dev',
   );
   $export['video__feature_image__media_youtube_video'] = $file_display;
 

@@ -166,7 +166,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $variables['page']['content_top']['area_menu']['#prefix'] = '<nav class="uib-feature-area-menu">';
       $variables['page']['content_top']['area_menu']['#suffix'] = '</nav>';
     }
-    drupal_add_js('sites/all/themes/uib/uib_w3/js/paralax.js');
+    drupal_add_js('https://player.vimeo.com/api/player.js');
+    drupal_add_js('sites/all/themes/uib/uib_w3/js/w3-feature.js');
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
