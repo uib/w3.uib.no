@@ -602,6 +602,7 @@ function uib_area_field_default_field_bases() {
         'w' => 'White text',
         'wtb' => 'White text with transparent background',
         'b' => 'Black text',
+        'h' => 'Hide text',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

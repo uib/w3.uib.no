@@ -166,7 +166,15 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $variables['page']['content_top']['area_menu']['#prefix'] = '<nav class="uib-feature-area-menu">';
       $variables['page']['content_top']['area_menu']['#suffix'] = '</nav>';
     }
-    drupal_add_js('https://player.vimeo.com/api/player.js');
+    if (!empty($variables['node']->field_uib_primary_media)) {
+      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/vimeo') {
+        drupal_add_js('https://player.vimeo.com/api/player.js');
+      }
+      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/youtube') {
+        drupal_add_js('https://www.youtube.com/iframe_api');
+        drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/yt.js', array('type' => 'file', 'scope' => 'footer',));
+      }
+    }
     drupal_add_js('sites/all/themes/uib/uib_w3/js/w3-feature.js');
   }
   $variables['page']['header']['search'] =

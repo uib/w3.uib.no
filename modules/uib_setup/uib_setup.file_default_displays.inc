@@ -1016,7 +1016,7 @@ function uib_setup_file_default_displays() {
     'color' => 'red',
     'autohide' => '1',
     'captions' => FALSE,
-    'autoplay' => 1,
+    'autoplay' => 0,
     'loop' => 1,
     'showinfo' => 0,
     'modestbranding' => 0,
@@ -1025,7 +1025,7 @@ function uib_setup_file_default_displays() {
     'protocol_specify' => 0,
     'protocol' => 'https:',
     'enablejsapi' => 1,
-    'origin' => 'http://w3.d1.dev',
+    'origin' => 'http://uib.no',
   );
   $export['video__feature_image__media_youtube_video'] = $file_display;
 

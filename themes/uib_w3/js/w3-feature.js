@@ -9,10 +9,8 @@
         w3VideoPlay(e, player);
       });
       player.on('pause', function(e) {
-        $('.field-name-field-uib-primary-media').css('z-index', '0');
+        $('.field-name-field-uib-primary-media').removeClass('focus');
       });
-    }
-    if ($('.field-name-field-uib-primary-media .file-video-youtube').length > 0) {
     }
   });
   $(window).resize(function() {
@@ -31,31 +29,37 @@
     var imgOffsetX = 0;
     var viewHeight = $(window).height();
     if ($('.feature-image .content-top').length > 0) {
-      var mediaTop = $('.feature-image .content-top').position().top;
-      var mediaHeight = viewHeight - mediaTop;
-      var mediaWidth = $(window).width();
-      $('.feature-image .field-name-field-uib-primary-media').height(mediaHeight);
-      var imgHeight = $('.feature-image .field-name-field-uib-primary-media img').height();
-      var imgWidth = $('.feature-image .field-name-field-uib-primary-media img').width();
-      if (imgHeight !== mediaHeight) {
-        var factor1 = mediaHeight/imgHeight;
-        imgHeight = imgHeight * factor1;
-        imgWidth = imgWidth * factor1;
-      }
-      if (imgWidth < mediaWidth) {
-        var factor2 = mediaWidth/imgWidth;
-        imgHeight = imgHeight * factor2;
-        imgWidth = imgWidth * factor2;
-      }
-      if (imgHeight > mediaHeight) {
-        imgOffsetY = Math.round((imgHeight - mediaHeight) / 2);
-      }
-      if (imgWidth > mediaWidth) {
-        imgOffsetX = Math.round((imgWidth - mediaWidth) / 2);
-      }
-      $('.feature-image .field-name-field-uib-primary-media img').height(imgHeight);
-      $('.feature-image .field-name-field-uib-primary-media img').width(imgWidth);
+      var container = '.feature-image ';
+      var imgResize = '.field-name-name-field-uib-primary-media';
     }
+    if ($('.feature-video .content-top').length > 0) {
+      var container = '.feature-video ';
+      var imgResize = '.field-name-field-uib-feature-mobile-media';
+    }
+    var mediaTop = $(container + '.content-top').position().top;
+    var mediaHeight = viewHeight - mediaTop;
+    var mediaWidth = $(window).width();
+    $(container + imgResize).height(mediaHeight);
+    var imgHeight = $(container + imgResize + ' img').height();
+    var imgWidth = $(container + imgResize + ' img').width();
+    if (imgHeight !== mediaHeight) {
+      var factor1 = mediaHeight/imgHeight;
+      imgHeight = imgHeight * factor1;
+      imgWidth = imgWidth * factor1;
+    }
+    if (imgWidth < mediaWidth) {
+      var factor2 = mediaWidth/imgWidth;
+      imgHeight = imgHeight * factor2;
+      imgWidth = imgWidth * factor2;
+    }
+    if (imgHeight > mediaHeight) {
+      imgOffsetY = Math.round((imgHeight - mediaHeight) / 2);
+    }
+    if (imgWidth > mediaWidth) {
+      imgOffsetX = Math.round((imgWidth - mediaWidth) / 2);
+    }
+    $(container + imgResize + ' img').height(imgHeight);
+    $(container + imgResize + ' img').width(imgWidth);
   }
   function w3VideoAutoPlay(player) {
     var deviceHeight = $(window).height();
@@ -66,7 +70,7 @@
   }
   function w3VideoPlay(e, player) {
     e.preventDefault();
-    $('.field-name-field-uib-primary-media').css('z-index', '1000');
+    $('.field-name-field-uib-primary-media').addClass('focus');
     player.play();
   }
 }(jQuery));
