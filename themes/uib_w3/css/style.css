@@ -1767,6 +1767,20 @@ a,
     font-size: 1.625rem; }
   .field-name-field-uib-primary-text h4 {
     font-size: 1.35rem; }
+  @media (min-width: 960px) {
+    .field-name-field-uib-primary-text {
+      display: -ms-flexbox;
+      -ms-flex-direction: column;
+      -ms-flex-pack: center;
+      -ms-flex-wrap: wrap;
+      display: -webkit-flex;
+      -webkit-flex-direction: column;
+      -webkit-justify-content: center;
+      -webkit-flex-wrap: wrap;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: wrap; } }
 
 .edit-field-uib-study-code-value label, .edit-term-node-tid-depth label {
   font-weight: bold; }
