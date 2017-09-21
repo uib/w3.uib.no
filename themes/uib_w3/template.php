@@ -151,15 +151,17 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     );
   }
   if ($current_area && $is_feature_front) {
-    $variables['page']['content_top']['area'] = array(
-      '#type' => 'html_tag',
-      '#tag' => 'h2',
-      '#attributes' => array(),
-      '#value' => $current_area->title,
-      '#weight' => -27,
-      '#prefix' => '<div class="uib-feature-area__title">',
-      '#suffix' => '</div>',
-    );
+    if ($current_area->field_uib_feature_heading_style['und'][0]['value'] != 'h') {
+      $variables['page']['content_top']['area'] = array(
+        '#type' => 'html_tag',
+        '#tag' => 'h2',
+        '#attributes' => array(),
+        '#value' => $current_area->title,
+        '#weight' => -27,
+        '#prefix' => '<div class="uib-feature-area__title">',
+        '#suffix' => '</div>',
+      );
+    }
     if (isset($area_menu)) {
       $variables['page']['content_top']['area_menu'] = $area_menu;
       $variables['page']['content_top']['area_menu']['#prefix'] = '<nav class="uib-feature-area-menu">';
@@ -515,10 +517,13 @@ EOD;
         'label' => 'hidden',
         'weight' => -25,
       ));
-      $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
-        'label' => 'hidden',
-        'weight' => -20,
-      ));
+
+      if (!$is_feature_front || (isset($variables['node']->field_uib_feature_heading_style) && $variables['node']->field_uib_feature_heading_style['und'][0]['value'] != 'h')) {
+        $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
+          'label' => 'hidden',
+          'weight' => -20,
+        ));
+      }
       $nid = $variables['node']->nid;
       if ($variables['node']->field_uib_area_type['und'][0]['value'] != 'phdpresspage') {
         $variables['page']['content']['system_main']['nodes'][$nid]['news_and_calendar'] = __uib_w3__render_block('uib_area', 'news_and_calendar', 6);
