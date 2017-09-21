@@ -30,7 +30,7 @@
     var viewHeight = $(window).height();
     if ($('.feature-image .content-top').length > 0) {
       var container = '.feature-image ';
-      var imgResize = '.field-name-name-field-uib-primary-media';
+      var imgResize = '.field-name-field-uib-primary-media';
     }
     if ($('.feature-video .content-top').length > 0) {
       var container = '.feature-video ';
