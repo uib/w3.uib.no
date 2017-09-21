@@ -8132,18 +8132,20 @@ body #mc_embed_signup div.mce_inline_error {
       display: none; }
     .node-type-area.feature-area .content-top-wrapper .content-top .field-name.field-uib-primary-media {
       display: block; }
-    .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area__title h2 {
-      font-size: 3.5rem;
-      padding: 0 1rem 1rem; }
+    .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area__title {
+      left: calc(50% - 24.375rem);
+      max-width: 48.75rem; }
+      .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area__title h2 {
+        font-size: 3.5rem;
+        padding: 0 1rem 1rem; }
     .node-type-area.feature-area .content-top-wrapper .content-top .field-name-field-uib-secondary-text {
       display: block;
       position: absolute;
       top: 20%;
-      left: 0;
+      left: calc(50% - 24.375rem);
+      max-width: 48.75rem;
       width: 100%;
-      z-index: 10; }
-      .node-type-area.feature-area .content-top-wrapper .content-top .field-name-field-uib-secondary-text p {
-        max-width: 48.75rem; } }
+      z-index: 10; } }
   @media (min-width: 780px) {
     .node-type-area.feature-area .content-top-wrapper .content-top .content-top-wrapper .content-top .uib-feature-area__title h2 {
       width: 48.75rem; } }
@@ -8286,7 +8288,7 @@ body #mc_embed_signup div.mce_inline_error {
   text-shadow: 1px 1px 2px #474747; }
 
 .node-type-area.feature-area-style-wtb .uib-feature-area__title h2,
-.node-type-area.feature-area-style-wtb .field-name-field-uib-secondary-text p {
+.node-type-area.feature-area-style-wtb .field-name-field-uib-secondary-text {
   background: rgba(56, 56, 56, 0.4); }
 
 .node-type-area.feature-area-style-b .content-top-wrapper .content-top .uib-feature-area__title h2,

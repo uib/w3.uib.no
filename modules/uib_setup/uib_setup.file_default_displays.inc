@@ -397,6 +397,17 @@ function uib_setup_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+    'image_link' => '',
+  );
+  $export['image__feature_image__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
   $file_display->name = 'image__feature_image__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
@@ -407,26 +418,24 @@ function uib_setup_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_image';
-  $file_display->weight = 5;
-  $file_display->status = TRUE;
-  $file_display->settings = array(
-    'image_style' => 'feature_image',
-  );
-  $export['image__feature_image__file_image'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_picture';
+  $file_display->name = 'image__feature_image__file_field_picture';
   $file_display->weight = 0;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'picture_group' => 'feature_image',
+    'picture_mapping' => 'w3_feature_image',
     'fallback_image_style' => 'feature_image',
-    'lazyload' => 1,
-    'lazyload_aspect_ratio' => 1,
+    'lazyload' => 0,
+    'lazyload_aspect_ratio' => 0,
+    'image_link' => '',
+    'colorbox_settings' => array(
+      'colorbox_group' => 'w3_feature_image',
+      'colorbox_gallery' => 'post',
+      'colorbox_gallery_custom' => '',
+      'colorbox_caption' => 'auto',
+      'colorbox_caption_custom' => '',
+    ),
   );
-  $export['image__feature_image__file_picture'] = $file_display;
+  $export['image__feature_image__file_field_picture'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
@@ -1025,7 +1034,7 @@ function uib_setup_file_default_displays() {
     'protocol_specify' => 0,
     'protocol' => 'https:',
     'enablejsapi' => 1,
-    'origin' => 'http://uib.no',
+    'origin' => '',
   );
   $export['video__feature_image__media_youtube_video'] = $file_display;
 
