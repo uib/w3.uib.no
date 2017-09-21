@@ -109,11 +109,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['mobile_menu']['#weight'] = -11;
   }
   $current_area = uib_area__get_current();
-  $no_area_menu_top_areas = array('frontpage', 'feature area');
-  $no_area_menu_top = $current_area && in_array($current_area->field_uib_area_type['und'][0]['value'], $no_area_menu_top_areas) ? true : false;
+  $is_feature_front = $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!$no_area_menu_top) {
+    if (!$variables['is_front'] && !$is_feature_front) {
       $variables['area_menu'] = $area_menu;
     }
     $variables['area_menu_footer'] = $area_menu;
@@ -140,7 +139,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['#suffix'] = '</nav>';
     $variables['mobile']['#weight'] = 0;
   }
-  if ($current_area && !$variables['is_front'] && $current_area->field_uib_area_type['und'][0]['value'] != 'feature area') {
+  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area') || uib_area__get_node_type() != 'area') {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
@@ -151,7 +150,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         $variables['language']->language ),
     );
   }
-  if ($current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area') {
+  if ($current_area && $is_feature_front) {
     $variables['page']['content_top']['area'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h2',
