@@ -99,7 +99,11 @@ function uib_article_field_default_field_instances() {
   // 'field_collection_item-field_uib_imagecaptions-field_uib_imageindex'.
   $field_instances['field_collection_item-field_uib_imagecaptions-field_uib_imageindex'] = array(
     'bundle' => 'field_uib_imagecaptions',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -129,7 +133,7 @@ function uib_article_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_uib_imageindex',
     'label' => 'Image index',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -232,7 +236,11 @@ function uib_article_field_default_field_instances() {
   // 'field_collection_item-field_uib_imagecaptions2-field_uib_imageindex'.
   $field_instances['field_collection_item-field_uib_imagecaptions2-field_uib_imageindex'] = array(
     'bundle' => 'field_uib_imagecaptions2',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -262,7 +270,7 @@ function uib_article_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_uib_imageindex',
     'label' => 'Image index',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
