@@ -31,6 +31,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
         if (!empty($node->field_uib_feature_heading_style)) {
           $variables['classes_array'][] = 'feature-area-style-' . $node->field_uib_feature_heading_style['und'][0]['value'];
         }
+        else {
+          $variables['classes_array'][] = 'feature-area-style-w';
+        }
         if (!empty($node->field_uib_primary_media) && $node->field_uib_primary_media['und'][0]['type'] == 'video') {
           $variables['classes_array'][] = 'feature-video';
         }
