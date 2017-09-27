@@ -154,7 +154,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     );
   }
   if ($current_area && $is_feature_front) {
-    if ($current_area->field_uib_feature_heading_style['und'][0]['value'] != 'h') {
+    if (empty($current_area->field_uib_feature_heading_style['und'][0]['value']) || $current_area->field_uib_feature_heading_style['und'][0]['value'] != 'h') {
       $variables['page']['content_top']['area'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h2',
@@ -521,7 +521,7 @@ EOD;
         'weight' => -25,
       ));
 
-      if (!$is_feature_front || (isset($variables['node']->field_uib_feature_heading_style) && $variables['node']->field_uib_feature_heading_style['und'][0]['value'] != 'h')) {
+      if (!$is_feature_front || (empty($variables['node']->field_uib_feature_heading_style) || $variables['node']->field_uib_feature_heading_style['und'][0]['value'] != 'h')) {
         $variables['page']['content_top']['field_uib_secondary_text'] = field_view_field('node', $variables['node'], 'field_uib_secondary_text', array(
           'label' => 'hidden',
           'weight' => -20,
