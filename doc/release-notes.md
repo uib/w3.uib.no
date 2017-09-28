@@ -1,3 +1,9 @@
+# Release 79 _2017-09-28_
+- Startet arbeidet med ny områdemal for UiBs satsningsområder #18845
+- Endret normalverdien fra "Ingen" til "1" i bildeliste-feltet (feltet som brukes for å knytte sammen bilde og bildetekst) #19037
+- Rettet feil visning av pil etter hovedmenypunktet "Om" ved bruk av Firefox og IE #19005
+- Sentrert introteksten vertikalt på områdesider #19021
+
 # Release 78 _2017-09-14_
 - Fjernet visningen av knapper for "Kalender" og "Nyhetsarkiv" i de tilfellene der det ikke finnes kalenderoppføringer eller nyhetssaker #18958
 - Fjernet kolonet fra overskrifter som "Tilknyttet innhold" og "Tilknyttede personer" #18970
