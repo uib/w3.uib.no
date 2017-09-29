@@ -112,7 +112,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['mobile_menu']['#weight'] = -11;
   }
   $current_area = uib_area__get_current();
-  $is_feature_front = $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' ? true : false;
+  $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$variables['is_front'] && !$is_feature_front) {
@@ -142,7 +142,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['#suffix'] = '</nav>';
     $variables['mobile']['#weight'] = 0;
   }
-  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area') || uib_area__get_node_type() != 'area') {
+  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || uib_area__get_node_type() != 'area')) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',

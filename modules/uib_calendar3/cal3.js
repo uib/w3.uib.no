@@ -40,12 +40,25 @@ jQuery(document).ready(function($) {
         count_checked++;
       }
     });
+    var cal_link = $('.ical-link>a');
     if (!count_checked) {
       // make them all visible
       $('.event-entry').toggle(true);
       $('.calendar-date').removeClass('collapsed');
       history.replaceState({}, 'Show all', '?' + query_state());
+      cal_link.attr('href', cal_link.data('link'));
+      cal_link.text(Drupal.t('Subscribe to calendar'));
       return;
+    }
+    else {
+      var link = cal_link.data('link')
+      var vals = $('.calendar-types input:checked').map(
+        function() {
+          return 'event_types[]=' + $(this).data('type');
+        }
+      ).get();
+      cal_link.attr('href', link + '?' + vals.join('&'));
+      cal_link.text(Drupal.t('Subscribe to selected'));
     }
     if (checked && count_checked == 1) {
       // everyone was visible before
