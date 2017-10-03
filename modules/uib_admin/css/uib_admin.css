@@ -144,3 +144,14 @@ td:not(.delta-order) > .ajax-new-content {
 #uib-search-boosting-admin-form .test-results {
   order: 2; /* end */
 }
+
+.page-file-usage div#page div#main-content table thead tr th:last-child {
+    color: transparent;
+    white-space: nowrap;
+    max-width: 5rem;
+    overflow: hidden;
+}
+.page-file-usage div#page div#main-content table thead tr th:last-child:before {
+  content: 'Number of revisions';
+  color: #696969;
+}

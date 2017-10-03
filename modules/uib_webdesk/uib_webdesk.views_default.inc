@@ -550,6 +550,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['usage']['id'] = 'usage';
   $handler->display->display_options['fields']['usage']['table'] = 'file_managed';
   $handler->display->display_options['fields']['usage']['field'] = 'usage';
+  $handler->display->display_options['fields']['usage']['label'] = 'Number of revisions';
   /* Field: File: Upload date */
   $handler->display->display_options['fields']['timestamp']['id'] = 'timestamp';
   $handler->display->display_options['fields']['timestamp']['table'] = 'file_managed';
@@ -602,7 +603,7 @@ function uib_webdesk_views_default_views() {
     t('Desc'),
     t('User who uploaded'),
     t('Name'),
-    t('Usage link'),
+    t('Number of revisions'),
     t('Upload date'),
     t('Block'),
     t('my_uploaded_files'),
