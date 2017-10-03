@@ -48,3 +48,22 @@ function uib_file_form_file_entity_delete_form_alter(&$form, $form_state) {
     }
   }
 }
+
+/**
+* Implements hook_entity_load
+*/
+function uib_file_entity_load($entities, $type) {
+  // dont clear description for the node-update-image-caption - script
+  if (
+    isset($GLOBALS['argv'])
+    && in_array('node-update-image-caption', $GLOBALS['argv'])
+  ) {
+    return;
+  }
+  if ($type == 'file') {
+    foreach ($entities as $key => $value) {
+      // Always clear description field for files
+      unset($entities[$key]->field_uib_description);
+    }
+  }
+}

@@ -643,14 +643,14 @@ function uib_article_node_presave($node) {
     }
     if (
       $node->status == 1
-      && !count($node->field_uib_published_timestamp['und'])
+      && !count(@$node->field_uib_published_timestamp['und'])
     ) {
         $node->field_uib_published_timestamp['und'][0]['value'] = time();
     }
   }
   elseif (
     $node->status == 1
-    && !count($node->field_uib_published_timestamp['und'])
+    && !count(@$node->field_uib_published_timestamp['und'])
   ) {
       $node->field_uib_published_timestamp['und'][0]['value'] = $node->created;
   }
