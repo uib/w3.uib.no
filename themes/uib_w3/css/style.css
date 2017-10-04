@@ -7970,6 +7970,9 @@ body #mc_embed_signup div.mce_inline_error {
   .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-media {
     margin-bottom: -0.35rem;
     padding: 0; }
+    .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-media img {
+      height: auto;
+      width: 100%; }
   .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
     display: -ms-flexbox;
     -ms-flex-direction: column;
