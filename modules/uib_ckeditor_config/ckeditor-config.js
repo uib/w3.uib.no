@@ -3,6 +3,11 @@ CKEDITOR.editorConfig = function( config ) {
   config.contentsCss = 'sites/all/modules/uib/uib_ckeditor_config/ckeditor.css';
   config.extraPlugins = 'dialog,dialogui';
   config.pasteFilter = 'p; a[!href]; h2; h3; h4; strong; em; ul; ol; li; sup; sub';
+  config.templates = 'uib_templates';
+  config.templates_files = [
+    '/sites/all/modules/uib/uib_ckeditor_config/plugins/templates/uib_templates.js'
+  ];
+  config.templates_replaceContent = false;
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {

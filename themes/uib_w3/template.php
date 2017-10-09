@@ -21,6 +21,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
+      if ($node->field_uib_article_type['und'][0]['value'] == 'feature_article') {
+        if (!empty($node->field_uib_main_media) && $node->field_uib_main_media['und'][0]['type'] == 'video') {
+          $variables['classes_array'][] = 'feature-article-video';
+        }
+        else {
+          $variables['classes_array'][] = 'feature-article-image';
+        }
+      }
     }
     if ($node->type == 'area') {
       if ($node->field_uib_area_type['und'][0]['value'] == 'frontpage') {
@@ -125,9 +133,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     if ($is_view_page) break;
   }
   $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
+  $is_feature_article = $variables['node']->type == 'uib_article' && $variables['node']->field_uib_article_type['und'][0]['value'] == 'feature_article' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!$variables['is_front'] && !$is_feature_front) {
+    if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article) {
       $variables['area_menu'] = $area_menu;
     }
     $variables['area_menu_footer'] = $area_menu;
@@ -150,7 +159,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['mobile']['global_mobile_menu']['#weight'] = 5;
   }
-  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page))) {
+  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page)) && !$is_feature_article) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
@@ -178,11 +187,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       $variables['page']['content_top']['area_menu']['#prefix'] = '<nav class="uib-feature-area-menu">';
       $variables['page']['content_top']['area_menu']['#suffix'] = '</nav>';
     }
-    if (!empty($variables['node']->field_uib_primary_media)) {
-      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/vimeo') {
+    if (!empty($variables['node']->field_uib_primary_media) || !empty($variables['node']->field_uib_main_media)) {
+      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/vimeo' || $variables['node']->field_uib_main_media['und'][0]['filemime'] == 'video/vimeo') {
         drupal_add_js('https://player.vimeo.com/api/player.js');
       }
-      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/youtube') {
+      if ($variables['node']->field_uib_primary_media['und'][0]['filemime'] == 'video/youtube' || $variables['node']->field_uib_main_media['und'][0]['filemime'] == 'video/youtube') {
         drupal_add_js('https://www.youtube.com/iframe_api');
         drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/yt.js', array('type' => 'file', 'scope' => 'footer',));
       }
@@ -360,10 +369,13 @@ EOD;
       // set menu to appear as tabs
       $jq = uib_w3__accordion_script();
       drupal_add_js($jq, 'inline');
-      $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
-        'label' => 'hidden',
-        'weight' => -50,
-      ));
+      $is_feature_article = $variables['node']->field_uib_article_type['und'][0]['value'] == 'feature_article' ? TRUE : FALSE;
+      if (!$is_feature_article) {
+        $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
+          'label' => 'hidden',
+          'weight' => -50,
+        ));
+      }
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
@@ -374,11 +386,13 @@ EOD;
         'label' => 'hidden',
         'weight' => -35,
       ));
+      $file_view_mode = $is_feature_article ? 'feature_image' : 'content_main';
+      $image_weight = $is_feature_article ? -60 : -30;
       $variables['page']['content_top']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media', array(
         'type' => 'file_rendered',
-        'settings' => array('file_view_mode' => 'content_main'),
+        'settings' => array('file_view_mode' => $file_view_mode),
         'label' => 'hidden',
-        'weight' => -30,
+        'weight' => $image_weight,
       ));
       if (isset($variables['page']['content_top']['field_uib_main_media']) && isset($variables['page']['content_top']['field_uib_main_media'][1])) {
         $cycle_path = libraries_get_path('jquery.cycle2');
@@ -1046,6 +1060,20 @@ function uib_w3_preprocess_node(&$variables, $hook) {
             '–',
             $variables['content']['field_uib_date'][0]['#markup']
           );
+      }
+      if (isset($variables['content']['field_uib_feature_text'])) {
+        $variables['content']['field_uib_feature_text']['#attached']['js'][] = array(
+          'type' => 'file',
+          'data' => drupal_get_path('theme', 'uib_w3') . '/js/feature-text.js',
+          'scope' => 'footer',
+          'group' => JS_THEME,
+        );
+        $variables['content']['field_uib_feature_text']['#attached']['js'][] = array(
+          'type' => 'external',
+          'data' => 'https://platform.twitter.com/widgets.js',
+          'scope' => 'footer',
+          'group' => JS_THEME,
+        );
       }
       $variables['content']['field_uib_registration_link']['#label_display'] = 'hidden';
       $variables['content']['field_uib_location']['#label_display'] = 'hidden';

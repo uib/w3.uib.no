@@ -95,6 +95,68 @@ function uib_setup_filter_default_formats() {
     ),
   );
 
+  // Exported format: Feature_text_html.
+  $formats['feature_text_html'] = array(
+    'format' => 'feature_text_html',
+    'name' => 'Feature_text_html',
+    'cache' => 1,
+    'status' => 1,
+    'weight' => 0,
+    'filters' => array(
+      'filter_html' => array(
+        'weight' => -10,
+        'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <div> <h2> <h3> <h4>',
+          'filter_html_help' => 1,
+          'filter_html_nofollow' => 0,
+        ),
+      ),
+      'filter_uib_url' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_studycodes' => array(
+        'weight' => 1,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_uib_markup' => array(
+        'weight' => 2,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_url' => array(
+        'weight' => 4,
+        'status' => 1,
+        'settings' => array(
+          'filter_url_length' => 72,
+        ),
+      ),
+      'filter_autop' => array(
+        'weight' => 15,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'picture' => array(
+        'weight' => 20,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'media_filter_paragraph_fix' => array(
+        'weight' => 21,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'media_filter' => array(
+        'weight' => 22,
+        'status' => 1,
+        'settings' => array(),
+      ),
+    ),
+  );
+
   // Exported format: Full HTML (Raw).
   $formats['full_html'] = array(
     'format' => 'full_html',

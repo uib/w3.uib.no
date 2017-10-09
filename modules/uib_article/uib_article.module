@@ -256,7 +256,6 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
       unset($form['field_uib_gmap_link']);
     }
-
     //Fields to be hidden/required if event is not chosen
     $form['field_uib_event_type']['#states'] = array(
       'visible' => array(
@@ -399,6 +398,31 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       );
       $form['#group_children']['anti_bubbling'] = 'group_information';
     }
+
+    $hide_in_feature_article = array(
+      'field_uib_text',
+      'field_uib_fact_box',
+      'field_uib_media',
+      'field_uib_imagecaptions2',
+      '',
+    );
+    foreach ($hide_in_feature_article as $hide) {
+      $form[$hide]['#states'] = array(
+        'invisible' => array(
+          ':input[name="field_uib_article_type[und]"]' => array(
+            array('value' => 'feature_article'),
+          ),
+        ),
+      );
+    }
+
+    $form['field_uib_feature_text']['#states'] = array(
+      'visible' => array(
+        ':input[name="field_uib_article_type[und]"]' => array(
+          array('value' => 'feature_article'),
+        ),
+      ),
+    );
   }
 }
 

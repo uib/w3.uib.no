@@ -170,6 +170,7 @@ function uib_area_field_default_field_bases() {
         'evu_study_offer' => 'EVU offer',
         'no_sidebar' => 'No sidebar',
         'press_release' => 'Press release',
+        'feature_article' => 'Feature article',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

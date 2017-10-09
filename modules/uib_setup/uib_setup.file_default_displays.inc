@@ -103,7 +103,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__area_bottom__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__area_bottom__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -157,7 +159,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__area_main__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__area_main__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -599,7 +603,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__preview__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__preview__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -653,7 +659,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__wide_thumbnail__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__wide_thumbnail__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -1077,7 +1085,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'video__full_width_image__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['video__full_width_image__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -1111,6 +1121,7 @@ function uib_setup_file_default_displays() {
     'width' => '670',
     'height' => '377',
     'color' => '',
+    'protocol_specify' => 0,
     'protocol' => 'http://',
     'autoplay' => 0,
     'loop' => 0,
@@ -1142,6 +1153,7 @@ function uib_setup_file_default_displays() {
     'theme' => 'dark',
     'color' => 'red',
     'autohide' => '2',
+    'captions' => FALSE,
     'autoplay' => 0,
     'loop' => 0,
     'showinfo' => 1,
@@ -1194,7 +1206,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'video__wide_thumbnail__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['video__wide_thumbnail__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -1228,6 +1242,7 @@ function uib_setup_file_default_displays() {
     'width' => '560',
     'height' => '340',
     'color' => '',
+    'protocol_specify' => 0,
     'protocol' => 'http://',
     'autoplay' => 0,
     'loop' => 0,
@@ -1259,6 +1274,7 @@ function uib_setup_file_default_displays() {
     'theme' => 'dark',
     'color' => 'red',
     'autohide' => '2',
+    'captions' => FALSE,
     'autoplay' => 0,
     'loop' => 0,
     'showinfo' => 1,

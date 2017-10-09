@@ -173,6 +173,34 @@ function uib_filter__process($text, $filter) {
           }
         }
         return render($block);
+      case 'twitter':
+        if ($arg) {
+          $request = drupal_http_request('https://publish.twitter.com/oembed?url=' . $arg);
+          $json_response = drupal_json_decode($request->data);
+          return '<div class="uib-twitter-tweet">' . strstr($json_response['html'], '<script', true) . '</div>';
+        }
+      case 'facebook_live':
+        if ($arg) {
+          list($format, $url) = explode(' ', $arg);
+          switch ($format) {
+            case 'p':
+              $class = 'uib-facebook-live__portrait';
+              $width = 315;
+              $height = 560;
+              break;
+            case 's':
+              $class = 'uib-facebook-live__square';
+              $width = 560;
+              $height = 560;
+              break;
+            case 'l':
+              $class = 'uib-facebook-live__landscape';
+              $width = 560;
+              $height = 315;
+              break;
+          }
+          return '<div class="' . $class . '"><iframe src="https://www.facebook.com/plugins/video.php?href=' . urlencode($url) . '&show_text=0&width=' . $width . '" width="' . $width . '" height="' . $height . '" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe></div>';
+        }
       }
       return '(' . check_plain($matches[1]) . ' ' . t('unrecognized') . ')';
     },

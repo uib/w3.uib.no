@@ -188,10 +188,10 @@ function uib_area_field_group_info() {
     'label' => 'Event info',
     'weight' => '12',
     'children' => array(
-      0 => 'field_uib_contacts',
-      1 => 'field_uib_registration_link',
+      0 => 'field_uib_deadline',
+      1 => 'field_uib_contacts',
       2 => 'field_uib_location',
-      3 => 'field_uib_deadline',
+      3 => 'field_uib_registration_link',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

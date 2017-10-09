@@ -3883,7 +3883,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 

@@ -73,6 +73,9 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             );
             $uib_active_trail[] = end($active_trail);
             break;
+          case 'feature_article':
+            $uib_active_trail[] = end($active_trail);
+            break;
           case 'infopage':
             if (count($active_trail) > 1) {
               if($crumb_item = (__uib_get_parent_item(__uib_get_plid('node/' . arg(1), 'menu-area-' . $current_area->nid)))) {

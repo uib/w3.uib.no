@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="70px" viewBox="0 0 100 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>IKON FAKTABOKS</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Skisser-områdesider" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IKON-FAKTABOKS">
+            <g id="Group" transform="translate(19.000000, 20.000000)">
+                <rect id="Rectangle-2" fill="#333333" x="0" y="0" width="62" height="6"></rect>
+                <rect id="Rectangle-2" stroke="#333333" stroke-width="2" x="1" y="1" width="60" height="28"></rect>
+                <path d="M8,13.5 L54.2578125,13.5" id="Path-2" stroke="#333333" stroke-width="2"></path>
+                <path d="M8,19.5 L54.2578125,19.5" id="Path-2" stroke="#333333" stroke-width="2"></path>
+            </g>
+            <path d="M19,61.5 L81,61.5" id="Path-2" stroke="#DFDFDF" stroke-width="2"></path>
+            <path d="M19,65.5 L81,65.5" id="Path-2" stroke="#DFDFDF" stroke-width="2"></path>
+            <path d="M19,5.5 L81,5.5" id="Path-2" stroke="#DFDFDF" stroke-width="2"></path>
+            <path d="M19,9.5 L81,9.5" id="Path-2" stroke="#DFDFDF" stroke-width="2"></path>
+        </g>
+    </g>
+</svg>
