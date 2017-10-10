@@ -34,6 +34,9 @@ function _uib_h2tabs_filter_h2_prepare($text, $filter) {
  */
 function _uib_h2tabs_filter_h2_process($text, $filter) {
   // Recode markup
+  $text = explode('----', $text);
+  $extra = count($text) > 1 ? $text[1] : '';
+  $text = $text[0];
   $h2s = array();
   $e = preg_match_all('/<h2.*?>(.*?)<\/h2>/', $text, $h2s, PREG_OFFSET_CAPTURE);
   if ($e > 0) {
@@ -63,7 +66,7 @@ function _uib_h2tabs_filter_h2_process($text, $filter) {
     return $text . "
       <div class=\"uib-tabs-container\">
       <div class=\"tabs-content\">" .
-      $tabs_contents . "
+      $tabs_contents . $extra . "
       </div>
       </div>";
   }
