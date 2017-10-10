@@ -7944,7 +7944,7 @@ body #mc_embed_signup div.mce_inline_error {
   position: relative; }
 .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-media {
   width: 100%;
-  padding: 1rem 1.25rem 1.5rem; }
+  padding: 0 0 1.5rem; }
 .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
   background: none;
   min-width: 288px;
