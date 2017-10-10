@@ -239,6 +239,9 @@
           $().getVal(v._source, 'ou_' + lang);
 
         var phone = $().getVal(v._source, 'phone');
+        var phone = $().getVal(v.highlight, 'phone.nospace') ?
+        $().getVal(v.highlight, 'phone.nospace') :
+        $().getVal(v._source, 'phone');
         // Strip spaces and +47 from phone numbers for nice appearence on
         // narrow displays.
         var narrowphone = phone.replace(/\+47 ?/g, '').replace(/([^,]) /g, '$1');

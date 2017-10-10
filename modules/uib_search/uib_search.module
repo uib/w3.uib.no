@@ -1935,6 +1935,10 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   $data['highlight']['fields']['alt_position_' . $lang] = array(
     'number_of_fragments' => 0,
   );
+  $data['highlight']['fields']['phone.nospace'] = array(
+    'number_of_fragments' => 0,
+  );
+
 
   /**************************************
    * Boosting relevance
