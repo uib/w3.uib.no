@@ -137,10 +137,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
     $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['mobile']['global_mobile_menu']['#weight'] = 5;
-    $variables['mobile']['language'] = __uib_w3__render_block('locale','language',10);
-    $variables['mobile']['#prefix'] = '<nav class="mobile">';
-    $variables['mobile']['#suffix'] = '</nav>';
-    $variables['mobile']['#weight'] = 0;
   }
   if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || uib_area__get_node_type() != 'area')) {
     global $base_path;
@@ -981,7 +977,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['node'],
       'field_uib_imagecaptions2'
     );
-
     if ($variables['type'] == 'area') {
       $variables['content']['field_uib_profiled_article'] = field_view_field('node', $variables['node'], 'field_uib_profiled_article', array(
         'settings' => array('view_mode' => 'teaser'),
