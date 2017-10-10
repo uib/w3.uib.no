@@ -1878,8 +1878,10 @@ function uib_search__create_query($use_post_boosting = FALSE) {
         ),
       ),
       'must' =>  array(
-        'prefix' =>  array(
-          'w3.study_code' => strtolower($query),
+        'match_phrase_prefix' => array(
+          'w3.study_code' => array(
+            'query' => strtolower($query),
+          ),
         ),
       ),
       '_name' =>  'Match-study-code',
