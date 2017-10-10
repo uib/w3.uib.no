@@ -1853,21 +1853,8 @@ function uib_search__create_query($use_post_boosting = FALSE) {
     '_name' =>  'Person-search',
     )
   );
-  $patterns = array('/[^0-9]/', '/47([0-9]{8})/');
-  $phonequery = preg_replace($patterns, array('', '\1'), $query);
 
-  if (strlen($phonequery) == 8) {
-    $tmp['bool']['should'][] = array(
-      'match' =>  array(
-        'phone.nospace' => array(
-          'query' =>  $phonequery,
-          'boost' =>  $boosting[$px . 'match-phone'],
-          '_name' =>  'Phone-query',
-        ),
-      ),
-    );
-    $searchquery['bool']['should'][] = $tmp;
-  }
+  $searchquery['bool']['should'][] = $tmp;
 
   // Match direct hit on study code
   $tmp = array(
@@ -1890,10 +1877,27 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   );
   $searchquery['bool']['should'][] = $tmp;
 
-
+  // Testing if search is a phone number search. If search is an 8-digit search
+  // (after clearing spaces and +47), then only the phone nr match is returned.
+  // Other searches are cleared from the query.
+  $patterns = array('/[^0-9]/', '/47([0-9]{8})/');
+  $phonequery = preg_replace($patterns, array('', '\1'), $query);
+  if (strlen($phonequery) == 8) {
+    $tmp = array(
+      'match' =>  array(
+        'phone.nospace' => array(
+          'query' =>  $phonequery,
+          'boost' =>  $boosting[$px . 'match-phone'],
+          '_name' =>  'Phone-query',
+        ),
+      ),
+    );
+    $searchquery['bool']['should'] = $tmp;
+  }
 
   // Add the searchquery to the must clause, as something here must match
   $data['query']['bool']['must'] = $searchquery;
+
 
 
 
