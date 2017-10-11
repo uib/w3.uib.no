@@ -6,6 +6,7 @@
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
     bin/site-drush vset uib_show_exam_info TRUE
+    bin/site-drush scr uib-feature-areas.php
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
         bin/index-all-users
         bin/index-all-studies
@@ -15,7 +16,7 @@ fi
 
 
 if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
-     bin/site-drush scr uib-feature-areas.php
+    bin/site-drush scr uib-feature-areas.php
 fi
 
 REL=78

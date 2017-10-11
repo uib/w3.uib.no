@@ -112,7 +112,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['page']['header']['mobile_menu']['#weight'] = -11;
   }
   $current_area = uib_area__get_current();
-  $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' ? true : false;
+  $is_view_page = false;
+  $view_pages = array(
+    'page__node__news_archive',
+    'page__node__calendar',
+    'page__node__persons',
+    'page__node__persons__faculty',
+    'page__node__persons__staff',
+  );
+  foreach($view_pages as $view_page) {
+    $is_view_page = in_array($view_page, $variables['theme_hook_suggestions']);
+    if ($is_view_page) break;
+  }
+  $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$variables['is_front'] && !$is_feature_front) {
@@ -138,7 +150,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['mobile']['global_mobile_menu']['#weight'] = 5;
   }
-  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || uib_area__get_node_type() != 'area')) {
+  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page))) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
