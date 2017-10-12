@@ -1,3 +1,15 @@
+# Release 80 _2017-10-12_
+- Rettet feil i markup for sosiale medier i footer og bilderettigheter #19056 #19096
+- Lagt til rette for å kunne abonnere på utvalgte kalendere #19065
+- Toppbilde på uib.no skal alltid fylle hele bredden #19088
+- Rettet en feil der områdetittelfeltet viste på personsider #19089
+- Fjernet hvitt felt på forsiden #19108
+- Redusert skriftstørrelse i “Nederste tekstfelt“/“Tertiary text” #19109
+- Fjernet "English" og "Norsk" fra globalmenyen som brukes på små skjermer #19111
+- Fremhevet treff på emneekoder og telefonnummer i søket #19002
+- Justering av utseende på ny områdetype #19031
+- Ikoner på forside kan nå styres og redigeres av rolle 1 #13690
+
 # Release 79 _2017-09-28_
 - Startet arbeidet med ny områdemal for UiBs satsningsområder #18845
 - Endret normalverdien fra "Ingen" til "1" i bildeliste-feltet (feltet som brukes for å knytte sammen bilde og bildetekst) #19037
