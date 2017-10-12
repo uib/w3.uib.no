@@ -58,6 +58,9 @@ function uib_testimonial_strongarm() {
       'quote' => array(
         'custom_settings' => TRUE,
       ),
+      'front_page_icons' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -80,7 +83,7 @@ function uib_testimonial_strongarm() {
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'teaser' => array(

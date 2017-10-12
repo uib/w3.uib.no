@@ -138,7 +138,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 26,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -210,7 +210,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 16,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -261,7 +261,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 19,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -488,7 +488,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 27,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -540,7 +540,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 21,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -591,7 +591,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 93,
+        'weight' => 32,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -633,7 +633,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 94,
+        'weight' => 33,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -699,7 +699,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 20,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -760,7 +760,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 31,
+        'weight' => 29,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -983,7 +983,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 15,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1067,7 +1067,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 23,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1110,7 +1110,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 17,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1573,7 +1573,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 14,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1625,7 +1625,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 13,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1690,6 +1690,84 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-area-field_uib_search_hits'.
+  $field_instances['node-area-field_uib_search_hits'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_search_hits',
+    'label' => 'Search hits',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 42,
+    ),
+  );
+
   // Exported field_instance: 'node-area-field_uib_search_keywords'.
   $field_instances['node-area-field_uib_search_keywords'] = array(
     'bundle' => 'area',
@@ -1701,7 +1779,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 32,
+        'weight' => 30,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1755,7 +1833,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 12,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1802,7 +1880,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 18,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1956,7 +2034,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 25,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2005,7 +2083,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 92,
+        'weight' => 31,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2138,7 +2216,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 22,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2185,7 +2263,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 28,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -5141,7 +5219,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'quote' => array(
         'label' => 'above',
@@ -5521,6 +5599,7 @@ function uib_area_field_default_field_instances() {
   t('Rss feed');
   t('Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)');
   t('Search description');
+  t('Search hits');
   t('Search keywords');
   t('Sebra ID');
   t('Secondary text');

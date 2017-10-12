@@ -77,6 +77,9 @@ function uib_area_strongarm() {
       'quote' => array(
         'custom_settings' => FALSE,
       ),
+      'front_page_icons' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -99,7 +102,7 @@ function uib_area_strongarm() {
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '25',
+            'weight' => '24',
             'visible' => FALSE,
           ),
         ),

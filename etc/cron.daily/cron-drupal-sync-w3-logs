@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /var/www/w3.uib.no
+su w3-drupal -c 'bin/sync-w3-logs'

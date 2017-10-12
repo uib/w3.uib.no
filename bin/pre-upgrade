@@ -5,7 +5,7 @@
 # process; for instance for enabling modules that must be present before
 # we start.
 
-REL=77
+REL=82
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -16,13 +16,66 @@ set -x
 echo "Pre upgrade"
 date +%FT%T
 
-# Unset uib_content_list from the no-index array
-bin/site-drush ev '
-  $a=variable_get("uib_search_nodetype_noindex");
-  unset($a[array_search("uib_content_list", $a)]);
-  variable_set("uib_search_nodetype_noindex", $a);
+curl -XPUT `bin/site-drush uib-search-url --admin`_mapping/study --data \
 '
-
-# Updating elasticsearch by indexing content list nodes
-a=$(bin/site-drush sqlq "select nid from node where type='uib_content_list' and status=1" | sed '1d')
-for nid in $a; do bin/site-drush uib-search-node --index $nid >/dev/null ; done
+{
+  "properties": {
+    "hits": {
+      "properties": {
+        "hits": {
+          "type":   "integer"
+        },
+        "max_hits": {
+          "type":   "integer"
+        },
+        "last_hit": {
+          "type":   "date",
+          "format": "epoch_second"
+        }
+      }
+    }
+  }
+}
+'
+curl -XPUT `bin/site-drush uib-search-url --admin`_mapping/user --data \
+'
+{
+  "properties": {
+    "hits": {
+      "properties": {
+        "hits": {
+          "type":   "integer"
+        },
+        "max_hits": {
+          "type":   "integer"
+        },
+        "last_hit": {
+          "type":   "date",
+          "format": "epoch_second"
+        }
+      }
+    }
+  }
+}
+'
+curl -XPUT `bin/site-drush uib-search-url --admin`_mapping/node --data \
+'
+{
+  "properties": {
+    "hits": {
+      "properties": {
+        "hits": {
+          "type":   "integer"
+        },
+        "max_hits": {
+          "type":   "integer"
+        },
+        "last_hit": {
+          "type":   "date",
+          "format": "epoch_second"
+        }
+      }
+    }
+  }
+}
+'

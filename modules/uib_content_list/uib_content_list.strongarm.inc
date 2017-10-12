@@ -37,6 +37,9 @@ function uib_content_list_strongarm() {
       'quote' => array(
         'custom_settings' => FALSE,
       ),
+      'front_page_icons' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -59,7 +62,7 @@ function uib_content_list_strongarm() {
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '5',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'short_teaser' => array(

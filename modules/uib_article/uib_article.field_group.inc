@@ -134,7 +134,7 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related content group',
-    'weight' => '8',
+    'weight' => '7',
     'children' => array(
       0 => 'field_uib_related_content_label',
       1 => 'field_uib_relation',
@@ -190,7 +190,7 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related persons group',
-    'weight' => '7',
+    'weight' => '6',
     'children' => array(
       0 => 'field_uib_related_persons',
       1 => 'field_related_persons_label',

@@ -716,10 +716,25 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     return NULL;
   }
 
+  // Hits - field exists for both users and nodes
+  if ($hits = $wrapped_entity->field_uib_search_hits->value()) {
+    $hits = array(
+      'hits' => json_decode($hits, TRUE)
+    );
+  }
+  else {
+    $hits = array(
+      'hits' => array(
+        'hits' => 0,
+        'max_hits' => 0,
+        'last_hit' => 0,
+      )
+    );
+  }
 
   // Handling users
   if ($type == 'user') {
-    return uib_search__get_elastic_user_array($wrapped_entity);
+    return uib_search__get_elastic_user_array($wrapped_entity) + $hits;
   }
   else if ($type != 'node') {
     uibx_log("Handler for entity of type {$type} not implemented", 'warning');
@@ -931,7 +946,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
       )
     ),
   );
-  return $output;
+  return $output + $hits;
 }
 
 /**

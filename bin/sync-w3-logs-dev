@@ -1,0 +1,14 @@
+#!/bin/bash
+
+##################################################################
+#
+# sync log folder from vengeance. This folder holds log-files
+# from the web server frontend. This script is meant to be
+# executed manually in development environments when needed,
+# eg. before running:
+# bin/site-drush scr update-node-hits
+# ... which processes log-files.
+#
+##################################################################
+
+rsync -av --delete vengeance.uib.no:/prod_nettapp_w3/logs/ /tmp/w3logs

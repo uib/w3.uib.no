@@ -78,6 +78,13 @@ function uib_search_drush_command() {
       'stop=n' => 'Stop after n iterations. Defaults to 10.',
     ),
   );
+  $items['uib-search-url'] = array(
+    'description' => 'Print URL that can be used to access the elastic server.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'options' => array(
+      'admin' => 'Return URL that gives you admin access',
+    ),
+  );
   $items['uib-search-curl'] = array(
     'description' => 'Print curl-string for easy access to the elastic server.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
@@ -405,6 +412,24 @@ function drush_uib_search_index($type = 'user') {
     array(':last' => variable_get($last_processed_key, 0))
   )->fetchField();
   print("Tried updating $rowcount ${type}s; $remaining remaining.\n");
+}
+
+
+
+function drush_uib_search_url() {
+  $admin = drush_get_option('admin');
+  if (!uib_search__check_elastic_settings($admin)) {
+    $a = $admin ? 'Administrator s' : 'S';
+    uibx_log($a . 'ettings for elasticsearch is missing', 'error');
+    return;
+  }
+  $url = uib_search__get_setup('url', $admin) . '/'
+    . uib_search__get_setup('index', $admin) . '/';
+  if (substr($url, 0, 8) == 'https://') {
+    $url = substr($url, 0, 8) . uib_search__get_setup('user', $admin) . ':'
+      . uib_search__get_setup('password', $admin) . '@' . substr($url, 8);
+  }
+  return $url;
 }
 
 function drush_uib_search_curl($method = 'GET', $elasticmethod = '_search') {

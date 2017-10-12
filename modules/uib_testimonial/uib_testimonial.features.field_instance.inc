@@ -22,7 +22,7 @@ function uib_testimonial_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 7,
       ),
       'quote' => array(
         'label' => 'above',
@@ -475,7 +475,7 @@ function uib_testimonial_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'quote' => array(
         'label' => 'above',
@@ -540,7 +540,7 @@ function uib_testimonial_field_default_field_instances() {
           ),
         ),
         'type' => 'text_default',
-        'weight' => 26,
+        'weight' => 3,
       ),
       'quote' => array(
         'label' => 'above',
@@ -1286,6 +1286,90 @@ function uib_testimonial_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_testimonial-field_uib_search_hits'.
+  $field_instances['node-uib_testimonial-field_uib_search_hits'] = array(
+    'bundle' => 'uib_testimonial',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'quote' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_search_hits',
+    'label' => 'Search hits',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 44,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_testimonial-field_uib_study_programmes'.
   $field_instances['node-uib_testimonial-field_uib_study_programmes'] = array(
     'bundle' => 'uib_testimonial',
@@ -1477,6 +1561,7 @@ function uib_testimonial_field_default_field_instances() {
   t('Quote');
   t('Related study programmes');
   t('Relation');
+  t('Search hits');
   t('Text');
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
   t('This is a short category title which highlights the subject of the article.');

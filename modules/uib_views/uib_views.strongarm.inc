@@ -47,6 +47,12 @@ function uib_views_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
+      'front_page_icons' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -61,6 +67,9 @@ function uib_views_strongarm() {
         ),
         'language' => array(
           'weight' => '5',
+        ),
+        'metatags' => array(
+          'weight' => '40',
         ),
       ),
       'display' => array(),

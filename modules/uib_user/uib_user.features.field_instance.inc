@@ -303,7 +303,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -340,7 +340,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 7,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -367,6 +367,78 @@ function uib_user_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => -7,
+    ),
+  );
+
+  // Exported field_instance: 'user-user-field_uib_search_hits'.
+  $field_instances['user-user-field_uib_search_hits'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'uib_user_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_uib_search_hits',
+    'label' => 'Search hits',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => 0,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 42,
     ),
   );
 
@@ -426,7 +498,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 6,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -532,7 +604,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 11,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -582,7 +654,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 9,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -648,7 +720,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 10,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -958,7 +1030,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 33,
+        'weight' => 12,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1003,7 +1075,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 35,
+        'weight' => 14,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1044,7 +1116,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 34,
+        'weight' => 13,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1235,7 +1307,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -2151,6 +2223,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('RSS feed');
   t('Research / work');
   t('Room');
+  t('Search hits');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
   t('Slug');
   t('Sort name');

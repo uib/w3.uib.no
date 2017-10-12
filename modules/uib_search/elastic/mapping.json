@@ -72,6 +72,20 @@
   "mappings": {
     "user": {
       "properties": {
+        "hits": {
+          "properties": {
+            "hits": {
+              "type":   "integer"
+            },
+            "max_hits": {
+              "type":   "integer"
+            },
+            "last_hit": {
+              "type":   "date",
+              "format": "epoch_second"
+            }
+          }
+        },
         "search_manual_boost": {
           "type": "float"
         },
@@ -243,6 +257,20 @@
     },
     "study": {
       "properties": {
+        "hits": {
+          "properties": {
+            "hits": {
+              "type":   "integer"
+            },
+            "max_hits": {
+              "type":   "integer"
+            },
+            "last_hit": {
+              "type":   "date",
+              "format": "epoch_second"
+            }
+          }
+        },
 		    "search_manual_boost": {
 		      "type": "float"
         },
@@ -542,6 +570,20 @@
     },
     "node": {
       "properties": {
+        "hits": {
+          "properties": {
+            "hits": {
+              "type":   "integer"
+            },
+            "max_hits": {
+              "type":   "integer"
+            },
+            "last_hit": {
+              "type":   "date",
+              "format": "epoch_second"
+            }
+          }
+        },
         "search_manual_boost": {
           "type": "float"
         },

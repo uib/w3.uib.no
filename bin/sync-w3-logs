@@ -1,0 +1,15 @@
+#!/bin/bash
+
+##################################################################
+#
+# sync log folder from log server
+#
+##################################################################
+
+rsync -a --exclude 'www*' --exclude 'most_used_uris.txt' rsync://www/httpdlog/ /nettapp_w3/logs
+
+# Remove log 30 days old log file
+rm -f /nettapp_w3/logs/vhosts_access.log-`date -d -30\ day +%Y%m%d`*.gz
+
+# remove logfiles last modified more than 30 days ago
+find /nettapp_w3/logs/ -name "vhosts_access.log-*" -type f -mtime +30 -exec rm -f {} \;
