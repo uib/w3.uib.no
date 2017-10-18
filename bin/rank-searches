@@ -1,0 +1,28 @@
+#!/bin/bash
+
+################################################################################
+#
+# The ability to rank searches is a recurring question. This script ranks
+# searches at uib.no, using data from the http access logs. Logs for the last
+# month should be available in the folder /tmp/w3logs on the server.
+
+# The script works on a list of gzipped http log files
+#
+# Usage:
+# rank-searches /tmp/w3logs/*.gz
+#
+# Output is sorted with the most common searches first, and directed to stdout.
+# Unusual queries are excluded from the output. Queries with only two or less
+# characters are also excluded.
+#
+################################################################################
+
+gunzip -c $@ |grep -ioe 'php/qs\.php/[^ ]*' | \
+  grep -oe '[^/]*$'|sed -e 's/%20/ /g' -e 's/%C3%B8/ø/g' -e 's/%C3%A5/å/g' \
+    -e 's/%C3%A6/æ/g' -e 's/%C3%B6/ö/g' -e 's/%22//g' -e 's/%C3%98/Ø/g' \
+    -e 's/%C3%85/Å/g' -e 's/%2B/ /' -e 's/%C5%AA/Ū/g' -e 's/%2C/ /g' \
+    -e 's/%3A//' -e 's/%E2%80%A2%09//g' -e 's/%C3%BC/ü/g' -e 's/%C3%A9/é/g' \
+    -e 's/%3B//g' -e 's/%C4%B7/ķ/g' -e 's/%3C/ /g' -e 's/%5B//g' -e 's/%09/ /g' \
+    -e 's/%C3%A4/ä/g' -e 's/%C3%86/Æ/g' -e 's/%C3%A7/ç/g' -e 's/%40/@/g' \
+    -e 's/%3F//g' -e 's/%3E/ /g'  | \
+  grep -E '^.{3,}$'|sort|uniq -dcw 10 | sed '/^ *[23] /d' |sort -rn
