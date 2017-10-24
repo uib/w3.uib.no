@@ -1999,7 +1999,7 @@ function uib_area_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'If you check this box the twitter feed specified in your social media settings will be displayed on this areas front page.',
+    'description' => 'When this box is checked, a feed from the twitter account specified under \'Follow us\' will be displayed on the area\'s front page.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -5472,7 +5472,6 @@ function uib_area_field_default_field_instances() {
   t('Follow us');
   t('Here you should type which area this content belongs to');
   t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
-  t('If you check this box the twitter feed specified in your social media settings will be displayed on this areas front page.');
   t('Illustration that goes together with the bottom text.');
   t('Image map');
   t('Important message');
@@ -5542,6 +5541,7 @@ function uib_area_field_default_field_instances() {
   t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
   t('Visit Address');
   t('Weight');
+  t('When this box is checked, a feed from the twitter account specified under \'Follow us\' will be displayed on the area\'s front page.');
 
   return $field_instances;
 }
