@@ -958,7 +958,6 @@ footer {
   overflow-wrap: normal;
   word-wrap: normal; }
 
-.pager,
 .calendar-year h2,
 .ui-datepicker-title {
   overflow-wrap: none;
@@ -9128,6 +9127,8 @@ body #mc_embed_signup div.mce_inline_error {
       -webkit-flex-direction: row;
       display: flex;
       flex-direction: row; } }
+  .page-node-news-archive .content-main-wrapper .region-content .block-system .content .view-content .views-row .views-field-nothing .field-content .file-image .element-invisible {
+    width: 1px; }
 .page-node-news-archive .content-main-wrapper #block-views-recent-news-block-date-selector {
   order: 1;
   float: none;
