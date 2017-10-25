@@ -1883,7 +1883,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, instagram, linkedin, mailto, researchgate, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
+    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researchgate, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1925,6 +1925,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
@@ -1942,6 +1943,9 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             'restricted_html' => array(
               'weight' => -8,
             ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
           ),
         ),
       ),
@@ -1953,6 +1957,8 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
@@ -2117,7 +2123,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Translatables
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
-  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, instagram, linkedin, mailto, researchgate, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
+  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researchgate, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
   t('Attachments');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');

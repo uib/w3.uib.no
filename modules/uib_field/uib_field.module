@@ -41,7 +41,6 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
   $recognized_social_media = array( // media name => array ( site url, default)
     'facebook' => array('https://facebook.com/', 'https://facebook.com/universitetetibergen'),
     'twitter' => array('https://twitter.com/', 'https://twitter.com/uib'),
-    'mailto' => array('mailto:', 'mailto:aktuelt@uib.no'),
     'youtube' => array('https://youtube.com/', 'https://youtube.com/unibergen'),
     'flickr' => array('https://flickr.com/', 'https://flickr.com/photos/unibergen/sets'),
     'vimeo' => array('https://vimeo.com/', 'https://vimeo.com/uib'),
@@ -50,6 +49,8 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'linkedin' => array('https://linkedin.com/in/', 'https://linkedin.com/edu/school/15492'),
     'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net'),
     'snapchat' => array('https://www.snapchat.com/add/', 'https://www.snapchat.com/add/'),
+    'orcid' => array('https://orcid.org/', 'https://orcid.org/'),
+    'googlescholar' => array('https://scholar.google.com/citations?user=', 'https://scholar.google.com/citations'),
   );
   foreach ($items as $delta => $item) {
     $sm = explode(':', $item['safe_value']);
