@@ -308,7 +308,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       ),
     );
 
-     $form['field_uib_registration_link']['#states'] = array(
+    $form['field_uib_registration_link']['#states'] = array(
       'visible' => array(
         ':input[name="field_uib_article_type[und]"]' => array(
           array('value' => 'event'),
@@ -410,16 +410,50 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       $form[$hide]['#states'] = array(
         'invisible' => array(
           ':input[name="field_uib_article_type[und]"]' => array(
-            array('value' => 'feature_article'),
+            array('value' => 'news'),
+          ),
+          ':input[name="field_uib_feature_article[und]"]' => array(
+            array('checked' => TRUE,),
           ),
         ),
       );
     }
 
+    $allowed_areas = array(
+      107138,
+      107139,
+      107143,
+      107240,
+      107140,
+      107141,
+      36363,
+      36364,
+    );
+    $form['field_uib_feature_article']['#states'] = array(
+      'visible' => array(
+        ':input[name="field_uib_article_type[und]"]' => array(
+          array('value' => 'news',),
+        ),
+        ':input[name="field_uib_area[und][0][target_id]"]' => array(
+          array('value' => 'Marin forskning (107138)'),
+          array('value' => 'Marine research (107139)'),
+          array('value' => 'Globale samfunnsutfordringer (107143)'),
+          array('value' => 'Global Challenges (107240)'),
+          array('value' => 'Klima- og energiomstilling (107140)'),
+          array('value' => 'Climate and energy transition (107141)'),
+          array('value' => 'Aktuelt (36363)'),
+          array('value' => 'News (36364)'),
+        ),
+      ),
+    );
+
     $form['field_uib_feature_text']['#states'] = array(
       'visible' => array(
         ':input[name="field_uib_article_type[und]"]' => array(
-          array('value' => 'feature_article'),
+          array('value' => 'news',),
+        ),
+        ':input[name="field_uib_feature_article[und]"]' => array(
+          array('checked' => TRUE,),
         ),
       ),
     );

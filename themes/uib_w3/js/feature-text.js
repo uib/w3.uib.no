@@ -18,7 +18,7 @@
       $('.uib-feature__portrait-image, .uib-feature__image, .uib-feature__full-width-image').each(function(index, element) {
         var uibCopyright = $(this).find('.field-name-field-uib-copyright').removeClass('field-label-inline clearfix');
         var uibOwner = $(this).find('.field-name-field-uib-owner').removeClass('field-label-inline clearfix');
-        $(this).find('p:last-child').append(uibCopyright).append(uibOwner);
+        $(this).find('p:last-child').after(uibCopyright).after(uibOwner);
       });
       $('.uib-article__feature_article .content-top h1').each(function(index, element) {
         var uibBreadcrumb = $('.uib_breadcrumb');

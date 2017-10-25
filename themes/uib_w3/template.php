@@ -22,8 +22,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
 i=/(^|;)\s*_tmc=([^;]+)/.exec(a[c]),i=i?i[2]:"",("done"!==i|| /[?&]_tmcf?(=|&|$)/.test(e))&&(g=a.getElementsByTagName(b)[0],h=a.createElement(b),h[d]("src",f+ "?r="+i+"&"+1*new Date),h[d]("type","text/javascript"),h.async=!0,g.parentNode.insertBefore(h,g)) })(document,"script","cookie","setAttribute",location.search,"//in.taskanalytics.com/00081/tm.js");', array('type' => 'inline', 'scope' => 'footer'));
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
-      $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
-      if ($node->field_uib_article_type['und'][0]['value'] == 'feature_article') {
+      $variables['classes_array'][] = $node->field_uib_feature_article['und'][0]['value'] === '1' ? 'uib-article__feature_article' : 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
+      if ($node->field_uib_feature_article['und'][0]['value'] === 1) {
         if (!empty($node->field_uib_main_media) && $node->field_uib_main_media['und'][0]['type'] == 'video') {
           $variables['classes_array'][] = 'feature-article-video';
         }
@@ -135,7 +135,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     if ($is_view_page) break;
   }
   $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
-  $is_feature_article = $variables['node']->type == 'uib_article' && $variables['node']->field_uib_article_type['und'][0]['value'] == 'feature_article' ? true : false;
+  $is_feature_article = $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article) {
@@ -371,7 +371,7 @@ EOD;
       // set menu to appear as tabs
       $jq = uib_w3__accordion_script();
       drupal_add_js($jq, 'inline');
-      $is_feature_article = $variables['node']->field_uib_article_type['und'][0]['value'] == 'feature_article' ? TRUE : FALSE;
+      $is_feature_article = $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? TRUE : FALSE;
       if (!$is_feature_article) {
         $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
           'label' => 'hidden',
@@ -440,7 +440,7 @@ EOD;
 
       // Article types with social media links
       $types = array('event', 'news', 'press_release', 'phd_press_release');
-      if(in_array(@$variables['node']->field_uib_article_type['und'][0]['value'], $types)){
+      if(in_array(@$variables['node']->field_uib_article_type['und'][0]['value'], $types) && !$is_feature_article){
         // Add social media links inside content uib_artcle
         $variables['page']['content']['system_main']['nodes']
           [$variables['node']->nid]['service_links_service_links'] =

@@ -537,7 +537,7 @@ function uib_setup_file_default_displays() {
   $file_display->weight = 0;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'image_style' => '',
+    'image_style' => 'feature_image',
     'image_link' => '',
   );
   $export['image__feature_image__file_field_image'] = $file_display;
@@ -555,16 +555,16 @@ function uib_setup_file_default_displays() {
   $file_display = new stdClass();
   $file_display->api_version = 1;
   $file_display->name = 'image__feature_image__file_field_picture';
-  $file_display->weight = 10;
+  $file_display->weight = -10;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'picture_mapping' => 'w3_banner_full_width',
+    'picture_mapping' => 'w3_feature_image',
     'fallback_image_style' => '',
     'lazyload' => 0,
     'lazyload_aspect_ratio' => 0,
     'image_link' => '',
     'colorbox_settings' => array(
-      'colorbox_group' => 'w3_banner_full_width',
+      'colorbox_group' => 'w3_feature_image',
       'colorbox_gallery' => 'post',
       'colorbox_gallery_custom' => '',
       'colorbox_caption' => 'auto',

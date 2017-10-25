@@ -445,6 +445,55 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_article-field_uib_feature_article'.
+  $field_instances['node-uib_article-field_uib_feature_article'] = array(
+    'bundle' => 'uib_article',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'By checking this box you get a feature article',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 51,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_feature_article',
+    'label' => 'Feature article',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_article-field_uib_feature_text'.
   $field_instances['node-uib_article-field_uib_feature_text'] = array(
     'bundle' => 'uib_article',
@@ -1032,7 +1081,9 @@ function uib_article_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('By checking this box you get a feature article');
   t('Caption for image. Use 0 to hide caption.');
+  t('Feature article');
   t('Feature text');
   t('Gmap link');
   t('Image index');
