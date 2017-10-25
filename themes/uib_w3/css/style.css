@@ -4790,14 +4790,6 @@ div.field-item {
       .field-name-field-uib-study-relation > .field-items > .field-item,
       .node-type-uib-content-list section.group-related-content > .field-items > .field-item {
         width: 49%; }
-        .field-name-field-uib-relation > .field-items > .field-item.even,
-        .field-name-field-uib-study-relation > .field-items > .field-item.even,
-        .node-type-uib-content-list section.group-related-content > .field-items > .field-item.even {
-          margin-right: 1%; }
-        .field-name-field-uib-relation > .field-items > .field-item.odd,
-        .field-name-field-uib-study-relation > .field-items > .field-item.odd,
-        .node-type-uib-content-list section.group-related-content > .field-items > .field-item.odd {
-          margin-left: 1%; }
         .field-name-field-uib-relation > .field-items > .field-item:nth-child(n+2),
         .field-name-field-uib-study-relation > .field-items > .field-item:nth-child(n+2),
         .node-type-uib-content-list section.group-related-content > .field-items > .field-item:nth-child(n+2) {
