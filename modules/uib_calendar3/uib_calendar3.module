@@ -819,9 +819,6 @@ RSS;
 function uib_calendar3__webcal_page($select, $area) {
   drupal_add_http_header('Content-Type', 'text/calendar; charset="utf-8"');
   $result = $select->execute();
-  if ($result->rowCount() == 0) {
-    return;
-  }
   $area = entity_metadata_wrapper('node', $area);
   $url = url("node/" . $area->getIdentifier() . "/calendar", array('absolute' => TRUE));
   $name =  t('Calendar for @area', array('@area'=>lcfirst($area->label())));
@@ -830,6 +827,7 @@ function uib_calendar3__webcal_page($select, $area) {
     $url,
     $name
   );
+
   foreach ($result as $row) {
     $url = url("node/$row->nid", array('absolute' => TRUE));
     $unixtime = strtotime($row->field_uib_date_value. 'Z');
