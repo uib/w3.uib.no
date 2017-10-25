@@ -377,56 +377,56 @@ function uib_setup_file_default_displays() {
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_file_default';
+  $file_display->name = 'image__feature_article_full_width__file_field_file_default';
   $file_display->weight = 0;
   $file_display->status = FALSE;
   $file_display->settings = '';
-  $export['image__feature_image__file_field_file_default'] = $file_display;
+  $export['image__feature_article_full_width__file_field_file_default'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_file_table';
+  $file_display->name = 'image__feature_article_full_width__file_field_file_table';
   $file_display->weight = 0;
   $file_display->status = FALSE;
   $file_display->settings = '';
-  $export['image__feature_image__file_field_file_table'] = $file_display;
+  $export['image__feature_article_full_width__file_field_file_table'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_file_url_plain';
+  $file_display->name = 'image__feature_article_full_width__file_field_file_url_plain';
   $file_display->weight = 0;
   $file_display->status = FALSE;
   $file_display->settings = '';
-  $export['image__feature_image__file_field_file_url_plain'] = $file_display;
+  $export['image__feature_article_full_width__file_field_file_url_plain'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_image';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'image_style' => '',
-    'image_link' => '',
-  );
-  $export['image__feature_image__file_field_image'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_media_large_icon';
-  $file_display->weight = 0;
-  $file_display->status = FALSE;
-  $file_display->settings = array(
-    'image_style' => '',
-  );
-  $export['image__feature_image__file_field_media_large_icon'] = $file_display;
-
-  $file_display = new stdClass();
-  $file_display->api_version = 1;
-  $file_display->name = 'image__feature_image__file_field_picture';
+  $file_display->name = 'image__feature_article_full_width__file_field_image';
   $file_display->weight = 0;
   $file_display->status = TRUE;
   $file_display->settings = array(
-    'picture_mapping' => 'w3_feature_image',
+    'image_style' => 'full_width_image',
+    'image_link' => '',
+  );
+  $export['image__feature_article_full_width__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_full_width__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__feature_article_full_width__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_full_width__file_field_picture';
+  $file_display->weight = -10;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'picture_mapping' => 'w3_banner_full_width',
     'fallback_image_style' => 'feature_image',
     'lazyload' => 0,
     'lazyload_aspect_ratio' => 0,
@@ -439,7 +439,139 @@ function uib_setup_file_default_displays() {
       'colorbox_caption_custom' => '',
     ),
   );
-  $export['image__feature_image__file_field_picture'] = $file_display;
+  $export['image__feature_article_full_width__file_field_picture'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_article_standard__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_article_standard__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_article_standard__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'content_main',
+    'image_link' => '',
+  );
+  $export['image__feature_article_standard__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__feature_article_standard__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_article_standard__file_field_picture';
+  $file_display->weight = -10;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'picture_mapping' => 'w3_content_main',
+    'fallback_image_style' => 'content_main',
+    'lazyload' => 0,
+    'lazyload_aspect_ratio' => 0,
+    'image_link' => '',
+    'colorbox_settings' => array(
+      'colorbox_group' => 'w3_content_main',
+      'colorbox_gallery' => 'post',
+      'colorbox_gallery_custom' => '',
+      'colorbox_caption' => 'auto',
+      'colorbox_caption_custom' => '',
+    ),
+  );
+  $export['image__feature_article_standard__file_field_picture'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_file_default';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_image_portrait__file_field_file_default'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_file_table';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_image_portrait__file_field_file_table'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_file_url_plain';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = '';
+  $export['image__feature_image_portrait__file_field_file_url_plain'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_image';
+  $file_display->weight = 0;
+  $file_display->status = TRUE;
+  $file_display->settings = array(
+    'image_style' => 'content_sidebar',
+    'image_link' => '',
+  );
+  $export['image__feature_image_portrait__file_field_image'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_media_large_icon';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'image_style' => '',
+  );
+  $export['image__feature_image_portrait__file_field_media_large_icon'] = $file_display;
+
+  $file_display = new stdClass();
+  $file_display->api_version = 1;
+  $file_display->name = 'image__feature_image_portrait__file_field_picture';
+  $file_display->weight = 0;
+  $file_display->status = FALSE;
+  $file_display->settings = array(
+    'picture_mapping' => 'w3_banner_full_width',
+    'fallback_image_style' => '',
+    'lazyload' => 0,
+    'lazyload_aspect_ratio' => 0,
+    'image_link' => '',
+    'colorbox_settings' => array(
+      'colorbox_group' => 'w3_banner_full_width',
+      'colorbox_gallery' => 'post',
+      'colorbox_gallery_custom' => '',
+      'colorbox_caption' => 'auto',
+      'colorbox_caption_custom' => '',
+    ),
+  );
+  $export['image__feature_image_portrait__file_field_picture'] = $file_display;
 
   $file_display = new stdClass();
   $file_display->api_version = 1;
