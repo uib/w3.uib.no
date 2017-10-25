@@ -1,0 +1,13 @@
+#!/bin/bash
+
+################################################################################
+#
+# Clear cache for all exam list nodes
+#
+################################################################################
+
+bin/site-drush ev 'foreach ((array)variable_get("uib_exams_list_nodes") as $n) {
+  db_query("delete from cache_page where cid like '"'%"'$n'"%'"'"); // Clear page data
+  cache_clear_all("field:node:$n", "cache_field"); // Clear field data
+  cache_clear_all("/eksamen.json?", "cache_uib_study", TRUE); // Clear fs data
+}'
