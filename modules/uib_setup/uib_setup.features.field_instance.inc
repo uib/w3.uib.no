@@ -63,7 +63,25 @@ function uib_setup_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 3,
       ),
+      'feature_article_full_width' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_article_standard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_image_portrait' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -197,7 +215,25 @@ function uib_setup_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 5,
       ),
+      'feature_article_full_width' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_article_standard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_image_portrait' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -339,7 +375,25 @@ function uib_setup_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'feature_article_full_width' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_article_standard' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'feature_image' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'feature_image_portrait' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',

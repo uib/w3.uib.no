@@ -453,6 +453,7 @@ features[user_permission][] = use panels dashboard
 features[user_permission][] = use panels in place editing
 features[user_permission][] = use panels locks
 features[user_permission][] = use text format basic_html
+features[user_permission][] = use text format feature_text_html
 features[user_permission][] = use text format full_html
 features[user_permission][] = use text format restricted_html
 features[user_permission][] = use text format uib_markdown_limited
