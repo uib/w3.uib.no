@@ -18,9 +18,8 @@ var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async
 sz.src = '//siteimproveanalytics.com/js/siteanalyze_6000122.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
 })();", array('type' => 'inline', 'scope' => 'footer'));
-  drupal_add_js("(function(a,b,c,d,e,f,g,h,i) {
-i=/(^|;)\s*_tmc=([^;]+)/.exec(a[c]),i=i?i[2]:'',('done'!==i|| /[?&]_tmcf?(=|&|$)/.test(e))&&(g=a.getElementsByTagName(b)[0],h=a.createElement(b),h[d]('src',f+ '?r='+i+'&'+1*new Date),h[d]('type','text/javascript'),h.async=!0,g.parentNode.insertBefore(h,g)) })(document,'script','cookie','setAttribute',location.search,'//in.taskanalytics.com/00081/tm.js');
-})();", array('type' => 'inline', 'scope' => 'footer'));
+  drupal_add_js('(function(a,b,c,d,e,f,g,h,i) {
+i=/(^|;)\s*_tmc=([^;]+)/.exec(a[c]),i=i?i[2]:"",("done"!==i|| /[?&]_tmcf?(=|&|$)/.test(e))&&(g=a.getElementsByTagName(b)[0],h=a.createElement(b),h[d]("src",f+ "?r="+i+"&"+1*new Date),h[d]("type","text/javascript"),h.async=!0,g.parentNode.insertBefore(h,g)) })(document,"script","cookie","setAttribute",location.search,"//in.taskanalytics.com/00081/tm.js");', array('type' => 'inline', 'scope' => 'footer'));
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
       $variables['classes_array'][] = 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
