@@ -1663,6 +1663,18 @@ function uib_setup_user_default_permissions() {
     'module' => 'service_links',
   );
 
+  // Exported permission: 'use media wysiwyg'.
+  $permissions['use media wysiwyg'] = array(
+    'name' => 'use media wysiwyg',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+      'level 3' => 'level 3',
+    ),
+    'module' => 'media_wysiwyg',
+  );
+
   // Exported permission: 'use page manager'.
   $permissions['use page manager'] = array(
     'name' => 'use page manager',

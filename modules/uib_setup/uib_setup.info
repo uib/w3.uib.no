@@ -465,6 +465,7 @@ features[user_permission][] = translate interface
 features[user_permission][] = translate taxonomy_term entities
 features[user_permission][] = translate user-defined strings
 features[user_permission][] = use PHP for service visibility
+features[user_permission][] = use media wysiwyg
 features[user_permission][] = use page manager
 features[user_permission][] = use panels caching features
 features[user_permission][] = use panels dashboard
