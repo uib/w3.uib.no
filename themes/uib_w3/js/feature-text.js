@@ -19,7 +19,16 @@
         var uibCopyright = $(this).find('.field-name-field-uib-copyright').removeClass('field-label-inline clearfix');
         var uibOwner = $(this).find('.field-name-field-uib-owner').removeClass('field-label-inline clearfix');
         $(this).find('p:last-child').after(uibCopyright).after(uibOwner);
+        $(this).find('br').remove();
       });
+      $('.media-feature_article_standard, .media-feature_article_full_width').each(function(index, element) {
+        var uibCopyright = $(this).find('.field-name-field-uib-copyright').removeClass('field-label-inline clearfix');
+        var uibOwner = $(this).find('.field-name-field-uib-owner').removeClass('field-label-inline clearfix');
+        $(this).find('.content > .media-element').after(function() {
+          return '<div class="uib-feature__media-info"></div>';
+        });
+        $(this).find('.uib-feature__media-info').append(uibCopyright).append(uibOwner);
+      })
       $('.uib-article__feature_article .content-top h1').each(function(index, element) {
         var uibBreadcrumb = $('.uib_breadcrumb');
         $(this).after(uibBreadcrumb);

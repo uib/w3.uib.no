@@ -8461,15 +8461,15 @@ body #mc_embed_signup div.mce_inline_error {
     .uib-article__event .content-main-wrapper .region-content .content .node-uib-article .content .group-article-sidebar {
       order: -1; } }
 @media screen and (min-width: 600px) {
-  *:not(.uib-article__feature_article) .node-uib-article .field-name-field-uib-text, *:not(.uib-article__feature_article) .node-uib-article .group-article-sidebar {
+  .page-node:not(.uib-article__feature_article) .node-uib-article .field-name-field-uib-text, .page-node:not(.uib-article__feature_article) .node-uib-article .group-article-sidebar {
     width: 100%;
     float: right;
     margin-left: 0;
     margin-right: 0;
     clear: none; }
-  *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper {
+  .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper {
     position: relative; }
-    .node-type-uib-article *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-area *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-testimonial *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-study *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-content-list *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-views-page *:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before {
+    .node-type-uib-article .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-area .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-testimonial .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-study .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-content-list .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before, .node-type-uib-views-page .page-node:not(.uib-article__feature_article) .content-main-wrapper + .content-bottom-wrapper:before {
       content: "";
       display: block;
       width: 0;
@@ -8481,58 +8481,58 @@ body #mc_embed_signup div.mce_inline_error {
       left: calc(50% - 1rem);
       top: 0; } }
 @media screen and (min-width: 960px) {
-  *:not(.uib-article__feature_article) .content-top-wrapper > * {
+  .page-node:not(.uib-article__feature_article) .content-top-wrapper > * {
     max-width: 72rem;
     margin-left: auto;
     margin-right: auto; }
-  *:not(.uib-article__feature_article) .content-main-wrapper {
+  .page-node:not(.uib-article__feature_article) .content-main-wrapper {
     background: #f5f5f5; }
-    *:not(.uib-article__feature_article) .content-main-wrapper:after {
+    .page-node:not(.uib-article__feature_article) .content-main-wrapper:after {
       content: "";
       display: table;
       clear: both; }
-    *:not(.uib-article__feature_article) .content-main-wrapper > * {
+    .page-node:not(.uib-article__feature_article) .content-main-wrapper > * {
       max-width: 72rem;
       margin-left: auto;
       margin-right: auto; }
-    *:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info,
-    *:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text {
+    .page-node:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info,
+    .page-node:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text {
       width: 66.10169%;
       float: left;
       margin-right: -100%;
       margin-left: 0;
       clear: none; }
-      *:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info h3,
-      *:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text h3 {
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info h3,
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text h3 {
         margin-bottom: 0; }
-      *:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info h3,
-      *:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info p,
-      *:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text h3,
-      *:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text p {
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info h3,
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .content > .article-info p,
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text h3,
+      .page-node:not(.uib-article__feature_article) .content-main-wrapper .field-name-field-uib-text p {
         padding-right: 1em; }
-    *:not(.uib-article__feature_article) .content-main-wrapper .group-article-sidebar {
+    .page-node:not(.uib-article__feature_article) .content-main-wrapper .group-article-sidebar {
       width: 32.20339%;
       float: right;
       margin-left: 0;
       margin-right: 0;
       clear: none; }
-  *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar {
+  .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar {
     width: 66.10169%;
     float: left;
     margin-right: -100%;
     margin-left: 0;
     clear: none; }
-    *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar .field-name-field-uib-text {
+    .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar .field-name-field-uib-text {
       width: 100%;
       float: right;
       margin-left: 0;
       margin-right: 0;
       clear: none; }
-  *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2,
-  *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
-  *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .article-info {
+  .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2,
+  .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
+  .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .article-info {
     clear: left; }
-  *:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2 {
+  .page-node:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2 {
     margin-bottom: 1.25rem; } }
 
 .uib-article__feature_article .field-name-field-uib-kicker {
@@ -8606,7 +8606,9 @@ body #mc_embed_signup div.mce_inline_error {
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__portrait-image,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__full-width-image .uib-feature__media-info,
-  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main {
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .uib-feature__media-info,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard {
     max-width: 47.375rem; }
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text p,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text h3,
@@ -8616,7 +8618,9 @@ body #mc_embed_signup div.mce_inline_error {
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__portrait-image,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__full-width-image .uib-feature__media-info,
-  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main {
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .uib-feature__media-info,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard {
     margin: 0 1.25rem 2rem; }
     @media (min-width: 49.875rem) {
       .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text p,
@@ -8627,7 +8631,9 @@ body #mc_embed_signup div.mce_inline_error {
       .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image,
       .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__portrait-image,
       .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__full-width-image .uib-feature__media-info,
-      .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main {
+      .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .uib-feature__media-info,
+      .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-content_main,
+      .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard {
         margin: 0 auto 2rem; } }
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text h3 {
     font-size: 1.75rem;
@@ -8699,10 +8705,22 @@ body #mc_embed_signup div.mce_inline_error {
       grid-column: 3/4; }
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-element-container {
     margin-bottom: 2rem; }
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .media-element-container,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard .media-element-container,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait .media-element-container,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image .media-element-container,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__full-width-image .media-element-container,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__portrait-image .media-element-container {
     margin-bottom: 0; }
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width p,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .field-name-field-uib-copyright,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .field-name-field-uib-owner,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard p,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard .field-name-field-uib-copyright,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard .field-name-field-uib-owner,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait p,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait .field-name-field-uib-copyright,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait .field-name-field-uib-owner,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image p,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image .field-name-field-uib-copyright,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image .field-name-field-uib-owner,
@@ -8719,6 +8737,12 @@ body #mc_embed_signup div.mce_inline_error {
     font-size: 1rem;
     line-height: 1.5;
     padding-right: 0.5rem; }
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .field-name-field-uib-copyright div,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_full_width .field-name-field-uib-owner div,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard .field-name-field-uib-copyright div,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_article_standard .field-name-field-uib-owner div,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait .field-name-field-uib-copyright div,
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-feature_image_portrait .field-name-field-uib-owner div,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image .field-name-field-uib-copyright div,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__image .field-name-field-uib-owner div,
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .uib-feature__full-width-image .field-name-field-uib-copyright div,
@@ -8755,6 +8779,8 @@ body #mc_embed_signup div.mce_inline_error {
       max-width: 520px; } }
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .media-full_width_banner {
     margin: 0 0 2rem; }
+  .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .file-video .uib-feature__media-info {
+    margin-bottom: 0; }
 
 .page-calendar .content-main-wrapper, .page-node-calendar .content-main-wrapper {
   position: relative; }
