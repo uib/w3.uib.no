@@ -1,3 +1,14 @@
+# Release 81 _2017-10-26_
+- Utviklet ny mal for feature-artikkel for Aktuelt og satsingsområdene #19025
+- Rettet feil i mobil-visningen av nyhetsarkiv og ansattkataloger #19144
+- Endret rutinen som mellomlagrer sider med fakultetsvis oversikt over tid og sted for eksamen #19234
+- Lagt til midlertidig tidssperre for visning av klokkeslett for eksamen #19227
+- Lagt til rette for at man kan sette inn mer tekst etter trekkspillmenyer #19229
+- Lagt til støtte for kobling til ORCID og Google Scholar på personsidene #19235
+- Lagt til javascript for Task Analytics #19224
+- Justert visningen av tilknyttet innhold #19110
+- Endret enkelte hjelpetekster #19217 #19235 #19229
+
 # Release 80 _2017-10-12_
 - Rettet feil i markup for sosiale medier i footer og bilderettigheter #19056 #19096
 - Lagt til rette for å kunne abonnere på utvalgte kalendere #19065
