@@ -3892,7 +3892,10 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Note: When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary heading).',
+    'description' => '<ul>
+<li>When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary H2-heading).</li>
+<li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
+</ul>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3937,6 +3940,7 @@ function uib_area_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 0,
           'restricted_html' => 0,
@@ -3948,6 +3952,9 @@ function uib_area_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -50,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -48,
@@ -5441,6 +5448,10 @@ function uib_area_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('<strong>Front page:</strong> Adds both news articles and events to the front page. <br>
 <strong>News page:</strong> Adds news articles to the middle section of the page. The first article is the profiled article in the middle. Only the first five articles will show on the area page. More information: <a href="http://w3docs.h.uib.no/redigere-områdeforside#97"> Promoted articles </a>');
+  t('<ul>
+<li>When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary H2-heading).</li>
+<li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
+</ul>');
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
@@ -5491,7 +5502,6 @@ function uib_area_field_default_field_instances() {
   t('Media');
   t('Menu style');
   t('Name');
-  t('Note: When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary heading).');
   t('Organisational unit');
   t('Parents');
   t('Phone');
