@@ -1166,12 +1166,6 @@ EOD;
           $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
         }
         elseif ($type == 'program' or $type == 'specialization') {
-          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
-          $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
-          if ($points && $language->language == 'nb') {
-            $points['#text'] = l(strip_tags($points['#text']), 'node/101938');
-            $items[] = uib_study__get_study_facts_markup('Poenggrense', $points['#text']);
-          }
           $varighet = $language->language == 'en' ? 'varighet:en' : 'varighet';
           if (isset($data[$varighet])) {
             $duration = $data[$varighet];
@@ -1183,21 +1177,27 @@ EOD;
             if ($language->language == 'en') $duration = str_replace(',', '.', $duration);
           }
           $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
+          $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
+          if ($points && $language->language == 'nb') {
+            $points['#text'] = l(strip_tags($points['#text']), 'node/101938');
+            $items[] = uib_study__get_study_facts_markup('Poenggrense', $points['#text']);
+          }
           $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
           $seats = uib_study__extract_study_info($data_2, $seats_info);
           if ($seats) {
             $items[] = uib_study__get_study_facts_markup(t('Intake'), uib_study__text_markup($seats, $is_course, TRUE));
-          }
-          $start_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_START' : 'B_RE_START';
-          $start = uib_study__extract_study_info($data_2, $start_info);
-          if ($start && !empty($start['#text'])) {
-            $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__text_markup($start, $is_course, TRUE));
           }
           $sprak_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_SPRAK' : 'B_RE_SPRAK';
           $sprak = uib_study__extract_study_info($data_2, $sprak_info);
           if ($sprak && !empty($sprak['#text'])) {
             $items[] = uib_study__get_study_facts_markup(t('Language'), uib_study__text_markup($sprak, $is_course, TRUE));
           }
+          $start_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_START' : 'B_RE_START';
+          $start = uib_study__extract_study_info($data_2, $start_info);
+          if ($start && !empty($start['#text'])) {
+            $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__text_markup($start, $is_course, TRUE));
+          }
+          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
           $fee = uib_study__extract_study_info($data_2, 'M_RE_FEE');
           if ($fee && $language->language == 'en') {
             $text = uib_study__text_markup($fee, $is_course, TRUE);
