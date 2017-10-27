@@ -2370,6 +2370,15 @@ function uib_search__create_query($use_post_boosting = FALSE) {
             'factor' =>  $boosting[$px . 'hits-boost-factor'],
           ),
         ),
+        array(
+          'field_value_factor' =>  array(
+            'field' =>  'hits.max_hits',
+            'modifier' =>  'log',
+            'missing' => '1',
+            // Determine how much popularity boost affect results:
+            'factor' =>  $boosting[$px . 'max-hits-boost-factor'],
+          ),
+        ),
       ),
     ),
   );
