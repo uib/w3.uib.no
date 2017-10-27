@@ -40,33 +40,37 @@
   }
 
   function uib_admin_node_presave ($node) {
-    $n = entity_metadata_wrapper('node', $node);
-    $text = $n->field_uib_text->value();
-    if (strpos($text['value'], '(* exams:') !== FALSE) {
-      $list = variable_get(
-        'uib_exams_list_nodes',
-        // These nodes display the exams list today. The list will be
-        // initialized when any of these are saved the first time:
-        array(
-          108689,
-          108687,
-          108651,
-          108650,
-          108414,
-          108382,
-          108378,
-          108370,
-          108686,
-          108374,
-          108384,
-          108381,
-          108376,
-          108377,
-        )
-      );
-      if (!in_array($node->nid, $list)) {
-        $list[] = $node->nid;
+    if($node->type == 'uib_article') {
+      $n = entity_metadata_wrapper('node', $node);
+      if (isset($n->field_uib_text)) {
+        $text = $n->field_uib_text->value();
+        if (strpos($text['value'], '(* exams:') !== FALSE) {
+          $list = variable_get(
+            'uib_exams_list_nodes',
+            // These nodes display the exams list today. The list will be
+            // initialized when any of these are saved the first time:
+            array(
+              108689,
+              108687,
+              108651,
+              108650,
+              108414,
+              108382,
+              108378,
+              108370,
+              108686,
+              108374,
+              108384,
+              108381,
+              108376,
+              108377,
+            )
+          );
+          if (!in_array($node->nid, $list)) {
+            $list[] = $node->nid;
+          }
+          variable_set('uib_exams_list_nodes', $list);
+        }
       }
-      variable_set('uib_exams_list_nodes', $list);
     }
   }
