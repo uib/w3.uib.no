@@ -7,10 +7,65 @@ interface built on top of [Apache Lucene](https://lucene.apache.org) that
 provide fast and precise search results from large amounts of semi-structured
 data.
 
-## Setup
+## Setup (TAKE CARE: There are currently two competing setups):
 
-Variables for the administrative setup will generally be set up in drupals
-settings.php - file:
+#### Using the elasticsearch prod - server: ####
+
+The production server is at https://api.search.uib.no. This setup only allows
+for a single index to be used at the same time. Indices can be  created at
+https://token.search.uib.no.
+
+The config structure is as follows:
+
+*Admin setup*
+
+    $conf['uib_elasticsearch_admin'] = array(
+      'index1' => array(
+        'url' => 'https://api.search.uib.no',
+        'user' => 'my_first_index_admin',
+        'password' => 'abcdefgh',
+        'index' => 'my_first_index',
+      ),
+      'index2' => array(
+        'url' => 'https://api.test.search.uib.no',
+        'user' => 'my_second_index_admin',
+        'password' => 'ijklmnop',
+        'index' => 'my_second_index',
+      ),
+    );
+
+*Read only setup*
+
+    $conf['uib_elasticsearch'] = array(
+      'index1' => array(
+        'url' => 'https://api.search.uib.no',
+        'user' => 'my_first_index_user',
+        'password' => 'abcdefgh',
+        'index' => 'my_first_index',
+      ),
+      'index2' => array(
+        'url' => 'https://api.test.search.uib.no',
+        'user' => 'my_second_index_user',
+        'password' => 'ijklmnop',
+        'index' => 'my_second_index',
+      ),
+    );
+
+The read only setup is used for the actual searching, while the admin setup is
+used for indexing, and updating the elastic data when changes are made.
+
+To specify which index is used, use:
+
+bin/site-drush vset uib_elasticsearch_useindex index1
+bin/site-drush vset uib_elasticsearch_useindex_admin index1
+
+#### Using the elasticsearch test - server: ####
+
+This setup should take over for and become the new production environment
+shortly. The test server is at https://api.test.search.uib.no. Indices for this
+are created at https://token.search.uib.no.
+
+Variables in site/settings.php:
 
     $conf['uib_elasticsearch_admin_url'] = 'https://api.test.search.uib.no';
     $conf['uib_elasticsearch_admin_index'] = 'anyindex';
@@ -35,8 +90,8 @@ these variables to capital letters FALSE:
     bin/site-drush vset uib_elasticsearch_useindex FALSE
     bin/site-drush vset uib_elasticsearch_useindex_admin FALSE
 
-To to create and / or review your available indexes, visit
-[shield.devapp.uib.no](https://shield.devapp.uib.no).
+To to create and / or review your available indices, visit
+[shield.testapp.uib.no](https://shield.testapp.uib.no).
 
 ## Drush functionality
 
@@ -176,8 +231,8 @@ Check your new mapping with
 
     curl -XGET `bin/site-drush uib-search-url --admin`_mapping?pretty
 
-Restore the index. This depends on what content was actually in the index. The
-code below will index all users in w3, in batches of 1000.
+Restore the index. To reindex everything:
 
-    bin/site-drush vset uib_search_last_processed_user 0
-    for i in {1..10}; do bin/site-drush uib-search-index user --stop=1000 -v; done
+    bin/index-all-users
+    bin/index-all-studies
+    bin/index-all-nodes
