@@ -1049,6 +1049,8 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_bottom_text',
       'field_uib_secondary_text',
       'field_uib_tertiary_text',
+      'field_uib_feature_heading_style',
+      'field_uib_feature_mobile_media',
       );
     $not_for_frontpage = array(
       'field_uib_feed',
