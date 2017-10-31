@@ -117,26 +117,29 @@ The current document structure, as json, of indexed users
       social_media,
       slug,
       ou_en,
-      position_en,
-      alt_position_en,
-      competence_en,
-      link_en,
       ou_nb,
+      position_en,
       position_nb,
+      alt_position_en,
+      alt_position_nb,
+      competence_en,
       competence_nb,
-      link_nb
+      link_en,
+      link_nb,
       generic : {
         title,
         link,
         excerpt,
         title_en,
-        link_en,
-        excerpt_en,
         title_nb,
+        link_en,
         link_nb,
+        excerpt_en,
         excerpt_nb,
         image,
+        _searcable_text,
       },
+      search_manual_boost,
     }
 
 ## Node document structure in Elastic
@@ -158,14 +161,34 @@ structure as `somefield`.
         article_type,
         promote,
         url,
+        url_string,
         search_description,
+        date: {
+          value,
+          value2,
+        },
+        published_timestamp,
+        changed,
+        location,
+        search_keywords,
+        language,
+        type,
+        study_code,
+        study_title,
       },
       generic : {
         title,
         link,
         excerpt,
+        title_en,
+        title_nb,
+        link_en,
+        link_nb,
+        excerpt_en,
+        excerpt_nb,
         _searchable_text,
-      }
+      },
+      search_manual_boost,
     }
 
 
@@ -173,6 +196,63 @@ Generic fields are populated by combining relevant fields for the entity.
 
 The generic field `_searchable_text` should be a field containing all relevant
 searchable text from a node.
+
+## Study document stucture in Elastic
+
+{
+  w3 : {
+    title,
+    lead,
+    teaser,
+    text,
+    text2,
+    primary_text,
+    secondary_text,
+    article_type,
+    promote,
+    url,
+    url_string,
+    search_description,
+    date: {
+      value,
+      value2,
+    },
+    published_timestamp,
+    changed,
+    location,
+    search_keywords,
+    language,
+    type,
+    study_code,
+    study_title,
+  },
+  generic : {
+    title,
+    link,
+    excerpt,
+    title_en,
+    title_nb,
+    link_en,
+    link_nb,
+    excerpt_en,
+    excerpt_nb,
+    _searchable_text,
+  },
+  search_manual_boost,
+  fs: {
+    study_type,
+    study_code,
+    text_en,
+    text_nb.
+    credits,
+    dicipline_en,
+    dicipline_nb,
+    excerpt_en,
+    excerpt_nb,
+    url_en,
+    url_nb,
+  },
+}
 
 ## Update document schema in Elasticsearch
 
