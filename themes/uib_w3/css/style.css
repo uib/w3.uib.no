@@ -9366,57 +9366,6 @@ body #mc_embed_signup div.mce_inline_error {
         min-width: 45.5%;
         text-align: right; } }
 
-.node-type-uib-study .region-content {
-  display: -ms-flexbox;
-  -ms-flex-direction: column;
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-  display: flex;
-  flex-direction: column; }
-  .node-type-uib-study .region-content .field-name-field-uib-study-image {
-    -webkit-order: 0;
-    order: 0; }
-  .node-type-uib-study .region-content #block-uib-study-study-content {
-    -webkit-order: 1;
-    order: 1;
-    margin-bottom: 1.25rem; }
-  .node-type-uib-study .region-content #block-uib-study-study-email-offers {
-    -webkit-order: 2;
-    order: 2; }
-  .node-type-uib-study .region-content #block-uib-study-study-so-code {
-    -webkit-order: 3;
-    order: 3; }
-  .node-type-uib-study .region-content #block-uib-study-study-contact {
-    -webkit-order: 4;
-    order: 4; }
-  .node-type-uib-study .region-content #block-uib-study-study-trivia {
-    -webkit-order: 5;
-    order: 5; }
-  .node-type-uib-study .region-content #block-uib-study-study-exam-info {
-    -webkit-order: 6;
-    order: 6; }
-  .node-type-uib-study .region-content #block-uib-study-study-testimonial {
-    -webkit-order: 7;
-    order: 7;
-    height: auto; }
-  .node-type-uib-study .region-content #block-uib-study-study-semester-toggle {
-    -webkit-order: 8;
-    order: 8; }
-  .node-type-uib-study .region-content #block-uib-study-study-facts-exchange {
-    -webkit-order: 9;
-    order: 9; }
-  .node-type-uib-study .region-content #block-uib-study-study-evu {
-    -webkit-order: 10;
-    order: 10; }
-  .node-type-uib-study .region-content .uib-study-belongs-to {
-    -webkit-order: 11;
-    order: 11; }
-  .node-type-uib-study .region-content #block-uib-study-study-period-phd {
-    -webkit-order: 12;
-    order: 12; }
-  .node-type-uib-study .region-content #block-uib-study-study-reading-lists {
-    -webkit-order: 13;
-    order: 13; }
 @media (min-width: 780px) {
   .node-type-uib-study .region-content {
     display: block; }
