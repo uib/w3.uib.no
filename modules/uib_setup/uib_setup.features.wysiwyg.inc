@@ -132,6 +132,8 @@ function uib_setup_wysiwyg_default_profiles() {
           'Strike' => 1,
           'BulletedList' => 1,
           'NumberedList' => 1,
+          'Undo' => 1,
+          'Redo' => 1,
           'Link' => 1,
           'Unlink' => 1,
           'Anchor' => 1,
@@ -167,7 +169,7 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'h2,h3,h4',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );
