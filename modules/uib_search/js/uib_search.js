@@ -443,7 +443,7 @@
           .appendTo(resultstag);
         $('.no_more_results').click(function(event){
           event.preventDefault();
-          $().scroll('form#uib-search-form .search-field').focus();
+          $().uibScroll('form#uib-search-form .search-field').focus();
         })
       }
 
@@ -479,7 +479,7 @@
       });
 
       if ($.uib_search.scroll) {
-        $().scroll($.uib_search.scroll);
+        $().uibScroll($.uib_search.scroll);
       }
       if ($.uib_search.select) {
         $('form#uib-search-form .search-field').select();
@@ -553,7 +553,7 @@
   * Scroll to top of selector, by default the search input box, and
   * optionally select the text
   **/
-  $.fn.scroll = function (selector) {
+  $.fn.uibScroll = function (selector) {
     $('.lightbox').animate({
       scrollTop: $(selector).offset().top
     }, 300);
