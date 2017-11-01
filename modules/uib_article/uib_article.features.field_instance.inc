@@ -494,6 +494,50 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'node-uib_article-field_uib_feature_heading_style'.
+  $field_instances['node-uib_article-field_uib_feature_heading_style'] = array(
+    'bundle' => 'uib_article',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 52,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_feature_heading_style',
+    'label' => 'Feature heading style',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_article-field_uib_feature_text'.
   $field_instances['node-uib_article-field_uib_feature_text'] = array(
     'bundle' => 'uib_article',
@@ -1084,6 +1128,7 @@ function uib_article_field_default_field_instances() {
   t('By checking this box you get a feature article');
   t('Caption for image. Use 0 to hide caption.');
   t('Feature article');
+  t('Feature heading style');
   t('Feature text');
   t('Gmap link');
   t('Image index');

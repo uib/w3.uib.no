@@ -1042,7 +1042,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
         }
       }
     }
-
+    unset($form['field_uib_feature_heading_style']['und']['#options']['tb']);
     $not_for_news_and_frontpage = array(
       'field_uib_bottom_media',
       'field_uib_profiled_testimonial',

@@ -59,6 +59,7 @@ features[field_instance][] = field_collection_item-field_uib_imagecaptions2-fiel
 features[field_instance][] = node-uib_article-field_related_persons_label
 features[field_instance][] = node-uib_article-field_twitter_card_image
 features[field_instance][] = node-uib_article-field_uib_feature_article
+features[field_instance][] = node-uib_article-field_uib_feature_heading_style
 features[field_instance][] = node-uib_article-field_uib_feature_text
 features[field_instance][] = node-uib_article-field_uib_gmap_link
 features[field_instance][] = node-uib_article-field_uib_imagecaptions

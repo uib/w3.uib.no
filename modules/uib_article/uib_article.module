@@ -403,6 +403,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_text',
       'field_uib_fact_box',
       'field_uib_media',
+      'field_uib_imagecaptions',
       'field_uib_imagecaptions2',
       '',
     );
@@ -443,6 +444,19 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
           array('value' => 'Climate and energy transition (107141)'),
           array('value' => 'Aktuelt (36363)'),
           array('value' => 'News (36364)'),
+        ),
+      ),
+    );
+
+    unset($form['field_uib_feature_heading_style']['und']['#options']['wtb']);
+    unset($form['field_uib_feature_heading_style']['und']['#options']['h']);
+    $form['field_uib_feature_heading_style']['#states'] = array(
+      'visible' => array(
+        ':input[name="field_uib_article_type[und]"]' => array(
+          array('value' => 'news',),
+        ),
+        ':input[name="field_uib_feature_article[und]"]' => array(
+          array('checked' => TRUE,),
         ),
       ),
     );

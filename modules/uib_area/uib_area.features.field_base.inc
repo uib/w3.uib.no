@@ -603,6 +603,7 @@ function uib_area_field_default_field_bases() {
         'wtb' => 'White text with transparent background',
         'b' => 'Black text',
         'h' => 'Hide text',
+        'tb' => 'Text below',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
