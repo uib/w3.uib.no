@@ -277,6 +277,10 @@ searchable text from a node.
 
 ## Update document schema in Elasticsearch
 
+The section below is instructive on how to modify your index mappings in
+elasticsearch. However, this is most important when setting up a new index from
+scratch and during development. It might not be what you need ...
+
 When adding data to Elasticsearch, a mapping schema for the data is created
 automatically. This is often nice and correct, but sometimes not what you want.
 How to change this mapping is described below.
@@ -284,11 +288,18 @@ How to change this mapping is described below.
 If you change the mapping for a field in an index, all documents in this
 index needs to be reindexed.
 
-Save the current mapping to a file (mapping.txt):
+Save the current mapping and setting to a files:
 
+    curl -XGET `bin/site-drush uib-search-url --admin`_settings?pretty >settings.txt
     curl -XGET `bin/site-drush uib-search-url --admin`_mapping?pretty >mapping.txt
 
-Open `mapping.txt` in a text editor and change the mapping to your liking. First
+For the new auth scheme:
+
+    echo "$(bin/site-drush uib-search-curl --admin GET _settings)" |sh > settings.txt
+    echo "$(bin/site-drush uib-search-curl --admin GET _mapping)" |sh > mapping.txt
+
+
+Open `mapping.txt` and `settings.txt` in a text editor and change  to your liking. First
 remove the reference to the actual index name (here called `w3myindex`), so:
 
     {
@@ -315,22 +326,43 @@ will be:
       }
     }
 
-Now edit the mapping to how you need it. Fields that should not be analyzed can
-be set to `{ “index”: “not_analyzed” }`, f.ex. url fields.
+Now edit the mapping and settings to how you need it. Fields that should not be
+analyzed can be set to `{ “index”: “not_analyzed” }`, f.ex. url fields.
 
-Now, to make a new index with your current mapping:
+Now, to make a new index with your new mapping:
 
 Drop the current index:
 
     bin/site-drush uib-search-drop-index
 
+You need to merge your mapping and your settings file. It should look something like:
+
+{
+  "settings": {
+    ... settings here ...
+  },
+  "mappings" : {
+    ... mappings here ...
+  }
+}
+
+Call the file mapping.txt
+
 Create a new index which includes your modified mapping.txt file:
 
-    curl -XPUT `bin/site-drush uib-search-url --admin` --data-binary <mapping.txt
+    curl -XPUT `bin/site-drush uib-search-url --admin` --data-binary @mapping.txt
+
+With new auth scheme:
+
+    echo "$(bin/site-drush uib-search-curl --admin PUT /) --data-binary @mapping.txt" |sh
 
 Check your new mapping with
 
     curl -XGET `bin/site-drush uib-search-url --admin`_mapping?pretty
+
+With new auth scheme:
+
+    echo "$(bin/site-drush uib-search-curl --admin GET _mapping)" |sh
 
 Restore the index. To reindex everything:
 
