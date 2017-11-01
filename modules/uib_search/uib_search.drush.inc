@@ -418,6 +418,13 @@ function drush_uib_search_index($type = 'user') {
 
 function drush_uib_search_url() {
   $admin = drush_get_option('admin');
+  $checkauth = 'uib_elasticsearch_useindex' . ($admin ? '_admin' : '');
+  if (variable_get($checkauth) === FALSE) {
+    uibx_log('This function is not available for the new authentication scheme',
+      'error');
+    return;
+  }
+
   if (!uib_search__check_elastic_settings($admin)) {
     $a = $admin ? 'Administrator s' : 'S';
     uibx_log($a . 'ettings for elasticsearch is missing', 'error');
@@ -435,7 +442,12 @@ function drush_uib_search_url() {
 function drush_uib_search_curl($method = 'GET', $elasticmethod = '_search') {
   $admin = drush_get_option('admin');
   $size = drush_get_option('size', 5);
-
+  $checkauth = 'uib_elasticsearch_useindex' . ($admin ? '_admin' : '');
+  if (variable_get($checkauth) !== FALSE) {
+    uibx_log('This function is not available for the old authentication scheme',
+      'error');
+    return;
+  }
   if (!uib_search__check_elastic_settings($admin)) {
     $a = $admin ? 'Administrator s' : 'S';
     uibx_log($a . 'ettings for elasticsearch is missing', 'error');
