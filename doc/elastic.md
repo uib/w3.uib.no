@@ -103,6 +103,27 @@ indexing. The following commands are useful when working with the search index
     bin/site-drush help | grep uib-search # list drush commands on
                                           # uib_search module
 
+### Functions for any setup:
+
+bin/site-drush uib-search            # Do a search in the elasticsearch database and prettyprint the results.bin/site-drush uib-search
+bin/site-drush uib-search-drop-inde  # Drop the current elastic index. The index will be recreated when new content is added. If thebin/site-drush uib-search
+bin/site-drush uib-search-index      # Index entities in the database to the elastic search database. Currently supports users and nodes.bin/site-drush uib-search
+bin/site-drush uib-search-node       # Retrieve a node as it will be inserted into the elastic search index. Options --index and --drop are
+bin/site-drush uib-search-setup      # Setup elastic search. By default setup mapping found in the file uib_search/elastic/mapping.json.bin/site-drush uib-search
+bin/site-drush uib-search-study      # Retrieve a study object as it will be inserted into the elastic search index. Options --index andbin/site-drush uib-search
+bin/site-drush uib-search-user       # Retrieve a user object as it will be inserted into the elastic search index. Options --index andbin/site-drush uib-search
+
+
+### Functions only for the old setup:
+
+bin/site-drush uib-search-url        # Print URL that can be used to access the elastic server.bin/site-drush uib-search
+
+### Functions only for the new setup:
+
+bin/site-drush uib-search-curl       # Print curl-string for easy access to the elastic server.bin/site-drush uib-search
+bin/site-drush uib-search-createix   # Create a new elasticsearch index and print the index name. Return an empty string on failure.bin/site-drush uib-search
+
+
 ## User document structure in Elastic
 
 The current document structure, as json, of indexed users
