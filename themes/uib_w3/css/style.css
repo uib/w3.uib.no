@@ -4793,7 +4793,7 @@ div.field-item {
     height: 6.5rem;
     width: auto;
     max-width: 9.125rem; }
-  @media (min-width: 600px) {
+  @media (min-width: 960px) {
     .field-name-field-uib-relation > .field-items,
     .field-name-field-uib-study-relation > .field-items,
     .node-type-uib-content-list section.group-related-content > .field-items {
