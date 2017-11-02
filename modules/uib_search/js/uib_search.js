@@ -342,6 +342,23 @@
               trim = trim.substr(0, Math.min(trim.length, trim.lastIndexOf(" ")));
               trim += ' ' + '&hellip;';
             }
+            if (typeof v._source.w3 !== 'undefined' &&
+                typeof v._source.w3.step_titles_array === 'object'
+                && v._source.w3.step_titles_array.length > 0
+            ) {
+                trim += '<div class="steps">';
+                trim += Drupal.t('Includes titles') + ': ';
+                for (i = 0; i < v._source.w3.step_titles_array.length; i++) {
+                  trim += $('<span></span>')
+                    .attr('data-href', link + '?step=' + (i+1))
+                    .addClass('step-link')
+                    .text(v._source.w3.step_titles_array[i])
+                    .prop('outerHTML') + ', ';
+                }
+                trim = trim.replace(/[ ,]*$/, '');
+                trim += '</div>';
+            }
+
             lft.append(
               $('<div></div>').addClass('excerpt').html(trim)
             );
@@ -383,6 +400,12 @@
         // Make whole item in result list clickable
         entitywrapper.click(function(event) {
           if(event.target.nodeName === 'A') return;
+          console.log(event.target)
+          console.log($(event.target))
+          if ($(event.target).data('href')) {
+            window.location.href =$(event.target).data('href');
+            return true;
+          }
           var link = $(this).find('a:not(.up,.down)').first();
           link.click();
           window.location.href = link.attr('href');

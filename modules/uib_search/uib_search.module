@@ -849,6 +849,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         }
         $output[$key . '_texts'] = implode(' ', $output[$key]);
         $output[$key . '_titles'] = implode(', ', $titles);
+        $output[$key . '_titles_array'] = $titles;
         unset($output[$key]);
         break;
       case 'text':
@@ -923,8 +924,6 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
       @$output['w3']['search_description']
       ?: @$output['w3']['teaser']
       ?: @$output['w3']['lead']
-        . (isset($output['w3']['step_titles']) ?
-        ' ' . t('Includes titles: ') . $output['w3']['step_titles'] : '')
       ?: strip_tags(@$output['w3']['text'])
       ?: strip_tags(@$output['w3']['primary_text'])
       ?: strip_tags(@$output['w3']['text2'])
@@ -943,6 +942,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         'secondary_text',
         'market_text',
         'step_texts',
+        'step_titles',
       )
     ),
   );
@@ -1460,6 +1460,7 @@ function uib_search__create_query($use_post_boosting = FALSE) {
       'competence*',
       'link*',
       'w3.published_timestamp',
+      'w3.step_titles_array',
     ),
   );
   $boostquery = array(
