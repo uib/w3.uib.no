@@ -19,7 +19,7 @@ if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
     bin/site-drush scr uib-feature-areas.php
 fi
 
-REL=80
+REL=82
 
 if git tag | grep -q R$REL; then
     echo "Disabled after $REL has been released";
@@ -33,3 +33,6 @@ set -x
 # for i in `seq 0 1 120`; do
 #   bin/site-drush scr node-update-image-caption
 # done
+
+# Indexing only content lists
+bin/site-drush ev '$a = db_query("select nid from node where status=1 and type='"'"'uib_content_list'"'"'"); while($nid=$a->fetchField()){ echo "$nid\n"; node_save(node_load($nid));}'
