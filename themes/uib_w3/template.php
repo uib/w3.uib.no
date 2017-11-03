@@ -672,6 +672,7 @@ EOD;
       break;
 
     case isset($variables['node']) && $variables['node']->type == 'uib_study':
+      global $language;
       $variables['page']['content_bottom']['field_uib_study_relation'] =
         field_view_field(
           'node',
@@ -747,21 +748,9 @@ SCRIPT;
       $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
       unset($variables['page']['content']['study_content']['uib_study_study_content']['#contextual_links']);
-      $variables['page']['content']['study_contact'] = __uib_w3__render_block('uib_study', 'study_contact', 5);
 
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange' && (!in_array($variables['node']->field_uib_study_category['und'][0]['value'], array('mou', 'forskningsavtale')))) {
         $variables['page']['content']['study_facts_exchange'] = __uib_w3__render_block('uib_study', 'study_facts_exchange', 15);
-      }
-      global $language;
-      $belongs_to = uib_study__area($variables['node'], $language->language);
-      if ($belongs_to) {
-        $variables['page']['content']['study_belongs_to'] = array(
-          '#type' => 'html_tag',
-          '#tag' => 'div',
-          '#value' => $belongs_to,
-          '#weight' => 20,
-          '#attributes' => array('class' => array('uib-study-belongs-to')),
-        );
       }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'exchange') {
         $variables['page']['content_bottom']['study_related'] = __uib_w3__render_block('uib_study', 'study_related', 15);
@@ -787,7 +776,7 @@ SCRIPT;
           'weight' => 3,
         ));
         $variables['page']['content']['promocode'] = __uib_w3__render_block('uib_study', 'study_email_offers', 4);
-        $variables['page']['content']['study_so_code'] = __uib_w3__render_block('uib_study', 'study_so_code', 5);
+        $variables['page']['content']['study_more_information'] = __uib_w3__render_block('uib_study', 'study_more_information', 6);
         $link_section = $language->language == 'en' ? '_2' : '';
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
           'label' => 'hidden',

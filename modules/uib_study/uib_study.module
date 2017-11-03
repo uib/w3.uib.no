@@ -71,6 +71,10 @@ function uib_study_block_info() {
       'info' => t('Provides information on exams in a course'),
       'status' => TRUE,
     ),
+    'study_more_information' => array(
+      'info' => t('Provides combined information in a course'),
+      'status' => TRUE,
+    ),
   );
 }
 
@@ -1122,6 +1126,53 @@ EOD;
           $block['title'] = t("Contact");
           $block['content']['fspres'][] = $render;
         }
+      }
+      break;
+    case 'study_more_information':
+      $node = menu_get_object();
+      if($node) {
+        $block['title'] = t('More information');
+        $block['content']['#theme'] = '#markup';
+        $markup = "<h3 class='uib-study-about-study'>About the programme</h3>";
+
+        $affected_study_categories = array('bachelorprogram','arsstudium','masterprogram','integrertemasterpr-profesjonsst');
+        if ($node && in_array($node->field_uib_study_category['und'][0]['value'], $affected_study_categories)) {
+          $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
+          if(!empty($data)) {
+            if (!empty($data['studietypenr'])) {
+              $markup .= "<p class='study-so-code'>" . t('Application code in NUCAS') . '<br />'. l($data['studietypenr'], 'http://www.samordnaopptak.no/') . "</p>";
+            }
+          }
+        }
+        $category = (!empty($node->field_uib_study_category['und'])) ? $node->field_uib_study_category['und'][0]['value'] : '';
+        $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        if (uib_study__has_study_plan($data)) {
+          $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
+          $markup .= "<p class='uib-study-plan'>" . l(t('See full study plan'), drupal_get_path_alias($study_path) . '/plan') . "</p>";
+        }
+
+        $render = "";
+        if ($category == 'evu') {
+          $tmp = uib_study__extract_study_info($data, 'EVU_KONTAK');
+        } else {
+          $tmp = uib_study__extract_study_info($data, 'EB_KONTAKT');
+        }
+        if (!$tmp) {
+          $tmp = uib_study__extract_study_info($data, 'B_RE_INFO');
+        }
+        if (!$tmp) {
+          $tmp = uib_study__extract_study_info($data, 'M_RE_INFO');
+        }
+        if ($tmp) {
+          $markup .= '<h3>Contact</h3>';
+          $markup .= uib_study__area($node, $language->language);
+          if (!strpos($tmp['#text'],"mailto")) {
+            $markup .= preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $tmp['#text']);
+          }
+        }
+
+
+        $block['content'] = $markup;
       }
       break;
 
