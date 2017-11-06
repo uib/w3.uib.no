@@ -25,4 +25,4 @@ gunzip -c $@ |grep -ioe 'php/qs\.php/[^ ]*' | \
     -e 's/%3B//g' -e 's/%C4%B7/ķ/g' -e 's/%3C/ /g' -e 's/%5B//g' -e 's/%09/ /g' \
     -e 's/%C3%A4/ä/g' -e 's/%C3%86/Æ/g' -e 's/%C3%A7/ç/g' -e 's/%40/@/g' \
     -e 's/%3F//g' -e 's/%3E/ /g'  | \
-  grep -E '^.{3,}$'|sort|uniq -dcw 10 | sed '/^ *[23] /d' |sort -rn
+  grep -E '^.{3,}$'|sort |uniq -c | sed '/^ *[123] /d' |sort -rn
