@@ -2598,7 +2598,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 12,
+      'weight' => 14,
     ),
   );
 
@@ -2955,7 +2955,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 15,
     ),
   );
 
@@ -3331,7 +3331,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 14,
+      'weight' => 16,
     ),
   );
 
@@ -3969,7 +3969,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 17,
+      'weight' => 20,
     ),
   );
 
@@ -4072,7 +4072,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 30,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 17,
     ),
   );
 

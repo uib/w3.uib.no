@@ -542,6 +542,71 @@ function uib_article_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
+      'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-uib_article-field_uib_feature_mobile_media'.
+  $field_instances['node-uib_article-field_uib_feature_mobile_media'] = array(
+    'bundle' => 'uib_article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 53,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_feature_mobile_media',
+    'label' => 'Feature mobile media',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'media',
+      'file_extensions' => 'png jpeg jpg',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+          'vimeo' => 0,
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 0,
+          'upload' => 'upload',
+        ),
+      ),
+      'type' => 'media_generic',
       'weight' => 11,
     ),
   );
@@ -642,7 +707,7 @@ function uib_article_field_default_field_instances() {
         'rows' => 30,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 18,
     ),
   );
 
@@ -811,6 +876,71 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_article-field_uib_main_media_teaser'.
+  $field_instances['node-uib_article-field_uib_main_media_teaser'] = array(
+    'bundle' => 'uib_article',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 54,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_main_media_teaser',
+    'label' => 'Main media teaser image',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => '',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'private' => 0,
+          'public' => 'public',
+          'vimeo' => 0,
+          'youtube' => 0,
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 0,
+          'upload' => 'upload',
+        ),
+      ),
+      'type' => 'media_generic',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_article-field_uib_published_timestamp'.
   $field_instances['node-uib_article-field_uib_published_timestamp'] = array(
     'bundle' => 'uib_article',
@@ -862,7 +992,7 @@ function uib_article_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 16,
+      'weight' => 19,
     ),
   );
 
@@ -1215,11 +1345,13 @@ function uib_article_field_default_field_instances() {
   t('Caption for image');
   t('Feature article');
   t('Feature heading style');
+  t('Feature mobile media');
   t('Feature text');
   t('Gmap link');
   t('Image index');
   t('Internal field used by the elasticsearch database');
   t('Main media image captions');
+  t('Main media teaser image');
   t('Manual Search Boost');
   t('Published timestamp');
   t('Related content label');

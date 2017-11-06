@@ -410,6 +410,33 @@ EOD;
         $variables['page']['content_top']['field_uib_main_media']['#prefix'] = '<div class="uib-slideshow"><div class="uib-slideshow__nav--next">' . t('Next') . '</div>';
         $variables['page']['content_top']['field_uib_main_media']['#suffix'] = '<div class="uib-slideshow__nav--prev">' . t('Previous') . '</div></div>';
       }
+      elseif (!empty($variables['page']['content_top']['field_uib_main_media']) && $variables['page']['content_top']['field_uib_main_media']['#items'][0]['type'] == 'video') {
+        $variables['page']['content_top']['field_uib_feature_mobile_media'] = field_view_field('node', $variables['node'], 'field_uib_feature_mobile_media', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => $file_view_mode),
+          'label' => 'hidden',
+          'weight' => $image_weight - 1,
+        ));
+        $variables['page']['content_top']['uib_play_video'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#attributes' => array('class' => array('uib-play-video')),
+          '#value' => l('spill video', '#'),
+          '#weight' => $image_weight - 2,
+        );
+        $variables['page']['content_top']['field_uib_main_media']['#attached']['js'][] = array(
+          'type' => 'external',
+          'data' => 'https://player.vimeo.com/api/player.js',
+          'scope' => 'footer',
+          'group' => JS_THEME,
+        );
+        $variables['page']['content_top']['uib-play-video']['#attached']['js'][] = array(
+          'type' => 'file',
+          'data' => drupal_get_path('theme', 'uib_w3') . '/js/feature-play.js',
+          'scope' => 'footer',
+          'group' => JS_THEME,
+        );
+      }
       uib_w3__add_image_caption(
         $variables['page']['content_top']['field_uib_main_media'],
         $variables['node'],
@@ -1172,6 +1199,19 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           uib_calendar3__get_calendar_card_render_array(
           $variables['field_uib_date']['und'][0]['value'] . 'Z');
       }
+      if (!empty($variables['field_uib_main_media_teaser'])) {
+        $uib_media = field_view_field('node', $variables['node'], 'field_uib_main_media_teaser', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => 'wide_thumbnail'),
+          'label' => 'hidden',
+          'weight' => 3,
+        ));
+        $uib_media['#field_name'] = 'field_uib_main_media';
+        $variables['content']['field_uib_main_media'] = $uib_media;
+        $variables['content']['field_uib_main_media'][0] = array();
+        $variables['content']['field_uib_main_media'][0]['#markup'] = render($uib_media[0]);
+      }
+      $test_path = drupal_get_path_alias('node/' . $variables['content']['field_uib_main_media']['#object']->nid);
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
       if (isset($variables['content']['field_uib_lead'][0]['#markup'])) {
