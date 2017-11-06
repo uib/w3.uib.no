@@ -21,6 +21,8 @@ function uib_external_form_alter(&$form, &$form_state, $form_id) {
       ) {
       // User does not have role admin or level 1
       hide($form['field_uib_search_manual_boost']);
+      hide($form['field_uib_search_description']);
+      hide($form['field_uib_search_keywords']);
     }
   }
 
