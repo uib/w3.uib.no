@@ -21,13 +21,13 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'article-sidebar',
-    'weight' => '5',
+    'weight' => '6',
     'children' => array(
-      0 => 'field_uib_files',
-      1 => 'field_uib_fact_box',
-      2 => 'field_uib_links',
+      0 => 'field_uib_media',
+      1 => 'field_uib_links',
+      2 => 'field_uib_files',
       3 => 'field_uib_gmap_link',
-      4 => 'field_uib_media',
+      4 => 'field_uib_fact_box',
       5 => 'group_event_info',
     ),
     'format_type' => 'div',
@@ -109,8 +109,8 @@ function uib_article_field_group_info() {
     'label' => 'Main media',
     'weight' => '10',
     'children' => array(
-      0 => 'field_uib_imagecaptions',
-      1 => 'field_uib_main_media',
+      0 => 'field_uib_main_media',
+      1 => 'field_uib_imagecaptions',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -136,10 +136,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related content group',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -166,8 +166,8 @@ function uib_article_field_group_info() {
     'label' => 'Related content',
     'weight' => '11',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -192,10 +192,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related persons group',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -221,8 +221,8 @@ function uib_article_field_group_info() {
     'label' => 'Related persons',
     'weight' => '10',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
