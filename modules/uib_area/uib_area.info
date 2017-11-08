@@ -108,7 +108,6 @@ features[field_base][] = field_uib_promoted_events
 features[field_base][] = field_uib_registration_link
 features[field_base][] = field_uib_relation
 features[field_base][] = field_uib_search_description
-features[field_base][] = field_uib_search_hits
 features[field_base][] = field_uib_search_keywords
 features[field_base][] = field_uib_sebra_id
 features[field_base][] = field_uib_secondary_text

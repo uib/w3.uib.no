@@ -1619,7 +1619,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ',
+    'description' => '<ul><li>This description will be displayed in search results on uib.no and on articles where areas are used as related content.</li><li>The text in this field will also be accessed by external search engines, and is generally considered as important metadata.</li><li>In addition external search engines will sometimes use the description as search results snippets.</li></ul>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1648,9 +1648,11 @@ function uib_area_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
@@ -1658,6 +1660,9 @@ function uib_area_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -1667,6 +1672,9 @@ function uib_area_field_default_field_instances() {
             ),
             'restricted_html' => array(
               'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -5530,6 +5538,7 @@ function uib_area_field_default_field_instances() {
 <li>When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary H2-heading).</li>
 <li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
 </ul>');
+  t('<ul><li>This description will be displayed in search results on uib.no and on articles where areas are used as related content.</li><li>The text in this field will also be accessed by external search engines, and is generally considered as important metadata.</li><li>In addition external search engines will sometimes use the description as search results snippets.</li></ul>');
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
@@ -5560,7 +5569,6 @@ function uib_area_field_default_field_instances() {
   t('Feature mobile media');
   t('Follow us');
   t('Here you should type which area this content belongs to');
-  t('If set, this description will be displayed as text in the instant search results. It will also be used as a search field. If this field is not set, then the lead or primary text or other text field will be displayed instead. ');
   t('Illustration that goes together with the bottom text.');
   t('Image map');
   t('Important message');
