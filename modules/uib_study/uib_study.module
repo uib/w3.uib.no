@@ -1170,7 +1170,7 @@ EOD;
         }
         if ($tmp) {
           $markup .= '<h3>Contact</h3>';
-          $markup .= uib_study__area($node, $language->language);
+          $markup .= '<p class="uib-study-area">' . uib_study__area($node, $language->language) . '</p>';
           if (!strpos($tmp['#text'],"mailto")) {
             $markup .= preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $tmp['#text']);
           }
@@ -1261,11 +1261,6 @@ EOD;
               $text = l($text, 'node/' . 49499);
             }
             $items[] = uib_study__get_study_facts_markup(t('Tuition fee'), $text);
-          }
-          if (uib_study__has_study_plan($data_2)) {
-            $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
-            $items[] = uib_study__get_study_facts_markup(t('Study plan'), l(t('See study plan'), drupal_get_path_alias($study_path) . '/plan'));
-
           }
         }
         elseif ($type == 'exchange') {
