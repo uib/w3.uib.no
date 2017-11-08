@@ -420,31 +420,12 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       );
     }
 
-    $allowed_areas = array(
-      107138,
-      107139,
-      107143,
-      107240,
-      107140,
-      107141,
-      36363,
-      36364,
-    );
     $form['field_uib_feature_article']['#states'] = array(
       'visible' => array(
         ':input[name="field_uib_article_type[und]"]' => array(
           array('value' => 'news',),
         ),
-        ':input[name="field_uib_area[und][0][target_id]"]' => array(
-          array('value' => 'Marin forskning (107138)'),
-          array('value' => 'Marine research (107139)'),
-          array('value' => 'Globale samfunnsutfordringer (107143)'),
-          array('value' => 'Global Challenges (107240)'),
-          array('value' => 'Klima- og energiomstilling (107140)'),
-          array('value' => 'Climate and energy transition (107141)'),
-          array('value' => 'Aktuelt (36363)'),
-          array('value' => 'News (36364)'),
-        ),
+        ':input[name="field_uib_area[und][0][target_id]"]' => uib_article__get_feature_areas(TRUE),
       ),
     );
 
@@ -1185,6 +1166,27 @@ function uib_article_query_autocompleteuser_alter(&$query) {
   }
   $query->orderBy('fn.field_uib_first_name_value');
   $query->orderBy('ln.field_uib_last_name_value');
+}
+
+/**
+ * Function returning an array of areas allowed to use the feature article option
+ */
+function uib_article__get_feature_areas($news = FALSE) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'area')
+    ->fieldCondition('field_uib_area_type', 'value', 'feature area', '=');
+  $result = $query->execute();
+  if(isset($result['node'])) {
+    $allowed_areas_nids = $news ? array_merge(array_keys($result['node']), array(36363, 36364)) : array_keys($result['node']);
+    $allowed_areas = entity_load('node', $allowed_areas_nids);
+    $output = array();
+    foreach($allowed_areas as $key => $allowed_area) {
+      $output[] = array('value' => $allowed_area->title . ' (' . $key . ')');
+    }
+    return $output;
+  }
+  return;
 }
 
 /**
