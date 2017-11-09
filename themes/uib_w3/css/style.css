@@ -5327,6 +5327,10 @@ div.field-item {
     @media (min-width: 600px) {
       .block-uib-search .lightbox .results .rgt, .block-uib-search .lightbox .results .position, .block-uib-search .lightbox .results .ou, .block-uib-search .lightbox .results .excerpt, .block-uib-search .lightbox .results .mail, .block-uib-search .lightbox .results .phone, .block-uib-search .lightbox .results .link {
         display: block; } }
+    .block-uib-search .lightbox .results .step-link {
+      text-decoration: underline; }
+      .block-uib-search .lightbox .results .step-link:hover {
+        font-weight: bold; }
     .block-uib-search .lightbox .results .link {
       max-height: 30px; }
       .block-uib-search .lightbox .results .link a {
