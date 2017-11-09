@@ -1,3 +1,23 @@
+# Release 82 _2017-11-09_
+- Rettet feil der eksamensinformasjon ble vist tidligere enn én måned før semesterstart #19331
+- Rettet feil der redigeringsskjemaet rullet til topps ved innsetting av medieinnhold #19279
+- Rettet feil der tilknyttet innhold overlappet på smale skjermer #19240
+- Rettet feil der felt forbeholdt malen for satsningsområder ble vist på enkelte andre områder #19278
+- Rettet feil der to felt under innholdstypen "eksternt innhold" ble vist for andre enn rolle 1 #19327
+- Rettet feil der kalenderabonnement ikke var mulig dersom det ikke fantes arrangementer #19223
+- Endret rekkefølgen på elementene i faktalinjen på sider for studieprogram #19250
+- Endret rutinen for nyhetsbrevsabonnent på sider for studieprogram #19341
+- Flyttet lenke til studieplan fra faktalinjen til boks i sidespalten på sider for studieprogram. I tillegg forbedret prestentasjonen av elementene i informasjonsboksen #19251
+- Flyttet bildet på sider for studieprogram lenger ned på siden i mobil-visning #19246
+- Flyttet billedtekst fra selve bildet og inn i artiklene der de er brukt #18978
+- Forbedret malen for feature-artikkel #19280 #19283 #19368 #19367
+- Forbedret søkefunksjonen #19294 #19272 #19225 #19155 #15260
+- Endret enkelte hjelpetekster #19362 #19369
+
+# Release 81.1 _2017-10-27_
+- Rettet feil som gjorde at man ikke fikk lagret områdesider #19261
+- Rettet layoutfeil på vitnesbyrd, person- og filtersider #19257
+
 # Release 81 _2017-10-26_
 - Utviklet ny mal for feature-artikkel for Aktuelt og satsingsområdene #19025
 - Rettet feil i mobil-visningen av nyhetsarkiv og ansattkataloger #19144
