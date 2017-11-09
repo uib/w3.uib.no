@@ -8918,13 +8918,28 @@ body #mc_embed_signup div.mce_inline_error {
   .uib-article__feature_article .content-main-wrapper .region-content .field-name-field-uib-feature-text .file-video .uib-feature__media-info {
     margin-bottom: 0; }
 
+.feature-article-style-tb .content-top-wrapper .content-top {
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  display: flex;
+  flex-direction: column; }
+  .feature-article-style-tb .content-top-wrapper .content-top h1 {
+    position: static;
+    margin: 0 auto 2rem;
+    max-width: 65rem;
+    width: calc(100% - 2.5rem);
+    order: 1; }
+  .feature-article-style-tb .content-top-wrapper .content-top .uib_breadcrumb {
+    order: 0; }
+  .feature-article-style-tb .content-top-wrapper .content-top .field-name-field-uib-lead {
+    order: 2; }
+
 .feature-article-style-w .content-top-wrapper .content-top h1 {
   color: #fff;
-  text-shadow: 1px 1px 2px #474747; }
-.feature-article-style-tb .content-top-wrapper .content-top h1 {
-  position: static;
-  margin: 0 auto 2rem;
-  width: calc(100% - 2.5rem); }
+  text-shadow: 1px 1px 2px #474747;
+  order: 1; }
 
 .page-calendar .content-main-wrapper, .page-node-calendar .content-main-wrapper {
   position: relative; }
