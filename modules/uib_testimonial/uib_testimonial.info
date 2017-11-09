@@ -28,7 +28,6 @@ features[field_base][] = field_uib_exchange_text
 features[field_base][] = field_uib_name
 features[field_base][] = field_uib_organization
 features[field_base][] = field_uib_quote
-features[field_base][] = field_uib_search_hits
 features[field_base][] = field_uib_study_programmes
 features[field_group][] = group_article_main|node|uib_testimonial|default
 features[field_group][] = group_article_sidebar|node|uib_testimonial|default

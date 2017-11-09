@@ -676,6 +676,90 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_search_description'.
+  $field_instances['node-uib_study-field_uib_search_description'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '<ul><li>The text in this field will be accessed by external search engines, and is generally considered as important metadata.</li><li>The search engines will sometimes use the description as search results snippets.</li></ul>',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_search_description',
+    'label' => 'Search description',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'feature_text_html' => 'feature_text_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_search_hits'.
   $field_instances['node-uib_study-field_uib_search_hits'] = array(
     'bundle' => 'uib_study',
@@ -1875,6 +1959,7 @@ function uib_study_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<ul><li>The text in this field will be accessed by external search engines, and is generally considered as important metadata.</li><li>The search engines will sometimes use the description as search results snippets.</li></ul>');
   t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Alternative field to display english media for english content. If field is not set, the default media will be displayed. ');
   t('Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.');
@@ -1896,6 +1981,7 @@ function uib_study_field_default_field_instances() {
   t('Relevant links en');
   t('Responsible');
   t('Rss feed');
+  t('Search description');
   t('Search hits');
   t('Study label');
   t('Study media');

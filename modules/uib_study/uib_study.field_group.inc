@@ -21,10 +21,10 @@ function uib_study_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related content',
-    'weight' => '26',
+    'weight' => '21',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_study_relation',
+      0 => 'field_uib_study_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

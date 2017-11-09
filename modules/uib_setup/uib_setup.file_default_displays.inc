@@ -678,7 +678,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__full_width_banner__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__full_width_banner__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();
@@ -747,7 +749,9 @@ function uib_setup_file_default_displays() {
   $file_display->name = 'image__full_width_image__file_field_media_large_icon';
   $file_display->weight = 0;
   $file_display->status = FALSE;
-  $file_display->settings = '';
+  $file_display->settings = array(
+    'image_style' => '',
+  );
   $export['image__full_width_image__file_field_media_large_icon'] = $file_display;
 
   $file_display = new stdClass();

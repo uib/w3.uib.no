@@ -77,13 +77,13 @@ function uib_study_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'redirect' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '22',
         ),
       ),
       'display' => array(),

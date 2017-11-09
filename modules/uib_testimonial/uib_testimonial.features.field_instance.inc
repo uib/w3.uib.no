@@ -469,7 +469,7 @@ function uib_testimonial_field_default_field_instances() {
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.',
+    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1566,7 +1566,7 @@ function uib_testimonial_field_default_field_instances() {
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
   t('This is a short category title which highlights the subject of the article.');
   t('Use this field for a short bio. Use "Heading 3" to create a suitable header (Suggestion: About or Bio) for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
-  t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
+  t('When there are more than one image, use the image index to indicate which image this caption belongs to.');
 
   return $field_instances;
 }

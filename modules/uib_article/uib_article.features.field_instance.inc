@@ -43,12 +43,13 @@ function uib_article_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_uib_imagecaption',
-    'label' => 'Caption for image. Use 0 to hide caption.',
+    'label' => 'Caption for image',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
@@ -60,6 +61,9 @@ function uib_article_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -180,12 +184,13 @@ function uib_article_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_uib_imagecaption',
-    'label' => 'Caption for image. Use 0 to hide caption.',
+    'label' => 'Caption for image',
     'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
@@ -197,6 +202,9 @@ function uib_article_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -722,7 +730,7 @@ function uib_article_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.',
+    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -765,7 +773,7 @@ function uib_article_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.',
+    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1204,7 +1212,7 @@ function uib_article_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('By checking this box you get a feature article');
-  t('Caption for image. Use 0 to hide caption.');
+  t('Caption for image');
   t('Feature article');
   t('Feature heading style');
   t('Feature text');
@@ -1223,7 +1231,7 @@ function uib_article_field_default_field_instances() {
   t('Show in global calendar');
   t('Small images caption');
   t('Twitter Card Image');
-  t('Use this field if you dont want to reuse an already used caption for an image. This is used eg. when you are re-using an existing image, but you want to display a different caption. If you simply want to hide an existing image caption, you only add a 0 (zero) to the text field. The index number field is used to indicate which image this caption is used for, when there are more than one main media image.');
+  t('When there are more than one image, use the image index to indicate which image this caption belongs to.');
 
   return $field_instances;
 }
