@@ -2345,31 +2345,11 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   $data['query']['bool']['must'] = array(
     'function_score' =>  array(
       'query' =>  $data['query']['bool']['must'],
-      'functions' => array(
-        array(
-          'field_value_factor' =>  array(
-            'field' =>  'search_manual_boost',
-            'modifier' =>  'square',
-            // Determine how much manual boost affect results:
-            'factor' =>  $boosting[$px . 'manual-boost-factor'],
-          ),
-        ),
-        array(
-          'filter' => array(
-            'range' => array(
-              'hits.last_hit' => array(
-                'gt' => 'now-1M',
-              ),
-            ),
-          ),
-          'field_value_factor' =>  array(
-            'field' =>  'hits.hits',
-            'modifier' =>  'log',
-            'missing' => '1',
-            // Determine how much popularity boost affect results:
-            'factor' =>  $boosting[$px . 'hits-boost-factor'],
-          ),
-        ),
+      'field_value_factor' =>  array(
+        'field' =>  'search_manual_boost',
+        'modifier' =>  'square',
+        // Determine how much manual boost affect results:
+        'factor' =>  $boosting[$px . 'manual-boost-factor'],
       ),
     ),
   );

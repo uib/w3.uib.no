@@ -241,22 +241,6 @@ function uib_search__get_boosting() {
   $items[$item->name] = $item;
 
   $item = new uib_search__boost_value (
-    'hits-boost-factor',
-    t('Hits boost factor'),
-    t('Factor used with content popularity boost function.'),
-    3
-  );
-  $items[$item->name] = $item;
-
-  $item = new uib_search__boost_value (
-    'max-hits-boost-factor',
-    t('Max hits boost factor'),
-    t('Factor used with historic content popularity boost.'),
-    1.5
-  );
-  $items[$item->name] = $item;
-
-  $item = new uib_search__boost_value (
     'unboost-past-events',
     t('Unboost past events'),
     t('Negative boost for past events.'),
