@@ -969,6 +969,15 @@ SCRIPT;
       }
       break;
   }
+  if($variables['node']->nid == '73684' || $variables['node']->nid == '73685') {
+    $variables['page']['content_top']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
+      'settings' => array('view_mode' => 'teaser'),
+      'weight' => 4,
+      'type' => 'entityreference_entity_view',
+      'settings' => array('view_mode' => 'teaser'),
+      'label' => 'hidden',
+    ));
+  }
   $unset_blocks = array(
     'uib_area_paahoyden_logo',
     'uib_area_colophon',

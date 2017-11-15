@@ -1912,7 +1912,7 @@ a,
 
 .field-name-field-uib-secondary-text {
   line-height: 1.25;
-  margin: 0; }
+  margin: 0 0 1rem 0; }
   @media (min-width: 600px) {
     .field-name-field-uib-secondary-text {
       line-height: 1.5; } }
@@ -1926,19 +1926,32 @@ a,
   .field-name-field-uib-secondary-text ul {
     list-style: none;
     margin: 0;
-    padding: 0;
-    display: block; }
+    padding: 0; }
     @media (min-width: 600px) {
       .field-name-field-uib-secondary-text ul li {
         width: 100%;
         float: none; } }
-    @media (min-width: 960px) {
-      .field-name-field-uib-secondary-text ul li {
-        width: 25%;
-        float: left; } }
     .field-name-field-uib-secondary-text ul li li a {
       color: #00769e;
       font-size: 1.5rem; }
+  @media (min-width: 960px) {
+    .field-name-field-uib-secondary-text .field-items .field-item ul {
+      display: -ms-flexbox;
+      -ms-flex-direction: row;
+      -ms-flex-wrap: wrap;
+      display: -webkit-flex;
+      -webkit-flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap; }
+      .field-name-field-uib-secondary-text .field-items .field-item ul li {
+        -ms-flex: 0 0 25%;
+        -webkit-flex: 0 1 25%;
+        flex: 0 1 25%;
+        white-space: nowrap; } }
+  .field-name-field-uib-secondary-text + .field-name-field-uib-profiled-message {
+    margin-top: 2rem; }
 
 .field-name-field-uib-tertiary-text {
   background: #fff;
