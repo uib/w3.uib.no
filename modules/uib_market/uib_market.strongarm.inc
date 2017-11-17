@@ -55,6 +55,9 @@ function uib_market_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'quote' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -69,6 +72,9 @@ function uib_market_strongarm() {
         ),
         'scheduler_settings' => array(
           'weight' => '3',
+        ),
+        'metatags' => array(
+          'weight' => '40',
         ),
       ),
       'display' => array(),
