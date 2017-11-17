@@ -1213,7 +1213,7 @@ EOD;
       if($node) {
         $block['title'] = t('More information');
         $block['content']['#theme'] = '#markup';
-        $markup = "<h3 class='uib-study-about-study'>About the programme</h3>";
+        $markup = "<h3 class='uib-study-about-study'>" . t('About the programme') . "</h3>";
 
         $affected_study_categories = array('bachelorprogram','arsstudium','masterprogram','integrertemasterpr-profesjonsst');
         if ($node && in_array($node->field_uib_study_category['und'][0]['value'], $affected_study_categories)) {
@@ -1244,7 +1244,7 @@ EOD;
           $tmp = uib_study__extract_study_info($data, 'M_RE_INFO');
         }
         if ($tmp) {
-          $markup .= '<h3>Contact</h3>';
+          $markup .= '<h3>' . t('Contact') . '</h3>';
           $markup .= '<p class="uib-study-area">' . uib_study__area($node, $language->language) . '</p>';
           if (!strpos($tmp['#text'],"mailto")) {
             $markup .= preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $tmp['#text']);
