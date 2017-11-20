@@ -83,7 +83,7 @@ function uib_external_field_default_field_instances() {
     'bundle' => 'uib_external_content',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
+    'description' => 'When there is more than one image, use the image index to indicate which image the caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -853,7 +853,7 @@ function uib_external_field_default_field_instances() {
   t('Search keywords');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value. If field is set to 0 or not set for external content types, then the item will not be indexed to elasticsearch.');
   t('Teaser');
-  t('When there are more than one image, use the image index to indicate which image this caption belongs to.');
+  t('When there is more than one image, use the image index to indicate which image the caption belongs to.');
 
   return $field_instances;
 }

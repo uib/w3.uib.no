@@ -469,7 +469,7 @@ function uib_testimonial_field_default_field_instances() {
     'bundle' => 'uib_testimonial',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
+    'description' => 'When there is more than one image, use the image index to indicate which image the caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1566,7 +1566,7 @@ function uib_testimonial_field_default_field_instances() {
   t('The quote that will be highlighted in the middle of the page and all the places this testimonial is featured. ');
   t('This is a short category title which highlights the subject of the article.');
   t('Use this field for a short bio. Use "Heading 3" to create a suitable header (Suggestion: About or Bio) for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
-  t('When there are more than one image, use the image index to indicate which image this caption belongs to.');
+  t('When there is more than one image, use the image index to indicate which image the caption belongs to.');
 
   return $field_instances;
 }
