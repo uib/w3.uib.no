@@ -8656,24 +8656,32 @@ body #mc_embed_signup div.mce_inline_error {
     float: right;
     margin-left: 0;
     margin-right: 0;
-    clear: none; }
-  .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar {
+    clear: none; } }
+
+@media screen and (min-width: 960px) {
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article .main-bar {
     width: 66.10169%;
     float: left;
     margin-right: -100%;
     margin-left: 0;
     clear: none; }
-    .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .main-bar .field-name-field-uib-text {
+    .node-type-uib-content-list .node-uib-content-list .node-uib-article .main-bar .field-name-field-uib-text {
       width: 100%;
       float: right;
       margin-left: 0;
       margin-right: 0;
       clear: none; }
-  .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2,
-  .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
-  .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article .article-info {
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article .group-article-sidebar {
+    width: 32.20339%;
+    float: right;
+    margin-left: 0;
+    margin-right: 0;
+    clear: none; }
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article h2,
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article .field-name-field-uib-lead,
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article .article-info {
     clear: left; }
-  .node-type-uib-article:not(.uib-article__feature_article) .node-uib-content-list .node-uib-article h2 {
+  .node-type-uib-content-list .node-uib-content-list .node-uib-article h2 {
     margin-bottom: 1.25rem; } }
 
 .uib-article__feature_article .field-name-field-uib-kicker {
