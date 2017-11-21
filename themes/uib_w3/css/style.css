@@ -1611,7 +1611,6 @@ a,
       border: none;
       flex: 0 1 13.235294118rem; }
       .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:visited, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:visited {
-        text-decoration: none;
         color: #333; }
       @media (min-width: 400px) {
         .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd:nth-child(odd), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even:nth-child(odd) {
