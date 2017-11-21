@@ -627,9 +627,9 @@ function uib_study_block_view($delta = '') {
     case 'study_email_offers':
       $your_email = t('Your email address');
       $email_address = t('Email address');
-      $subscribe = t('Subscribe');
+      $subscribe = t('Get info');
       $request = t('Request more Info');
-      $subscribe_to_list = t('Subscribe to our mailing list');
+      $subscribe_to_list = t('Request more information');
       $required = t('indicates required');
       if ($language->language == 'en') {
         $html = 
@@ -693,7 +693,7 @@ function uib_study_block_view($delta = '') {
           </div>
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_df7245fa484cd145763822c41_a2ed30fd7c" tabindex="-1" value=""></div>
-          <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+          <div class="clear"><input type="submit" value="{$subscribe}" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
         </div>
       </form>
     </div>
@@ -775,7 +775,7 @@ EOD;
           </div>
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_df7245fa484cd145763822c41_a0593340b3" tabindex="-1" value=""></div>
-          <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+          <div class="clear"><input type="submit" value="{$subscribe}" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
         </div>
       </form>
     </div>
@@ -833,6 +833,8 @@ EOD;
         ),
       );
       $block['title'] = t('Study at UiB?');
+      unset($block['title']);
+      unset($content['promoinfo']);
       $block['content'] = $content;
       break;
     case 'study_content':
