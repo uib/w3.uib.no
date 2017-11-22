@@ -1,18 +1,11 @@
 (function ($) {
   Drupal.behaviors.featureFactbox= {
     attach: function (context, settings) {
-      $('.uib-feature__fact-box > h2').each(function(index, element) {
+      $('.uib-feature__fact-box').each(function(index, element) {
         $(this).toggleClass('collapsed');
       });
-      $('.uib-feature__fact-box > h2').click( function() {
-        if ($(this).hasClass('collapsed')) {
-          $(this).toggleClass('collapsed');
-          $(this).siblings().toggleClass('collapsed');
-        }
-        else {
-          $(this).toggleClass('collapsed');
-          $(this).siblings().toggleClass('collapsed');
-        }
+      $('.uib-feature__fact-box').click( function() {
+        $(this).toggleClass('collapsed');
       });
       $('.uib-feature__portrait-image, .uib-feature__image, .uib-feature__full-width-image').each(function(index, element) {
         var uibCopyright = $(this).find('.field-name-field-uib-copyright').removeClass('field-label-inline clearfix');
