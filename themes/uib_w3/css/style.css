@@ -5977,19 +5977,22 @@ nav {
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib-study-construction .odd {
   background: #eae6e2; }
 
+.content-main-wrapper ul li {
+  font-size: medium; }
+
 #study-email-offers-button {
   display: none; }
-  @media (min-width: 600px) {
+  @media (min-width: 780px) {
     #study-email-offers-button {
       display: inline; } }
 
 #study-email-offers-form {
   display: inline; }
-  @media (min-width: 600px) {
+  @media (min-width: 780px) {
     #study-email-offers-form {
       display: none; } }
 
-@media (min-width: 600px) {
+@media (min-width: 780px) {
   #block-uib-study-study-email-offers #study-email-offers-button {
     display: block;
     color: #cf3c3a;
@@ -6003,13 +6006,13 @@ nav {
     background-color: transparent;
     text-decoration: none;
     min-width: 236px; } }
-  @media only screen and (min-width: 600px) and (min-width: 600px) {
+  @media only screen and (min-width: 780px) and (min-width: 600px) {
     #block-uib-study-study-email-offers #study-email-offers-button {
       font-size: 1rem; } }
-  @media (min-width: 600px) and (min-width: 600px) {
+  @media (min-width: 780px) and (min-width: 600px) {
     #block-uib-study-study-email-offers #study-email-offers-button {
       width: 236px; } }
-@media (min-width: 600px) {
+@media (min-width: 780px) {
     #block-uib-study-study-email-offers #study-email-offers-button:hover {
       text-decoration: none;
       background-color: #cf3c3a;
@@ -6029,6 +6032,9 @@ nav {
       background-color: transparent; }
   #block-uib-study-study-email-offers #study-email-offers-button {
     width: 100%; } }
+
+.i18n-en #colorbox #mc_embed_signup_scroll h3 {
+  display: none; }
 
 #colorbox #mc_embed_signup_scroll {
   padding: 20px; }
