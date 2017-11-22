@@ -1453,20 +1453,17 @@ function uib_area_field_default_field_bases() {
     'module' => 'entityreference',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'handler' => 'base',
+      'handler' => 'views',
       'handler_settings' => array(
-        'autocomplete_items_limit' => 10,
         'behaviors' => array(
           'views-select-list' => array(
             'status' => 0,
           ),
         ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'uib_article' => 'uib_article',
-          'uib_external_content' => 'uib_external_content',
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_1',
+          'view_name' => 'newslist',
         ),
       ),
       'target_type' => 'node',

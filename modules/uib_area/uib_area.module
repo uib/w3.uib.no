@@ -1055,41 +1055,46 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
     $not_for_frontpage = array(
       'field_uib_feed',
       );
-    $only_for_news_and_frontpage = array(
+    $only_for_news_and_frontpage_and_research = array(
       'field_uib_profiled_message',
       );
     $only_for_feature_area = array(
       'field_uib_feature_heading_style',
       'field_uib_feature_mobile_media',
     );
+    $nid = $form['field_uib_area_type']['und']['#entity']->nid;
+    $research_nids = array(73685,73684);
     $area_type = $form['field_uib_area_type']['und']['#entity']->field_uib_area_type['und'][0]['value'];
-    switch ($area_type) {
-      case 'frontpage':
-        foreach ($not_for_frontpage as $nf) {
-          if (isset($form[$nf])) {
-            $form[$nf]['#access'] = FALSE;
-          }
+    if ($area_type == 'frontpage') {
+      foreach ($not_for_frontpage as $nf) {
+        if (isset($form[$nf])) {
+          $form[$nf]['#access'] = FALSE;
         }
-      case in_array($area_type, array('frontpage', 'newspage')):
-        foreach ($not_for_news_and_frontpage as $nf) {
-          if (isset($form[$nf])) {
-            $form[$nf]['#access'] = FALSE;
-          }
+      }
+    }
+    if (in_array($area_type, array('frontpage', 'newspage'))) {
+      foreach ($not_for_news_and_frontpage as $nf) {
+        if (isset($form[$nf])) {
+          $form[$nf]['#access'] = FALSE;
         }
-        break;
-      case !in_array($area_type, array('feature area')):
-        foreach ($only_for_feature_area as $nf) {
-          if (isset($form[$nf])) {
-            $form[$nf]['#access'] = FALSE;
-          }
+      }
+    }
+    if ($area_type == 'feature area') {
+      foreach ($only_for_feature_area as $nf) {
+        if (isset($form[$nf])) {
+          $form[$nf]['#access'] = FALSE;
         }
-        break;
-      default:
-        foreach ($only_for_news_and_frontpage as $nf) {
-          if (isset($form[$nf])) {
-            $form[$nf]['#access'] = FALSE;
-          }
+      }
+    }
+    if (!in_array($area_type, array('frontpage', 'newspage')) && !in_array($nid, $research_nids)) {
+      foreach ($only_for_news_and_frontpage_and_research as $nf) {
+        if (isset($form[$nf])) {
+          $form[$nf]['#access'] = FALSE;
         }
+      }
+    }
+    if ($area_type == 'newspage' || in_array($nid, $research_nids)) {
+      unset($form['field_uib_profiled_message']['und'][5]);
     }
     $form['field_uib_area_parents']['#states'] = array(
       'required' => array(
