@@ -5977,7 +5977,7 @@ nav {
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) .uib-study-construction .odd {
   background: #eae6e2; }
 
-.content-main-wrapper ul li {
+.content-main-wrapper .mc-field-group ul li {
   font-size: medium; }
 
 #study-email-offers-button {
