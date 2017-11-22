@@ -3,16 +3,15 @@
     attach: function (context, settings) {
       $('.uib-feature__fact-box > h2').each(function(index, element) {
         $(this).toggleClass('collapsed');
-        $(this).siblings().hide();
       });
       $('.uib-feature__fact-box > h2').click( function() {
         if ($(this).hasClass('collapsed')) {
           $(this).toggleClass('collapsed');
-          $(this).siblings().show();
+          $(this).siblings().toggleClass('collapsed');
         }
         else {
           $(this).toggleClass('collapsed');
-          $(this).siblings().hide();
+          $(this).siblings().toggleClass('collapsed');
         }
       });
       $('.uib-feature__portrait-image, .uib-feature__image, .uib-feature__full-width-image').each(function(index, element) {
