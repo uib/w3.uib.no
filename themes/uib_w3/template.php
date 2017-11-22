@@ -1220,7 +1220,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         $variables['content']['field_uib_main_media'][0] = array();
         $variables['content']['field_uib_main_media'][0]['#markup'] = render($uib_media[0]);
       }
-      $test_path = drupal_get_path_alias('node/' . $variables['content']['field_uib_main_media']['#object']->nid);
     }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'short_teaser') {
       if (isset($variables['content']['field_uib_lead'][0]['#markup'])) {
@@ -1244,6 +1243,18 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
+      }
+      if (!empty($variables['field_uib_main_media_teaser'])) {
+        $uib_media = field_view_field('node', $variables['node'], 'field_uib_main_media_teaser', array(
+          'type' => 'file_rendered',
+          'settings' => array('file_view_mode' => 'wide_thumbnail'),
+          'label' => 'hidden',
+          'weight' => 3,
+        ));
+        $uib_media['#field_name'] = 'field_uib_main_media';
+        $variables['content']['field_uib_main_media'] = $uib_media;
+        $variables['content']['field_uib_main_media'][0] = array();
+        $variables['content']['field_uib_main_media'][0]['#markup'] = render($uib_media[0]);
       }
       $variables['theme_hook_suggestions'][] = 'node__article__short_teaser';
     }
