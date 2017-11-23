@@ -632,7 +632,7 @@ function uib_study_block_view($delta = '') {
       $subscribe_to_list = t('Request more information');
       $required = t('indicates required');
       if ($language->language == 'en') {
-        $html = 
+        $html =
 <<<EOD
 <div id="sa-search-wrapper">
 <!-- Begin MailChimp Signup Form -->
@@ -720,7 +720,7 @@ function uib_study_block_view($delta = '') {
 </div>
 EOD;
       } else {
-        $html = 
+        $html =
 <<<EOD
 <div id="sa-search-wrapper">
 <!-- Begin MailChimp Signup Form -->
@@ -2247,10 +2247,13 @@ function uib_study__get_schedule_link($study_code, $semester, $classes) {
     return;
   }
   $semester = substr($semester, 2);
+  $tp_url = variable_get('uib_tp_url');
+  if (empty($tp_url)) $tp_url = 'https://tp.uio.no/uib/timeplan/timeplan.php?id=(* ID *)&type=course&sort=week&sem=(* semester *)&termnr=1';
+  $tp_url = str_replace(array('(* ID *)', '(* semester *)'), array($study_code, $semester), $tp_url);
   $schedule = array(
     '#theme' => 'link',
     '#text' => t('Schedule'),
-    '#path' => 'https://tp.uio.no/uib/timeplan/calendar2.php?id='. $study_code . '&sem=' . $semester . '&sort=cal',
+    '#path' => $tp_url,
     '#options' => array(
       'attributes' => array('class' => $classes),
       'html' => TRUE,

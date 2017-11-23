@@ -19,20 +19,6 @@ if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
     bin/site-drush scr uib-feature-areas.php
 fi
 
-REL=82
+REL=83
 
-if git tag | grep -q R$REL; then
-    echo "Disabled after $REL has been released";
-    exit 1
-fi
-
-set -x
-
-# Loop to prevent php timeout. Each loop handles 1000 nodes.
-# This needs to be run manually after the release
-# for i in `seq 0 1 120`; do
-#   bin/site-drush scr node-update-image-caption
-# done
-
-# Indexing only content lists
-bin/site-drush ev '$a = db_query("select nid from node where status=1 and type='"'"'uib_content_list'"'"'"); while($nid=$a->fetchField()){ echo "$nid\n"; node_save(node_load($nid));}'
+bin/site-drush vset uib_tp_url 'https://tp.uio.no/uib/timeplan/timeplan.php?id=(* ID *)&type=course&sort=week&sem=(* semester *)&termnr=1'
