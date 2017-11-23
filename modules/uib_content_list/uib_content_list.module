@@ -259,6 +259,14 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
         }
       }
     }
+    $only_for_level_1 = array(
+      'field_uib_search_description',
+      'field_uib_search_keywords',
+      'field_uib_search_manual_boost',
+    );
+    foreach ($only_for_level_1 as $hide) {
+      hide($form[$hide]);
+    }
   }
 }
 
