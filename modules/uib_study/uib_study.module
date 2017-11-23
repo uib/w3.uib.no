@@ -15,6 +15,10 @@ function uib_study_block_info() {
       'info' => t('Study content from FS'),
       'status' => TRUE,
     ),
+    'study_contact' => array(
+      'info' => t('Study contact content from FS'),
+      'status' => TRUE,
+    ),
     'study_facts_2' => array(
       'info' => t('New block for study facts from FS'),
       'status' => TRUE,
@@ -49,6 +53,10 @@ function uib_study_block_info() {
     ),
     'study_period_phd' => array(
       'info' => t('Information about the study period of this phd course'),
+      'status' => TRUE,
+    ),
+    'study_so_code' => array(
+      'info' => t('The code used to apply for admission at "Samordna opptak"'),
       'status' => TRUE,
     ),
     'study_email_offers' => array(
@@ -1179,6 +1187,22 @@ EOD;
         }
       }
       break;
+    case 'study_so_code':
+      $node = menu_get_object();
+      $affected_study_categories = array('bachelorprogram','arsstudium','masterprogram','integrertemasterpr-profesjonsst');
+      if ($node && in_array($node->field_uib_study_category['und'][0]['value'], $affected_study_categories)) {
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
+        if (!empty($data)) {
+          if (!empty($data['studietypenr'])) {
+            $block['title'] = t('Apply here');
+            $block['content'] = array(
+              '#type' => 'markup',
+              '#markup' => "<h3>" . t('Application code in NUCAS') . "</h3>" . l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
+            );
+          }
+        }
+      }
+      break;
     case 'study_exam_info':
       $node = menu_get_object();
       if ($node && $node->field_uib_study_type['und'][0]['value'] == 'course') {
@@ -1207,6 +1231,38 @@ EOD;
               );
             }
           }
+        }
+      }
+      break;
+    case 'study_contact':
+      $node = menu_get_object();
+      if ($node) {
+        $category = (!empty($node->field_uib_study_category['und'])) ? $node->field_uib_study_category['und'][0]['value'] : '';
+        $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $render = array();
+        if ($category == 'evu') {
+          $tmp = uib_study__extract_study_info($data, 'EVU_KONTAK');
+        }
+        else {
+          $tmp = uib_study__extract_study_info($data, 'EB_KONTAKT');
+        }
+        if (!$tmp) {
+          $tmp = uib_study__extract_study_info($data, 'B_RE_INFO');
+        }
+        if (!$tmp) {
+          $tmp = uib_study__extract_study_info($data, 'M_RE_INFO');
+        }
+        if ($tmp) {
+          $render = array(
+            '#markup' => uib_study__text_markup($tmp, $is_course),
+          );
+        }
+        if ($render) {
+          if (!strpos($render['#markup'],"mailto")) {
+            $render['#markup'] = preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $render['#markup']);
+          }
+          $block['title'] = t("Contact");
+          $block['content']['fspres'][] = $render;
         }
       }
       break;
