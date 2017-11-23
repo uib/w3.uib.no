@@ -264,8 +264,11 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_search_keywords',
       'field_uib_search_manual_boost',
     );
-    foreach ($only_for_level_1 as $hide) {
-      hide($form[$hide]);
+    global $user;
+    if (!in_array('level 1', $user->roles)) {
+      foreach ($only_for_level_1 as $hide) {
+        hide($form[$hide]);
+      }
     }
   }
 }
