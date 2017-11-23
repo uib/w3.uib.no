@@ -431,27 +431,25 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
 
     unset($form['field_uib_feature_heading_style']['und']['#options']['wtb']);
     unset($form['field_uib_feature_heading_style']['und']['#options']['h']);
-    $form['field_uib_feature_heading_style']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_uib_article_type[und]"]' => array(
-          array('value' => 'news',),
-        ),
-        ':input[name="field_uib_feature_article[und]"]' => array(
-          array('checked' => TRUE,),
-        ),
-      ),
-    );
 
-    $form['field_uib_feature_text']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_uib_article_type[und]"]' => array(
-          array('value' => 'news',),
-        ),
-        ':input[name="field_uib_feature_article[und]"]' => array(
-          array('checked' => TRUE,),
-        ),
-      ),
+    $only_in_feature_article = array(
+      'field_uib_feature_heading_style',
+      'field_uib_feature_text',
+      'field_uib_feature_mobile_media',
+      'field_uib_main_media_teaser',
     );
+    foreach ($only_in_feature_article as $only) {
+     $form[$only]['#states'] = array(
+       'visible' => array(
+         ':input[name="field_uib_article_type[und]"]' => array(
+           array('value' => 'news',),
+         ),
+         ':input[name="field_uib_feature_article[und]"]' => array(
+           array('checked' => TRUE,),
+         ),
+       ),
+     );
+    }
   }
 }
 
