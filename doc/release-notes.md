@@ -1,3 +1,18 @@
+# Release 83 _2017-11-23_
+- Rettet feil der lenke til eksamensinformasjon ble vist tidligere enn én måned før semesterstart #19390
+- Rettet feil der kontaktinformasjon og instituttilhørighet ikke ble vist på emnesider #19429
+- Rettet feil der sidespalten ikke ble vist i innholdslister #19388
+- Rettet feil der overskriftene i boksen "Mer informasjon" på sider for studieprogram ikke lot seg oversette #19412
+- Endret malen som brukes på uib.no/forskning #19239
+- Endret rutinen som viser lenke til timeplan på emnesider #19430
+- Justert visningen av informasjonen i boksen for tilgjengelige EVU-kurs #19389
+- Lagt til understreking ved hover på de klikkbare ikonene på forsiden #19398
+- Forbedret abonnenmentskjemaet på sider for studieprogram #19418
+- Forbedret malen for feature-artikkel #19281 #19419 #19424
+- Gjort et nytt felt som beskriver studieprogram tilgjengelig for redaktører og innholdsprodusenter #19364 #19436
+- Fjernet overflødig kode i tilknytning til sidespalten #19358
+- Endret hjelpetekster #19381
+
 # Release 82 _2017-11-09_
 - Rettet feil der eksamensinformasjon ble vist tidligere enn én måned før semesterstart #19331
 - Rettet feil der redigeringsskjemaet rullet til topps ved innsetting av medieinnhold #19279
@@ -6,7 +21,7 @@
 - Rettet feil der to felt under innholdstypen "eksternt innhold" ble vist for andre enn rolle 1 #19327
 - Rettet feil der kalenderabonnement ikke var mulig dersom det ikke fantes arrangementer #19223
 - Endret rekkefølgen på elementene i faktalinjen på sider for studieprogram #19250
-- Endret rutinen for nyhetsbrevsabonnent på sider for studieprogram #19341
+- Endret rutinen for nyhetsbrevsabonnement på sider for studieprogram #19341
 - Flyttet lenke til studieplan fra faktalinjen til boks i sidespalten på sider for studieprogram. I tillegg forbedret prestentasjonen av elementene i informasjonsboksen #19251
 - Flyttet bildet på sider for studieprogram lenger ned på siden i mobil-visning #19246
 - Flyttet billedtekst fra selve bildet og inn i artiklene der de er brukt #18978
