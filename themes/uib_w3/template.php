@@ -417,13 +417,15 @@ EOD;
           'label' => 'hidden',
           'weight' => $image_weight - 1,
         ));
-        $variables['page']['content_top']['uib_play_video'] = array(
-          '#type' => 'html_tag',
-          '#tag' => 'div',
-          '#attributes' => array('class' => array('uib-play-video')),
-          '#value' => l('spill video', '#'),
-          '#weight' => $image_weight - 2,
-        );
+        if (!empty($variables['page']['content_top']['field_uib_feature_mobile_media'])) {
+          $variables['page']['content_top']['uib_play_video'] = array(
+            '#type' => 'html_tag',
+            '#tag' => 'div',
+            '#attributes' => array('class' => array('uib-play-video')),
+            '#value' => l('spill video', '#'),
+            '#weight' => $image_weight - 2,
+          );
+        }
         $variables['page']['content_top']['field_uib_main_media']['#attached']['js'][] = array(
           'type' => 'external',
           'data' => 'https://player.vimeo.com/api/player.js',
