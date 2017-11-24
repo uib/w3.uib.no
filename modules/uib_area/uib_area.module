@@ -1079,7 +1079,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
         }
       }
     }
-    if ($area_type == 'feature area') {
+    if ($area_type != 'feature area') {
       foreach ($only_for_feature_area as $nf) {
         if (isset($form[$nf])) {
           $form[$nf]['#access'] = FALSE;
