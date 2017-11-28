@@ -495,11 +495,11 @@ function uib_article_page_alter(&$page) {
   if (isset($page['content']['system_main']['translation_node_overview'])){
     $translation_links = &$page['content']['system_main']['translation_node_overview']['#rows'];
     foreach ($translation_links as &$obj) {
-      if ($obj[0] === 'Engelsk' || $obj[0] === 'English') {
+      if (strstr($obj[0],'Engelsk') || strstr($obj[0],'English')) {
         foreach ($obj as &$item) {
           $item = str_replace('/nb/node', '/en/node', $item);
         }
-      } else if (strpos($obj[0],'Norwegian') || strpos($obj[0],'Norsk')) {
+      } else if (strstr($obj[0],'Norwegian') || strstr($obj[0],'Norsk')) {
         foreach ($obj as &$item) {
           $item = str_replace('/en/node', '/nb/node', $item);
         }
