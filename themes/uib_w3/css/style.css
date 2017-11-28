@@ -8743,6 +8743,12 @@ body #mc_embed_signup div.mce_inline_error {
     letter-spacing: 0.2rem;
     text-align: center;
     text-transform: uppercase; }
+  .uib-article__feature_article .content-top-wrapper .content-top .uib-slideshow {
+    border-bottom: 0 none; }
+    .uib-article__feature_article .content-top-wrapper .content-top .uib-slideshow .field-type-text {
+      display: none; }
+  .uib-article__feature_article .content-top-wrapper .content-top .uib-slideshow + h1 {
+    z-index: 150; }
   .uib-article__feature_article .content-top-wrapper .content-top .uib_breadcrumb {
     text-align: center;
     max-width: 47.375rem;

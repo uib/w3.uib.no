@@ -394,7 +394,8 @@ EOD;
         'label' => 'hidden',
         'weight' => -35,
       ));
-      $file_view_mode = $is_feature_article ? 'feature_image' : 'content_main';
+      $feature_view_mode = count($variables['node']->field_uib_main_media['und']) > 1 ? 'feature_article_full_width' : 'feature_image';
+      $file_view_mode = $is_feature_article ? $feature_view_mode : 'content_main';
       $image_weight = $is_feature_article ? -60 : -30;
       $variables['page']['content_top']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media', array(
         'type' => 'file_rendered',
@@ -1396,7 +1397,7 @@ function uib_w3_preprocess_field(&$vars) {
 
   switch($name) {
     case 'field_uib_main_media':
-      if ($elements_mode == 'content_main' && $elements_bundle == 'image') {
+      if (in_array($elements_mode, array('content_main', 'feature_article_full_width')) && in_array($elements_bundle, array('image', 'video'))) {
         if (count($vars['items']) > 1) {
           $content_classes[] = 'cycle-slideshow';
           $vars['content_attributes_array']['data-cycle-slides'] = '> div';

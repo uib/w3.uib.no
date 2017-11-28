@@ -12,6 +12,9 @@
 
   function navTopOffset() {
     var pictureHeight = $('.uib-slideshow picture').css('height');
+    if (pictureHeight == '0px') {
+      pictureHeight = $('.uib-slideshow iframe').css('height');
+    }
     var ownHeight = $('.uib-slideshow__nav--prev').css('height');
     var topOffset = (pictureHeight.slice(0, -2) / 2) - (ownHeight.slice(0, -2) / 2);
     $('.uib-slideshow__nav--prev').css('top', topOffset + 'px');
