@@ -1215,7 +1215,7 @@ EOD;
           $semester = $current_semester;
         }
         // hide if befor 1 month before semestart start
-        if(!uib_study__show_exam_info($semester)){
+        if(!uib_study__show_exam_info($semester, TRUE)){
           break;
         }
 
@@ -2334,7 +2334,7 @@ function uib_study__get_reading_list_link($path, $classes, $fragment = FALSE) {
 }
 function uib_study__get_exam_info_link($path, $sem) {
   // Make sure that the exam info link is not displayed until one month before semester start
-  if (!uib_study__show_exam_info($sem)) {
+  if (!uib_study__show_exam_info($sem, TRUE)) {
     return;
   }
   return array(
@@ -3058,7 +3058,7 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
   }
 
   // Hide exams for next semester before June (autumn) and December (spring)
-  if (!uib_study__show_exam_info($term)) {
+  if (!uib_study__show_exam_info($term, TRUE)) {
     return;
   }
   $ou_id = uib_area__get_ou_nid(node_load($nid));
@@ -3397,11 +3397,14 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
   return $retval;
 }
 
-function uib_study__show_exam_info($semester) {
-  // Test by comparing month-number for semester with todays month-number
-  $s = substr($semester, 0, 4) * 12; // December the year before the semester
-  if ($semester[4] == 'h') $s += 6; // add 6 months if autumn semester
-  $today = date('Y') * 12 + date('m'); // Today's month-number
-  if( $today < $s) return FALSE; // Todays month-number is less thant semester
+function uib_study__show_exam_info($semester, $exam = FALSE) {
+  $show_exam_info = variable_get('uib-show-exam-info');
+  $s = substr($semester, 0, 4) * 12;
+  if ($semester[4] == 'h') $s += 6;
+  $today = date('Y') * 12 + date('m');
+  if( $today < $s) return FALSE;
+  elseif($exam && !$show_exam_info) {
+    if ($today == $s) return FALSE;
+  }
   return TRUE;
 }
