@@ -1707,8 +1707,7 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
       $term = t('Date');
       $data = date('d.m.Y', $datoEksamen);
       if (
-        isset($ei['klokkeslettEksamen']) &&
-        uib_study__check_show_exam_location_information(strtotime($ei['datoEksamen']))
+        isset($ei['klokkeslettEksamen'])
       ) {
         $data .= ', ' . $ei['klokkeslettEksamen'];
       }
@@ -3190,36 +3189,34 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
               $timeformat,
               @strtotime("{$merge[$var]} {$merge[$var2]}")
             );
-            if (uib_study__check_show_exam_location_information($date)) {
-              $r['time'][2] = array('#markup' => $starttime);
-              // If varighetTimer is set
-              if (isset($merge[$var3]) && intval($merge[$var3]) > 0) {
-                // ...and exam is on a single day
-                if (date('Ymd', $enddate) == date('Ymd', $date)) {
-                  $endtime = date("{$timeformat}", $enddate);
-                  $r['time'][2]['#markup'] = $r['time'][2]['#markup']
-                    . "&ndash;{$endtime}";
-                }
+            $r['time'][2] = array('#markup' => $starttime);
+            // If varighetTimer is set
+            if (isset($merge[$var3]) && intval($merge[$var3]) > 0) {
+              // ...and exam is on a single day
+              if (date('Ymd', $enddate) == date('Ymd', $date)) {
+                $endtime = date("{$timeformat}", $enddate);
+                $r['time'][2]['#markup'] = $r['time'][2]['#markup']
+                  . "&ndash;{$endtime}";
               }
-              $r['time'][2]['#markup'] =
-                " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
-              // If exam lasts for several days (Eg. Oral exams)
-              if (date('Ymd', $enddate) > date('Ymd', $date)) {
-                $enddatestr = date($dateformat, $enddate);
-                $r['time'][3] = array(
-                  '#type' => 'container',
-                  '#attributes' => array('class' => array('twodates')),
-                  0 => array(
-                    '#markup' => "<span class=\"date2\">{$enddatestr}</span>"
-                  ),
+            }
+            $r['time'][2]['#markup'] =
+              " / <span class=\"time\">{$r['time'][2]['#markup']}</span>";
+            // If exam lasts for several days (Eg. Oral exams)
+            if (date('Ymd', $enddate) > date('Ymd', $date)) {
+              $enddatestr = date($dateformat, $enddate);
+              $r['time'][3] = array(
+                '#type' => 'container',
+                '#attributes' => array('class' => array('twodates')),
+                0 => array(
+                  '#markup' => "<span class=\"date2\">{$enddatestr}</span>"
+                ),
+              );
+              // ...and a specific time is set
+              if (isset($merge[$var2])) {
+                $endtimestr = date($timeformat, $enddate);
+                $r['time'][3][1] = array(
+                  '#markup' => " / <span class=\"time2\">{$endtimestr}</span>"
                 );
-                // ...and a specific time is set
-                if (isset($merge[$var2])) {
-                  $endtimestr = date($timeformat, $enddate);
-                  $r['time'][3][1] = array(
-                    '#markup' => " / <span class=\"time2\">{$endtimestr}</span>"
-                  );
-                }
               }
             }
           }
