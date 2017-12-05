@@ -2976,10 +2976,10 @@ function uib_study__get_study_kicker($value, $name) {
 }
 
 /**
- * Dont show location information until 8 days before exam
+ * Don't show location until two weeks days before exam
  */
 function uib_study__check_show_exam_location_information($exam_date) {
-  $days_before = 8;
+  $days_before = 14;
   return date('Ymd') >= date('Ymd', $exam_date - $days_before * 24 * 60 * 60);
 }
 
