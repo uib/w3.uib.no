@@ -159,6 +159,14 @@ function uib_area_block_view($delta='') {
       }
       $postal_address = t('University of Bergen') .' '. uib_area__format_postal_address($place);
       $visit_address = uib_area__format_visit_address($place);
+      $visitor_info = $area->field_uib_visitor_info;
+      if (!empty($visitor_info)) {
+        $visitor_info_link_title = $visitor_info['und'][0]['title'];
+        $visitor_info_url = $visitor_info['und'][0]['url'];
+      } else {
+        $visitor_info_link_title = '';
+        $visitor_info_url = '';
+      }
       $block['title'] = '';
       $block['region'] = 'none';
       $block['subject'] = NULL;
@@ -204,10 +212,16 @@ function uib_area_block_view($delta='') {
             '#tag' => 'span',
             '#value' => $visit_address,
           ),
+          'visitor_info' => array(
+            '#type' => 'link',
+            '#title' => $visitor_info_link_title,
+            '#href' => $visitor_info_url,
+          ),
         ),
       );
-      if (empty($visit_address)) unset($block['content']['visit']['visit_address']);
+      if (empty($visit_address) || !empty($visitor_info)) unset($block['content']['visit']['visit_address']);
       if (empty($phone)) unset($block['content']['contact']['phone']);
+      if (empty($visitor_info)) unset($block['content']['visit']['visitor_info']);
       if (empty($place->field_uib_geolocation)) {
         $nid = $language->language == 'en' ? 79263 : 79254;
         $mapurl = drupal_get_path_alias('node/' . $nid);
@@ -225,6 +239,7 @@ function uib_area_block_view($delta='') {
           'html' => TRUE,
         ),
       );
+      if (!empty($visitor_info)) unset($block['content']['visit']['campus_map']);
       break;
     case 'jobbnorge':
       $whitelist = array('faculty', 'unit', 'institute');

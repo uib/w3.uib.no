@@ -138,7 +138,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 27,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -210,7 +210,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -261,7 +261,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -384,7 +384,7 @@ function uib_area_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 16,
+      'weight' => 17,
     ),
   );
 
@@ -472,7 +472,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 17,
+      'weight' => 18,
     ),
   );
 
@@ -488,7 +488,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 28,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -525,7 +525,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 18,
+      'weight' => 12,
     ),
   );
 
@@ -540,7 +540,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -591,7 +591,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 32,
+        'weight' => 33,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -633,7 +633,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 33,
+        'weight' => 34,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -699,7 +699,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -760,7 +760,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 29,
+        'weight' => 30,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -905,7 +905,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -983,7 +983,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1048,7 +1048,7 @@ function uib_area_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -1067,7 +1067,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1110,7 +1110,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1434,7 +1434,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'entityreference_label',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1471,7 +1471,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 18,
+      'weight' => 19,
     ),
   );
 
@@ -1557,7 +1557,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 15,
+      'weight' => 16,
     ),
   );
 
@@ -1573,7 +1573,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1610,7 +1610,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -1625,7 +1625,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1709,7 +1709,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1772,7 +1772,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 42,
+      'weight' => 24,
     ),
   );
 
@@ -1787,7 +1787,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 30,
+        'weight' => 31,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1841,7 +1841,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1888,7 +1888,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2042,7 +2042,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 26,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2091,7 +2091,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 31,
+        'weight' => 32,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2224,7 +2224,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2271,7 +2271,7 @@ function uib_area_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 28,
+        'weight' => 29,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -2328,7 +2328,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 21,
+      'weight' => 22,
     ),
   );
 
@@ -2416,7 +2416,86 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 14,
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-area-field_uib_visitor_info'.
+  $field_instances['node-area-field_uib_visitor_info'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Add a link to a page with visitor information that overrides the address and map link under the "Visit us" header in the colophon.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'link',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 9,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_visitor_info',
+    'label' => 'Visitor information',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 0,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'value',
+      'title_label_use_field_label' => 1,
+      'title_maxlength' => 128,
+      'title_value' => 'Visitor information',
+      'url' => 'optional',
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 13,
     ),
   );
 
@@ -5539,6 +5618,7 @@ function uib_area_field_default_field_instances() {
 <li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
 </ul>');
   t('<ul><li>This description will be displayed in search results on uib.no and on articles where areas are used as related content.</li><li>The text in this field will also be accessed by external search engines, and is generally considered as important metadata.</li><li>In addition external search engines will sometimes use the description as search results snippets.</li></ul>');
+  t('Add a link to a page with visitor information that overrides the address and map link under the "Visit us" header in the colophon.');
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
@@ -5637,6 +5717,7 @@ function uib_area_field_default_field_instances() {
   t('Use this field for important messages that requires the immediate attention of the reader like for instance in case of a crisis or other important events. ');
   t('Use this field for short facts related to the article. Use "Heading 3" to create a suitable header for the fact box and "Heading 4" for subheaders. If you need more fact boxes, just add another "Heading 3".');
   t('Visit Address');
+  t('Visitor information');
   t('Weight');
   t('When this box is checked, a feed from the twitter account specified under \'Follow us\' will be displayed on the area\'s front page.');
 

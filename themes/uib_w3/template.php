@@ -1169,6 +1169,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_study_image',
       'field_uib_study_relation',
       'field_uib_important_message',
+      'field_uib_visitor_info',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);

@@ -90,19 +90,19 @@ function uib_area_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '20',
+          'weight' => '21',
         ),
         'redirect' => array(
-          'weight' => '19',
+          'weight' => '20',
         ),
         'metatags' => array(
-          'weight' => '40',
+          'weight' => '23',
         ),
       ),
       'display' => array(
         'language' => array(
           'default' => array(
-            'weight' => '24',
+            'weight' => '25',
             'visible' => FALSE,
           ),
         ),
