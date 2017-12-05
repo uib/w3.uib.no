@@ -118,8 +118,8 @@ function uib_search_block_view($delta) {
     drupal_add_js(
       array('uib_search' =>
         array(
-          'url' => uib_search__get_setup('url'),
-          'index' => uib_search__get_setup('index'),
+          'url' => variable_get('uib_elasticsearch_url'),
+          'index' => uib_search__get_index(),
         )
       ),
       'setting'
@@ -397,24 +397,11 @@ function uib_search__run_elastic_request(
     $url .= "{$sep}preference=" . md5(session_id());
   }
   $a = $run_as_administrator ? '_admin' : '';
-  if (variable_get('uib_elasticsearch_useindex' . $a, '')) {
-    $user = uib_search__get_setup('user', $run_as_administrator);
-    $password = uib_search__get_setup('password', $run_as_administrator);
-    $auth = 'Basic ' . base64_encode("{$user}:{$password}");
-  }
-  else {
-    $token = uib_search__get_setup('token', $run_as_administrator);
-    $auth = "Bearer {$token}";
-  }
-  if (!uib_search__check_elastic_settings($run_as_administrator)) {
-    $admin = $run_as_administrator ? 'Administrator s' : 'S';
-    uibx_log($admin . 'ettings for elasticsearch is missing', 'error');
-    return;
-  }
 
   $options = array(
     'headers' => array(
-      'Authorization' => $auth,
+      'x-api-id' => variable_get('uib_elasticsearch_api-id'),
+      'x-api-key' => variable_get('uib_elasticsearch_key' . $a),
       'Content-type' => 'application/json',
       'Accept' => 'application/json',
     ),
@@ -422,59 +409,15 @@ function uib_search__run_elastic_request(
     'data' => $data,
     'timeout' => $timeout,
   );
-
-  if (variable_get('uib_search_jwt' . $a, '')) {
-    $elements = explode(';', variable_get('uib_search_jwt' . $a, ''));
-    $cookie = trim($elements[0]);
-    for ($i = 1; $i<count($elements); $i++) {
-      $arr = explode('=', trim($elements[$i]));
-      if (strtolower(trim($arr[0])) == 'expires'){
-        $expires = strtotime(trim($arr[1]));
-        if ($expires > time() + 60) { // Use cookie if not expired
-          $options['headers']['Cookie'] = $cookie;
-        }
-        else {
-          variable_del('uib_search_jwt' . $a);
-        }
-        break;
-      }
-    }
-  }
-
   $result = drupal_http_request($url, $options);
 
-  if (isset($result->headers['set-cookie'])) {
-    variable_set('uib_search_jwt' . $a,$result->headers['set-cookie']);
-  }
   return $result;
 }
 
-/**
- * Get a setup property for elasticsearch. The following properties can exist:
- * uib_elasticsearch_token
- * uib_elasticsearch_url
- * uib_elasticsearch_index
- * uib_elasticsearch_admin_token
- * uib_elasticsearch_admin_index
- *
- *
- * Tokens and indexes can be setup on https://shield.devapp.uib.no/.
- * @param string $name Setup type, can be token, url or index.
- * @param boolean $admin Set to TRUE for the admin setup
- */
-function uib_search__get_setup($name, $admin = FALSE) {
-  $a = $admin ? '_admin' : '';
-  if (variable_get('uib_elasticsearch_useindex' . $a, '')) {
-    $setup = variable_get('uib_elasticsearch' . $a);
-    $use = variable_get('uib_elasticsearch_useindex' . $a, 'index1');
-    if (!$setup || !array_key_exists($use, $setup)) {
-      return;
-    }
-    return $setup[$use][$name];
-  }
-  $elastic = 'uib_elasticsearch_';
-  $elastic .= $admin ? 'admin_' : '';
-  return variable_get($elastic.$name, '');
+function uib_search__get_index($admin = FALSE) {
+  $method = $admin ? 'put' : 'get';
+  $index_num = variable_get('uib_elasticsearch_index_' . $method, 1);
+  return variable_get('uib_elasticsearch_index_' . $index_num);
 }
 
 /**
@@ -613,10 +556,7 @@ function uib_search__get_elastic_user_array($wrapped_entity) {
  *
  */
 function uib_search__check_elastic_settings($admin = false) {
-  if (
-    uib_search__get_setup('url', $admin) &&
-    uib_search__get_setup('index', $admin)
-  ) {
+  if (variable_get('uib_elasticsearch_key_admin', FALSE)) {
     return true;
   }
   return false;
@@ -653,8 +593,8 @@ function uib_search__index_entity($wrapped_entity, $delete = FALSE) {
       return; // this entity is part of a content list
     }
   }
-  $index = uib_search__get_setup('index', TRUE);
-  $url = rtrim(uib_search__get_setup('url', TRUE), '/');
+  $index = uib_search__get_index(TRUE);
+  $url = variable_get('uib_elasticsearch_url');
   if ($wrapped_entity->status->value() == 0) {
     $delete = TRUE;
   }
@@ -1174,8 +1114,8 @@ function uib_search__get_elastic_study_array($wrapped_entity) {
 }
 
 function uib_search__index_study($wrapped_entity) {
-  $index = uib_search__get_setup('index', TRUE);
-  $url = rtrim(uib_search__get_setup('url', TRUE), '/');
+  $index = uib_search__get_index(TRUE);
+  $url = variable_get('uib_elasticsearch_url');
   $type = 'study';
   // Loading data from FS
   $fsdata = uib_search__get_elastic_study_array($wrapped_entity);

@@ -181,7 +181,7 @@ function uib_search__search_any($type, $id){
 function drush_uib_search() {
   $query = implode(' ', func_get_args());
 
-  $url = uib_search__get_setup('url') . '/' . uib_search__get_setup('index')
+  $url = variable_get('uib_elasticsearch_url') . '/' . uib_search__get_index()
     . '/_search?';
   if (drush_get_option('json')) {
     $url .= '&pretty';
@@ -259,8 +259,7 @@ function drush_uib_search() {
 }
 
 function drush_uib_search_drop_index() {
-  $url = uib_search__get_setup('url', TRUE) . '/'
-    . uib_search__get_setup('index', TRUE) . '/';
+  $url = variable_get('uib_elasticsearch_url') . '/' . uib_search__get_index();
   $stat = uib_search__run_elastic_request($url, null, 'DELETE', TRUE, 5);
   if (!$stat) {
     return;
@@ -350,8 +349,8 @@ function drush_uib_search_index($type = 'user') {
 
   $rowcount = $result->rowCount();
 
-  $index = uib_search__get_setup('index', TRUE);
-  $url = uib_search__get_setup('url', TRUE);
+  $index = uib_search__get_index(TRUE);
+  $url = variable_get('uib_elasticsearch_url');
   $url="{$url}/{$index}/_bulk";
 
   $batch = '';
@@ -384,7 +383,7 @@ function drush_uib_search_index($type = 'user') {
       $batch .= json_encode($nodearray)."\n";
     }
     if ($line % 50 == 0 && $batch) {
-      $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
+      $stat = uib_search__run_elastic_request($url, $batch, 'POST', true, 10);
       $ok = uib_search__report_status($stat, 'batch');
       if ($ok) {
         // Success
@@ -397,7 +396,7 @@ function drush_uib_search_index($type = 'user') {
     }
   }
   if ($batch) {
-    $stat = uib_search__run_elastic_request($url, $batch, 'PUT', true, 10);
+    $stat = uib_search__run_elastic_request($url, $batch, 'POST', true, 10);
     $ok = uib_search__report_status($stat, 'batch');
     if ($ok) {
       // Success
@@ -418,48 +417,31 @@ function drush_uib_search_index($type = 'user') {
 
 function drush_uib_search_url() {
   $admin = drush_get_option('admin');
-  $checkauth = 'uib_elasticsearch_useindex' . ($admin ? '_admin' : '');
-  if (variable_get($checkauth) === FALSE) {
-    uibx_log('This function is not available for the new authentication scheme',
-      'error');
-    return;
-  }
 
   if (!uib_search__check_elastic_settings($admin)) {
     $a = $admin ? 'Administrator s' : 'S';
     uibx_log($a . 'ettings for elasticsearch is missing', 'error');
     return;
   }
-  $url = uib_search__get_setup('url', $admin) . '/'
-    . uib_search__get_setup('index', $admin) . '/';
-  if (substr($url, 0, 8) == 'https://') {
-    $url = substr($url, 0, 8) . uib_search__get_setup('user', $admin) . ':'
-      . uib_search__get_setup('password', $admin) . '@' . substr($url, 8);
-  }
+  $url = variable_get('uib_elasticsearch_url') . '/' . uib_search__get_index($admin) . '/';
   return $url;
 }
 
 function drush_uib_search_curl($method = 'GET', $elasticmethod = '_search') {
   $admin = drush_get_option('admin');
   $size = drush_get_option('size', 5);
-  $checkauth = 'uib_elasticsearch_useindex' . ($admin ? '_admin' : '');
-  if (variable_get($checkauth) !== FALSE) {
-    uibx_log('This function is not available for the old authentication scheme',
-      'error');
-    return;
-  }
   if (!uib_search__check_elastic_settings($admin)) {
     $a = $admin ? 'Administrator s' : 'S';
     uibx_log($a . 'ettings for elasticsearch is missing', 'error');
     return;
   }
-  $url = uib_search__get_setup('url', $admin) . '/'
-    . uib_search__get_setup('index', $admin) . '/';
-  $token = uib_search__get_setup('token', $admin);
+  $url = variable_get('uib_elasticsearch_url');
+  $key = 'uib_elasticsearch_key' . ($admin ? '_admin' : '');
   $curl = "curl ";
+  $curl .= "-H 'x-api-id': " . variable_get('uib_elasticsearch_api-id');
+  $curl .= "-H 'x-api-key: " . variable_get($key);
   $curl .= "-H 'Content-Type: application/json' ";
   $curl .= "-H 'Accept: application/json' ";
-  $curl .= "-H 'Authorization: Bearer {$token}' ";
   $curl .= "-X{$method} '{$url}/{$elasticmethod}?pretty&size={$size}'";
   return $curl;
 }
@@ -468,8 +450,8 @@ function drush_uib_search_curl($method = 'GET', $elasticmethod = '_search') {
  * Setup and display current mapping in elastic.
  */
 function drush_uib_search_setup() {
-  $index = uib_search__get_setup('index', TRUE);
-  $url = uib_search__get_setup('url', TRUE);
+  $index = uib_search__get_index();
+  $url = variable_get('uib_elasticsearch_url');
   $url="{$url}/{$index}/";
   $args = func_get_args();
   if (drush_get_option('show')) {

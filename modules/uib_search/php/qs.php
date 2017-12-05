@@ -12,8 +12,8 @@ require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/bootstrap.i
 require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/common.inc");
 drupal_bootstrap(DRUPAL_BOOTSTRAP_VARIABLES);
 require_once(dirname(__DIR__) . DIRECTORY_SEPARATOR . "uib_search.module");
-$url = rtrim(uib_search__get_setup('url'), '/');
-$url .= '/' .uib_search__get_setup('index');
+$url = variable_get('uib_elasticsearch_url', 'https://api.test.search.uib.no:5555');
+$url .= '/' . uib_search__get_index();
 $url .= '/_search';
 $data = uib_search__create_query();
 $result = uib_search__run_elastic_request($url, json_encode($data), 'GET', FALSE, 5);
