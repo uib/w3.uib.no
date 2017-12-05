@@ -838,7 +838,7 @@ function uib_article_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'When there are more than one image, use the image index to indicate which image this caption belongs to.',
+    'description' => 'When there is more than one image, use the image index to indicate which image the caption belongs to.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1363,7 +1363,6 @@ function uib_article_field_default_field_instances() {
   t('Show in global calendar');
   t('Small images caption');
   t('Twitter Card Image');
-  t('When there are more than one image, use the image index to indicate which image this caption belongs to.');
   t('When there is more than one image, use the image index to indicate which image the caption belongs to.');
 
   return $field_instances;
