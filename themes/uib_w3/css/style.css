@@ -806,7 +806,7 @@ img {
       background: #e9e9e9;
       display: block;
       width: 100%;
-      padding-bottom: 56.25%;
+      padding-bottom: 66.6667%;
       position: relative;
       height: 0; }
     .uib-slideshow .field-name-field-uib-main-media [class^="media-"],
@@ -8748,6 +8748,8 @@ body #mc_embed_signup div.mce_inline_error {
       display: none; }
   .uib-article__feature_article .content-top-wrapper .content-top .uib-slideshow + h1 {
     z-index: 150; }
+  .uib-article__feature_article .content-top-wrapper .content-top .uib-slideshow__info--counter {
+    display: none; }
   .uib-article__feature_article .content-top-wrapper .content-top .uib_breadcrumb {
     text-align: center;
     max-width: 47.375rem;
