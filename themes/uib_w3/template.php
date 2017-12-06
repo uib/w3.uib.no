@@ -665,17 +665,14 @@ EOD;
           if (!empty($variables['page']['content_top']['field_uib_primary_media'])) {
             if ($variables['language']->language == 'en') {
               $find_studies = __uib_w3__get_renderable_menu('menu-uib-find-studies-en');
+              $prefix_text = variable_get('uib_find_studies_en');
+              if (!$prefix_text) $prefix_text = 'Study at UiB?';
             }
             else {
               $find_studies = __uib_w3__get_renderable_menu('menu-uib-find-studies');
+              $prefix_text = variable_get('uib_find_studies_nb');
+              if (!$prefix_text) $prefix_text = 'Hva vil du studere ved UiB?';
             }
-            $variables['page']['content_top']['find_studies'] = array(
-              '#type' => 'html_tag',
-              '#value' => render($find_studies),
-              '#weight' => 200,
-              '#attributes' => array('class' => array('uib-find-studies')),
-              '#tag' => 'nav',
-            );
           }
 
           // Move everything in [content_top] to [content_top][top_banner]
@@ -689,8 +686,21 @@ EOD;
             ),
           );
           $variables['page']['content_top']['top_banner'] += $top;
+          $variables['page']['content_top']['top_nav'] = array(
+            '#type' => 'container',
+            '#attributes' => array(
+              'class' => array('top-nav'),
+            ),
+          );
+          $variables['page']['content_top']['top_nav']['find_studies'] = array(
+            '#type' => 'html_tag',
+            '#value' => '<h3>' . $prefix_text . '</h3>' . render($find_studies),
+            '#weight' => 200,
+            '#attributes' => array('class' => array('uib-find-studies')),
+            '#tag' => 'nav',
+          );
 
-          $variables['page']['content_top']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
+          $variables['page']['content_top']['top_nav']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
             'weight' => 400,
             'type' => 'entityreference_entity_view',
             'settings' => array('view_mode' => 'front_page_icons'),
