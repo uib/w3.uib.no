@@ -1674,6 +1674,16 @@ function uib_study__get_exam_info($data) {
  */
 function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
   $examinfo = array();
+  $disclaimer_text = variable_get('uib_exam_disclaimer' . $lang);
+  if ($disclaimer_text) {
+    $render = array(
+     '#type' => 'html_tag',
+     '#tag' => 'p',
+     '#value' => '<em>' . $disclaimer_text . '</em>',
+     '#attributes' => array('class' => array('subject-to-change')),
+    );
+    $examinfo[] = render($render);
+  }
   foreach ($data as $ei) {
     if ($part && @$ei['statusObligatoriskAktivitet'] == 'J') continue;
     $render = array();
