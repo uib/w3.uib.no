@@ -7969,6 +7969,8 @@ body #mc_embed_signup div.mce_inline_error {
   .node-type-area .field-name-field-uib-primary-media {
     margin: 0 0 1.875rem;
     width: 50%; }
+  .node-type-area .field-name-field-uib-primary-text {
+    padding: 1rem; }
   .node-type-area .full-width .field-name-field-uib-primary-media {
     width: 100%; }
   .node-type-area .field-name-field-uib-secondary-text {
