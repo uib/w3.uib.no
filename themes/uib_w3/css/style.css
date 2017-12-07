@@ -1590,20 +1590,15 @@ a,
     -ms-flex-wrap: wrap;
     display: -webkit-flex;
     -webkit-flex-direction: row;
-    -webkit-justify-content: space-between;
+    -webkit-justify-content: center;
     -webkit-flex-wrap: wrap;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap; }
     @media (min-width: 1050px) {
       .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
         flex-wrap: nowrap; } }
-    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item:nth-child(1), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item:nth-child(2) {
-      margin-bottom: 1.75rem; }
-      @media (min-width: 780px) {
-        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item:nth-child(1), .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item:nth-child(2) {
-          margin-bottom: 0; } }
     .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:visited, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:hover, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:active, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:visited {
       color: #333; }
     .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .field-item {
@@ -1614,6 +1609,11 @@ a,
       min-width: auto;
       -webkit-flex: 0 0 11.25rem;
       flex: 0 0 11.25rem; }
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item {
+      margin-bottom: 1.75rem; }
+      @media (min-width: 780px) {
+        .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item {
+          margin-bottom: 0; } }
     .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items .node > h2 {
       margin: .75rem 0 0 0;
       font-size: 1.102941176rem;
@@ -8032,7 +8032,7 @@ body #mc_embed_signup div.mce_inline_error {
 .node-type-area.banner-image .content-top-wrapper .top-banner {
   position: relative; }
 .node-type-area.banner-image .content-top-wrapper .top-nav {
-  padding: 1.75rem 1.25rem; }
+  padding: 1.75rem 1.25rem 0; }
 .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-media {
   width: 100%;
   margin: 0;
@@ -8068,43 +8068,52 @@ body #mc_embed_signup div.mce_inline_error {
       height: auto;
       width: 100%; }
   .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
-    display: -ms-flexbox;
-    -ms-flex-direction: column;
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    display: flex;
-    flex-direction: column;
     background: transparent;
     position: absolute;
     z-index: 10;
-    right: 0;
-    padding: 0;
+    left: 0;
+    padding: 0 1.25rem;
     height: 100%;
     top: 0;
-    width: 35%;
+    width: 100%;
     text-align: left; }
+    .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text > .field-items {
+      display: -ms-flexbox;
+      -ms-flex-direction: column;
+      display: -webkit-flex;
+      -webkit-flex-direction: column;
+      display: flex;
+      flex-direction: column;
+      max-width: 72rem;
+      margin: 0 auto;
+      width: 100%; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text .field-items,
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text .field-item {
       height: 100%; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text .field-item {
+      display: -ms-flexbox;
+      -ms-align-items: center;
+      -ms-flex-pack: end;
       display: -webkit-flex;
       -webkit-align-items: center;
+      -webkit-justify-content: flex-end;
       display: flex;
-      align-items: center; }
+      align-items: center;
+      justify-content: flex-end; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p {
-      font-size: 1.5rem; }
-    .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p {
+      font-size: 1.5rem;
+      max-width: 30%;
       background: rgba(255, 255, 255, 0.7);
-      padding: 1.25rem;
-      margin-right: 1.25rem; }
+      padding: 1.25rem; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text a:hover {
       text-decoration: underline; } }
+@media (min-width: 780px) {
+  .node-type-area.banner-image .content-top-wrapper .top-nav {
+    padding-bottom: 1.25rem; } }
 @media (min-width: 960px) {
-  .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text {
-    width: 30%; }
-    .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p {
-      font-size: 2rem;
-      padding: 2rem; } }
+  .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p {
+    font-size: 2rem;
+    padding: 2rem; } }
 @media (min-width: 1050px) {
   .node-type-area.banner-image .content-top-wrapper .top-nav {
     display: -webkit-flex;
@@ -8119,6 +8128,10 @@ body #mc_embed_signup div.mce_inline_error {
     .node-type-area.banner-image .content-top-wrapper .top-nav .field-name-field-uib-profiled-message {
       -webkit-flex: 0 1 55rem;
       flex: 0 1 55rem; } }
+@media (min-width: 72rem) {
+  .node-type-area.banner-image .content-top-wrapper .top-nav {
+    max-width: 74.5rem;
+    margin: 0 auto; } }
 
 .node-type-area.feature-area .content-top-wrapper .content-top {
   max-width: 100%;
