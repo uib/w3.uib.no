@@ -1,3 +1,21 @@
+# Release 84 _2017-12-07_
+- Lagt til rette for bildekarusell i feature-artikler #19449
+- Lagt til mulighet for overstyring av besøksinformasjonen i kolofonfeltet #19041
+- Lagt til tekst om forbehold i boksen med eksamensinformasjon på emnesider #19492
+- Fjernet tidssperre for visning av klokkeslett for eksamen #19489
+- Endret tidssperren for visning av eksamenslokaler (fra én til to uker før eksamen) #19490
+- Endret layout på "Finn studieprogram" i studentbanneret på forsiden #19248
+- Rettet feil der lenker under Oversett-fanen på område- og artikkelsider pekte mot ukorrekt språkversjon hvis kildeversjonen var engelsk #19400
+- Rettet feil i forbindelse med tidsplanleggingsvalg (sidene ble ikke publisert på angitt tidspunkt) #19503
+- Forbedret søkefunksjonen #19410
+- Endret hjelpetekst #19495
+
+# Release 83.2 _2017-11-30_
+- Utsatt visningen av neste semesters eksamensinformasjon med én uke #19465
+
+# Release 83.1 _2017-11-24_
+- Rettet feil i forbindelse med malen for feature-artikkel #19437 #19439
+
 # Release 83 _2017-11-23_
 - Rettet feil der lenke til eksamensinformasjon ble vist tidligere enn én måned før semesterstart #19390
 - Rettet feil der kontaktinformasjon og instituttilhørighet ikke ble vist på emnesider #19429
