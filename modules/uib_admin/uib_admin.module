@@ -78,16 +78,8 @@
  * Implements hook_form_alter().
  */
 function uib_admin_form_alter(&$form, &$form_state, $form_id) {
-  if (
-    (
-      // Add or edit user
-      $form_id == 'user_profile_form'
-      || $form_id == 'user_register_form'
-      // or node of any content type
-      || substr($form_id, -10) == "_node_form"
-    )
-    && isset($form['field_uib_search_hits'])
-  ) {
+  global $user;
+  if (($form_id == 'user_profile_form' || $form_id == 'user_register_form' || substr($form_id, -10) == "_node_form") && isset($form['field_uib_search_hits']) && $user->uid != 1) {
     // Hide the search hits field, this is only for machine handling
     $form['field_uib_search_hits']['#access'] = 0;
   }
