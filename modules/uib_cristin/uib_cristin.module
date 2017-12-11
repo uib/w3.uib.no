@@ -541,7 +541,7 @@ function uib_cristin__get_json($cmd) {
  * Assemble a cristin ws command url
  */
 function uib_cristin__ws_url($cristin_command) {
-  $url = variable_get('uib_cristin_ws', 'http://cristin.no/ws/');
+  $url = variable_get('uib_cristin_ws', 'http://api.cristin.no/ws/');
   $url .= $cristin_command;
   return $url;
 }
