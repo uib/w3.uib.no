@@ -1675,7 +1675,7 @@ function uib_study__get_exam_info($data) {
 function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
   $examinfo = array();
   $disclaimer_text = variable_get('uib_exam_disclaimer' . $lang);
-  if ($disclaimer_text) {
+  if (!$part && $disclaimer_text && uib_study__has_written_form($data)) {
     $render = array(
      '#type' => 'html_tag',
      '#tag' => 'p',
@@ -1858,6 +1858,20 @@ function uib_study__semester_exam_information($data, $lang, $part = FALSE) {
     $examinfo[] = render($render);
   }
   return $examinfo;
+}
+
+function uib_study__has_written_form($data) {
+  $nb_forms = array('Skriftlig eksamen', 'Skriftleg eksamen');
+  foreach ($data as $d) {
+    if (isset($d['form']) && in_array($d['form'], $nb_forms)) return TRUE;
+    if (isset($d['form:en']) && $d['form:en'] == 'Written examination') return TRUE;
+    if (isset($d['eksamensdel'])) {
+      foreach ($d['eksamensdel'] as $ed) {
+        if (isset($ed['form']) && in_array($ed['form'], $nb_forms)) return TRUE;
+        if (isset($ed['form:en']) && $ed['form:en'] == 'Written examination') return TRUE;
+      }
+    }
+  }
 }
 
 /**
@@ -2214,7 +2228,8 @@ function uib_study_field_formatter_view($entity_type, $entity, $field, $instance
         if (empty($lang) || $lang == 'und') {
           $lang = 'nb';
         }
-        $display_text = $node->language($lang)->$settings['uib_study_field_name']->value();
+        $uib_field_name = $settings['uib_study_field_name'];
+        $display_text = $node->language($lang)->$uib_field_name->value();
         if ($settings['uib_study_link']) {
           $elements[$delta]['#markup'] = l($display_text, 'node/' . $item['target_id']);
         }
