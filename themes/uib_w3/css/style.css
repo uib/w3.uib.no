@@ -2042,7 +2042,7 @@ a,
   .group-article-sidebar .field-name-field-uib-media .media-vimeo-video, .group-article-sidebar .field-name-field-uib-study-image .media-vimeo-video,
   .group-article-sidebar .field-name-field-uib-media .media-youtube-video,
   .group-article-sidebar .field-name-field-uib-study-image .media-youtube-video {
-    padding-bottom: calc(56.25% + 1.125rem); }
+    padding-bottom: calc(56.25% + 1.75rem); }
   .group-article-sidebar .field-name-field-uib-media .content > .field, .group-article-sidebar .field-name-field-uib-study-image .content > .field,
   .group-article-sidebar .field-name-field-uib-media .content > .field div,
   .group-article-sidebar .field-name-field-uib-study-image .content > .field div {
