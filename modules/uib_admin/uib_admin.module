@@ -83,4 +83,20 @@ function uib_admin_form_alter(&$form, &$form_state, $form_id) {
     // Hide the search hits field, this is only for machine handling
     $form['field_uib_search_hits']['#access'] = 0;
   }
+  $node_forms_with_sticky_and_promote = array(
+    'uib_external_content_node_form',
+    'uib_market_node_form',
+    'uib_article_node_form',
+    'uib_content_list_node_form',
+    'uib_message_node_form',
+    'area_node_form',
+    'uib_ou_node_form',
+    'uib_study_node_form',
+    'uib_views_page_node_form',
+    'uib_testimonial_node_form',
+  );
+  if (in_array($form_id, $node_forms_with_sticky_and_promote) && $user->uid != 1) {
+    $form['options']['sticky']['#access'] = 0;
+    $form['options']['promote']['#access'] = 0;
+  }
 }
