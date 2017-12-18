@@ -3066,6 +3066,31 @@ a,
       margin: 0;
       list-style-type: none; }
 
+.item-list .faculty-exam-list {
+  list-style: none; }
+  .item-list .faculty-exam-list > li {
+    border-bottom: solid 1px #b7b7b7;
+    margin: 0; }
+    .item-list .faculty-exam-list > li .exam-list-title {
+      font-size: 1.4rem; }
+    .item-list .faculty-exam-list > li h3:not(.exam-list-title) {
+      font-size: 1.25rem;
+      font-weight: normal;
+      color: #cf3c3a; }
+    .item-list .faculty-exam-list > li .uib-study-exam-assessment {
+      margin: 0 0 1rem; }
+      .item-list .faculty-exam-list > li .uib-study-exam-assessment dt {
+        font-weight: bold;
+        float: left;
+        clear: left;
+        padding-right: 0.5rem; }
+        .item-list .faculty-exam-list > li .uib-study-exam-assessment dt:after {
+          content: ": "; }
+      .item-list .faculty-exam-list > li .uib-study-exam-assessment dd {
+        margin: 0; }
+      .item-list .faculty-exam-list > li .uib-study-exam-assessment ul {
+        list-style: none; }
+
 .uib-play-video a {
   display: block;
   text-transform: uppercase;

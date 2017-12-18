@@ -9,3 +9,4 @@
 /node_modules/
 uib-w3-grunt-config.json
 /doc/empty_nodes_unpublished_rel78.txt
+package-lock.json
