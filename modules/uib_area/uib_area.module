@@ -161,7 +161,7 @@ function uib_area_block_view($delta='') {
       $visit_address = uib_area__format_visit_address($place);
       $visitor_info = $area->field_uib_visitor_info;
       if (!empty($visitor_info)) {
-        $visitor_info_link_title = $visitor_info['und'][0]['title'];
+        $visitor_info_link_title = t('Visitor information');
         $visitor_info_url = $visitor_info['und'][0]['url'];
       } else {
         $visitor_info_link_title = '';
