@@ -1,3 +1,13 @@
+# Release 85 _2017-12-21_
+- Rettet feil der tekst om forbehold i boksen med eksamensinformasjon ble vist flere ganger og på emner uten skriftlig eksamen #19514
+- Rettet feil der personsidene ikke svarte pga. problemer med integrasjonen mot Cristin #19513
+- Rettet feil i visning av opphavsrettigheter når video var brukt som medietype #19455
+- Rettet feil der lenke til besøksinformasjon i kolofonfeltet ikke ble vist i artikler #19599
+- Lagt til rette for lik visning av eksamensinformasjon på emnesidene og i de fakultetsvise oversiktene #19453
+- Skjult forfatterfeltene i redigeringsgrensesnittet til infosider og arrangementer (forfatter ble uansett ikke vist) #19462
+- Skjult irrelevante felt under publiseringsvalg #19463
+- Fjernet ubruke kompetansefelt #19454
+
 # Release 84 _2017-12-07_
 - Lagt til rette for bildekarusell i feature-artikler #19449
 - Lagt til mulighet for overstyring av besøksinformasjonen i kolofonfeltet #19041
