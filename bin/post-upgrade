@@ -19,8 +19,7 @@ if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
     bin/site-drush scr uib-feature-areas.php
 fi
 
-REL=84
+REL=86
 
-bin/site-drush vset uib_exam_disclaimer 'Klokkeslettet kan bli endret frem til 14 dager før eksamen. Sted for eksamen vil bli publisert 14 dager før.'
-bin/site-drush vset uib_exam_disclaimer:en 'Note that the time may change up until 14 days prior to the day of the examination. The location will be published 14 days ahead.'
+bin/site-drush vdel uib_tp_url --yes
 

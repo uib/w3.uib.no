@@ -2321,15 +2321,14 @@ function uib_study__get_resource_links($type, $data) {
 
 function uib_study__get_schedule_link($study_code, $semester, $classes) {
   global $language;
-  $lang = ($language->language == 'nb' ? '' : 'en');
+  $lang = ($language->language == 'nb' ? 'no' : 'en');
   // Make sure that the schedule link is not displayed until one month before semester start
   if (!uib_study__show_exam_info($semester)) {
     return;
   }
   $semester = substr($semester, 2);
-  $tp_url = variable_get('uib_tp_url');
-  if (empty($tp_url)) $tp_url = 'https://tp.uio.no/uib/timeplan/timeplan.php?id=(* ID *)&type=course&sort=week&sem=(* semester *)&termnr=1';
-  $tp_url = str_replace(array('(* ID *)', '(* semester *)'), array($study_code, $semester), $tp_url);
+  $tp_url = variable_get('uib_tp_url', 'https://tp.uio.no/uib/timeplan/timeplan.php?id=(* ID *)&type=course&sort=week&sem=(* semester *)&termnr=1&lang=(* lang *)');
+  $tp_url = str_replace(array('(* ID *)', '(* semester *)', '(* lang *)'), array($study_code, $semester, $lang), $tp_url);
   $schedule = array(
     '#theme' => 'link',
     '#text' => t('Schedule'),
