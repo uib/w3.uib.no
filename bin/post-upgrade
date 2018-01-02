@@ -22,4 +22,5 @@ fi
 REL=86
 
 bin/site-drush vdel uib_tp_url --yes
+bin/site-drush vset uib_study_hide_datoUtlevert_in_exams_list FALSE
 
