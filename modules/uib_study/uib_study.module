@@ -1219,7 +1219,7 @@ EOD;
           break;
         }
 
-        if ($semester != $previous_semester && !empty($data)) {
+        if (!empty($data)) {
           if (!empty($data['eksamensinfo'])) {
             if (!empty($data['eksamensinfo'][$semester])) {
               $examinfo = uib_study__get_exam_info($data['eksamensinfo'][$semester]);
