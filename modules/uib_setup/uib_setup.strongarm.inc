@@ -13,6 +13,24 @@ function uib_setup_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'clone_omitted';
+  $strongarm->value = array(
+    'area' => 'area',
+    'uib_content_list' => 'uib_content_list',
+    'uib_external_content' => 'uib_external_content',
+    'uib_message' => 'uib_message',
+    'uib_ou' => 'uib_ou',
+    'uib_study' => 'uib_study',
+    'uib_testimonial' => 'uib_testimonial',
+    'uib_market' => 'uib_market',
+    'uib_views_page' => 'uib_views_page',
+    'uib_article' => 0,
+  );
+  $export['clone_omitted'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'colorbox_inline';
   $strongarm->value = 1;
   $export['colorbox_inline'] = $strongarm;

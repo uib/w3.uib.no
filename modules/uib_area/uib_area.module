@@ -1559,6 +1559,20 @@ function uib_area_menu_local_tasks_alter(&$data, $router_item, $root_path) {
       return;
     }
 
+    /**
+     * Load node to check if the node is an event and only display
+     * node_clone action link if the article type is an event
+     **/
+    $node_href = explode('/',$router_item['href']);
+    $node = node_load(end($node_href));
+    for ($i=0;$i<count($data['actions']['output']);$i++) {
+      if ($data['actions']['output'][$i]['#link']['path'] == 'node/%/clone/%' && $node->field_uib_article_type['und'][0]['value'] != 'event') {
+        unset($data['actions']['output'][$i]);
+      } else if ($data['actions']['output'][$i]['#link']['path'] == 'node/%/clone/%') {
+        $data['actions']['output'][$i]['#link']['localized_options']['attributes'] = array('class' => 'uib_clone');
+      }
+    }
+
     $tabs = array();
     foreach ($data['tabs'][0]['output'] as $tab) {
       $path = $tab['#link']['path'];

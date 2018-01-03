@@ -497,6 +497,28 @@ function uib_setup_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'clone node'.
+  $permissions['clone node'] = array(
+    'name' => 'clone node',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+    ),
+    'module' => 'clone',
+  );
+
+  // Exported permission: 'clone own nodes'.
+  $permissions['clone own nodes'] = array(
+    'name' => 'clone own nodes',
+    'roles' => array(
+      'admin' => 'admin',
+      'level 1' => 'level 1',
+      'level 2' => 'level 2',
+    ),
+    'module' => 'clone',
+  );
+
   // Exported permission: 'create area content'.
   $permissions['create area content'] = array(
     'name' => 'create area content',
