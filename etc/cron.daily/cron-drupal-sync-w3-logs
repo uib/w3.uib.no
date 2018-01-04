@@ -1,3 +1,4 @@
 #!/bin/bash
 cd /var/www/w3.uib.no
-su w3-drupal -c 'bin/sync-w3-logs'
+log="/tmp/cron-drupal-sync-w3-logs-"`bc <<< $(date +%j)%2`'.log'
+su w3-drupal -c 'bin/sync-w3-logs' >> $log 2>&1
