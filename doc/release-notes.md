@@ -1,3 +1,12 @@
+# Release 86 _2018-01-04_
+- Rettet feil der videoer ikke ble vist på brede skjermer #19660
+- Lagt til språk-parameter i timeplan-lenken på emnesider #19655
+- Lagt til rette for visning av utleveringstidspunkt for hjemmeeksamener #19657
+- Lagt til rette for visning av forrige semesters eksamensinformasjon på emnesidene #19685
+- Fjernet gamle logo-felt som ikke lenger er i bruk fra redigeringsgrensesnittet (var kun synlig for rolle 1) #19671
+- Forbedret søkefunksjonen #19395
+- Oppdatert Drupal-moduler #19674 #19679 #18681
+
 # Release 85 _2017-12-21_
 - Rettet feil der tekst om forbehold i boksen med eksamensinformasjon ble vist flere ganger og på emner uten skriftlig eksamen #19514
 - Rettet feil der personsidene ikke svarte pga. problemer med integrasjonen mot Cristin #19513
