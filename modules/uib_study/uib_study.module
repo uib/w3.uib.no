@@ -3106,17 +3106,17 @@ function uib_study__exam_list_render_array($alias, $term = '', $lang = 'nb') {
     $examinfo = '';
     $examinfo_top = $value['eksamensinfo'][$term];
     foreach ($examinfo_top as $et) {
-      if (isset($et['eksamensdel'])) {
+      if(isset($et['datoEksamen']) || isset($et['datoInnlevering']) || isset($et['datoEksamenFra']) || isset($et['datoEksamenTil'])) {
+        $examinfo = uib_study__get_exam_info($value['eksamensinfo'][$term], TRUE);
+        continue;
+      }
+      elseif (isset($et['eksamensdel'])) {
         foreach($et['eksamensdel'] as $ed) {
           if (isset($ed['datoEksamen']) || isset($ed['datoInnlevering']) || isset($ed['datoEksamenFra']) || isset($ed['datoEksamenTil'])) {
             $examinfo = uib_study__get_exam_info($value['eksamensinfo'][$term], TRUE);
             continue;
           }
         }
-      }
-      elseif(isset($et['datoEksamen']) || isset($et['datoInnlevering']) || isset($et['datoEksamenFra']) || isset($et['datoEksamenTil'])) {
-        $examinfo = uib_study__get_exam_info($value['eksamensinfo'][$term], TRUE);
-        continue;
       }
     }
     if (!empty($examinfo)) {
