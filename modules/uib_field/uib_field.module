@@ -39,18 +39,22 @@ function uib_field_field_formatter_info() {
 function uib_field_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   $recognized_social_media = array( // media name => array ( site url, default)
-    'facebook' => array('https://facebook.com/', 'https://facebook.com/universitetetibergen'),
+    'facebook' => array('https://facebook.com/', 'https://facebook.com/unibergen'),
     'twitter' => array('https://twitter.com/', 'https://twitter.com/uib'),
-    'youtube' => array('https://youtube.com/', 'https://youtube.com/unibergen'),
-    'flickr' => array('https://flickr.com/', 'https://flickr.com/photos/unibergen/sets'),
+    'youtube' => array('https://www.youtube.com/user/', 'https://www.youtube.com/user/UniBergen'),
+    'flickr' => array('https://www.flickr.com/', 'https://www.flickr.com/photos/unibergen/'),
     'vimeo' => array('https://vimeo.com/', 'https://vimeo.com/uib'),
-    'instagram' => array('https://instagram.com/', 'https://instagram.com/uib'),
+    'instagram' => array('https://www.instagram.com/', 'https://www.instagram.com/unibergen/'),
     'github' => array('https://github.com/', 'https://github.com/uib'),
     'linkedin' => array('https://linkedin.com/in/', 'https://linkedin.com/edu/school/15492'),
     'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net'),
     'snapchat' => array('https://www.snapchat.com/add/', 'https://www.snapchat.com/add/'),
-    'orcid' => array('https://orcid.org/', 'https://orcid.org/'),
-    'googlescholar' => array('https://scholar.google.com/citations?user=', 'https://scholar.google.com/citations'),
+    'orcid' => array('https://orcid.org/', 'https://orcid.org'),
+    'googlescholar' => array('https://scholar.google.com/citations?user=', 'https://scholar.google.com/citations?view_op=view_org&org=8898899287978071111'),
+    'academia' => array('https://uib.academia.edu/', 'https://uib.academia.edu'),
+    'researcherid' => array('http://www.researcherid.com/rid/', 'http://www.researcherid.com'),
+    'scopus' => array('https://www.scopus.com/authid/detail.uri?authorId=', 'https://www.scopus.com'),
+    'dblp' => array('http://dblp.uni-trier.de/rec/pid/', 'http://dblp.uni-trier.de'),
   );
   foreach ($items as $delta => $item) {
     $sm = explode(':', $item['safe_value']);
@@ -70,16 +74,14 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
           'class' => array('icons-social-' . $sm_name),
           ),
         );
-      if ($sm_name != 'mailto') {
-        if ($entity_type == 'user') {
-          $title = t('Follow me on @network', array('@network' => ucfirst($sm_name)));
-        }
-        else {
-          $title = t('Follow us on @network', array('@network' => ucfirst($sm_name)));
-        }
-        $options['attributes']['title'] = $title;
-        $options['attributes']['onClick'] = "ga('send', {'hitType':'$sm_name', 'eventCategory':'SocialMediaButtons', 'eventAction':'Follow', 'eventLabel':'" .current_path() . "'})";
+      if ($entity_type == 'user') {
+        $title = t('Follow me on @network', array('@network' => ucfirst($sm_name)));
       }
+      else {
+        $title = t('Follow us on @network', array('@network' => ucfirst($sm_name)));
+      }
+      $options['attributes']['title'] = $title;
+      $options['attributes']['onClick'] = "ga('send', {'hitType':'$sm_name', 'eventCategory':'SocialMediaButtons', 'eventAction':'Follow', 'eventLabel':'" .current_path() . "'})";
       $element[]['#markup'] = l($sm_name, $sm_url, $options);
     }
   }
