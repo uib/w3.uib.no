@@ -1955,7 +1955,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researchgate, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
+    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1994,6 +1994,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
@@ -2005,6 +2006,9 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -2195,7 +2199,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Translatables
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
-  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researchgate, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
+  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
   t('Attachments');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');

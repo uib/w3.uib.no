@@ -13,7 +13,7 @@ function uib_user_taxonomy_default_vocabularies() {
       'name' => 'uib_research_fields',
       'machine_name' => 'uib_research_fields',
       'description' => 'Fields of research',
-      'hierarchy' => 1,
+      'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
     ),
