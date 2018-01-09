@@ -128,7 +128,12 @@ function uib_calendar3_block_view($delta) {
         // adding class "first" to this item
         array_push($ra['data'][$key]['#attributes']['class'], 'first');
        // if item has image add this, and a calendar-card
-        if(count($node->field_uib_main_media)):
+        if (!empty($node->field_uib_main_media)):
+          foreach($node->field_uib_main_media['und'] as $key => $image) {
+            if ($key > 0) {
+              unset($node->field_uib_main_media['und'][$key]);
+            }
+          }
           // showing kicker
           $ra['data'][$key]['kicker_image'] = array(
               '#type' => 'container',
