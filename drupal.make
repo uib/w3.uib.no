@@ -32,7 +32,6 @@ projects[breakpoints][version] = 1.4
 projects[browsersync][version] = 1.1
 projects[coder][version] = 2.6
 projects[colorbox][version] = 2.12
-projects[colorbox][patch] = https://www.drupal.org/files/issues/colorbox-fix_token_types_error-1.patch
 projects[context][version] = 3.7
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.12
