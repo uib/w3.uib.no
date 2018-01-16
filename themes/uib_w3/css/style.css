@@ -1486,8 +1486,6 @@ a,
       min-height: 6.8748rem; } }
   #block-uib-area-colophon-2 .visit > *:not(h3) {
     padding-left: 50px; }
-  #block-uib-area-colophon-2 .visit a:nth-child(2) {
-    display: block; }
 @media screen and (min-width: 600px) {
   #block-uib-area-colophon-2 .contact {
     padding-top: 0;
@@ -7060,7 +7058,7 @@ body #mc_embed_signup div.mce_inline_error {
 
 .field-name-field-uib-ou-title a {
   font-size: 1.25rem;
-  display: block; }
+  display: table; }
 
 .field-name-field-uib-position {
   font-size: 1.25rem; }
