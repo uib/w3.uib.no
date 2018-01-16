@@ -7712,7 +7712,8 @@ body #mc_embed_signup div.mce_inline_error {
     padding: 0;
     text-align: right; }
     .node-uib-views-page .views-exposed-widgets > .views-exposed-widget.views-submit-button > input {
-      float: right; }
+      float: left;
+      border-radius: 0; }
   .node-uib-views-page .views-exposed-widgets > .views-exposed-widget > label {
     font-size: 1.625rem;
     font-weight: bold;
