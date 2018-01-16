@@ -6906,7 +6906,7 @@ body #mc_embed_signup div.mce_inline_error {
 #block-uib-study-study-testimonial .field-name-field-uib-media img,
 #block-uib-study-study-testimonial .field-name-field-uib-study-image img {
   max-width: 170px;
-  padding: 36px 34px 0 28px; }
+  padding: 36px 34px 0 1.5rem; }
   @media (min-width: 600px) {
     .node-type-area .node-uib-testimonial.node-quote .field-name-field-uib-media img, .node-type-area .node-uib-testimonial.node-quote .field-name-field-uib-study-image img,
     #block-uib-study-study-content .node-uib-testimonial .field-name-field-uib-media img,
@@ -6946,7 +6946,7 @@ body #mc_embed_signup div.mce_inline_error {
   font-weight: bold;
   font-size: 16px;
   color: #333;
-  padding-left: 28px;
+  padding-left: 1.5rem;
   padding-bottom: 1px;
   line-height: 1.2; }
 .node-type-area .node-uib-testimonial.node-quote .field-name-field-uib-position,
@@ -6955,7 +6955,7 @@ body #mc_embed_signup div.mce_inline_error {
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   font-size: 16px;
   color: #333;
-  padding-left: 28px;
+  padding-left: 1.5rem;
   padding-bottom: 36px;
   line-height: 1.2; }
 .node-type-area .node-uib-testimonial.node-quote ul,
