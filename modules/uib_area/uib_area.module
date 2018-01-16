@@ -2751,6 +2751,29 @@ function uib_area_node_view($node, $view_mode, $langcode) {
   }
 }
 
+/**
+ * implements hook_views_post_render
+ **/
+function uib_area_views_post_render(&$view,&$output,&$cache) {
+  /**
+   * Change teaser object url to KMD remote url for KMD events
+   **/
+  if ($view->args[0] == '102518') {
+    foreach ($view->result as $obj) {
+      if (isset($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])) {
+        global $base_url;
+        global $language;
+        $title = strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/','/in-/'),array('', '-', '',''), $obj->node_title));
+        $ref_url = $base_url .'/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
+        $ref_baseless = '/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
+        $kmd_href = json_decode($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])->href;
+        $output = str_replace($ref_url, $kmd_href, $output);
+        $output = str_replace($ref_baseless, $kmd_href, $output);
+      }
+    }
+  }
+}
+
 function uib_area__have_common_element($array_a, $array_b) {
   foreach($array_a as $aa) {
     foreach($aa as $a){
