@@ -87,10 +87,8 @@ function uib_webdesk_preprocess_views_view(&$variables) {
   if (in_array($variables['view']->name, $language_challenged_views)) {
     $view = $variables['view'];
     if ($view->name == 'my_content' && $view->current_display == 'panel_pane_1') {
-      foreach ($view->result as $key => $item) {
-        $title = $item->node_title . ' (' . $item->node_language . ')';
-        $variables['rows'] = str_replace($item->node_title, $title, $variables['rows']);
-      }
+      $variables['rows'] = str_replace(array('(Norsk)', '(Norwegian)'), '(nb)', $variables['rows']);
+      $variables['rows'] = str_replace(array('(Engelsk)', '(English)'), '(en)', $variables['rows']);
     }
     foreach ($view->result as $key => $item) {
       if ($item->node_language == 'nb') {
