@@ -1,3 +1,16 @@
+# Release 87 _2018-01-18_
+- Rettet feil der enkelte emner ikke ble vist i fakultetsvise eksamensoversikter #19701
+- Rettet feil der informasjon om eksamensdeler i visse tilfeller var ufullstendig #19718
+- Rettet feil der kalenderoppslag med flere bilder tok seg dårlig ut som fremhevet arrangement på områdesider #19709
+- Rettet feil der språkindikator i visse tilfeller ble repetert under "Mitt innhold" på webdesken #19758
+- Lagt til støtte for kobling til Academia, ResearcherID, Scopus og dblp på personsidene #19704
+- Lagt til ny funksjon som gjør det mulig å duplisere eksisterende arrangementer (nyttig hvis man f.eks. trenger å opprette gjentakende kalenderoppslag) #19226
+- Lagt til engelsk versjon av javascript for Task Analytics #19720
+- Lagt til rutine som daglig fjerner ubrukte kompetansefelt #19687
+- Forbedret visningen av hjelpetekster i redigeringsgrensesnittet #19751
+- Gjort diverse designjusteringer #19691 #19692 #19693 #19689 #19690 #19717
+- Oppdatert diverse Drupal-moduler #19727 #19736 #19737 #19738 #19742 #19744 #19745
+
 # Release 86 _2018-01-04_
 - Rettet feil der videoer ikke ble vist på brede skjermer #19660
 - Lagt til språk-parameter i timeplan-lenken på emnesider #19655
