@@ -704,13 +704,7 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
       }
       $info[] = '<div class="event-entry-info--ical" aria-label="'.t('Add to calendar').'">' . l(t('Add to calendar'), "node/$nid/event.ics") . '</div>';
       $info = "<div class='event-entry-info'>" . implode('', $info) . "</div>";
-      $nodeKmdCheck = node_load($nid);
-      $titlehref = "node/$nid";
-      if (!empty($nodeKmdCheck->field_uib_kmd_data)){
-        $kmdData = json_decode($nodeKmdCheck->field_uib_kmd_data['und'][0]['value']);
-        $titlehref = $kmdData->href;
-      }
-      $markup = "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, $titlehref) . " ($event_types[$type])";
+      $markup = "<div class='event-entry event-entry-$type'>" . l($node[$nid]->title, "node/$nid") . " ($event_types[$type])";
       if (!empty($suffix)) {
         $markup .= '<br>' . $suffix;
       }
