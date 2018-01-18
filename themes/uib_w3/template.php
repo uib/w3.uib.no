@@ -1189,9 +1189,6 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
   }
   else {
-    if (isset($variables['field_uib_kmd_data']['und'][0]['value'])) {
-      $variables['node_url'] = json_decode($variables['field_uib_kmd_data']['und'][0]['value'])->href;
-    }
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'full') {
       uib_w3__add_image_caption(
         $variables['content']['field_uib_media'],
