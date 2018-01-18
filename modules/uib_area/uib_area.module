@@ -2763,18 +2763,11 @@ function uib_area_views_post_render(&$view,&$output,&$cache) {
       if (isset($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])) {
         global $base_url;
         global $language;
-        //replace chars from title, still allowing æøå as characters
-        $title = strtolower(preg_replace(array('/[^a-zA-Z0-9 æøå\/]/', '/[ -]+/', '/^-|-$/','/-in-/','/-for-/'),array('', '-', '','-','-'), $obj->node_title));
-        //replace æøå with HTML replacement patterns. These must with capital
-        //letters and must be replaced after the title has passed through the
-        //function strtolower()
-        $title = urlencode($title);
+        $title = strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/','/in-/'),array('', '-', '',''), $obj->node_title));
         $ref_url = $base_url .'/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
         $ref_baseless = '/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
         $kmd_href = json_decode($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])->href;
-        //Replace the internal URL with the given URL for the event
         $output = str_replace($ref_url, $kmd_href, $output);
-        //Also need to replace the relative URL's
         $output = str_replace($ref_baseless, $kmd_href, $output);
       }
     }
