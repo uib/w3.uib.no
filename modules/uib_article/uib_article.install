@@ -139,3 +139,17 @@ function uib_article_update_7005() {
   ;
   uibx_log("Fixed $nr_updated event types", 'notice');
 }
+
+/**
+ *  Override Node clone module strings
+ */
+function uib_article_update_7006() {
+  variable_set('locale_custom_strings_en', array(
+    '' => array(
+      'Clone content'
+        => 'Duplicate event',
+      'Clone of !title'
+        => 'Duplicate of !title'
+    )
+  ));
+}
