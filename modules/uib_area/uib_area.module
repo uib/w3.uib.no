@@ -2943,3 +2943,11 @@ function uib_area__count_news_articles($area_nid = -1) {
   $res = db_query($sql);
   return $res->fetchField(0);
 }
+
+/**
+ * Current node is area
+ */
+function uib_area__current_node_is_area() {
+  $node = menu_get_object();
+  return $node->type == 'area' ? TRUE : FALSE;
+}

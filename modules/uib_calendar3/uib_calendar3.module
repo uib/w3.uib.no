@@ -25,10 +25,10 @@ function uib_calendar3_block_view($delta) {
 
   $block = array();
   // if area is not set, these blocks are not executed
-  $area = uib_area__get_current_nid();
-  if (!$area) {
+  if (!uib_area__current_node_is_area()) {
     return;
   }
+  $area = uib_area__get_current_nid();
 
   $select = db_select('node', 'n');
   $select->fields('n', array('nid', 'title'));
