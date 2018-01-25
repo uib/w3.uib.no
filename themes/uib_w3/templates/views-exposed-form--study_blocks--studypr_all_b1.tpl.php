@@ -29,13 +29,6 @@
 <div class="views-exposed-form">
   <div class="views-exposed-widgets clearfix">
     <?php foreach ($widgets as $id => $widget): ?>
-      <?php if ($widget->id == 'edit-studypoints-rank'): ?>
-      <div class="study-points-category">
-      <?php endif; ?>
-      <?php if ($widget->id == 'edit-tid'): ?>
-      <div class="study-tids">
-      <h3><?php print t('Filter on subject'); ?></h3>
-      <?php endif; ?>
       <fieldset name="<?php print $widget->id; ?>-wrapper" class="views-exposed-widget views-widget-<?php print $id; ?>">
         <?php if (!empty($widget->label)): ?>
           <legend>
@@ -56,9 +49,6 @@
           </div>
         <?php endif; ?>
       </fieldset>
-      <?php if ($widget->id == 'edit-field-uib-study-category-value' || $widget->id == 'edit-tid-4'): ?>
-      </div>
-      <?php endif; ?>
     <?php endforeach; ?>
     <?php if (!empty($sort_by)): ?>
       <div class="views-exposed-widget views-widget-sort-by">

@@ -7704,6 +7704,7 @@ body #mc_embed_signup div.mce_inline_error {
   clear: both;
   content: ""; }
 .node-uib-views-page .views-exposed-widgets > .views-exposed-widget {
+  border: 0;
   padding: 0;
   margin: 0 0 1.5625rem 0; }
   @media (min-width: 600px) {
@@ -7723,6 +7724,10 @@ body #mc_embed_signup div.mce_inline_error {
     font-weight: bold;
     font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
     color: #333; }
+  .node-uib-views-page .views-exposed-widgets > .views-exposed-widget > legend {
+    font-size: 1.625rem;
+    font-weight: bold;
+    margin-bottom: 0.625rem; }
 .node-uib-views-page .view-filters {
   padding: 0 0 2.5rem; }
   .node-uib-views-page .view-filters .views-exposed-form .views-exposed-widgets label {
@@ -7829,6 +7834,13 @@ body #mc_embed_signup div.mce_inline_error {
   font-weight: bold;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   color: #cf3c3a; }
+
+.page-node-87343 .views-exposed-widgets .study-points-category .views-exposed-widget {
+  border: 0; }
+.page-node-87343 .views-exposed-widgets .study-points-category legend {
+  font-size: 1.625rem;
+  font-weight: bold;
+  margin-bottom: 0.625rem; }
 
 .node-uib-views-page .views-exposed-widgets [class*="views-widget-filter-tid"] {
   clear: right;
