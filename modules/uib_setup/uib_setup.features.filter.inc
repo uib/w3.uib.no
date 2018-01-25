@@ -112,11 +112,6 @@ function uib_setup_filter_default_formats() {
           'filter_html_nofollow' => 0,
         ),
       ),
-      'filter_uib_url' => array(
-        'weight' => 0,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'filter_studycodes' => array(
         'weight' => 1,
         'status' => 1,
@@ -147,10 +142,17 @@ function uib_setup_filter_default_formats() {
       'media_filter_paragraph_fix' => array(
         'weight' => 21,
         'status' => 1,
-        'settings' => array(),
+        'settings' => array(
+          'replace' => 0,
+        ),
       ),
       'media_filter' => array(
         'weight' => 22,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_uib_url' => array(
+        'weight' => 30,
         'status' => 1,
         'settings' => array(),
       ),
