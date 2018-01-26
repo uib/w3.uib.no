@@ -1029,6 +1029,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
     $not_for_any_level = array(
       'field_uib_logo', // Logo
       'field_uib_colophone_logos', // Colophone logos
+      'field_uib_staff_status', // Problematical in previous Sebra sync
     );
     if ($GLOBALS['user']->uid != 1) {
       foreach ($not_for_any_level as $nfal) {
