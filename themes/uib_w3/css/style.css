@@ -7298,6 +7298,8 @@ body #mc_embed_signup div.mce_inline_error {
   content: ""; }
 .footer-wrapper .footer {
   display: block; }
+.footer-wrapper .main-menu__expanded ul.menu li {
+  list-style: none; }
 @media screen and (min-width: 600px) {
   .footer-wrapper .footer {
     padding: 0;
