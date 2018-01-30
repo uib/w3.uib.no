@@ -133,6 +133,13 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
               'localized_options' => array(),
               'type' => 0,
             );
+            $uib_active_trail[] = array(
+              'title' => $item['page_arguments'][0]->title,
+              'href' => 'node/' . $item['page_arguments'][0]->nid,
+              'link_path' => '',
+              'localized_options' => array(),
+              'type' => 0,
+            );
             break;
         }
         $uib_active_trail[] = array_pop($active_trail);
