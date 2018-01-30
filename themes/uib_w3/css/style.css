@@ -1115,6 +1115,10 @@ a,
 .node-type-uib-study .field-name-field-uib-main-media {
   margin-bottom: 2.5rem; }
 
+.node-type-uib-article .field-name-field-uib-main-media .media-vimeo-video,
+.node-type-uib-article .field-name-field-uib-main-media .media-youtube-video {
+  margin-bottom: 0.625rem; }
+
 .action-links {
   list-style: none; }
   .action-links a.uib_clone {
@@ -3647,10 +3651,16 @@ a,
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif; }
   .field-name-field-uib-main-media .file-image > .content > .uib-media-info .field,
   .field-name-field-uib-main-media .file-image > .content > .uib-media-info .field div,
+  .field-name-field-uib-main-media .file-video > .content > .uib-media-info .field,
+  .field-name-field-uib-main-media .file-video > .content > .uib-media-info .field div,
   .field-name-field-uib-media .file-image > .content > .uib-media-info .field,
   .field-name-field-uib-study-image .file-image > .content > .uib-media-info .field,
   .field-name-field-uib-media .file-image > .content > .uib-media-info .field div,
-  .field-name-field-uib-study-image .file-image > .content > .uib-media-info .field div {
+  .field-name-field-uib-study-image .file-image > .content > .uib-media-info .field div,
+  .field-name-field-uib-media .file-video > .content > .uib-media-info .field,
+  .field-name-field-uib-study-image .file-video > .content > .uib-media-info .field,
+  .field-name-field-uib-media .file-video > .content > .uib-media-info .field div,
+  .field-name-field-uib-study-image .file-video > .content > .uib-media-info .field div {
     display: inline;
     float: none; }
   .field-name-field-uib-main-media .clearfix::after,
