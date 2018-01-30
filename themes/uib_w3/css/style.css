@@ -1823,16 +1823,20 @@ a,
     margin: 0 2rem 1rem 0; }
 
 .field-name-field-uib-primary-text {
-  background: #f5f5f5;
+  padding-top: 1rem;
   line-height: 1.2; }
-  .field-name-field-uib-primary-text p, .field-name-field-uib-primary-text a {
+  .field-name-field-uib-primary-text a {
     font-size: 1.25rem; }
+  .field-name-field-uib-primary-text p {
+    font-size: 1.25rem;
+    padding-bottom: 1rem; }
   .field-name-field-uib-primary-text h3 {
     font-size: 1.625rem; }
   .field-name-field-uib-primary-text h4 {
     font-size: 1.35rem; }
   @media (min-width: 960px) {
     .field-name-field-uib-primary-text {
+      background: #f5f5f5;
       display: -ms-flexbox;
       -ms-flex-direction: column;
       -ms-flex-pack: center;
@@ -1846,10 +1850,14 @@ a,
       justify-content: center;
       flex-wrap: wrap; } }
 
+.field-name-field-uib-primary-text + .field-name-field-uib-secondary-text {
+  border-top: 1px solid #b7b7b7; }
+
 .edit-field-uib-study-code-value label, .edit-term-node-tid-depth label {
   font-weight: bold; }
 
 .field-name-field-uib-secondary-text {
+  padding: 1rem 0 1rem 0;
   line-height: 1.25;
   margin: 0 0 1rem 0; }
   @media (min-width: 600px) {
