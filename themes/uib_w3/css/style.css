@@ -1854,9 +1854,9 @@ a,
       justify-content: center;
       flex-wrap: wrap; } }
 
-.field-name-field-uib-primary-text + .field-name-field-uib-secondary-text {
-  border-top: 1px solid #b7b7b7; }
-
+@media screen and (max-width: 960px) {
+  .field-name-field-uib-primary-text + .field-name-field-uib-secondary-text {
+    border-top: 1px solid #b7b7b7; } }
 .edit-field-uib-study-code-value label, .edit-term-node-tid-depth label {
   font-weight: bold; }
 
