@@ -1,3 +1,13 @@
+# Release 88 _2018-02-01_
+- Rettet feil der bilder i feature-artikler ikke ble vist for eksterne brukere (utenfor UiBs nettverk) #19768
+- Rettet feil der billedkarusellen i kalenderoppslag sluttet å virke dersom oppføringen var valgt som fremhevet arrangement på en områdeside #19775
+- Rettet feil der piler i visse tilfeller ble vist foran menypunkt i bunnmenyen #19753
+- Forbedret den universelle utformingen av filtersidene #19726
+- Justert visningen av introtekst-feltet på områdesider #19688
+- Justert visningen av teksten under videospillere i artikler #19757
+- Endret tittel på knapp for duplisering av arrangement #19760
+- Fjernet irrelevant felt ("Staff sync status") fra redigeringsgrensesnittet #19743
+
 # Release 87 _2018-01-18_
 - Rettet feil der enkelte emner ikke ble vist i fakultetsvise eksamensoversikter #19701
 - Rettet feil der informasjon om eksamensdeler i visse tilfeller var ufullstendig #19718
