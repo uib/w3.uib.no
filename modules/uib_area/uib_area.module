@@ -1755,6 +1755,23 @@ function uib_area_form_menu_overview_form_alter(&$form, &$form_state, $form_id) 
   }
 }
 
+/**
+ * Implements hook_form_node_form_alter(&$form, &$form_state, $form_id) {
+ **/
+function uib_area_form_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  //remove fieldgroups where user doesn't have access
+  if (!in_array('level 1',$user->roles) && $user->uid != 1) {
+    unset($form['#groups']['group_level_1']);
+    unset($form['#fieldgroups']['group_level_1']);
+    foreach ($form['#group_children'] as $key => $value) {
+      if ($value == 'group_level_1') {
+        unset($form['#group_children'][$key]);
+      }
+    }
+  }
+}
+
 function uib_area__menu_overview_form_post_render($content, $element) {
   $limit = 2;
   if ($limit < MENU_MAX_DEPTH) {
