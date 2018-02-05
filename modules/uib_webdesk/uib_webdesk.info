@@ -18,6 +18,7 @@ features[page_manager_pages][] = uib_webdesk_user
 features[views_view][] = my_content
 features[views_view][] = my_uploaded_files
 features[views_view][] = scheduled_content
+features[views_view][] = uib_research_field_admin
 features[views_view][] = uib_webdesk
 features[views_view][] = user_areas
 features[views_view][] = user_block
