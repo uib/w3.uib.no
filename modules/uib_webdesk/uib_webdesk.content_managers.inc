@@ -62,7 +62,7 @@ function uib_webdesk__content_managers_page() {
         'class' => array('ctools-collapsible-container'),
       ),
     );
-    if ($level != 'level 1') {
+    if ($level != 'superbruker') {
       $page[$level]['#attributes']['class'][] = 'ctools-collapsed';
     }
 

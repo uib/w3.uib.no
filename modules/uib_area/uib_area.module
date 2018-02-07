@@ -1005,7 +1005,7 @@ function uib_area__node_autocomplete($type, $langcode, $string = '') {
 function uib_area_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'area_node_form') {
     // list of fields that should be hidden (in area node form) from
-    // both level 3 and level 2 users
+    // both level 3 and innholdsprodusent users
     $not_for_level_2 = array(
       'field_uib_sebra_id', // Sebra ID
       'field_uib_area_type', // Type
@@ -1038,14 +1038,14 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
         }
       }
     }
-    if ( (in_array('level 2', $GLOBALS['user']->roles, TRUE) OR in_array('level 3', $GLOBALS['user']->roles, TRUE)) AND (!in_array('level 1', $GLOBALS['user']->roles, TRUE)) ) {
-      // Hide some fields for level 2 and level 3 users
+    if ( (in_array('innholdsprodusent', $GLOBALS['user']->roles, TRUE) OR in_array('level 3', $GLOBALS['user']->roles, TRUE)) AND (!in_array('superbruker', $GLOBALS['user']->roles, TRUE)) ) {
+      // Hide some fields for innholdsprodusent and level 3 users
       foreach ($not_for_level_2 as $l2) {
         if (isset($form[$l2])) {
           $form[$l2]['#access'] = FALSE;
         }
       }
-      if (! in_array('level 2', $GLOBALS['user']->roles, TRUE)) {
+      if (! in_array('innholdsprodusent', $GLOBALS['user']->roles, TRUE)) {
         // Hide some additional fields for level 3 users
         foreach ($not_for_level_3 as $l3) {
           if (isset($form[$l3])) {
@@ -1056,7 +1056,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
     }
 
     // Disable ("grey out") some fields
-    if ($GLOBALS['user']->uid != 1 && !in_array('level 1', $GLOBALS['user']->roles, TRUE)) {
+    if ($GLOBALS['user']->uid != 1 && !in_array('superbruker', $GLOBALS['user']->roles, TRUE)) {
       $not_enabled = array(
         'field_uib_content_manager',
         'field_uib_staff',
@@ -1158,7 +1158,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_visit_address',
       'field_uib_geolocation',
       );
-    if (in_array('level 2', $GLOBALS['user']->roles, TRUE) && (!in_array('level 1', $GLOBALS['user']->roles, TRUE))) {
+    if (in_array('innholdsprodusent', $GLOBALS['user']->roles, TRUE) && (!in_array('superbruker', $GLOBALS['user']->roles, TRUE))) {
       foreach ($not_for_level_2 as $l2) {
         if (isset($form[$l2])) {
           $form[$l2]['#access'] = FALSE;
@@ -1761,7 +1761,7 @@ function uib_area_form_menu_overview_form_alter(&$form, &$form_state, $form_id) 
 function uib_area_form_node_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   //remove fieldgroups where user doesn't have access
-  if (!in_array('level 1',$user->roles) && $user->uid != 1) {
+  if (!in_array('superbruker',$user->roles) && $user->uid != 1) {
     unset($form['#groups']['group_level_1']);
     unset($form['#fieldgroups']['group_level_1']);
     foreach ($form['#group_children'] as $key => $value) {
@@ -1799,7 +1799,7 @@ function uib_area__menu_overview_form_post_render($content, $element) {
  */
 function uib_area_form_menu_edit_item_alter(&$form, &$form_state, $form_id) {
   global $user;
-  if (substr($form['original_item']['#value']['menu_name'], 0, 10) == 'menu-area-' && !in_array('level 1', $user->roles) && $user->uid != 1) {
+  if (substr($form['original_item']['#value']['menu_name'], 0, 10) == 'menu-area-' && !in_array('superbruker', $user->roles) && $user->uid != 1) {
     if (isset($form['parent']['#options'])) {
       $relative_depth = !empty($form['has_children']['#value']) && ($item = $form['original_item']['#value']) ? menu_link_children_relative_depth($item) : 0;
       $form['parent']['#options'] = uib_area__filter_parent_options($form['parent']['#options'], $relative_depth);
@@ -2045,7 +2045,7 @@ function uib_area__staff_status_access_check() {
     if ($user->uid == 1) {
       return TRUE;
     }
-    if (in_array('level 1', $user->roles) || in_array('admin', $user->roles)) {
+    if (in_array('superbruker', $user->roles) || in_array('admin', $user->roles)) {
       return TRUE;
     }
   }

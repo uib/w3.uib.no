@@ -15,9 +15,9 @@ function uib_message_user_default_permissions() {
     'name' => 'create uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
       'level 3' => 'level 3',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -27,8 +27,8 @@ function uib_message_user_default_permissions() {
     'name' => 'delete any uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -38,9 +38,9 @@ function uib_message_user_default_permissions() {
     'name' => 'delete own uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
       'level 3' => 'level 3',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -57,8 +57,8 @@ function uib_message_user_default_permissions() {
     'name' => 'edit any uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -68,9 +68,9 @@ function uib_message_user_default_permissions() {
     'name' => 'edit own uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
       'level 3' => 'level 3',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -136,9 +136,9 @@ function uib_message_user_default_permissions() {
     'name' => 'view any unpublished uib_message content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
       'level 3' => 'level 3',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'view_unpublished',
   );

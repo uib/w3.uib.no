@@ -52,7 +52,7 @@ function uib_content_list_preprocess_page(&$variables) {
       ));
       $steps = array();
       $all_steps = ($metadata->field_uib_step->value());
-      $allowed_user_roles = array('level 1', 'level 2', 'level 3');
+      $allowed_user_roles = array('superbruker', 'innholdsprodusent', 'level 3');
       $variables['page']['content_top']['field_uib_step'] = field_view_field('node', $variables['node'], 'field_uib_step', array(
         'label' => 'hidden',
         'weight' => 20,
@@ -144,7 +144,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
       $metadata = entity_metadata_wrapper('node', $variables['nid']);
       $steps = array();
       $all_steps = ($metadata->field_uib_step->value());
-      $allowed_user_roles = array('level 1', 'level 2', 'level 3');
+      $allowed_user_roles = array('superbruker', 'innholdsprodusent', 'level 3');
       if (count(array_intersect($user->roles, $allowed_user_roles)) > 0) {
         $steps = $all_steps;
       }
@@ -265,7 +265,7 @@ function uib_content_list_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_search_manual_boost',
     );
     global $user;
-    if (!in_array('level 1', $user->roles)) {
+    if (!in_array('superbruker', $user->roles)) {
       foreach ($only_for_level_1 as $hide) {
         hide($form[$hide]);
       }
@@ -570,7 +570,7 @@ function uib_content_list_menu_local_task_submit($form, &$form_state, $uib_conte
 function uib_content_list_node_validate($node, $form, &$form_state) {
   if ($form["#form_id"] == "uib_content_list_node_form") {
     global $user;
-    if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
+    if (!in_array('superbruker', $user->roles, TRUE) && $user->uid != 1) {
       $area_id = $form_state['values']['field_uib_area']['und'][0]['target_id'];
       if ($area_id != "") {
         $area_node = node_load($area_id);

@@ -754,7 +754,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This is a field level 1 users may use to add an image map to main media in an area.',
+    'description' => 'This is a field superbruker users may use to add an image map to main media in an area.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -5707,7 +5707,7 @@ function uib_area_field_default_field_instances() {
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
   t('This field is shown at the bottom of the area front page. ');
-  t('This is a field level 1 users may use to add an image map to main media in an area.');
+  t('This is a field superbruker users may use to add an image map to main media in an area.');
   t('This is a short category title which highlights the subject of the article. ');
   t('This is the large image/video at the top.');
   t('This is the secondary profile text. Use this for information that is often accessed. Think about what information is important at different times of the year. ');

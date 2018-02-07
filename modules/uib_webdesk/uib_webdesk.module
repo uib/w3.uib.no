@@ -38,15 +38,15 @@ function uib_webdesk_menu() {
  */
 function uib_webdesk_admin_menu_output_alter(&$content) {
   global $user;
-  if ( (in_array('level 2', $user->roles, TRUE)) || (in_array('level 3', $user->roles, TRUE)) ) {
-    // Do not let users at level 2 and level 3 see these admin menu items
+  if ( (in_array('innholdsprodusent', $user->roles, TRUE)) || (in_array('level 3', $user->roles, TRUE)) ) {
+    // Do not let users at innholdsprodusent and level 3 see these admin menu items
     $content['menu']['admin/help']['#access'] = FALSE;
     $content['menu']['admin/index']['#access'] = FALSE;
   }
-  if (!in_array('level 1', $user->roles, TRUE)) {
+  if (!in_array('superbruker', $user->roles, TRUE)) {
     $content['menu']['webdesk']['webdesk/userconn']['#access'] = FALSE;
   }
-  if (in_array('level 3', $user->roles, TRUE) && !in_array('level 2', $user->roles) && !in_array('level 1', $user->roles)) {
+  if (in_array('level 3', $user->roles, TRUE) && !in_array('innholdsprodusent', $user->roles) && !in_array('superbruker', $user->roles)) {
       $content['menu']['admin/structure']['#access'] = FALSE;
   }
   // prepopulate byline field
@@ -54,7 +54,7 @@ function uib_webdesk_admin_menu_output_alter(&$content) {
     $content['menu']['admin/content']['node/add']['node/add/uib-article']['#options']['query'] = array('field_uib_byline' => $user->uid);
   }
   elseif (!empty($content['menu']['node/add'])) {
-    // prepopulate byline field for level 2 and 3 users (admin menu structure is different)
+    // prepopulate byline field for innholdsprodusent and 3 users (admin menu structure is different)
     $content['menu']['node/add']['node/add/uib-article']['#options']['query'] = array('field_uib_byline' => $user->uid);
   }
   if (isset($content['menu']['webdesk/files'])) {

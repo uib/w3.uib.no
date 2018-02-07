@@ -24,7 +24,7 @@ function uib_market_user_default_permissions() {
     'name' => 'delete any uib_market content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -43,7 +43,7 @@ function uib_market_user_default_permissions() {
     'name' => 'edit any uib_market content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );

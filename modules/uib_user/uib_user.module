@@ -31,7 +31,7 @@ function uib_user_username_alter(&$name, $account) {
  * Implements hook_user_login().
  */
 function uib_user_user_login(&$edit, $account) {
-  if ((in_array('level 1', $account->roles, TRUE)) || ($account->uid == 1) || (in_array('level 2', $account->roles, TRUE)) || (in_array('level 3', $account->roles, TRUE))) {
+  if ((in_array('superbruker', $account->roles, TRUE)) || ($account->uid == 1) || (in_array('innholdsprodusent', $account->roles, TRUE)) || (in_array('level 3', $account->roles, TRUE))) {
     $edit['redirect'] = 'webdesk';
   }
   else {
@@ -113,12 +113,12 @@ function __uib_deny() {
   }
   else {
     $roles_allowed = array(
-      'level 1',
-      'level 2',
+      'superbruker',
+      'innholdsprodusent',
     );
     foreach ($roles_allowed as $role) {
       if (in_array($role, $user->roles)) {
-        if ($role == 'level 1') {
+        if ($role == 'superbruker') {
           return TRUE;
         }
         else {
@@ -139,7 +139,7 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
     global $user;
     if ($user->uid != 1 ) {
       if ($form['uid']['#value'] != $user->uid) {
-        if (!in_array('level 1', $user->roles)) {
+        if (!in_array('superbruker', $user->roles)) {
           $form['actions']['submit']['#disabled'] = TRUE;
         }
       }
@@ -160,9 +160,9 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
       edited');
     drupal_set_message($message);
 
-    // No access to user cancel button unless level 1.
+    // No access to user cancel button unless superbruker.
     if ($user->uid != 1 ) {
-      if (!in_array('level 1', $user->roles)) {
+      if (!in_array('superbruker', $user->roles)) {
         $form['actions']['cancel']['#access'] = FALSE;
       }
     }
@@ -203,7 +203,7 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
       'status',
     );
     if ($user->uid != 1) {
-      if (!in_array('level 1', $user->roles, TRUE)) {
+      if (!in_array('superbruker', $user->roles, TRUE)) {
         foreach ($hidden_properties_level_2_and_3 as $item) {
           $form['account'][$item]['#access'] = FALSE;
         }
@@ -215,7 +215,7 @@ function uib_user_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_search_manual_boost',
     );
     if ($user->uid != 1) {
-      if (!in_array('level 1', $GLOBALS['user']->roles, TRUE)) {
+      if (!in_array('superbruker', $GLOBALS['user']->roles, TRUE)) {
         foreach ($hidden_fields_not_level_1 as $item) {
           $form[$item]['#access'] = FALSE;
         }
@@ -336,7 +336,7 @@ function uib_user_block_view($delta = '') {
 function uib_user_preprocess_page(&$vars) {
   $unwanted_tabs_level_2_and_3 = array('user/%/scheduler');
   global $user;
-  if (!in_array('level 1', $user->roles)) {
+  if (!in_array('superbruker', $user->roles)) {
     foreach ($vars['tabs'] as $tabs_key => $tabs) {
       if (is_array($tabs)) {
         foreach ($tabs as $tab_key => $tab) {
@@ -937,7 +937,7 @@ function uib_user_get_user_connections($user_name = NULL) {
 function uib_user__allow_level_1() {
   global $user;
   if (
-      in_array('level 1', $user->roles)
+      in_array('superbruker', $user->roles)
       || in_array('admin', $user->roles)
       || $user->uid == 1
   ) {

@@ -15,7 +15,7 @@ function uib_views_user_default_permissions() {
     'name' => 'create uib_views_page content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -25,7 +25,7 @@ function uib_views_user_default_permissions() {
     'name' => 'delete any uib_views_page content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -35,7 +35,7 @@ function uib_views_user_default_permissions() {
     'name' => 'delete own uib_views_page content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -45,8 +45,8 @@ function uib_views_user_default_permissions() {
     'name' => 'edit any uib_views_page content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -56,8 +56,8 @@ function uib_views_user_default_permissions() {
     'name' => 'edit own uib_views_page content',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
-      'level 2' => 'level 2',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'node',
   );
@@ -67,7 +67,7 @@ function uib_views_user_default_permissions() {
     'name' => 'override uib_views_page published option',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'override_node_options',
   );

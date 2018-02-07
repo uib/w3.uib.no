@@ -17,18 +17,11 @@ function uib_setup_user_default_roles() {
     'machine_name' => 'admin',
   );
 
-  // Exported role: level 1.
-  $roles['level 1'] = array(
-    'name' => 'level 1',
-    'weight' => 4,
-    'machine_name' => 'level_1',
-  );
-
-  // Exported role: level 2.
-  $roles['level 2'] = array(
-    'name' => 'level 2',
+  // Exported role: innholdsprodusent.
+  $roles['innholdsprodusent'] = array(
+    'name' => 'innholdsprodusent',
     'weight' => 3,
-    'machine_name' => 'level_2',
+    'machine_name' => 'innholdsprodusent',
   );
 
   // Exported role: level 3.
@@ -36,6 +29,13 @@ function uib_setup_user_default_roles() {
     'name' => 'level 3',
     'weight' => 2,
     'machine_name' => 'level_3',
+  );
+
+  // Exported role: superbruker.
+  $roles['superbruker'] = array(
+    'name' => 'superbruker',
+    'weight' => 4,
+    'machine_name' => 'superbruker',
   );
 
   return $roles;

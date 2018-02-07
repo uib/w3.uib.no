@@ -31,7 +31,7 @@ function uib_testimonial_field_widget_form_alter(&$element, &$form_state, $conte
 function uib_testimonial_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   if ($form_id == 'uib_testimonial_node_form') {
-    if (!in_array('level 1', $user->roles)) {
+    if (!in_array('superbruker', $user->roles)) {
       hide($form['field_uib_search_keywords']);
     }
   }

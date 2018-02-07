@@ -84,14 +84,8 @@ class SebraPerson extends stdClass {
 
         // map "Redaktør" to "Level 2" user (implies also level 3),
         // map "Innholdsprodusent" to a "Level 3" user
-        if ($role_group == 'Redaktør') {
-          $role_name = 'level 2';
-          $this->roles[$user_roles[$role_name]] = $role_name;
-          $role_name = 'level 3';
-          $this->roles[$user_roles[$role_name]] = $role_name;
-        }
-        elseif ($role_group == 'Innholdsprodusent') {
-          $role_name = 'level 3';
+        if ($role_group == 'Redaktør' || $role_group == 'Innholdsprodusent') {
+          $role_name = 'innholdsprodusent';
           $this->roles[$user_roles[$role_name]] = $role_name;
         }
         else {

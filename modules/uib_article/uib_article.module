@@ -151,9 +151,9 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     }
 
     global $user;
-    if (!(in_array('level 1', $user->roles) or $user->uid == 1)) {
+    if (!(in_array('superbruker', $user->roles) or $user->uid == 1)) {
       unset($form['field_uib_article_type']['und']['#options']['no_sidebar']);
-      // hidden for level 2 and 3:
+      // hidden for innholdsprodusent and 3:
       $hideme = array(
         'field_uib_search_manual_boost',
         'field_uib_search_keywords',
@@ -253,7 +253,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
     }
 
     //Hide Gmap link option for everyone except lvl 1 and admin
-    if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
+    if (!in_array('superbruker', $user->roles, TRUE) && $user->uid != 1) {
       unset($form['field_uib_gmap_link']);
     }
     //Fields to be hidden/required if event is not chosen
@@ -578,7 +578,7 @@ function uib_article_node_validate($node, $form, &$form_state) {
       }
     }
     global $user;
-    if (!in_array('level 1', $user->roles, TRUE) && $user->uid != 1) {
+    if (!in_array('superbruker', $user->roles, TRUE) && $user->uid != 1) {
       $area_id = $form_state['values']['field_uib_area']['und'][0]['target_id'];
       if ($area_id != "") {
         $area_node = node_load($area_id);

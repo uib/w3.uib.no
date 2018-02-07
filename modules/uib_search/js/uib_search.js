@@ -364,7 +364,7 @@
             );
           }
         }
-        // If level 1 user:
+        // If superbruker user:
         if ($('input[name=boost]').val()==1 &&
             (
               v._type == 'user' ||

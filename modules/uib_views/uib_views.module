@@ -36,7 +36,7 @@ function uib_views_views_bulk_operations_form_alter(&$form, &$form_state, $vbo) 
   global $user;
 
   if (in_array('level 3', $user->roles)) {
-    if (in_array('level 1', $user->roles) || in_array('level 2', $user->roles)) {
+    if (in_array('superbruker', $user->roles) || in_array('innholdsprodusent', $user->roles)) {
     }
     else {
       $form['select_all']['#access'] = FALSE;

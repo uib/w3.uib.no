@@ -722,9 +722,9 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
       }
     }
     // Some roles have no correspondence in Sebra and will be lost if we do not fix it here.
-    // All roles but 'level 2' and 'level 3' are fixed.
+    // All roles but 'innholdsprodusent' and 'level 3' are fixed.
     foreach ($account->roles as $key => $value) {
-      if ($value != 'level 2' AND $value != 'level 3') {
+      if ($value != 'innholdsprodusent' AND $value != 'level 3') {
         $u->roles[$key] = $value;
       }
     }
@@ -889,7 +889,7 @@ function uib_sebra_user_presave(&$edit, $account, $category) {
     if ($edit['status'] === 0) {
       if (!array_key_exists('roles', $edit)) {
         $roles = array_filter($account->roles, function($rname) {
-          return !in_array($rname, array('level 1', 'level 2', 'level 3'));
+          return !in_array($rname, array('superbruker', 'innholdsprodusent', 'level 3'));
         });
         if ($roles != $account->roles) {
           $edit['roles'] = $roles;

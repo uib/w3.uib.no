@@ -215,7 +215,7 @@ function uib_area_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'For level 1',
+    'label' => 'For superbruker',
     'weight' => '1',
     'children' => array(
       0 => 'field_uib_image_map',
@@ -577,7 +577,7 @@ function uib_area_field_group_info() {
   t('Column second');
   t('Contact');
   t('Event info');
-  t('For level 1');
+  t('For superbruker');
   t('Links and attachments');
   t('Management');
   t('Office information');

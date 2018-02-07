@@ -35,7 +35,7 @@ function uib_devel_user_default_permissions() {
     'name' => 'switch users',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'devel',
   );

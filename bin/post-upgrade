@@ -5,8 +5,7 @@
 # and configuration of the site.
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
-    bin/site-drush vset uib_show_exam_info TRUE
-    bin/site-drush scr uib-feature-areas.php
+    bin/site-drush uib-sebra-users --limit=0 -v
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
         bin/index-all-users
         bin/index-all-studies
@@ -16,11 +15,9 @@ fi
 
 
 if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
-    bin/site-drush scr uib-feature-areas.php
+
 fi
 
-REL=86
+REL=89
 
-bin/site-drush vdel uib_tp_url --yes
-bin/site-drush vset uib_study_hide_datoUtlevert_in_exams_list FALSE
 

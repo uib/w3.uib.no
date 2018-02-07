@@ -37,7 +37,7 @@ function uib_search__admin_access() {
   global $user;
   return $user->uid == 1
     || user_has_role(176168899)
-    || in_array('level 1', $user->roles);
+    || in_array('superbruker', $user->roles);
 }
 /**
  * Returns the search page.
@@ -280,7 +280,7 @@ function uib_search__form(){
     ),
   );
   if (
-      in_array('level 1', $user->roles)
+      in_array('superbruker', $user->roles)
       || in_array('admin', $user->roles)
       || $user->uid == 1
   ) {
@@ -1334,12 +1334,12 @@ function uib_search__boost_item_search($dir, $type, $id) {
   global $user;
   if (
     !(
-      in_array('level 1', $user->roles)
+      in_array('superbruker', $user->roles)
       || in_array('admin', $user->roles)
       || $user->uid == 1
       )
     ) {
-    // User does not have role admin or level 1
+    // User does not have role admin or superbruker
     return;
   }
   if (!$id) {

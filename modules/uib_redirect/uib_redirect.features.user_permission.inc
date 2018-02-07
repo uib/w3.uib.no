@@ -15,7 +15,7 @@ function uib_redirect_user_default_permissions() {
     'name' => 'administer redirects',
     'roles' => array(
       'admin' => 'admin',
-      'level 1' => 'level 1',
+      'superbruker' => 'superbruker',
     ),
     'module' => 'redirect',
   );
