@@ -850,7 +850,8 @@ function uib_user__teaser_markup($user = NULL) {
       $user_area_nid = uib_user__ou_area($ou->nid, $user_wrapper->uid->value());
       if ($user_area_nid) {
         $user_area = entity_load_single('node', $user_area_nid);
-        $markup['#markup'] .= '<p class="uib-user-ou">' . $user_area->title . '</p>';
+        $user_area_link = l($user_area->title, 'node/' . $user_area_nid);
+        $markup['#markup'] .= '<p class="uib-user-ou">' . $user_area_link . '</p>';
       }
       else {
         uibx_log("User $user->name ($user->uid) has no relevant area", 'warning');
