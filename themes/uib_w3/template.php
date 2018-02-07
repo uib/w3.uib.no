@@ -769,6 +769,9 @@ EOD;
 SCRIPT;
         drupal_add_js($js, 'inline');
       }
+      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'specialization') {
+        $variables['node']->field_uib_study_category['und'][0]['value'] = 'studieretning';
+      }
       $variables['page']['content_top']['field_uib_study_type'] =
         field_view_field('node', $variables['node'], 'field_uib_study_category',
           array(
@@ -776,8 +779,7 @@ SCRIPT;
         'weight' => -50,
       ));
       $category = $variables['node']->field_uib_study_category['und'][0]['value'];
-      $name = "field:field_uib_study_category:#allowed_values:" .
-        $category;
+      $name = "field:field_uib_study_category:#allowed_values:" . $category;
       $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
       uib_study__get_study_kicker($category, $name);
 

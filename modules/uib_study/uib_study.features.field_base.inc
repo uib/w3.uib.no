@@ -183,6 +183,7 @@ function uib_study_field_default_field_bases() {
         'postgraduate' => 'Postgraduate courses',
         'bachelorprogram' => 'Bachelor’s degree programmes',
         'masterprogram' => 'Master’s degree programmes',
+        'studieretning' => 'Specialization',
         'integrertemasterpr-profesjonsst' => 'Integrated Master’s degrees/Profession studies',
         'arsstudium' => 'One-year studies',
         'phdkurs' => 'PhD courses',

@@ -1028,12 +1028,12 @@ EOD;
               $view = views_get_view('uib_study_specialization');
               $view->preview('block', array($nid));
               if ($view->result) {
-                $group_title = t('Specialization');
+                $group_title = t('Specializations');
                 array_splice($tab_items, $tab_items_specialization_position, 0, '<a href="#uib-tabs-specialization">' . $group_title . '</a>');
                 $render['specialization'] = array(
                   '#type' => 'html_tag',
                   '#tag' => 'h2',
-                  '#value' => t('Specialization'),
+                  '#value' => t('Specializations'),
                 );
                 $render['specialization block'] = array(
                   '#type' => 'html_tag',
@@ -2996,6 +2996,7 @@ function uib_study__get_study_kicker($value, $name) {
     'integrertemasterpr-profesjonsst' => t('Integrated Master/Professional degree'),
     'arsstudium' => t('One-year study'),
     'forskningsavtale' => t('Bilateral'),
+    'studieretning' => t('Specialization'),
   );
   return array_key_exists($value, $values) ? $values[$value] : i18n_string_translate($name, $value);
 }
