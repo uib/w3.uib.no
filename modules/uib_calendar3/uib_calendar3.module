@@ -141,8 +141,9 @@ function uib_calendar3_block_view($delta) {
           );
           $ra['data'][$key]['kicker_image']['kicker'] = field_view_field('node', $node,
             'field_uib_kicker', array('label' => 'hidden','weight'=>-400));
-          $ra['data'][$key]['kicker_image']['kicker']['#prefix'] = '<a href="' .
-            url('node/' . intval($nid)) . '">';
+          $ra['data'][$key]['kicker_image']['kicker']['#prefix'] = '<a
+            title="' . check_plain($node->title) . '"
+            href="' . url('node/' . intval($nid)) . '">';
           $ra['data'][$key]['kicker_image']['kicker']['#suffix'] = '</a>';
           $ra['data'][$key]['kicker_image']['image'] = array(
             '#type' => 'container',
@@ -160,7 +161,8 @@ function uib_calendar3_block_view($delta) {
             'date' => array('#markup'=>
               uib_calendar3__get_calendar_card_render_array(
                 $value->field_uib_date_value . 'Z'),
-              '#prefix' => '<a href="' . url('node/' . intval($nid)) . '">',
+              '#prefix' => '<a title="' . check_plain($node->title) . '"
+                href="' . url('node/' . intval($nid)) . '">',
               '#suffix' => '</a>',
             ),
           );
@@ -171,8 +173,9 @@ function uib_calendar3_block_view($delta) {
 
         // Other info: - title
         $ra['data'][$key]['calinfo'] = array();
-        $ra['data'][$key]['calinfo']['#prefix'] = '<a href="' .
-          url('node/' . intval($nid)) . '">';
+        $ra['data'][$key]['calinfo']['#prefix'] = '<a
+          title="' . check_plain($node->title) . '"
+          href="' . url('node/' . intval($nid)) . '">';
         $ra['data'][$key]['calinfo']['#suffix'] = '</a>';
         $ra['data'][$key]['calinfo']['#type'] = 'container';
         $ra['data'][$key]['calinfo']['#attributes'] =
@@ -227,8 +230,8 @@ function uib_calendar3_block_view($delta) {
         $r['#suffix'] = '</div>';
         $r['title'] = array( '#markup' => check_plain($title)
           . " <span class=\"event-type\">($type)</span>");
-        $ra['data']['column'][$key]['#prefix'] = '<a href="' .
-          url('node/' . intval($nid)) . '">';
+        $ra['data']['column'][$key]['#prefix'] = '<a title="' . check_plain($title) .
+          '" href="' . url('node/' . intval($nid)) . '">';
         $ra['data']['column'][$key]['#suffix'] = '</a>';
         $ra['data']['column'][$key][] = $r;
         $ra['data']['column'][$key]['time'] = array(
