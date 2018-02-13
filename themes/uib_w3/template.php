@@ -1365,6 +1365,18 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       }
       $variables['theme_hook_suggestions'][] = 'node__area__short_teaser';
     }
+    /**
+     * Replace teaser URL for kmd to external URL given in kmd import
+     **/
+    if (isset($variables['field_uib_kmd_data']['und'][0]['value'])) {
+      global $base_url;
+      global $language;
+      $kmd_href = json_decode($variables['field_uib_kmd_data']['und'][0]['value'])->href;
+      $variables['node_url'] = $kmd_href;
+      $title = urlencode(strtolower(preg_replace(array('/[^a-zA-Z0-9 æøå\/]/', '/[ -]+/', '/^-|-$/','/-in-/','/-for-/'),array('', '-', '','-','-'), html_entity_decode($variables['title'], ENT_QUOTES))));
+      $ref_url = $base_url .'/'. $language->language .'/kmd/'. $variables['nid'] . '/' . $title;
+      $variables['content']['field_uib_main_media'][0]['#markup'] = str_replace($ref_url, $kmd_href, $variables['content']['field_uib_main_media'][0]['#markup']);
+    }
   }
   if($variables['view_mode']=='short_teaser'){
     unset($variables['content']['links']);

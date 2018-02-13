@@ -2769,6 +2769,33 @@ function uib_area_node_view($node, $view_mode, $langcode) {
   }
 }
 
+/**
+ * implements hook_views_post_render
+ **/
+function uib_area_views_post_render(&$view,&$output,&$cache) {
+  /**
+   * Change teaser object url to KMD remote url for KMD events
+   **/
+  if ($view->args[0] == '102518') {
+    foreach ($view->result as $obj) {
+      if (isset($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])) {
+        global $base_url;
+        global $language;
+        //replace chars from title, still allowing æøå as characters, but
+        //replacing them with url encoded characters
+        $title = urlencode(strtolower(preg_replace(array('/[^a-zA-Z0-9 æøå\/]/', '/[ -]+/', '/^-|-$/','/-in-/','/-for-/'),array('', '-', '','-','-'), $obj->node_title)));
+        $ref_url = $base_url .'/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
+        $ref_baseless = '/'. $language->language .'/kmd/'. $obj->nid . '/' . $title;
+        $kmd_href = json_decode($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])->href;
+        //Replace the internal URL with the given URL for the event
+        $output = str_replace($ref_url, $kmd_href, $output);
+        //Also need to replace the relative URL's
+        $output = str_replace($ref_baseless, $kmd_href, $output);
+      }
+    }
+  }
+}
+
 function uib_area__have_common_element($array_a, $array_b) {
   foreach($array_a as $aa) {
     foreach($aa as $a){

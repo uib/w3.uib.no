@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /var/www/w3.uib.no
+
+bin/site-drush scr import_kmd_events_and_news
