@@ -265,6 +265,28 @@ function uib_article_field_default_field_bases() {
     'type' => 'list_integer',
   );
 
+  // Exported field_base: 'field_uib_kmd_data'.
+  $field_bases['field_uib_kmd_data'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_kmd_data',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 1024,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_uib_main_media_teaser'.
   $field_bases['field_uib_main_media_teaser'] = array(
     'active' => 1,
@@ -289,23 +311,6 @@ function uib_article_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'file',
-  );
-  // Exported field_base: 'field_uib_kmd_data'.
-  $field_bases['field_uib_kmd_data'] = array(
-    'field_name' => 'field_uib_kmd_data',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 1024,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
   );
 
   // Exported field_base: 'field_uib_published_timestamp'.

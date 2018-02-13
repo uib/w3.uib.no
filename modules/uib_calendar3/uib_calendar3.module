@@ -616,8 +616,13 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
         $info = "<div class=event-entry-info>$info</div>";
 
         $ends = $date($event->field_uib_date_value2);
+        $event_link = l($event->title, 'node/' . $nid);
+        if ($event->field_uib_kmd_data_value) {
+          $kmd_data = drupal_json_decode($event->field_uib_kmd_data_value);
+          $event_link = l($event->title, $kmd_data['href']);
+        }
         $ongoing["$ends $nid"] = array(
-          '#markup' => "<div class='event-entry event-entry-$type'>" . l($event->title, "node/$nid") . " ($event_types[$type])" . $info . '</div>',
+          '#markup' => "<div class='event-entry event-entry-$type'>" . $event_link . " ($event_types[$type])" . $info . '</div>',
         );
       }
       ksort($ongoing);
@@ -997,6 +1002,10 @@ function uib_calendar3__get_index_page_query(
   // include teaser
   $select->leftJoin('field_data_field_uib_lead', 'lead', 'lead.entity_id = n.nid');
   $select->fields('lead', array('field_uib_lead_value'));
+
+  // include KMD-data
+  $select->leftJoin('field_data_field_uib_kmd_data', 'kmd', 'kmd.entity_id = n.nid');
+  $select->fields('kmd', array('field_uib_kmd_data_value'));
 
   // filter and order by date
   $select->where('d.field_uib_date_value2 >= :date', array(':date' => $from_date));

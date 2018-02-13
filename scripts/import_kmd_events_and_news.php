@@ -8,7 +8,7 @@
 
 $url = variable_get(
   'uib_area_kmd_rest_json_api_url',
-  'https://kmd.uib.no/no/forside/_/service/khib/uibfeed'
+  'https://kmd.uib.no/_/service/khib/uibfeed?start=0&count=1000000'
 );
 
 $options = array(
