@@ -4745,8 +4745,6 @@ div.field-item {
         margin-bottom: .4rem; }
         .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3 a {
           color: #333333; }
-          .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser h3 a:hover {
-            text-decoration: underline; }
       .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser p, .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser li {
         margin-bottom: .1rem;
         color: #333333; }
@@ -4755,8 +4753,6 @@ div.field-item {
         .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser .item-list .uib-user-phone li {
           margin: 0;
           font-size: 1.125rem; }
-      .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser .uib-user-email a:hover {
-        text-decoration: underline; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .field-name-field-uib-user-competence {
       display: none; }
 
@@ -7152,13 +7148,10 @@ body #mc_embed_signup div.mce_inline_error {
   margin: 0; }
   .uib-user-teaser h3 a {
     color: #333333;
-    text-decoration: none;
     font-size: 1.125rem; }
 .uib-user-teaser p {
   margin: 0;
   font-size: 1.125rem; }
-  .uib-user-teaser p a {
-    text-decoration: none; }
 .uib-user-teaser ul {
   padding: 0;
   margin: 0; }
