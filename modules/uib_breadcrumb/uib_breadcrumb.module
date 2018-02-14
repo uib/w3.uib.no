@@ -79,12 +79,13 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           case 'infopage':
             $current_path = current_path();
             $active_trail_end = end($active_trail);
-            if ($active_trail_end['link_path'] == $current_path) {
+            $active_trail_end_area_nid = substr($active_trail_end['menu_name'],10);
+            $current_area_menu = menu_tree_all_data('menu-area-' . $current_area->nid);
+            $current_area_menu_ids = __uib_get_menu_item_ids($current_area_menu);
+            if ($active_trail_end['link_path'] == $current_path && $active_trail_end_area_nid == $current_area->nid) {
               $uib_active_trail = array_merge($uib_active_trail, $active_trail);
             }
             else {
-              $current_area_menu = menu_tree_all_data('menu-area-' . $current_area->nid);
-              $current_area_menu_ids = __uib_get_menu_item_ids($current_area_menu);
               $related_menu_node_id = __uib_breadcrumb__get_related_menu_item(arg(1), $current_area_menu_ids);
               if ($related_menu_node_id) {
                 foreach($current_area_menu as $item) {
@@ -345,7 +346,7 @@ function __uib_breadcrumb__get_related_menu_item($nid, $menu_ids, $visited=array
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'uib_article')
-    ->fieldCondition('field_uib_article_type', 'value', 'infopage', '=')
+    ->fieldCondition('field_uib_article_type', 'value', array('infopage', 'news'), 'IN')
     ->fieldCondition('field_uib_relation', 'target_id', $nid, '=');
   $result = $query->execute();
   $return = FALSE;
@@ -450,14 +451,14 @@ function __uib_get_parent_item($mlid) {
  */
 function __uib_get_menu_item_ids($menu) {
   $ids = array();
-  foreach ($menu as $item) {
-    if ($item['link']['link_path'] != 'http:#') {
+  foreach ($menu as $key => $item) {
+    if ($item['link']['link_path'] != 'http:#' && !$item['link']['hidden']) {
       $id = explode('/', $item['link']['link_path']);
       if (count($id) < 3) {
         $ids[] = $id[1];
       }
     }
-    foreach ($item['below'] as $ml) {
+    foreach ($item['below'] as $k => $ml) {
       $id = explode('/', $ml['link']['link_path']);
       if (count($id) < 3) {
         $ids[] = $id[1];
