@@ -1,3 +1,13 @@
+# Release 89 _2018-02-15_
+- Lagt til “kicker” på studiespesialiseringer #17071
+- Lagt til ny funksjon som viser nyheter og kalenderhendelser fra kmd.uib.no #18895
+- Forbedret brødsmulestivisning #19264
+- Fjernet et unødvendig felt fra editor-grensesnittet #19808
+- Fjernet rolle 3 ('Innholdsprodusent') og omgjort alle med rolle 3 til rolle 2 ('Redaktør' – fra nå av kalt 'Innholdsprodusent') #19844
+- Forbedret oversikt over kompetansefelt i editor (kun for rolle1) # 19867
+- Lagt til at navn på områder også blir lenker i "relaterte personer" og personutlisting #19875
+- Rettet opp i universell utforming (iht. Web Content Accessibility Guidelines 2.0 (WCAG2.0)) #19905 #19908 #19918
+
 # Release 88 _2018-02-01_
 - Rettet feil der bilder i feature-artikler ikke ble vist for eksterne brukere (utenfor UiBs nettverk) #19768
 - Rettet feil der billedkarusellen i kalenderoppslag sluttet å virke dersom oppføringen var valgt som fremhevet arrangement på en områdeside #19775
