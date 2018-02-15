@@ -424,7 +424,6 @@ function uib_setup_user_default_permissions() {
     'roles' => array(
       'superbruker' => 'superbruker',
     ),
-
     'module' => 'role_delegation',
   );
 
@@ -434,13 +433,6 @@ function uib_setup_user_default_permissions() {
     'roles' => array(
       'superbruker' => 'superbruker',
     ),
-    'module' => 'role_delegation',
-  );
-
-  // Exported permission: 'assign superbruker role'.
-  $permissions['assign superbruker role'] = array(
-    'name' => 'assign superbruker role',
-    'roles' => array(),
     'module' => 'role_delegation',
   );
 
