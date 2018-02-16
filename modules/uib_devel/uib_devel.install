@@ -24,19 +24,21 @@ function uib_devel_uninstall() {
 function uib_devel_enable() {
   $roles = array_flip(user_roles());
   $uids = array();
-  foreach (array(1, 2, 3, 4) as $level) {
+  $possible_roles = array('superbruker', 'innholdsprodusent');
+  foreach ($possible_roles as $key => $role) {
     $u = new stdClass;
-    $u->name = "level$level";
-    $u->mail = "w3+level$level@it.uib.no";
+    $u->name = $role;
+    $u->mail = 'w3+' . $role . '@it.uib.no';
     $u->status = 1;
     $u->field_uib_first_name['und'][0]['value'] = "Testulf";
-    $u->field_uib_last_name['und'][0]['value'] = "Nivå $level";
+    $u->field_uib_last_name['und'][0]['value'] = ucfirst($role);
     $u->field_grid['und'][0]['value'] = 1; # remove grid
     $u->roles = array();
-    for ($i = $level; $i <= 3; $i++) {
-      $role_name = "level " . $i;
-      $u->roles[$roles[$role_name]] = $role_name;
+    $u->roles[$roles[$role]] = $role;
+    if ($key < 1) {
+      $u->roles[$roles[$possible_roles[$key+1]]] = $possible_roles[$key+1];
     }
+    uibx_log($u);
     user_save($u, array(
       "pass" => "admin",
     ));
@@ -63,8 +65,8 @@ function uib_devel_enable() {
  */
 function uib_devel_disable() {
   $uids = array();
-  foreach (array(1, 2, 3, 4) as $level) {
-    $u = user_load_by_name("level$level");
+  foreach (array('superbruker', 'innholdsprodusent', 'level 3', 'level 4') as $level) {
+    $u = user_load_by_name($level);
     if ($u)
       $uids[] = $u->uid;
   }
