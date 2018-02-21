@@ -157,6 +157,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       $hideme = array(
         'field_uib_search_manual_boost',
         'field_uib_search_keywords',
+        'field_uib_kmd_data',
       );
       foreach ($hideme as $key) {
         hide($form[$key]);
