@@ -9381,7 +9381,7 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   order: 1;
   margin-bottom: 1rem;
   float: none;
-  background-color: #fff;
+  background-color: transparent;
   width: 100%;
   padding: 0; }
   @media (min-width: 600px) {
