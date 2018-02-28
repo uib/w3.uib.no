@@ -4735,11 +4735,13 @@ div.field-item {
   margin-bottom: .75rem;
   font-weight: normal; }
 .field-name-field-uib-related-persons .field-items .field-item .profile {
-  display: block; }
+  display: block;
+  margin: 0 0 1.125rem; }
   .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture {
     max-width: 15%;
-    min-width: 10rem;
-    float: none; }
+    min-width: 9.125rem;
+    float: none;
+    margin: 0 0.625rem 0 0; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
       width: 100%;
       height: auto; }
@@ -4786,7 +4788,6 @@ div.field-item {
         margin-bottom: 0; }
         .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
           display: block;
-          margin-right: 1rem;
           width: 10rem;
           height: 12.5rem; } }
 @media (min-width: 960px) {
@@ -4805,17 +4806,19 @@ div.field-item {
     -ms-flex-pack: justify; }
     .field-name-field-uib-related-persons .field-items .field-item {
       width: 49%; } }
-.field-name-field-uib-links .field-label {
-  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-  text-transform: uppercase;
-  font-size: 1.625rem;
-  margin-bottom: .75rem;
-  font-weight: normal; }
-.field-name-field-uib-links .field-item {
-  font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
-  font-size: 1.25rem;
-  margin: 0 0 .5rem 0;
-  line-height: 1.5rem; }
+.field-name-field-uib-links {
+  margin-bottom: 1.125rem; }
+  .field-name-field-uib-links .field-label {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    text-transform: uppercase;
+    font-size: 1.625rem;
+    margin-bottom: .75rem;
+    font-weight: normal; }
+  .field-name-field-uib-links .field-item {
+    font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+    font-size: 1.25rem;
+    margin: 0 0 .5rem 0;
+    line-height: 1.5rem; }
 
 #cse td {
   border: none; }
