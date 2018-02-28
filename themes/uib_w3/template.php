@@ -923,9 +923,11 @@ SCRIPT;
       $variables['page']['content_top']['social_media']['#weight'] = 10;
       $items = array();
       $account = $variables['page']['content']['system_main']['#account'];
-      $email = '<span class="user-contact__label">' . t('E-mail') . '</span>';
-      $email .= '<span class="user-contact__value"><a href="mailto:' . $account->mail . '">' . $account->mail . '</a></span>';
-      $items[] = $email;
+      if (!empty($account->mail)) {
+        $email = '<span class="user-contact__label">' . t('E-mail') . '</span>';
+        $email .= '<span class="user-contact__value"><a href="mailto:' . $account->mail . '">' . $account->mail . '</a></span>';
+        $items[] = $email;
+      }
       $numbers = array();
       foreach ($account->field_uib_phone['und'] as $number) {
         $numbers[] = $number['value'];

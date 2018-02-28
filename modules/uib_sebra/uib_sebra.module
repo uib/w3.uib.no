@@ -641,12 +641,14 @@ function uib_sebra__sync_user($username, $dry_run = FALSE, $ref = NULL) {
   }
 
   $status = _uib_sebra__is_testkonto($u) ? 0 : 1;
-
   if ($account) {
     $edit = array();
-    if ($account->mail != $u->email)
+    if ($u->email == 'nomail@uib.no') {
+      $edit['mail'] = '';
+    }
+    elseif ($account->mail != $u->email) {
       $edit['mail'] = $u->email;
-
+    }
     if ($account->status != $status) {
       $edit['status'] = $status;
       $un = $status == 1 ? 'un' : '';
