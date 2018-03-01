@@ -4741,7 +4741,7 @@ div.field-item {
     max-width: 15%;
     min-width: 9.125rem;
     float: none;
-    margin: 0 0.625rem 0 0; }
+    margin-right: 0.625rem; }
     .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
       width: 100%;
       height: auto; }
