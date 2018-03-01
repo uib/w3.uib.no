@@ -1,3 +1,14 @@
+# Release 90 _2018-03-01_
+- Fjernet redigeringstilgang på alle innholdsprodusenter som ikke har vært innlogget siden 1. november 2017 #19800
+- Forbedret nyhetsarkivknapp på mobilvisning #19930
+- Forbedret mobilvisning av bilder i nyhetsarkiv #19932
+- Forbedres mobilvisning av tilknyttede personer #19933
+- Forbedret utseende på sitat i artikler #19949
+- Oppdatering av testbrukerroller etter uib_devel modul-aktivering # 19951
+- Rettet cron-jobbfeil i forbindelse med KMD-feed # 19958
+- Fjernet "KMD data”-felt i editor hos innholdsprsodusenter #19960
+- Installert Drupal-modul “Optional mail on register” #19931
+
 # Release 89 _2018-02-15_
 - Lagt til “kicker” på studiespesialiseringer #17071
 - Lagt til ny funksjon som viser nyheter og kalenderhendelser fra kmd.uib.no #18895
