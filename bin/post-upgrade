@@ -5,7 +5,6 @@
 # and configuration of the site.
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
-    bin/site-drush uib-sebra-users --limit=0 -v
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
         bin/index-all-users
         bin/index-all-studies
@@ -14,10 +13,10 @@ if [ "$(hostname)" = attilatest.uib.no ]; then
 fi
 
 
-if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
+# if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
+#
+# fi
 
-fi
+REL=91
 
-REL=89
-
-
+bin/site-drush scr import_kmd_events_and_news -v
