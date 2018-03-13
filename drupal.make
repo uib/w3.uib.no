@@ -35,6 +35,7 @@ projects[colorbox][version] = 2.13
 projects[context][version] = 3.7
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.12
+projects[customerror][version] = 1.4
 projects[date][version] = 2.10
 projects[datepicker][version] = 1.0
 projects[devel][version] = 1.5
