@@ -98,6 +98,7 @@ function uib_user_menu_alter(&$items) {
   $items['admin/people']['access callback'] = '__uib_deny';
   $items['admin/people/create']['access callback'] = '__uib_deny';
   $items['admin/config']['access callback'] = '__uib_deny';
+  $items['admin/config/system/customerror']['access callback'] = '__uib_deny';
 }
 
 /**

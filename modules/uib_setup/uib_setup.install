@@ -295,3 +295,10 @@ function uib_setup_update_7031() {
   field_delete_instance($instance);
   field_purge_batch(10);
 }
+
+/**
+ * Enable customerror module
+ */
+function uib_setup_update_7032() {
+  module_enable(array('customerror'));
+}
