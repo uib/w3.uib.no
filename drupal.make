@@ -45,7 +45,6 @@ projects[entity][version] = 1.8
 projects[entity_translation][version] = 1.0-beta7
 projects[entity_view_mode][version] = 1.0-rc1
 projects[entityreference][version] = 1.2
-projects[entityreference][patch][] = https://drupal.org/files/issues/entityreference-autocomplete-items-limit-1700112-6.patch
 projects[entityreference_prepopulate][version] = 1.7
 projects[eu_cookie_compliance][version] = 1.14
 projects[features][version] = 2.10
