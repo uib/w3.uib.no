@@ -45,6 +45,7 @@ projects[entity][version] = 1.8
 projects[entity_translation][version] = 1.0-beta7
 projects[entity_view_mode][version] = 1.0-rc1
 projects[entityreference][version] = 1.5
+projects[entityreference][patch] = https://www.drupal.org/files/issues/entity_reference_list-1700112-21.patch
 projects[entityreference_prepopulate][version] = 1.7
 projects[eu_cookie_compliance][version] = 1.14
 projects[features][version] = 2.10
