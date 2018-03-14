@@ -32,6 +32,7 @@ projects[breakpoints][version] = 1.4
 projects[browsersync][version] = 1.1
 projects[coder][version] = 2.6
 projects[colorbox][version] = 2.13
+projects[colorbox][patch] = https://www.drupal.org/files/issues/Adding-ARIA-labels-to-colorbox-library-1.6.4.patch
 projects[context][version] = 3.7
 projects[context][patch][] = patches/context-disable-menu.patch
 projects[ctools][version] = 1.12
