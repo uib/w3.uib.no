@@ -258,7 +258,7 @@ function uib_setup_file_default_displays() {
     'colorbox_image_style' => 'content_main',
     'colorbox_gallery' => 'field_page',
     'colorbox_gallery_custom' => '',
-    'colorbox_caption' => 'auto',
+    'colorbox_caption' => 'none',
     'colorbox_caption_custom' => '',
   );
   $export['image__content_sidebar__file_field_colorbox'] = $file_display;
