@@ -21,6 +21,7 @@
   max-height: 200px;
   width: auto;
 }
+.adminimal-theme .field-name-field-uib-area .form-text.form-autocomplete,
 .adminimal-theme .field-name-field-uib-relation .form-text.form-autocomplete {
   width: 95%;
 }
@@ -158,8 +159,8 @@ td:not(.delta-order) > .ajax-new-content {
 
 /* Styling for help text */
 .admin-menu .form-item .description,
-.text-format-wrapper .description, 
-.fieldset-wrapper .fieldset-description, 
+.text-format-wrapper .description,
+.fieldset-wrapper .fieldset-description,
 .description {
   font-size: 0.875rem;
   color: #333;
