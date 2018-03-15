@@ -1,11 +1,20 @@
+# Release 91 _2018-03-15_
+- Rettet feil i forbindelse med sidenes universelle utforming #19756 #19919
+- Rettet feil der arrangementstype ikke kom med i integrasjonen mot kmd.uib.no #20027
+- Økt bredden på autofullfør-feltet for "Område" i redigeringsgrensesnittet #20038
+- Fjernet billedtekst fra stor (lightbox) visning av bilder i sidespalten pga. problemer med tilknyttet modul #20017
+- Startet arbeidet med videreutviklingen av studieprogramsidene #20002
+- Endret siden som viser "ikke funnet"-feilmeldingen (404-feil) #6815
+- Oppdatert Drupal-modul #19676
+
 # Release 90 _2018-03-01_
 - Fjernet redigeringstilgang på alle innholdsprodusenter som ikke har vært innlogget siden 1. november 2017 #19800
 - Forbedret nyhetsarkivknapp på mobilvisning #19930
 - Forbedret mobilvisning av bilder i nyhetsarkiv #19932
 - Forbedres mobilvisning av tilknyttede personer #19933
 - Forbedret utseende på sitat i artikler #19949
-- Oppdatering av testbrukerroller etter uib_devel modul-aktivering # 19951
-- Rettet cron-jobbfeil i forbindelse med KMD-feed # 19958
+- Oppdatering av testbrukerroller etter uib_devel modul-aktivering #19951
+- Rettet cron-jobbfeil i forbindelse med KMD-feed #19958
 - Fjernet "KMD data”-felt i editor hos innholdsprsodusenter #19960
 - Installert Drupal-modul “Optional mail on register” #19931
 
@@ -15,7 +24,7 @@
 - Forbedret brødsmulestivisning #19264
 - Fjernet et unødvendig felt fra editor-grensesnittet #19808
 - Fjernet rolle 3 ('Innholdsprodusent') og omgjort alle med rolle 3 til rolle 2 ('Redaktør' – fra nå av kalt 'Innholdsprodusent') #19844
-- Forbedret oversikt over kompetansefelt i editor (kun for rolle1) # 19867
+- Forbedret oversikt over kompetansefelt i editor (kun for rolle1) #19867
 - Lagt til at navn på områder også blir lenker i "relaterte personer" og personutlisting #19875
 - Rettet opp i universell utforming (iht. Web Content Accessibility Guidelines 2.0 (WCAG2.0)) #19905 #19908 #19918
 
