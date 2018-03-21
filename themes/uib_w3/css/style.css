@@ -1632,9 +1632,6 @@ a,
 .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
   margin: 0 auto;
   max-width: 22.5rem; }
-  @media (min-width: 780px) {
-    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
-      max-width: 45rem; } }
   .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
     display: -ms-flexbox;
     -ms-flex-direction: row;
@@ -8232,8 +8229,9 @@ body #mc_embed_signup div.mce_inline_error {
       align-items: center;
       justify-content: flex-end; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text p {
+      -webkit-flex: 0 1 30%;
+      flex: 0 1 30%;
       font-size: 1.5rem;
-      max-width: 30%;
       background: rgba(255, 255, 255, 0.7);
       padding: 1.25rem; }
     .node-type-area.banner-image .content-top-wrapper .field-name-field-uib-primary-text a:hover {
