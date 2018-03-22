@@ -1517,8 +1517,7 @@ function __uib_w3__article_info(&$node) {
  */
 function __uib_w3__author(&$node) {
   $authors = FALSE;
-  $authorarray = array_merge((array)@$node->field_uib_byline['und'],
-    (array)@$node->field_uib_external_author['und']);
+  $authorarray = array_merge((array)@$node->field_uib_byline['und'], (array)@$node->field_uib_external_author['und']);
   if (count($authorarray)) {
     $byline = field_view_field('node', $node, 'field_uib_byline', array(
       'type' => 'entityreference_label',
@@ -1528,7 +1527,9 @@ function __uib_w3__author(&$node) {
     $tmp = array();
     foreach ($authorarray as $key => $b) {
       if(@$b['target_id']){
-        $tmp[] = $byline[$key]['#markup'];
+        $url = drupal_get_path_alias('user/' . $b['target_id']);
+        $name = $byline[$key]['#label'];
+        $tmp[] = l($name, $url);
       }
       else{
         $ext_author = isset($b['safe_value']) ? $b['safe_value'] : $b['value'];
