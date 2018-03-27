@@ -1440,7 +1440,7 @@ function uib_w3_preprocess_field(&$vars) {
           $vars['content_attributes_array']['data-cycle-auto-height'] = 'false';
           $vars['content_attributes_array']['data-cycle-log'] = 'false';
         }
-        elseif (!empty($vars['items'][0]['field_uib_description']) && $elements_bundle == 'image') {
+        elseif (!empty($vars['items'][0]['field_uib_description']) && in_array($elements_bundle, array('image', 'video'))) {
           $classes[] = 'description';
         }
       }

@@ -1126,9 +1126,46 @@ a,
 .node-type-uib-study .field-name-field-uib-main-media {
   margin-bottom: 2.5rem; }
 
-.node-type-uib-article .field-name-field-uib-main-media .media-vimeo-video,
-.node-type-uib-article .field-name-field-uib-main-media .media-youtube-video {
+.node-type-uib-article .field-name-field-uib-main-media.description .media-vimeo-video,
+.node-type-uib-article .field-name-field-uib-main-media.description .media-youtube-video {
   margin-bottom: 0.625rem; }
+@media (min-width: 600px) {
+  .node-type-uib-article .field-name-field-uib-main-media.description .content {
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    -ms-flex-align: end;
+    -ms-flex-pack: justify;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between; }
+    .node-type-uib-article .field-name-field-uib-main-media.description .content .media-vimeo-video,
+    .node-type-uib-article .field-name-field-uib-main-media.description .content .media-youtube-video {
+      -ms-flex: 0 0 66.10169%;
+      -webkit-flex: 0 0 66.10169%;
+      flex: 0 0 66.10169%;
+      -webkit-align-self: flex-start;
+      align-self: flex-start;
+      margin-bottom: 0;
+      padding-bottom: 0; }
+      .node-type-uib-article .field-name-field-uib-main-media.description .content .media-vimeo-video::after,
+      .node-type-uib-article .field-name-field-uib-main-media.description .content .media-youtube-video::after {
+        content: '';
+        display: block;
+        padding-bottom: 56.25%; }
+        .node-type-uib-article .media-vimeo-video,
+        .node-type-uib-article .media-youtube-video {
+          height: auto; }
+    .node-type-uib-article .field-name-field-uib-main-media.description .content .uib-media-info {
+      -ms-flex: 0 0 32.20339%;
+      -webkit-flex: 0 0 32.20339%;
+      flex: 0 0 32.20339%;
+      border-top: solid 1px #d5d5d5;
+      padding-top: 1rem; } }
 
 .action-links {
   list-style: none; }
