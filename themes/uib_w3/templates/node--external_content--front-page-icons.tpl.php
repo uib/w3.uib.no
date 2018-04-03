@@ -87,7 +87,7 @@ $content['field_uib_links']['#label_display'] = 'hidden';
   <div id="node-<?php print $node->nid; ?>"
     class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
     <?php
-      print preg_replace('/<a [^>]+>[^>]+>/s', '', render($content['field_uib_media']));
+      print preg_replace(array('/<a [^>]+>[^>]+>/s','/<h2 [^>]+>[^>]+>/s'),array('',''),render($content['field_uib_media']));
     ?>
     <?php if (!$page): ?>
       <h2<?php print $title_attributes; ?>>
