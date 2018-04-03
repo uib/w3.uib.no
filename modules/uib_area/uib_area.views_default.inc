@@ -2127,10 +2127,24 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_area']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_area']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_uib_area']['settings'] = array(
+    'bypass_access' => 0,
     'link' => 0,
     'field_multiple_limit' => '-1',
     'field_multiple_limit_offset' => '0',
+    'field_multiple_limit_order' => '0',
+    'linked_field' => array(
+      'linked' => 0,
+      'destination' => '',
+      'advanced' => array(
+        'title' => '',
+        'target' => '',
+        'class' => '',
+        'rel' => '',
+        'text' => '',
+      ),
+    ),
   );
+  $handler->display->display_options['fields']['field_uib_area']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_uib_area']['delta_offset'] = '0';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
