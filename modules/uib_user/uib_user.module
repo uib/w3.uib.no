@@ -313,8 +313,8 @@ function uib_user_block_view($delta = '') {
             foreach ($user->field_uib_user_social_media['und'] as $delta => $item) {
               if (preg_match('/twitter:(.*)/', $item['safe_value'], $twitter_handle)){
                 $twitter_handle = $twitter_handle[1];
-                $elements .= '<a class="twitter-timeline" href="https://twitter.com/"' . $twitter_handle .
-                  ' data-widget-id="504179221749456896" data-screen-name="' . $twitter_handle .
+                $elements .= '<a class="twitter-timeline" href="https://twitter.com/' . $twitter_handle .
+                  '" ' . 'data-widget-id="504179221749456896" data-screen-name="' . $twitter_handle .
                   '" height="350" data-chrome="noheader nofooter">' .
                   t('Tweets by @@twitter_handler', array('@twitter_handler' =>  $twitter_handle)) . '</a>';
               }
