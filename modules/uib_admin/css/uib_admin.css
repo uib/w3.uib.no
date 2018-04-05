@@ -36,9 +36,6 @@
   margin-top: 0;
   padding-top: 0;
 }
-.field-name-field-uib-published-timestamp.form-wrapper{
-  margin: 40px 0 0;
-}
 #edit-field-uib-external-author-und-0-format {
   display: none;
 }
@@ -166,4 +163,75 @@ td:not(.delta-order) > .ajax-new-content {
   color: #333;
   background-color: #eee;
   padding: 15px;
+}
+
+/* Styling for buttons */
+#page #content-wrapper input.form-submit,
+#page #content-wrapper a.button {
+  background: #4d8f46;
+  color: #eee;
+  border: 1px #777 solid;
+}
+#page #content-wrapper input#edit-preview-changes {
+  background: #eee;
+  color: #555;
+  border: 1px #777 solid;
+}
+#page #content-wrapper input.remove,
+#page #content-wrapper input#edit-delete,
+#page #content-wrapper input[id*="remove-button"] {
+  background: #b73939;
+  color: #fff;
+  border: 1px #777 solid;
+}
+#page #content-wrapper .media-widget .preview {
+  margin: 0;
+}
+
+/* Styling for fieldsets */
+#page #content-wrapper fieldset.collapsible,
+#page #content-wrapper fieldset.collapsible fieldset,
+#page #content-wrapper fieldset.date-combo,
+#page #content-wrapper fieldset.vertical-tabs-pane,
+#page #content-wrapper fieldset#edit-field-uib-files-und {
+  box-shadow: none;
+}
+#page #content-wrapper fieldset.collapsible,
+#page #content-wrapper fieldset.vertical-tabs-pane,
+#page #content-wrapper fieldset#edit-field-uib-files-und {
+  border-top: 1px solid #858585;
+}
+#page #content-wrapper fieldset.collapsible {
+  margin-top: 30px;
+}
+#page #content-wrapper fieldset.collapsible fieldset {
+  border: 0;
+}
+
+/* Styling for general layout and alignment */
+.page-node #page #content-wrapper {
+  max-width: 72rem;
+}
+#page #content-wrapper .form-item {
+  padding: 0;
+}
+#page #content-wrapper div.form-type-checkbox div.description {
+  margin-left: 0;
+}
+
+/* Styling for hidden elements */
+#page #content-wrapper .form-type-media label,
+#page #content-wrapper #edit-field-uib-media-und legend {
+  visibility: hidden;
+}
+#page #content-wrapper .tabledrag-toggle-weight-wrapper,
+#page #content-wrapper #edit-field-uib-imagecaptions table th,
+#page #content-wrapper #edit-field-uib-imagecaptions2 table th,
+#page #content-wrapper fieldset.collapsible fieldset legend,
+#page #content-wrapper .form-item-field-uib-area-und-0-target-id label,
+#page #content-wrapper .form-item-field-uib-imagecaptions-und-0-field-uib-imageindex-und label span {
+  display: none;
+}
+#page #content-wrapper fieldset.vertical-tabs-pane fieldset.date-combo legend {
+  display: none !important;
 }
