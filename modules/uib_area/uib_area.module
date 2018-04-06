@@ -91,7 +91,7 @@ function uib_area_block_view($delta='') {
             }
           }
           if ($twitter) {
-            $content = l('', 'https://twitter.com/' . $twitter, array('attributes' => array('class' => 'twitter-timeline')));
+            $content = l('twitter.com/' . $twitter, 'https://twitter.com/' . $twitter, array('attributes' => array('class' => 'twitter-timeline', 'title' => 'twitter.com/' . $twitter)));
             $content .= '<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
             $block['subject'] = NULL;#t('Twitter');
             $block['content'] = $content;
