@@ -1197,7 +1197,7 @@ EOD;
             $block['title'] = t('Apply here');
             $block['content'] = array(
               '#type' => 'markup',
-              '#markup' => "<h3>" . t('Application code in NUCAS') . "</h3>" . l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
+              '#markup' => "<h3>" . t('Study code in NUCAS') . "</h3>" . l($data['studietypenr'], 'http://www.samordnaopptak.no/'),
             );
           }
         }
@@ -1278,7 +1278,7 @@ EOD;
           $data = uib_study__fspres_get_node_json($node->nid, 'info.json');
           if(!empty($data)) {
             if (!empty($data['studietypenr'])) {
-              $markup .= "<p class='study-so-code'>" . t('Application code in NUCAS') . '<br />'. l($data['studietypenr'], 'http://www.samordnaopptak.no/') . "</p>";
+              $markup .= "<p class='study-so-code'>" . t('Study code in NUCAS') . '<br />'. l($data['studietypenr'], 'http://www.samordnaopptak.no/') . "</p>";
             }
           }
         }
