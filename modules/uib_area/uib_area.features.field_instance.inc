@@ -3329,7 +3329,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The lead, or opening paragraph, gives readers the most important information in a clear, concise and interesting manner. Try to keep it short: One or two sentences and maximum 20–25 words in total. This field is also used when search engines are indexing the web page, and is therefore important when it comes to Search engine optimization (SEO).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3403,6 +3403,40 @@ function uib_area_field_default_field_instances() {
     'label' => 'Lead',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'feature_text_html' => 'feature_text_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -3411,6 +3445,10 @@ function uib_area_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -5709,6 +5747,7 @@ function uib_area_field_default_field_instances() {
   t('Tertiary text');
   t('Text');
   t('The address for the location of the event. ');
+  t('The lead, or opening paragraph, gives readers the most important information in a clear, concise and interesting manner. Try to keep it short: One or two sentences and maximum 20–25 words in total. This field is also used when search engines are indexing the web page, and is therefore important when it comes to Search engine optimization (SEO).');
   t('The primary media is the image/video at the top of the page. If you want the image to fill the entire width, the image should be at least 1200 pixels wide and the primary text field must be empty. If the text field contains text, the image should be at least 600 pixels wide to fill half the page.');
   t('The promoted event will be shown first in the events - block');
   t('These are the small images in the sidebar. You can add several.');
