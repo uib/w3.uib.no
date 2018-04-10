@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd /var/www/w3.uib.no
-log="/tmp/update-node-hits-"`bc <<< $(date +%j)%2`'.log'
-bin/site-drush scr update-node-hits >> $log 2>&1
+#cd /var/www/w3.uib.no
+#log="/tmp/update-node-hits-"`bc <<< $(date +%j)%2`'.log'
+#bin/site-drush scr update-node-hits >> $log 2>&1
