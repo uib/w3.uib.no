@@ -1924,6 +1924,8 @@ a,
   .field-name-field-uib-tertiary-text p {
     margin-bottom: 1rem;
     font-size: 1.25rem; }
+  .field-name-field-uib-tertiary-text ul {
+    list-style: none; }
   @media (min-width: 600px) {
     .field-name-field-uib-tertiary-text {
       padding: 1rem; } }
