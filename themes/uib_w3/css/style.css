@@ -4407,7 +4407,8 @@ div.field-item {
     .node-type-uib-content-list section.group-related-content .node-uib-content-list h2 {
       font-size: 1.125rem;
       font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
-      margin: 0; }
+      margin: 0;
+      text-transform: none; }
     .field-name-field-uib-relation .node-uib-article .element-invisible,
     .field-name-field-uib-relation .node-uib-testimonial .element-invisible,
     .field-name-field-uib-relation .node-uib-external-content .element-invisible,
