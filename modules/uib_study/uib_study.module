@@ -2406,6 +2406,9 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_main_media']);
       hide($form['field_uib_main_media_en']);
     }
+    if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
+      hide($form['field_uib_study_tag']);
+    }
 
     if ($GLOBALS['user']->uid != 1) {
       // hide all fields that are fs-pres synchronised
