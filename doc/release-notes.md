@@ -1,3 +1,25 @@
+# Release 92 _2018-04-12_
+- Rettet feil i forbindelse med sidenes universelle utforming #20108 #20120
+- Rettet feil der byline ikke ble vist i artikler hvis forfatteren var blokkert som w3-bruker #20167
+- Rettet feil i HTML-koden til Twitter-modulen på personsidene #20113
+- Rettet feil i forbindelse med søket og sist oppdatert-funksjon #20074
+- Forbedret redigeringsgrensesnittet #20119
+- Redusert størrelsen på hovedvideoen og plassert den tilhørende teksten til høyre (på samme måte som for hovedbilder) #19963
+- Lagt til hjelpetekst for ingress-feltet #20130
+- Fjernet "åpne i nytt vindu"-funksjon fra hjemmesidelenken på personsidene #20124
+- Fjernet visningen av punkt i lister som legges inn i feltet "Valgfritt innhold" på områdesider #20043
+- Endret rutinen for autofullfør-feltet til tilknyttet innhold slik at kun eier-området vises i feltet #20101
+- Endret fra store til små bokstaver i titlene til tilknyttet innhold #20144
+- Endret "Søkerkode i Samordna opptak" til "Studiekode i Samordna opptak" i boksen for "Mer informasjon" på studieprogram #20127
+- Justert visningen av sitat på vitnesbyrd #15931
+- Lagt til rette for bruk av nye studiekategorier #20166
+- Arbeidet videre med utviklingen av studieprogramsidene #20121
+- Oppdatert Drupal (kjerne og moduler) #20079 #20080 #20081 #20082 #20083 #20084 #20085 #20086 #20088 #20089 #20091 #20092 #20093 #20103
+
+# Release 91.1 _2018-03-23_
+- Rettet feil der byline ikke ble vist i nyhetsartikler #20064
+- Rettet feil der tekstfeltet i forside-banneret ble for bredt ved bruk av Internet Explorer 11 #20069
+
 # Release 91 _2018-03-15_
 - Rettet feil i forbindelse med sidenes universelle utforming #19756 #19919
 - Rettet feil der arrangementstype ikke kom med i integrasjonen mot kmd.uib.no #20027
