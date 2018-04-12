@@ -1519,17 +1519,18 @@ function __uib_w3__author(&$node) {
   $authors = FALSE;
   $authorarray = array_merge((array)@$node->field_uib_byline['und'], (array)@$node->field_uib_external_author['und']);
   if (count($authorarray)) {
-    $byline = field_view_field('node', $node, 'field_uib_byline', array(
-      'type' => 'entityreference_label',
-      'label' => 'hidden',
-      'settings' => array('link' => TRUE),
-    ));
     $tmp = array();
     foreach ($authorarray as $key => $b) {
       if(@$b['target_id']){
-        $url = drupal_get_path_alias('user/' . $b['target_id']);
-        $name = $byline[$key]['#label'];
-        $tmp[] = l($name, $url);
+        $user = $b['entity'];
+        $name = $user->field_uib_first_name['und'][0]['safe_value'] . ' ' . $user->field_uib_last_name['und'][0]['safe_value'];
+        if ($b['access']) {
+          $url = drupal_get_path_alias('user/' . $b['target_id']);
+          $tmp[] = l($name, $url);
+        }
+        else {
+          $tmp[] = $name;
+        }
       }
       else{
         $ext_author = isset($b['safe_value']) ? $b['safe_value'] : $b['value'];
