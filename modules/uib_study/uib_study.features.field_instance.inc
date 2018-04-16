@@ -1399,7 +1399,7 @@ function uib_study_field_default_field_instances() {
   // Exported field_instance: 'node-uib_study-field_uib_study_tag'.
   $field_instances['node-uib_study-field_uib_study_tag'] = array(
     'bundle' => 'uib_study',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -1434,7 +1434,7 @@ function uib_study_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_select',
+      'type' => 'options_buttons',
       'weight' => 43,
     ),
   );
