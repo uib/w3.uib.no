@@ -2558,7 +2558,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 4,
     ),
   );
 
@@ -2590,7 +2590,7 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_article_type',
-    'label' => 'Type',
+    'label' => 'Article type',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2680,7 +2680,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 14,
+      'weight' => 19,
     ),
   );
 
@@ -2751,7 +2751,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete_tags',
-      'weight' => 25,
+      'weight' => 11,
     ),
   );
 
@@ -2804,7 +2804,7 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_date',
-    'label' => 'Date',
+    'label' => 'Event date',
     'required' => 0,
     'settings' => array(
       'default_value' => 'blank',
@@ -2822,11 +2822,12 @@ function uib_area_field_default_field_instances() {
         'input_format' => 'd.m.Y - H:i:s',
         'input_format_custom' => '',
         'label_position' => 'above',
+        'no_fieldset' => 0,
         'text_parts' => array(),
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -2901,7 +2902,7 @@ function uib_area_field_default_field_instances() {
         'year_range' => '-0:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 23,
+      'weight' => 9,
     ),
   );
 
@@ -2960,7 +2961,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -3038,7 +3039,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 20,
     ),
   );
 
@@ -3216,7 +3217,7 @@ function uib_area_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 19,
+      'weight' => 20,
     ),
   );
 
@@ -3320,7 +3321,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 13,
     ),
   );
 
@@ -3452,7 +3453,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 16,
+      'weight' => 21,
     ),
   );
 
@@ -3617,7 +3618,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 26,
+      'weight' => 12,
     ),
   );
 
@@ -3843,7 +3844,7 @@ function uib_area_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -3968,7 +3969,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 24,
+      'weight' => 10,
     ),
   );
 
@@ -4040,7 +4041,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 16,
+      'weight' => 18,
     ),
   );
 
@@ -4090,7 +4091,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'autocomplete_deluxe_taxonomy',
-      'weight' => 20,
+      'weight' => 25,
     ),
   );
 
@@ -4193,7 +4194,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 30,
       ),
       'type' => 'text_textarea',
-      'weight' => 17,
+      'weight' => 22,
     ),
   );
 
@@ -5671,6 +5672,7 @@ function uib_area_field_default_field_instances() {
   t('An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)');
   t('Area');
   t('Areas might provide their own logo image.  It will be included in the header.  The logo ought to be about 80x80 pixels and have a transparent background.');
+  t('Article type');
   t('Attach other pages to this page.');
   t('Attachments');
   t('Banner');
@@ -5681,9 +5683,9 @@ function uib_area_field_default_field_instances() {
   t('Colophone logos');
   t('Contact person');
   t('Content Manager');
-  t('Date');
   t('Deadline for event registration.');
   t('Email');
+  t('Event date');
   t('Event type');
   t('Every event must have both a start date and an end date. Remember to fill out both date fields and time fields.');
   t('External author');

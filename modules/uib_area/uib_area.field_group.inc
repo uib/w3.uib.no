@@ -176,7 +176,7 @@ function uib_area_field_group_info() {
   $field_groups['group_event_info|node|uib_article|default'] = $field_group;
 
   $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->disabled = TRUE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_event_info|node|uib_article|form';
   $field_group->group_name = 'group_event_info';
@@ -436,7 +436,7 @@ function uib_area_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Links and attachments',
-    'weight' => '9',
+    'weight' => '10',
     'children' => array(
       0 => 'field_uib_files',
       1 => 'field_uib_links',

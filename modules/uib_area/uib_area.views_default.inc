@@ -316,7 +316,7 @@ function uib_area_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = '<span class="ciclepager"></span>';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
@@ -374,7 +374,7 @@ function uib_area_views_default_views() {
     'field_multiple_limit_offset' => '0',
   );
   $handler->display->display_options['fields']['field_uib_links']['delta_offset'] = '0';
-  /* Field: Content: Type */
+  /* Field: Content: Article type */
   $handler->display->display_options['fields']['field_uib_article_type']['id'] = 'field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['fields']['field_uib_article_type']['field'] = 'field_uib_article_type';
@@ -1239,7 +1239,7 @@ return !empty($handler->argument);';
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language']['group'] = 1;
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -1429,7 +1429,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -1482,7 +1482,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'http://www.uib.no/en/calendar';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
@@ -1515,7 +1515,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date_1']['id'] = 'field_uib_date_1';
   $handler->display->display_options['fields']['field_uib_date_1']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date_1']['field'] = 'field_uib_date';
@@ -1545,7 +1545,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -1583,7 +1583,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['link_url'] = 'http://www.uib.no/kalender';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
@@ -1615,7 +1615,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date_1']['id'] = 'field_uib_date_1';
   $handler->display->display_options['fields']['field_uib_date_1']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date_1']['field'] = 'field_uib_date';
@@ -1645,7 +1645,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -1698,7 +1698,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -2327,7 +2327,7 @@ return !empty($handler->argument);';
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
   $handler->display->display_options['filters']['language']['group'] = 1;
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -2539,7 +2539,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -2579,7 +2579,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';
@@ -2910,7 +2910,7 @@ return !empty($handler->argument);';
   );
   $handler->display->display_options['fields']['field_uib_media']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_uib_media']['delta_offset'] = '0';
-  /* Field: Content: Date */
+  /* Field: Content: Event date */
   $handler->display->display_options['fields']['field_uib_date']['id'] = 'field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['fields']['field_uib_date']['field'] = 'field_uib_date';
@@ -2952,7 +2952,7 @@ return !empty($handler->argument);';
 <div class="phd-lead">[field_uib_lead]</div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Date -  start date (field_uib_date) */
+  /* Sort criterion: Content: Event date -  start date (field_uib_date) */
   $handler->display->display_options['sorts']['field_uib_date_value']['id'] = 'field_uib_date_value';
   $handler->display->display_options['sorts']['field_uib_date_value']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['sorts']['field_uib_date_value']['field'] = 'field_uib_date_value';
@@ -2976,7 +2976,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['arguments']['field_uib_area_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_uib_area_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_uib_area_target_id']['summary_options']['items_per_page'] = '25';
-  /* Contextual filter: Content: Date -  start date (field_uib_date) */
+  /* Contextual filter: Content: Event date -  start date (field_uib_date) */
   $handler->display->display_options['arguments']['field_uib_date_value']['id'] = 'field_uib_date_value';
   $handler->display->display_options['arguments']['field_uib_date_value']['table'] = 'field_data_field_uib_date';
   $handler->display->display_options['arguments']['field_uib_date_value']['field'] = 'field_uib_date_value';
@@ -3001,7 +3001,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['type']['value'] = array(
     'uib_article' => 'uib_article',
   );
-  /* Filter criterion: Content: Type (field_uib_article_type) */
+  /* Filter criterion: Content: Article type (field_uib_article_type) */
   $handler->display->display_options['filters']['field_uib_article_type_value']['id'] = 'field_uib_article_type_value';
   $handler->display->display_options['filters']['field_uib_article_type_value']['table'] = 'field_data_field_uib_article_type';
   $handler->display->display_options['filters']['field_uib_article_type_value']['field'] = 'field_uib_article_type_value';

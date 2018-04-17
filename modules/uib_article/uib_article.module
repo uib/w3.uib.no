@@ -325,26 +325,6 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       ),
     );
 
-    // Add info when no event fields are available for this article type
-    $form['#group_children']['no_event_fields'] = 'group_event_info';
-    $form['no_event_fields'] = array(
-      '#type' => 'container',
-      '#weight' => '-5',
-      'fieldmarkup' => array(
-        '#markup' =>
-          '<h3>'.t('There are no event fields for this article type').'</h3>'
-      ),
-      '#states' => array(
-        'invisible' => array(
-          ':input[name="field_uib_article_type[und]"]' => array(
-            array('value' => 'event'),
-            array('value' => 'phd_press_release'),
-            array('value' => 'press_release'),
-          ),
-        ),
-      ),
-    );
-
     $hide_in_no_sidebar = array(
       'field_uib_kicker',
       'field_uib_main_media',
