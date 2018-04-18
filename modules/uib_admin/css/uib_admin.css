@@ -198,7 +198,8 @@ td:not(.delta-order) > .ajax-new-content {
 }
 #page #content-wrapper fieldset.collapsible,
 #page #content-wrapper fieldset.vertical-tabs-pane,
-#page #content-wrapper fieldset#edit-field-uib-files-und {
+#page #content-wrapper fieldset#edit-field-uib-files-und,
+#page #content-wrapper fieldset.date-combo {
   border-top: 1px solid #858585;
 }
 #page #content-wrapper fieldset.collapsible {
