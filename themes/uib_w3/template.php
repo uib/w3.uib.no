@@ -1480,18 +1480,26 @@ function uib_w3_preprocess_block(&$vars) {
  */
 function __uib_w3__article_info(&$node) {
   $date_info = '<span class="uib-date-info">';
+  $updated_date = date('d.m.Y' , $node->changed);
   if ($node->status == 1) {
     $published = $node->created;
     $t = field_get_items('node', $node, 'field_uib_published_timestamp');
     if ($t) {
       $published = $t[0]['value'];
     }
-    $date_info .= t('Published') . ': ' . date('d.m.Y', $published);
+    $published_date = date('d.m.Y', $published);
+    if ($published_date == $updated_date) {
+      $date_info .= t('Published') . ': ' . $published_date;
+    }
+    else {
+      $date_info .= t('Updated') . ': ' . $updated_date;
+      $date_info .= ' (' . t('First published') . ': ' . $published_date . ')';
+    }
   }
   else {
     $date_info .= '<span style="color:#cf3c3a;">' . t('Unpublished') . '</span>';
+    $date_info .= ' (' . t('Last updated') . ': ' . $updated_date . ')';
   }
-  $date_info .= ' (' . t('Last updated') . ': ' . date('d.m.Y' , $node->changed) . ')';
   $date_info .= '</span>';
 
   $article_info = array(
