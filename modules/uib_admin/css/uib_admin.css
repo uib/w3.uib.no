@@ -193,7 +193,8 @@ td:not(.delta-order) > .ajax-new-content {
 #page #content-wrapper fieldset.collapsible fieldset,
 #page #content-wrapper fieldset.date-combo,
 #page #content-wrapper fieldset.vertical-tabs-pane,
-#page #content-wrapper fieldset#edit-field-uib-files-und {
+#page #content-wrapper fieldset#edit-field-uib-files-und,
+.adminimal-theme .cke_dialog_ui_fieldset {
   box-shadow: none;
 }
 #page #content-wrapper fieldset.collapsible,
