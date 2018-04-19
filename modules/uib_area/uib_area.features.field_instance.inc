@@ -3484,7 +3484,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'uiblink_formatter',
-        'weight' => 50,
+        'weight' => 51,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -4004,7 +4004,7 @@ function uib_area_field_default_field_instances() {
           'view_mode' => 'short_teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 7,
+        'weight' => 56,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -4041,7 +4041,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 18,
+      'weight' => 30,
     ),
   );
 

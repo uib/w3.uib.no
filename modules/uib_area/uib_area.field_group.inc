@@ -151,12 +151,12 @@ function uib_area_field_group_info() {
     'label' => 'Event info',
     'weight' => '46',
     'children' => array(
-      0 => 'field_uib_contacts',
-      1 => 'field_uib_deadline',
-      2 => 'field_uib_date',
-      3 => 'field_uib_event_type',
-      4 => 'field_uib_location',
-      5 => 'field_uib_registration_link',
+      0 => 'field_uib_event_type',
+      1 => 'field_uib_contacts',
+      2 => 'field_uib_location',
+      3 => 'field_uib_registration_link',
+      4 => 'field_uib_date',
+      5 => 'field_uib_deadline',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -188,8 +188,8 @@ function uib_area_field_group_info() {
     'label' => 'Event info',
     'weight' => '12',
     'children' => array(
-      0 => 'field_uib_contacts',
-      1 => 'field_uib_deadline',
+      0 => 'field_uib_deadline',
+      1 => 'field_uib_contacts',
       2 => 'field_uib_location',
       3 => 'field_uib_registration_link',
     ),
@@ -440,6 +440,7 @@ function uib_area_field_group_info() {
     'children' => array(
       0 => 'field_uib_files',
       1 => 'field_uib_links',
+      2 => 'field_uib_links_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

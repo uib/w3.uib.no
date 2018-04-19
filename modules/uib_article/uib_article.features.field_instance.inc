@@ -380,7 +380,7 @@ function uib_article_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 15,
+      'weight' => 31,
     ),
   );
 
@@ -962,6 +962,108 @@ function uib_article_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_article-field_uib_links_label'.
+  $field_instances['node-uib_article-field_uib_links_label'] = array(
+    'bundle' => 'uib_article',
+    'default_value' => array(
+      0 => array(
+        'value' => 'Relevant links',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 50,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_links_label',
+    'label' => 'Relevant links label',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'feature_text_html' => 'feature_text_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 19,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_article-field_uib_main_media_teaser'.
   $field_instances['node-uib_article-field_uib_main_media_teaser'] = array(
     'bundle' => 'uib_article',
@@ -1114,7 +1216,7 @@ function uib_article_field_default_field_instances() {
           ),
         ),
         'type' => 'text_plain',
-        'weight' => 8,
+        'weight' => 57,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -1171,7 +1273,7 @@ function uib_article_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 19,
+      'weight' => 31,
     ),
   );
 
@@ -1243,7 +1345,7 @@ function uib_article_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 14,
+      'weight' => 30,
     ),
   );
 
@@ -1449,6 +1551,7 @@ function uib_article_field_default_field_instances() {
   t('Related content label');
   t('Related persons');
   t('Related persons label');
+  t('Relevant links label');
   t('Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)');
   t('Search hits');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');

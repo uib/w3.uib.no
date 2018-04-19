@@ -451,6 +451,12 @@ EOD;
       $variables['page']['content_bottom']['field_uib_links'] = field_view_field('node', $variables['node'], 'field_uib_links', array(
         'weight' => '25',
       ));
+      $tmpVar3 = field_view_field('node',$variables['node'],'field_uib_links_label');
+      $tmpVar4 = field_view_field('node',$variables['node'],'field_uib_links');
+      if ($tmpVar3 && $tmpVar4) {
+        $variables['page']['content_bottom']['field_uib_links']['#label_display'] = 'display';
+        $variables['page']['content_bottom']['field_uib_links']['#title'] = $tmpVar3[0]['#markup'];
+      }
       $variables['page']['content_bottom']['field_uib_relation'] = field_view_field('node', $variables['node'], 'field_uib_relation', array(
         'weight' => '30',
         'type' => 'entityreference_entity_view',
@@ -501,6 +507,7 @@ EOD;
           'field_uib_kicker',
           'field_uib_lead',
           'field_uib_byline',
+          'field_uib_links_label',
           'field_uib_links',
           'links',
           'language',
@@ -1178,6 +1185,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_link_section',
       'field_uib_profiled_testimonial',
       'field_uib_links',
+      'field_uib_links_label',
       'field_uib_related_persons',
       'field_related_persons_label',
       'field_uib_related_content_label',
