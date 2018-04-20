@@ -922,11 +922,19 @@ label {
 
 table {
   border-collapse: collapse;
+  border-right: none 0;
+  border-left: none 0;
   margin: 1rem 0; }
+  .field-name-field-uib-feature-text table {
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 47.375rem; }
 
 th, td {
   border-top: 1px solid #b7b7b7;
   border-bottom: 1px solid #b7b7b7;
+  border-right: none 0;
+  border-left: none 0;
   padding: 0.5rem;
   text-align: left;
   font-size: 1.25rem;

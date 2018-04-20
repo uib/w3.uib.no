@@ -107,7 +107,7 @@ function uib_setup_filter_default_formats() {
         'weight' => -10,
         'status' => 1,
         'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <div> <h2> <h3> <h4>',
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <div> <h2> <h3> <h4> <table> <tbody> <tr> <td>',
           'filter_html_help' => 1,
           'filter_html_nofollow' => 0,
         ),
