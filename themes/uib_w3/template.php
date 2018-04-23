@@ -91,6 +91,17 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
     );
     drupal_add_html_head($meta_last_modified, 'meta_last_modified');
   }
+  if (in_array('html__studier', $variables['theme_hook_suggestions']) || in_array('html__studies', $variables['theme_hook_suggestions'])) {
+    $meta_description = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'description',
+        'content' => t(' We offer various studies taught in English within different fields. Choose your area of interest to find the perfect match for you.'),
+      ),
+    );
+    drupal_add_html_head($meta_description, 'meta_description');
+  }
 }
 
 /**
@@ -309,6 +320,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
 
   switch (true) {
+    case in_array('page__studier', $variables['theme_hook_suggestions']) || in_array('page__studies', $variables['theme_hook_suggestions']);
+      drupal_add_library('system' , 'ui.accordion');
+      drupal_add_js(drupal_get_path('module', 'uib_study') . '/js/expand.js');
+      break;
     case in_array('page__foremployees__market', $variables['theme_hook_suggestions']):
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',

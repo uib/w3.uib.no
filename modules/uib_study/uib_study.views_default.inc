@@ -2770,6 +2770,7 @@ return !empty($handler->argument);';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -2789,6 +2790,8 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_study_code']['id'] = 'field_uib_study_code';
   $handler->display->display_options['fields']['field_uib_study_code']['table'] = 'field_data_field_uib_study_code';
   $handler->display->display_options['fields']['field_uib_study_code']['field'] = 'field_uib_study_code';
+  $handler->display->display_options['fields']['field_uib_study_code']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_study_code']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_study_code']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -2806,6 +2809,8 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_study_title']['id'] = 'field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['table'] = 'field_data_field_uib_study_title';
   $handler->display->display_options['fields']['field_uib_study_title']['field'] = 'field_uib_study_title';
+  $handler->display->display_options['fields']['field_uib_study_title']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_study_title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_study_title']['settings'] = array(
     'linked_field' => array(
       'linked' => 0,
@@ -2823,6 +2828,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_study_category']['id'] = 'field_uib_study_category';
   $handler->display->display_options['fields']['field_uib_study_category']['table'] = 'field_data_field_uib_study_category';
   $handler->display->display_options['fields']['field_uib_study_category']['field'] = 'field_uib_study_category';
+  $handler->display->display_options['fields']['field_uib_study_category']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_study_category']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_category']['alter']['text'] = '[field_uib_study_category-value]';
   $handler->display->display_options['fields']['field_uib_study_category']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_study_category']['settings'] = array(
     'linked_field' => array(
@@ -2841,6 +2849,9 @@ return !empty($handler->argument);';
   $handler->display->display_options['fields']['field_uib_study_tag']['id'] = 'field_uib_study_tag';
   $handler->display->display_options['fields']['field_uib_study_tag']['table'] = 'field_data_field_uib_study_tag';
   $handler->display->display_options['fields']['field_uib_study_tag']['field'] = 'field_uib_study_tag';
+  $handler->display->display_options['fields']['field_uib_study_tag']['label'] = '';
+  $handler->display->display_options['fields']['field_uib_study_tag']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_uib_study_tag']['alter']['text'] = '[field_uib_study_tag-tid]';
   $handler->display->display_options['fields']['field_uib_study_tag']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_uib_study_tag']['settings'] = array(
     'field_multiple_limit' => '-1',
@@ -2859,11 +2870,11 @@ return !empty($handler->argument);';
     ),
   );
   $handler->display->display_options['fields']['field_uib_study_tag']['delta_offset'] = '0';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Sort criterion: Content: Title (field_uib_study_title) */
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['id'] = 'field_uib_study_title_value';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['table'] = 'field_data_field_uib_study_title';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['field'] = 'field_uib_study_title_value';
+  $handler->display->display_options['sorts']['field_uib_study_title_value']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -2886,6 +2897,7 @@ return !empty($handler->argument);';
     'program' => 'program',
     'specialization' => 'specialization',
   );
+  $handler->display->display_options['filters']['field_uib_study_type_value']['reduce_duplicates'] = TRUE;
   /* Filter criterion: Content: Category (field_uib_study_category) */
   $handler->display->display_options['filters']['field_uib_study_category_value']['id'] = 'field_uib_study_category_value';
   $handler->display->display_options['filters']['field_uib_study_category_value']['table'] = 'field_data_field_uib_study_category';
@@ -2904,10 +2916,8 @@ return !empty($handler->argument);';
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('ID'),
-    t('Title'),
-    t('Category'),
-    t('Study category'),
+    t('[field_uib_study_category-value]'),
+    t('[field_uib_study_tag-tid]'),
     t('Page'),
   );
   $export['uib_study_data'] = $view;

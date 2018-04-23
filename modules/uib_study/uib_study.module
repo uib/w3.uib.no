@@ -115,6 +115,14 @@ function uib_study_menu() {
     );
   }
 
+  foreach(array('studier', 'studies') as $prefix) {
+    $items[$prefix] = array(
+      'page callback' => 'uib_study__studyprogrammes',
+      'file' => 'uib_study.filters.inc',
+      'access callback' => TRUE,
+    );
+  }
+
   $items["utdanning/evu/courses"] = array(
     'page callback' => 'uib_study__evu_courses_page',
     'file' => 'uib_study.evu.inc',
