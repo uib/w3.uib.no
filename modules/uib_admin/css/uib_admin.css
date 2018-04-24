@@ -222,7 +222,8 @@ td:not(.delta-order) > .ajax-new-content {
 }
 
 /* Styling for hidden elements */
-#page #content-wrapper .form-type-media label,
+#page #content-wrapper .field-name-field-uib-main-media .form-type-media label,
+#page #content-wrapper .field-name-field-uib-media .form-type-media label,
 #page #content-wrapper #edit-field-uib-media-und legend {
   visibility: hidden;
 }
