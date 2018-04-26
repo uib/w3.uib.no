@@ -37,26 +37,23 @@ function uib_article_strongarm() {
       'quote' => array(
         'custom_settings' => FALSE,
       ),
-      'front_page_icons' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'title' => array(
-          'weight' => '14',
+          'weight' => '9',
         ),
         'language' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '14',
+          'weight' => '13',
         ),
       ),
       'display' => array(
