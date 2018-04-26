@@ -21,11 +21,11 @@ function uib_study__get_filter_title() {
         '#tag' => 'h1',
         '#value' => t('Hi! Here you can find all the studies we offer.'),
       ),
-      'link' => array(
-        '#type' => 'html_tag',
-        '#tag' => 'p',
-        '#value' => t('Check out the alphbetical list of all studies.'),
-      ),
+      #'link' => array(
+      #  '#type' => 'html_tag',
+      #  '#tag' => 'p',
+      #  '#value' => t('Check out the alphbetical list of all studies.'),
+      #),
     ),
   );
   return $title;
@@ -138,6 +138,11 @@ function uib_study__get_studies_in_category($studies, $lang) {
 }
 
 function uib_study__clean_study_title($title) {
+  $title_exceptions = array(
+    'Kjønn, seksualitet og mangfald, årsstudium',
+    'Klima, atmosfære- og havfysikk, bachelor, 3 år',
+  );
   $title = explode(',', $title);
+  if (in_array($title, $title_exceptions)) return $title[0] . ', ' . $title[1];
   return $title[0];
 }
