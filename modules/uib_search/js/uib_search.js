@@ -296,12 +296,14 @@
           var updated = $.fn.df(new Date(changed*1000), 'd.m.Y');
           var published = $.fn.df(new Date(published_timestamp*1000), 'd.m.Y');
           if (updated != published) {
-            var last_updated = ' (' + Drupal.t('Last updated') + ': ' + updated + ')';
+            var last_updated = Drupal.t('Updated') + ': ' + updated;
+            var first_published = ' (' + Drupal.t('First published') + ': ' + published + ')';
           } else {
             var last_updated = '';
+            var first_published = Drupal.t('Published') + ': ' + published;
           }
           var changedtag = $('<div/>')
-            .text(Drupal.t('Published') + ': ' + published + last_updated)
+            .text(last_updated + first_published)
             .addClass('published');
           name = $('<a></a>').attr('href', link).html(title);
           lft = $('<div></div>').addClass('lft')
