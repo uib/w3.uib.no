@@ -98,7 +98,7 @@ function uib__build_entity($item) {
         if ($value == 'event') {
           $w->field_uib_event_type->set('event');
           // Promote item to front page calendar
-          $w->promote->set(1);
+          $w->field_uib_show_global_calendar->set(1);
           if (isset($item->category)) {
             if ($item->category == 'concert') $item->category = 'consert';
             $w->field_uib_event_type->set($item->category);
