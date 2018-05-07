@@ -12,7 +12,7 @@ require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/bootstrap.i
 require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/common.inc");
 drupal_bootstrap(DRUPAL_BOOTSTRAP_VARIABLES);
 require_once(dirname(__DIR__) . DIRECTORY_SEPARATOR . "uib_search.module");
-$url = variable_get('uib_elasticsearch_url', 'https://api.test.search.uib.no:5555');
+$url = variable_get('uib_elasticsearch_url', 'https://api.search.uib.no:443');
 $url .= '/' . uib_search__get_index();
 $url .= '/_search';
 $data = uib_search__create_query();
