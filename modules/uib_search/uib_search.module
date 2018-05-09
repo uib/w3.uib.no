@@ -1361,7 +1361,7 @@ function uib_search__create_query($use_post_boosting = FALSE) {
   $all = FALSE;
   $should = array();
   $tmp = array();
-  $shortquery = mb_strstr($query, 0, 15);
+  $shortquery = mb_substr($query, 0, 15);
   $excerpt_length = 350;
   $data = array(
     'query' => array(
@@ -1445,7 +1445,6 @@ function uib_search__create_query($use_post_boosting = FALSE) {
     ),
   );
   $searchquery['bool']['should'][] = $tmp;
-
 
   $tmp = array(
     'bool' => array(
