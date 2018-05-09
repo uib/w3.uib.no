@@ -1,3 +1,20 @@
+# Release 94 _2018-05-11_
+- Fedigstilt videreutviklingen av studieprogramsidene #20241 #20242 #20273 #20283
+- Kryptert forbindelsen til w3-frontend (www.uib.no) #17466
+- Rettet feil i integrasjonen mot kmd.uib.no #20261
+- Forbedret søkefunksjonen #19491 #20125 #20246
+
+# Release 93 _2018-04-26_
+- Rettet feil der tabeller ikke ble vist i feature-artikler #20220
+- Rettet feil der enkelte overskrifter ikke ble vist i redigeringsgrensesnittet for feature-artikler #20232
+- Flyttet felt for arrangement høyere opp i redigeringsgrensesnittet #20032
+- Satt dato for oppdatert før publisert på alle artikkeltyper #20187
+- Lagt til felt som gjør det mulig å overstyre overskriften "Relevante lenker" #20070
+- Lagt til støtte for anker i tekstfelt #20190
+- Gjort feltet for studiekategori om til flervalgsfelt #20189
+- Fortsatt abeidet med videreutviklingen studieprogramsidene #20123
+- Oppdatert Drupal-kjernen og media-modulen #20239 #20237
+
 # Release 92 _2018-04-12_
 - Rettet feil i forbindelse med sidenes universelle utforming #20108 #20120
 - Rettet feil der byline ikke ble vist i artikler hvis forfatteren var blokkert som w3-bruker #20167
