@@ -100,29 +100,29 @@ function uib_study__filter_form() {
   );
   $form['bachelorprogram'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Bachelor'),
+    '#title' => t('Bachelor’s'),
     '#default_value' => in_array('bachelorprogram', $selected),
     '#attributes' => array('class' => array('study-checkbox', 'study--bachelorprogram')),
   );
   $form['integrertemasterpr-profesjonsst'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Integrated Master’s degrees/Profession studies'),
+    '#title' => t('Integrated master’s/profession'),
     '#default_value' => in_array('integrertemasterpr-profesjonsst', $selected),
     '#attributes' => array('class' => array('study-checkbox', 'study--integrertemasterpr-profesjonsst')),
   );
   $form['arsstudium'] = array(
     '#type' => 'checkbox',
-    '#title' => t('One-year studies'),
+    '#title' => t('One-year'),
     '#default_value' => in_array('arsstudium', $selected),
     '#attributes' => array('class' => array('study-checkbox', 'study--arsstudium')),
   );
   $form['group_title_2'] = array(
     '#type' => 'item',
-    '#markup' => '<h3>' . t('Requires a bachelor\'s degree') . '</h3>',
+    '#markup' => '<h3>' . t('Requires a bachelor’s degree') . '</h3>',
   );
   $form['masterprogram'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Master'),
+    '#title' => t('Master’s'),
     '#default_value' => in_array('masterprogram', $selected),
     '#attributes' => array('class' => array('study-checkbox', 'study--masterprogram')),
   );
@@ -237,19 +237,19 @@ function uib_study__get_studyprogrammes_by_alpha() {
 function uib_study__get_category_heading($cat) {
   $cats = array(
     'masterprogram' => array(
-      'header' => t('Master'),
-      'text' => t('2 year programme. Requires a bachelor\'s degree.'),
+      'header' => t('Master’s'),
+      'text' => t('2 year programme. Requires a bachelor’s degree.'),
     ),
     'bachelorprogram' => array(
-      'header' => t('Bachelor'),
+      'header' => t('Bachelor’s'),
       'text' => t('3 year programme. Requires secondary education.'),
     ),
     'arsstudium' => array(
-      'header' => t('One-year studies'),
+      'header' => t('One-year'),
       'text' => t('1 year programme.'),
     ),
     'integrertemasterpr-profesjonsst' => array(
-      'header' => t('Integrated Master’s degrees/Profession studies'),
+      'header' => t('Integrated master’s/profession'),
       'text' => t('5-6 year programme.  Requires secondary education.'),
     ),
   );
