@@ -48,76 +48,37 @@
 	background-color: rgba(255, 0, 0, 0.08);
 }
 
-/**
-* Simple styling for main media with optional custom image caption
-*/
-.group-main-media fieldset,
-.group-small-images fieldset
-{
-  border: none;
-  box-shadow: none;
-}
-.group-main-media fieldset legend,
-.group-small-images fieldset legend
-{
-  margin-left: 0;
-  padding: 0;
-}
-html.js
-fieldset.collapsible.[class^="group-"]
-[class^="field-name-field-uib-imagecaptions"]
-.fieldset-legend
-{
-  background: none;
-  padding-left: 0;
-}
-[class^="field-name-field-uib-imagecaptions"] .tabledrag-handle {
-  display: none;
-}
-.group-main-media .field-name-field-uib-main-media legend,
-.group-small-images .field-name-field-uib-main-media legend
-{
-  display: none;
-}
-[class^="field-name-field-uib-imagecaptions"]
-.field-multiple-table
-td:not(.field-multiple-drag),
-[class^="field-name-field-uib-imagecaptions"]
-.field-multiple-table
-td:not(.delta-order),
-[class^="field-name-field-uib-imagecaptions"]
-.field-multiple-table
-td:not(.field-multiple-drag) > .ajax-new-content,
-[class^="field-name-field-uib-imagecaptions"]
-.field-multiple-table
-td:not(.delta-order) > .ajax-new-content {
-	display: flex;
-	align-items: end;
-	flex-wrap: wrap;
-}
-.field-name-field-uib-imagecaption {
-  flex-grow: 2;
-}
-.field-name-field-uib-imagecaption textarea{
-	height: 46px;
-}
-.field-name-field-uib-imageindex {
-  flex-grow: 1;
-  margin-left: 10px;
-}
-.field-name-field-uib-imageindex select{
-	height: 21px;
-	margin-bottom: 23px;
-}
-[class^="field-name-field-uib-imagecaptions"]
-.field-multiple-table input.form-submit {
-  flex-grow: 1;
-  height: 23px;
-  margin-bottom: 41px;
-}
 .page-webdesk .more-link {
   padding: 0.5rem 0.625rem;
   text-align: left;
+}
+
+/* Styling for image caption fields */
+#page #content-wrapper .field-name-field-uib-imagecaption,
+#page #content-wrapper .field-name-field-uib-imageindex,
+#page #content-wrapper .field-name-field-uib-imageindex + input {
+  display: inline-block;
+}
+#page #content-wrapper .field-name-field-uib-imagecaption {
+  width: 100%;
+}
+#page #content-wrapper .field-name-field-uib-imageindex {
+  margin-right: .5rem;
+}
+
+@media (min-width: 78rem) {
+  #page #content-wrapper .field-name-field-uib-imagecaption {
+    width: 75%;
+  }
+  #page #content-wrapper .field-name-field-uib-imageindex {
+    width: 10%;
+    vertical-align: top;
+    margin-left: 4rem;
+  }
+  #page #content-wrapper .field-name-field-uib-imageindex + input {
+    vertical-align: top;
+    margin-top: 2rem;
+  }
 }
 
 /* Styling search boost admin ui */
@@ -232,7 +193,7 @@ td:not(.delta-order) > .ajax-new-content {
 #page #content-wrapper #edit-field-uib-imagecaptions2 table th,
 #page #content-wrapper fieldset.collapsible fieldset legend,
 #page #content-wrapper .form-item-field-uib-area-und-0-target-id label,
-#page #content-wrapper .form-item-field-uib-imagecaptions-und-0-field-uib-imageindex-und label span {
+#page #content-wrapper .field-name-field-uib-imageindex label span {
   display: none;
 }
 #page #content-wrapper fieldset.vertical-tabs-pane fieldset.date-combo legend {
