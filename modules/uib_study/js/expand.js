@@ -32,6 +32,10 @@
           showSelected();
         }
       });
+      $('.uib-study--to-the-top').click(function(event) {
+        event.preventDefault();
+        scrollToAnchor('#block-system-main');
+      });
       function showAll() {
         $('.page-studies-alphabetical #uib-study-filter-form :checkbox').prop('checked', false);
         $('.page-studies-alphabetical #uib-study-filter-form .study--all-categories').prop('checked', true);
@@ -81,6 +85,9 @@
       }
       function showAllCategories() {
         $('.page-studies-alphabetical .study-index-alpha > div').show();
+      }
+      function scrollToAnchor(id) {
+        $('html, body').animate({scrollTop: $(id).offset().top}, 'slow');
       }
     }
   };

@@ -19,6 +19,7 @@ function uib_study__studyprogrammes__alphabetical() {
     'title' => uib_study__get_filter_title('alpha'),
     'filter' => uib_study__get_filter(),
     'list' => uib_study__get_studyprogrammes_by_alpha(),
+    'to-the-top' => uib_study__get_to_the_top(),
   );
   return $page;
 }
@@ -171,7 +172,7 @@ function uib_study__get_studyprogrammes_by_cat() {
         'study_tag' => array(
           '#type' => 'html_tag',
           '#tag' => 'h2',
-          '#value' => $study_tag,
+          '#value' => '<span>' . $study_tag . '</span>',
           '#attributes' => array('class' => 'uib-term-' . $study_tag_term->tid),
         ),
       );
@@ -185,9 +186,12 @@ function uib_study__get_studyprogrammes_by_cat() {
         }
       }
       $output[$study_tag_term->tid]['study_list'] = array(
-        '#theme' => 'item_list',
-        '#items' => $study_list,
-        '#attributes' => array('class' => 'uib-term-items-' . $study_tag_term->tid),
+        '#type' => 'container',
+        'data' => array(
+          '#theme' => 'item_list',
+          '#items' => $study_list,
+          '#attributes' => array('class' => 'uib-term-items-' . $study_tag_term->tid),
+        ),
       );
     }
   }
@@ -321,4 +325,23 @@ function uib_study__get_filter_selected() {
     if (key_exists($choice, $_POST)) $selected[] = $choice;
   }
   return $selected;
+}
+
+function uib_study__get_to_the_top() {
+  $link_text = t('Back to top');
+  $link = l($link_text, '', array(
+    'attributes' => array('class' => 'uib-study--to-the-top',),
+    'fragment' => 'block-system-main',
+    'external' => TRUE,
+  ));
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => array('uib-study__wrapper--to-the-top'),),
+    'data' => array(
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => $link,
+    ),
+  );
+  return $output;
 }
