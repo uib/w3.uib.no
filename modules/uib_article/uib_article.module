@@ -674,6 +674,9 @@ function uib_article_theme_registry_alter(&$theme_registry) {
 function uib_article_theme_field_multiple_value_form($variables) {
   $element = $variables['element'];
   $output = '';
+  
+  // Disable table drag for image caption fields
+  $draggable = !in_array($element['#field_name'], array('field_uib_imagecaptions', 'field_uib_imagecaptions2'));
 
   if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
     $table_id = drupal_html_id($element['#field_name'] . '_values');
@@ -686,8 +689,10 @@ function uib_article_theme_field_multiple_value_form($variables) {
         'colspan' => 2,
         'class' => array('field-label'),
       ),
-      t('Order'),
     );
+    if ($draggable) {
+      $header[] = t('Order');
+    }
     $rows = array();
 
     // Sort items according to '_weight' (needed when the form comes back after
@@ -706,27 +711,39 @@ function uib_article_theme_field_multiple_value_form($variables) {
     // Add the items as table rows.
     foreach ($items as $key => $item) {
       $item['_weight']['#attributes']['class'] = array($order_class);
+      if (!$draggable) {
+        $item['_weight']['#attributes']['style'][] = 'display:none;';
+      }
       $delta_element = drupal_render($item['_weight']);
-      $cells = array(
-        array(
-          'data' => '',
-          'class' => array('field-multiple-drag'),
-        ),
-        drupal_render($item),
-        array(
-          'data' => $delta_element,
-          'class' => array('delta-order'),
-        ),
-      );
-      $rows[] = array(
-        'data' => $cells,
-        'class' => array('draggable'),
-      );
-      if (!empty($item['target_id'])) {
-        if ($item['target_id']['#field_name'] == 'field_uib_area') {
-          $rows[0]['class'][0] = 'nodrag';
-          $rows[0]['class'][1] = 'area';
+      if ($draggable) {
+        $cells = array(
+          array(
+            'data' => '',
+            'class' => array('field-multiple-drag'),
+          ),
+          drupal_render($item),
+          array(
+            'data' => $delta_element,
+            'class' => array('delta-order'),
+          ),
+        );
+        $rows[] = array(
+          'data' => $cells,
+          'class' => array('draggable'),
+        );
+        if (!empty($item['target_id'])) {
+          if ($item['target_id']['#field_name'] == 'field_uib_area') {
+            $rows[0]['class'][0] = 'nodrag';
+            $rows[0]['class'][1] = 'area';
+          }
         }
+      } else {
+        $cells = array(
+          drupal_render($item) . $delta_element,
+        );
+        $rows[] = array(
+          'data' => $cells,
+        );
       }
     }
 
@@ -736,9 +753,10 @@ function uib_article_theme_field_multiple_value_form($variables) {
     $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
     $output .= '</div>';
 
-    drupal_add_tabledrag($table_id, 'order', 'sibling', $order_class);
-  }
-  else {
+    if ($draggable) {
+      drupal_add_tabledrag($table_id, 'order', 'sibling', $order_class);
+    }
+  } else {
     foreach (element_children($element) as $key) {
       $output .= drupal_render($element[$key]);
     }
