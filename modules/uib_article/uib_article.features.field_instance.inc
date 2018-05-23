@@ -1487,7 +1487,10 @@ function uib_article_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => '<ul>
+<li>Check this box if you want the event to be shown in the main uib.no calender, not just the area calender.</li>
+<li>Note: Internal events should not be added to the main uib.no calendar.</li>
+</ul>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1510,7 +1513,7 @@ function uib_article_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_show_global_calendar',
-    'label' => 'Show in global calendar',
+    'label' => 'Show the event in the main uib.no calendar',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1529,6 +1532,10 @@ function uib_article_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<ul>
+<li>Check this box if you want the event to be shown in the main uib.no calender, not just the area calender.</li>
+<li>Note: Internal events should not be added to the main uib.no calendar.</li>
+</ul>');
   t('By checking this box you get a feature article');
   t('Caption for image');
   t('Feature article');
@@ -1555,7 +1562,7 @@ function uib_article_field_default_field_instances() {
   t('Search by name or username (find username on <a href="https://bs.uib.no/?module=users&action=tsearch">bs.uib.no</a>)');
   t('Search hits');
   t('Set this field to change the score for this item relative to similar items in searches. The value can be between 0.0001 and 10. Default is 1, meaning no increase in score value.');
-  t('Show in global calendar');
+  t('Show the event in the main uib.no calendar');
   t('Small images caption');
   t('Twitter Card Image');
   t('When there is more than one image, use the image index to indicate which image the caption belongs to.');
