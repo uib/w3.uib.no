@@ -164,8 +164,8 @@ function uib_study__update_study($type, $study, $ou_nid, &$existing) {
     $en_path_prefix = 'course';
   }
   elseif ($type == 'program' || $type == 'specialization') {
-    $no_path_prefix = 'studieprogram';
-    $en_path_prefix = 'studyprogramme';
+    $no_path_prefix = 'studier';
+    $en_path_prefix = 'studies';
   }
   elseif ($type == 'exchange') {
     if ($category == 'mou' || $category == 'forskningsavtale') {

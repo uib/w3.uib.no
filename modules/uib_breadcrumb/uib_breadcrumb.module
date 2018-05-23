@@ -175,8 +175,8 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             $study_type_href = 'node/50057';
           }
           else {
-            $study_type_title = t('Study programme');
-            $study_type_href = "node/$programmes_view_page_nid";
+            $study_type_title = t('Studies');
+            $study_type_href = 'studies';
           }
         }
         $uib_active_trail[] = array(

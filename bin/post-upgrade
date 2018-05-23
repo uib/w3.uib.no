@@ -17,6 +17,6 @@ fi
 #
 # fi
 
-REL=91
+REL=95
 
-bin/site-drush scr import_kmd_events_and_news -v
+bin/site-drush scr add-studies-alias -v

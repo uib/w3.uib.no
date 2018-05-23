@@ -264,7 +264,7 @@ function uib_study__get_category_heading($cat) {
 
 function uib_study__get_studies_in_category($studies, $lang) {
   global $base_url;
-  $urlpart = $lang == 'nb' ? '/nb/studieprogram/' : '/en/studyprogramme/';
+  $urlpart = $lang == 'nb' ? '/nb/studier/' : '/en/studies/';
   $url = $base_url . $urlpart;
   $output = array();
   $sort_studies = array();
@@ -281,7 +281,7 @@ function uib_study__get_studies_in_category($studies, $lang) {
 
 function uib_study__get_studies_in_category_alpha($alpha_groups, $lang) {
   global $base_url;
-  $urlpart = $lang == 'nb' ? '/nb/studieprogram/' : '/en/studyprogramme/';
+  $urlpart = $lang == 'nb' ? '/nb/studier/' : '/en/studies/';
   $url = $base_url . $urlpart;
   ksort($alpha_groups);
   $studies = array();
