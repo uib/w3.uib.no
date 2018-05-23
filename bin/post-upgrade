@@ -19,4 +19,4 @@ fi
 
 REL=95
 
-bin/site-drush scr add-studies-alias -v
+#bin/site-drush scr add-studies-alias -v
