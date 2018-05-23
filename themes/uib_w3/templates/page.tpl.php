@@ -167,7 +167,7 @@
         </div>
 <?php endif; ?>
 <?php if ($page['footer']): ?>
-        <div class="footer-wrapper">
+        <div class="footer-wrapper mobile_area">
 <?php if (isset($area_menu_footer)): ?>
           <nav class="main-menu__expanded">
 <?php print render($area_menu_footer); ?>

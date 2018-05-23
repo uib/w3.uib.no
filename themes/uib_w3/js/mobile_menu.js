@@ -14,11 +14,14 @@ jQuery( document ).ready(function ($) {
 			return false;
 	});
 	$(".mobile_area>nav>ul.menu>li.expanded>a").click (function(event){
+    if (this.href.slice(-1) == "#") event.preventDefault();
+    if ($(window).width() < 600) {
 			event.preventDefault();
 			$(this).parent().toggleClass("open");
 			$(this).parent().children("ul").animate({
 				height: 'toggle'
 			}, 400);
 			return false;
+    }
 	});
 });
