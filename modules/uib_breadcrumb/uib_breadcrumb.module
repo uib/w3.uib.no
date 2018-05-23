@@ -86,30 +86,13 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
               $uib_active_trail = array_merge($uib_active_trail, $active_trail);
             }
             else {
-              $related_menu_node_id = __uib_breadcrumb__get_related_menu_item(arg(1), $current_area_menu_ids);
-              if ($related_menu_node_id) {
-                foreach($current_area_menu as $item) {
-                  if (strpos($item['link']['link_path'], $related_menu_node_id)) {
-                    $uib_active_trail[] = $item['link'];
-                    break;
-                  }
-                  else {
-                    foreach($item['below'] as $leaf) {
-                      if (strpos($leaf['link']['link_path'], $related_menu_node_id)) {
-                        $uib_active_trail[] = $item['link'];
-                        $uib_active_trail[] = $leaf['link'];
-                      }
-                    }
-                  }
-                }
-              }
               $uib_active_trail[] = end($active_trail);
             }
             break;
           case 'event':
             $uib_active_trail[] = array(
               'title' => t('Calendar'),
-              'href' => $uib_active_trail[1]['href'] . '/calendar',
+              'href' => $uib_active_trail[count($uib_active_trail)-1]['href'] . '/calendar',
               'link_path' => '',
               'localized_options' => array(),
               'type' => 0,
