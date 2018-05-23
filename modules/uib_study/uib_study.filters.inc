@@ -153,7 +153,7 @@ function uib_study__get_studyprogrammes_by_cat() {
       $study = $sp['node'];
       $categories = explode(',', $study['field_uib_study_tag']);
       foreach ($categories as $cat) {
-        $studies_with_category[(int)$cat][t($study['field_uib_study_category'])][$study['field_uib_study_code']] = $study;
+        $studies_with_category[(int)$cat][$study['field_uib_study_category']][$study['field_uib_study_code']] = $study;
       }
     }
   }
@@ -211,7 +211,7 @@ function uib_study__get_studyprogrammes_by_alpha() {
     $study_code = $study['node']['field_uib_study_code'];
     $cat = $study['node']['field_uib_study_category'];
     $title = $study['node']['field_uib_study_title'];
-    $alpha_groups[$cat][$first_letter][$study['node']['field_uib_study_code']] = uib_study__clean_study_title($title);
+    $alpha_groups[$cat][$first_letter][$study['node']['path']] = uib_study__clean_study_title($title);
   }
   $output = array(
     '#type' => 'container',
@@ -270,26 +270,24 @@ function uib_study__get_studies_in_category($studies, $lang) {
   $sort_studies = array();
   foreach ($studies as $study) {
     $title = uib_study__clean_study_title($study['field_uib_study_title']);
-    $sort_studies[$study['field_uib_study_code']] = $title;
+    $sort_studies[$study['path']] = $title;
   }
   asort($sort_studies);
-  foreach ($sort_studies as $study_code => $title) {
-    $output[] = l($title, $url . $study_code);
+  foreach ($sort_studies as $path => $title) {
+    $output[] = l($title, $base_url . $path);
   }
   return $output;
 }
 
 function uib_study__get_studies_in_category_alpha($alpha_groups, $lang) {
   global $base_url;
-  $urlpart = $lang == 'nb' ? '/nb/studier/' : '/en/studies/';
-  $url = $base_url . $urlpart;
   ksort($alpha_groups);
   $studies = array();
   foreach($alpha_groups as $key => $ag) {
     asort($ag);
     $study_list = array();
-    foreach($ag as $code => $title) {
-      $study_list[] = l($title, $url . $code);
+    foreach($ag as $path => $title) {
+      $study_list[] = l($title, $base_url . $path);
     }
     $studies[] = array(
       'data' => '<h4>' . $key . '</h4>',

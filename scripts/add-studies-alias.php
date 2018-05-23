@@ -27,36 +27,32 @@
   if(isset($result['node'])) {
     $nodes = entity_load('node', array_keys($result['node']));
     foreach($nodes as $node) {
-      $study_code = $node->field_uib_study_code['und'][0]['value'];
+      $path = 'node/' . $node->nid;
+      $old_alias['nb'] = drupal_get_path_alias($path, 'nb');
+      $old_alias['en'] = drupal_get_path_alias($path, 'en');
       $alias['nb'] = array(
-        'new' => array(
-          'source' => 'node/' . $node->nid,
-          'alias' => 'studier/' . $study_code,
-          'language' => 'nb',
-        ),
-        'old' => 'studieprogram/' . $study_code,
+        'source' => 'node/' . $node->nid,
+        'alias' => str_replace('studieprogram', 'studier', $old_alias['nb']),
+        'language' => 'nb',
       );
       $alias['en'] = array(
-        'new' => array(
-          'source' => 'node/' . $node->nid,
-          'alias' => 'studies/' . $study_code,
-          'language' => 'en',
-        ),
-        'old' => 'studyprogramme/' . $study_code,
+        'source' => 'node/' . $node->nid,
+        'alias' => str_replace('studyprogramme', 'studies', $old_alias['en']),
+        'language' => 'en',
       );
       foreach($alias as $l => $a) {
-        if (!drupal_lookup_path('source', $a['new']['alias'], $l)) {
-          path_save($a['new']);
-          uibx_log('Path ' . $a['new']['alias'] . ' saved for node ' . $node->nid);
+        if (!drupal_lookup_path('source', $a['alias'], $l)) {
+          path_save($a);
+          uibx_log('Path ' . $a['alias'] . ' saved for node ' . $node->nid);
         }
         else {
-          uibx_log('Path ' . $a['new']['alias'] . ' already exists and is not saved');
+          uibx_log('Path ' . $a['alias'] . ' already exists and is not saved');
         }
-        if (drupal_lookup_path('source', $a['old'], $l)) {
+        if (drupal_lookup_path('source', $old_alias[$l], $l)) {
           $redirect = new stdClass();
-          $redirect->source = $a['old'];
+          $redirect->source = $old_alias[$l];
           $redirect->source_options = array();
-          $redirect->redirect = $a['new']['source'];
+          $redirect->redirect = $a['source'];
           $redirect->redirect_options = array();
           $redirect->status_code = 0;
           $redirect->type = 'redirect';
@@ -64,10 +60,10 @@
           redirect_hash($redirect);
           if (!$existing = redirect_load_by_hash($redirect->hash)) {
             redirect_save($redirect);
-            uibx_log('Redirect for ' . $a['old'] . ' saved');
+            uibx_log('Redirect for ' . $old_alias[$l] . ' saved');
           }
           else {
-            uibx_log('Redirect ' . $a['old'] . ' exists and is not saved');
+            uibx_log('Redirect ' . $old_alias[$l] . ' exists and is not saved');
           }
         }
       }
