@@ -2301,6 +2301,9 @@ a,
 .page-node-calendar .ui-datepicker-inline .ui-datepicker-calendar td,
 .page-calendar .ui-datepicker-inline .ui-datepicker-calendar td {
   background: transparent; }
+.page-node-calendar .calendar-date a:hover,
+.page-calendar .calendar-date a:hover {
+  text-decoration: underline; }
 
 .main-menu__expanded {
   background: #eae6e2;

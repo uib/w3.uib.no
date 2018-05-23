@@ -454,14 +454,6 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
         'nid' => $row->nid,
       );
     }
-    if (isset($row->field_uib_deadline_value) && $date(($row->field_uib_deadline_value)) >= $from_date) {
-      $events_by_day[$date($row->field_uib_deadline_value)][] = array(
-        'suffix' => drupal_ucfirst(t('deadline')) . ' ' . $formatted_date($row->field_uib_deadline_value) . '. ' . t('Time') . ': ' . $time($row->field_uib_deadline_value),
-        'info' => array(t('Event starts at !date', array('!date' => $formatted_date($row->field_uib_date_value)))),
-        'time' => '',
-        'nid' => $row->nid,
-      );
-    }
   }
 
   if (empty($events_by_day)) {
@@ -690,12 +682,18 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
       $nid = $event['nid'];
       $time = $event['time'];
       $type = $node[$nid]->field_uib_event_type_value;
+      $deadline = $node[$nid]->field_uib_deadline_value;
+      $deadline_date = date('d.m.Y',strtotime($deadline. 'Z'));
+      $deadline_time = date('H:i',strtotime($deadline. 'Z'));
       if (isset($event['end'])) {
         $time .= '–' . $event['end'];
       }
       if (isset($event['info'][0])) {
         $tmp = $event['info'][0];
         $event['info'][0] = '<div class="event-entry-info--time" aria-label="'.t('time').'">' . $tmp . '</div>';
+      }
+      if (isset($deadline)) {
+        $event['suffix'] = '<span style="color:#cf3c3a">' . drupal_ucfirst(t('deadline')) . ': ' . $deadline_date . ', ' . t('at​') . ' ' . $deadline_time . '</span>';
       }
 
       $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
