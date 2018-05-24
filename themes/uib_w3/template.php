@@ -1455,6 +1455,10 @@ function uib_w3_preprocess_field(&$vars) {
     case 'field_uib_main_media':
       if (in_array($elements_mode, array('content_main', 'feature_article_full_width')) && in_array($elements_bundle, array('image', 'video'))) {
         if (count($vars['items']) > 1) {
+          $auto_height = '16:9';
+          foreach ($var['items'] as $item) {
+            if ($item['#bundle'] != 'video') $auto_height = 'false';
+          }
           $content_classes[] = 'cycle-slideshow';
           $vars['content_attributes_array']['data-cycle-slides'] = '> div';
           $vars['content_attributes_array']['data-cycle-fx'] = 'scrollHorz';
@@ -1463,7 +1467,7 @@ function uib_w3_preprocess_field(&$vars) {
           $vars['content_attributes_array']['data-cycle-timeout'] = '0';
           $vars['content_attributes_array']['data-cycle-prev'] = '.uib-slideshow__nav--prev';
           $vars['content_attributes_array']['data-cycle-next'] = '.uib-slideshow__nav--next';
-          $vars['content_attributes_array']['data-cycle-auto-height'] = 'false';
+          $vars['content_attributes_array']['data-cycle-auto-height'] = $auto_height;
           $vars['content_attributes_array']['data-cycle-log'] = 'false';
         }
         elseif (!empty($vars['items'][0]['field_uib_description']) && in_array($elements_bundle, array('image', 'video'))) {
