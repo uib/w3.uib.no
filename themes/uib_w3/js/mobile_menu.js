@@ -13,12 +13,4 @@ jQuery( document ).ready(function ($) {
 			}, 400);
 			return false;
 	});
-	$(".mobile_area>nav>ul.menu>li.expanded>a").click (function(event){
-			event.preventDefault();
-			$(this).parent().toggleClass("open");
-			$(this).parent().children("ul").animate({
-				height: 'toggle'
-			}, 400);
-			return false;
-	});
 });
