@@ -1,3 +1,13 @@
+# Release 95 _2018-05-24_
+- Forbedret brødsmulestiene #20225
+- Forbedret feltene for billedtekst i redigeringsgrensesnittet #20299
+- Endret visning av påmeldingsfrist i kalender #20009
+- Gjort visuelle justeringer i kolofonfeltet #19948
+- Venstrestilt lenkene i mobilmenyen samt endret lenketeksten fra store til små bokstaver #20274
+- Endret URL for studieprogram fra uib.no/studieprogram til uib.no/studier (endringen gjenspeiles i brødsmulestien) #20295
+- Lagt til "Til toppen"-lenke nederst i den alfabetiske listen over studier #20290
+- Lagt til hjelpetekst og endret overskrift for feltet "Vis i globalkalender" #20282
+
 # Release 94 _2018-05-11_
 - Fedigstilt videreutviklingen av studieprogramsidene #20241 #20242 #20273 #20283
 - Kryptert forbindelsen til w3-frontend (www.uib.no) #17466
