@@ -91,7 +91,7 @@ function uib_study_menu() {
   }
 
   // studieplan page
-  foreach (explode(' ', 'studieprogram studyprogramme') as $prefix) {
+  foreach (explode(' ', 'studieprogram studyprogramme studier studies') as $prefix) {
     $items["$prefix/%/plan"] = array(
       'page callback' => 'uib_study__infopage',
       'page arguments' => array(1),
@@ -99,7 +99,7 @@ function uib_study_menu() {
     );
   }
 
-  foreach (explode(' ', 'studieprogram studyprogramme') as $prefix) {
+  foreach (explode(' ', 'studieprogram studyprogramme studier studies') as $prefix) {
     $items["$prefix/%/%/plan"] = array(
       'page callback' => 'uib_study__infopage',
       'page arguments' => array(1,2),
