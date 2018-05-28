@@ -815,11 +815,16 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
           $lang = $ll[$wrapped_entity->language->value()];
           $options['language'] = $lang;
         }
-
-        $output[$key] = url(
-          "{$type}/{$wrapped_entity->getIdentifier()}",
-          $options
-        );
+        if ($wrapped_entity->field_uib_kmd_data->value()) {
+          $kmd_data = drupal_json_decode($wrapped_entity->field_uib_kmd_data->value());
+          $output[$key] = $kmd_data['href'];
+        }
+        else {
+          $output[$key] = url(
+            "{$type}/{$wrapped_entity->getIdentifier()}",
+            $options
+          );
+        }
         break;
       case 'published_timestamp':
         if (uib_search__null_if_empty($v->value())) {
