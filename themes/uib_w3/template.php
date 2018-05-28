@@ -805,12 +805,15 @@ SCRIPT;
       $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
       uib_study__get_study_kicker($category, $name);
 
+      @$study_title = $variables['node']->field_uib_study_title[$variables['language']->language][0]['safe_value'];
+      if (!isset($study_title)) {
+        $study_title = $variables['node']->field_uib_study_title['und'][0]['safe_value'];
+      }
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
-        '#value' => $variables['node']->field_uib_study_title[$variables['language']->language][0]['safe_value'],
+        '#value' => $study_title,
         '#weight' => -45,
-
       );
       $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
       $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);

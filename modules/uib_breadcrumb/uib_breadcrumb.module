@@ -180,8 +180,14 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             'type' => 0,
           );
         }
+        if (isset($item['page_arguments'][0]->field_uib_study_title[$lang])) {
+          $study_title = $item['page_arguments'][0]->field_uib_study_title[$lang][0]['value'];
+        }
+        else {
+          $study_title = $item['page_arguments'][0]->field_uib_study_title['und'][0]['value'];
+        }
         $uib_active_trail[] = array(
-          'title' => $item['page_arguments'][0]->field_uib_study_title[$lang][0]['value'],
+          'title' => $study_title,
           'href' => 'node/' . $item['page_arguments'][0]->nid,
           'link_path' => '',
           'localized_options' => array(),
