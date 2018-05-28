@@ -66,6 +66,28 @@
             uibx_log('Redirect ' . $old_alias[$l] . ' exists and is not saved');
           }
         }
+        if (drupal_lookup_path($a['source'] . '/plan', $old_alias[$l] . '/plan', $l)) {
+        }
+        else {
+          $so = $l == 'nb' ? 'studieprogram' : 'studyprogramme';
+          $sn = $l == 'nb' ? 'studier' : 'studies';
+          $redirect = new stdClass();
+          $redirect->source = str_replace($sn, $so, $old_alias[$l] . '/plan');
+          $redirect->source_options = array();
+          $redirect->redirect = $old_alias[$l] . '/plan';
+          $redirect->redirect_options = array();
+          $redirect->status_code = 0;
+          $redirect->type = 'redirect';
+          $redirect->language = $l;
+          redirect_hash($redirect);
+          if (!$existing = redirect_load_by_hash($redirect->hash)) {
+            redirect_save($redirect);
+            uibx_log('Redirect for ' . $redirect->source . ' saved');
+          }
+          else {
+            uibx_log('Redirect ' . $old_alias[$l] . '/plan exists and is not saved');
+          }
+        }
       }
     }
   }
