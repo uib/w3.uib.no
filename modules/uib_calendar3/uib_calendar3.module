@@ -122,6 +122,11 @@ function uib_calendar3_block_view($delta) {
       $node = node_load($nid);
 
       if($first):
+        $url = url('node/' . intval($nid));
+        if(!empty($node->field_uib_kmd_data)) {
+          $kmd_data = drupal_json_decode($node->field_uib_kmd_data['und'][0]['value']);
+          $url = $kmd_data['href'];
+        }
         $ra['data'][$key]=array();
         $ra['data'][$key]['#type'] = 'container';
         $ra['data'][$key]['#attributes'] = array('class' => array('event'));
@@ -162,7 +167,7 @@ function uib_calendar3_block_view($delta) {
               uib_calendar3__get_calendar_card_render_array(
                 $value->field_uib_date_value . 'Z'),
               '#prefix' => '<a title="' . check_plain($node->title) . '"
-                href="' . url('node/' . intval($nid)) . '">',
+                href="' . $url . '">',
               '#suffix' => '</a>',
             ),
           );
@@ -170,12 +175,11 @@ function uib_calendar3_block_view($delta) {
           array_push($ra['data'][$key]['#attributes']['class'], 'noimage');
         endif;
 
-
         // Other info: - title
         $ra['data'][$key]['calinfo'] = array();
         $ra['data'][$key]['calinfo']['#prefix'] = '<a
           title="' . check_plain($node->title) . '"
-          href="' . url('node/' . intval($nid)) . '">';
+          href="' . $url . '">';
         $ra['data'][$key]['calinfo']['#suffix'] = '</a>';
         $ra['data'][$key]['calinfo']['#type'] = 'container';
         $ra['data'][$key]['calinfo']['#attributes'] =
