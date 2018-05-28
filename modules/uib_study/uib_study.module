@@ -958,6 +958,13 @@ EOD;
           $tab_items_specialization_position = 0;
           $first_tab = true;
           $construction_table_tab = FALSE;
+
+          // remove empty tabs
+          foreach ($data as $key => $value) {
+            if (empty($value['#items'])) {
+              unset($data[$key]);
+            }
+          }
           foreach ($data as $group) {
             $group_id = $group['#group'];
             $group_type = substr($group_id, strpos($group_id, '_') + 1);
@@ -1298,8 +1305,22 @@ EOD;
         }
         $category = (!empty($node->field_uib_study_category['und'])) ? $node->field_uib_study_category['und'][0]['value'] : '';
         $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+
+        // Study specializations may not have their own plans, so checking
+        $study_path = false;
         if (uib_study__has_study_plan($data)) {
           $study_path = uib_study__study_path($node->field_uib_study_code['und'][0]['value']);
+        } else {
+          if ($node->field_uib_study_part_of['und'][0]['target_id']) {
+            $parent = node_load($node->field_uib_study_part_of['und'][0]['target_id']);
+            $parent_data = uib_study__fspres_get_node_json($node->field_uib_study_part_of['und'][0]['target_id'],'render.json',TRUE);
+            if (uib_study__has_study_plan($parent_data)){
+              $study_path = uib_study__study_path($parent->field_uib_study_code['und'][0]['value']);
+            }
+          }
+        }
+
+        if ($study_path) {
           $markup .= "<p class='uib-study-plan'>" . l(t('See full study plan'), drupal_get_path_alias($study_path) . '/plan') . "</p>";
         }
 
@@ -1322,7 +1343,6 @@ EOD;
             $markup .= preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $tmp['#text']);
           }
         }
-
 
         $block['content'] = $markup;
       }
