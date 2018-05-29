@@ -9813,10 +9813,11 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
     .page-studies .study-listing p + .item-list li {
       -ms-flex: 0 0 50%;
       -webkit-flex: 0 0 50%;
-      flex: 0 0 50%; }
-      .page-studies .study-listing p + .item-list li:nth-child(2n) {
+      flex: 0 0 50%;
+      padding-right: 0; }
+      .page-studies .study-listing p + .item-list li:nth-child(2n) a {
         padding-left: 1.5625rem; }
-      .page-studies .study-listing p + .item-list li:nth-child(2n+1) {
+      .page-studies .study-listing p + .item-list li:nth-child(2n+1) a {
         padding-right: 1.5625rem; } }
   .page-studies .study-listing ul, .page-studies .study-listing li {
     list-style: none;
