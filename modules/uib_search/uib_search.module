@@ -815,9 +815,17 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
           $lang = $ll[$wrapped_entity->language->value()];
           $options['language'] = $lang;
         }
-        if ($wrapped_entity->field_uib_kmd_data->value()) {
-          $kmd_data = drupal_json_decode($wrapped_entity->field_uib_kmd_data->value());
-          $output[$key] = $kmd_data['href'];
+        if ($wrapped_entity->type->value() == 'uib_article') {
+          if ($wrapped_entity->field_uib_kmd_data->value()) {
+            $kmd_data = drupal_json_decode($wrapped_entity->field_uib_kmd_data->value());
+            $output[$key] = $kmd_data['href'];
+          }
+          else {
+            $output[$key] = url(
+              "{$type}/{$wrapped_entity->getIdentifier()}",
+              $options
+            );
+          }
         }
         else {
           $output[$key] = url(
