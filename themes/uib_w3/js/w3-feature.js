@@ -25,41 +25,41 @@
     }
   });
   function alterMediaHeight() {
-    var imgOffsetY = 0;
-    var imgOffsetX = 0;
-    var viewHeight = $(window).height();
     if ($('.feature-image .content-top').length > 0) {
       var container = '.feature-image ';
-      var imgResize = '.field-name-field-uib-primary-media';
+      var imgContainer = container + '.field-name-field-uib-primary-media';
     }
     if ($('.feature-video .content-top').length > 0) {
       var container = '.feature-video ';
-      var imgResize = '.field-name-field-uib-feature-mobile-media';
+      var imgContainer = container + '.field-name-field-uib-feature-mobile-media';
     }
+    var img = $(imgContainer + ' img');
+    var imgNaturalHeight = img[0].naturalHeight;
+    var imgNaturalWidth = img[0].naturalWidth;
+    var imgFormat = imgNaturalWidth / imgNaturalHeight;
+    var viewPortHeight = $(window).height();
     var mediaTop = $(container + '.content-top').position().top;
-    var mediaHeight = viewHeight - mediaTop;
+    var mediaHeight = viewPortHeight - mediaTop;
     var mediaWidth = $(window).width();
-    $(container + imgResize).height(mediaHeight);
-    var imgHeight = $(container + imgResize + ' img').height();
-    var imgWidth = $(container + imgResize + ' img').width();
-    if (imgHeight !== mediaHeight) {
-      var factor1 = mediaHeight/imgHeight;
-      imgHeight = imgHeight * factor1;
-      imgWidth = imgWidth * factor1;
+    var mediaFormat = mediaWidth / mediaHeight;
+    var offset = img.offset();
+    var imgX = 0;
+    var imgY = mediaTop;
+    if (mediaFormat < imgFormat) {
+      var newImageHeight = mediaHeight;
+      var newImageWidth = newImageHeight * imgFormat;
+      imgX = (mediaWidth - newImageWidth) / 2;
     }
-    if (imgWidth < mediaWidth) {
-      var factor2 = mediaWidth/imgWidth;
-      imgHeight = imgHeight * factor2;
-      imgWidth = imgWidth * factor2;
+    else {
+      var newImageWidth = mediaWidth;
+      var newImageHeight = newImageWidth / imgFormat;
+      imgY = imgY + (mediaHeight - newImageHeight) / 2;
     }
-    if (imgHeight > mediaHeight) {
-      imgOffsetY = Math.round((imgHeight - mediaHeight) / 2);
-    }
-    if (imgWidth > mediaWidth) {
-      imgOffsetX = Math.round((imgWidth - mediaWidth) / 2);
-    }
-    $(container + imgResize + ' img').height(imgHeight);
-    $(container + imgResize + ' img').width(imgWidth);
+    $(imgContainer).height(mediaHeight);
+    img.height(newImageHeight);
+    img.width(newImageWidth);
+    img.offset({top: imgY, left: imgX});
+    img.css('max-width', newImageWidth);
   }
   function w3VideoAutoPlay(player) {
     var deviceHeight = $(window).height();
