@@ -125,7 +125,8 @@ function uib_area_block_view($delta='') {
           uib_area__count_news_articles($area->nid) ||
           $area->field_uib_area_type['und'][0]['value'] == 'frontpage'
         ) {
-          $news_archive_link = l(t('See all news'), $news_archive_url, array(
+          if ($area->field_uib_area_type['und'][0]['value'] == 'frontpage' ? $news_archive_link_text = t('News') : $news_archive_link_text = t('See all news'));
+          $news_archive_link = l($news_archive_link_text, $news_archive_url, array(
             'attributes' => array('class' => array('more-link__news')),
           ));
           $items[] = $news_archive_link;
