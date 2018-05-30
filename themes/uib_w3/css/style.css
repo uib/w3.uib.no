@@ -3753,8 +3753,7 @@ a,
 .global-menu li {
   padding: 0 0.5rem 0 0; }
   .global-menu li a {
-    color: #fff;
-    text-transform: uppercase; }
+    color: #fff; }
     .global-menu li a:hover {
       text-decoration: underline; }
       .global-menu li a:hover :not(.active) {
