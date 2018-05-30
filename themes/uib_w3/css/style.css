@@ -5703,7 +5703,7 @@ nav {
 .field-name-field-uib-social-media h3 {
   color: #333333;
   font-weight: normal;
-  margin: 0;
+  margin: 0 0 .4rem 0;
   text-transform: uppercase; }
 .field-name-field-uib-social-media .field-items {
   display: flex;
