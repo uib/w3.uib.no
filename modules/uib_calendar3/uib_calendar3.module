@@ -697,7 +697,11 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
         $event['info'][0] = '<div class="event-entry-info--time" aria-label="'.t('time').'">' . $tmp . '</div>';
       }
       if (isset($deadline)) {
-        $event['suffix'] = '<span style="color:#cf3c3a">' . drupal_ucfirst(t('deadline')) . ': ' . $deadline_date . ', ' . t('at​') . ' ' . $deadline_time . '</span>';
+        $deadline_expired = strtotime($deadline. 'Z');
+        $current_time = time();
+        if ($language->language == 'nb' ? $comma = ',' : $comma = '');
+        $event['suffix'] = '<span style="color:#cf3c3a">' . t('Registration deadline') . ': ';
+        $event['suffix'] .= ($deadline_expired > $current_time ? $deadline_date . $comma . ' ' . t('at​') . ' ' . $deadline_time : t('Expired') . '.') . '</span>';
       }
 
       $suffix = isset($event['suffix']) ? ' ' . $event['suffix'] : '';
