@@ -1455,8 +1455,8 @@ function uib_w3_preprocess_field(&$vars) {
     case 'field_uib_main_media':
       if (in_array($elements_mode, array('content_main', 'feature_article_full_width')) && in_array($elements_bundle, array('image', 'video'))) {
         if (count($vars['items']) > 1) {
-          $auto_height = '16:9';
-          foreach ($var['items'] as $item) {
+          $auto_height = '16:10';
+          foreach ($vars['items'] as $item) {
             if ($item['#bundle'] != 'video') $auto_height = 'false';
           }
           $content_classes[] = 'cycle-slideshow';
