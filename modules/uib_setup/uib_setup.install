@@ -309,3 +309,10 @@ function uib_setup_update_7032() {
 function uib_setup_update_7033() {
   module_enable(array('views_json'));
 }
+
+/**
+ * Enable views_autocomplete_filters
+ */
+function uib_setup_update_7034() {
+  module_enable(array('views_autocomplete_filters'));
+}
