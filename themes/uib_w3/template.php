@@ -101,6 +101,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
       ),
     );
     drupal_add_html_head($meta_description, 'meta_description');
+    if (count($variables['theme_hook_suggestions']) > 1) {
+      $key = array_search('page-studies', $variables['classes_array']);
+      if ($key) unset($variables['classes_array'][$key]);
+    }
   }
 }
 
