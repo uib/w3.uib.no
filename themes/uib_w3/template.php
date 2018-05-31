@@ -168,13 +168,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['area_menu_footer'] = $area_menu;
   }
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
-    if ($area_menu_name = uib_area__get_current_menu()) {
-      $variables['mobile']['area_menu'] = __uib_w3__get_renderable_menu($area_menu_name);
-      $variables['mobile']['area_menu']['#prefix'] = '<nav class="area-mobile-menu">';
-      $variables['mobile']['area_menu']['#suffix'] = '</nav>';
-      $variables['mobile']['area_menu']['#weight'] = -15;
-    }
-    if ($variables['is_front']) unset($variables['mobile']['area_menu']);
     if ($variables['language']->language == 'nb') {
       $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-no-2');
     }
@@ -195,6 +188,14 @@ function uib_w3_preprocess_page(&$variables, $hook) {
       '#href' => $base_path . drupal_get_path_alias("node/{$current_area->nid}",
         $variables['language']->language ),
     );
+    if ($area_menu_name = uib_area__get_current_menu()) {
+      $variables['page']['subheader']['area_menu']['#prefix'] = '<nav class="mobile_area mobile_dropdown">';
+      $variblaes['page']['subheader']['area_menu']['#suffix'] = '</nav>';
+      $variables['page']['subheader']['area_menu']['expandable'] = __uib_w3__get_renderable_menu($area_menu_name);
+      $variables['page']['subheader']['area_menu']['expandable']['#prefix'] = '<nav class="area-mobile-menu">';
+      $variables['page']['subheader']['area_menu']['expandable']['#suffix'] = '</nav>';
+      $variables['page']['subheader']['area_menu']['expandable']['#weight'] = 2;
+    }
   }
   if ($current_area && $is_feature_front) {
     if (empty($current_area->field_uib_feature_heading_style['und'][0]['value']) || $current_area->field_uib_feature_heading_style['und'][0]['value'] != 'h') {
