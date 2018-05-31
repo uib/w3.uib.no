@@ -258,8 +258,8 @@ function uib_user_field_group_info() {
     'label' => 'Optional tab',
     'weight' => '47',
     'children' => array(
-      0 => 'field_uib_user_opt_title',
-      1 => 'field_uib_user_opt_content',
+      0 => 'field_uib_user_opt_content',
+      1 => 'field_uib_user_opt_title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -350,20 +350,21 @@ function uib_user_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_bottom_tabs';
   $field_group->data = array(
-    'label' => 'Resources',
+    'label' => 'RSS and documents',
     'weight' => '51',
     'children' => array(
-      0 => 'field_uib_user_docs',
-      1 => 'field_uib_user_feed',
+      0 => 'field_uib_user_feed',
+      1 => 'field_uib_user_docs',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'RSS and documents',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-resources field-group-tab',
         'required_fields' => 1,
+        'classes' => 'group-resources field-group-tab',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $field_groups['group_resources|user|user|form'] = $field_group;
@@ -502,8 +503,8 @@ function uib_user_field_group_info() {
     'children' => array(
       0 => 'field_uib_slug',
       1 => 'field_uib_position_category',
-      2 => 'field_uib_position_code',
-      3 => 'field_uib_sort_name',
+      2 => 'field_uib_sort_name',
+      3 => 'field_uib_position_code',
       4 => 'googleanalytics',
       5 => 'redirect',
       6 => 'timezone',
@@ -812,8 +813,8 @@ function uib_user_field_group_info() {
   t('Optional tab');
   t('Personal media');
   t('Publications');
+  t('RSS and documents');
   t('Research / Work');
-  t('Resources');
   t('Second');
   t('Secondary information');
   t('Social media');

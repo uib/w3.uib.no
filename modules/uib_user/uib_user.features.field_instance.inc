@@ -1238,7 +1238,7 @@ function uib_user_field_default_field_instances() {
     ),
     'entity_type' => 'user',
     'field_name' => 'field_uib_user_docs',
-    'label' => 'Attachments',
+    'label' => 'Documents',
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
@@ -1269,21 +1269,7 @@ function uib_user_field_default_field_instances() {
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'media_internet' => 0,
           'upload' => 'upload',
-          'youtube' => 0,
         ),
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
-        'manualcrop_require_cropping' => array(),
-        'manualcrop_styles_list' => array(),
-        'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
       'weight' => 11,
@@ -2201,12 +2187,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
   t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
-  t('Attachments');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');
   t('Choose if you want CRIStin publications displayed before or after any you manually add in the "Publications" field. The default is to display CRIStin publications before.');
   t('Communication');
   t('Current projects');
+  t('Documents');
   t('Fields of competence');
   t('First name');
   t('Follow me');
