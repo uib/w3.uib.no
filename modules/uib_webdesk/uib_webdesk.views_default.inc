@@ -2463,7 +2463,6 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['filters']['title_1']['table'] = 'node';
   $handler->display->display_options['filters']['title_1']['field'] = 'title';
   $handler->display->display_options['filters']['title_1']['relationship'] = 'field_uib_area_target_id';
-  $handler->display->display_options['filters']['title_1']['operator'] = 'contains';
   $handler->display->display_options['filters']['title_1']['group'] = 1;
   $handler->display->display_options['filters']['title_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title_1']['expose']['operator_id'] = 'title_1_op';
