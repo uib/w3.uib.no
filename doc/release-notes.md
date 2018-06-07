@@ -1,3 +1,25 @@
+# Release 96 _2018-06-07_
+- Forbedret navigasjonen på mobil (endret menystrukturen og gjort visuelle justeringer) #20275
+- Rettet feil der lenker til studieplaner ikke fungerte #20339
+- Rettet feil der hovedbildet i malen for satsningsområder ikke tilpasset seg størrelsen på nettleservinduet #20200
+- Rettet feil der menyer uten menypunkt ikke ble vist for innholdsprodusenter i redigeringsgrensesnittet #20361
+- Rettet feil der engelsk tittel ikke ble vist for emner med lik tittel på norsk og engelsk #20338
+- Rettet feil der de nye studieprogramsidene (uib.no/studier) tok seg dårlig ut i Internet Explorer #20345
+- Rettet feil der billedkarusell ikke ble vist i artikler når kun videoer var brukt som mediatype #20268
+- Rettet feil der kalenderoppslag fra KMD ikke pekte på kmd.uib.no når brukt som fremhevet arrangement på områdesider #20267
+- Rettet feil der importerte nyheter og kalenderoppslag fra KMD ikke pekte på kmd.uib.no i søkeresultat #20107
+- Rettet feil der engelsk versjon av studieplansider ikke tok seg godt ut #20362
+- Lagt til lenke til felles studieplan for studieretninger uten egen plan, og i tillegg hindret at faner uten innhold blir vist #20281
+- Gjort feltet for "Område" i "Finn innhold" i webdesken om til et autofullfør-felt #20309
+- Endret lenketeksten i globalmenyen fra store til små bokstaver #20327
+- Endret tittel på nyhetsknappen på forsiden fra "Nyhetsarkiv" til "Nyheter" #20354
+- Endret tittel på fanen "Ressursar" til "RSS og dokumenter" i redigeringsgrensesnittet til personsidene #20360
+- Endret den engelske betegnelsen på "Påmeldingsfrist" i kalenderen (fra "Deadline" til "Registration deadline") #20343
+- Markert utløpte påmeldingsfrister i kalenderen som "Frist utløpt" #20343
+- Lagt inn permanente omdirigeringer fra gamle til nye studieplansider #20341
+- Forbedret cron-jobb i forbindelse med integrasjonen mot kmd.uib.no #20024
+- Gjort visuelle småjusteringer i kolofonfeltet #20317
+
 # Release 95 _2018-05-24_
 - Forbedret brødsmulestiene #20225
 - Forbedret feltene for billedtekst i redigeringsgrensesnittet #20299
