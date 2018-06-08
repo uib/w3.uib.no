@@ -1004,6 +1004,9 @@ function uib_area__node_autocomplete($type, $langcode, $string = '') {
  * Implements hook_form_alter().
  */
 function uib_area_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'field_collection_item_form') {
+    $form['#validate'][] = 'uib_area_field_collection_link_section_validation_handler';
+  }
   if ($form_id == 'area_node_form') {
     // list of fields that should be hidden (in area node form) from
     // both level 3 and innholdsprodusent users
@@ -1128,6 +1131,7 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
        ),
     );
     $form['#validate'][] = 'uib_area_field_uib_area_banner_css_validation_handler';
+    $form['#validate'][] = 'uib_area_field_uib_area_link_section_validation_handler';
   }
   elseif ($form_id == 'menu_edit_item') {
     if (!user_access('administer menu')) {
@@ -1194,6 +1198,30 @@ function uib_area_field_uib_area_banner_css_validation_handler(&$form, &$form_st
     form_set_error('field_uib_area_banner', t('You are not allowed to use the !important rule in the css. Try applying a more specific selector instead.'));
   }
 }
+
+/**
+ * Custom valisation for link section
+ */
+function uib_area_field_uib_area_link_section_validation_handler(&$form,&$form_state) {
+  $submitted_links = $form_state['values']['field_uib_link_section'];
+  foreach ($submitted_links['und'][0]['field_uib_links']['und'] as $key => $value) {
+    if((empty($value['title']) && !empty($value['url'])) || (!empty($value['title']) && empty($value['url'])) && is_numeric($key)) {
+      form_set_error('field_uib_link_section', t('URL or Title missing from link section element'));
+    }
+  }
+}
+/**
+ * Custom valisation for field collection link section item list
+ */
+function uib_area_field_collection_link_section_validation_handler(&$form,&$form_state) {
+  $submitted_links = $form_state['values']['field_uib_links']['und'];
+  foreach ($submitted_links as $key => $value) {
+     if((empty($value['title']) && !empty($value['url'])) || (!empty($value['title']) && empty($value['url'])) && is_numeric($key)) {
+      form_set_error('field_uib_link_section', t('URL or Title missing from link section element'));
+     }
+  }
+}
+
 
 /**
  * Lists general aliases paths for an area node.
