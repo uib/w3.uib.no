@@ -602,19 +602,21 @@ function uib_article_node_presave($node) {
   }
   if ($node->is_new) {
     if ($node->field_uib_article_type['und'][0]['value'] != 'infopage') {
-      if (!$node->anti_bubbling) {
-        // Upon creation of an article,
-        // add all area parents to field_uib_area. RTS-914
-        $parent_trail = array();
-        uib_area__get_parentage($node->field_uib_area['und'][0]['target_id'], $parent_trail);
-        $node_areas = array();
-        foreach ($node->field_uib_area['und'] as $area) {
-          $node_areas[] = $area['target_id'];
-        }
-        foreach($parent_trail as $pt) {
-          if (!in_array($pt, $node_areas)) {
-            $node->field_uib_area['und'][]['target_id'] = $pt;
-            $node_areas[] = $pt;
+      if (isset($node->anti_bubbling)) {
+        if (!$node->anti_bubbling) {
+          // Upon creation of an article,
+          // add all area parents to field_uib_area. RTS-914
+          $parent_trail = array();
+          uib_area__get_parentage($node->field_uib_area['und'][0]['target_id'], $parent_trail);
+          $node_areas = array();
+          foreach ($node->field_uib_area['und'] as $area) {
+            $node_areas[] = $area['target_id'];
+          }
+          foreach($parent_trail as $pt) {
+            if (!in_array($pt, $node_areas)) {
+              $node->field_uib_area['und'][]['target_id'] = $pt;
+              $node_areas[] = $pt;
+            }
           }
         }
       }
@@ -674,7 +676,7 @@ function uib_article_theme_registry_alter(&$theme_registry) {
 function uib_article_theme_field_multiple_value_form($variables) {
   $element = $variables['element'];
   $output = '';
-  
+
   // Disable table drag for image caption fields
   $draggable = !in_array($element['#field_name'], array('field_uib_imagecaptions', 'field_uib_imagecaptions2'));
 

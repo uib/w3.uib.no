@@ -111,8 +111,9 @@ function uib__build_entity($item) {
       case 'images':
         $dir = 'public://kmd_imported_files';
         file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
+        if (!isset($value->{'768'})) continue;
         $image = system_retrieve_file(
-          @$value->{'768'},
+          $value->{'768'},
           $dir,
           TRUE,
           FILE_EXISTS_REPLACE
