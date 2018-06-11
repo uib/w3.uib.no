@@ -1007,6 +1007,10 @@ function uib_area_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'field_collection_item_form') {
     $form['#validate'][] = 'uib_area_field_collection_link_section_validation_handler';
   }
+  //Adding a redirect after form submissions
+  if ($form_id == 'node_delete_confirm') {
+    $form['#submit'][] = 'uib_area__redirect';
+  }
   if ($form_id == 'area_node_form') {
     // list of fields that should be hidden (in area node form) from
     // both level 3 and innholdsprodusent users
@@ -3025,3 +3029,13 @@ function uib_area__current_node_is_area() {
   $node = menu_get_object();
   return $node->type == 'area' ? TRUE : FALSE;
 }
+
+/**
+ * Redirect on form submit
+ */
+function uib_area__redirect($form, &$form_state) {
+  if ($form['#token'] == 'node_delete_confirm') {
+    $form_state['redirect'] = 'webdesk';
+  }
+}
+
