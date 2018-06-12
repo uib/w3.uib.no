@@ -77,6 +77,8 @@ function uib_setup_wysiwyg_default_profiles() {
         'default' => array(
           'Bold' => 1,
           'Italic' => 1,
+          'Underline' => 1,
+          'Strike' => 1,
           'BulletedList' => 1,
           'NumberedList' => 1,
           'Undo' => 1,
@@ -190,6 +192,8 @@ function uib_setup_wysiwyg_default_profiles() {
         'default' => array(
           'Bold' => 1,
           'Italic' => 1,
+          'Underline' => 1,
+          'Strike' => 1,
           'BulletedList' => 1,
           'NumberedList' => 1,
           'Undo' => 1,
