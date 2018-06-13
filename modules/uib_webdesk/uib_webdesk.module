@@ -30,6 +30,14 @@ function uib_webdesk_menu() {
     'access callback' => 'uib_user__allow_level_1',
     'page arguments' => array(2),
   );
+  $items['webdesk/outdated'] = array(
+    'title' => t('Outdated nodes'),
+    'weight' => -50,
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'uib_webdesk__outdated',
+    'access callback' => 'uib_user__allow_level_1',
+    'page arguments' => array(2),
+  );
   return $items;
 }
 
@@ -99,6 +107,115 @@ function uib_webdesk_preprocess_views_view(&$variables) {
       }
     }
   }
+}
+
+function uib_webdesk__outdated() {
+  $allowed_types = array(
+    'area' => t('Area'),
+    'uib_article' => t('Article'),
+    'uib_testimonial' => t('Testimonial'),
+    'uib_market' => t('Inner market'),
+    'uib_content_list' => t('Content list'),
+    'uib_views_page' => t('Views page'),
+    'uib_external_content' => t('External content'),
+  );
+  $type = arg(2) !== NULL ? arg(2) : 'area';
+  if (!key_exists($type, $allowed_types)) return;
+  if ($type == 'uib_article') {
+    $articletype = arg(3) !== NULL ? arg(3) : 'infopage';
+  }
+  $six_months_ago = strtotime('-6 months');
+  $extra = array(':sixmonthsago' => $six_months_ago);
+  $query = 'select nr.nid, nr.title, nr.uid, nr.timestamp, n.status, n.created, n.language, u.status, fn.field_uib_first_name_value as first_name, ln.field_uib_last_name_value as last_name ';
+  $query .= 'from node_revision as nr, field_data_field_uib_first_name as fn, field_data_field_uib_last_name as ln, node as n, users as u ';
+  $query .= 'where nr.uid > 1 and nr.nid in ';
+  if ($type == 'uib_article') {
+    $query .= '(select entity_id from field_data_field_uib_article_type where field_uib_article_type_value = :articletype)';
+    $extra[':articletype'] = $articletype;
+  }
+  else {
+    $query .= '(select nid from node where type = :type)';
+    $extra[':type'] = $type;
+  }
+  $query .= ' and nr.uid = fn.entity_id and nr.uid = ln.entity_id and timestamp < :sixmonthsago and n.nid = nr.nid and u.uid = nr.uid ';
+  $query .= 'order by timestamp desc';
+  $result = db_query($query, $extra);
+  $nodes = array();
+  if ($result) {
+    foreach($result as $key => $item) {
+      if (!key_exists($item->nid, $nodes)) {
+        $page_url = drupal_get_path_alias('node/' . $item->nid, $item->language);
+        $nodes[$item->nid]['title'] = l($item->title, $page_url);
+        if ($item->status) {
+          $user_url = drupal_get_path_alias('user/' . $item->uid, 'nb');
+          $nodes[$item->nid]['user'] = l($item->first_name . ' ' . $item->last_name, $user_url);
+        }
+        else {
+          $nodes[$item->nid]['user'] = $item->first_name . ' ' . $item->last_name;
+        }
+        $nodes[$item->nid]['created'] = strftime('%d.%m.%Y', $item->created);
+        $nodes[$item->nid]['last_updated'] = strftime('%d.%m.%Y', $item->timestamp);
+      }
+    }
+    $rows = array();
+    foreach (array_reverse($nodes) as $node) {
+      $rows[]['data'] = array(
+        $node['title'],
+        $node['user'],
+        $node['created'],
+        $node['last_updated'],
+      );
+    }
+  }
+  $render['header'] = array(
+    '#theme' => 'html_tag',
+    '#tag' => 'h1',
+    '#value' => t('Not updated in six months (since @sixmonthsago)', array('@sixmonthsago' => strftime('%d.%m.%Y', $six_months_ago))),
+  );
+  $listitems = array();
+  foreach($allowed_types as $allowed_type => $title) {
+    $listitems[] = uib_webdesk__get_list_item($type, $allowed_type, $title);
+  }
+  $render['menu'] = array(
+    '#theme' => 'item_list',
+    '#items' => $listitems,
+  );
+  $render['content'] = array(
+    '#theme' => 'table',
+    '#caption' => $allowed_types[$type],
+    '#header' => array(
+      array('data' => t('Title'),),
+      array('data' => t('Author'),),
+      array('data' => t('Created'),),
+      array('data' => t('Last updated'),),
+    ),
+    '#rows' => $rows,
+  );
+  return $render;
+}
+
+function uib_webdesk__get_list_item($type, $allowed_type, $title, $sub = FALSE) {
+  if ($type == $allowed_type) {
+    if ($type != 'uib_article') {
+      $item = $title;
+    }
+    else {
+      $children = array();
+      $subtype = arg(3) !== NULL ? arg(3) : 'infopage';
+      foreach (array('infopage', 'news', 'event') as $allowed_subtype) {
+        $children[] = uib_webdesk__get_list_item($subtype, $allowed_subtype, ucfirst($allowed_subtype), TRUE);
+      }
+      $item = array(
+        'data' => $title,
+        'children' => $children,
+      );
+    }
+  }
+  else {
+    $url = $sub ? 'webdesk/lastupdated/uib_article/' : 'webdesk/lastupdated/';
+    $item = l($title, $url . $allowed_type);
+  }
+  return $item;
 }
 
 function uib_webdesk__connections($user = '') {
