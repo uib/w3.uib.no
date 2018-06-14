@@ -47,7 +47,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'instagram' => array('https://www.instagram.com/', 'https://www.instagram.com/unibergen/'),
     'github' => array('https://github.com/', 'https://github.com/uib'),
     'linkedin' => array('https://linkedin.com/in/', 'https://linkedin.com/edu/school/15492'),
-    'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net'),
+    'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net/institution/University_of_Bergen'),
     'snapchat' => array('https://www.snapchat.com/add/', 'https://www.snapchat.com/add/'),
     'orcid' => array('https://orcid.org/', 'https://orcid.org'),
     'googlescholar' => array('https://scholar.google.com/citations?user=', 'https://scholar.google.com/citations?view_op=view_org&org=8898899287978071111'),
@@ -55,6 +55,8 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'researcherid' => array('http://www.researcherid.com/rid/', 'http://www.researcherid.com'),
     'scopus' => array('https://www.scopus.com/authid/detail.uri?authorId=', 'https://www.scopus.com'),
     'dblp' => array('http://dblp.uni-trier.de/rec/pid/', 'http://dblp.uni-trier.de'),
+    'gitlab' => array('https://gitlab.com/', 'https://gitlab.com/uib'),
+    'gitlabuib' => array('https://git.app.uib.no/', 'https://git.app.uib.no/'),
   );
   foreach ($items as $delta => $item) {
     $sm = explode(':', $item['safe_value']);
