@@ -116,13 +116,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
  * @param $hook
  *   The name of the template being rendered ("page" in this case.)
  */
-function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
-  foreach ($links as $langcode => &$link) {
-    unset($links[$langcode]['attributes']['xml:lang']);
-    $link['attributes']['lang'] = $langcode;
-  }
-}
-
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
@@ -1507,6 +1500,16 @@ function uib_w3_preprocess_block(&$vars) {
     if (empty($vars['elements']['#children'])) {
       $vars['theme_hook_suggestions'][] = 'block__uib_area__feed__empty';
     }
+  }
+}
+
+/**
+ * Implements hook_language_switch_links_alter
+ */
+function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
+  foreach ($links as $langcode => &$link) {
+    unset($links[$langcode]['attributes']['xml:lang']);
+    $link['attributes']['lang'] = $langcode;
   }
 }
 
