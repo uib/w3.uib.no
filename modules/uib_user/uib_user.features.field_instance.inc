@@ -1941,7 +1941,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
+    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, gitlab, gitlabuib, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -2186,7 +2186,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Translatables
   // Included for use with string extractors like potx.
   t('Add a more specific title (position) here.');
-  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
+  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, gitlab, gitlabuib, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');
   t('Choose if you want CRIStin publications displayed before or after any you manually add in the "Publications" field. The default is to display CRIStin publications before.');
