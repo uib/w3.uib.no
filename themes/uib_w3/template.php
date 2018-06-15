@@ -8,6 +8,10 @@
  *   The name of the template being rendered ("html" in this case.)
  */
 function uib_w3_preprocess_html(&$variables) {
+  // setting te browser title to reflect the page and parent area
+  if (isset($variables['theme_hook_suggestions'][3]) || $variables['theme_hook_suggestions'][0] == 'html__calendar') {
+    $variables['head_title'] = uib_w3__get_theme_suggested_title($variables);
+  }
   if (!$variables['logged_in']) {
     drupal_add_js("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(), event:'gtm.js'}); var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window, document, 'script', 'dataLayer', 'GTM-KLPBXPW');", array('type' => 'inline', 'scope' => 'header', 'weight' => -99));
   }
@@ -251,68 +255,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     ));
   }
 
-  $automatic_pages = array(
-    'page__node__persons',
-    'page__node__persons__faculty',
-    'page__node__persons__staff',
-    'page__node__courses',
-    'page__node__study_programmes',
-    'page__node__bachelor_programmes',
-    'page__node__master_programmes',
-    'page__node__one_year_programmes',
-    'page__node__research_groups',
-    'page__node__research_schools',
-    'page__node__disciplines',
-    'page__node__map',
-    'page__node__news_archive',
-  );
-  $suggestions = array_intersect($automatic_pages, $variables['theme_hook_suggestions']);
-  if (count($suggestions) > 0) {
-    if (in_array('page__node__persons', $suggestions)) {
-      if (in_array('page__node__persons__faculty', $suggestions)) {
-        $title_prefix = t('Faculty at');
-      }
-      elseif (in_array('page__node__persons__staff', $suggestions)) {
-        $title_prefix = t('Administrative and technical staff at');
-      }
-      else {
-        $title_prefix = t('Staff at');
-      }
-    }
-    if (in_array('page__node__courses', $suggestions)) {
-      $title_prefix = t('Courses at');
-    }
-    if (in_array('page__node__study_programmes', $suggestions)) {
-      $title_prefix = t('Study programmes at');
-    }
-    if (in_array('page__node__bachelor_programmes', $suggestions)) {
-      $title_prefix = t('Bachelor programmes at');
-    }
-    if (in_array('page__node__master_programmes', $suggestions)) {
-      $title_prefix = t('Master programmes at');
-    }
-    if (in_array('page__node__one_year_programmes', $suggestions)) {
-      $title_prefix = t('One year programmes at');
-    }
-    if (in_array('page__node__research_groups', $suggestions)) {
-      $title_prefix = t('Research groups at');
-    }
-    if (in_array('page__node__research_schools', $suggestions)) {
-      $title_prefix = t('Research schools at');
-    }
-    if (in_array('page__node__disciplines', $suggestions)) {
-      $title_prefix = t('Disciplines at');
-    }
-    if (in_array('page__node__map', $suggestions)) {
-      $title_prefix = t('Map for');
-    }
-    if (in_array('page__node__news_archive', $suggestions)) {
-      $title_prefix = t('News archive for');
-    }
+  if($variables['theme_hook_suggestions'][3] != 'page__front' && $variables['theme_hook_suggestions'][3] != 'page__node__calendar' && isset($variables['theme_hook_suggestions'][3])) {
     $variables['page']['content_top']['title'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h1',
-      '#value' => $title_prefix . ' ' . $current_area->title,
+      '#value' => uib_w3__get_theme_suggested_title($variables,false),
       '#weight' => -45,
     );
   }
@@ -1799,4 +1746,80 @@ function uib_w3__break_up_collection($collection, $field) {
     }
   }
   return $collection;
+}
+
+function uib_w3__get_theme_suggested_title($variables,$with_name = true) {
+  $current_area = uib_area__get_current();
+  $hook_type = $variables['theme_hook_original'];
+  $title = $current_area->title;
+  $automatic_pages = array(
+    $hook_type.'__node__persons',
+    $hook_type.'__node__persons__faculty',
+    $hook_type.'__node__persons__staff',
+    $hook_type.'__node__courses',
+    $hook_type.'__node__study_programmes',
+    $hook_type.'__node__bachelor_programmes',
+    $hook_type.'__node__master_programmes',
+    $hook_type.'__node__one_year_programmes',
+    $hook_type.'__node__research_groups',
+    $hook_type.'__node__research_schools',
+    $hook_type.'__node__disciplines',
+    $hook_type.'__node__map',
+    $hook_type.'__node__news_archive',
+    $hook_type.'__node__calendar',
+    $hook_type.'__calendar',
+  );
+  $suggestions = array_intersect($automatic_pages, $variables['theme_hook_suggestions']);
+  if (count($suggestions) > 0) {
+    if (in_array($hook_type.'__node__persons', $suggestions)) {
+      if (in_array($hook_type.'__node__persons__faculty', $suggestions)) {
+        $title_prefix = t('Faculty at');
+      }
+      elseif (in_array($hook_type.'__node__persons__staff', $suggestions)) {
+        $title_prefix = t('Administrative and technical staff at');
+      }
+      else {
+        $title_prefix = t('Staff at');
+      }
+    }
+    if (in_array($hook_type.'__node__courses', $suggestions)) {
+      $title_prefix = t('Courses at');
+    }
+    if (in_array($hook_type.'__node__study_programmes', $suggestions)) {
+      $title_prefix = t('Study programmes at');
+    }
+    if (in_array($hook_type.'__node__bachelor_programmes', $suggestions)) {
+      $title_prefix = t('Bachelor programmes at');
+    }
+    if (in_array($hook_type.'__node__master_programmes', $suggestions)) {
+      $title_prefix = t('Master programmes at');
+    }
+    if (in_array($hook_type.'__node__one_year_programmes', $suggestions)) {
+      $title_prefix = t('One year programmes at');
+    }
+    if (in_array($hook_type.'__node__research_groups', $suggestions)) {
+      $title_prefix = t('Research groups at');
+    }
+    if (in_array($hook_type.'__node__research_schools', $suggestions)) {
+      $title_prefix = t('Research schools at');
+    }
+    if (in_array($hook_type.'__node__disciplines', $suggestions)) {
+      $title_prefix = t('Disciplines at');
+    }
+    if (in_array($hook_type.'__node__map', $suggestions)) {
+      $title_prefix = t('Map for');
+    }
+    if (in_array($hook_type.'__node__news_archive', $suggestions)) {
+      $title_prefix = t('News archive at');
+    }
+    if (in_array($hook_type.'__node__calendar', $suggestions)) {
+      $title_prefix = t('Upcoming events at');
+    }
+    if (in_array($hook_type.'__calendar', $suggestions)) {
+      $title_prefix = t('Upcoming events');
+    }
+    $title = $title_prefix . ' ' . $title;
+    if($with_name) $title .= ' | ' . $variables['head_title_array']['name'];
+  }
+  return $title;
 }
