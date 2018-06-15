@@ -640,10 +640,11 @@ function uib_article_node_presave($node) {
  * Implements hook_node_load().
  */
 function uib_article_node_load($nodes, $types){
+  $kicker = (preg_match("/^\/en/", request_uri()) ? 'News' : 'Nyhet');
   foreach ($nodes as $key => $node) {
     if ($node->type && $node->type == 'uib_article' && $node->field_uib_article_type[LANGUAGE_NONE][0]['value'] == 'news') {
       if (empty($node->field_uib_kicker)) {
-        $node->field_uib_kicker[LANGUAGE_NONE][0]['value'] = t('News');
+        $node->field_uib_kicker[LANGUAGE_NONE][0]['value'] = $kicker;
       }
     }
   }
