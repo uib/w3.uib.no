@@ -212,7 +212,7 @@ function uib_webdesk__get_list_item($type, $allowed_type, $title, $sub = FALSE) 
     }
   }
   else {
-    $url = $sub ? 'webdesk/lastupdated/uib_article/' : 'webdesk/lastupdated/';
+    $url = $sub ? 'webdesk/outdated/uib_article/' : 'webdesk/outdated/';
     $item = l($title, $url . $allowed_type);
   }
   return $item;
