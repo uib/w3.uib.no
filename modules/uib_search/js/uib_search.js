@@ -351,7 +351,7 @@
                 && v._source.w3.step_titles_array.length > 0
             ) {
                 trim += '<div class="steps">';
-                trim += Drupal.t('Includes titles') + ': ';
+                trim += Drupal.t('Includes') + ': ';
                 for (i = 0; i < v._source.w3.step_titles_array.length; i++) {
                   trim += $('<span></span>')
                     .attr('data-href', link + '?step=' + (i+1))
