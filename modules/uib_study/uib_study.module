@@ -647,6 +647,8 @@ function uib_study_block_view($delta = '') {
       }
       break;
     case 'study_email_offers':
+    // Hide the email subscription form until SA wants to show it
+    if (!variable_get('uib_study_hide_study_email_offers', TRUE)) {
       $your_email = t('Your email address');
       $email_address = t('Email address');
       $subscribe = t('Get info');
@@ -858,6 +860,7 @@ EOD;
       unset($block['title']);
       unset($content['promoinfo']);
       $block['content'] = $content;
+      }
       break;
     case 'study_content':
       $splice_list = array(
