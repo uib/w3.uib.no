@@ -15,7 +15,7 @@ jQuery( document ).ready(function ($) {
 	});
 	$(".mobile_area>nav>ul.menu>li.expanded>a").click (function(event){
     if (this.href.slice(-1) == "#") event.preventDefault();
-    if ($(window).width() < 600) {
+    if ($(window).width() < 780) {
 			event.preventDefault();
 			$(this).parent().toggleClass("open");
 			$(this).parent().children("ul").animate({
