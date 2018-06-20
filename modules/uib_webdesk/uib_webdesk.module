@@ -298,3 +298,19 @@ function uib_webdesk__connections($user = '') {
   }
   return $render;
 }
+
+function uib_webdesk_views_query_alter(&$view, &$query) {
+  if ($view->name == 'uib_webdesk' && $view->current_display = 'page_1') {
+    if (isset($view->exposed_input)) {
+      $en = $view->exposed_input;
+      $auto = count($en) > 1 ? FALSE : TRUE;
+      $conditions = $query->where[1]['conditions'];
+      foreach ($conditions as $key => $condition){
+        if ($condition['field'] == 'node_field_data_field_uib_area.title' && !$auto) {
+          $query->where[1]['conditions'][$key]['operator'] = '=';
+          $query->where[1]['conditions'][$key]['value'] = str_replace('%', '', $condition['value']);
+        }
+      }
+    }
+  }
+}
