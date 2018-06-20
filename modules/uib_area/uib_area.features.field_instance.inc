@@ -567,6 +567,85 @@ function uib_area_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-area-field_uib_contact_info'.
+  $field_instances['node-area-field_uib_contact_info'] = array(
+    'bundle' => 'area',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Add a link to a page with contact information that overrides the addresses under the "Contact us" header in the colophon.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'link_default',
+        'weight' => 92,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_contact_info',
+    'label' => 'Contact information',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 0,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'value',
+      'title_label_use_field_label' => 1,
+      'title_maxlength' => 128,
+      'title_value' => 'Contact information',
+      'url' => 'optional',
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 13,
+    ),
+  );
+
   // Exported field_instance: 'node-area-field_uib_content_manager'.
   $field_instances['node-area-field_uib_content_manager'] = array(
     'bundle' => 'area',
@@ -657,7 +736,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -722,7 +801,7 @@ function uib_area_field_default_field_instances() {
         ),
       ),
       'type' => 'media_generic',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1276,7 +1355,7 @@ function uib_area_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -1368,7 +1447,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -1439,7 +1518,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -1734,7 +1813,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -2063,7 +2142,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -2535,7 +2614,7 @@ function uib_area_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 13,
+      'weight' => 14,
     ),
   );
 
@@ -5701,6 +5780,7 @@ function uib_area_field_default_field_instances() {
 <li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
 </ul>');
   t('<ul><li>This description will be displayed in search results on uib.no and on articles where areas are used as related content.</li><li>The text in this field will also be accessed by external search engines, and is generally considered as important metadata.</li><li>In addition external search engines will sometimes use the description as search results snippets.</li></ul>');
+  t('Add a link to a page with contact information that overrides the addresses under the "Contact us" header in the colophon.');
   t('Add a link to a page with visitor information that overrides the address and map link under the "Visit us" header in the colophon.');
   t('Add a testimonial that will be featured on the front page. ');
   t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
@@ -5719,6 +5799,7 @@ function uib_area_field_default_field_instances() {
   t('Byline');
   t('Choose which type of event you are creating.');
   t('Colophone logos');
+  t('Contact information');
   t('Contact person');
   t('Content Manager');
   t('Deadline for event registration.');

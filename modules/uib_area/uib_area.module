@@ -159,6 +159,14 @@ function uib_area_block_view($delta='') {
         $place = node_load($parent->field_uib_ou['und'][0]['target_id']);
       }
       $postal_address = t('University of Bergen') .' '. uib_area__format_postal_address($place);
+      $contact_info = $area->field_uib_contact_info;
+      if (!empty($contact_info)) {
+        $contact_info_link_title = t('Contact information');
+        $contact_info_url = $contact_info['und'][0]['url'];
+      } else {
+        $contact_info_link_title = '';
+        $contact_info_url = '';
+      }
       $visit_address = uib_area__format_visit_address($place);
       $visitor_info = $area->field_uib_visitor_info;
       if (!empty($visitor_info)) {
@@ -197,6 +205,11 @@ function uib_area_block_view($delta='') {
             '#tag' => 'span',
             '#value' => $postal_address,
           ),
+          'contact_info' => array(
+            '#type' => 'link',
+            '#title' => $contact_info_link_title,
+            '#href' => $contact_info_url,
+          ),
         ),
         'visit' => array(
           '#type' => 'container',
@@ -220,8 +233,11 @@ function uib_area_block_view($delta='') {
           ),
         ),
       );
+      if (!empty($contact_info)) unset($block['content']['contact']['email']);
+      if (empty($phone) || !empty($contact_info)) unset($block['content']['contact']['phone']);
+      if (empty($postal_address) || !empty($contact_info)) unset($block['content']['contact']['postal_address']);
+      if (empty($contact_info)) unset($block['content']['contact']['contact_info']);
       if (empty($visit_address) || !empty($visitor_info)) unset($block['content']['visit']['visit_address']);
-      if (empty($phone)) unset($block['content']['contact']['phone']);
       if (empty($visitor_info)) unset($block['content']['visit']['visitor_info']);
       if (empty($place->field_uib_geolocation)) {
         $nid = $language->language == 'en' ? 79263 : 79254;
