@@ -1774,47 +1774,47 @@ function uib_w3__get_theme_suggested_title($variables,$with_name = true) {
   if (count($suggestions) > 0) {
     if (in_array($hook_type.'__node__persons', $suggestions)) {
       if (in_array($hook_type.'__node__persons__faculty', $suggestions)) {
-        $title_prefix = t('Faculty at');
+        $title_prefix = t('Faculty for');
       }
       elseif (in_array($hook_type.'__node__persons__staff', $suggestions)) {
-        $title_prefix = t('Administrative and technical staff at');
+        $title_prefix = t('Administrative and technical staff for');
       }
       else {
-        $title_prefix = t('Staff at');
+        $title_prefix = t('Staff for');
       }
     }
     if (in_array($hook_type.'__node__courses', $suggestions)) {
-      $title_prefix = t('Courses at');
+      $title_prefix = t('Courses for');
     }
     if (in_array($hook_type.'__node__study_programmes', $suggestions)) {
-      $title_prefix = t('Study programmes at');
+      $title_prefix = t('Study programmes for');
     }
     if (in_array($hook_type.'__node__bachelor_programmes', $suggestions)) {
-      $title_prefix = t('Bachelor programmes at');
+      $title_prefix = t('Bachelor programmes for');
     }
     if (in_array($hook_type.'__node__master_programmes', $suggestions)) {
-      $title_prefix = t('Master programmes at');
+      $title_prefix = t('Master programmes for');
     }
     if (in_array($hook_type.'__node__one_year_programmes', $suggestions)) {
-      $title_prefix = t('One year programmes at');
+      $title_prefix = t('One year programmes for');
     }
     if (in_array($hook_type.'__node__research_groups', $suggestions)) {
-      $title_prefix = t('Research groups at');
+      $title_prefix = t('Research groups for');
     }
     if (in_array($hook_type.'__node__research_schools', $suggestions)) {
-      $title_prefix = t('Research schools at');
+      $title_prefix = t('Research schools for');
     }
     if (in_array($hook_type.'__node__disciplines', $suggestions)) {
-      $title_prefix = t('Disciplines at');
+      $title_prefix = t('Disciplines for');
     }
     if (in_array($hook_type.'__node__map', $suggestions)) {
       $title_prefix = t('Map for');
     }
     if (in_array($hook_type.'__node__news_archive', $suggestions)) {
-      $title_prefix = t('News archive at');
+      $title_prefix = t('News archive for');
     }
     if (in_array($hook_type.'__node__calendar', $suggestions)) {
-      $title_prefix = t('Upcoming events at');
+      $title_prefix = t('Upcoming events for');
     }
     if (in_array($hook_type.'__calendar', $suggestions)) {
       $title_prefix = t('Upcoming events');
