@@ -1,3 +1,20 @@
+# Release 97 _2018-06-21_
+- Lagt til støtte for overstyring av kontaktinformasjonen i kolofonfeltet #20575
+- Lagt til støtte for kobling til GitLab på område- og personsider #20415
+- Lagt til støtte for at mindre bilder kan brukes i tilknytning til fremhevet arrangement på områdesider #20433
+- Lagt til støtte for under- og gjennomstreking av tekst i brødtekst- og faktaboksfelt #20078
+- Fjernet abonnenmentskjemaet fra studieprogramsidene, og forbedret visningsrutinen, slik at det lett kan aktiveres igjen #20572
+- Erstattet "Nyheter" med "Nyhet" som standard stikktittel for nyhetssaker #20420
+- Endret rutinen for sletting av innhold, slik at brukeren blir sendt til webdesken etter at sletting er utført #20045
+- Endret bunnmenyen på mobil og nettbrett #20296
+- Forbedret visningen av innholdslister i søkeresultat #18917
+- Forbedret brukervennligheten i forbindelse med redigering av relevante lenker #12482
+- Forbedret cron-jobb i forbindelse med import fra kmd.uib.no #20384
+- Rettet feil der autofullfør-feltet for "Område" i "Finn innhold" i webdesken ikke fungerte som det skulle #20391
+- Rettet feil der sidetittel var ukorrekt på visse sider #14344
+- Startet arbeidet med å forbedre filtersidene for emner (ytelsesforbedringer) #20381
+- Opprettet view for utdatert innhold #20365
+
 # Release 96 _2018-06-07_
 - Forbedret navigasjonen på mobil (endret menystrukturen og gjort visuelle justeringer) #20275
 - Rettet feil der lenker til studieplaner ikke fungerte #20339
