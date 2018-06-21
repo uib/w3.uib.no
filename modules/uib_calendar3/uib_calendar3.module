@@ -132,8 +132,11 @@ function uib_calendar3_block_view($delta) {
         $ra['data'][$key]['#attributes'] = array('class' => array('event'));
         // adding class "first" to this item
         array_push($ra['data'][$key]['#attributes']['class'], 'first');
-       // if item has image add this, and a calendar-card
-        if (!empty($node->field_uib_main_media)):
+        // if item has image add this, and a calendar-card
+        if (empty($node->field_uib_main_media) && !empty($node->field_uib_media)) {
+          $node->field_uib_main_media = $node->field_uib_media;
+        }
+        if (!empty($node->field_uib_main_media)) {
           foreach($node->field_uib_main_media['und'] as $key => $image) {
             if ($key > 0) {
               unset($node->field_uib_main_media['und'][$key]);
@@ -171,9 +174,10 @@ function uib_calendar3_block_view($delta) {
               '#suffix' => '</a>',
             ),
           );
-        else:
+        }
+        else {
           array_push($ra['data'][$key]['#attributes']['class'], 'noimage');
-        endif;
+        }
 
         // Other info: - title
         $ra['data'][$key]['calinfo'] = array();
