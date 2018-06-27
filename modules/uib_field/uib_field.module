@@ -70,19 +70,34 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
       else {
         $sm_url = $recognized_social_media[$sm_name][1]; // use default
       }
+      $titles = array(
+        'academia' => 'Academia',
+        'dblp' => 'dblp',
+        'facebook' => 'Facebook',
+        'flickr' => 'Flickr',
+        'github' => 'GitHub',
+        'gitlab' => 'GitLab',
+        'gitlabuib' => 'GitLab UiB',
+        'googlescholar' => 'Google Scholar',
+        'instagram' => 'Instagram',
+        'linkedin' => 'LinkedIn',
+        'orcid' => 'ORCID',
+        'researcherid' => 'ResearcherID',
+        'researchgate' => 'ResearchGate',
+        'scopus' => 'Scopus',
+        'snapchat' => 'Snapchat',
+        'twitter' => 'Twitter',
+        'vimeo' => 'Vimeo',
+        'youtube' => 'YouTube',
+      );
+      $follow = ($entity_type == 'user' ? t('Follow me on') : t('Follow us on'));
       $options = array(
         'html'  => TRUE,
         'attributes'  => array(
           'class' => array('icons-social-' . $sm_name),
-          ),
-        );
-      if ($entity_type == 'user') {
-        $title = t('Follow me on @network', array('@network' => ucfirst($sm_name)));
-      }
-      else {
-        $title = t('Follow us on @network', array('@network' => ucfirst($sm_name)));
-      }
-      $options['attributes']['title'] = $title;
+          'title' => $follow . ' ' . $titles[$sm_name],
+        ),
+      );
       $options['attributes']['onClick'] = "ga('send', {'hitType':'$sm_name', 'eventCategory':'SocialMediaButtons', 'eventAction':'Follow', 'eventLabel':'" .current_path() . "'})";
       $element[]['#markup'] = l($sm_name, $sm_url, $options);
     }
