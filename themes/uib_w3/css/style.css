@@ -2335,11 +2335,6 @@ a,
       .main-menu__expanded .menu__item .menu li {
         padding: 0;
         background-color: #dcd5cf; }
-        .main-menu__expanded .menu__item .menu li a {
-          padding: 0.5rem 0; }
-          @media (min-width: 780px) {
-            .main-menu__expanded .menu__item .menu li a {
-              padding: 0.25rem 0; } }
         .main-menu__expanded .menu__item .menu li.last {
           border-bottom: none; }
         .main-menu__expanded .menu__item .menu li.first {
