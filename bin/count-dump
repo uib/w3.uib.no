@@ -16,7 +16,7 @@ my $max_length = 0;
 my $total_bytes = 0;
 
 while (<$fh>) {
-    if (/^COPY (\w+)/) {
+    if (/^COPY public\.(\w+)/) {
 	my $table = $1;
 	die unless / FROM stdin;$/;
 	if ($opt{collapse}) {
