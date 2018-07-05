@@ -316,15 +316,22 @@ th {
 
 .footer-wrapper {
   background: #eae6e2;
-  padding: 0 0 1rem 0; }
+  padding-bottom: 2.5rem; }
   .footer-wrapper .footer {
-    padding: 0 1.25rem; }
+    padding-top: 2.5rem;
+    padding-left: 1.25rem; }
   @media (min-width: 780px) {
     .footer-wrapper {
-      padding: 2.5rem 1.25rem; } }
+      padding: 0rem 1.25rem; }
+      .footer-wrapper .footer {
+        padding-top: 2.5rem;
+        padding-left: 0; } }
   @media (min-width: 960px) {
     .footer-wrapper {
-      padding: 4.375rem 1.25rem; } }
+      padding: 0rem 1.25rem; }
+      .footer-wrapper .footer {
+        padding-top: 2.5rem;
+        padding-left: 0; } }
 
 .page-node-102270 .content-main-wrapper,
 .page-node-87341 .content-main-wrapper,
@@ -2309,10 +2316,11 @@ a,
   background: #eae6e2;
   border-top: solid 1px #b7b7b7;
   max-width: 72rem;
-  margin: 0 auto 2.0rem; }
+  margin: 0 auto 0rem; }
   @media (min-width: 780px) {
     .main-menu__expanded {
-      border-bottom: solid 1px #b7b7b7; } }
+      border-bottom: solid 1px #b7b7b7;
+      padding-top: 2.5rem; } }
   .main-menu__expanded .menu__item {
     padding: 0;
     border-bottom: solid 1px #b7b7b7; }
@@ -2326,7 +2334,7 @@ a,
       @media (min-width: 780px) {
         .main-menu__expanded .menu__item li {
           font-size: 1rem; } }
-    .main-menu__expanded .menu__item a, .main-menu__expanded .menu__item li a, .main-menu__expanded .menu__item a:hover {
+    .main-menu__expanded .menu__item a, .main-menu__expanded .menu__item li a {
       display: block;
       padding: 1rem 1rem 1rem 1.25rem;
       text-decoration: none; }
@@ -7384,7 +7392,6 @@ body #mc_embed_signup div.mce_inline_error {
   list-style: none; }
 @media screen and (min-width: 780px) {
   .footer-wrapper .footer {
-    padding: 0;
     display: -ms-flexbox;
     -ms-flex-direction: row;
     display: -webkit-flex;
@@ -8051,6 +8058,9 @@ body #mc_embed_signup div.mce_inline_error {
         font-size: 2rem;
         letter-spacing: 0.25rem;
         padding: 2.1875rem 0 2.1875rem 0; } }
+    @media (min-width: 780px) {
+      .subheader__wrapper h2 {
+        padding-bottom: 0; } }
     @media (min-width: 960px) {
       .subheader__wrapper h2 {
         font-size: 2.8125em; } }
