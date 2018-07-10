@@ -1,0 +1,28 @@
+# Start out with everything ignored
+*
+
+# Include drupal
+!drupal
+/drupal/*.txt
+/drupal/.git*
+!/drupal/robots.txt
+/drupal/install.php
+/drupal/update.php
+
+# The profile link will be replaced
+/drupal/profiles/uib
+
+# Our context only includes sites/all, but ignore the uib symlinks
+# because we will replace them with the real code in the image
+/drupal/sites/
+!/drupal/sites/all
+/drupal/sites/all/modules/uib
+/drupal/sites/all/themes/uib
+
+#
+# Our own stuff that we will copy
+#
+!/profiles/
+!/themes/
+!/modules/
+!/docker
