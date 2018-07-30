@@ -1025,6 +1025,16 @@ SCRIPT;
   }
   if (__uib_w3__empty_region($variables['page']['content_bottom'])) $variables['page']['content_bottom'] = array();
   if (__uib_w3__empty_region($variables['page']['footer_top'])) $variables['page']['footer_top'] = array();
+
+  /* Beginning #20297 Add hubro chatbot to pages that belong to hf */
+  // 17602 is the nid for the hf area
+
+  if(variable_get('uib_hubro_chatbot')){
+    if ($variables['node']->nid == 17602 || (isset($variables['node']->field_uib_area['und'][0]['target_id']) && $variables['node']->field_uib_area['und'][0]['target_id'] == 17602)) {
+      drupal_add_js('http' . (isset($_SERVER['HTTPS']) ? 's' : '').'://'. $_SERVER['HTTP_HOST'] . '/hubro/public/js/addchatbot.js');
+    }
+  }
+  /* End #20297 */
 }
 
 
