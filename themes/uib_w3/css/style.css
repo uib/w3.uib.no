@@ -2211,8 +2211,7 @@ a,
         display: inline-block;
         line-height: 1rem; }
         #block-uib-area-bottom-links ul li a:hover, #block-uib-area-bottom-links ul li a:active {
-          color: #333;
-          text-decoration: none; }
+          text-decoration: underline; }
         @media (min-width: 600px) {
           #block-uib-area-bottom-links ul li a {
             padding: .9rem 0 .7rem 0; } }
@@ -2408,6 +2407,8 @@ a,
         .main-menu__expanded .menu__item li a {
           padding: 0.25rem 1rem 0.25rem 0;
           display: inline-block; }
+        .main-menu__expanded .menu__item a:hover {
+          text-decoration: underline; }
         .main-menu__expanded .menu__item > a {
           font-weight: bold;
           background: transparent; }
@@ -3502,6 +3503,9 @@ a,
       font-size: 1.25rem;
       margin: 0 0 .5rem 0;
       line-height: 1.5rem; }
+
+.mobile-menu {
+  cursor: pointer; }
 
 .mobile_dropdown {
   display: block;
@@ -5676,16 +5680,22 @@ nav {
   color: #fff; }
   .site-name a:after {
     content: "UiB";
-    display: block; }
+    display: inline-block; }
+  .site-name a:hover:after {
+    text-decoration: underline; }
   .site-name a span {
     display: none;
     text-transform: uppercase; }
 
 @media only screen and (min-width: 1050px) {
-  .site-name a:after {
-    display: none; }
-  .site-name a span {
-    display: block; } }
+  .site-name a {
+    display: inline-block; }
+    .site-name a:after {
+      display: none; }
+    .site-name a:hover {
+      text-decoration: underline; }
+    .site-name a span {
+      display: block; } }
 .field-name-field-uib-media, .field-name-field-uib-study-image {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   color: #606060; }
