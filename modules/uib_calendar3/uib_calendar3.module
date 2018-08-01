@@ -594,7 +594,7 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
       $ongoing['0000 header'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h3',
-        '#value' => t('Still ongoing events') . ' (' . count($ongoing_events) . ')',
+        '#value' => t('Ongoing events') . ' ' . $nice_day . ' (' . count($ongoing_events) . ')',
       );
       foreach ($ongoing_events as $nid) {
         $event = $node[$nid];
@@ -667,12 +667,14 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
       '#attributes' => array('class' => array('calendar-date')),
     );
 
-    $nice_day = format_date(strtotime($day), 'day_and_month');
-    if (isset($day_aka[$day])) {
-      $nice_day .= " — " . $day_aka[$day];
+    $dateformat = $language->language == 'nb' ? 'j. F' : 'jS F';
+    $nice_day = format_date(strtotime($day), 'custom', $dateformat);
+    if (isset($day_aka[$day]) && empty($ongoing_events)) {
+      $nice_day = drupal_ucfirst($day_aka[$day]) . ' ' . $nice_day;
     }
-
-    $nice_day .= ' (' . count($events) . ')';
+    if (empty($ongoing_events)) {
+      $nice_day .= ' (' . count($events) . ')';
+    }
 
     $this_day['header'] = array(
       '#type' => 'html_tag',
@@ -737,10 +739,13 @@ function uib_calendar3__index_page($area_nid = NULL, $format = FALSE) {
         '#markup' => $markup,
       );
     }
-    if (empty($events)) {
+    if (empty($events) && empty($ongoing_events)) {
       $this_day['no events'] = array(
-        '#markup' => "<p>" . t("There are no events on this day") . "</p>",
+        '#markup' => "<p class='event-entry'>" . t("There are no events on this day") . "</p>",
       );
+    }
+    if (empty($events) && !empty($ongoing_events)) {
+      unset($this_day);
     }
 
     $this_week[$day] = $this_day;
