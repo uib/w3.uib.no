@@ -5677,10 +5677,10 @@ nav {
   font-size: 1.3125rem;
   text-decoration: none;
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
-  color: #fff; }
+  color: #fff;
+  display: table; }
   .site-name a:after {
-    content: "UiB";
-    display: inline-block; }
+    content: "UiB"; }
   .site-name a:hover:after {
     text-decoration: underline; }
   .site-name a span {
@@ -5688,14 +5688,12 @@ nav {
     text-transform: uppercase; }
 
 @media only screen and (min-width: 1050px) {
-  .site-name a {
-    display: inline-block; }
-    .site-name a:after {
-      display: none; }
-    .site-name a:hover {
-      text-decoration: underline; }
-    .site-name a span {
-      display: block; } }
+  .site-name a:after {
+    display: none; }
+  .site-name a:hover {
+    text-decoration: underline; }
+  .site-name a span {
+    display: block; } }
 .field-name-field-uib-media, .field-name-field-uib-study-image {
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   color: #606060; }
