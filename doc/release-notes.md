@@ -1,3 +1,12 @@
+# Release 98 _2018-08-02_
+- Forbedret navigasjonen på mobil og nettbrett ytterligere #20419
+- Forbedret kalendervisningen (bl.a. endret engelsk datoformat) #20633
+- Korrigert titlene på SoMe-lenker (vises når man beveger musepekeren over ikonene) #20600
+- Rettet feil der enkelte lenker ikke ble understreket når man beveget seg over dem med musepekeren #20631
+- Rettet feil der et internt felt tilknyttet søket ble vist på sider for Indre marked #20636
+- Lagt til mer luft under områdetittel i visning på nettbrett og desktop #20611
+- Endret rutinen som avkortet lange navn i Indre marked-annonser (hele navnet blir nå vist) #12372
+
 # Release 97 _2018-06-21_
 - Lagt til støtte for overstyring av kontaktinformasjonen i kolofonfeltet #20575
 - Lagt til støtte for kobling til GitLab på område- og personsider #20415
