@@ -1647,14 +1647,6 @@ function uib_w3_menu_link($variables) {
   }
 }
 
-/**
- * Implements HOOK_preprocess_username()
- * Stop username from being trimmed
- */
-function uib_w3_preprocess_username(&$variables) {
-  $variables['name'] = check_plain($variables['name_raw']);
-}
-
 function __uib_w3__download_image_link($file) {
   $uri = file_entity_download_uri($file);
   $link_text = t('Download press photo');

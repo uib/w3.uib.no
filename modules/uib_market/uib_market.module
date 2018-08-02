@@ -88,3 +88,11 @@ function __uib_market__set_alias($node, $language=null) {
     path_save($path);
   }
 }
+
+/**
+ * Implements HOOK_preprocess_username()
+ * Stop username from being trimmed
+ */
+function uib_w3_preprocess_username(&$variables) {
+  $variables['name'] = check_plain($variables['name_raw']);
+}
