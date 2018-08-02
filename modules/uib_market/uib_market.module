@@ -93,6 +93,10 @@ function __uib_market__set_alias($node, $language=null) {
  * Implements HOOK_preprocess_username()
  * Stop username from being trimmed
  */
-function uib_w3_preprocess_username(&$variables) {
-  $variables['name'] = check_plain($variables['name_raw']);
+function uib_market_preprocess_username(&$variables) {
+  if (isset($variables['account']->type)) {
+    if ($variables['account']->type == 'uib_market') {
+      $variables['name'] = check_plain($variables['name_raw']);
+    }
+  }
 }
