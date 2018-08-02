@@ -8068,9 +8068,6 @@ body #mc_embed_signup div.mce_inline_error {
         font-size: 2rem;
         letter-spacing: 0.25rem;
         padding: 2.1875rem 0 2.1875rem 0; } }
-    @media (min-width: 780px) {
-      .subheader__wrapper h2 {
-        padding-bottom: 0; } }
     @media (min-width: 960px) {
       .subheader__wrapper h2 {
         font-size: 2.8125em; } }
