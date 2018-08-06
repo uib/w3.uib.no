@@ -314,3 +314,26 @@ function uib_webdesk_views_query_alter(&$view, &$query) {
     }
   }
 }
+
+/**
+ * Implements hook_views_pre_render
+ */
+function uib_webdesk_views_pre_render(&$view) {
+  /**
+   * Excluding identical nodes from result
+   */
+  if ($view->tag == 'webdesk' && $view->current_display == 'page_1') {
+    $previousNID = 0;
+    $currentNID = 0;
+    $result = $view->result;
+    $filteredResult = array();
+    foreach ($result as $row) {
+      $currentNID = $row->nid;
+      if ($currentNID != $previousNID) {
+        $filteredResult[] = $row;
+        $previousNID = $currentNID;
+      }
+    }
+    $view->result = $filteredResult;
+  }
+}
