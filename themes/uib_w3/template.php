@@ -123,6 +123,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
 function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
+  drupal_add_js('sites/all/themes/uib/uib_w3/js/sortable.js');
 
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
