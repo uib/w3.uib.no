@@ -26,7 +26,23 @@ function uib_article_menu() {
       'access callback' => 'uib_article__share_access',
       'type' => MENU_LOCAL_TASK,
     );
+  $items['node/%/tabdelete'] = array(
+    'title' => 'Delete',
+    'access callback' => 'node_access',
+    'access arguments' => array('delete', 1),
+    'page callback' => 'uib_article__delete_tab',
+    'page arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );
   return $items;
+}
+
+/**
+ * Function that sends node to delete confirmation
+ */
+function uib_article__delete_tab($node) {
+  drupal_goto('node/' . $node . '/delete');
 }
 
 function uib_article__share($form, &$form_state) {
