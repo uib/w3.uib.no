@@ -153,10 +153,10 @@ function uib_area_field_group_info() {
     'children' => array(
       0 => 'field_uib_event_type',
       1 => 'field_uib_contacts',
-      2 => 'field_uib_location',
-      3 => 'field_uib_registration_link',
-      4 => 'field_uib_date',
-      5 => 'field_uib_deadline',
+      2 => 'field_uib_date',
+      3 => 'field_uib_location',
+      4 => 'field_uib_deadline',
+      5 => 'field_uib_registration_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -436,16 +436,17 @@ function uib_area_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'Links and attachments',
-    'weight' => '10',
+    'label' => 'Links and documents',
+    'weight' => '9',
     'children' => array(
       0 => 'field_uib_files',
-      1 => 'field_uib_links',
-      2 => 'field_uib_links_label',
+      1 => 'field_uib_links_label',
+      2 => 'field_uib_documents_label',
+      3 => 'field_uib_links',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'label' => 'Links and attachments',
+      'label' => 'Links and documents',
       'instance_settings' => array(
         'required_fields' => 1,
         'classes' => 'group-resources field-group-tab',
@@ -580,7 +581,7 @@ function uib_area_field_group_info() {
   t('Contact');
   t('Event info');
   t('For superbruker');
-  t('Links and attachments');
+  t('Links and documents');
   t('Management');
   t('Office information');
   t('RSS');

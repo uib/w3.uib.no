@@ -3252,7 +3252,7 @@ function uib_area_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -3283,7 +3283,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'file_rendered',
-        'weight' => 49,
+        'weight' => 50,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -3300,7 +3300,7 @@ function uib_area_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_uib_files',
-    'label' => 'Attachments',
+    'label' => 'Documents',
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
@@ -3601,7 +3601,7 @@ function uib_area_field_default_field_instances() {
           ),
         ),
         'type' => 'uiblink_formatter',
-        'weight' => 51,
+        'weight' => 52,
       ),
       'short_teaser' => array(
         'label' => 'above',
@@ -4158,7 +4158,7 @@ function uib_area_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 30,
+      'weight' => 16,
     ),
   );
 
@@ -5792,7 +5792,6 @@ function uib_area_field_default_field_instances() {
   t('Areas might provide their own logo image.  It will be included in the header.  The logo ought to be about 80x80 pixels and have a transparent background.');
   t('Article type');
   t('Attach other pages to this page.');
-  t('Attachments');
   t('Banner');
   t('Bottom image');
   t('Bottom text');
@@ -5803,6 +5802,7 @@ function uib_area_field_default_field_instances() {
   t('Contact person');
   t('Content Manager');
   t('Deadline for event registration.');
+  t('Documents');
   t('Email');
   t('Event date');
   t('Event type');

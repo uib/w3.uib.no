@@ -23,13 +23,14 @@ function uib_article_field_group_info() {
     'label' => 'article-sidebar',
     'weight' => '6',
     'children' => array(
-      0 => 'field_uib_media',
+      0 => 'field_uib_gmap_link',
       1 => 'field_uib_fact_box',
       2 => 'field_uib_files',
-      3 => 'field_uib_gmap_link',
-      4 => 'field_uib_links',
-      5 => 'field_uib_links_label',
-      6 => 'group_event_info',
+      3 => 'field_uib_links_label',
+      4 => 'field_uib_documents_label',
+      5 => 'field_uib_media',
+      6 => 'field_uib_links',
+      7 => 'group_event_info',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -60,27 +61,27 @@ function uib_article_field_group_info() {
     'label' => 'Information',
     'weight' => '2',
     'children' => array(
-      0 => 'field_uib_deadline',
-      1 => 'field_uib_feature_text',
-      2 => 'field_uib_date',
-      3 => 'field_uib_show_global_calendar',
-      4 => 'field_uib_feature_article',
-      5 => 'field_uib_area',
-      6 => 'field_uib_kicker',
-      7 => 'field_uib_contacts',
+      0 => 'field_uib_event_type',
+      1 => 'field_uib_contacts',
+      2 => 'field_uib_feature_heading_style',
+      3 => 'field_uib_feature_article',
+      4 => 'field_uib_main_media_teaser',
+      5 => 'field_uib_published_timestamp',
+      6 => 'field_uib_search_keywords',
+      7 => 'field_uib_show_global_calendar',
       8 => 'field_uib_article_type',
-      9 => 'field_uib_search_keywords',
-      10 => 'field_uib_location',
-      11 => 'field_uib_registration_link',
+      9 => 'field_uib_location',
+      10 => 'field_uib_feature_mobile_media',
+      11 => 'field_uib_feature_text',
       12 => 'field_uib_text',
-      13 => 'field_uib_feature_heading_style',
-      14 => 'field_uib_main_media_teaser',
-      15 => 'field_uib_published_timestamp',
-      16 => 'field_uib_event_type',
-      17 => 'field_uib_byline',
+      13 => 'field_uib_area',
+      14 => 'field_uib_byline',
+      15 => 'field_uib_kicker',
+      16 => 'field_uib_registration_link',
+      17 => 'field_uib_date',
       18 => 'field_uib_lead',
-      19 => 'field_uib_feature_mobile_media',
-      20 => 'field_uib_external_author',
+      19 => 'field_uib_external_author',
+      20 => 'field_uib_deadline',
       21 => 'title',
       22 => 'group_main_media',
     ),
@@ -114,8 +115,8 @@ function uib_article_field_group_info() {
     'label' => 'Main media',
     'weight' => '15',
     'children' => array(
-      0 => 'field_uib_main_media',
-      1 => 'field_uib_imagecaptions',
+      0 => 'field_uib_imagecaptions',
+      1 => 'field_uib_main_media',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -143,8 +144,8 @@ function uib_article_field_group_info() {
     'label' => 'Related content group',
     'weight' => '8',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -169,10 +170,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related content',
-    'weight' => '12',
+    'weight' => '11',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_relation',
+      0 => 'field_uib_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -199,8 +200,8 @@ function uib_article_field_group_info() {
     'label' => 'Related persons group',
     'weight' => '7',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'html5',
     'format_settings' => array(
@@ -224,10 +225,10 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Related persons',
-    'weight' => '11',
+    'weight' => '10',
     'children' => array(
-      0 => 'field_uib_related_persons',
-      1 => 'field_related_persons_label',
+      0 => 'field_related_persons_label',
+      1 => 'field_uib_related_persons',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -282,7 +283,7 @@ function uib_article_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Small images',
-    'weight' => '6',
+    'weight' => '5',
     'children' => array(
       0 => 'field_uib_imagecaptions2',
       1 => 'field_uib_media',

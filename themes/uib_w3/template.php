@@ -443,6 +443,12 @@ EOD;
       $variables['page']['content_bottom']['field_uib_files'] = field_view_field('node', $variables['node'], 'field_uib_files', array(
         'weight' => '26',
       ));
+      $tmpVar5 = field_view_field('node',$variables['node'],'field_uib_documents_label');
+      $tmpVar6 = field_view_field('node',$variables['node'],'field_uib_files');
+      if ($tmpVar5 && $tmpVar6) {
+        $variables['page']['content_bottom']['field_uib_files']['#label_display'] = 'display';
+        $variables['page']['content_bottom']['field_uib_files']['#title'] = $tmpVar5[0]['#markup'];
+      }
 
       // Article types with social media links
       $types = array('event', 'news', 'press_release', 'phd_press_release');
@@ -472,6 +478,7 @@ EOD;
           'field_uib_links',
           'links',
           'language',
+          'field_uib_documents_label',
         );
         $empty = TRUE;
         foreach($variables['page']['content']['system_main']['nodes'][$variables['node']->nid] as $key => $value) {
@@ -1160,6 +1167,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_important_message',
       'field_uib_visitor_info',
       'field_uib_contact_info',
+      'field_uib_documents_label',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);

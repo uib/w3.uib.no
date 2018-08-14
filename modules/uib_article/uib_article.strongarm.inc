@@ -37,6 +37,9 @@ function uib_article_strongarm() {
       'quote' => array(
         'custom_settings' => FALSE,
       ),
+      'front_page_icons' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -47,13 +50,13 @@ function uib_article_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '12',
         ),
       ),
       'display' => array(
