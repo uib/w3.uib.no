@@ -828,11 +828,13 @@ function uib_article_menu_local_task($form, &$form_state, $node, $uib_content_ty
       '#title' => $menu['description'] . ' ' . t('options'),
     );
 
+    $menu_edit_link = l(t('Edit area menu here'), "admin/structure/menu/manage/" . $menu_name);
+
     if (!empty($menu_link)) {
-      $form['uib_area_menu_formtext']['#description'] = t('Currently in menu');
+      $form['uib_area_menu_formtext']['#description'] = t('This article is currently in the menu. ' . $menu_edit_link);
     }
     else {
-      $form['uib_area_menu_formtext']['#description'] = t('Not in menu');
+      $form['uib_area_menu_formtext']['#description'] = t('This article is not in menu');
     }
 
 
@@ -854,58 +856,19 @@ function uib_article_menu_local_task($form, &$form_state, $node, $uib_content_ty
       $form['uib_area_menu_settings']['area_menu_select'] = array(
         '#type' => 'select',
         '#title' => t('Select menu item'),
-        '#options' => uib_area__get_menu($menu_name),
-        '#ajax' => array(
-          'callback' => 'uib_article__menu_form_setrels',
-          'event' => 'change',
-          'wrapper' => 'menu_relation_radios',
-          ),
+        '#options' => uib_area__get_menu($menu_name, FALSE, 1),
       );
 
-      $default_value = '2';
+      $default_value = '0';
       if (!empty($menu_link['mlid'])) {
-        $form['uib_area_menu_settings']['area_menu_select']['#value'] = $menu_link['mlid'];
-        $default_value = '0';
+        $form['uib_area_menu_settings']['area_menu_select']['#value'] = $menu_link['plid'];
+        $default_value = '2';
       }
 
-      $form['uib_area_menu_settings']['radios'] = array(
-        '#type' => 'container',
-        '#prefix' => '<div id="menu_relation_radios">',
-        '#suffix' => '</div>',
+      $form['uib_area_menu_settings']['relations'] = array(
+        '#type' => 'hidden',
+        '#value' => '2',
       );
-      $form['uib_area_menu_settings']['radios']['relations'] = array(
-        '#type' => 'radios',
-        '#title' => t('Specify relationship to selected menu item'),
-        '#default_value' => $default_value,
-        '#options' => array(
-          0 => t('Sibling to (after)'),
-          1 => t('Sibling to (before)'),
-          2 => t('Child to'),
-        ),
-      );
-
-      // Check if a menu link with depth > 1 has been selected
-      if (!empty($form_state['input']['area_menu_select'])) {
-        $ml = menu_link_load($form_state['input']['area_menu_select']);
-        if ($ml['depth'] > 1) {
-          unset($form['uib_area_menu_settings']['radios']['relations']['#options'][2]);
-          $form_state['input']['relations'] = '0';
-        }
-        else {
-          unset($form['uib_area_menu_settings']['radios']['relations']['#options'][0]);
-          unset($form['uib_area_menu_settings']['radios']['relations']['#options'][1]);
-          $form_state['input']['relations'] = '2';
-        }
-      }
-      elseif (!empty($menu_link) && $menu_link['depth'] > 1) {
-        unset($form['uib_area_menu_settings']['radios']['relations']['#options'][2]);
-        $form_state['input']['relations'] = '0';
-      }
-      else {
-        unset($form['uib_area_menu_settings']['radios']['relations']['#options'][0]);
-        unset($form['uib_area_menu_settings']['radios']['relations']['#options'][1]);
-        $form_state['input']['relations'] = '2';
-      }
 
       $form['submit'] = array(
         '#type' => 'submit',

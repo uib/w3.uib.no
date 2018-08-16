@@ -1669,8 +1669,8 @@ function uib_area_block_list_alter(&$blocks) {
  * @return string
  *  HTML representing the chosen menu.
  */
-function uib_area__get_menu($menu_name, $active_mlid = FALSE) {
-  $tree = menu_tree_all_data($menu_name, NULL, 2);
+function uib_area__get_menu($menu_name, $active_mlid = FALSE, $levels = 2) {
+  $tree = menu_tree_all_data($menu_name, NULL, $levels);
   $menu = array();
   uib_area__generate_menu_rec($menu, $tree, $active_mlid);
   $options = array();
