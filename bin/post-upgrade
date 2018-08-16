@@ -6,6 +6,7 @@
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
+        bin/site-drush vset uib_hubro_chatbot TRUE
         bin/index-all-users
         bin/index-all-studies
         bin/index-all-nodes
