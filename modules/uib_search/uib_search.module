@@ -388,7 +388,7 @@ function uib_search__run_elastic_request(
   $data,
   $method = 'POST',
   $run_as_administrator = FALSE,
-  $timeout = 2,
+  $timeout = 5,
   $preference = FALSE
 )
 {
