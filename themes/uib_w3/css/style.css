@@ -950,6 +950,9 @@ th, td {
     margin: 0;
     font-size: 1.25rem; }
 
+.uib-table-wrapper table {
+  min-width: 100%; }
+
 .uib-tabs-container .uib-table-wrapper {
   max-width: 100%;
   width: 100%;
