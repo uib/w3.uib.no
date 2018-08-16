@@ -1,3 +1,10 @@
+# Release 99 _2018-08-16_
+- Lagt til støtte for sortering i tabeller #20434
+- Lagt til felt som gjør det mulig å overstyre overskriften "Vedlegg" (samtidig endret standardoverskriften fra "Vedlegg" til "Dokumenter") #20646
+- Lagt til fanen "Slett" (innholdsprodusenter må ikke lenger via fanen "Rediger" for å få slettet sider) #20620
+- Endret visningen av tabeller slik at de alltid fyller hele bredden #20661
+- Rettet feil der samme innhold ble vist gjentatte ganger i resultatlisten ved bruk av "Finn innhold" i webdesken #20598
+
 # Release 98 _2018-08-02_
 - Forbedret navigasjonen på mobil og nettbrett ytterligere #20419
 - Forbedret kalendervisningen (bl.a. endret engelsk datoformat) #20633
