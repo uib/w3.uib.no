@@ -1,5 +1,5 @@
 jQuery (document).ready(function ($) {
-  $(".uib-table-wrapper>table>tbody>tr>th").click(function(){
+  $(".uib-table-wrapper>table.sortable>tbody>tr>th").click(function(){
   var table = $(this).parent().parent().parent();
   var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
     this.asc = !this.asc

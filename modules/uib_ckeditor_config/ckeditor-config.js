@@ -1,5 +1,6 @@
 CKEDITOR.editorConfig = function( config ) {
-  config.removeDialogTabs = 'table:advanced;tableProperties:advanced';
+  //config.removeDialogTabs = 'table:advanced;tableProperties:advanced';
+  config.removeDialogTabs = 'table:advanced';
   config.contentsCss = 'sites/all/modules/uib/uib_ckeditor_config/ckeditor.css';
   config.extraPlugins = 'dialog,dialogui';
   config.pasteFilter = 'p; a[!href]; h2; h3; h4; strong; em; ul; ol; li; sup; sub';
@@ -29,11 +30,31 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
   }
 
   if ( dialogName == 'table' || dialogName == 'tableProperties' ) {
+    var advancedTab = dialogDefinition.getContents( 'advanced' );
+    var advRemove = ['advId','advLangDir','advStyles'];
+    for ( key in advRemove ) {
+      advancedTab.remove( advRemove[key] );
+    }
+    var tableCSS = advancedTab.get('advCSSClasses');
+    var help_text = {
+      type : 'html',
+      html : '<p>Add stylesheet class "sortable" to make the table sortable</p>'
+    }
+    advancedTab.add(help_text);
     var info = dialogDefinition.getContents( 'info' );
     var toRemove = [ 'txtWidth', 'txtHeight', 'selHeaders', 'txtBorder', 'cmbAlign', 'txtCellSpace', 'txtCellPad', 'txtCaption', 'txtSummary' ];
     for ( key in toRemove ) {
       info.remove( toRemove[key] );
     }
+  }
+
+  if ( dialogName == 'cellProperties' ) {
+    var info = dialogDefinition.getContents( 'info' );
+    var toRemove = [ 'wordWrap', 'vAlign', 'hAlign', 'width', 'widthType', 'height', 'htmlHeightType', 'borderColor', 'borderColorChoose', 'bgColor', 'bgColorChoose' ];
+    for ( key in toRemove ) {
+      info.remove( toRemove[key] );
+    }
+    console.log(info);
   }
 
   if ( dialogName == 'image' ) {
