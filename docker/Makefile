@@ -1,4 +1,4 @@
-DOCKERHUB_USER=gisleaas
+DOCKERHUB_USER=uibit
 
 .PHONY: dev run pull push rebuild
 
