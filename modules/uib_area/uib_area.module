@@ -2081,6 +2081,14 @@ function uib_area_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  $items['node/%node/outdated'] = array(
+    'title' => t('Outdated'),
+    'page callback' => 'uib_area__outdated',
+    'page arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'access arguments' => array('uib_area__ties_access_check'),
+  );
+
   return $items;
 }
 
@@ -3055,3 +3063,6 @@ function uib_area__redirect($form, &$form_state) {
   }
 }
 
+function uib_area__outdated($area) {
+  return uib_webdesk__outdated($area->nid);
+}
