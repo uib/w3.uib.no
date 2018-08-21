@@ -878,13 +878,6 @@ return !empty($handler->argument);';
   $handler->display->display_options['filters']['field_uib_study_type_value']['value'] = array(
     'course' => 'course',
   );
-  /* Filter criterion: Content: Title (field_uib_study_title:language) */
-  $handler->display->display_options['filters']['language']['id'] = 'language';
-  $handler->display->display_options['filters']['language']['table'] = 'field_data_field_uib_study_title';
-  $handler->display->display_options['filters']['language']['field'] = 'language';
-  $handler->display->display_options['filters']['language']['value'] = array(
-    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
-  );
   /* Filter criterion: Content: ID (field_uib_study_code) */
   $handler->display->display_options['filters']['field_uib_study_code_value']['id'] = 'field_uib_study_code_value';
   $handler->display->display_options['filters']['field_uib_study_code_value']['table'] = 'field_data_field_uib_study_code';
