@@ -32,25 +32,25 @@ function uib_user_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'googleanalytics' => array(
-          'weight' => '3',
+          'weight' => '-5',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '0',
         ),
         'account' => array(
           'weight' => '-10',
         ),
         'timezone' => array(
-          'weight' => '6',
+          'weight' => '-2',
         ),
         'picture' => array(
           'weight' => '-4',
         ),
         'locale' => array(
-          'weight' => '5',
+          'weight' => '-3',
         ),
         'wysiwyg' => array(
-          'weight' => '5',
+          'weight' => '-4',
         ),
         'metatags' => array(
           'weight' => '40',
@@ -110,16 +110,16 @@ function uib_user_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'user_picture_style';
-  $strongarm->value = 'user_thumbnail';
-  $export['user_picture_style'] = $strongarm;
+  $strongarm->name = 'user_pictures';
+  $strongarm->value = 1;
+  $export['user_pictures'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'user_pictures';
-  $strongarm->value = 1;
-  $export['user_pictures'] = $strongarm;
+  $strongarm->name = 'user_picture_style';
+  $strongarm->value = 'user_thumbnail';
+  $export['user_picture_style'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

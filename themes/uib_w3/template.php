@@ -942,6 +942,11 @@ SCRIPT;
       $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);
       $variables['page']['content_bottom']['field_uib_user_docs'] =
         $variables['page']['content']['system_main']['field_uib_user_docs'];
+
+      if (isset($variables['page']['content']['system_main']['field_uib_user_relation'])
+        && $variables['language']->language == $variables['page']['content']['system_main']['field_uib_user_relation']['#language']) {
+        $variables['page']['content_bottom']['field_uib_user_relation'] = $variables['page']['content']['system_main']['field_uib_user_relation'];
+      }
       $unset_variables = array(
         'user_vcard_link',
         'user_login_incard_link',
@@ -958,6 +963,7 @@ SCRIPT;
         'user_email',
         'field_uib_user_competence',
         'field_uib_user_docs',
+        'field_uib_user_relation',
         'selected_publications',
       );
       foreach ($unset_variables as $unset) {

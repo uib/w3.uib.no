@@ -10,21 +10,13 @@
 function uib_user_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_uib_user_ou'
-  $field_bases['field_uib_user_ou'] = array(
+  // Exported field_base: 'field_uib_user_relation'.
+  $field_bases['field_uib_user_relation'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_uib_user_ou',
-    'foreign keys' => array(
-      'node' => array(
-        'columns' => array(
-          'target_id' => 'nid',
-        ),
-        'table' => 'node',
-      ),
-    ),
+    'field_name' => 'field_uib_user_relation',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -34,23 +26,22 @@ function uib_user_field_default_field_bases() {
     'module' => 'entityreference',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'handler' => 'base',
+      'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
           'views-select-list' => array(
             'status' => 0,
           ),
         ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'uib_ou' => 'uib_ou',
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_3',
+          'view_name' => 'newslist',
         ),
       ),
       'target_type' => 'node',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'entityreference',
   );
 
