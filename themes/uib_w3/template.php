@@ -1441,6 +1441,9 @@ function uib_w3_preprocess_field(&$vars) {
         }
       }
       break;
+    case 'field_uib_user_relation':
+      $vars['classes_array'][] = 'field-name-field-uib-relation';
+      break;
   }
 
   foreach ($vars['items'] as $delta => $item) {

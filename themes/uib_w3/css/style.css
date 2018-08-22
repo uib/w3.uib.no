@@ -10038,6 +10038,8 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   max-width: 72rem; }
   .page-user .content-bottom > * {
     flex: 1; }
+  .page-user .content-bottom .field-name-field-uib-user-relation {
+    padding-bottom: 2.5rem; }
 @media (min-width: 780px) {
   .page-user .content-top {
     position: relative; }
@@ -10074,14 +10076,21 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
     clear: both; }
   .page-user .content-bottom {
     -ms-flex-direction: row;
+    -ms-flex-wrap: wrap;
     -ms-flex-pack: start;
     -webkit-flex-direction: row;
+    -webkit-flex-wrap: wrap;
     -webkit-justify-content: flex-start;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start; }
     .page-user .content-bottom > * {
       -ms-flex: 0 1 50%;
       -webkit-flex: 0 1 50%;
       flex: 0 1 50%; }
     .page-user .content-bottom > *:not(:last-child) {
-      padding-right: 1rem; } }
+      padding-right: 1rem; }
+    .page-user .content-bottom .field-name-field-uib-user-relation {
+      -ms-flex: 1 0 100%;
+      -webkit-flex: 1 0 100%;
+      flex: 1 0 100%; } }
