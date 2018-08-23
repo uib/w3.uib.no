@@ -834,7 +834,7 @@ function uib_article_menu_local_task($form, &$form_state, $node, $uib_content_ty
       $form['uib_area_menu_formtext']['#description'] = t('This article is currently in the menu. ' . $menu_edit_link);
     }
     else {
-      $form['uib_area_menu_formtext']['#description'] = t('This article is not in menu');
+      $form['uib_area_menu_formtext']['#description'] = t('This article is not in the menu');
     }
 
 
@@ -855,7 +855,7 @@ function uib_article_menu_local_task($form, &$form_state, $node, $uib_content_ty
 
       $form['uib_area_menu_settings']['area_menu_select'] = array(
         '#type' => 'select',
-        '#title' => t('Select menu item'),
+        '#title' => t('Select main menu item'),
         '#options' => uib_area__get_menu($menu_name, FALSE, 1),
       );
 
