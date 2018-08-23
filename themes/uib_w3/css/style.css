@@ -952,6 +952,9 @@ th, td {
 
 .uib-table-wrapper table {
   min-width: 100%; }
+  .uib-table-wrapper table.sortable th {
+    color: #00769e;
+    cursor: pointer; }
 
 .uib-tabs-container .uib-table-wrapper {
   max-width: 100%;
