@@ -2086,7 +2086,7 @@ function uib_area_menu() {
     'page callback' => 'uib_area__outdated',
     'page arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
-    'access arguments' => array('uib_area__ties_access_check'),
+    'access callback' => 'uib_area__outdated_access_check',
   );
 
   return $items;
@@ -3065,4 +3065,16 @@ function uib_area__redirect($form, &$form_state) {
 
 function uib_area__outdated($area) {
   return uib_webdesk__outdated($area->nid);
+}
+
+function uib_area__outdated_access_check() {
+  global $user;
+  $node = node_load(arg(1));
+  if ($node && $node->type == 'area') {
+    if ($user->uid == 1 || in_array('superbruker', $user->roles)) return TRUE;
+    foreach($node->field_uib_content_manager['und'] as $uid) {
+      if ($user->uid == $uid['target_id']) return TRUE;
+    }
+  }
+  return FALSE;
 }
