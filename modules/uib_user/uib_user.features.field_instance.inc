@@ -323,7 +323,9 @@ function uib_user_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => -8,
     ),
@@ -942,7 +944,7 @@ function uib_user_field_default_field_instances() {
   // Exported field_instance: 'user-user-field_uib_user_competence'.
   $field_instances['user-user-field_uib_user_competence'] = array(
     'bundle' => 'user',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => 'Use single words or very short phrases here. Please check spelling before hitting enter (all words, phrases, characters, spaces etc. will be saved to the database). If you want to edit or delete a word or a phrase, please notify us in <a href="https://bs.uib.no/?module=issues&action=new&gid=77&nokerb=1">Issue Tracker (bs.uib.no)</a>',
     'display' => array(
@@ -1001,8 +1003,9 @@ function uib_user_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'autocomplete_deluxe',
+      'module' => 'options',
       'settings' => array(
+        'apply_chosen' => '',
         'autocomplete_deluxe_path' => 'autocomplete_deluxe/taxonomy',
         'delimiter' => '',
         'limit' => 10,
@@ -1010,7 +1013,7 @@ function uib_user_field_default_field_instances() {
         'not_found_message' => 'The term \'@term\' will be added.',
         'size' => 60,
       ),
-      'type' => 'autocomplete_deluxe_taxonomy',
+      'type' => 'options_select',
       'weight' => 7,
     ),
   );

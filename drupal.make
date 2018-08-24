@@ -30,6 +30,7 @@ projects[better_formats][patch][] = https://www.drupal.org/files/issues/better_f
 projects[bot][revision] = d0e10c65616f267543e717addc17422979f83bd2
 projects[breakpoints][version] = 1.6
 projects[browsersync][version] = 1.1
+projects[chosen][version] = 2.1
 projects[coder][version] = 2.6
 projects[colorbox][version] = 2.13
 projects[colorbox][patch] = https://www.drupal.org/files/issues/Adding-ARIA-labels-to-colorbox-library-1.6.4.patch

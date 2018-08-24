@@ -500,6 +500,7 @@ features[user_role][] = admin
 features[user_role][] = innholdsprodusent
 features[user_role][] = level 3
 features[user_role][] = superbruker
+features[variable][] = chosen_jquery_selector
 features[variable][] = clone_omitted
 features[variable][] = colorbox_inline
 features[variable][] = colorbox_style

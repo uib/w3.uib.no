@@ -316,3 +316,10 @@ function uib_setup_update_7033() {
 function uib_setup_update_7034() {
   module_enable(array('views_autocomplete_filters'));
 }
+
+/**
+ * Enable chosen module
+ */
+function uib_setup_update_7035() {
+  module_enable(array('chosen'));
+}
