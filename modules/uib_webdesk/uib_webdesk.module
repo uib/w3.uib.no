@@ -134,7 +134,7 @@ function uib_webdesk__outdated($area = FALSE) {
   }
   $six_months_ago = strtotime('-6 months');
   $extra = array(':sixmonthsago' => $six_months_ago);
-  $query = 'select nr.nid, nr.title, nr.uid, nr.timestamp, n.status, n.created, n.language, u.status, fn.field_uib_first_name_value as first_name, ln.field_uib_last_name_value as last_name ';
+  $query = 'select nr.nid, nr.title, nr.uid, nr.timestamp, n.status as node_status, n.created, n.language, u.status as status, fn.field_uib_first_name_value as first_name, ln.field_uib_last_name_value as last_name ';
   $query .= 'from node_revision as nr, field_data_field_uib_first_name as fn, field_data_field_uib_last_name as ln, node as n, users as u ';
   $query .= 'where nr.uid > 1 and nr.nid in (';
   if ($type == 'uib_article') {
@@ -157,7 +157,9 @@ function uib_webdesk__outdated($area = FALSE) {
     foreach($result as $key => $item) {
       if (!key_exists($item->nid, $nodes)) {
         $page_url = drupal_get_path_alias('node/' . $item->nid, $item->language);
-        $nodes[$item->nid]['title'] = l($item->title, $page_url);
+        $node_status = '';
+        if (!$item->node_status) $node_status = '<span style="color: #cf3c3a;">(' . t('UNPUBLISHED') . ')</span> ';
+        $nodes[$item->nid]['title'] = l($node_status . $item->title, $page_url, array('html' => TRUE));
         if ($item->status) {
           $user_url = drupal_get_path_alias('user/' . $item->uid, 'nb');
           $nodes[$item->nid]['user'] = l($item->first_name . ' ' . $item->last_name, $user_url);
