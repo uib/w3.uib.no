@@ -454,7 +454,7 @@ function uib_area_block_view($delta='') {
         $links = array(
           'nb' => array(
             array('Kontakt UiB', 74847, 'link-contact-info'),
-            array('Ledige stilinger', 84775, 'link-vacant-positions'),
+            array('Ledige stillinger', 84775, 'link-vacant-positions'),
             array('Presse', 50664, 'link-press'),
             array('Om informasjonskapsler', 50897, 'link-info-cookies'),
           ),
