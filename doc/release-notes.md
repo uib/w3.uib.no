@@ -1,3 +1,11 @@
+# Release 100 _2018-08-30_
+- Implementert chatbot for uib.no/hf (pilot) #20297
+- Lagt til fane som viser innhold som ikke har vært redigert de siste seks måneder på områdesider i innlogget modus #20621
+- Rettet feil der emneoversikter ikke viste de samme emnene i norsk og engelsk versjon #20706
+- Forenklet brukergrensesnittet under meny-fanen på artikkelsider i innlogget modus #20104
+- Forbedret funksjonen som muliggjør sortering i tabeller #20680 #20712
+- Endret fanetittel på personsidene fra "arbeids/forskningfelt" til "Arbeidsfelt" for dem som hverken er kategorisert som vitenskapelig eller administrativt ansatt #20612
+
 # Release 99 _2018-08-16_
 - Lagt til støtte for sortering i tabeller #20434
 - Lagt til felt som gjør det mulig å overstyre overskriften "Vedlegg" (samtidig endret standardoverskriften fra "Vedlegg" til "Dokumenter") #20646
