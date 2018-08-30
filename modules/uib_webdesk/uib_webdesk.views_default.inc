@@ -2408,6 +2408,11 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['fields']['title_1']['ui_name'] = 'Area';
   $handler->display->display_options['fields']['title_1']['label'] = 'Area';
   $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+  /* Field: Content: Area (field_uib_area:delta) */
+  $handler->display->display_options['fields']['delta']['id'] = 'delta';
+  $handler->display->display_options['fields']['delta']['table'] = 'field_data_field_uib_area';
+  $handler->display->display_options['fields']['delta']['field'] = 'delta';
+  $handler->display->display_options['fields']['delta']['exclude'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2583,6 +2588,11 @@ function uib_webdesk_views_default_views() {
     2 => '2',
     1 => 0,
   );
+  /* Filter criterion: Content: Area (field_uib_area:delta) */
+  $handler->display->display_options['filters']['delta']['id'] = 'delta';
+  $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_uib_area';
+  $handler->display->display_options['filters']['delta']['field'] = 'delta';
+  $handler->display->display_options['filters']['delta']['value']['value'] = '0';
   $handler->display->display_options['path'] = 'webdesk/all-content';
   $translatables['uib_webdesk'] = array(
     t('Master'),
@@ -2639,6 +2649,9 @@ function uib_webdesk_views_default_views() {
     t('Desc'),
     t('Content Type'),
     t('Author'),
+    t('Area (field_uib_area:delta)'),
+    t('.'),
+    t(','),
     t('Combine fields filter'),
   );
   $export['uib_webdesk'] = $view;
