@@ -157,7 +157,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     if ($is_view_page) break;
   }
   $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
-  $is_feature_article = $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
+  $is_feature_article = isset($variables['node']) && $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
     if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article) {
@@ -256,7 +256,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     ));
   }
 
-  if($variables['theme_hook_suggestions'][3] != 'page__front' && $variables['theme_hook_suggestions'][3] != 'page__node__calendar' && isset($variables['theme_hook_suggestions'][3])) {
+  if(isset($variables['theme_hook_suggestions'][3]) && $variables['theme_hook_suggestions'][3] != 'page__front' && $variables['theme_hook_suggestions'][3] != 'page__node__calendar' && isset($variables['theme_hook_suggestions'][3])) {
     $variables['page']['content_top']['title'] = array(
       '#type' => 'html_tag',
       '#tag' => 'h1',
@@ -860,15 +860,18 @@ SCRIPT;
       // set menu to appear as tabs
       $jq = uib_w3__tabsScript();
       drupal_add_js($jq, 'inline');
-      $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
-      $user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
-      $variables['page']['content_top']['vcard_and_login'] = array(
-        '#type' => 'html_tag',
-        '#tag' => 'div',
-        '#value' => $user_vcard . ' | ' . $user_login,
-        '#weight' => -50,
-        '#attributes' => array('class' => array('vcard-and-login')),
-      );
+      if (isset($variables['page']['content']['system_main']['user_vcard_link'])) {
+        $user_vcard = $variables['page']['content']['system_main']['user_vcard_link']['#markup'];
+        $user_login = '';
+        if (isset($variables['page']['content']['system_main']['user_login_incard_link']))$user_login = $variables['page']['content']['system_main']['user_login_incard_link']['#markup'];
+        $variables['page']['content_top']['vcard_and_login'] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#value' => $user_vcard . ' | ' . $user_login,
+          '#weight' => -50,
+          '#attributes' => array('class' => array('vcard-and-login')),
+        );
+      }
       $variables['page']['content_top']['user_picture'] = $variables['page']['content']['system_main']['user_picture'];
       $variables['page']['content_top']['user_picture']['#weight'] = -40;
       $variables['page']['content_top']['user_picture']['#prefix'] = '<div class="user-media">';
@@ -891,14 +894,20 @@ SCRIPT;
       $user_ou = $variables['page']['content']['system_main']['field_uib_user_ou']['#object']->field_uib_user_ou['und'][0]['target_id'];
       $variables['page']['content_top']['user_ou'] = $variables['page']['content']['system_main']['field_uib_user_ou'][0]['node'][$user_ou]['field_uib_ou_title'];
       $variables['page']['content_top']['user_ou']['#weight'] = -10;
-      $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
-      $variables['page']['content_top']['user_homepage']['#weight'] = 0;
-      $variables['page']['content_top']['user_cv'] = $variables['page']['content']['system_main']['field_uib_user_cv'];
-      $variables['page']['content_top']['user_cv']['#prefix'] = '<div class="field field-name-field-uib-user-cv field-type-file field-label-hidden"><div class="field-items"><div class="field-item even">';
-      $variables['page']['content_top']['user_cv']['#suffix'] = '</div></div></div>';
-      $variables['page']['content_top']['user_cv']['#weight'] = 5;
-      $variables['page']['content_top']['social_media'] = $variables['page']['content']['system_main']['field_uib_user_social_media'];
-      $variables['page']['content_top']['social_media']['#weight'] = 10;
+      if (isset($variables['page']['content']['system_main']['field_uib_user_url'])) {
+        $variables['page']['content_top']['user_homepage'] = $variables['page']['content']['system_main']['field_uib_user_url'];
+        $variables['page']['content_top']['user_homepage']['#weight'] = 0;
+      }
+      if (isset($variables['page']['content']['system_main']['field_uib_user_cv'])) {
+        $variables['page']['content_top']['user_cv'] = $variables['page']['content']['system_main']['field_uib_user_cv'];
+        $variables['page']['content_top']['user_cv']['#prefix'] = '<div class="field field-name-field-uib-user-cv field-type-file field-label-hidden"><div class="field-items"><div class="field-item even">';
+        $variables['page']['content_top']['user_cv']['#suffix'] = '</div></div></div>';
+        $variables['page']['content_top']['user_cv']['#weight'] = 5;
+      }
+      if (isset($variables['page']['content']['system_main']['field_uib_user_social_media'])) {
+        $variables['page']['content_top']['social_media'] = $variables['page']['content']['system_main']['field_uib_user_social_media'];
+        $variables['page']['content_top']['social_media']['#weight'] = 10;
+      }
       $items = array();
       $account = $variables['page']['content']['system_main']['#account'];
       if (!empty($account->mail)) {
@@ -907,14 +916,16 @@ SCRIPT;
         $items[] = $email;
       }
       $numbers = array();
-      foreach ($account->field_uib_phone['und'] as $number) {
-        $numbers[] = $number['value'];
-      }
-      if (!empty($numbers)) {
-        $numbers = '<span class="phone-number">' . implode('</span><span class="phone-number">', $numbers) . '</span>';
-        $phone = '<span class="user-contact__label">' . t('Phone') . '</span>';
-        $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
-        $items[] = $phone;
+      if (!empty($account->field_uib_phone)) {
+        foreach ($account->field_uib_phone['und'] as $number) {
+          $numbers[] = $number['value'];
+        }
+        if (!empty($numbers)) {
+          $numbers = '<span class="phone-number">' . implode('</span><span class="phone-number">', $numbers) . '</span>';
+          $phone = '<span class="user-contact__label">' . t('Phone') . '</span>';
+          $phone .= '<span class="user-contact__value">' . $numbers . '</span>';
+          $items[] = $phone;
+        }
       }
       $variables['page']['content']['system_main']['visit_address']['#label_display'] = 'hidden';
       $visit_address = '<span class="user-contact__label">' . t('Visitor Address') . '</span>';
@@ -937,11 +948,14 @@ SCRIPT;
       );
       $variables['page']['content_top']['user_contact_info']['#prefix'] = '</div></div><div class="user-contact-info">';
       $variables['page']['content_top']['user_contact_info']['#suffix'] = '</div>';
-      $variables['page']['content']['field_uib_user_competence'] = $variables['page']['content']['system_main']['field_uib_user_competence'];
+      if (isset($variables['page']['content']['system_main']['field_uib_user_competence'])) {
+        $variables['page']['content']['field_uib_user_competence'] = $variables['page']['content']['system_main']['field_uib_user_competence'];
+      }
       $variables['page']['content_bottom']['user_twitter'] = __uib_w3__render_block('uib_user', 'twitter', 10);
       $variables['page']['content_bottom']['user_feed'] = __uib_w3__render_block('uib_user', 'feed', 20);
-      $variables['page']['content_bottom']['field_uib_user_docs'] =
-        $variables['page']['content']['system_main']['field_uib_user_docs'];
+      if (isset($variables['page']['content']['system_main']['field_uib_user_docs'])) {
+        $variables['page']['content_bottom']['field_uib_user_docs'] = $variables['page']['content']['system_main']['field_uib_user_docs'];
+      }
 
       if (isset($variables['page']['content']['system_main']['field_uib_user_relation'])
         && $variables['language']->language == $variables['page']['content']['system_main']['field_uib_user_relation']['#language']) {
@@ -986,7 +1000,7 @@ SCRIPT;
       }
       break;
   }
-  if($variables['node']->nid == '73684' || $variables['node']->nid == '73685') {
+  if(isset($variables['node']) && ($variables['node']->nid == '73684' || $variables['node']->nid == '73685')) {
     $variables['page']['content_top']['field_uib_profiled_message'] = field_view_field('node', $variables['node'], 'field_uib_profiled_message', array(
       'settings' => array('view_mode' => 'teaser'),
       'weight' => 4,
@@ -1032,7 +1046,7 @@ SCRIPT;
   if (__uib_w3__empty_region($variables['page']['content_bottom'])) $variables['page']['content_bottom'] = array();
   if (__uib_w3__empty_region($variables['page']['footer_top'])) $variables['page']['footer_top'] = array();
 
-  if(variable_get('uib_hubro_chatbot')){
+  if(variable_get('uib_hubro_chatbot') && isset($variables['node'])){
     if ($variables['node']->nid == 17507 || (isset($variables['node']->field_uib_area['und'][0]['target_id']) && $variables['node']->field_uib_area['und'][0]['target_id'] == 17507)) {
       drupal_add_js('http' . (isset($_SERVER['HTTPS']) ? 's' : '').'://'. $_SERVER['HTTP_HOST'] . '/watsonbot/public/js/addchatbot.js');
     }
@@ -1369,7 +1383,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['node_url'] = $kmd_href;
       $title = urlencode(strtolower(preg_replace(array('/[^a-zA-Z0-9 æøå\/]/', '/[ -]+/', '/^-|-$/','/-in-/','/-for-/'),array('', '-', '','-','-'), html_entity_decode($variables['title'], ENT_QUOTES))));
       $ref_url = $base_url .'/'. $language->language .'/kmd/'. $variables['nid'] . '/' . $title;
-      $variables['content']['field_uib_main_media'][0]['#markup'] = str_replace($ref_url, $kmd_href, $variables['content']['field_uib_main_media'][0]['#markup']);
+      if(isset($variables['content']['field_uib_main_media'][0]['#markup'])) {
+        $variables['content']['field_uib_main_media'][0]['#markup'] = str_replace($ref_url, $kmd_href, $variables['content']['field_uib_main_media'][0]['#markup']);
+      }
     }
   }
   if($variables['view_mode']=='short_teaser'){

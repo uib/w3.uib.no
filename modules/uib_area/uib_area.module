@@ -159,7 +159,7 @@ function uib_area_block_view($delta='') {
         $place = node_load($parent->field_uib_ou['und'][0]['target_id']);
       }
       $postal_address = t('University of Bergen') .' '. uib_area__format_postal_address($place);
-      $contact_info = $area->field_uib_contact_info;
+      $contact_info = isset($area->field_uib_contact_info) ? $area->field_uib_contact_info : '';
       if (!empty($contact_info)) {
         $contact_info_link_title = t('Contact information');
         $contact_info_url = $contact_info['und'][0]['url'];
@@ -168,7 +168,7 @@ function uib_area_block_view($delta='') {
         $contact_info_url = '';
       }
       $visit_address = uib_area__format_visit_address($place);
-      $visitor_info = $area->field_uib_visitor_info;
+      $visitor_info = isset($area->field_uib_visitor_info) ? $area->field_uib_visitor_info : '';
       if (!empty($visitor_info)) {
         $visitor_info_link_title = t('Visitor information');
         $visitor_info_url = $visitor_info['und'][0]['url'];
@@ -2775,7 +2775,7 @@ function uib_area_node_view($node, $view_mode, $langcode) {
   // If the view mode of the current article is short_teaser it is
   // safeish to assume that it is being shown as related content.
   $current_node = menu_get_object();
-  if ($view_mode == 'short_teaser' && $node->type != 'area' && $node->type != 'uib_ou' && $current_node->type != 'uib_study' ) {
+  if ($view_mode == 'short_teaser' && $node->type != 'area' && $node->type != 'uib_ou' && isset($current_node) && $current_node->type != 'uib_study' ) {
     $cur_area = uib_area__get_current();
     $cur_area_parents = array();
     uib_area__get_parentage($cur_area->nid, $cur_area_parents);
@@ -2833,7 +2833,7 @@ function uib_area_views_post_render(&$view,&$output,&$cache) {
   /**
    * Change teaser object url to KMD remote url for KMD events
    **/
-  if ($view->args[0] == '102518') {
+  if (isset($view->args[0]) && $view->args[0] == '102518') {
     foreach ($view->result as $obj) {
       if (isset($obj->_field_data['nid']['entity']->field_uib_kmd_data['und'][0]['value'])) {
         global $base_url;
@@ -3050,8 +3050,11 @@ function uib_area__count_news_articles($area_nid = -1) {
  * Current node is area
  */
 function uib_area__current_node_is_area() {
-  $node = menu_get_object();
-  return $node->type == 'area' ? TRUE : FALSE;
+  if (isset($node)) {
+    $node = menu_get_object();
+    return $node->type == 'area' ? TRUE : FALSE;
+  }
+  return FALSE;
 }
 
 /**
