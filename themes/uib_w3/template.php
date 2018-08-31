@@ -959,7 +959,8 @@ SCRIPT;
 
       if (isset($variables['page']['content']['system_main']['field_uib_user_relation'])
         && $variables['language']->language == $variables['page']['content']['system_main']['field_uib_user_relation']['#language']) {
-        $variables['page']['content_bottom']['field_uib_user_relation'] = $variables['page']['content']['system_main']['field_uib_user_relation'];
+          $variables['page']['content_bottom']['field_uib_user_relation'] = $variables['page']['content']['system_main']['field_uib_user_relation'];
+          $variables['page']['content_bottom']['field_uib_user_relation']['#weight'] = '11';
       }
       $unset_variables = array(
         'user_vcard_link',

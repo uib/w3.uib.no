@@ -9995,6 +9995,8 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   max-width: 72rem; }
   .page-user .content-bottom > * {
     flex: 1; }
+  .page-user .content-bottom #block-uib-user-twitter {
+    padding-bottom: 2.5rem; }
   .page-user .content-bottom .field-name-field-uib-user-relation {
     padding-bottom: 2.5rem; }
 @media (min-width: 780px) {
