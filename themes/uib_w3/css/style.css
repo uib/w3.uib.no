@@ -3894,53 +3894,10 @@ a,
     margin-bottom: 0.75rem; }
 
 @media (min-width: 600px) {
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(2) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(2)
-  ~ .field-item:last-child .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message > .field-items .field-item:first-child:nth-last-child(3) ~ .field-item:nth-child(1n) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(4) ~ .field-item:nth-child(n+1) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(-n+2) .field-name-field-uib-study-image:first-child::before, .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-article .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-study-image:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-main-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-media:first-child::before,
-  .field-name-field-uib-profiled-message .field-item:first-child:nth-last-child(5) ~ .field-item:nth-child(n+3) .field-name-field-uib-study-image:first-child::before {
+  .field-name-field-uib-profiled-article .no-kicker .field-name-field-uib-main-media:first-child::before, .field-name-field-uib-profiled-article .no-kicker .field-name-field-uib-media:first-child::before, .field-name-field-uib-profiled-article .no-kicker .field-name-field-uib-study-image:first-child::before,
+  .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-main-media:first-child::before,
+  .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-media:first-child::before,
+  .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-study-image:first-child::before {
     content: "\00a0";
     display: block;
     border-bottom: 1px solid #cf3c3a;

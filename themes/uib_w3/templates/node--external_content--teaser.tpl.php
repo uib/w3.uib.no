@@ -81,7 +81,9 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <div class="content clearfix"<?php print $content_attributes; ?>>
     <?php print render($content['field_uib_kicker']); ?>
-    <?php print render($content['field_uib_main_media']); ?>
+    <a class="external-content" href="<?php print $variables['field_uib_links']['und'][0]['url'] ?>">
+      <?php print render($content['field_uib_main_media']); ?>
+    </a>
     <h2<?php print $title_attributes; ?>>
       <a href="<?php print $variables['field_uib_links']['und'][0]['url']; ?>"><?php print $title; ?></a>
     </h2>

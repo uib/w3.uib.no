@@ -1199,6 +1199,8 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
   }
   else {
+    // Add class no-kicker to related content without a kicker
+    if (!isset($variables['field_uib_kicker']) || empty($variables['field_uib_kicker'][0]['value'])) $variables['classes_array'][] = 'no-kicker';
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'full') {
       uib_w3__add_image_caption(
         $variables['content']['field_uib_media'],
