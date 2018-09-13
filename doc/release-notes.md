@@ -1,3 +1,8 @@
+# Release 101 _2018-09-13_
+- Endret rutinen for registering av kompetansefelt på personsidene. Man kan ikke lenger registrere nye termer selv, men må isteden melde dem inn som ønsker #13858
+- Endret rutinen for bruk av "Finn innhold" i webdesken slik at kun innhold fra eierområdet dukker opp i resultatlisten når man søker på "Område" #20738
+- Gjort bildet i eksternt innhold klikkbart når innholdstypen brukes som fremhevet artikkel på områdesider #20775
+
 # Release 100 _2018-08-30_
 - Implementert chatbot for uib.no/hf (pilot) #20297
 - Lagt til fane som viser innhold som ikke har vært redigert de siste seks måneder på områdesider i innlogget modus #20621
