@@ -16,7 +16,7 @@ and visit <http://localhost:8080> and when you are done abort the server by
 typing `^C`.  This assumes that you have a PostgreSQL server running locally
 with a database set up and named `w3`.
 
-The image is based off the "official" Docker Hub `php:5.6-apache` image which
+The image is based off the "official" Docker Hub `php:7.2-apache` image which
 is based off Debian Linux.  It means that you use `apt-get` to install additional
 packages when needed.
 

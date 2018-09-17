@@ -9,7 +9,7 @@ run:
 	docker run -it -p 8080:80 --env PG_HOST=host.docker.internal --volume w3-files:/var/www/html/sites/default/files w3:dev
 
 pull:
-	docker pull php:5.6-apache
+	docker pull php:7.2-apache
 
 push:
 	docker tag w3:dev $(DOCKERHUB_USER)/w3:latest
