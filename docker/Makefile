@@ -3,7 +3,7 @@ DOCKERHUB_USER=uibit
 .PHONY: dev run pull push rebuild
 
 build:
-	docker build -f Dockerfile .. --tag w3:dev
+	docker build -f Dockerfile .. --tag w3:dev --build-arg W3_VERSION=`git describe --tags`
 
 run:
 	docker run -it -p 8080:80 --env PG_HOST=host.docker.internal --volume w3-files:/var/www/html/sites/default/files w3:dev

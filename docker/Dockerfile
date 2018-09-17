@@ -29,3 +29,6 @@ RUN mkdir -p sites/default/files ../var/private \
     && ln -s default sites/w3.uib.no
 
 COPY docker/settings.php sites/default/settings.php
+
+ARG W3_VERSION
+ENV W3_VERSION=$W3_VERSION
