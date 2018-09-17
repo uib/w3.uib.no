@@ -23,6 +23,7 @@ COPY drupal/ .
 COPY profiles/uib/ profiles/uib/
 COPY themes/ sites/all/themes/uib
 COPY modules/ sites/all/modules/uib
+COPY doc/release-notes.md /var/www/doc/release-notes.md
 
 RUN mkdir -p sites/default/files ../var/private \
     && chown www-data:www-data sites/default/files ../var/private \

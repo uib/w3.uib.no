@@ -216,11 +216,13 @@ function uibx_current_version() {
   if (isset($release))
     return $release;
 
-  $release = '';
-  $fh = popen("cd .. && git describe --tags", "r");
-  if ($fh) {
-    $release = trim(fgets($fh));
-    pclose($fh);
+  $release = getenv('W3_VERSION');
+  if (empty($release)) {
+    $fh = popen("cd .. && git describe --tags", "r");
+    if ($fh) {
+      $release = trim(fgets($fh));
+      pclose($fh);
+    }
   }
 
   if (substr($release, 0, 1) == 'R')
