@@ -149,7 +149,8 @@ function uib_webdesk__outdated($area = FALSE) {
     $query .= ' intersect (select entity_id from field_data_field_uib_area where field_uib_area_target_id = :area)';
     $extra[':area'] = $area;
   }
-  $query .= ') and nr.uid = fn.entity_id and nr.uid = ln.entity_id and timestamp < :sixmonthsago and n.nid = nr.nid and u.uid = nr.uid ';
+  $query .= ') and nr.uid = fn.entity_id and nr.uid = ln.entity_id and n.nid = nr.nid and u.uid = nr.uid ';
+  $query .= 'and n.nid in (select nid from node_revision group by nid having max(timestamp) < :sixmonthsago) ';
   $query .= 'order by timestamp desc';
   $result = db_query($query, $extra);
   $nodes = array();
