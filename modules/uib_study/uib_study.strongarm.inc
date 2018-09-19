@@ -29,7 +29,7 @@ function uib_study_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__uib_study';
   $strongarm->value = array(
-    'default_language' => 'und',
+    'default_language' => 'nb',
     'hide_language_selector' => 1,
     'exclude_language_none' => 0,
     'lock_language' => 0,
