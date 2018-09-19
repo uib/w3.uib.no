@@ -32,4 +32,5 @@ RUN mkdir -p sites/default/files ../var/private \
 COPY docker/settings.php sites/default/settings.php
 
 ARG W3_VERSION
+LABEL W3_VERSION=$W3_VERSION
 ENV W3_VERSION=$W3_VERSION

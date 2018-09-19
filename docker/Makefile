@@ -12,7 +12,7 @@ pull:
 	docker pull php:7.2-apache
 
 push:
-	docker tag w3:dev $(DOCKERHUB_USER)/w3:latest
-	docker push $(DOCKERHUB_USER)/w3:latest
+	docker tag w3:dev $(DOCKERHUB_USER)/w3:latest && docker push $(DOCKERHUB_USER)/w3:latest
+	V=`docker inspect --format '{{ index .Config.Labels "W3_VERSION"}}' w3:dev` sh -c "docker tag w3:dev $(DOCKERHUB_USER)/w3:\$$V && docker push $(DOCKERHUB_USER)/w3:\$$V"
 
 rebuild: pull build push
