@@ -1167,6 +1167,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
           '#markup' => $media_markup,
         );
       }
+      if ($variables['field_uib_article_type']['und'][0]['value'] == 'infopage') {
+        $variables['content']['field_uib_article_twitter'] = __uib_w3__render_block('uib_article','twitter',0);
+      }
     }
     $hide_vars = array(
       'field_uib_byline',

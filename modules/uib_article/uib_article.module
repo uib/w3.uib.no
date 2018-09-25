@@ -379,6 +379,20 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       ),
     );
 
+    $form['field_uib_article_twitter']['#states'] = array(
+      'invisible' => array(
+        ':input[name="field_uib_article_type[und]"]' => array(
+          array('value' => 'event'),
+          array('value' => 'news'),
+          array('value' => 'no_sidebar'),
+          array('value' => 'evu_study_offer'),
+          array('value' => 'press_release'),
+          array('value' => 'phd_press_release'),
+        ),
+      ),
+    );
+
+
     // Hide som fields
     foreach ($form as $field_key => $field_value) {
       if ($field_key ==  'field_uib_nav_weight') {
@@ -1204,4 +1218,43 @@ function __uib_w3__article_gmap(&$map_link) {
   $element['#markup'] .= '<a href="'.$url.'"><img src="'.$imgurl.'"></a>';
   $element['#markup'] .= '</div>';
   return $element;
+}
+
+/**
+ * Implements hook_block_info()
+ */
+function uib_article_block_info() {
+  $blocks['twitter']['info'] = t('Twitter feed');
+  $blocks['twitter']['status'] = TRUE;
+  return $blocks;
+}
+
+
+/**
+ * Implements HOOK_block_view()
+ */
+function uib_article_block_view($delta = '') {
+  global $language;
+  $block = array();
+  switch ($delta) {
+  case 'twitter':
+    $nid = ((arg(0) == 'node' && is_numeric(arg(1))) ? arg(1) : FALSE);
+    $node = node_load($nid);
+    if ($nid) {
+      if (!empty($node->field_uib_article_twitter['und'][0]['safe_value'])) {
+        $twitter_handle = $node->field_uib_article_twitter['und'][0]['safe_value'];
+        $twitter_script ='<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
+
+        $elements .= '<a class="twitter-timeline" href="https://twitter.com/' . $twitter_handle .
+          '" ' . 'data-widget-id="504179221749456896" data-screen-name="' . $twitter_handle .
+          '" height="350" data-chrome="noheader nofooter">' .
+          t('Tweets by @@twitter_handler', array('@twitter_handler' =>  $twitter_handle)) . '</a>';
+
+        $block['subject'] = '<h3>Twitter</h3>';
+        $block['content'] = $elements . $twitter_script;
+      }
+    }
+    break;
+  }
+  return $block;
 }
