@@ -16,6 +16,10 @@ function uib_api_menu() {
     'page callback' => 'uib_api__calendar_json',
     'access callback' => TRUE,
   );
+  $items["api/info"] = array(
+    'page callback' => 'uib_api__info_json',
+    'access callback' => TRUE,
+  );
   return $items;
 }
 
@@ -130,6 +134,18 @@ function uib_api__calendar_json() {
     $data['events'][] = $row;
   }
 
+  drupal_add_http_header('Access-Control-Allow-Origin', '*');
+  return drupal_json_output($data);
+}
+
+/**
+ * Return info about the current version of this application
+ */
+function uib_api__info_json() {
+  $data = array(
+    'w3_version' => uibx_current_version(),
+    'php_version' => phpversion(),
+  );
   drupal_add_http_header('Access-Control-Allow-Origin', '*');
   return drupal_json_output($data);
 }
