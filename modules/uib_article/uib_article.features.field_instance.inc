@@ -462,7 +462,7 @@ function uib_article_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Add desired Twitter user. Use the format: user — for example: uibrector_olsen',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1742,6 +1742,7 @@ function uib_article_field_default_field_instances() {
 <li>Check this box if you want the event to be shown in the main uib.no calender, not just the area calender.</li>
 <li>Note: Internal events should not be added to the main uib.no calendar.</li>
 </ul>');
+  t('Add desired Twitter user. Use the format: user — for example: uibrector_olsen');
   t('By checking this box you get a feature article');
   t('Caption for image');
   t('Documents label');
