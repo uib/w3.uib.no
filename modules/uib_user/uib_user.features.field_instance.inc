@@ -944,9 +944,11 @@ function uib_user_field_default_field_instances() {
   // Exported field_instance: 'user-user-field_uib_user_competence'.
   $field_instances['user-user-field_uib_user_competence'] = array(
     'bundle' => 'user',
-    'default_value' => array(),
+    'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Use single words or very short phrases here. Please check spelling before hitting enter (all words, phrases, characters, spaces etc. will be saved to the database). If you want to edit or delete a word or a phrase, please notify us in <a href="https://bs.uib.no/?module=issues&action=new&gid=77&nokerb=1">Issue Tracker (bs.uib.no)</a>',
+    'description' => 'Use single words or very short phrases here. Please check spelling before hitting enter (all words, phrases, characters, spaces etc. will be saved to the database). If you want to edit or delete a word or a phrase, please notify us in Issue Tracker (bs.uib.no)
+
+    <ul><li>To find and use a competence term, start typing the word and make a selection from the list that appears.</li><li>If the term does not exist, you can apply for this in<a href="https://bs.uib.no/?module=issues&action=new&gid=77"> Issue Tracker (bs.uib.no)</a></li></ul>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2302,7 +2304,9 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('This will override the institution address on your profile.');
   t('Title for optional tab');
   t('Upload a Curriculum Vitae document to be available for download from your user profile.');
-  t('Use single words or very short phrases here. Please check spelling before hitting enter (all words, phrases, characters, spaces etc. will be saved to the database). If you want to edit or delete a word or a phrase, please notify us in <a href="https://bs.uib.no/?module=issues&action=new&gid=77&nokerb=1">Issue Tracker (bs.uib.no)</a>');
+  t('Use single words or very short phrases here. Please check spelling before hitting enter (all words, phrases, characters, spaces etc. will be saved to the database). If you want to edit or delete a word or a phrase, please notify us in Issue Tracker (bs.uib.no)
+
+  <ul><li>To find and use a competence term, start typing the word and make a selection from the list that appears.</li><li>If the term does not exist, you can apply for this in<a href="https://bs.uib.no/?module=issues&action=new&gid=77"> Issue Tracker (bs.uib.no)</a></li></ul>');
   t('User Domain');
   t('Visiting address override');
   t('You may edit this to override the first name(s) from PAGA.');
