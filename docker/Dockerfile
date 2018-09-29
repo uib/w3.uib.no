@@ -7,10 +7,10 @@ RUN a2enmod rewrite \
     && echo '9c5b245c3a437851bded21fd52014dddd1f5eb8f3e9ee8230047533bd02829ba /usr/local/bin/drush' | sha256sum -c - \
     && apt-get update \
     && mkdir /usr/share/man/man1 && mkdir /usr/share/man/man7 \
-    && apt-get install -y postgresql-client \
+    && apt-get update \
+    && apt-get install -y postgresql-client imagemagick \
     && savedAptMark="$(apt-mark showmanual)" \
-    && apt-get update && apt-get install -y \
-        imagemagick \
+    && apt-get install -y \
         libpng-dev \
         libpq-dev \
         zlib1g-dev \
