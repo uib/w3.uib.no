@@ -144,7 +144,9 @@ function uib_api__calendar_json() {
 function uib_api__info_json() {
   $data = array(
     'w3_version' => uibx_current_version(),
+    'drupal_version' => VERSION,
     'php_version' => phpversion(),
+    'db_version' => db_query('SELECT version()')->fetchColumn(0),
   );
   drupal_add_http_header('Access-Control-Allow-Origin', '*');
   return drupal_json_output($data);
