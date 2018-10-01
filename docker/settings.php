@@ -19,6 +19,9 @@ if ($_SERVER['HTTP_HOST'] == 'w3.uib.no') {
   $base_url = 'https://w3.uib.no';
 }
 
+$conf['uib_sws_url'] = getenv('SWS_URL') ?: 'https://sws.dataporten-api.no/';
+$conf['uib_sws_access_token'] = getenv('SWS_ACCESS_TOKEN') ?: NULL;
+
 # stage_file_proxy
 $conf['stage_file_proxy_origin'] = 'http://www.uib.no';
 #$conf['stage_file_proxy_hotlink'] = TRUE;
