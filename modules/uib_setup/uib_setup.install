@@ -323,3 +323,10 @@ function uib_setup_update_7034() {
 function uib_setup_update_7035() {
   module_enable(array('chosen'));
 }
+
+/**
+ * Enable hybridauth module
+ */
+function uib_setup_update_7036() {
+  module_enable(array('hybridauth'));
+}
