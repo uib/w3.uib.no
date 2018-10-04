@@ -354,6 +354,7 @@ function uib_user_preprocess_page(&$vars) {
  * Implements hook_user_view_alter().
  */
 function uib_user_user_view_alter(&$build) {
+  $build['hybridauth_identities']['#access'] = FALSE;
   drupal_add_library('system' , 'ui.tabs');
   drupal_add_js(drupal_get_path('theme', 'uib_w3') . '/js/tabs.js', array('group' => JS_THEME, ));
   $jq = uib_w3__tabsScript();
@@ -699,6 +700,11 @@ function uib_user_menu() {
     'page callback' => 'uib_user__vcard_page',
     'page arguments' => array(1),
     'access callback' => TRUE,
+  );
+
+  $items['user/%/hybridauth'] = array(
+    'page arguments' => array(1),
+    'access callback' => FALSE,
   );
 
   return $items;

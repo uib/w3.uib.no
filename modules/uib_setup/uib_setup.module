@@ -96,3 +96,20 @@ function uib_setup_entity_info_alter(&$entity_info) {
   );
 }
 
+/**
+ * Implement hook_form_alter()
+ * 
+ * Custom login
+ */
+function uib_setup_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'user_login_block' || $form_id == 'user_login') {
+    $form['name']['#access'] = FALSE;
+    $form['pass']['#access'] = FALSE;
+    $form['actions']['#access'] = FALSE;
+    $form['dataporten_text'] = array(
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#value' => t('This is the explanation for why we use feide/dataporten for login'),
+    );
+  }
+}
