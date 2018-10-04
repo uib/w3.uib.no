@@ -66,6 +66,7 @@ projects[geofield][version] = 2.3
 projects[geophp][version] = 1.7
 projects[google_analytics][version] = 2.3
 projects[google_tag][version] = 1.0
+projects[hybridauth][version] = 2.16
 projects[i18n][version] = 1.22
 projects[imagecache_token][version] = 1.0-rc2
 projects[imagemagick][version] = 1.0
