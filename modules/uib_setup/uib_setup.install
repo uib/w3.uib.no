@@ -330,3 +330,10 @@ function uib_setup_update_7035() {
 function uib_setup_update_7036() {
   module_enable(array('hybridauth'));
 }
+
+/**
+ * Unable ldap modules
+ */
+function uib_setup_update_7037() {
+  module_disable(array('ldap_authentication', 'ldap_servers'));
+}

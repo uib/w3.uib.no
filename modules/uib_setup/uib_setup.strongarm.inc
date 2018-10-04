@@ -721,34 +721,6 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'ldap_authentication_conf';
-  $strongarm->value = array(
-    'sids' => array(
-      'uib_ldap' => 'uib_ldap',
-    ),
-    'authenticationMode' => 1,
-    'loginConflictResolve' => 2,
-    'acctCreation' => 4,
-    'loginUIUsernameTxt' => 'Enter your UiB username.',
-    'loginUIPasswordTxt' => 'Enter the password that accompanies your username.',
-    'ldapUserHelpLinkUrl' => 'http://sebra.uib.no/',
-    'ldapUserHelpLinkText' => 'Logon Help',
-    'emailOption' => 3,
-    'emailUpdate' => 1,
-    'allowOnlyIfTextInDn' => array(),
-    'excludeIfTextInDn' => array(),
-    'allowTestPhp' => '',
-    'excludeIfNoAuthorizations' => NULL,
-    'ssoRemoteUserStripDomainName' => NULL,
-    'seamlessLogin' => NULL,
-    'ldapImplementation' => NULL,
-    'cookieExpire' => NULL,
-  );
-  $export['ldap_authentication_conf'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'locale_field_language_fallback';
   $strongarm->value = 1;
   $export['locale_field_language_fallback'] = $strongarm;
