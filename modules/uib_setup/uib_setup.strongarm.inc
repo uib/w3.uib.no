@@ -405,6 +405,167 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_destination';
+  $strongarm->value = 'user';
+  $export['hybridauth_destination'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_destination_error';
+  $strongarm->value = 'user';
+  $export['hybridauth_destination_error'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_disable_username_change';
+  $strongarm->value = 1;
+  $export['hybridauth_disable_username_change'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_duplicate_emails';
+  $strongarm->value = '2';
+  $export['hybridauth_duplicate_emails'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_email_verification';
+  $strongarm->value = '2';
+  $export['hybridauth_email_verification'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_forms';
+  $strongarm->value = array(
+    'user_login' => 'user_login',
+    'user_login_block' => 'user_login_block',
+    'user_register_form' => 0,
+    'comment_form' => 0,
+  );
+  $export['hybridauth_forms'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_override_realname';
+  $strongarm->value = 0;
+  $export['hybridauth_override_realname'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_pictures';
+  $strongarm->value = 0;
+  $export['hybridauth_pictures'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_provider_Dataporten_window_type';
+  $strongarm->value = 'current';
+  $export['hybridauth_provider_Dataporten_window_type'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_providers';
+  $strongarm->value = array(
+    'Dataporten' => 'Dataporten',
+    'AOL' => 0,
+    'Facebook' => 0,
+    'Foursquare' => 0,
+    'Google' => 0,
+    'LinkedIn' => 0,
+    'Live' => 0,
+    'MySpace' => 0,
+    'OpenID' => 0,
+    'Twitter' => 0,
+    'Yahoo' => 0,
+    'px500' => 0,
+    'Disqus' => 0,
+    'FamilySearch' => 0,
+    'Geni' => 0,
+    'GitHub' => 0,
+    'Goodreads' => 0,
+    'HumanitarianId' => 0,
+    'Identica' => 0,
+    'Instagram' => 0,
+    'LastFM' => 0,
+    'Mailru' => 0,
+    'Murmur' => 0,
+    'MyHeritage' => 0,
+    'Odnoklassniki' => 0,
+    'Pixnet' => 0,
+    'Plurk' => 0,
+    'QQ' => 0,
+    'Sina' => 0,
+    'Skyrock' => 0,
+    'Steam' => 0,
+    'Tumblr' => 0,
+    'TwitchTV' => 0,
+    'Viadeo' => 0,
+    'Vimeo' => 0,
+    'Vkontakte' => 0,
+    'Yandex' => 0,
+    'Paypal' => 0,
+  );
+  $export['hybridauth_providers'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_register';
+  $strongarm->value = '3';
+  $export['hybridauth_register'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_registration_password';
+  $strongarm->value = 0;
+  $export['hybridauth_registration_password'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_registration_username_change';
+  $strongarm->value = 0;
+  $export['hybridauth_registration_username_change'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_remove_password_fields';
+  $strongarm->value = 1;
+  $export['hybridauth_remove_password_fields'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_required_fields';
+  $strongarm->value = array(
+    'email' => 'email',
+    'firstName' => 0,
+    'lastName' => 0,
+    'gender' => 0,
+  );
+  $export['hybridauth_required_fields'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'hybridauth_widget_use_overlay';
+  $strongarm->value = 1;
+  $export['hybridauth_widget_use_overlay'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_hide_translation_links';
   $strongarm->value = 1;
   $export['i18n_hide_translation_links'] = $strongarm;
