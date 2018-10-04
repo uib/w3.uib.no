@@ -1685,6 +1685,19 @@ function uib_setup_user_default_permissions() {
     'module' => 'service_links',
   );
 
+  // Exported permission: 'use hybridauth'.
+  $permissions['use hybridauth'] = array(
+    'name' => 'use hybridauth',
+    'roles' => array(
+      'admin' => 'admin',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
+    ),
+    'module' => 'hybridauth',
+  );
+
   // Exported permission: 'use media wysiwyg'.
   $permissions['use media wysiwyg'] = array(
     'name' => 'use media wysiwyg',
