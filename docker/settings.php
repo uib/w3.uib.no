@@ -22,8 +22,8 @@ if ($_SERVER['HTTP_HOST'] == 'w3.uib.no') {
 $conf['uib_sws_url'] = getenv('SWS_URL') ?: 'https://sws.dataporten-api.no/';
 $conf['uib_sws_access_token'] = getenv('SWS_ACCESS_TOKEN') ?: NULL;
 
-$conf['hybridauth_provider_Dataporten_keys_id'] = getenv('DATAPORTEN_CLIENT_ID') ? NULL;
-$conf['hybridauth_provider_Dataporten_keys_secret'] = getenv('DATAPORTEN_CLIENT_SECRET') ? NULL;
+$conf['hybridauth_provider_Dataporten_keys_id'] = getenv('DATAPORTEN_CLIENT_ID') ?: NULL;
+$conf['hybridauth_provider_Dataporten_keys_secret'] = getenv('DATAPORTEN_CLIENT_SECRET') ?: NULL;
 
 # stage_file_proxy
 $conf['stage_file_proxy_origin'] = 'http://www.uib.no';
