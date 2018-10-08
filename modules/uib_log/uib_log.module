@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_watchdog().
+ */
+function uib_log_watchdog(array $log_entry) {
+  $file = variable_get('uib_log_file');
+  if (empty($file))
+    return;
+  $log_entry['message'] = !isset($log_entry['variables']) ? $log_entry['message'] : strtr($log_entry['message'], $log_entry['variables']);
+  unset($log_entry['variables']);
+  unset($log_entry['user']);
+  $log_entry['date'] = date('c', $log_entry['timestamp']);
+  file_put_contents($file, drupal_json_encode($log_entry).PHP_EOL , FILE_APPEND | LOCK_EX);
+}

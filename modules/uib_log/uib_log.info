@@ -1,0 +1,4 @@
+name = UiB Log
+description = Log watchdog messages to a file in jsonlines format
+core = 7.x
+package = UiB
