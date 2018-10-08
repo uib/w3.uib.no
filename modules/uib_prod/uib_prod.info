@@ -5,7 +5,6 @@ package = UiB
 project = uib_prod
 dependencies[] = l10n_update
 dependencies[] = strongarm
-dependencies[] = syslog
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = cache
