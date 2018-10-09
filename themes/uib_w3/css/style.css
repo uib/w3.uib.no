@@ -4762,13 +4762,10 @@ div.field-item {
   display: block;
   margin: 0 0 1.125rem; }
   .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture {
-    max-width: 15%;
-    min-width: 9.125rem;
+    width: 10rem;
+    height: 12.5rem;
     float: none;
     margin-right: 0.625rem; }
-    .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
-      width: 100%;
-      height: auto; }
   .field-name-field-uib-related-persons .field-items .field-item .profile .uib-user-teaser {
     overflow: hidden;
     overflow-wrap: break-word;
@@ -4811,9 +4808,7 @@ div.field-item {
         float: left;
         margin-bottom: 0; }
         .field-name-field-uib-related-persons .field-items .field-item .profile .user-picture img {
-          display: block;
-          width: 10rem;
-          height: 12.5rem; } }
+          display: block; } }
 @media (min-width: 960px) {
   .field-name-field-uib-related-persons .field-items {
     display: -ms-flexbox;
