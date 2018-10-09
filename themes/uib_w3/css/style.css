@@ -8019,7 +8019,6 @@ body #mc_embed_signup div.mce_inline_error {
     font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     font-weight: normal;
     font-size: 1.4375rem;
-    text-transform: uppercase;
     text-align: center;
     padding: 1.5rem 0 1.5rem 0;
     margin: 0 auto;
@@ -8027,7 +8026,7 @@ body #mc_embed_signup div.mce_inline_error {
     @media (min-width: 600px) {
       .subheader__wrapper h2 {
         font-size: 2rem;
-        letter-spacing: 0.25rem;
+        letter-spacing: 0.15rem;
         padding: 2.1875rem 0 2.1875rem 0; } }
     @media (min-width: 960px) {
       .subheader__wrapper h2 {
