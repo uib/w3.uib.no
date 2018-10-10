@@ -199,3 +199,19 @@
 #page #content-wrapper fieldset.vertical-tabs-pane fieldset.date-combo legend {
   display: none !important;
 }
+
+.not-logged-in.page-user #user-login > div {
+  background: #eee;
+  margin: 0 auto;
+  padding: 3rem 3rem;
+  width: 15rem;
+}
+.not-logged-in.page-user #user-login .hybridauth-widget-provider {
+  margin: 0 auto;
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  background: #b73939;
+  color: #fff;
+  text-transform: uppercase;
+}

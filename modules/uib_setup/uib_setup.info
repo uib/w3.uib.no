@@ -556,6 +556,7 @@ features[variable][] = hybridauth_registration_password
 features[variable][] = hybridauth_registration_username_change
 features[variable][] = hybridauth_remove_password_fields
 features[variable][] = hybridauth_required_fields
+features[variable][] = hybridauth_widget_title
 features[variable][] = hybridauth_widget_use_overlay
 features[variable][] = i18n_hide_translation_links
 features[variable][] = i18n_node_default_language_none
