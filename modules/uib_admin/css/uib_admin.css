@@ -204,12 +204,17 @@
   background: #eee;
   margin: 0 auto;
   padding: 3rem 3rem;
-  width: 15rem;
+  width: 22rem;
 }
+
+.not-logged-in.page-user #user-login .uib-login-text {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
 .not-logged-in.page-user #user-login .hybridauth-widget-provider {
   margin: 0 auto;
   display: inline-block;
-  margin-top: 0.5rem;
   padding: 1rem 2rem;
   background: #b73939;
   color: #fff;
