@@ -2129,6 +2129,8 @@ a,
 
 .group-article-sidebar > * {
   margin-bottom: 1.25rem; }
+.group-article-sidebar #block-uib-article-twitter {
+  margin-bottom: -1.25rem; }
 .group-article-sidebar .field-name-field-uib-media, .group-article-sidebar .field-name-field-uib-study-image {
   padding: 0 1.5625rem;
   background: #fff; }
