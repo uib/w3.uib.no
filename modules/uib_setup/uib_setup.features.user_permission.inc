@@ -1792,6 +1792,17 @@ function uib_setup_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'use text format study_text_html'.
+  $permissions['use text format study_text_html'] = array(
+    'name' => 'use text format study_text_html',
+    'roles' => array(
+      'admin' => 'admin',
+      'innholdsprodusent' => 'innholdsprodusent',
+      'superbruker' => 'superbruker',
+    ),
+    'module' => 'filter',
+  );
+
   // Exported permission: 'use text format uib_markdown_limited'.
   $permissions['use text format uib_markdown_limited'] = array(
     'name' => 'use text format uib_markdown_limited',

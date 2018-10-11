@@ -81,7 +81,7 @@ foreach ($ou_ids as $nid => $oid) {
             $study->language->set('en');
             $study->language('en')->field_uib_study_text = array(
               'value' => $textvalue,
-              'format' => 'restricted_html'
+              'format' => 'study_text_html',
             );
             $study->save();
             $handler->saveTranslations();
