@@ -1,3 +1,14 @@
+# Release 102 _2018-10-11_
+- Lagt til støtte for visning av Twitter-modul på infosider #19447
+- Lagt til støtte for tilknyttet innhold på personsider #20310
+- Rettet feil der kalenderen ikke ble vist på områdesider #20855
+- Rettet feil der alt revidert innhold ble vist under fanen "Udatert" på områdesider (nå vises kun siste revisjon) #20867
+- Rettet feil der bilder av tilknyttede personer ble strukket vertikalt på brede skjermer #20987
+- Startet arbeidet med overføringen av uib.no til ny skyløsning #21003 #21044
+- Endret innlogging fra lokal LDAP-autentisering til autentisering via Dataporten #20393
+- Endret formen på områdetitlene fra store til små bokstaver #20930
+- Endret hjelpetekst for kompetansefelt #20985
+
 # Release 101 _2018-09-13_
 - Endret rutinen for registering av kompetansefelt på personsidene. Man kan ikke lenger registrere nye termer selv, men må isteden melde dem inn som ønsker #13858
 - Endret rutinen for bruk av "Finn innhold" i webdesken slik at kun innhold fra eierområdet dukker opp i resultatlisten når man søker på "Område" #20738
