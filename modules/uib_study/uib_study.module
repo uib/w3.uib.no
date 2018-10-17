@@ -15,12 +15,20 @@ function uib_study_block_info() {
       'info' => t('Study content from FS'),
       'status' => TRUE,
     ),
+    'study_content_w3' => array(
+      'info' => t('Study content from w3 with inserted content from FS'),
+      'status' => TRUE,
+    ),
     'study_contact' => array(
       'info' => t('Study contact content from FS'),
       'status' => TRUE,
     ),
     'study_facts_2' => array(
       'info' => t('New block for study facts from FS'),
+      'status' => TRUE,
+    ),
+    'study_facts' => array(
+      'info' => t('Another new block for study facts from FS'),
       'status' => TRUE,
     ),
     'study_facts_exchange' => array(
@@ -862,6 +870,18 @@ EOD;
       $block['content'] = $content;
       }
       break;
+    case 'study_content_w3':
+      $node = menu_get_object();
+      if ($node && uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
+        $render = '<div class="uib-study-text--new-student">' . $node->field_uib_new_student['nb'][0]['value'] . '</div>';
+        $render .= '<div class="uib-study-text--content">' .$node->field_uib_study_text['nb'][0]['value'] . '</div>';
+        $block['title'] = '';
+        $block['content'] = array(
+          '#type' => 'markup',
+          '#markup' => $render,
+        );
+      }
+      break;
     case 'study_content':
       $splice_list = array(
         'EB_SPRAK',
@@ -1350,7 +1370,27 @@ EOD;
         $block['content'] = $markup;
       }
       break;
-
+    case 'study_facts':
+      $node = menu_get_object();
+      if ($node && isset($node->field_uib_study_type) && uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
+        global $language;
+        $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
+        $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $items = array();
+        $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
+        $items[] = uib_study__get_duration($data, $language);
+        $start_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_START' : 'B_RE_START';
+        $start = uib_study__extract_study_info($data_2, $start_info);
+        if ($start && !empty($start['#text'])) {
+          $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__text_markup($start, $is_course, TRUE));
+        }
+        $render = array(
+          '#theme' => 'item_list',
+          '#items' => $items,
+        );
+        $block['content']['fspres'][] = $render;
+      }
+      break;
     case 'study_facts_2':
       $node = menu_get_object();
       if ($node && isset($node->field_uib_study_type)) {
@@ -1392,17 +1432,7 @@ EOD;
           $items[] = uib_study__get_study_facts_markup(t('Resources'), render($resources));
         }
         elseif ($type == 'program' or $type == 'specialization') {
-          $varighet = $language->language == 'en' ? 'varighet:en' : 'varighet';
-          if (isset($data[$varighet])) {
-            $duration = $data[$varighet];
-          } else {
-            $duration = number_format(round($data['studiepoeng'] / 60 * (100 / $data['heltidsprosent']), 1), 1, ',', ' ');
-            if (substr($duration, -2) == ',0')
-              $duration = substr($duration, 0, -2);
-            $duration = ($duration > 1 ? $duration . ' ' . t('years') : $duration . ' ' . t('year'));
-            if ($language->language == 'en') $duration = str_replace(',', '.', $duration);
-          }
-          $items[] = uib_study__get_study_facts_markup(t('Years'), $duration);
+          $items[] = uib_study__get_duration($data, $language);
           $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
           if ($points && $language->language == 'nb') {
             $points['#text'] = l(strip_tags($points['#text']), 'node/101938');
@@ -2444,6 +2474,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_main_media_en']);
       hide($form['field_uib_study_text']);
       hide($form['field_uib_new_student']);
+      hide($form['field_uib_study_lead']);
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
@@ -3183,4 +3214,28 @@ function uib_study__show_exam_info($semester, $exam = FALSE) {
     if ($today == $s) return FALSE;
   }
   return TRUE;
+}
+
+function uib_study__programme_use_w3_data($type) {
+  return variable_get('uib_study_programme_data', FALSE) && $type == 'program';
+}
+
+function uib_study__use_tabs($type) {
+  $not_tabs = array('course');
+  if (uib_study__programme_use_w3_data($type)) $not_tabs[] = 'program';
+  return !in_array($type, $not_tabs);
+}
+
+function uib_study__get_duration($data, $language) {
+  $varighet = $language->language == 'en' ? 'varighet:en' : 'varighet';
+  if (isset($data[$varighet])) {
+    $duration = $data[$varighet];
+  } else {
+    $duration = number_format(round($data['studiepoeng'] / 60 * (100 / $data['heltidsprosent']), 1), 1, ',', ' ');
+    if (substr($duration, -2) == ',0')
+      $duration = substr($duration, 0, -2);
+    $duration = ($duration > 1 ? $duration . ' ' . t('years') : $duration . ' ' . t('year'));
+    if ($language->language == 'en') $duration = str_replace(',', '.', $duration);
+  }
+  return uib_study__get_study_facts_markup(t('Years'), $duration);
 }

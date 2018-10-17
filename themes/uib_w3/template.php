@@ -73,7 +73,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
     }
     if ($node->type == 'uib_study') {
       $variables['classes_array'][] = 'uib-study__' . $node->field_uib_study_type['und'][0]['value'];
-      if ($node->field_uib_study_type['und'][0]['value'] != 'course') {
+      if (uib_study__use_tabs($node->field_uib_study_type['und'][0]['value'])) {
         $variables['classes_array'][] = 'study-tabs';
       }
     }
@@ -691,6 +691,7 @@ EOD;
 
     case isset($variables['node']) && $variables['node']->type == 'uib_study':
       global $language;
+      $study_type = $variables['node']->field_uib_study_type['und'][0]['value'];
       $variables['page']['content_bottom']['field_uib_study_relation'] =
         field_view_field(
           'node',
@@ -722,7 +723,7 @@ EOD;
       unset($variables['page']['content']['system_main']['nodes']
         [$variables['node']->nid]['field_uib_main_media'][0]['#contextual_links']);
 
-      if ($variables['node']->field_uib_study_type['und'][0]['value'] != 'course') {
+      if (uib_study__use_tabs($study_type)) {
         drupal_add_library('system' , 'ui.tabs');
         // set menu to appear as tabs
         $jq = uib_w3__tabsScript();
@@ -744,20 +745,21 @@ EOD;
 SCRIPT;
         drupal_add_js($js, 'inline');
       }
-      if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'specialization') {
-        $variables['node']->field_uib_study_category['und'][0]['value'] = 'studieretning';
+      if (!uib_study__programme_use_w3_data($study_type)) {
+        if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'specialization') {
+          $variables['node']->field_uib_study_category['und'][0]['value'] = 'studieretning';
+        }
+        $variables['page']['content_top']['field_uib_study_type'] =
+          field_view_field('node', $variables['node'], 'field_uib_study_category',
+            array(
+          'label' => 'hidden',
+          'weight' => -50,
+        ));
+        $category = $variables['node']->field_uib_study_category['und'][0]['value'];
+        $name = "field:field_uib_study_category:#allowed_values:" . $category;
+        $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
+        uib_study__get_study_kicker($category, $name);
       }
-      $variables['page']['content_top']['field_uib_study_type'] =
-        field_view_field('node', $variables['node'], 'field_uib_study_category',
-          array(
-        'label' => 'hidden',
-        'weight' => -50,
-      ));
-      $category = $variables['node']->field_uib_study_category['und'][0]['value'];
-      $name = "field:field_uib_study_category:#allowed_values:" . $category;
-      $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
-      uib_study__get_study_kicker($category, $name);
-
       @$study_title = $variables['node']->field_uib_study_title[$variables['language']->language][0]['safe_value'];
       if (!isset($study_title)) {
         $study_title = $variables['node']->field_uib_study_title['und'][0]['safe_value'];
@@ -768,8 +770,19 @@ SCRIPT;
         '#value' => $study_title,
         '#weight' => -45,
       );
-      $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
-      $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
+      if (uib_study__programme_use_w3_data($study_type)) {
+        $variables['page']['content_top']['study_lead'] = field_view_field('node', $variables['node'], 'field_uib_study_lead', array(
+          'label' => 'hidden',
+          'weight' => '30',
+        ));
+      }
+      if (uib_study__programme_use_w3_data($study_type)) {
+        $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts', 40);
+      }
+      else {
+        $variables['page']['content_top']['study_facts'] = __uib_w3__render_block('uib_study', 'study_facts_2', 40);
+        $variables['page']['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content', 0);
+      }
       unset($variables['page']['content']['study_content']['uib_study_study_content']['#contextual_links']);
 
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange' && (!in_array($variables['node']->field_uib_study_category['und'][0]['value'], array('mou', 'forskningsavtale')))) {
@@ -805,14 +818,16 @@ SCRIPT;
         }
       }
       if (in_array($variables['node']->field_uib_study_type['und'][0]['value'], array('program', 'specialization'))) {
-        $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
-          'type' => 'file_rendered',
-          'settings' => array('file_view_mode' => 'content_sidebar'),
-          'label' => 'hidden',
-          'weight' => 3,
-        ));
-        $variables['page']['content']['promocode'] = __uib_w3__render_block('uib_study', 'study_email_offers', 4);
-        $variables['page']['content']['study_more_information'] = __uib_w3__render_block('uib_study', 'study_more_information', 6);
+        if (!uib_study__programme_use_w3_data($variables['node']->field_uib_study_type['und'][0]['value'])) {
+          $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
+            'type' => 'file_rendered',
+            'settings' => array('file_view_mode' => 'content_sidebar'),
+            'label' => 'hidden',
+            'weight' => 3,
+          ));
+          $variables['page']['content']['promocode'] = __uib_w3__render_block('uib_study', 'study_email_offers', 4);
+          $variables['page']['content']['study_more_information'] = __uib_w3__render_block('uib_study', 'study_more_information', 6);
+        }
         $link_section = $language->language == 'en' ? '_2' : '';
         $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
           'label' => 'hidden',
@@ -1021,6 +1036,7 @@ SCRIPT;
     'uib_area_area_parents',
     'uib_area_colophon_logos',
     'uib_study_study_related',
+    'uib_study_study_facts',
     'uib_study_study_facts_2',
     'uib_study_study_plan',
     'uib_study_study_contact',
@@ -1171,6 +1187,12 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         $variables['content']['field_uib_article_twitter'] = __uib_w3__render_block('uib_article','twitter',0);
       }
     }
+    if ($variables['type'] == 'uib_study') {
+      $study_type = $variables['field_uib_study_type']['und'][0]['value'];
+      if (uib_study__programme_use_w3_data($study_type)) {
+        $variables['content']['study_content'] = __uib_w3__render_block('uib_study', 'study_content_w3', 0);
+      }
+    }
     $hide_vars = array(
       'field_uib_byline',
       'field_uib_kicker',
@@ -1199,6 +1221,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       'field_uib_documents_label',
       'field_uib_study_text',
       'field_uib_new_student',
+      'field_uib_study_lead',
     );
     foreach ($hide_vars as $var) {
       hide($variables['content'][$var]);

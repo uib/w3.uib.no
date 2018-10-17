@@ -1,6 +1,8 @@
 <?php
   function uib_ckeditor_config_wysiwyg_editor_settings_alter(&$settings, $context) {
     if ($context['profile']->editor == 'ckeditor' ) {
+      global $language;
+      $settings['language'] = $language->language;
       $settings['customConfig'] = base_path() . drupal_get_path('module', 'uib_ckeditor_config') . '/ckeditor-config.js';
       // Modified the default list of special characters.
       $settings['specialChars'] = array(
@@ -59,6 +61,17 @@
       $settings['specialChars'][] = array('ϑ', 'thetasym');
       $settings['specialChars'][] = array('ϒ', 'upsih');
       $settings['specialChars'][] = array('ϖ', 'piv');
+      $uib_templates = 'uib_default_templates';
+      switch ($context['profile']->format) {
+        case 'study_text_html':
+          $uib_templates = 'uib_study_templates';
+          break;
+        case 'feature_text_html':
+          $uib_templates = 'uib_templates';
+          break;
+      }
+      $settings['templates'] = $uib_templates;
+      $settings['templates_files'] = array('/sites/all/modules/uib/uib_ckeditor_config/plugins/templates/' . $uib_templates . '.js');
     }
   }
   function uib_ckeditor_config_wysiwyg_plugin($editor, $version) {
