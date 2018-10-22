@@ -4,12 +4,11 @@
 * against elastic search.
 */
 
-define(
-  'DRUPAL_ROOT',
-  dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'drupal'
-);
-require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/bootstrap.inc");
-require_once( dirname(dirname(dirname(__DIR__))) . "/drupal/includes/common.inc");
+$drupal_root = dirname(dirname(dirname(__DIR__))) . '/drupal';
+if (!is_dir($drupal_root)) $drupal_root = '/var/www/html';
+define('DRUPAL_ROOT', $drupal_root);
+require_once( DRUPAL_ROOT . "/includes/bootstrap.inc");
+require_once( DRUPAL_ROOT . "/includes/common.inc");
 drupal_bootstrap(DRUPAL_BOOTSTRAP_VARIABLES);
 require_once(dirname(__DIR__) . DIRECTORY_SEPARATOR . "uib_search.module");
 $url = variable_get('uib_elasticsearch_url', 'https://api.search.uib.no:443');
