@@ -27,3 +27,10 @@
 !/modules/
 !/docker
 !/doc/release-notes.md
+
+# We don't need to pack up the test files and documentation
+/**/tests/
+/**/*.api.php
+/**/README.txt
+/**/LICENSE.txt
+/**/CHANGELOG.txt
