@@ -719,6 +719,55 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_publish_text'.
+  $field_instances['node-uib_study-field_uib_publish_text'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_publish_text',
+    'label' => 'Publish text',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 46,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_related_content_label'.
   $field_instances['node-uib_study-field_uib_related_content_label'] = array(
     'bundle' => 'uib_study',
@@ -2431,6 +2480,7 @@ function uib_study_field_default_field_instances() {
   t('New student');
   t('Organisation');
   t('Part of study');
+  t('Publish text');
   t('Related content');
   t('Related content label');
   t('Relevant links');

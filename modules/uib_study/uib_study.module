@@ -2475,6 +2475,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_study_text']);
       hide($form['field_uib_new_student']);
       hide($form['field_uib_study_lead']);
+      hide($form['field_uib_publish_text']);
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
@@ -3217,7 +3218,13 @@ function uib_study__show_exam_info($semester, $exam = FALSE) {
 }
 
 function uib_study__programme_use_w3_data($type) {
-  return variable_get('uib_study_programme_data', FALSE) && $type == 'program';
+  $programme = menu_get_object();
+  global $language;
+  $l = $language->language;
+  if (!empty($programme->field_uib_publish_text)) {
+    return $programme->field_uib_publish_text[$l][0]['value'];
+  }
+  else return FALSE;
 }
 
 function uib_study__use_tabs($type) {
