@@ -779,7 +779,7 @@ function uib_setup_field_default_field_instances() {
     'bundle' => 'image',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Copyright credits for images is mandatory to ensure that all images are cleared for use at uib.no',
+    'description' => 'Note: The Copyright field will be removed in the near future, so from now on you should only use the Photo field.',
     'display' => array(
       'area_bottom' => array(
         'label' => 'inline',
@@ -973,14 +973,16 @@ function uib_setup_field_default_field_instances() {
     'entity_type' => 'file',
     'field_name' => 'field_uib_copyright',
     'label' => 'Copyright',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'study_text_html' => 0,
           'uib_markdown_limited' => 'uib_markdown_limited',
         ),
         'allowed_formats_toggle' => 0,
@@ -990,6 +992,9 @@ function uib_setup_field_default_field_instances() {
             'basic_html' => array(
               'weight' => -9,
             ),
+            'feature_text_html' => array(
+              'weight' => 0,
+            ),
             'full_html' => array(
               'weight' => -7,
             ),
@@ -998,6 +1003,9 @@ function uib_setup_field_default_field_instances() {
             ),
             'restricted_html' => array(
               'weight' => -8,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
             ),
             'uib_markdown_limited' => array(
               'weight' => 0,
@@ -1204,7 +1212,11 @@ function uib_setup_field_default_field_instances() {
     'bundle' => 'image',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => '<ul>
+<li>Photo credits for images are mandatory to ensure that all images are cleared for use at uib.no</li>
+<li>The Photo field should include the copyright owner (the photographer) and optionally who the photo is taken on behalf of and that has the right to use it, e.g. Eivind Senneset for UiB</li>
+<li>Please note that a photo can only be used if both the owner and the people in it have permitted its use in this context.</li>
+</ul>',
     'display' => array(
       'area_bottom' => array(
         'label' => 'above',
@@ -1398,14 +1410,17 @@ function uib_setup_field_default_field_instances() {
     'entity_type' => 'file',
     'field_name' => 'field_uib_owner',
     'label' => 'Photo',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
@@ -1413,6 +1428,9 @@ function uib_setup_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -1423,17 +1441,26 @@ function uib_setup_field_default_field_instances() {
             'restricted_html' => array(
               'weight' => -8,
             ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
           ),
         ),
       ),
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_override' => 0,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 60,
       ),
       'type' => 'text_textfield',
@@ -2083,10 +2110,15 @@ function uib_setup_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<ul>
+<li>Photo credits for images are mandatory to ensure that all images are cleared for use at uib.no</li>
+<li>The Photo field should include the copyright owner (the photographer) and optionally who the photo is taken on behalf of and that has the right to use it, e.g. Eivind Senneset for UiB</li>
+<li>Please note that a photo can only be used if both the owner and the people in it have permitted its use in this context.</li>
+</ul>');
   t('Alt Text');
   t('Copyright');
-  t('Copyright credits for images is mandatory to ensure that all images are cleared for use at uib.no');
   t('Description');
+  t('Note: The Copyright field will be removed in the near future, so from now on you should only use the Photo field.');
   t('Photo');
   t('Producer');
   t('This is the text that accompanies the image in the article.');
