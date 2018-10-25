@@ -1,8 +1,14 @@
+# Release 103 _2018-10-25_
+- Startet arbeidet med ny mal for studieprogram #20793 #21157 #21208
+- Forbedret synligheten for lenker. Blåfargen er blitt mer kontrastfull, og lenkene har fått understreking en rekke steder, bl.a. i brødtekst #20716
+- Endret fotokrediteringsfeltene slik at det nå er feltet "Foto" og ikke "Opphavsrett" som er obligatorisk å fylle ut #21256
+- Oppdatert Drupal-kjernen #21163
+
 # Release 102 _2018-10-11_
-- Lagt til støtte for visning av Twitter-modul på infosider #19447
+- Lagt til støtte for visning av Twitter-strøm på infosider #19447
 - Lagt til støtte for tilknyttet innhold på personsider #20310
 - Rettet feil der kalenderen ikke ble vist på områdesider #20855
-- Rettet feil der alt revidert innhold ble vist under fanen "Udatert" på områdesider (nå vises kun siste revisjon) #20867
+- Rettet feil der alt revidert innhold ble vist under fanen "Utdatert" på områdesider (nå vises kun siste revisjon) #20867
 - Rettet feil der bilder av tilknyttede personer ble strukket vertikalt på brede skjermer #20987
 - Startet arbeidet med overføringen av uib.no til ny skyløsning #21003 #21044
 - Endret innlogging fra lokal LDAP-autentisering til autentisering via Dataporten #20393
