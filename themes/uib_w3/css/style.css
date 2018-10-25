@@ -908,10 +908,8 @@ label {
   *zoom: 1;
   *display: inline; }
 
-.item-list ul:not(.uib-assessment) li a {
-  text-decoration: none; }
-  .item-list ul:not(.uib-assessment) li a:hover {
-    text-decoration: underline; }
+.item-list ul li a {
+  text-decoration: underline; }
 
 .logo__image {
   width: 2.9411rem; }
@@ -1832,10 +1830,6 @@ a,
   #block-uib-area-jobbnorge ul li {
     margin: 0 0 .6rem 0;
     padding: 0; }
-#block-uib-area-jobbnorge .uib-all-vacancies a {
-  text-decoration: none; }
-  #block-uib-area-jobbnorge .uib-all-vacancies a:hover {
-    text-decoration: underline; }
 
 .view-id-recent_phds .element-invisible {
   max-width: 100%;
@@ -2190,9 +2184,7 @@ a,
   margin: 0 0 .5rem 0;
   line-height: 1.5rem; }
   .field-name-field-uib-files .field-item a {
-    text-decoration: none; }
-    .field-name-field-uib-files .field-item a:hover {
-      text-decoration: underline; }
+    text-decoration: underline; }
 .field-name-field-uib-files .file-icon {
   display: none; }
 
@@ -3531,10 +3523,7 @@ a,
       line-height: 1.5rem; }
       .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-links .field-item a,
       .field-collection-container .field-name-field-uib-link-section-2 .field-collection-view .field-name-field-uib-links .field-item a {
-        text-decoration: none; }
-        .field-collection-container .field-name-field-uib-link-section .field-collection-view .field-name-field-uib-links .field-item a:hover,
-        .field-collection-container .field-name-field-uib-link-section-2 .field-collection-view .field-name-field-uib-links .field-item a:hover {
-          text-decoration: underline; }
+        text-decoration: underline; }
 
 .mobile-menu {
   cursor: pointer; }
@@ -3660,7 +3649,7 @@ a,
   border-top: solid 1px #d5d5d5;
   margin-top: 2rem;
   padding-top: 1rem; }
-#block-views-recent-news-block .field-content a:hover {
+#block-views-recent-news-block .field-content a {
   text-decoration: underline; }
 
 .view-ansatte .views-exposed-widgets {
@@ -4866,9 +4855,7 @@ div.field-item {
     margin: 0 0 .5rem 0;
     line-height: 1.5rem; }
     .field-name-field-uib-links .field-item a {
-      text-decoration: none; }
-      .field-name-field-uib-links .field-item a:hover {
-        text-decoration: underline; }
+      text-decoration: underline; }
 
 #cse td {
   border: none; }
@@ -6423,7 +6410,6 @@ body #mc_embed_signup div.mce_inline_error {
   .view-study-blocks ul .views-row-odd, .view-study-blocks ul .views-row-even {
     border-bottom: solid 1px #b7b7b7; }
   .view-study-blocks ul li a {
-    text-decoration: none;
     line-height: 1.5;
     display: block; }
     @media (min-width: 600px) {
@@ -6627,9 +6613,7 @@ body #mc_embed_signup div.mce_inline_error {
   margin: 0 0 .5rem 0;
   line-height: 1.5rem; }
   #block-uib-study-study-related .field-item a {
-    text-decoration: none; }
-    #block-uib-study-study-related .field-item a:hover {
-      text-decoration: underline; }
+    text-decoration: underline; }
 
 #block-uib-study-study-semester-toggle {
   background: #fff;
@@ -8021,7 +8005,7 @@ body #mc_embed_signup div.mce_inline_error {
         flex: 0 0 50%; } }
     .page-node-87343 .views-exposed-widgets .study-tids fieldset {
       border: none 0; }
-    .page-node-87343 .views-exposed-widgets .study-tids a:hover {
+    .page-node-87343 .views-exposed-widgets .study-tids a.fieldset-title {
       text-decoration: underline; }
   .page-node-87343 .views-exposed-widgets .study-points-category {
     -ms-order: 2;
