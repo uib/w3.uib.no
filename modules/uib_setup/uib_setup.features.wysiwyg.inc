@@ -326,8 +326,8 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_setting' => 'none',
       'css_path' => '',
       'stylesSet' => '',
-      'block_formats' => 'h2,h3,h4',
-      'advanced__active_tab' => 'edit-paste',
+      'block_formats' => 'p,h2,h3,h4',
+      'advanced__active_tab' => 'edit-css',
       'forcePasteAsPlainText' => 0,
     ),
   );
