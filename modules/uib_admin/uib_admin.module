@@ -77,6 +77,21 @@
       }
     }
   }
+
+/**
+ * Implements hook_cron().
+ */
+function uib_admin_cron() {
+  foreach ((array)variable_get("uib_exams_list_nodes") as $nid) {
+    if (empty($nid))
+      continue;
+    uibx_log("Cleaning cache for node $nid because it contains exam lists");
+    db_query("delete from cache_page where cid like '%/$nid/%'"); // Clear page data
+    cache_clear_all("field:node:$nid", "cache_field"); // Clear field data
+  }
+  cache_clear_all("/eksamen.json?", "cache_uib_study", TRUE); // Clear fs data
+}
+
 /**
  * Implements hook_form_alter().
  */
