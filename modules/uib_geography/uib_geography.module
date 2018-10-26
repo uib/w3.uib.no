@@ -16,7 +16,11 @@ function uib_geography_sync() {
 
   // Add new entries to country taxonomy from FS
   $url = variable_get('uib_fs_countries', 'https://fs.fd.uib.no/srdb/land');
-  $res = drupal_http_request($url);
+  $http_options = array();
+  if ($access_token = variable_get('uib_fsfd_access_token')) {
+    $http_options['headers']['Authorization'] = "Bearer $access_token";
+  }
+  $res = drupal_http_request($url, $http_options);
   uibx_log("GET $url");
   if ($res->code == 200) {
     $data = preg_replace('/[\r\n]/', '', $res->data);
