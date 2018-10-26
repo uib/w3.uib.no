@@ -3228,7 +3228,7 @@ function uib_study__programme_use_w3_data($type) {
   $programme = menu_get_object();
   global $language;
   $l = $language->language;
-  if (!empty($programme->field_uib_publish_text)) {
+  if (!empty($programme->field_uib_publish_text) && isset($programme->field_uib_publish_text[$l])) {
     return $programme->field_uib_publish_text[$l][0]['value'];
   }
   else return FALSE;

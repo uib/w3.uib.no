@@ -1,8 +1,7 @@
 <?php
 
 /**
- * This script imports data for study programmes from fs-pres. The content is added 
- * to existing study nodes.
+ * This script fixes a bug with the language and source in field translation for study nodes
  */
 
 $ou_ids = array();
@@ -37,8 +36,6 @@ foreach ($ou_ids as $nid => $oid) {
         $admin_user = user_load(1);
       }
       foreach ($data['studieprogrammer_fag'] as $programme) {
-        $programme_render_data['nb'] = uib_study__fspres_get_json('nn/studieprogram/' . $programme['id'] . '/render.json');
-        $programme_render_data['en'] = uib_study__fspres_get_json('en/studieprogram/' . $programme['id'] . '/render.json');
         $query = new EntityFieldQuery;
         $result = $query
           ->entityCondition('entity_type', 'node')
@@ -58,26 +55,12 @@ foreach ($ou_ids as $nid => $oid) {
             );
             $handler->setTranslation($translation, $study);
             $textvalue = '';
-            foreach ($programme_render_data['nb'] as $infotypegruppe) {
-              $textvalue .= '<h2>' . $infotypegruppe['#title'] . '<h2>';
-              foreach ($infotypegruppe['#items'] as $infotype) {
-                $textvalue .= '<h3>' . $infotype['#title'] . '</h3>';
-                $textvalue .= $infotype['#text'];
-              }
-            }
             $study->language->set('nb');
             $study->language('nb')->field_uib_study_text = array(
               'value' => $textvalue,
               'format' => 'study_text_html'
             );
             $textvalue = '';
-            foreach ($programme_render_data['en'] as $infotypegruppe) {
-              $textvalue .= '<h2>' . $infotypegruppe['#title'] . '<h2>';
-              foreach ($infotypegruppe['#items'] as $infotype) {
-                $textvalue .= '<h3>' . $infotype['#title'] . '</h3>';
-                $textvalue .= $infotype['#text'];
-              }
-            }
             $study->language->set('en');
             $study->language('en')->field_uib_study_text = array(
               'value' => $textvalue,

@@ -26,6 +26,10 @@
   width: 95%;
 }
 
+.adminimal-theme .field-name-field-uib-study-text .filter-wrapper .form-item {
+  float: none;
+}
+
 .field-name-field-uib-published-timestamp fieldset,
 .field-name-field-uib-published-timestamp legend,
 .field-name-field-uib-published-timestamp fieldset.date-combo

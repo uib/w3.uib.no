@@ -279,7 +279,7 @@ function uib_setup_wysiwyg_default_profiles() {
     'settings' => array(
       'default' => 1,
       'user_choose' => 0,
-      'show_toggle' => 1,
+      'show_toggle' => 0,
       'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
@@ -327,7 +327,7 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_path' => '',
       'stylesSet' => '',
       'block_formats' => 'p,h2,h3,h4',
-      'advanced__active_tab' => 'edit-css',
+      'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
   );
