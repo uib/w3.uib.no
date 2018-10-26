@@ -1767,10 +1767,10 @@ function uib_study_field_default_field_instances() {
               'weight' => -49,
             ),
             'feature_text_html' => array(
-              'weight' => -45,
+              'weight' => -46,
             ),
             'full_html' => array(
-              'weight' => -46,
+              'weight' => -44,
             ),
             'plain_text' => array(
               'weight' => -50,
@@ -1782,7 +1782,7 @@ function uib_study_field_default_field_instances() {
               'weight' => -48,
             ),
             'uib_markdown_limited' => array(
-              'weight' => -44,
+              'weight' => -45,
             ),
           ),
         ),

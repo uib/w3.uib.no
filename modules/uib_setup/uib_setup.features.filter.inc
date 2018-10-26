@@ -288,26 +288,33 @@ function uib_setup_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
-      'filter_html_escape' => array(
-        'weight' => -50,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'filter_html' => array(
         'weight' => -49,
         'status' => 1,
         'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd>',
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <div> <h2> <h3> <h4> <table> <tbody> <tr> <td>',
           'filter_html_help' => 1,
           'filter_html_nofollow' => 0,
         ),
       ),
-      'filter_autop' => array(
-        'weight' => -46,
+      'filter_studycodes' => array(
+        'weight' => -48,
         'status' => 1,
         'settings' => array(),
       ),
-      'filter_studycodes' => array(
+      'filter_uib_markup' => array(
+        'weight' => -47,
+        'status' => 1,
+        'settings' => array(),
+      ),
+      'filter_url' => array(
+        'weight' => -46,
+        'status' => 1,
+        'settings' => array(
+          'filter_url_length' => 72,
+        ),
+      ),
+      'filter_autop' => array(
         'weight' => -45,
         'status' => 1,
         'settings' => array(),
@@ -317,32 +324,20 @@ function uib_setup_filter_default_formats() {
         'status' => 1,
         'settings' => array(),
       ),
-      'filter_uib_url' => array(
-        'weight' => -42,
-        'status' => 1,
-        'settings' => array(),
-      ),
       'media_filter_paragraph_fix' => array(
-        'weight' => -40,
+        'weight' => -43,
         'status' => 1,
         'settings' => array(
           'replace' => 0,
         ),
       ),
       'media_filter' => array(
-        'weight' => -39,
+        'weight' => -42,
         'status' => 1,
         'settings' => array(),
       ),
-      'filter_url' => array(
-        'weight' => -38,
-        'status' => 1,
-        'settings' => array(
-          'filter_url_length' => 72,
-        ),
-      ),
-      'filter_htmlcorrector' => array(
-        'weight' => -37,
+      'filter_uib_url' => array(
+        'weight' => -40,
         'status' => 1,
         'settings' => array(),
       ),

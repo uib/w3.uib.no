@@ -873,12 +873,19 @@ EOD;
     case 'study_content_w3':
       $node = menu_get_object();
       if ($node && uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
-        $render = '<div class="uib-study-text--new-student">' . $node->field_uib_new_student['nb'][0]['value'] . '</div>';
-        $render .= '<div class="uib-study-text--content">' .$node->field_uib_study_text['nb'][0]['value'] . '</div>';
+        $render = array();
+        $render[] = field_view_field('node', $node, 'field_uib_study_text', array(
+          'label' => 'hidden',
+          'weight' => '0',
+        ));
+        $render[] = field_view_field('node', $node, 'field_uib_new_student', array(
+          'label' => 'hidden',
+          'weight' => '-10',
+        ));
         $block['title'] = '';
         $block['content'] = array(
           '#type' => 'markup',
-          '#markup' => $render,
+          '#markup' => render($render),
         );
       }
       break;
