@@ -120,6 +120,7 @@
 }
 
 /* Styling for help text */
+.adminimal-theme .form-item .description,
 .admin-menu .form-item .description,
 .text-format-wrapper .description,
 .fieldset-wrapper .fieldset-description,
