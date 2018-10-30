@@ -1493,6 +1493,69 @@ webdesk/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_area';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_area'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_article';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_article'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_content_list';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_content_list'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_external_content';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_external_content'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_market';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_market'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_ou';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_ou'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_study';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_study'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_testimonial';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_testimonial'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'title_help_uib_views_page';
+  $strongarm->value = '<ul><li>Lag en beskrivende tittel, for eksempel \'Kontakt Fakultet for humaniora\' istedenfor kun \'Kontaktinformasjon\'.</li><li>Tenk på at tittelen kan bli treff i et søk, og bør derfor være forklarende for hva siden handler om.</li></ul><ul><li>Make a descriptive title, e.g. \'Contact the Faculty of Humanities\', not just \'Contact information\'.</li><li>Be aware that the title is important when people search for specific information.</li></ul>';
+  $export['title_help_uib_views_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'translation_language_type';
   $strongarm->value = 'language_content';
   $export['translation_language_type'] = $strongarm;

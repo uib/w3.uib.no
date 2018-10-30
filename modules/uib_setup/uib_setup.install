@@ -337,3 +337,10 @@ function uib_setup_update_7036() {
 function uib_setup_update_7037() {
   module_disable(array('ldap_authentication', 'ldap_servers'));
 }
+
+/**
+ * Enable node_title_help_text module
+ */
+function uib_setup_update_7038() {
+  module_enable(array('node_title_help_text'));
+}
