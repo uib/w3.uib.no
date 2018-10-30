@@ -903,16 +903,22 @@ function uib_user_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
+          'feature_text_html' => 0,
+          'full_html' => 0,
           'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -922,6 +928,12 @@ function uib_user_field_default_field_instances() {
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -934,6 +946,10 @@ function uib_user_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -1425,16 +1441,22 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 0,
           'plain_text' => 'plain_text',
           'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -1444,6 +1466,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -1456,6 +1484,10 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -1507,16 +1539,22 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
+          'feature_text_html' => 0,
+          'full_html' => 0,
           'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -1526,6 +1564,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -1538,6 +1582,10 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -1737,16 +1785,22 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
+          'feature_text_html' => 0,
+          'full_html' => 0,
           'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -1756,6 +1810,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -1768,6 +1828,10 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -1819,16 +1883,22 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
+          'feature_text_html' => 0,
+          'full_html' => 0,
           'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -1838,6 +1908,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -1850,6 +1926,10 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
@@ -2141,16 +2221,22 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
-          'full_html' => 'full_html',
+          'feature_text_html' => 0,
+          'full_html' => 0,
           'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
+          'restricted_html' => 0,
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
               'weight' => -48,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -47,
@@ -2160,6 +2246,12 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -50,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -2172,6 +2264,10 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 5,
       ),
       'type' => 'text_textarea',
