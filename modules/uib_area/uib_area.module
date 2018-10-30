@@ -2081,8 +2081,8 @@ function uib_area_menu() {
     'type' => MENU_CALLBACK,
   );
 
-  $items['node/%node/outdated'] = array(
-    'title' => t('Outdated'),
+  $items['node/%node/all_content'] = array(
+    'title' => t('All content'),
     'page callback' => 'uib_area__outdated',
     'page arguments' => array(1),
     'type' => MENU_LOCAL_TASK,

@@ -30,8 +30,8 @@ function uib_webdesk_menu() {
     'access callback' => 'uib_user__allow_level_1',
     'page arguments' => array(2),
   );
-  $items['webdesk/outdated'] = array(
-    'title' => t('Outdated nodes'),
+  $items['webdesk/all_content'] = array(
+    'title' => t('Overview of content'),
     'weight' => -50,
     'type' => MENU_NORMAL_ITEM,
     'page callback' => 'uib_webdesk__outdated',
@@ -133,7 +133,7 @@ function uib_webdesk__outdated($area = FALSE) {
     $articletype = arg($default_arg+1) !== NULL ? arg($default_arg+1) : 'infopage';
   }
   $six_months_ago = strtotime('-6 months');
-  $extra = array(':sixmonthsago' => $six_months_ago);
+  $extra = array();
   $query = 'select nr.nid, nr.title, nr.uid, nr.timestamp, n.status as node_status, n.created, n.language, u.status as status, fn.field_uib_first_name_value as first_name, ln.field_uib_last_name_value as last_name ';
   $query .= 'from node_revision as nr, field_data_field_uib_first_name as fn, field_data_field_uib_last_name as ln, node as n, users as u ';
   $query .= 'where nr.nid in (';
@@ -150,7 +150,7 @@ function uib_webdesk__outdated($area = FALSE) {
     $extra[':area'] = $area;
   }
   $query .= ') and nr.uid = fn.entity_id and nr.uid = ln.entity_id and n.nid = nr.nid and u.uid = nr.uid ';
-  $query .= 'and n.nid in (select nid from node_revision where uid > 1 group by nid having max(timestamp) < :sixmonthsago) ';
+  $query .= 'and n.nid in (select nid from node_revision where uid > 1 group by nid) ';
   $query .= 'order by timestamp desc';
   $result = db_query($query, $extra);
   $nodes = array();
@@ -185,7 +185,7 @@ function uib_webdesk__outdated($area = FALSE) {
   $render['header'] = array(
     '#theme' => 'html_tag',
     '#tag' => 'h1',
-    '#value' => t('Not updated in six months (since @sixmonthsago)', array('@sixmonthsago' => strftime('%d.%m.%Y', $six_months_ago))),
+    '#value' => t('Overview of content'),
   );
   $listitems = array();
   foreach($allowed_types as $allowed_type => $title) {
@@ -211,10 +211,10 @@ function uib_webdesk__outdated($area = FALSE) {
 
 function uib_webdesk__get_list_item($type, $allowed_type, $title, $sub = FALSE, $area = FALSE) {
   if ($area) {
-    $urls = array('main' => 'node/' . $area . '/outdated/', 'sub' => 'node/' . $area . '/outdated/uib_article/');
+    $urls = array('main' => 'node/' . $area . '/all_content/', 'sub' => 'node/' . $area . '/all_content/uib_article/');
   }
   else {
-    $urls = array('main' => 'webdesk/outdated/', 'sub' => 'webdesk/outdated/uib_article/');
+    $urls = array('main' => 'webdesk/all_content/', 'sub' => 'webdesk/all_content/uib_article/');
   }
   if ($type == $allowed_type) {
     if ($type != 'uib_article') {

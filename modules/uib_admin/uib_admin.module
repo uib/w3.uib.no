@@ -10,7 +10,7 @@
       'html__node__ties',
       'html__node__translate',
       'html__node__revisions',
-      'html__node__outdated',
+      'html__node__all_content',
       'html__user__edit',
       'html__user__translate',
       'html__webdesk',
@@ -23,8 +23,8 @@
   }
   function uib_admin_admin_paths () {
     $paths = array(
-      'node/*/outdated' => true,
-      'node/*/outdated/*' => true,
+      'node/*/all_content' => true,
+      'node/*/all_content/*' => true,
       'node/*/staff_status' => true,
       'node/*/ties' => true,
       'node/*/menu' => true,
