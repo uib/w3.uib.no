@@ -302,8 +302,12 @@ function uib_study__clean_study_title($title) {
     'Kjønn, seksualitet og mangfald, årsstudium',
     'Klima, atmosfære- og havfysikk, bachelor, 3 år',
   );
+  $title_exceptions_2 = array(
+    'Utøvande musikk eller komposisjon, bachelor, 4 år',
+  );
   $title_array = explode(',', $title);
   if (in_array($title, $title_exceptions)) return $title_array[0] . ', ' . $title_array[1];
+  if (in_array($title, $title_exceptions_2)) return $title_array[0] . ' (4 år)';
   return $title_array[0];
 }
 
