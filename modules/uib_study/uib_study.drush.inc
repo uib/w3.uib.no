@@ -6,7 +6,34 @@ function uib_study_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'arguments' => array(),
   );
+  $items['uib-toggle-publish-text'] = array(
+    'description' => 'Toggle the publish text checkbox in staging',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(),
+  );
   return $items;
+}
+
+function drush_uib_study_uib_toggle_publish_text() {
+  $admin_user = &drupal_static(__FUNCTION__);
+  if(!isset($admin_user)) {
+    $admin_user = user_load(1);
+  }
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->fieldCondition('field_uib_study_type', 'value', 'program')
+    ->addMetaData('account', $admin_user)
+    ->execute();
+  if (!empty($result)) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    foreach ($nodes as $node) {
+      $study = entity_metadata_wrapper('node', $node);
+      $study->language('nb')->field_uib_publish_text->set(1);
+      $study->language('en')->field_uib_publish_text->set(1);
+      $study->save();
+    }
+  }
 }
 
 function drush_uib_study_uib_sync_fs() {

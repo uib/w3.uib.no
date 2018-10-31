@@ -6,7 +6,7 @@
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
-        bin/site-drush vset uib_hubro_chatbot TRUE
+        bin/site-drush uib-toggle-publish-text -v
     fi
 fi
 
@@ -15,7 +15,5 @@ fi
 #
 # fi
 
-REL=96
+REL=104
 
-bin/site-drush scr add-studies-alias -v
-bin/site-drush scr import_kmd_events_and_news -v
