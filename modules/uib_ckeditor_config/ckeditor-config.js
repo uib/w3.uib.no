@@ -57,7 +57,7 @@ CKEDITOR.on( 'dialogDefinition', function( ev ) {
     dialogDefinition.removeContents('Link');
     dialogDefinition.removeContents('advanced');
     var infoTab = dialogDefinition.getContents( 'info' );
-    var toRemove = [ 'txtWidth', 'txtHeight', 'txtBorder', 'cmbAlign', 'txtHSpace', 'txtVSpace', 'ratioLock', 'htmlPreview' ];
+    var toRemove = [ 'txtWidth', 'txtHeight', 'txtBorder', 'cmbAlign', 'txtHSpace', 'txtVSpace', 'ratioLock', 'htmlPreview', 'txtUrl' ];
     for ( key in toRemove ) {
       infoTab.remove( toRemove[key] );
     }
