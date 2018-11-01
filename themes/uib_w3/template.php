@@ -72,7 +72,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
       }
     }
     if ($node->type == 'uib_study') {
-      $variables['classes_array'][] = 'uib-study__' . $node->field_uib_study_type['und'][0]['value'];
+      if(uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
+        $variables['classes_array'][] = 'uib-study__program--new';
+      }
+      else $variables['classes_array'][] = 'uib-study__' . $node->field_uib_study_type['und'][0]['value'];
       if (uib_study__use_tabs($node->field_uib_study_type['und'][0]['value'])) {
         $variables['classes_array'][] = 'study-tabs';
       }
@@ -158,9 +161,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
   $is_feature_article = isset($variables['node']) && $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
+  $is_study_programme = isset($variables['node']) && $variables['node']->type == 'uib_study' && $variables['node']->field_uib_study_type['und'][0]['value'] == 'program' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article) {
+    if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article && !$is_study_programme) {
       $variables['area_menu'] = $area_menu;
     }
     $variables['area_menu_footer'] = $area_menu;
@@ -176,7 +180,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['mobile']['global_mobile_menu']['#weight'] = 5;
   }
-  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page)) && !$is_feature_article) {
+  if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page)) && !$is_feature_article && !$is_study_programme) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',

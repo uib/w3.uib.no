@@ -37,6 +37,8 @@ function uib_filter__process($text, $filter) {
       }
       //return check_plain($matches[1] . "[[$arg]]\n");
       switch ($matches[1]) {
+      case 'testimonial':
+        return '(* testimonial *)';
       case 'today':
         return date($arg ? $arg : 'Y-m-d');
       case 'user':
