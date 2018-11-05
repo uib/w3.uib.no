@@ -9,9 +9,9 @@
   },
   "author": "Are Johannessen",
   "devDependencies": {
-    "grunt": "^1.0.0",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt": "*",
+    "grunt-browser-sync": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*"
   }
 }
