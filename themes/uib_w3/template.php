@@ -12,9 +12,9 @@ function uib_w3_preprocess_html(&$variables) {
     if (isset($variables['page']['#children'])
         && ($variables['page']['#children'] == 'Closing...') || $variables['page']['#children'] == 'Logger inn ...') {
       drupal_add_css(drupal_get_path('module','uib_admin').'/css/hybridauth.css');
-      $variables['page']['#children'] = '<h3 class="html__hybridauth__closing">'
+      $variables['page']['#children'] = '<div class="html__hybridauth__container"><h3 class="html__hybridauth__closing">'
                                         .t('Logging into uib.no')
-                                        .'</h3><div class="loader"></div>';
+                                        .'</h3><div class="loader"></div></div>';
     }
   }
   // setting te browser title to reflect the page and parent area
