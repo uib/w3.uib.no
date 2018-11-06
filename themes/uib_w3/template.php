@@ -8,6 +8,15 @@
  *   The name of the template being rendered ("html" in this case.)
  */
 function uib_w3_preprocess_html(&$variables) {
+  if (isset($variables['theme_hook_suggestions'][0]) && $variables['theme_hook_suggestions'][0] == 'html__hybridauth') {
+    if (isset($variables['page']['#children'])
+        && ($variables['page']['#children'] == 'Closing...') || $variables['page']['#children'] == 'Logger inn ...') {
+      drupal_add_css(drupal_get_path('module','uib_admin').'/css/hybridauth.css');
+      $variables['page']['#children'] = '<h3 class="html__hybridauth__closing">'
+                                        .t('Logging into uib.no')
+                                        .'</h3><div class="loader"></div>';
+    }
+  }
   // setting te browser title to reflect the page and parent area
   if (isset($variables['theme_hook_suggestions'][3]) || $variables['theme_hook_suggestions'][0] == 'html__calendar') {
     $variables['head_title'] = uib_w3__get_theme_suggested_title($variables);
