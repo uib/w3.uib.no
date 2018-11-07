@@ -2014,6 +2014,10 @@ a,
   .article-info .uib-author {
     font-weight: bold;
     text-transform: uppercase; }
+    .article-info .uib-author a {
+      text-decoration: none; }
+      .article-info .uib-author a:hover {
+        text-decoration: underline; }
 
 .field-name-field-uib-profiled-message {
   display: -ms-flexbox;
@@ -2507,6 +2511,10 @@ a,
     display: inline;
     margin: 0;
     padding: 0; }
+    .item-list .content-list li a {
+      text-decoration: none; }
+      .item-list .content-list li a:hover {
+        text-decoration: underline; }
 .item-list:not(:first-child) .content-list {
   border-top: solid 0.0625rem #d5d5d5;
   margin: 2.5rem 0 0;
@@ -3245,7 +3253,6 @@ a,
   padding: 0; }
   [id^="block-uib-area-feed"] ul li,
   #block-uib-user-feed ul li {
-    text-decoration: none;
     color: #0da6a3;
     list-style: none;
     margin: 0 0 0 0; }
@@ -3253,9 +3260,6 @@ a,
       [id^="block-uib-area-feed"] ul li,
       #block-uib-user-feed ul li {
         margin: 0 0 .6rem 0; } }
-[id^="block-uib-area-feed"] a,
-#block-uib-user-feed a {
-  text-decoration: none; }
 
 .uib-find-studies {
   background: none; }
@@ -7226,7 +7230,10 @@ body #mc_embed_signup div.mce_inline_error {
   margin: 0; }
   .uib-user-teaser h3 a {
     color: #333333;
-    font-size: 1.125rem; }
+    font-size: 1.125rem;
+    text-decoration: none; }
+    .uib-user-teaser h3 a:hover {
+      text-decoration: underline; }
 .uib-user-teaser p {
   margin: 0;
   font-size: 1.125rem; }
