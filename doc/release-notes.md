@@ -1,3 +1,19 @@
+# Release 104 _2018-11-08_
+- Korrigert lenkelister på studienoder #20610
+- Justert utforming av knapper #21245
+- Justert utforming på områdemenyer #21355
+- Lagt til navn på områder i title-tag, for tydelighet i søkeresultat #21268
+- Lagt til egen kategori for fireårig bachelorprogram i studieprogramlisten #21293
+- Forbedret synlighet av hjelpetekst ved opplasting av bilder #21261
+- Forbedret ventebilde som vises når man logger inn på uib.no med Feide #21358
+- Utvidet "utdatert"-funksjon på områder til å vise alt innhold, ikke bare siste seks måneder #21078
+- Rettet feil som gjorde at UiB-logoen kom på to linjer i noen visninger #20931
+- Rettet feil som gjorde at alle tekstformat var tilgjengelig på personsider #20931
+- Rettet feil i editor som gjorde at formel-funksjonen hadde mer fleksibilitet enn ønsket #20610
+- Rettet feil som gav feil utseende på svarte lenker #21353
+- Forbredelser til å flytte uib.no til skyen #21268 #21262 #21262
+- Videreutvikling av nye studieprogrammaler #21298 #21276 #21281 #21281 #21300
+
 # Release 103 _2018-10-25_
 - Startet arbeidet med ny mal for studieprogram #20793 #21157 #21208
 - Forbedret synligheten for lenker. Blåfargen er blitt mer kontrastfull, og lenkene har fått understreking en rekke steder, bl.a. i brødtekst #20716
