@@ -3069,10 +3069,13 @@ a,
         flex-direction: row; } }
     .view-exchange-agreements .view-content ul li > div > div > span {
       display: block; }
+      .view-exchange-agreements .view-content ul li > div > div > span.studentreport-ref {
+        margin-top: 0.5rem; }
       @media screen and (min-width: 600px) {
         .view-exchange-agreements .view-content ul li > div > div > span.studentreport-ref {
           -ms-flex: 0 1 20%;
-          flex: 0 1 20%; }
+          flex: 0 1 20%;
+          margin-top: 0; }
         .view-exchange-agreements .view-content ul li > div > div > span.agreement-title {
           -ms-flex: 0 5 80%;
           flex: 0 5 80%; } }
@@ -6393,6 +6396,12 @@ body #mc_embed_signup div.mce_inline_error {
   .field-name-field-uib-study-image > .field-items > .field-item {
     margin-bottom: 1rem; }
 
+.node-uib-views-page .view-exchange-agreements .view-content .item-list ul li,
+.node-uib-views-page .view-study-blocks .view-content .item-list ul li {
+  line-height: 1.3;
+  font-size: 1.125rem;
+  padding: 1rem 0 1.2rem; }
+
 .view-study-blocks h1 {
   font-weight: normal;
   color: #cf3c3a;
@@ -6405,8 +6414,7 @@ body #mc_embed_signup div.mce_inline_error {
   .view-study-blocks ul .views-row-odd, .view-study-blocks ul .views-row-even {
     border-bottom: solid 1px #b7b7b7; }
   .view-study-blocks ul li a {
-    line-height: 1.3;
-    font-size: 1.125rem;
+    line-height: 1;
     display: block; }
     @media (min-width: 600px) {
       .view-study-blocks ul li a {
@@ -6414,8 +6422,6 @@ body #mc_embed_signup div.mce_inline_error {
 .view-study-blocks .attachment-before {
   font-weight: bold;
   margin: 0 0 30px 0; }
-.view-study-blocks .studentreport-ref {
-  float: right; }
 
 #block-uib-study-study-more-information {
   background: #fff;
