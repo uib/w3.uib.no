@@ -3004,6 +3004,7 @@ function uib_webdesk_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     176168899 => '176168899',
+    170699807 => '170699807',
     74573517 => '74573517',
   );
   $handler->display->display_options['cache']['type'] = 'none';
