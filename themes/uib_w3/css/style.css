@@ -1612,7 +1612,8 @@ a,
         transition-duration: 0.5s; }
         .uib-feature-area-menu .menu li a:hover {
           background: #fff;
-          color: #cf3c3a; }
+          color: #cf3c3a;
+          border: solid 2px #cf3c3a; }
   @media (min-width: 600px) {
     .uib-feature-area-menu .menu {
       -ms-flex-direction: row;
@@ -1636,7 +1637,8 @@ a,
           .feature-video .uib-feature-area-menu .menu li a:hover {
             background: #fff;
             color: #cf3c3a;
-            text-decoration: none; } }
+            text-decoration: none;
+            border: solid 2px #cf3c3a; } }
   @media (min-width: 600px) and (orientation: portrait) {
     .uib-feature-area-menu .menu li a {
       background: rgba(56, 56, 56, 0.7);
@@ -1648,7 +1650,6 @@ a,
   @media (min-width: 780px) {
     .uib-feature-area-menu .menu li a {
       background: rgba(56, 56, 56, 0.7);
-      border: none 0;
       color: #fff; }
       .feature-video .uib-feature-area-menu .menu li a {
         background: #cf3c3a;
@@ -1668,7 +1669,9 @@ a,
       color: #fff; }
     .feature-video .uib-feature-area-menu .menu li a:hover {
       background: rgba(56, 56, 56, 0.4);
-      text-decoration: none; } }
+      text-decoration: none;
+      border: none 0;
+      color: #fff; } }
 
 .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
   margin: 0 auto;
