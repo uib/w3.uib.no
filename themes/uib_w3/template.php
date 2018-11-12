@@ -173,10 +173,12 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $is_study_programme = isset($variables['node']) && $variables['node']->type == 'uib_study' && $variables['node']->field_uib_study_type['und'][0]['value'] == 'program' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article && !$is_study_programme) {
-      $variables['area_menu'] = $area_menu;
+    if (!empty($area_menu)) {
+      if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article && !$is_study_programme) {
+        $variables['area_menu'] = $area_menu;
+      }
+      $variables['area_menu_footer'] = $area_menu;
     }
-    $variables['area_menu_footer'] = $area_menu;
   }
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     if ($variables['language']->language == 'nb') {
