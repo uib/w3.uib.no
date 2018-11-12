@@ -123,6 +123,7 @@
   #desktop-tablet-language,
   .ui-tabs-nav,
   #block-uib-area-news-and-calendar,
+  #chatbot,
   .more-link {
     /* Hide nav elements etc. */
     visibility: hidden;
