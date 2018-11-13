@@ -136,7 +136,6 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   global $user;
   drupal_add_js('sites/all/themes/uib/uib_w3/js/mobile_menu.js');
   drupal_add_js('sites/all/themes/uib/uib_w3/js/sortable.js');
-
   $page_menu_item = menu_get_item(current_path());
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
     $global_menu_lang = $variables['language']->language == 'nb' ? '-no' : '';
@@ -1283,6 +1282,9 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
+
+        $link_url = url($variables['content']['links']['node']['#links']['node-readmore']['href'], array('absolute' => TRUE));
+        $variables['content']['field_uib_main_media'][0]['#markup'] = "<a href='".$link_url."'>".$variables['content']['field_uib_main_media'][0]['#markup'] ."</a>";
       }
       if (count($variables['content']['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
