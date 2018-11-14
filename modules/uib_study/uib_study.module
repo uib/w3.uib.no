@@ -881,6 +881,7 @@ EOD;
           'weight' => '0',
         ));
         $study_text_w3 = $render['study_text'][0]['#markup'];
+        $study_text_w3 = str_replace(array('<table>','</table>'), array('<div class="uib-study__table"><table>','</table></div>'), $study_text_w3);
         if (strpos($study_text_w3, '(* testimonial *)') !== 0) {
           $testimonial = uib_study__get_testimonial();
           $testimonial = render($testimonial);
