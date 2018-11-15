@@ -902,11 +902,11 @@ function uib_user_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
@@ -1440,11 +1440,11 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
@@ -1538,11 +1538,11 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
@@ -1784,11 +1784,11 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
@@ -1882,11 +1882,11 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
@@ -2220,11 +2220,11 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
+          'basic_html' => 0,
           'feature_text_html' => 0,
           'full_html' => 0,
-          'plain_text' => 'plain_text',
-          'restricted_html' => 0,
+          'plain_text' => 0,
+          'restricted_html' => 'restricted_html',
           'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
