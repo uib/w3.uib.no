@@ -31,3 +31,54 @@ function uib_media_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
 function uib_media_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
   hide($form['field_uib_description']);
 }
+
+  function uib_media__insert_captions($text, $node, $lang='und') {
+    if (isset($node->field_uib_study_image_captions[$lang])) {
+      $captions = array();
+      foreach($node->field_uib_study_image_captions[$lang] as $ic) {
+        $fc = field_collection_item_load($ic['value'], TRUE);
+        $captions[$fc->field_uib_imageindex['und'][0]['value']] = $fc->field_uib_imagecaption['und'][0]['value'];
+      }
+    }
+    $video_count = 0;
+    $s = uib_media__find_seperator($text, '</picture>');
+    $text_bits = explode($s, $text);
+    $text_with_captions = '';
+    foreach($text_bits as $bit_num => $bit) {
+      if (strpos($bit, '</iframe>')) {
+        $s = uib_media__find_seperator($bit, '</iframe>');
+        $t_with_captions = '';
+        $b = explode($s, $bit);
+        foreach($b as $b_num => $b_bit) {
+          if($b_num < count($b) - 1) {
+            if (isset($captions[$bit_num + 1 + $video_count])) {
+              $t_with_captions .= $b_bit . '</iframe></div><div>' . $captions[$bit_num + 1 + $video_count] . '</div>';
+            }
+            else {
+              $t_with_captions .= $b_bit . '</iframe></div>';
+            }
+            $video_count++;
+          }
+          else {
+            $t_with_captions .= $b_bit;
+          }
+        }
+        $bit = $t_with_captions;
+      }
+      if($bit_num < count($text_bits) - 1) {
+        if (isset($captions[$bit_num + 1 + $video_count])) {
+          $text_with_captions .= $bit . '</picture></div><div>' . $captions[$bit_num + 1 + $video_count] . '</div>';
+        }
+        else $text_with_captions .= $bit . '</picture></div>';
+      }
+      else {
+        $text_with_captions .= $bit;
+      }
+    }
+    return $text_with_captions;
+  }
+  function uib_media__find_seperator($text, $tag) {
+    $pos = strpos($text, $tag);
+    $pos2 = strpos($text,'</div>', $pos);
+    return substr($text, $pos, $pos2 - $pos + 6);
+  }
