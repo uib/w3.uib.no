@@ -1116,6 +1116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 function uib_w3_preprocess_node(&$variables, $hook) {
   global $language;
   $current_language = $language->language;
+
   if ($variables['page'])  {
     uib_w3__add_image_caption(
       $variables['content']['field_uib_media'],
@@ -1269,6 +1270,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         truncate_utf8($variables['content']['field_uib_lead'][0]['#markup'], 303, TRUE, TRUE);
       }
       if (empty($variables['field_uib_main_media']) && !empty($variables['field_uib_media'])) {
+        $variables['theme_hook_suggestions'][] = 'node__article__small_image_teaser';
         $uib_media = field_view_field('node', $variables['node'], 'field_uib_media', array(
           'type' => 'file_rendered',
           'settings' => array('file_view_mode' => 'wide_thumbnail'),
@@ -1282,14 +1284,12 @@ function uib_w3_preprocess_node(&$variables, $hook) {
         unset($variables['content']['field_uib_main_media'][0]['field_uib_copyright']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_owner']);
         unset($variables['content']['field_uib_main_media'][0]['field_uib_description']);
-
-        $link_url = url($variables['content']['links']['node']['#links']['node-readmore']['href'], array('absolute' => TRUE));
-        $variables['content']['field_uib_main_media'][0]['#markup'] = "<a href='".$link_url."'>".$variables['content']['field_uib_main_media'][0]['#markup'] ."</a>";
+      } else {
+        $variables['theme_hook_suggestions'][] = 'node__article__teaser';
       }
       if (count($variables['content']['field_uib_main_media']) > 1) {
         $variables['content']['field_uib_main_media'] = __uib_w3__keep_first_main_media($variables['content']['field_uib_main_media']);
       }
-      $variables['theme_hook_suggestions'][] = 'node__article__teaser';
       if( count($variables['field_uib_event_type']) &&
         isset($variables['field_uib_date']['und'][0]['value'])){
         $variables['content']['field_uib_main_media'][0]['#markup'].=
