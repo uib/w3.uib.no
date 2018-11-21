@@ -5927,6 +5927,9 @@ nav {
     #block-uib-study-study-contact .content p {
       margin: 0 0 0.875rem 0; }
 
+.uib-study__course #uib-tabs-emnebeskrivelse > div:not(:first-child) > h3 {
+  margin-top: 1.875rem; }
+
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) p, #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) ul {
   font-size: 1.25rem; }
 #block-uib-study-study-content [id^="uib-tabs"]:not(.ui-widget-header) h3 {
