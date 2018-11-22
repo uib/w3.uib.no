@@ -1,3 +1,14 @@
+# Release 105 _2018-11-22_
+- Rettet feil der bilder i fremhevede artikler ikke var klikkbare (oppstod for artikler med kun små bilder) #20846
+- Rettet feil der fremhevet eksternt innhold på områder i visse tilfeller ikke tok seg godt ut #20858
+- Rettet feil der teksteditoren ikke ble vist i tekstfelt på personsider #21401
+- Gjort det mulig for innholdsprodusenter å søke etter opplastede filer (bl.a. bilder) #21365
+- Tatt vekk en del luft fra under bildet og over fanene på personsider #21166
+- Lagt til mer luft over overskrifter på emnesider #21375
+- Fjernet strek over kolofonfeltet fra sider uten meny #21381
+- Fjernet HFs Hubro-chat fra utskrift #21383
+- Fortsatt arbeidet med utviklingen av nye studieprogrammaler #21388
+
 # Release 104 _2018-11-08_
 - Korrigert lenkelister på studienoder #20610
 - Justert utforming av knapper #21245
