@@ -5,8 +5,8 @@
 #
 # See https://rts.uib.no/issues/15372
 
-$limit_level3 = mktime(0, 0, 0, 11, 1, 2017);
-$limit_level2 = mktime(0, 0, 0, 11, 1, 2017);
+$limit_level3 = mktime(0, 0, 0, 7, 1, 2018);
+$limit_level2 = mktime(0, 0, 0, 7, 1, 2018);
 
 if (0) {
   # calculate relative limits
