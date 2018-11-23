@@ -157,149 +157,6 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'field_collection_item-field_uib_study_image_captions-field_uib_imagecaption'.
-  $field_instances['field_collection_item-field_uib_study_image_captions-field_uib_imagecaption'] = array(
-    'bundle' => 'field_uib_study_image_captions',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_uib_imagecaption',
-    'label' => 'Caption for image',
-    'required' => 0,
-    'settings' => array(
-      'better_formats' => array(
-        'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'feature_text_html' => 'feature_text_html',
-          'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
-          'restricted_html' => 'restricted_html',
-          'study_text_html' => 'study_text_html',
-          'uib_markdown_limited' => 'uib_markdown_limited',
-        ),
-        'allowed_formats_toggle' => 0,
-        'default_order_toggle' => 0,
-        'default_order_wrapper' => array(
-          'formats' => array(
-            'basic_html' => array(
-              'weight' => -9,
-            ),
-            'feature_text_html' => array(
-              'weight' => 0,
-            ),
-            'full_html' => array(
-              'weight' => -7,
-            ),
-            'plain_text' => array(
-              'weight' => -10,
-            ),
-            'restricted_html' => array(
-              'weight' => -8,
-            ),
-            'study_text_html' => array(
-              'weight' => 0,
-            ),
-            'uib_markdown_limited' => array(
-              'weight' => 0,
-            ),
-          ),
-        ),
-      ),
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'maxlength_js' => '',
-        'maxlength_js_enforce' => 0,
-        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-        'maxlength_js_truncate_html' => 0,
-        'rows' => 1,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_uib_study_image_captions-field_uib_imageindex'.
-  $field_instances['field_collection_item-field_uib_study_image_captions-field_uib_imageindex'] = array(
-    'bundle' => 'field_uib_study_image_captions',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'list_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_uib_imageindex',
-    'label' => 'Image index',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_study-field_uib_feed'.
   $field_instances['node-uib_study-field_uib_feed'] = array(
     'bundle' => 'uib_study',
@@ -755,7 +612,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 45,
+      'weight' => 44,
     ),
   );
 
@@ -907,7 +764,7 @@ function uib_study_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 48,
+      'weight' => 46,
     ),
   );
 
@@ -1427,49 +1284,6 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-uib_study-field_uib_study_image_captions'.
-  $field_instances['node-uib_study-field_uib_study_image_captions'] = array(
-    'bundle' => 'uib_study',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 25,
-      ),
-      'short_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_uib_study_image_captions',
-    'label' => 'Study text image captions',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'field_collection',
-      'settings' => array(),
-      'type' => 'field_collection_embed',
-      'weight' => 47,
-    ),
-  );
-
   // Exported field_instance: 'node-uib_study-field_uib_study_label'.
   $field_instances['node-uib_study-field_uib_study_label'] = array(
     'bundle' => 'uib_study',
@@ -1626,7 +1440,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 44,
+      'weight' => 45,
     ),
   );
 
@@ -1988,7 +1802,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 40,
       ),
       'type' => 'text_textarea',
-      'weight' => 46,
+      'weight' => 44,
     ),
   );
 
@@ -2653,14 +2467,12 @@ function uib_study_field_default_field_instances() {
   t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Alternative field to display english media for english content. If field is not set, the default media will be displayed. ');
   t('Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.');
-  t('Caption for image');
   t('Category');
   t('Country');
   t('Descriptive text');
   t('Entity translated term title.');
   t('ID');
   t('Image');
-  t('Image index');
   t('Links');
   t('Local short form of NUS code.');
   t('NUS');
@@ -2684,7 +2496,6 @@ function uib_study_field_default_field_instances() {
   t('Study media (en)');
   t('Study points rank');
   t('Study text');
-  t('Study text image captions');
   t('Title');
   t('Type');
 
