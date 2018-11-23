@@ -31,3 +31,48 @@ function uib_media_form_file_entity_edit_alter(&$form, &$form_state, $form_id) {
 function uib_media_form_file_entity_add_upload_alter(&$form, &$form_state, $form_id) {
   hide($form['field_uib_description']);
 }
+
+function uib_media__insert_captions($text, $node, $lang='und') {
+  if (isset($node->field_uib_study_image_captions[$lang])) {
+    $captions = array();
+    $field_collection = field_view_field('node', $node, 'field_uib_study_image_captions');
+    if (isset($field_collection['#items'])) {
+      foreach($field_collection['#items'] as $key => $item){
+        $captions[$field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imageindex'][0]['#markup']] = $field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imagecaption'][0]['#markup'];
+      }
+    }
+  }
+  return uib_media__find_media_in_text($text, $captions);
+}
+function uib_media__find_media_in_text($text, $captions, $num = 0, $text_with_captions = '') {
+  $num++;
+  $pos_p = strpos($text, '</picture>');
+  $pos_i = strpos($text, '</iframe>');
+  $pos = FALSE;
+  if ($pos_p > 0 && $pos_i > 0) {
+    $pos = $pos_p < $pos_i ? $pos_p : $pos_i;
+  }
+  elseif ($pos_p > 0 && !$pos_i) {
+    $pos = $pos_p;
+  }
+  elseif ($pos_i > 0 && !$pos_p) {
+    $pos = $pos_i;
+  }
+  if ($pos) {
+    if ($pos == $pos_p) {
+      $offset = 10;
+    }
+    else {
+      $offset = 7 + strpos($text, '</div>', $pos) - $pos;
+    }
+    $text_with_captions .= substr($text, 0, $pos + $offset);
+    $text = substr($text, $pos + $offset);
+    if (isset($captions[$num])) {
+      $text_with_captions .= '<div>' . $captions[$num] .  '</div>';
+    }
+    return uib_media__find_media_in_text($text, $captions, $num, $text_with_captions);
+  }
+  else {
+    return $text_with_captions . $text;
+  }
+}
