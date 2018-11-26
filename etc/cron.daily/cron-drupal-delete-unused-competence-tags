@@ -1,4 +1,0 @@
-#!/bin/bash
-cd /var/www/w3.uib.no
-log="/tmp/cron-drupal-delete-unused-competence-tags-"`bc <<< $(date +%j)%2`'.log'
-su w3-drupal -c 'bin/site-drush scr delete-unused-competence-tags -v' >> $log 2>&1
