@@ -1034,10 +1034,10 @@ p {
   p:last-child {
     margin-bottom: 0; }
 
-.content-main-wrapper .profile p {
+.content-main-wrapper .profile .uib-tabs-container p {
   margin: 2rem 0 1.5rem 0; }
   @media (min-width: 780px) {
-    .content-main-wrapper .profile p {
+    .content-main-wrapper .profile .uib-tabs-container p {
       margin: 0 0 1.5rem 0; } }
 
 .content-top-wrapper p.field-name-field-uib-lead, .content-main-wrapper p.field-name-field-uib-lead {
