@@ -2494,6 +2494,7 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_new_student']);
       hide($form['field_uib_study_lead']);
       hide($form['field_uib_publish_text']);
+      hide($form['field_uib_study_image_captions']);
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
