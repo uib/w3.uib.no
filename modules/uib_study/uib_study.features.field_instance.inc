@@ -374,7 +374,7 @@ function uib_study_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -438,7 +438,7 @@ function uib_study_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 15,
+      'weight' => 13,
     ),
   );
 
@@ -481,7 +481,7 @@ function uib_study_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 16,
+      'weight' => 14,
     ),
   );
 
@@ -558,7 +558,7 @@ function uib_study_field_default_field_instances() {
         'manualcrop_thumblist' => FALSE,
       ),
       'type' => 'media_generic',
-      'weight' => 24,
+      'weight' => 21,
     ),
   );
 
@@ -651,7 +651,7 @@ function uib_study_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 25,
+      'weight' => 22,
     ),
   );
 
@@ -664,24 +664,8 @@ function uib_study_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 21,
       ),
       'short_teaser' => array(
@@ -755,7 +739,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 45,
+      'weight' => 26,
     ),
   );
 
@@ -811,7 +795,7 @@ function uib_study_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -907,7 +891,7 @@ function uib_study_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 48,
+      'weight' => 31,
     ),
   );
 
@@ -1052,7 +1036,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -1130,7 +1114,7 @@ function uib_study_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 42,
+      'weight' => 23,
     ),
   );
 
@@ -1307,7 +1291,7 @@ function uib_study_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 19,
+      'weight' => 17,
     ),
   );
 
@@ -1466,7 +1450,7 @@ function uib_study_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 47,
+      'weight' => 28,
     ),
   );
 
@@ -1522,7 +1506,7 @@ function uib_study_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 17,
+      'weight' => 15,
     ),
   );
 
@@ -1535,24 +1519,8 @@ function uib_study_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(
-          'field_multiple_limit' => -1,
-          'field_multiple_limit_offset' => 0,
-          'field_multiple_limit_order' => 0,
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'text_default',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 22,
       ),
       'short_teaser' => array(
@@ -1626,7 +1594,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 44,
+      'weight' => 25,
     ),
   );
 
@@ -1672,7 +1640,7 @@ function uib_study_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 20,
+      'weight' => 18,
     ),
   );
 
@@ -1770,7 +1738,7 @@ function uib_study_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 18,
+      'weight' => 16,
     ),
   );
 
@@ -1845,6 +1813,135 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_study_start'.
+  $field_instances['node-uib_study-field_uib_study_start'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 26,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_study_start',
+    'label' => 'Study start',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 29,
+    ),
+  );
+
+  // Exported field_instance: 'node-uib_study-field_uib_study_start_extra'.
+  $field_instances['node-uib_study-field_uib_study_start_extra'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 27,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_study_start_extra',
+    'label' => 'Study start extra',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'basic_html' => 'basic_html',
+          'feature_text_html' => 'feature_text_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+          'restricted_html' => 'restricted_html',
+          'study_text_html' => 'study_text_html',
+          'uib_markdown_limited' => 'uib_markdown_limited',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'basic_html' => array(
+              'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => -7,
+            ),
+            'plain_text' => array(
+              'weight' => -10,
+            ),
+            'restricted_html' => array(
+              'weight' => -8,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
+            ),
+          ),
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 30,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_study_tag'.
   $field_instances['node-uib_study-field_uib_study_tag'] = array(
     'bundle' => 'uib_study',
@@ -1884,7 +1981,7 @@ function uib_study_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 43,
+      'weight' => 24,
     ),
   );
 
@@ -1988,7 +2085,7 @@ function uib_study_field_default_field_instances() {
         'rows' => 40,
       ),
       'type' => 'text_textarea',
-      'weight' => 46,
+      'weight' => 27,
     ),
   );
 
@@ -2683,6 +2780,8 @@ function uib_study_field_default_field_instances() {
   t('Study media');
   t('Study media (en)');
   t('Study points rank');
+  t('Study start');
+  t('Study start extra');
   t('Study text');
   t('Study text image captions');
   t('Title');

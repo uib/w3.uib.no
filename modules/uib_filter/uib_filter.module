@@ -39,6 +39,10 @@ function uib_filter__process($text, $filter) {
       switch ($matches[1]) {
       case 'testimonial':
         return '(* testimonial *)';
+        break;
+      case 'studyinfo':
+        return '(* studyinfo *)';
+        break;
       case 'today':
         return date($arg ? $arg : 'Y-m-d');
       case 'user':

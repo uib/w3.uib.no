@@ -83,7 +83,7 @@ function uib_study_strongarm() {
           'weight' => '9',
         ),
         'metatags' => array(
-          'weight' => '22',
+          'weight' => '20',
         ),
       ),
       'display' => array(),
