@@ -426,6 +426,12 @@
       // create pagination
       var maxpages = 9;
       var countpages = Math.ceil(data.hits.total / $.uib_search.size);
+      var totalpages = countpages;
+      var countfrom = 0;
+      if (($.uib_search.size*$.uib_search.break) < $.uib_search.from) {
+        var currentpage = ($.uib_search.from/$.uib_search.size);
+        countfrom = totalpages < (currentpage-$.uib_search.break+maxpages) ? totalpages-maxpages : (currentpage-$.uib_search.break);
+      }
       countpages = countpages > maxpages ? maxpages : countpages;
       if (countpages>1) {
         // wrapper
@@ -442,11 +448,11 @@
         }
         prev.appendTo(wrapper);
         for (var i = 0; i < countpages; i++) {
-          var from = i * $.uib_search.size;
+          var from = (i+countfrom) * $.uib_search.size;
           var link = $('<a></a>')
           .addClass('resultpage')
             .attr('data-from', from)
-            .text(i + 1);
+            .text(i + countfrom + 1);
           if (from == $.uib_search.from) {
             link.addClass('current');
           }
@@ -456,7 +462,7 @@
           .addClass('next')
           .attr('data-from', 'next')
           .text(Drupal.t('Next'));
-        if ( $.uib_search.from == $.uib_search.size * (countpages - 1)) {
+        if ( $.uib_search.from == $.uib_search.size * (totalpages - 1)) {
           next.addClass('disable');
         }
         next.appendTo(wrapper);
@@ -600,6 +606,7 @@
     $.uib_search = {
       from: 0,
       size: 15,
+      break: 4,
       resultsselector: 'form#uib-search-form .results',
       lang: $('html').attr('lang'),
       currentquery: '',

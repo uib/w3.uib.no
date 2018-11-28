@@ -5180,9 +5180,7 @@ div.field-item {
           margin: 0 5px;
           padding: 4px 10px; } }
     .block-uib-search .lightbox .pagination-wrapper .resultpage {
-      width: 31px;
-      height: 31px;
-      overflow: hidden; }
+      height: 31px; }
     .block-uib-search .lightbox .pagination-wrapper .prev, .block-uib-search .lightbox .pagination-wrapper .next {
       height: 36px;
       background-repeat: no-repeat; }
