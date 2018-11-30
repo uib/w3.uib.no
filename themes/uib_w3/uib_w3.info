@@ -4,7 +4,9 @@ core = 7.x
 engine = phptemplate
 
 regions[header] = Header
+regions[employee_header] = Employee header
 regions[subheader] = Subheader
+regions[employee_subheader] = Employee subheader
 regions[content_top] = Content top
 regions[content] = Content
 regions[content_bottom] = Content bottom
