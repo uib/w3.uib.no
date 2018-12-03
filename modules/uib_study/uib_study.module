@@ -955,6 +955,26 @@ EOD;
           'label' => 'hidden',
           'weight' => '-10',
         ));
+        $render['contact'] = array(
+          '#type' => 'container',
+          '#attributes' => array('class' => 'uib-study__contact'),
+          '#weight' => 10,
+          'heading' => array(
+            '#type' => 'html_tag',
+            '#tag' => 'h3',
+            '#value' => t('More information'),
+          ),
+          'phone' => field_view_field('node', $node, 'field_uib_study_phone', array(
+            'weight' => 0,
+          )),
+          'mail' => field_view_field('node', $node, 'field_uib_study_mail', array(
+            'weight' => 1,
+          )),
+          'contact_info' => field_view_field('node', $node, 'field_uib_study_contact_info', array(
+            'label' => 'hidden',
+            'weight' => 2,
+          )),
+        );
         $block['title'] = '';
         $block['content'] = array(
           '#type' => 'markup',
@@ -2586,6 +2606,9 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_study_image_captions']);
       hide($form['field_uib_study_start']);
       hide($form['field_uib_study_start_extra']);
+      hide($form['field_uib_study_phone']);
+      hide($form['field_uib_study_mail']);
+      hide($form['field_uib_study_contact_info']);
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
