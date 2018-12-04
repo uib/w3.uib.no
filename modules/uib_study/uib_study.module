@@ -955,26 +955,28 @@ EOD;
           'label' => 'hidden',
           'weight' => '-10',
         ));
-        $render['contact'] = array(
-          '#type' => 'container',
-          '#attributes' => array('class' => 'uib-study__contact'),
-          '#weight' => 10,
-          'heading' => array(
-            '#type' => 'html_tag',
-            '#tag' => 'h3',
-            '#value' => t('More information'),
-          ),
-          'phone' => field_view_field('node', $node, 'field_uib_study_phone', array(
-            'weight' => 0,
-          )),
-          'mail' => field_view_field('node', $node, 'field_uib_study_mail', array(
-            'weight' => 1,
-          )),
-          'contact_info' => field_view_field('node', $node, 'field_uib_study_contact_info', array(
-            'label' => 'hidden',
-            'weight' => 2,
-          )),
-        );
+        if (!empty($node->field_uib_study_phone) || !empty($node->field_uib_study_mail) || !empty($node->field_uib_study_contact_info)) {
+          $render['contact'] = array(
+            '#type' => 'container',
+            '#attributes' => array('class' => 'uib-study__contact'),
+            '#weight' => 10,
+            'heading' => array(
+              '#type' => 'html_tag',
+              '#tag' => 'h3',
+              '#value' => t('More information'),
+            ),
+            'phone' => field_view_field('node', $node, 'field_uib_study_phone', array(
+              'weight' => 0,
+            )),
+            'mail' => field_view_field('node', $node, 'field_uib_study_mail', array(
+              'weight' => 1,
+            )),
+            'contact_info' => field_view_field('node', $node, 'field_uib_study_contact_info', array(
+              'label' => 'hidden',
+              'weight' => 2,
+            )),
+          );
+        }
         $block['title'] = '';
         $block['content'] = array(
           '#type' => 'markup',
