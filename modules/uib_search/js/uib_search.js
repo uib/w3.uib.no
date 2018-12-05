@@ -425,6 +425,14 @@
 
       // create pagination
       var maxpages = 9;
+      if (window.innerWidth < 600) {
+        maxpages = 6;
+        $.uib_search.break=3;
+        if (1400 < $.uib_search.from) {
+          maxpages = 5;
+          $.uib_search.break=2;
+        }
+      }
       var countpages = Math.ceil(data.hits.total / $.uib_search.size);
       var totalpages = countpages;
       var countfrom = 0;

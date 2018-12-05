@@ -5163,7 +5163,7 @@ div.field-item {
         text-decoration: none; }
         .block-uib-search .lightbox .pagination-wrapper > a.disable:hover {
           cursor: default; }
-      .block-uib-search .lightbox .pagination-wrapper > a[data-from="80"], .block-uib-search .lightbox .pagination-wrapper > a[data-from="70"], .block-uib-search .lightbox .pagination-wrapper > a[data-from="60"], .block-uib-search .lightbox .pagination-wrapper > a[data-from="50"] {
+      .block-uib-search .lightbox .pagination-wrapper > a[data-from="80"], .block-uib-search .lightbox .pagination-wrapper > a[data-from="70"], .block-uib-search .lightbox .pagination-wrapper > a[data-from="50"] {
         display: none; }
       @media (min-width: 400px) {
         .block-uib-search .lightbox .pagination-wrapper > a[data-from="50"] {
