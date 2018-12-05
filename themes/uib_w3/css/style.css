@@ -3932,7 +3932,7 @@ a,
   .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-main-media:first-child::before,
   .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-media:first-child::before,
   .field-name-field-uib-profiled-message .no-kicker .field-name-field-uib-study-image:first-child::before {
-    content: "\00a0";
+    content: "";
     display: block;
     border-bottom: 1px solid #cf3c3a;
     margin-bottom: .2rem;
