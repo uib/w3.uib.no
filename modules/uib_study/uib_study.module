@@ -976,6 +976,10 @@ EOD;
               'weight' => 2,
             )),
           );
+          if (!empty($render['contact']['mail'])) {
+            $mail = $render['contact']['mail'][0]['#markup'];
+            $render['contact']['mail'][0]['#markup'] = l($mail, 'mailto:' . $mail, array('absolute' => TRUE));
+          }
         }
         $block['title'] = '';
         $block['content'] = array(
