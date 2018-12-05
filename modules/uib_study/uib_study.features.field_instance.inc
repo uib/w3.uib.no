@@ -1274,15 +1274,15 @@ function uib_study_field_default_field_instances() {
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
-          'basic_html' => 'basic_html',
-          'feature_text_html' => 'feature_text_html',
+          'basic_html' => 0,
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
-          'plain_text' => 'plain_text',
+          'plain_text' => 0,
           'restricted_html' => 'restricted_html',
-          'study_text_html' => 'study_text_html',
-          'uib_markdown_limited' => 'uib_markdown_limited',
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
-        'allowed_formats_toggle' => 0,
+        'allowed_formats_toggle' => 1,
         'default_order_toggle' => 0,
         'default_order_wrapper' => array(
           'formats' => array(
@@ -1311,7 +1311,7 @@ function uib_study_field_default_field_instances() {
         ),
       ),
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
