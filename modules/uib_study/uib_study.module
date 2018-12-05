@@ -880,7 +880,7 @@ EOD;
           'label' => 'hidden',
           'weight' => '0',
         ));
-        $study_text_w3 = $render['study_text'][0]['#markup'];
+        $study_text_w3 = empty($render['study_text']) ? '' : $render['study_text'][0]['#markup'];
         $study_text_w3 = str_replace(array('<table>','</table>'), array('<div class="uib-study__table"><table>','</table></div>'), $study_text_w3);
         if (strpos($study_text_w3, '(* testimonial *)') !== 0) {
           $testimonial = uib_study__get_testimonial();
@@ -921,7 +921,7 @@ EOD;
             );
             foreach($node->field_uib_study_start['und'] as $key => $ss) {
               $studystart .= $start[$lang][$ss['value']];
-              $studystart .= $key < count($node->field_uib_study_start['und']) - 1 ? ', ' : '';
+              $studystart .= $key < count($node->field_uib_study_start['und']) - 1 ? ' ' . t('and') . ' ' : '';
             }
             if (!empty($node->field_uib_study_start_extra)) {
               if (isset($node->field_uib_study_start_extra[$lang])) {
@@ -964,6 +964,7 @@ EOD;
               '#type' => 'html_tag',
               '#tag' => 'h3',
               '#value' => t('More information'),
+              '#weight' => -5,
             ),
             'phone' => field_view_field('node', $node, 'field_uib_study_phone', array(
               'weight' => 0,
@@ -1007,7 +1008,7 @@ EOD;
 
       $node = menu_get_object();
       $dropdown = array();
-      if ($node) {
+      if ($node && !uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
         if (!empty($node->{'field_uib_main_media_' . $language->language})) {
           $study_media = field_view_field(
             'node',
@@ -1505,10 +1506,12 @@ EOD;
         }
         if ($data['grunnstudium'] && $language->language == 'nb') {
           $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
-          $points = strip_tags($points['#text']);
-          $points = explode('/', $points);
-          $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
-          $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
+          if (!empty($points)) {
+            $points = strip_tags($points['#text']);
+            $points = explode('/', $points);
+            $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
+            $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
+          }
         }
         $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
         $seats = uib_study__extract_study_info($data_2, $seats_info);

@@ -10143,6 +10143,10 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
       flex-direction: column; }
     .node-type-uib-study.uib-study__program--new .content-top-wrapper #block-uib-study-study-facts .study-facts__label {
       font-weight: bold; }
+    .node-type-uib-study.uib-study__program--new .content-top-wrapper #block-uib-study-study-facts .study-facts__value {
+      text-transform: lowercase; }
+      .node-type-uib-study.uib-study__program--new .content-top-wrapper #block-uib-study-study-facts .study-facts__value::first-letter {
+        text-transform: uppercase; }
 .node-type-uib-study.uib-study__program--new .content-main-wrapper {
   padding: 1rem 0; }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .region-content {
@@ -10196,9 +10200,10 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
       font-weight: bold;
       clear: left; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dd {
-      margin-left: 0.5rem; }
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dt,
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dd {
+      margin-left: 0; }
+      .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dd::first-letter {
+        margin-left: 0.5rem; }
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dt {
       float: left; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info .dt,
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info .uib-study-plan {
