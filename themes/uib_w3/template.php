@@ -1109,6 +1109,11 @@ SCRIPT;
     unset($variables['page']['content_top']['title']);
   }
 
+  // remove node title from employee pages
+  if ($variables['node']->nid == 1 || $variables['node']->nid == 2) {
+    unset($variables['page']['content_top']['title']);
+  }
+
   if(variable_get('uib_hubro_chatbot') && isset($variables['node'])){
     if ($variables['node']->nid == 17507 || (isset($variables['node']->field_uib_area['und'][0]['target_id']) && $variables['node']->field_uib_area['und'][0]['target_id'] == 17507)) {
       drupal_add_js('http' . (isset($_SERVER['HTTPS']) ? 's' : '').'://'. $_SERVER['HTTP_HOST'] . '/watsonbot/public/js/addchatbot.js');
