@@ -10200,9 +10200,11 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
       font-weight: bold;
       clear: left; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dd {
-      margin-left: 0; }
+      margin-left: 0;
+      text-transform: lowercase; }
       .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dd::first-letter {
-        margin-left: 0.5rem; }
+        margin-left: 0.5rem;
+        text-transform: uppercase; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info dt {
       float: left; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info .dt,
