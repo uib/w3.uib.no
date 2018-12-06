@@ -41,8 +41,8 @@ function uib_media__insert_captions($text, $node, $lang='und') {
         $captions[$field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imageindex'][0]['#markup']] = $field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imagecaption'][0]['#markup'];
       }
     }
+    return uib_media__find_media_in_text($text, $captions);
   }
-  return uib_media__find_media_in_text($text, $captions);
 }
 function uib_media__find_media_in_text($text, $captions, $num = 0, $text_with_captions = '') {
   $num++;
