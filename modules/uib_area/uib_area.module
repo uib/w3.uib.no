@@ -491,10 +491,6 @@ function uib_area_block_view($delta='') {
  * Implements hook_preprocess_HOOK().
  */
 function uib_area_preprocess_page(&$variables) {
-  $current_area = uib_area__get_current();
-  if ($current_area->nid == 1 || $current_area->nid == 2) {
-    $variables['theme_hook_suggestions'][] = 'page__employee';
-  }
   if (isset($variables['page']['above_content']['uib_area_area_banner']['#markup'])) {
     $markup = $variables['page']['above_content']['uib_area_area_banner']['#markup'];
     if (preg_match('/<!--\s*Resources?:\s*(.+?)\s*-->/', $markup, $matches)) {

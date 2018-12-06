@@ -1077,38 +1077,6 @@ SCRIPT;
   if (__uib_w3__empty_region($variables['page']['content_bottom'])) $variables['page']['content_bottom'] = array();
   if (__uib_w3__empty_region($variables['page']['footer_top'])) $variables['page']['footer_top'] = array();
 
-  if ($variables['node']->nid == 1 || $variables['node']->nid == 2) {
-    $variables['page']['employee_subheader']['area_menu'] = $variables['page']['subheader']['area_menu'];
-    $variables['page']['employee_header']['locale_language'] = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array('locale_language'),
-      ),
-      '0' => array(
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#attributes' => array('class' => 'locale_span'),
-        '#value' => $variables['page']['header']['locale_language']['#markup'],
-      ),
-    );
-    $variables['page']['employee_header']['home'] = array(
-      '#type' => 'container',
-      '#attributes' => array(
-        'class' => array('employee_home_link'),
-      ),
-      '0' => array(
-        '#type' => 'link',
-        '#tag' => 'span',
-        '#title' => t('To uib.no'),
-        '#href' => $base_path,
-        '#weight' => '3',
-      ),
-    );
-    $variables['page']['employee_header']['search'] = $variables['page']['header']['search'];
-    $variables['page']['employee_header']['search']['#weight'] = '10';
-    unset($variables['page']['content_top']['title']);
-  }
-
   if(variable_get('uib_hubro_chatbot') && isset($variables['node'])){
     if ($variables['node']->nid == 17507 || (isset($variables['node']->field_uib_area['und'][0]['target_id']) && $variables['node']->field_uib_area['und'][0]['target_id'] == 17507)) {
       drupal_add_js('http' . (isset($_SERVER['HTTPS']) ? 's' : '').'://'. $_SERVER['HTTP_HOST'] . '/watsonbot/public/js/addchatbot.js');
