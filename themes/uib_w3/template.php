@@ -1079,7 +1079,13 @@ SCRIPT;
 
   if ($variables['node']->nid == 1 || $variables['node']->nid == 2) {
     $variables['page']['employee_subheader']['area_menu'] = $variables['page']['subheader']['area_menu'];
-    $variables['page']['employee_header']['locale_language'] = array(
+    $variables['page']['employee_header']['links'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => array('class' => 'link_container'),
+      ),
+    );
+    $variables['page']['employee_header']['links']['locale_language'] = array(
       '#type' => 'container',
       '#attributes' => array(
         'class' => array('locale_language'),
@@ -1091,7 +1097,7 @@ SCRIPT;
         '#value' => $variables['page']['header']['locale_language']['#markup'],
       ),
     );
-    $variables['page']['employee_header']['home'] = array(
+    $variables['page']['employee_header']['links']['home'] = array(
       '#type' => 'container',
       '#attributes' => array(
         'class' => array('employee_home_link'),
