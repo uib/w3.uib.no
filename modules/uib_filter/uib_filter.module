@@ -43,6 +43,12 @@ function uib_filter__process($text, $filter) {
       case 'studyinfo':
         return '(* studyinfo *)';
         break;
+      case 'construction':
+        return '(* construction *)';
+        break;
+      case 'exchange':
+        return '(* exchange *)';
+        break;
       case 'today':
         return date($arg ? $arg : 'Y-m-d');
       case 'user':

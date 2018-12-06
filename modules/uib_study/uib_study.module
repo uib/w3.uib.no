@@ -887,6 +887,12 @@ EOD;
           $testimonial = render($testimonial);
           $study_text_w3 = str_replace('<p>(* testimonial *)</p>', $testimonial, $study_text_w3);
         }
+        if (strpos($study_text_w3, '<p>(* construction *)</p>') !== 0) {
+          $study_text_w3 = str_replace('<p>(* construction *)</p>', '', $study_text_w3);
+        }
+        if (strpos($study_text_w3, '<p>(* exchange *)</p>') !== 0) {
+          $study_text_w3 = str_replace('<p>(* exchange *)</p>', '', $study_text_w3);
+        }
         if (strpos($study_text_w3, '(* studyinfo *)') !== 0) {
           $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
           $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);

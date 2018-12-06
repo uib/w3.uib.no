@@ -10,6 +10,16 @@
     image: 'SITAT_MED_NAVN.svg',
     description: 'Relevant testimonial for this study',
     html: '(* testimonial *)'
+   },{
+    title: 'Table link',
+    image: 'construction_link.png',
+    description: 'Construction link for this study',
+    html: '(* construction *)'
+   },{
+    title: 'Exchange link',
+    image: 'construction_link.png',
+    description: 'Exchange link for this study',
+    html: '(* exchange *)'
    }
   ]
 });
