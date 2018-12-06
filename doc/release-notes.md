@@ -1,3 +1,12 @@
+# Release 106 _2018-12-06_
+- Fortsatt arbeidet med utviklingen av nye studieprogrammaler #21389 #21404 #21440 #21475
+- Forbedret utformingen av søket #20717
+- Økt antallet sider i søket #21414
+- Oppdatert script som fjerner inaktive innholdsprodusenter #21431
+- Skrudd av cronjobb som sletter ubrukte kompetansefelt #21438
+- Rettet feil der det var for mye luft mellom informasjonselementene i ansattlister #21436
+- Fjernet strek i stikktittelfeltet som dukket opp på eksternt innhold uten stikktittel i fremhevet innhold på satsingsområder #21476
+
 # Release 105 _2018-11-22_
 - Rettet feil der bilder i fremhevede artikler ikke var klikkbare (oppstod for artikler med kun små bilder) #20846
 - Rettet feil der fremhevet eksternt innhold på områder i visse tilfeller ikke tok seg godt ut #20858
