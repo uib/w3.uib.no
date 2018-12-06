@@ -10213,6 +10213,9 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact {
     border-left: solid #ae2f2f 0.1875rem;
     padding-left: 1.5rem; }
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact h3, .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact p {
+      margin-left: 0;
+      margin-right: 0; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact div {
       font-size: 1.25rem; }
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact .field-name-field-uib-study-phone .field-label,
