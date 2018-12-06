@@ -912,7 +912,7 @@ EOD;
             $start = array(
               'nb' => array(
                 'spring' => 'Vår',
-                'autumn' => 'Høst',
+                'autumn' => 'Haust',
               ),
               'en' => array(
                 'spring' => 'Spring',
