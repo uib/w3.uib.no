@@ -89,6 +89,15 @@ function uib_study__get_form() {
 
 function uib_study__filter_form() {
   $selected = uib_study__get_filter_selected();
+  $param = drupal_get_query_parameters();
+  if (count($selected) == 0 && count($param) != 0) {
+    foreach ($param as $key => $value) {
+      if ($key == 'master') $selected[] = 'masterprogram';
+      if ($key == 'bachelor') $selected[] = 'bachelorprogram';
+      if ($key == 'masterprof') $selected[] = 'integrertemasterpr-profesjonsst';
+      if ($key == 'one' || $key == 'aar') $selected[] = 'arsstudium';
+    }
+  }
   $form['all-categories'] = array(
     '#type' => 'checkbox',
     '#title' => t('All study categories'),
@@ -206,6 +215,15 @@ function uib_study__get_studyprogrammes_by_alpha() {
   $studyprogrammes = drupal_json_decode($studyprogrammes->data);
   $alpha_groups = array();
   $selected = uib_study__get_filter_selected();
+  $param = drupal_get_query_parameters();
+  if (count($selected) == 0 && count($param) != 0) {
+    foreach ($param as $key => $value) {
+      if ($key == 'master') $selected[] = 'masterprogram';
+      if ($key == 'bachelor') $selected[] = 'bachelorprogram';
+      if ($key == 'masterprof') $selected[] = 'integrertemasterpr-profesjonsst';
+      if ($key == 'one' || $key == 'aar') $selected[] = 'arsstudium';
+    }
+  }
   foreach ($studyprogrammes['nodes'] as $study) {
     $first_letter = substr($study['node']['field_uib_study_title'], 0, 1);
     $study_code = $study['node']['field_uib_study_code'];
