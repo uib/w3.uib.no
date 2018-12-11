@@ -10175,33 +10175,47 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact .field-name-field-uib-study-mail .field-label {
       background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDBweCIgaGVpZ2h0PSIyOXB4IiB2aWV3Qm94PSIwIDAgNDAgMjkiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjQgKDY3Mzc4KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5Lb250YWt0PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Ik9NUsOFREVGT1JTSURFLU1PQklMLSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI3LjAwMDAwMCwgLTI2OTIuMDAwMDAwKSIgZmlsbD0iI0NGM0MzQSI+CiAgICAgICAgICAgIDxnIGlkPSJCdW5uIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMi4wMDAwMDAsIDIyMjcuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iS29udGFrdC0rLVNvTWUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI5LjAwMDAwMCwgNDIwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNi43MzQ2OTM5LDQ1IEwyLjQ0ODk3OTU5LDQ1IEMxLjA5NjMyNjUzLDQ1IDAsNDYuMTEyNzcxNCAwLDQ3LjQ4NTcxNDMgTDAsNzAuNjg1NzE0MyBDMCw3Mi4wNTg2NTcxIDEuMDk2MzI2NTMsNzMuMTcxNDI4NiAyLjQ0ODk3OTU5LDczLjE3MTQyODYgTDM2LjczNDY5MzksNzMuMTcxNDI4NiBDMzguMDg4MTYzMyw3My4xNzE0Mjg2IDM5LjE4MzY3MzUsNzIuMDU4NjU3MSAzOS4xODM2NzM1LDcwLjY4NTcxNDMgTDM5LjE4MzY3MzUsNDcuNDg1NzE0MyBDMzkuMTgzNjczNSw0Ni4xMTI3NzE0IDM4LjA4ODE2MzMsNDUgMzYuNzM0NjkzOSw0NSBMMzYuNzM0NjkzOSw0NSBaIE0zNy40MTc5NTkyLDQ4LjE5ODI4NTcgTDIzLjczODc3NTUsNjEuNjk3MzcxNCBDMjIuNTk1MTAyLDYyLjgyNTg4NTcgMjEuMDkzMDYxMiw2My4zODg0ODU3IDE5LjU5MTgzNjcsNjMuMzg4NDg1NyBDMTguMDg5Nzk1OSw2My4zODg0ODU3IDE2LjU4ODU3MTQsNjIuODI1ODg1NyAxNS40NDU3MTQzLDYxLjY5NzM3MTQgTDEuNzY2NTMwNjEsNDguMTk4Mjg1NyBDMS4zNzg3NzU1MSw0Ny44MTU0ODU3IDEuMzY5Nzk1OTIsNDcuMTg2NiAxLjc0NjkzODc4LDQ2Ljc5MjIgQzIuMTI0MDgxNjMsNDYuMzk3OCAyLjc0NDQ4OTgsNDYuMzkwMzQyOSAzLjEzMjI0NDksNDYuNzczMTQyOSBMMTYuODEyMjQ0OSw2MC4yNzE0IEMxOC4zNDQ0ODk4LDYxLjc4NDM3MTQgMjAuODQsNjEuNzg0MzcxNCAyMi4zNzIyNDQ5LDYwLjI3MTQgTDM2LjA1MjI0NDksNDYuNzczMTQyOSBDMzYuNDM5MTgzNyw0Ni4zOTAzNDI5IDM3LjA1OTU5MTgsNDYuMzk3OCAzNy40Mzc1NTEsNDYuNzkyMiBDMzcuODE0NjkzOSw0Ny4xODY2IDM3LjgwNTcxNDMsNDcuODE1NDg1NyAzNy40MTc5NTkyLDQ4LjE5ODI4NTcgTDM3LjQxNzk1OTIsNDguMTk4Mjg1NyBaIiBpZD0iS29udGFrdCI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4='); }
 
-body[class*="table"],
-body[class*="tabell"] {
-  background: pink; }
-  body[class*="table"] .uib-study-construction caption,
-  body[class*="tabell"] .uib-study-construction caption {
-    font-size: 1.5rem;
-    background: #d5d5d5; }
-  body[class*="table"] .uib-study-construction .uib-study-specialization,
-  body[class*="tabell"] .uib-study-construction .uib-study-specialization {
-    float: none;
-    width: 100%; }
-  body[class*="table"] .uib-study-construction .uib-cell-indent-1,
-  body[class*="table"] .uib-study-construction .uib-cell-indent-2,
-  body[class*="table"] .uib-study-construction .uib-cell-indent-1 + td,
-  body[class*="table"] .uib-study-construction .uib-cell-indent-2 + td,
-  body[class*="tabell"] .uib-study-construction .uib-cell-indent-1,
-  body[class*="tabell"] .uib-study-construction .uib-cell-indent-2,
-  body[class*="tabell"] .uib-study-construction .uib-cell-indent-1 + td,
-  body[class*="tabell"] .uib-study-construction .uib-cell-indent-2 + td {
-    background: #dcd5cf; }
-  body[class*="table"] .uib-study-construction caption, body[class*="table"] .uib-study-construction .uib-cell-indent-1 + td,
-  body[class*="tabell"] .uib-study-construction caption,
-  body[class*="tabell"] .uib-study-construction .uib-cell-indent-1 + td {
-    font-weight: bold; }
-  body[class*="table"] .uib-study-construction .odd,
-  body[class*="tabell"] .uib-study-construction .odd {
-    background: #eae6e2; }
+body[class*="table"] .uib-study-construction caption,
+body[class*="tabell"] .uib-study-construction caption {
+  font-size: 1.5rem;
+  background: #d5d5d5; }
+body[class*="table"] .uib-study-construction .uib-study-specialization,
+body[class*="tabell"] .uib-study-construction .uib-study-specialization {
+  float: none;
+  width: 100%; }
+body[class*="table"] .uib-study-construction .uib-cell-indent-1,
+body[class*="table"] .uib-study-construction .uib-cell-indent-2,
+body[class*="table"] .uib-study-construction .uib-cell-indent-1 + td,
+body[class*="table"] .uib-study-construction .uib-cell-indent-2 + td,
+body[class*="tabell"] .uib-study-construction .uib-cell-indent-1,
+body[class*="tabell"] .uib-study-construction .uib-cell-indent-2,
+body[class*="tabell"] .uib-study-construction .uib-cell-indent-1 + td,
+body[class*="tabell"] .uib-study-construction .uib-cell-indent-2 + td {
+  background: #dcd5cf; }
+body[class*="table"] .uib-study-construction caption, body[class*="table"] .uib-study-construction .uib-cell-indent-1 + td,
+body[class*="tabell"] .uib-study-construction caption,
+body[class*="tabell"] .uib-study-construction .uib-cell-indent-1 + td {
+  font-weight: bold; }
+body[class*="table"] .uib-study-construction .odd,
+body[class*="tabell"] .uib-study-construction .odd {
+  background: #eae6e2; }
+
+body[class*="utveksling"] .uib_exchange_agreements h4,
+body[class*="studyabroad"] .uib_exchange_agreements h4 {
+  margin: 0; }
+body[class*="utveksling"] .uib_exchange_agreements ul,
+body[class*="studyabroad"] .uib_exchange_agreements ul {
+  list-style: none;
+  padding: 0; }
+body[class*="utveksling"] .uib_exchange_agreements h4 + ul,
+body[class*="studyabroad"] .uib_exchange_agreements h4 + ul {
+  margin-bottom: 1.25rem; }
+  body[class*="utveksling"] .uib_exchange_agreements h4 + ul li,
+  body[class*="studyabroad"] .uib_exchange_agreements h4 + ul li {
+    margin-bottom: 0.625rem; }
+body[class*="utveksling"] .uib_exchange_agreements a,
+body[class*="studyabroad"] .uib_exchange_agreements a {
+  font-weight: normal; }
 
 @media screen and (min-width: 600px) {
   .node-uib-testimonial:not(.node-quote) .field-name-field-uib-text, .node-uib-testimonial:not(.node-quote) .group-article-sidebar {
