@@ -28,8 +28,8 @@ function uib_article_menu() {
     );
   $items['node/%/tabdelete'] = array(
     'title' => 'Delete',
-    'access callback' => 'node_access',
-    'access arguments' => array('delete', 1),
+    'access callback' => 'uib_article__delete_access',
+    'access arguments' => array(1),
     'page callback' => 'uib_article__delete_tab',
     'page arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
@@ -804,6 +804,16 @@ function uib_article__access_check($node) {
         return TRUE;
       }
     }
+  }
+  return FALSE;
+}
+
+function uib_article__delete_access($node) {
+  if (!empty($node)) {
+    $node = node_load($node);
+    $area = uib_area__get_current();
+    global $user;
+    if (!uib_area_node_access($node, 'delete', $user) || in_array('superbruker', $user->roles) || $user->uid == 1) return TRUE;
   }
   return FALSE;
 }
