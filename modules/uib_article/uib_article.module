@@ -811,7 +811,6 @@ function uib_article__access_check($node) {
 function uib_article__delete_access($node) {
   if (!empty($node)) {
     $node = node_load($node);
-    $area = uib_area__get_current();
     global $user;
     if (!uib_area_node_access($node, 'delete', $user) || in_array('superbruker', $user->roles) || $user->uid == 1) return TRUE;
   }
