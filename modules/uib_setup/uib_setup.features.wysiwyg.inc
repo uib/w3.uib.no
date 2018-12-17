@@ -305,6 +305,7 @@ function uib_setup_wysiwyg_default_profiles() {
           'SpecialChar' => 1,
           'Format' => 1,
           'Table' => 1,
+          'Maximize' => 1,
           'Templates' => 1,
         ),
         'picture_ckeditor' => array(
