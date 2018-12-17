@@ -1105,6 +1105,18 @@ blockquote {
     padding: 0;
     margin-bottom: 1rem; }
 
+.node-type-uib-article:not(.uib-article__feature-article) .content-main-wrapper .field-name-field-uib-text blockquote p {
+  margin-bottom: 1rem;
+  padding-right: 0;
+  font-size: 2.1875rem; }
+  .node-type-uib-article:not(.uib-article__feature-article) .content-main-wrapper .field-name-field-uib-text blockquote p.uib-feature__quote-author {
+    font-size: 1.5rem;
+    font-style: italic; }
+    .node-type-uib-article:not(.uib-article__feature-article) .content-main-wrapper .field-name-field-uib-text blockquote p.uib-feature__quote-author:before, .node-type-uib-article:not(.uib-article__feature-article) .content-main-wrapper .field-name-field-uib-text blockquote p.uib-feature__quote-author:after {
+      content: " - ";
+      padding: 0 0.5rem;
+      display: inline-block; }
+
 a,
 .ui-widget-content a {
   color: #0075af;
@@ -8750,6 +8762,70 @@ body #mc_embed_signup div.mce_inline_error {
     margin-right: 0;
     clear: none; } }
 
+.field-name-field-uib-text .media-feature_image_portrait,
+.field-name-field-uib-text .media-feature_article_standard {
+  margin: 0 1.25rem 2rem; }
+  @media (min-width: 49.875rem) {
+    .field-name-field-uib-text .media-feature_image_portrait,
+    .field-name-field-uib-text .media-feature_article_standard {
+      margin: 0 auto 2rem; } }
+  .field-name-field-uib-text .media-feature_image_portrait img, .field-name-field-uib-text .media-feature_image_portrait iframe,
+  .field-name-field-uib-text .media-feature_article_standard img,
+  .field-name-field-uib-text .media-feature_article_standard iframe {
+    margin-bottom: 1.25rem; }
+  .field-name-field-uib-text .media-feature_image_portrait picture ~ div, .field-name-field-uib-text .media-feature_image_portrait picture ~ p,
+  .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ div,
+  .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ p,
+  .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ div,
+  .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ p,
+  .field-name-field-uib-text .media-feature_article_standard picture ~ div,
+  .field-name-field-uib-text .media-feature_article_standard picture ~ p,
+  .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ div,
+  .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ p,
+  .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ div,
+  .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ p {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1rem;
+    color: #606060;
+    display: inline-block;
+    margin: 0 0.5rem 0 0; }
+    .field-name-field-uib-text .media-feature_image_portrait picture ~ div > div, .field-name-field-uib-text .media-feature_image_portrait picture ~ p > div,
+    .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ div > div,
+    .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ p > div,
+    .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ div > div,
+    .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ p > div,
+    .field-name-field-uib-text .media-feature_article_standard picture ~ div > div,
+    .field-name-field-uib-text .media-feature_article_standard picture ~ p > div,
+    .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ div > div,
+    .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ p > div,
+    .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ div > div,
+    .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ p > div {
+      float: none;
+      display: inline-block;
+      padding-right: 0; }
+    .field-name-field-uib-text .media-feature_image_portrait picture ~ div:after, .field-name-field-uib-text .media-feature_image_portrait picture ~ p:after,
+    .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ div:after,
+    .field-name-field-uib-text .media-feature_image_portrait .media-youtube-video ~ p:after,
+    .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ div:after,
+    .field-name-field-uib-text .media-feature_image_portrait .media-vimeo-video ~ p:after,
+    .field-name-field-uib-text .media-feature_article_standard picture ~ div:after,
+    .field-name-field-uib-text .media-feature_article_standard picture ~ p:after,
+    .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ div:after,
+    .field-name-field-uib-text .media-feature_article_standard .media-youtube-video ~ p:after,
+    .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ div:after,
+    .field-name-field-uib-text .media-feature_article_standard .media-vimeo-video ~ p:after {
+      display: none; }
+.field-name-field-uib-text .media-feature_image_portrait img {
+  margin: 0;
+  max-width: 70%; }
+  @media (min-width: 500px) {
+    .field-name-field-uib-text .media-feature_image_portrait img {
+      margin: 0 auto;
+      max-width: 40%; } }
+  @media (min-width: 49.875rem) {
+    .field-name-field-uib-text .media-feature_image_portrait img {
+      max-width: 40%; } }
+
 @media screen and (min-width: 960px) {
   .node-type-uib-content-list .node-uib-content-list .node-uib-article .main-bar {
     width: 66.10169%;
@@ -10108,20 +10184,35 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
       .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__contact {
         margin-left: auto;
         margin-right: auto; } }
-  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture img, .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture iframe,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video img,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video iframe,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video img,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video iframe {
+    margin-bottom: 1.25rem; }
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div, .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ p,
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ div,
-  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div {
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ p,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ p {
+    font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+    font-size: 1rem;
+    color: #606060;
     display: inline-block;
     margin: 0 0.5rem 0 0; }
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div > div,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div > div, .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ p > div,
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ div > div,
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div > div {
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ p > div,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div > div,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ p > div {
       float: none;
       display: inline-block;
       padding-right: 0; }
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div:after,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ div:after, .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container picture ~ p:after,
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ div:after,
-    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div:after {
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-youtube-video ~ p:after,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ div:after,
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-element-container .media-vimeo-video ~ p:after {
       display: none; }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info {
     border-left: solid #ae2f2f 0.1875rem;

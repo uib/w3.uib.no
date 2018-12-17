@@ -69,6 +69,9 @@
         case 'feature_text_html':
           $uib_templates = 'uib_templates';
           break;
+        case 'basic_html':
+          $uib_templates = 'uib_basic_templates';
+          break;
       }
       $settings['templates'] = $uib_templates;
       $settings['templates_files'] = array('/sites/all/modules/uib/uib_ckeditor_config/plugins/templates/' . $uib_templates . '.js');

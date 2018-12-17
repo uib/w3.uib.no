@@ -434,7 +434,7 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       'field_uib_media',
       'field_uib_imagecaptions',
       'field_uib_imagecaptions2',
-      '',
+      'field_uib_text_image_captions',
     );
     foreach ($hide_in_feature_article as $hide) {
       $form[$hide]['#states'] = array(
@@ -511,6 +511,10 @@ function uib_article_preprocess_node(&$variables) {
       );
       $variables['content']['ical_link'] = $iCal_link;
       $variables['elements']['#group_children']['ical_link'] = 'group_event_info';
+    }
+    if (!empty($variables['field_uib_text_image_captions'])) {
+      $node = menu_get_object();
+      $variables['content']['field_uib_text'][0]['#markup'] = uib_media__insert_captions($variables['content']['field_uib_text'][0]['#markup'], $node);
     }
   }
   //adding gmap, changing the content of the rendered item

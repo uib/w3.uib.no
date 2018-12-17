@@ -254,7 +254,11 @@ function uib_study_field_default_field_instances() {
   // 'field_collection_item-field_uib_study_image_captions-field_uib_imageindex'.
   $field_instances['field_collection_item-field_uib_study_image_captions-field_uib_imageindex'] = array(
     'bundle' => 'field_uib_study_image_captions',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(

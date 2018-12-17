@@ -33,9 +33,11 @@ function uib_media_form_file_entity_add_upload_alter(&$form, &$form_state, $form
 }
 
 function uib_media__insert_captions($text, $node, $lang='und') {
-  if (isset($node->field_uib_study_image_captions[$lang])) {
+  if (isset($node->field_uib_study_image_captions[$lang]) || isset($node->field_uib_text_image_captions[$lang])) {
     $captions = array();
-    $field_collection = field_view_field('node', $node, 'field_uib_study_image_captions');
+    $field_collection = array();
+    if ($node->type == 'uib_study') $field_collection = field_view_field('node', $node, 'field_uib_study_image_captions');
+    if ($node->type == 'uib_article') $field_collection = field_view_field('node', $node, 'field_uib_text_image_captions');
     if (isset($field_collection['#items'])) {
       foreach($field_collection['#items'] as $key => $item){
         $captions[$field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imageindex'][0]['#markup']] = $field_collection[$key]['entity']['field_collection_item'][$field_collection['#items'][$key]['value']]['field_uib_imagecaption'][0]['#markup'];
@@ -69,7 +71,7 @@ function uib_media__find_media_in_text($text, $captions, $num = 0, $text_with_ca
     $text_with_captions .= substr($text, 0, $pos + $offset);
     $text = substr($text, $pos + $offset);
     if (isset($captions[$num])) {
-      $text_with_captions .= '<div>' . $captions[$num] .  '</div>';
+      $text_with_captions .= '<p>' . $captions[$num] .  '</p>';
     }
     return uib_media__find_media_in_text($text, $captions, $num, $text_with_captions);
   }

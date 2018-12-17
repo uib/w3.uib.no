@@ -96,9 +96,16 @@ function uib_setup_wysiwyg_default_profiles() {
           'Format' => 1,
           'Table' => 1,
           'Maximize' => 1,
+          'Templates' => 1,
+        ),
+        'picture_ckeditor' => array(
+          'picture_ckeditor' => 1,
         ),
         'eqneditor' => array(
           'EqnEditor' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
         ),
       ),
       'toolbarLocation' => 'top',
