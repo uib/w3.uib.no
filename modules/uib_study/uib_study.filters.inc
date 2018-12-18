@@ -160,6 +160,7 @@ function uib_study__get_studyprogrammes_by_cat() {
   foreach($studyprogrammes['nodes'] as $sp) {
     if (!empty($sp['node']['field_uib_study_tag'])) {
       $study = $sp['node'];
+      if ($study['field_uib_study_code'] == 'BAHF-MUS') $study['field_uib_study_category'] = 'bachelorprogram4';
       $categories = explode(',', $study['field_uib_study_tag']);
       foreach ($categories as $cat) {
         $studies_with_category[(int)$cat][$study['field_uib_study_category']][$study['field_uib_study_code']] = $study;
@@ -266,6 +267,10 @@ function uib_study__get_category_heading($cat) {
       'header' => t('Bachelor’s'),
       'text' => t('3 year programme. Requires secondary education.'),
     ),
+    'bachelorprogram4' => array(
+      'header' => t('Bachelor’s'),
+      'text' => t('4 year programme. Requires secondary education.'),
+    ),
     'arsstudium' => array(
       'header' => t('One-year'),
       'text' => t('1 year programme.'),
@@ -320,18 +325,15 @@ function uib_study__clean_study_title($title) {
     'Kjønn, seksualitet og mangfald, årsstudium',
     'Klima, atmosfære- og havfysikk, bachelor, 3 år',
   );
-  $title_exceptions_2 = array(
-    'Utøvande musikk eller komposisjon, bachelor, 4 år',
-  );
   $title_array = explode(',', $title);
   if (in_array($title, $title_exceptions)) return $title_array[0] . ', ' . $title_array[1];
-  if (in_array($title, $title_exceptions_2)) return $title_array[0] . ' (4 år)';
   return $title_array[0];
 }
 
 function uib_study__get_study_category_order() {
   return $study_category_order = array(
     'bachelorprogram',
+    'bachelorprogram4',
     'integrertemasterpr-profesjonsst',
     'masterprogram',
     'arsstudium',
