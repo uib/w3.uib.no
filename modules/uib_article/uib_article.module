@@ -815,8 +815,10 @@ function uib_article__access_check($node) {
 function uib_article__delete_access($node) {
   if (!empty($node)) {
     $node = node_load($node);
+    if (in_array($node->type, array('area', 'uib_study'))) return FALSE;
+    $area = uib_area__get_current();
     global $user;
-    if (!uib_area_node_access($node, 'delete', $user) || in_array('superbruker', $user->roles) || $user->uid == 1) return TRUE;
+    if ((uib_area__is_content_manager($area, $user) && in_array('innholdsprodusent', $user->roles)) || in_array('superbruker', $user->roles) || $user->uid == 1) return TRUE;
   }
   return FALSE;
 }
