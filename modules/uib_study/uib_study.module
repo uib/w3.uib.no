@@ -955,7 +955,7 @@ EOD;
           $study_text_w3 = str_replace('<p>(* testimonial *)</p>', $testimonial, $study_text_w3);
         }
         if (strpos($study_text_w3, '<p>(* construction *)</p>') !== FALSE) {
-          $link = l(t('See the full table'), $urls[$lang][0] . '/' . $study_code . '/' . $urls[$lang][1]);
+          $link = l(t('See full list of courses'), $urls[$lang][0] . '/' . $study_code . '/' . $urls[$lang][1]);
           $study_text_w3 = str_replace('<p>(* construction *)</p>', '<p>' . $link . '</p>', $study_text_w3);
         }
         if (strpos($study_text_w3, '<p>(* exchange *)</p>') !== 0) {
