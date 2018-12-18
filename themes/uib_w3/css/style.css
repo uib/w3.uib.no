@@ -5148,7 +5148,7 @@ div.field-item {
     justify-content: center; }
     .block-uib-search .lightbox .pagination-wrapper > a {
       margin: 0 .5%;
-      padding: 4px 1%;
+      padding: 4px 0.3rem;
       text-align: center; }
       .block-uib-search .lightbox .pagination-wrapper > a:hover {
         text-decoration: underline;
