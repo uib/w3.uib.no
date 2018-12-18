@@ -5315,11 +5315,11 @@ div.field-item {
       font-size: 1.375rem;
       line-height: 1.3; }
     @media (min-width: 600px) {
-      .block-uib-search .lightbox .results .title {
+      .block-uib-search .lightbox .results .title, .block-uib-search .lightbox .results .name {
         font-weight: bold; }
-        .block-uib-search .lightbox .results .title a {
+        .block-uib-search .lightbox .results .title a, .block-uib-search .lightbox .results .name a {
           text-decoration: none; }
-          .block-uib-search .lightbox .results .title a:hover {
+          .block-uib-search .lightbox .results .title a:hover, .block-uib-search .lightbox .results .name a:hover {
             text-decoration: underline; } }
     .block-uib-search .lightbox .results .rgt, .block-uib-search .lightbox .results .position, .block-uib-search .lightbox .results .excerpt, .block-uib-search .lightbox .results .link, .block-uib-search .lightbox .results .ou {
       display: none; }
