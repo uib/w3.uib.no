@@ -1,3 +1,12 @@
+# Release 107 _2018-12-20_
+- Ferdigstilt arbeidet med utviklingen av nye studieprogrammaler #21472 #21487 #21488 #21490 #21500 #21513 #21519 #21520 #21521
+- Lagt til støtte for visning av bilder, video og sitat i brødtekst i artikler #21382
+- Lagt til støtte for direktelenker til alfabetisk oversikt over fagområder filtrert etter nivå (f.eks. uib.no/studier/alfabetisk/?master) #21439
+- Lagt til ny kategori for fireårig bachelor på uib.no/studier #21497
+- Lagt til mer luft mellom sidetallene i søkeresultat #21484
+- Rettet feil der Slett-fanen ikke ble vist for innholdsprodusenter #21505
+- Rettet feil der personnavn-lenkene i søkeresultat fikk feil styling #21491
+
 # Release 106 _2018-12-06_
 - Fortsatt arbeidet med utviklingen av nye studieprogrammaler #21389 #21404 #21440 #21475
 - Forbedret utformingen av søket #20717
