@@ -126,7 +126,7 @@ projects[views_bulk_operations][version] = 3.4
 projects[views_data_export][version] = 3.1
 projects[views_datasource][version] = 1.0-alpha2
 projects[views_field_view][version] = 1.2
-projects[views_slideshow][version] = 3.1
+projects[views_slideshow][version] = 3.9
 projects[wysiwyg][version] = 2.5
 
 ; libraries
