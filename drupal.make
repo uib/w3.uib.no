@@ -92,7 +92,6 @@ projects[metatag][version] = 1.22
 projects[module_filter][version] = 2.1
 projects[node_clone][version] = 1.0
 projects[node_revision_delete][version] = 2.6
-projects[node_revision_delete][patch][] = https://www.drupal.org/files/issues/postgresql_pdoexception-2333555-1.patch
 projects[node_title_help_text][version] = 1.1
 projects[office_hours][version] = 1.6
 projects[optional_mail][version] = 1.1
