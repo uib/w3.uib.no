@@ -120,7 +120,6 @@ projects[transliteration][version] = 3.2
 projects[variable][version] = 2.5
 projects[view_unpublished][version] = 1.2
 projects[views][version] = 3.18
-projects[views][patch][] = https://www.drupal.org/files/issues/views-3.x-dev-issue_1331056-52.patch
 projects[views_autocomplete_filters][version] = 1.2
 projects[views_bulk_operations][version] = 3.5
 projects[views_data_export][version] = 3.1
