@@ -1224,7 +1224,7 @@ function __uib_w3__article_gmap(&$map_link) {
   $ex = explode("@",$url);
   $excoords = explode(",",$ex[1]);
   $coordloc = $excoords[0].",".$excoords[1];
-  $imgurl = 'https://maps.googleapis.com/maps/api/staticmap?size=371x247&scale=1&zoom=11&center='.$coordloc.'&markers='.$coordloc;
+  $imgurl = 'https://maps.googleapis.com/maps/api/staticmap?size=371x247&scale=1&zoom=11&center='.$coordloc.'&markers='.$coordloc.'&key=AIzaSyCrQev7O7YOcc2IiEbS0PbDSbzAbZcnkrU';
   $element = array(
     '#type' => 'markup',
     '#markup' => '<div class="article-gmap">',

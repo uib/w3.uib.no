@@ -218,6 +218,13 @@ function uib_setup_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'geofield_map_google_apikey';
+  $strongarm->value = 'AIzaSyCrQev7O7YOcc2IiEbS0PbDSbzAbZcnkrU';
+  $export['geofield_map_google_apikey'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'googleanalytics_account';
   $strongarm->value = 'UA-6212237-3';
   $export['googleanalytics_account'] = $strongarm;

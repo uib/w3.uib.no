@@ -520,6 +520,7 @@ features[variable][] = entity_translation_shared_labels
 features[variable][] = entity_translation_workflow_enabled
 features[variable][] = entity_view_modes
 features[variable][] = file_private_path
+features[variable][] = geofield_map_google_apikey
 features[variable][] = googleanalytics_account
 features[variable][] = googleanalytics_cache
 features[variable][] = googleanalytics_codesnippet_after
