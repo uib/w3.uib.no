@@ -774,10 +774,12 @@ SCRIPT;
         $variables['page']['content_top']['field_uib_study_type'][0]['#markup'] =
         uib_study__get_study_kicker($category, $name);
       }
-      @$study_title = $variables['node']->field_uib_study_title[$variables['language']->language][0]['safe_value'];
-      if (!isset($study_title)) {
-        $study_title = $variables['node']->field_uib_study_title['und'][0]['safe_value'];
-      }
+      $lang = $language->language;
+      $o_lang = $lang == 'nb' ? 'en' : 'nb';
+      $study_title = '';
+      if (isset($variables['node']->field_uib_study_title[$lang])) $study_title = $variables['node']->field_uib_study_title[$lang][0]['safe_value'];
+      elseif (isset($variables['node']->field_uib_study_title[$o_lang])) $study_title = $variables['node']->field_uib_study_title[$o_lang][0]['safe_value'];
+      elseif (isset($variables['node']->field_uib_study_title['und'])) $study_title = $variables['node']->field_uib_study_title[$lang][0]['safe_value'];
       $variables['page']['content_top']['title'] = array(
         '#type' => 'html_tag',
         '#tag' => 'h1',
