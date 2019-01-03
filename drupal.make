@@ -20,7 +20,7 @@ projects[adminimal_theme][version] = 1.24
 
 ; modules
 projects[addressfield][version] = 1.3
-projects[admin_menu][version] = 3.0-rc5
+projects[admin_menu][version] = 3.0-rc6
 projects[adminimal_admin_menu][version] = 1.9
 projects[advanced_help][version] = 1.3
 projects[autocomplete_deluxe][version] = 2.3
