@@ -1185,7 +1185,11 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $article_info = __uib_w3__article_info($variables['node']);
       if (isset($variables['content']['field_uib_text'])) {
         $variables['content']['field_uib_text'][0]['#markup'] = __uib_w3__add_table_wrapper($variables['content']['field_uib_text'][0]['#markup']);
-        $variables['content']['field_uib_text'][0]['#markup'] = render($article_info) . $variables['content']['field_uib_text'][0]['#markup'];
+        if ($variables['field_uib_article_type']['und'][0]['value'] == 'event' || $variables['field_uib_article_type']['und'][0]['value'] == 'infopage') {
+          $variables['content']['field_uib_text'][0]['#markup'] = $variables['content']['field_uib_text'][0]['#markup'] . render($article_info);
+        } else {
+          $variables['content']['field_uib_text'][0]['#markup'] =  render($article_info) . $variables['content']['field_uib_text'][0]['#markup'];
+        }
       }
       else {
         $variables['content']['article_info'] = $article_info;

@@ -2059,6 +2059,13 @@ a.study--call-to-action {
       .article-info .uib-author a:hover {
         text-decoration: underline; }
 
+.uib-article__event .content .article-info, .uib-article__event .content-top .article-info, .uib-article__infopage .content .article-info, .uib-article__infopage .content-top .article-info {
+  border-bottom: none; }
+  .uib-article__event .content .article-info span, .uib-article__event .content-top .article-info span, .uib-article__infopage .content .article-info span, .uib-article__infopage .content-top .article-info span {
+    font-style: italic; }
+  .uib-article__event .content .article-info .uib-date-info:before, .uib-article__event .content-top .article-info .uib-date-info:before, .uib-article__infopage .content .article-info .uib-date-info:before, .uib-article__infopage .content-top .article-info .uib-date-info:before {
+    display: none; }
+
 .field-name-field-uib-profiled-message {
   display: -ms-flexbox;
   -ms-flex-direction: row;
