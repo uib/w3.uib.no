@@ -18,6 +18,7 @@ function uib_article_menu() {
     'access callback' => 'uib_article__access_check',
     'access arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
+    'weight' => 5,
   );
   $items['node/%/share'] = array(
       'title' => 'Share',
@@ -25,6 +26,7 @@ function uib_article_menu() {
       'page arguments' => array('uib_article__share'),
       'access callback' => 'uib_article__share_access',
       'type' => MENU_LOCAL_TASK,
+      'weight' => 10,
     );
   $items['node/%/tabdelete'] = array(
     'title' => 'Delete',
@@ -33,7 +35,7 @@ function uib_article_menu() {
     'page callback' => 'uib_article__delete_tab',
     'page arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
-    'weight' => 10,
+    'weight' => 20,
   );
   return $items;
 }

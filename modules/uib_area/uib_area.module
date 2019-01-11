@@ -1793,6 +1793,7 @@ function uib_area_menu_alter(&$items) {
   $items['admin/structure/menu/item/%menu_link/delete']['access callback'] = 'uib_area__menulink_access';
   $items['admin/structure/menu/item/%menu_link/delete']['access arguments'] = array(4);
   $items['admin/structure/menu/parents']['page callback'] = 'uib_area__limit_parent_options_js';
+  $items['node/%node/revisions']['weight'] = 15;
 }
 
 /**
@@ -2064,6 +2065,7 @@ function uib_area_menu() {
     'page arguments' => array(1),
     'access callback' => 'uib_area__ties_access_check',
     'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
   );
 
   $items['node/%node/staff_status'] = array(
@@ -2072,6 +2074,7 @@ function uib_area_menu() {
     'page arguments' => array(1),
     'access callback' => 'uib_area__staff_status_access_check',
     'type' => MENU_LOCAL_TASK,
+    'weight' => 20,
   );
 
   $items['uib_area/node/autocomplete'] = array(
@@ -2082,11 +2085,12 @@ function uib_area_menu() {
   );
 
   $items['node/%node/all_content'] = array(
-    'title' => t('All content'),
+    'title' => t('Content overview'),
     'page callback' => 'uib_area__outdated',
     'page arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
     'access callback' => 'uib_area__outdated_access_check',
+    'weight' => 5,
   );
 
   return $items;

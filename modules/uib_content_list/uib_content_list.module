@@ -17,6 +17,7 @@ function uib_content_list_menu() {
     'access callback' => 'uib_content_list__access_check',
     'access arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
+    'weight' => 5,
   );
   return $items;
 }
