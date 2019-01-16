@@ -275,6 +275,7 @@ function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
   $count = 0;
   $is_course = uib_study__is_course();
   $is_evu_course = uib_study__is_course('evu');
+  $is_plan = $nid ? NULL : 'plan';
   foreach ($render as $group) {
     if ($filter && !$filter($group['#group']))
       continue;
@@ -295,7 +296,7 @@ function uib_study__infotyper_render(&$page, $render, $filter, $nid=NULL) {
     }
     foreach ($group['#items'] as $item) {
       $page[$group['#group']][$item['#type']] = array(
-        '#markup' => uib_study__text_markup($item, $is_course),
+        '#markup' => uib_study__text_markup($item, $is_course, $is_plan),
       );
     }
     if (substr($group['#group'], (strlen($group['#group']) -11)) == '_utveksling' && $nid) {
@@ -2807,7 +2808,10 @@ function uib_study__text_markup($item, $is_course, $plain = FALSE) {
   if ($is_course) {
     $tmp_markup .= '<div>';
   }
-  if ($plain) {
+  if ($plain == 'plan') {
+    $tmp_markup .= uib_study__title_and_text($item['#title'], $item['#text'], TRUE);
+  }
+  elseif ($plain) {
     // no html tags
     $tmp_markup .= check_plain(strip_tags($item['#text']));
   }
@@ -3205,10 +3209,14 @@ function uib_study__insert_t_row($depth) {
   return $row;
 }
 
-function uib_study__title_and_text($title, $text) {
+function uib_study__title_and_text($title, $text, $title_link = FALSE) {
   $output = '';
   if (empty($text)) {
     return $output;
+  }
+  if ($title_link) {
+    $link_id = uib_study__clean_id_string($title);
+    $title = l($title, current_path(), array('fragment' => $link_id, 'attributes' => array('id' => $link_id)));
   }
   $output .= '<h3>' . $title . '</h3>';
   if (substr($text, 0, 1) != '<') {
