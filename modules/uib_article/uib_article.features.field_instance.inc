@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_article.features.field_instance.inc
@@ -1069,7 +1070,7 @@ function uib_article_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Note: Copy the full URL from the browser\'s address bar. The short share link will not work.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1126,7 +1127,8 @@ function uib_article_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'rel_remove' => 'default',
-      'title' => 'optional',
+      'title' => 'none',
+      'title_allowed_values' => '',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
@@ -1952,6 +1954,7 @@ function uib_article_field_default_field_instances() {
   t('Main media image captions');
   t('Main media teaser image');
   t('Manual Search Boost');
+  t('Note: Copy the full URL from the browser\'s address bar. The short share link will not work.');
   t('Published timestamp');
   t('Related content label');
   t('Related persons');
