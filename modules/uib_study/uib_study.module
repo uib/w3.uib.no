@@ -2701,8 +2701,6 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       '#weight' => -3,
     );
     if ($study->field_uib_study_type->value() != 'program') {
-      hide($form['field_uib_main_media']);
-      hide($form['field_uib_main_media_en']);
       hide($form['field_uib_study_text']);
       hide($form['field_uib_new_student']);
       hide($form['field_uib_study_lead']);
@@ -2713,6 +2711,12 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       hide($form['field_uib_study_phone']);
       hide($form['field_uib_study_mail']);
       hide($form['field_uib_study_contact_info']);
+      hide($form['field_uib_study_language']);
+      hide($form['field_uib_study_foreign_language']);
+    }
+    if (!in_array($study->field_uib_study_type->value(), array('program', 'exchange'))) {
+      hide($form['field_uib_main_media']);
+      hide($form['field_uib_main_media_en']);
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
