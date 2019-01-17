@@ -10211,6 +10211,8 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   .node-type-uib-study.uib-study__program--new .content-main-wrapper h2, .node-type-uib-study.uib-study__program--new .content-main-wrapper h3 {
     padding-top: 0.25rem;
     margin-bottom: 0; }
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper h2 {
+    font-size: 1.8rem; }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper h3 {
     font-size: 1.25rem; }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper p, .node-type-uib-study.uib-study__program--new .content-main-wrapper ul, .node-type-uib-study.uib-study__program--new .content-main-wrapper ol {
