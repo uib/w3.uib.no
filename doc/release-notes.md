@@ -1,3 +1,19 @@
+# Release 108 _2019-01-17_
+I dag har vi oppgradert [PHP](https://no.wikipedia.org/wiki/PHP) til versjon 7, noe som betyr en merkbar forbedring av systemets ytelse. Innholdsprodusenter vil nå oppleve at ting går betraktelig raskere enn tidligere.
+
+- Lagt til støtte for visning av video på utvekslingsavtaler #21496
+- Lagt til støtte for direktelenker til mellomtitler i studieplaner #21518
+- Lagt til hjelpetekst for tittel-felt #21001
+- Lagt til hjelpetekst for Google Maps-felt i artikler #21658
+- Lagt inn Google Maps API-nøkkel slik at områdekartene igjen blir vist på riktig måte #21533
+- Endret rekkefølgen på faner i redigeringsgrensesnittet #21454
+- Flyttet dato for publisering og oppdatering til bunnen av siden (gjelder infosider og arrangementer) #21501
+- Rettet feil der emner med lik tittel på norsk og engelsk ble vist med ufullstendig engelsk tittel #21571
+- Rettet feil der sider som ble slettet ved hjelp av Slett-fanen allikevel dukket opp i søket #21586
+- Rettet feil i RSS-strøm for meldinger #21581
+- Justert mellomtitlenes formatering på studieprogramsider #21522
+- Oppdatert Drupal-kjernen og moduler #21536 #21537 #21538 #21539 #21540 #21541 #21542 #21543 #21544 #21545 #21546 #21547 #21548 #21549 #21551 #21553 #21562 #21563 #21564 #21565 #21566 #21567 #21568 #21569 #21666
+
 # Release 107 _2018-12-20_
 - Ferdigstilt arbeidet med utviklingen av nye studieprogrammaler #21472 #21487 #21488 #21490 #21500 #21513 #21519 #21520 #21521
 - Lagt til støtte for visning av bilder, video og sitat i brødtekst i artikler #21382
