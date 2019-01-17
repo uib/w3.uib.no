@@ -2060,6 +2060,7 @@ a.study--call-to-action {
         text-decoration: underline; }
 
 .uib-article__event .content .article-info, .uib-article__event .content-top .article-info, .uib-article__infopage .content .article-info, .uib-article__infopage .content-top .article-info {
+  font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   border-bottom: none; }
   .uib-article__event .content .article-info span, .uib-article__event .content-top .article-info span, .uib-article__infopage .content .article-info span, .uib-article__infopage .content-top .article-info span {
     font-style: italic; }
