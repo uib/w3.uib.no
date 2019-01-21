@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_user.strongarm.inc
@@ -59,12 +60,18 @@ function uib_user_strongarm() {
       'display' => array(
         'summary' => array(
           'default' => array(
-            'weight' => '4',
+            'weight' => '6',
             'visible' => FALSE,
           ),
           'uib_user_teaser' => array(
             'weight' => '5',
             'visible' => FALSE,
+          ),
+        ),
+        'hybridauth_identities' => array(
+          'default' => array(
+            'weight' => '2',
+            'visible' => TRUE,
           ),
         ),
       ),

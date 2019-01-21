@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_user.features.field_instance.inc
@@ -174,6 +175,64 @@ function uib_user_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'user-user-field_uib_mazemap_poi'.
+  $field_instances['user-user-field_uib_mazemap_poi'] = array(
+    'bundle' => 'user',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'uib_user_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'user',
+    'field_name' => 'field_uib_mazemap_poi',
+    'label' => 'Mazemap link',
+    'required' => 0,
+    'settings' => array(
+      'absolute_url' => 1,
+      'attributes' => array(
+        'class' => '',
+        'configurable_class' => 0,
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
+      'title' => 'none',
+      'title_allowed_values' => '',
+      'title_label_use_field_label' => 1,
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => 0,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'user-user-field_uib_phone'.
   $field_instances['user-user-field_uib_phone'] = array(
     'bundle' => 'user',
@@ -303,7 +362,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -342,7 +401,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -383,7 +442,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 4,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -500,7 +559,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 8,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -540,7 +599,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 7,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -606,7 +665,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -656,7 +715,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 11,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -722,7 +781,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1049,7 +1108,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 14,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1094,7 +1153,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 16,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1135,7 +1194,7 @@ function uib_user_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1187,7 +1246,7 @@ function uib_user_field_default_field_instances() {
           ),
         ),
         'type' => 'file_default',
-        'weight' => 5,
+        'weight' => 4,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -1312,7 +1371,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 5,
       ),
       'uib_user_teaser' => array(
         'label' => 'above',
@@ -2081,7 +2140,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -2366,6 +2425,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Last name');
   t('Manual Search Boost');
   t('Manual publications list. It will show in addition to what is imported from CRIStin.');
+  t('Mazemap link');
   t('Number of publications');
   t('Optional tab content');
   t('Organisational unit');

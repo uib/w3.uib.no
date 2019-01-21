@@ -960,11 +960,34 @@ SCRIPT;
       }
       $variables['page']['content']['system_main']['visit_address']['#label_display'] = 'hidden';
       $visit_address = '<span class="user-contact__label">' . t('Visitor Address') . '</span>';
-      $visit_address .= '<span class="user-contact__value">' . render($variables['page']['content']['system_main']['visit_address']);
+      $visit_address .= '<span class="user-contact__value">';
+      $visit_address_value = render($variables['page']['content']['system_main']['visit_address']);
       if (!empty($variables['page']['content']['system_main']['field_uib_user_room'])) {
         $user_room = render($variables['page']['content']['system_main']['field_uib_user_room']);
-        $visit_address .= $user_room;
+        $visit_address_value .= $user_room;
       }
+      if (!empty($variables['page']['content']['system_main']['#account']->field_uib_mazemap_poi['und'][0]['url'])){
+        $mazemap_link = $variables['page']['content']['system_main']['#account']->field_uib_mazemap_poi['und'][0]['url'];
+        $parse_url = parse_url($mazemap_link);
+        if ($parse_url['host'] == 'use.mazemap.com') {
+          parse_str($parse_url['fragment'],$output);
+          if (is_numeric($output['sharepoi'])) {
+            $use_link = 'https://use.mazemap.com/#sharepoitype=poi&sharepoi='.$output['sharepoi'];
+            $visit_address_value = '<a href="'.$use_link.'">' . $visit_address_value . '</a>';
+          }
+        } else if ($parse_url['host'] == 'bit.ly') {
+          $ch = curl_init();
+          curl_setopt($ch, CURLOPT_URL, $mazemap_link);
+          curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+          curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+          $html = curl_exec($ch);
+          curl_close($ch);
+          if (strpos($html,'use.mazemap.com') !== false && strpos($html,'sharepoi') !== false) {
+            $visit_address_value = '<a href="'.$mazemap_link.'">' . $visit_address_value . '</a>';
+          }
+        }
+      }
+      $visit_address .= $visit_address_value;
       $visit_address .= '</span>';
       $items[] = $visit_address;
       $variables['page']['content']['system_main']['postal_address']['#label_display'] = 'hidden';
