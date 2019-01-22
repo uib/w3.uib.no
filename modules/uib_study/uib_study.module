@@ -2057,7 +2057,7 @@ function uib_study__semester_exam_information($data, $lang, $list, $part = FALSE
     // Assignment date
     // Hide this until SA wants to show it
     if (!variable_get('uib_study_hide_datoUtlevert_in_exams_list', FALSE)) {
-      if (isset($ei['datoUtlevert']) && $ei['form'] == 'Hjemmeeksamen') {
+      if (isset($ei['datoUtlevert']) && in_array($ei['form'], array('Hjemmeeksamen', 'Heimeeksamen'))) {
         $term = t('Assignment handed out');
         $data = date('d.m.Y', strtotime($ei['datoUtlevert']));
         if (isset($ei['klokkeslettUtlevert'])) {
