@@ -259,7 +259,7 @@ function drush_uib_search() {
 }
 
 function drush_uib_search_drop_index() {
-  $url = variable_get('uib_elasticsearch_url') . '/' . uib_search__get_index();
+  $url = variable_get('uib_elasticsearch_url') . '/' . uib_search__get_index(TRUE);
   $stat = uib_search__run_elastic_request($url, null, 'DELETE', TRUE, 5);
   if (!$stat) {
     return;
