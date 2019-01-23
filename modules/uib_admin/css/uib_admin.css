@@ -198,7 +198,12 @@
 #page #content-wrapper #edit-field-uib-imagecaptions2 table th,
 #page #content-wrapper fieldset.collapsible fieldset legend,
 #page #content-wrapper .form-item-field-uib-area-und-0-target-id label,
-#page #content-wrapper .field-name-field-uib-imageindex label span {
+#page #content-wrapper .field-name-field-uib-imageindex label span,
+.form-item-title .description br,
+.i18n-nb .form-item-title .description br + ul,
+.i18n-en .form-item-title .description ul:first-child,
+.i18n-nb #edit-scheduler-settings #edit-extra-info p:nth-child(2),
+.i18n-en #edit-scheduler-settings #edit-extra-info p:first-child {
   display: none;
 }
 #page #content-wrapper fieldset.vertical-tabs-pane fieldset.date-combo legend {
