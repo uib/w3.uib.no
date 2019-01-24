@@ -5,6 +5,7 @@ CKEDITOR.editorConfig = function( config ) {
   config.extraPlugins = 'dialog,dialogui';
   config.pasteFilter = 'p; a[!href]; h2; h3; h4; strong; em; ul; ol; li; sup; sub';
   config.templates_replaceContent = false;
+  config.removePlugins = 'image';
 };
 
 CKEDITOR.on( 'dialogDefinition', function( ev ) {
