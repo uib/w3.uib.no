@@ -193,7 +193,7 @@ th {
 .content-top-wrapper {
   background: #fff;
   padding: 0.75rem 1.25rem 1rem; }
-  .uib-study__program .content-top-wrapper, .node-type-uib-article.uib-article__feature_article .content-top-wrapper, .feature-area .content-top-wrapper, .banner-image .content-top-wrapper {
+  .node-type-uib-article.uib-article__feature_article .content-top-wrapper, .feature-area .content-top-wrapper, .banner-image .content-top-wrapper {
     padding: 0; }
   @media (min-width: 600px) {
     .page-user .content-top-wrapper {
