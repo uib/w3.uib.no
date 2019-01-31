@@ -63,11 +63,15 @@
         }
       }
     });
-    if(!$('.uib-area-expanded-menu').length) {
+    // Transition for menu dropdown. Including front page
       if(!$('#main-menu .menu .menu__item').hasClass('jstransition')){
         $('#main-menu .menu .menu__item').addClass('jstransition');
       }
-      $('#main-menu .menu .menu__item.jstransition').hover(
+      if(!$('.global-menu .menu .menu__item').hasClass('jstransition')){
+        $('.global-menu .menu .menu__item').addClass('jstransition');
+        $('.global-menu .menu .menu__item').children('ul').first().css("height", 0);
+      }
+      $('.menu .menu__item.jstransition').hover(
         function(e){
           $(this).children('ul').first().clearQueue();
           $(this).children('ul').first().stop().delay(200).animate(
@@ -88,7 +92,7 @@
             paddingBottom: 0,
           }, 300 );
       });
-    }
+
     $('.global-search .right-selector>legend').click(function(event) {
       if ($(this).css('background-image') !== 'none') {
         if(
