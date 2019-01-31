@@ -3848,8 +3848,16 @@ a.study--exchange {
   margin: 0; }
   .global-menu ul.menu .expanded li a {
     text-transform: none; }
-.global-menu ul.menu .expanded .last {
-  margin-bottom: 2rem; }
+.global-menu ul.menu .expanded::after {
+  content: "";
+  width: 4rem;
+  height: 2.4rem;
+  display: block;
+  background: transparent;
+  position: absolute; }
+.global-menu ul.menu .expanded:hover:after {
+  width: 100%;
+  right: 0; }
 .global-menu li {
   padding: 0 0.5rem 0 0; }
   .global-menu li a {
@@ -3863,25 +3871,22 @@ a.study--exchange {
   white-space: nowrap;
   margin-top: -1px;
   position: relative; }
+  @media (min-width: 780px) {
+    .global-menu li, .global-menu li * {
+      position: static; } }
   .global-menu li ul, .global-menu li * ul {
     display: none;
     position: absolute;
-    top: 55px;
-    right: -3.4rem;
-    width: 200px;
-    height: auto;
-    background: #cf3c3a;
-    border: 1px solid #fff;
+    overflow: hidden;
+    top: 6.4375rem;
+    left: 0;
+    width: 100%;
+    background: #ae2f2f;
+    border: 1px solid #892120;
     text-align: left;
-    text-transform: none; }
-    .global-menu li ul::after, .global-menu li ul::before, .global-menu li * ul::after, .global-menu li * ul::before {
-      bottom: 100%;
-      left: 50%;
-      border: solid transparent;
-      content: "";
-      height: 0;
-      width: 0;
-      position: absolute; }
+    text-transform: none;
+    padding-top: 2rem;
+    padding-bottom: 2rem; }
     .global-menu li ul::after, .global-menu li * ul::after {
       border-bottom-color: #cf3c3a;
       border-width: 20px;
@@ -3891,14 +3896,24 @@ a.study--exchange {
       border-width: 22px;
       margin-left: -22px; }
     .global-menu li ul li, .global-menu li * ul li {
-      padding: 0; }
+      padding: 0;
+      flex: 50%; }
       .global-menu li ul li a, .global-menu li * ul li a {
         margin: 0 1rem;
         padding: 1rem 0;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid #892120;
         display: block; }
   .global-menu li:hover > ul, .global-menu li *:hover > ul {
-    display: block;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    -webkit-justify-content: flex-end;
+    -webkit-flex-wrap: wrap;
+    -webkit-align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
     z-index: 1000; }
 
 .field-name-field-uib-profiled-article,
@@ -5672,6 +5687,7 @@ nav {
       :not(.uib-area-expanded-menu) > #main-menu .menu__item ul li a {
         display: block;
         padding: .9375rem;
+        padding-left: 0;
         width: 100%; } }
 
 @media (min-width: 600px) {
@@ -7612,7 +7628,7 @@ body #mc_embed_signup div.mce_inline_error {
         .header__wrapper .header ul {
           list-style: none;
           margin: 0;
-          padding: 0; }
+          padding-left: 0; }
         .header__wrapper .header .logo__link {
           -webkit-flex: 0 0 4.70588rem;
           flex: 0 0 4.70588rem; }
