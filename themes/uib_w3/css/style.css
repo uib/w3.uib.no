@@ -7242,7 +7242,10 @@ body #mc_embed_signup div.mce_inline_error {
     color: #cf3c3a;
     font-size: 1.4375rem; }
   .user-contact-info ul .user-contact__value {
-    font-size: 1.0625rem; }
+    font-size: 1.0625rem;
+    display: inline-block; }
+    .user-contact-info ul .user-contact__value a div {
+      text-decoration: underline; }
     .user-contact-info ul .user-contact__value .phone-number {
       display: block; }
   .user-contact-info ul .field-name-field-uib-user-room .field-label {
