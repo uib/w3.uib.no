@@ -1,3 +1,15 @@
+# Release 109 _2019-01-31_
+- Lagt til støtte for Mazemap-lenke på personsider #20574 #21779
+- Lagt til lenke til side med mer eksamensinformasjon på emnesider #21255
+- Rettet feil der utleveringsdato for hjemmeeksamen ikke ble vist #21737
+- Rettet feil der bilder i brødtekst i artikler ikke var tilgjengelige utenfor UiBs nettverk #21672
+- Rettet feil der nettleseren stoppet å respondere når man dobbelklikket på bilder i brødtekst #21651
+- Rettet feil der studieprogram basert på gammel mal manglet luft øverst til venstre på smale skjermer #21492
+- Rettet feil der tittel for visse infotyper ble vist i gammel studieprogrammal #21777
+- Justert utformingen av lenker til studieløpstabell og utvekslingsavtaler i ny studieprogrammal #21760
+- Endret visse hjelpetekstfelt der både norsk og engelsk tekst ble vist. Nå vises kun én tekst på det språket som er valgt #21746
+- Oppdatert Drupal-modul og utseendemal #21552 #21768
+
 # Release 108 _2019-01-17_
 I dag har vi oppgradert [PHP](https://no.wikipedia.org/wiki/PHP) til versjon 7, noe som betyr en merkbar forbedring av systemets ytelse. Innholdsprodusenter vil nå oppleve at ting går betraktelig raskere enn tidligere.
 
