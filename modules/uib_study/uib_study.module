@@ -2827,7 +2827,7 @@ function uib_study__text_markup($item, $is_course, $plain = FALSE) {
   if ($is_course) {
     $tmp_markup .= '<div>';
   }
-  if ($plain == 'plan') {
+  if ($plain === 'plan') {
     $tmp_markup .= uib_study__title_and_text($item['#title'], $item['#text'], TRUE);
   }
   elseif ($plain) {
