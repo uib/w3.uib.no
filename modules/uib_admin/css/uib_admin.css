@@ -238,6 +238,6 @@
   margin-left: 0.5rem;
 }
 
-#file-entity-edit {
+#file-entity-edit.file-form.file-image-form {
   padding-left: 1.25rem;
 }
