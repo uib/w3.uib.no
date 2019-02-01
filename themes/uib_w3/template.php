@@ -975,7 +975,7 @@ SCRIPT;
             $use_link = 'https://use.mazemap.com/#sharepoitype=poi&sharepoi='.$output['sharepoi'];
             $visit_address_value = '<a href="'.$use_link.'">' . $visit_address_value . '</a>';
           }
-        } else if ($parse_url['host'] == 'bit.ly') {
+        } else if ($parse_url['host'] == 's.mazemap.com') {
           $ch = curl_init();
           curl_setopt($ch, CURLOPT_URL, $mazemap_link);
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
