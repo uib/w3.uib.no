@@ -2477,8 +2477,13 @@ function uib_study__study_path($code, $term = NULL) {
  *  the study.
  */
 function uib_study__study_link($code, $text=NULL) {
+  // exclude specific study codes from automatically creating a link
+  $exclude = ['ENGELSK', 'TVEPS'];
   $text = $text ? $text : $code;
-  $path = uib_study__study_path($code);
+  $path = false;
+  if(!in_array($code, $exclude)) {
+    $path = uib_study__study_path($code);
+  }
   if ($path) {
     if ($text == '<title>') {
       # expand the name
