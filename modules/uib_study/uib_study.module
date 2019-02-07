@@ -1571,10 +1571,13 @@ EOD;
             'nb' => t('Norwegian'),
           );
           $tl = '';
-          if (!empty($node->field_uib_study_language['und'])) {
-            foreach ($node->field_uib_study_language['und'] as $key => $l) {
-              $tl .= $teaching_language[$l['value']];
-              $tl .= $key != count($node->field_uib_study_language['und']) - 1 ? ', ' : '';
+          if (!empty($node->field_uib_study_language)) {
+            $study_lang = !empty($node->field_uib_study_language[$lang]) ? $lang : 'und';
+            if (!empty($node->field_uib_study_language[$study_lang])) {
+              foreach ($node->field_uib_study_language[$study_lang] as $key => $l) {
+                $tl .= $teaching_language[$l['value']];
+                $tl .= $key != count($node->field_uib_study_language[$study_lang]) - 1 ? ', ' : '';
+              }
             }
           }
           if (!empty($node->field_uib_study_foreign_language[$lang])) {
