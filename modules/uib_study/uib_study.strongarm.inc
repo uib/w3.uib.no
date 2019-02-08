@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_study.strongarm.inc
@@ -9,6 +10,27 @@
  */
 function uib_study_strongarm() {
   $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_uib_study';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_uib_study'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_uib_study';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_uib_study'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_uib_study';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_uib_study'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -119,6 +141,13 @@ function uib_study_strongarm() {
     ),
   );
   $export['field_bundle_settings_taxonomy_term__uib_study_categories'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_default_language_for_uib_study';
+  $strongarm->value = '-- current --';
+  $export['i18n_node_default_language_for_uib_study'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

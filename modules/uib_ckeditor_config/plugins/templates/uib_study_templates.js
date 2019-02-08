@@ -6,6 +6,11 @@
      description: 'Practical information about this study prgramme',
      html: '(* studyinfo *)',
    },{
+     title: 'Specializations',
+     image: 'FAKTABOKS.svg',
+     description: 'Specializations available in this programme',
+     html: '(* studieretninger *)',
+   },{
     title: 'Testimonial',
     image: 'SITAT_MED_NAVN.svg',
     description: 'Relevant testimonial for this study',

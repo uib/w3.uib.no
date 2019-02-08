@@ -950,6 +950,25 @@ EOD;
         ));
         $study_text_w3 = empty($render['study_text']) ? '' : $render['study_text'][0]['#markup'];
         $study_text_w3 = str_replace(array('<table>','</table>'), array('<div class="uib-study__table"><table>','</table></div>'), $study_text_w3);
+        if (strpos($study_text_w3, '(* studieretninger *)') !== 0) {
+          $view = views_get_view('uib_study_specialization');
+          $view->preview('block_1', array($node->nid));
+          if ($view->result) {
+            $spec['specialization'] = array(
+              '#type' => 'html_tag',
+              '#tag' => 'h2',
+              '#value' => t('Specializations'),
+              '#prefix' => '<div class="study--specializations">',
+            );
+            $spec['specialization block'] = array(
+              '#type' => 'html_tag',
+              '#tag' => 'div',
+              '#value' => $view->render(),
+              '#suffix' => '</div>',
+            );
+            $study_text_w3 = str_replace('<p>(* studieretninger *)</p>', render($spec), $study_text_w3);
+          }
+        }
         if (strpos($study_text_w3, '(* testimonial *)') !== 0) {
           $testimonial = uib_study__get_testimonial();
           $testimonial = render($testimonial);

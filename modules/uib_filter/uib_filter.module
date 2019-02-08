@@ -37,6 +37,9 @@ function uib_filter__process($text, $filter) {
       }
       //return check_plain($matches[1] . "[[$arg]]\n");
       switch ($matches[1]) {
+      case 'studieretninger':
+        return '(* studieretninger *)';
+        break;
       case 'testimonial':
         return '(* testimonial *)';
         break;
