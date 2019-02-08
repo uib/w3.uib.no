@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_setup.features.wysiwyg.inc
@@ -10,67 +11,11 @@
 function uib_setup_wysiwyg_default_profiles() {
   $profiles = array();
 
-  // Exported profile: advanced_editor
-  $profiles['advanced_editor'] = array(
-    'format' => 'advanced_editor',
-    'editor' => 'tinymce',
-    'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 0,
-      'theme' => 'advanced',
-      'language' => 'en',
-      'buttons' => array(
-        'default' => array(
-          'bold' => 1,
-          'italic' => 1,
-          'bullist' => 1,
-          'numlist' => 1,
-          'undo' => 1,
-          'redo' => 1,
-          'link' => 1,
-          'unlink' => 1,
-          'formatselect' => 1,
-          'blockquote' => 1,
-          'cut' => 1,
-          'copy' => 1,
-        ),
-        'autosave' => array(
-          'autosave' => 1,
-        ),
-        'paste' => array(
-          'pastetext' => 1,
-        ),
-        'table' => array(
-          'tablecontrols' => 1,
-        ),
-      ),
-      'toolbar_loc' => 'top',
-      'toolbar_align' => 'left',
-      'path_loc' => 'bottom',
-      'resizing' => 1,
-      'verify_html' => 1,
-      'preformatted' => 0,
-      'convert_fonts_to_spans' => 1,
-      'remove_linebreaks' => 1,
-      'apply_source_formatting' => 0,
-      'paste_auto_cleanup_on_paste' => 0,
-      'block_formats' => 'p,h2,h3,h4',
-      'css_setting' => 'theme',
-      'css_path' => '',
-      'css_classes' => '',
-    ),
-  );
-
-  // Exported profile: basic_html
+  // Exported profile: basic_html.
   $profiles['basic_html'] = array(
     'format' => 'basic_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 0,
-      'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
       'buttons' => array(
@@ -121,17 +66,21 @@ function uib_setup_wysiwyg_default_profiles() {
       'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
+    'preferences' => array(
+      'add_to_summaries' => 1,
+      'default' => 1,
+      'show_toggle' => 0,
+      'user_choose' => 0,
+      'version' => '4.5.7.e98277f',
+    ),
+    'name' => 'formatbasic_html',
   );
 
-  // Exported profile: feature_text_html
+  // Exported profile: feature_text_html.
   $profiles['feature_text_html'] = array(
     'format' => 'feature_text_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
-      'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
       'buttons' => array(
@@ -182,17 +131,21 @@ function uib_setup_wysiwyg_default_profiles() {
       'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
+    'preferences' => array(
+      'add_to_summaries' => 1,
+      'default' => 1,
+      'show_toggle' => 1,
+      'user_choose' => 0,
+      'version' => '4.5.7.e98277f',
+    ),
+    'name' => 'formatfeature_text_html',
   );
 
-  // Exported profile: restricted_html
+  // Exported profile: restricted_html.
   $profiles['restricted_html'] = array(
     'format' => 'restricted_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 0,
-      'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
       'buttons' => array(
@@ -231,63 +184,21 @@ function uib_setup_wysiwyg_default_profiles() {
       'advanced__active_tab' => 'edit-basic',
       'forcePasteAsPlainText' => 0,
     ),
-  );
-
-  // Exported profile: simple_editor
-  $profiles['simple_editor'] = array(
-    'format' => 'simple_editor',
-    'editor' => 'tinymce',
-    'settings' => array(
+    'preferences' => array(
+      'add_to_summaries' => 1,
       'default' => 1,
+      'show_toggle' => 0,
       'user_choose' => 0,
-      'show_toggle' => 1,
-      'theme' => 'advanced',
-      'language' => 'en',
-      'buttons' => array(
-        'default' => array(
-          'bold' => 1,
-          'italic' => 1,
-          'bullist' => 1,
-          'numlist' => 1,
-          'link' => 1,
-          'unlink' => 1,
-          'cleanup' => 1,
-          'formatselect' => 1,
-          'removeformat' => 1,
-        ),
-        'paste' => array(
-          'pasteword' => 1,
-        ),
-        'drupal' => array(
-          'media' => 1,
-        ),
-      ),
-      'toolbar_loc' => 'top',
-      'toolbar_align' => 'left',
-      'path_loc' => 'bottom',
-      'resizing' => 1,
-      'verify_html' => 1,
-      'preformatted' => 0,
-      'convert_fonts_to_spans' => 1,
-      'remove_linebreaks' => 1,
-      'apply_source_formatting' => 0,
-      'paste_auto_cleanup_on_paste' => 0,
-      'block_formats' => 'p,h2,h3,h4',
-      'css_setting' => 'theme',
-      'css_path' => '',
-      'css_classes' => '',
+      'version' => '4.5.7.e98277f',
     ),
+    'name' => 'formatrestricted_html',
   );
 
-  // Exported profile: study_text_html
+  // Exported profile: study_text_html.
   $profiles['study_text_html'] = array(
     'format' => 'study_text_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 0,
-      'add_to_summaries' => 1,
       'theme' => '',
       'language' => 'en',
       'buttons' => array(
@@ -339,6 +250,14 @@ function uib_setup_wysiwyg_default_profiles() {
       'advanced__active_tab' => 'edit-css',
       'forcePasteAsPlainText' => 0,
     ),
+    'preferences' => array(
+      'add_to_summaries' => 1,
+      'default' => 1,
+      'show_toggle' => 0,
+      'user_choose' => 0,
+      'version' => '4.5.7.e98277f',
+    ),
+    'name' => 'formatstudy_text_html',
   );
 
   return $profiles;

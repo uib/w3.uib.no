@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_setup.default_picture_mapping.inc
