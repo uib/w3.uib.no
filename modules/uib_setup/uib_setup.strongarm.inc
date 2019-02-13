@@ -1404,7 +1404,7 @@ webdesk/*';
     'identica' => 0,
     'newskicks' => 0,
     'diigo' => 0,
-    'google_plus_share' => 1,
+    'google_plus_share' => 0,
   );
   $export['service_links_show'] = $strongarm;
 
