@@ -1000,7 +1000,9 @@ html {
   font-size: 85%;
   line-height: 1.5;
   overflow-wrap: break-word;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none; }
   @media (min-width: 600px) {
     html {
       font-size: 100%; } }
