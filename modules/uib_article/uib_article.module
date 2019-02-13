@@ -1275,3 +1275,14 @@ function uib_article_block_view($delta = '') {
   }
   return $block;
 }
+
+/**
+ * Get the real value of last updated
+ */
+function uib_article__get_real_last_updated($nid) {
+  $result = db_query('SELECT MAX(timestamp) FROM node_revision WHERE nid = :nid AND uid > 1', array(':nid' => $nid));
+    foreach($result as $row) {
+      if ($row->max !== NULL) return(date('d.m.Y' , $row->max));
+    }
+  return FALSE;
+}
