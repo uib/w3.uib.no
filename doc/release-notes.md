@@ -1,3 +1,15 @@
+# Release 110 _2019-02-14_
+- Lagt til støtte for kobling til studieretningenes studieplan på studieprogramsider #21517
+- Lagt til støtte for flere kortlenke-varianter i felt for Mazemap-lenke på personsider #21789 #21821
+- Lagt til unntak for visse emnekoder slik at disse ikke lenger automatisk lenkes til tilsvarende emnesider #21790
+- Gjort felt for undervisningsspråk i studienoder oversettbare #21820
+- Justert understrekingen på lenker slik at den nå fremstår som en heltrukket linje i de aller fleste nettlesere #21827
+- Rettet feil der oppdateringsdato i artikler i visse tilfeller var ukorrekt #21832
+- Rettet feil der lenker til emner på studieprogramsider pekte på ukorrekt språkversjon #21847
+- Rettet feil der det manglet luft på venstre side i redigeringsvinduet for bilder #21778
+- Fjernet Google+ som delingsalternativ i nyhetssaker og kalenderoppføringer #21853
+- Oppdatert Drupal-kjernen og Focal Point-modulen #21858 #21857
+
 # Release 109 _2019-01-31_
 - Lagt til støtte for Mazemap-lenke på personsider #20574 #21779
 - Lagt til lenke til side med mer eksamensinformasjon på emnesider #21255
