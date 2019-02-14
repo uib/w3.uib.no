@@ -67,11 +67,7 @@
       if(!$('#main-menu .menu .menu__item').hasClass('jstransition')){
         $('#main-menu .menu .menu__item').addClass('jstransition');
       }
-      if(!$('.global-menu .menu .menu__item').hasClass('jstransition')){
-        $('.global-menu .menu .menu__item').addClass('jstransition');
-        $('.global-menu .menu .menu__item').children('ul').first().css("height", 0);
-      }
-      $('.menu .menu__item.jstransition').hover(
+      $('#main-menu .menu .menu__item.jstransition').hover(
         function(e){
           $(this).children('ul').first().clearQueue();
           $(this).children('ul').first().stop().delay(200).animate(
