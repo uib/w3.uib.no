@@ -1582,7 +1582,7 @@ function uib_w3_language_switch_links_alter(array &$links, $type, $path) {
  */
 function __uib_w3__article_info(&$node) {
   $date_info = '<span class="uib-date-info">';
-  $updated_date = uib_article__get_real_last_updated($node->nid) ? uib_article__get_real_last_updated($node->nid) : date('d.m.Y' , $node->changed);
+  $updated_date = uib_article__get_real_last_updated($node->nid) ? uib_article__get_real_last_updated($node->nid) : date('d.m.Y' , $node->created);
   if ($node->status == 1) {
     $published = $node->created;
     $t = field_get_items('node', $node, 'field_uib_published_timestamp');
