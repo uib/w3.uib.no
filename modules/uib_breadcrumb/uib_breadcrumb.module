@@ -155,7 +155,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         else {
           if ($intgrad) {
             $study_type_title = t('International programmes');
-            $study_type_href = 'node/50057';
+            $study_type_href = 'node/113130';
           }
           else {
             $study_type_title = t('Studies');
