@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_webdesk.pages_default.inc
@@ -431,6 +432,52 @@ function uib_webdesk_default_page_manager_pages() {
   $display->content['new-ecc0db74-02df-4c37-aede-33386cd356ed'] = $pane;
   $display->panels['right'][1] = 'new-ecc0db74-02df-4c37-aede-33386cd356ed';
   $pane = new stdClass();
+  $pane->pid = 'new-3b307ea5-75fc-4dfd-be88-45f623743300';
+  $pane->panel = 'right';
+  $pane->type = 'block';
+  $pane->subtype = 'uib_webdesk-imported_phd_pressreleases';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = '3b307ea5-75fc-4dfd-be88-45f623743300';
+  $display->content['new-3b307ea5-75fc-4dfd-be88-45f623743300'] = $pane;
+  $display->panels['right'][2] = 'new-3b307ea5-75fc-4dfd-be88-45f623743300';
+  $pane = new stdClass();
+  $pane->pid = 'new-a2d171de-b22f-4471-b571-6b74f96dc87e';
+  $pane->panel = 'right';
+  $pane->type = 'block';
+  $pane->subtype = 'uib_webdesk-imported_phd_events';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'a2d171de-b22f-4471-b571-6b74f96dc87e';
+  $display->content['new-a2d171de-b22f-4471-b571-6b74f96dc87e'] = $pane;
+  $display->panels['right'][3] = 'new-a2d171de-b22f-4471-b571-6b74f96dc87e';
+  $pane = new stdClass();
   $pane->pid = 'new-abcbce76-b0a2-43e0-8d40-f5f57d6107b6';
   $pane->panel = 'right';
   $pane->type = 'views_panes';
@@ -444,11 +491,11 @@ function uib_webdesk_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 2;
+  $pane->position = 4;
   $pane->locks = array();
   $pane->uuid = 'abcbce76-b0a2-43e0-8d40-f5f57d6107b6';
   $display->content['new-abcbce76-b0a2-43e0-8d40-f5f57d6107b6'] = $pane;
-  $display->panels['right'][2] = 'new-abcbce76-b0a2-43e0-8d40-f5f57d6107b6';
+  $display->panels['right'][4] = 'new-abcbce76-b0a2-43e0-8d40-f5f57d6107b6';
   $pane = new stdClass();
   $pane->pid = 'new-fffe931a-1dd2-46f5-8deb-8b00460d3441';
   $pane->panel = 'right';
@@ -478,11 +525,11 @@ function uib_webdesk_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 3;
+  $pane->position = 5;
   $pane->locks = array();
   $pane->uuid = 'fffe931a-1dd2-46f5-8deb-8b00460d3441';
   $display->content['new-fffe931a-1dd2-46f5-8deb-8b00460d3441'] = $pane;
-  $display->panels['right'][3] = 'new-fffe931a-1dd2-46f5-8deb-8b00460d3441';
+  $display->panels['right'][5] = 'new-fffe931a-1dd2-46f5-8deb-8b00460d3441';
   $pane = new stdClass();
   $pane->pid = 'new-39db483f-eb3c-413f-b84a-2aaf59ddee2d';
   $pane->panel = 'right';
@@ -513,11 +560,11 @@ function uib_webdesk_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 4;
+  $pane->position = 6;
   $pane->locks = array();
   $pane->uuid = '39db483f-eb3c-413f-b84a-2aaf59ddee2d';
   $display->content['new-39db483f-eb3c-413f-b84a-2aaf59ddee2d'] = $pane;
-  $display->panels['right'][4] = 'new-39db483f-eb3c-413f-b84a-2aaf59ddee2d';
+  $display->panels['right'][6] = 'new-39db483f-eb3c-413f-b84a-2aaf59ddee2d';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

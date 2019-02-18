@@ -42,6 +42,120 @@ function uib_webdesk_menu() {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function uib_webdesk_block_info() {
+  return array(
+    'imported_phd_pressreleases' => array(
+      'info' => t('Not published imported press releases from BYOTH'),
+      'status' => TRUE,
+    ),
+    'imported_phd_events' => array(
+      'info' => t('Not published imported disputases and trial lectures from BYOTH'),
+      'status' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function uib_webdesk_block_view($delta = '') {
+  global $user;
+  $pressreleases = uib_webdesk__get_unpublished_press_releases();
+  $block = array();
+  switch($delta) {
+    case 'imported_phd_pressreleases':
+      $new_phds_area = node_load(50541);
+      if (uib_area__is_content_manager($new_phds_area, $user)) {
+        $block['subject'] = t('Not published imported PhD pressreleases');
+        if (!empty($pressreleases)) {
+          $rows = array();
+          foreach ($pressreleases as $key => $row) {
+            $rows[] = array(
+              l($row->title, drupal_get_path_alias('node/' . $key)),
+              date('d-m-Y',$row->created),
+              l(t('Edit'), 'node/' . $key . '/edit'),
+              l(t('Delete'), 'node/' . $key . '/delete'),
+            );
+          }
+          if (!empty($rows)) {
+            $block['content'] = theme('table', array(
+              'header' => array(
+                t('Title'),
+                t('Imported'),
+                '',
+                '',
+              ),
+              'rows' => $rows,
+            ));
+          }
+        }
+      }
+      break;
+    case 'imported_phd_events':
+      $new_phds_events = uib_webdesk__get_unpublished_phd_events();
+      $block['subject'] = t('Not published imported PhD events');
+      $rows = array();
+      foreach($new_phds_events as $key => $row) {
+        $event_area = node_load($row->field_uib_area['und'][0]['target_id']);
+        if (uib_area__is_content_manager($event_area, $user)) {
+          $rows[] = array(
+            l($row->title, drupal_get_path_alias('node/' . $key)),
+            $row->field_uib_event_type['und'][0]['value'],
+            date('d-m-Y', $row->created),
+            l(t('Edit'), 'node/' . $key . '/edit'),
+            l(t('Delete'), 'node/' . $key . '/delete'),
+          );
+        }
+      }
+      if (!empty($rows)) {
+        $block['content'] = theme('table', array(
+          'header' => array(
+            t('Title'),
+            t('Type'),
+            t('Imported'),
+            '',
+            '',
+          ),
+          'rows' => $rows,
+        ));
+      }
+      break;
+  }
+  return $block;
+}
+
+function uib_webdesk__get_unpublished_phd_events() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'uib_article')
+    ->propertyCondition('status', NODE_NOT_PUBLISHED)
+    ->fieldCondition('field_uib_article_type', 'value', 'event', '=')
+    ->fieldCondition('field_uib_event_type', 'value', array('trial_lecture', 'disputation'), 'IN')
+    ->fieldCondition('field_uib_byoth_id', 'value', 'NULL', '!=');
+    $result = $query->execute();
+    if (isset($result['node'])) {
+      $nids = array_keys($result['node']);
+      return entity_load('node', $nids);
+    }
+}
+
+function uib_webdesk__get_unpublished_press_releases() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'uib_article')
+    ->propertyCondition('status', NODE_NOT_PUBLISHED)
+    ->fieldCondition('field_uib_article_type', 'value', 'phd_press_release', '=')
+    ->fieldCondition('field_uib_byoth_id', 'value', 'NULL', '!=');
+  $result = $query->execute();
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    return entity_load('node', $nids);
+  }
+}
+
+/**
  * Implements hook_admin_menu_output_alter
  */
 function uib_webdesk_admin_menu_output_alter(&$content) {

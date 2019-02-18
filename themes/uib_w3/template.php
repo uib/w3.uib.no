@@ -1229,7 +1229,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       else {
         $variables['content']['article_info'] = $article_info;
       }
-      if ($variables['field_uib_article_type']['und'][0]['value'] == 'phd_press_release') {
+      if ($variables['field_uib_article_type']['und'][0]['value'] == 'phd_press_release' && !empty($variables['field_uib_media'])) {
         $media_link = __uib_w3__download_image_link($variables['content']['field_uib_media'][0]['#file']);
         $media_markup = render($variables['content']['field_uib_media']);
         $media_markup = substr($media_markup, 0, -18);

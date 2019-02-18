@@ -4,19 +4,17 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-#if [ "$(hostname)" = attilatest.uib.no ]; then
-#    if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
-#
-#    fi
-#fi
+if [ "$(hostname)" = attilatest.uib.no ]; then
+    if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
+      bin/site-drush uib-sync-phd 10103,21943 -v
+      bin/site-drush uapcm  -v
+    fi
+fi
 
 
-# if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
-#
-# fi
+if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
+  bin/site-drush uib-sync-phd -v
+  bin/site-drush uapcm 8005,10362,12411,20490 -v
+fi
 
-REL=122
-
-bin/site-drush fix-media-library-settings --verbose
-bin/site-drush cc all
-
+REL=125
