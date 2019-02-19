@@ -24,8 +24,8 @@ function uib_study_field_group_info() {
     'label' => 'Related content',
     'weight' => '19',
     'children' => array(
-      0 => 'field_uib_related_content_label',
-      1 => 'field_uib_study_relation',
+      0 => 'field_uib_study_relation',
+      1 => 'field_uib_related_content_label',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

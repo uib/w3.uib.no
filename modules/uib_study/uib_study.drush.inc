@@ -11,7 +11,32 @@ function uib_study_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'arguments' => array(),
   );
+  $items['uib-create-study-krav'] = array(
+    'description' => 'Create initial taxonomy terms for taxonomy uib_study_krav',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(),
+  );
   return $items;
+}
+
+function drush_uib_study_uib_create_study_krav() {
+  $new_terms = array(
+    'GENS',
+    'REALR2',
+    'SIVING',
+    'MEROD',
+    'MATRS',
+    'REALFA',
+    'LÆRMA4',
+    'LÆREA2',
+    'MUSUIB',
+    'MATTE4',
+  );
+  foreach($new_terms as $new_term) {
+    $tid = uib_study__create_taxonomy_term($new_term, 'uib_study_krav');
+    if ($tid) uibx_log('Taxonomy term "' . $new_term . '" with tid ' . $tid . ' is created');
+    else uibx_log('Taxonomy term "' . $new_term . '" was not created');
+  }
 }
 
 function drush_uib_study_uib_toggle_publish_text() {

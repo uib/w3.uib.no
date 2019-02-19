@@ -1599,6 +1599,10 @@ EOD;
             $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
             $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
           }
+          if (!empty($node->field_uib_admission_requirements) && $language->language == 'nb') {
+            $adreq = taxonomy_term_load($node->field_uib_admission_requirements['und'][0]['tid']);
+            $items[] = uib_study__get_study_facts_markup('Opptakskrav', $adreq->name, TRUE);
+          }
         }
         $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
         $seats = uib_study__extract_study_info($data_2, $seats_info);
@@ -1684,6 +1688,10 @@ EOD;
           if ($points && $language->language == 'nb') {
             $points['#text'] = l(strip_tags($points['#text']), 'node/101938');
             $items[] = uib_study__get_study_facts_markup('Poenggrense', $points['#text']);
+          }
+          if (!empty($node->field_uib_admission_requirements) && $language->language == 'nb') {
+            $adreq = taxonomy_term_load($node->field_uib_admission_requirements['und'][0]['tid']);
+            $items[] = uib_study__get_study_facts_markup('Opptakskrav', $adreq->name);
           }
           $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
           $seats = uib_study__extract_study_info($data_2, $seats_info);
@@ -3391,9 +3399,12 @@ function uib_study__get_categories() {
 /**
  * Returns markup for a study facts item
  */
-function uib_study__get_study_facts_markup($label, $value) {
+function uib_study__get_study_facts_markup($label, $value, $keep_case = NULL) {
   $item = '<span class="study-facts__label">' . $label . '</span>';
-  $item .= '<span class="study-facts__value">' . $value . '</span>';
+  if ($keep_case)
+    $item .= '<span class="study-facts__value--no-trans">' . $value . '</span>';
+  else
+    $item .= '<span class="study-facts__value">' . $value . '</span>';
   return $item;
 }
 

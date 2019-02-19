@@ -305,6 +305,51 @@ function uib_study_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-uib_study-field_uib_admission_requirements'.
+  $field_instances['node-uib_study-field_uib_admission_requirements'] = array(
+    'bundle' => 'uib_study',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 33,
+      ),
+      'short_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_uib_admission_requirements',
+    'label' => 'Admission requirements',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 36,
+    ),
+  );
+
   // Exported field_instance: 'node-uib_study-field_uib_feed'.
   $field_instances['node-uib_study-field_uib_feed'] = array(
     'bundle' => 'uib_study',
@@ -896,7 +941,7 @@ function uib_study_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 36,
+      'weight' => 37,
     ),
   );
 
@@ -3104,6 +3149,7 @@ function uib_study_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('<ul><li>The text in this field will be accessed by external search engines, and is generally considered as important metadata.</li><li>The search engines will sometimes use the description as search results snippets.</li></ul>');
   t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
+  t('Admission requirements');
   t('Alternative field to display english media for english content. If field is not set, the default media will be displayed. ');
   t('Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.');
   t('Caption for image');

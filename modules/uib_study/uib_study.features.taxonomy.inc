@@ -26,6 +26,14 @@ function uib_study_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
+    'uib_study_krav' => array(
+      'name' => 'uib_study_krav',
+      'machine_name' => 'uib_study_krav',
+      'description' => '',
+      'hierarchy' => 0,
+      'module' => 'taxonomy',
+      'weight' => 0,
+    ),
     'uib_study_labels' => array(
       'name' => 'uib_study_labels',
       'machine_name' => 'uib_study_labels',
