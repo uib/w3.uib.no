@@ -2020,7 +2020,7 @@ function uib_study__semester_exam_information($data, $lang, $list, $part = FALSE
       '#value' => $eval . ': ' . $name . $status,
       '#attributes' => array(),
     );
-    if (!$part && $ei['status'] == 'Ny eksamen') {
+    if (!$part && in_array($ei['status'], array('Ny eksamen', 'New exam'))) {
       if ($lang == ':en') {
         $path = 'node/108982';
       }
