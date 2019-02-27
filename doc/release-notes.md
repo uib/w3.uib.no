@@ -1,3 +1,13 @@
+# Release 111 _2019-02-27_
+- Lagt til støtte for visning av flere blokker med trekkspillmenyer i brødtekst #21957
+- Lagt til støtte for bruk av "Call to action"-lenker i artikler på studentsidene og utdanningsområdet #21960
+- Endret design på undermenyen til globalmenypunktet "Om UiB" i tablet- og desktopmodus #21732
+- Endret brødsmulestien for internasjonale studieprogrammer #21872
+- Endret teksten som vises når informasjon om et gitt studieprogram ikke er tilgjengelig i valgt språkversjon #21958
+- Rettet feil der lenke til informasjon om ny eksamen ikke ble vist i engelsk versjon av fakultetsvise eksamensoversikter #21876
+- Rettet feil der oppdateringsdato for artikler i visse tilfeller var ukorrekt i søkeresultat #21930
+- Innstallert sikkerhetsoppdateringer for Drupal-moduler #21946 #21964
+
 # Release 110 _2019-02-14_
 - Lagt til støtte for kobling til studieretningenes studieplan på studieprogramsider #21517
 - Lagt til støtte for flere kortlenke-varianter i felt for Mazemap-lenke på personsider #21789 #21821
