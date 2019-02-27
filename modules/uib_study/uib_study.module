@@ -1129,10 +1129,30 @@ EOD;
           ));
         }
         $node = entity_metadata_wrapper('node', $node);
+        $type = $node->field_uib_study_type->value();
+        $study_category = $node->field_uib_study_category->value();
         $data = uib_study__fspres_get_node_json($node->getIdentifier(), 'render.json', TRUE);
+        foreach($data as $key => $d) {
+          foreach($d['#items'] as $k => $item) {
+            if(in_array($item['#type'], $splice_list)) unset($data[$key]['#items'][$k]);
+          }
+          if (empty($data[$key]['#items'])) unset($data[$key]);
+        }
         if (empty($data)) {
           if (is_null($data)) $msg = t('Information about this study isn\'t currently available. Please try again later!');
-          else $msg = t('Information about this study is not available in English');
+          else {
+            if ($type == 'program') {
+              if ($language->language == 'nb') {
+                $url = drupal_get_path_alias('node/' . $node->getIdentifier(), 'en');
+                $msg = '<p>Studieprogrammet blir undervist på engelsk og du finn derfor informasjon om studieprogrammet på ' . l('dei engelske nettsidene', $url) . '.</p>';
+              }
+              else {
+                $url = 'https://www.samordnaopptak.no/info/english/language-requirements/';
+                $msg = '<p>This programme is taught in Norwegian and you must document Norwegian language proficiency to be considered for admission. The programme description is ' . l('only available in Norwegian', $url) . '.</p>';
+              }
+            }
+            else $msg = t('Information about this study is not available in English');
+          }
           $block['content'] = array(
             '#markup' => '<div class="fs-error">' . $msg . '</div>',
           );
@@ -1154,8 +1174,6 @@ EOD;
           'FAVT_MOB',
           'FAVT_TYPE'
         );
-        $type = $node->field_uib_study_type->value();
-        $study_category = $node->field_uib_study_category->value();
         if ($type == 'exchange' && !in_array($study_category, array('forskningsavtale', 'mou'))) {
           $splice_list = array_merge($splice_list, $keep_list);
         }
