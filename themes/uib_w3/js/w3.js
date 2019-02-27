@@ -79,7 +79,7 @@
               height: $(this).children('ul').first().get(0).scrollHeight+80,
               paddingTop: '1.875rem',
               paddingRight: '1.875rem',
-              paddingBottom: '1.875rem',
+              paddingBottom: '4.875rem',
             }, 400 );
       }, function(e){
         $(this).children('ul').first().clearQueue();
