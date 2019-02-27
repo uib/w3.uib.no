@@ -1142,13 +1142,15 @@ EOD;
           if (is_null($data)) $msg = t('Information about this study isn\'t currently available. Please try again later!');
           else {
             if ($type == 'program') {
+              global $base_url;
               if ($language->language == 'nb') {
-                $url = drupal_get_path_alias('node/' . $node->getIdentifier(), 'en');
+                $url = $base_url . '/en/' . drupal_get_path_alias('node/' . $node->getIdentifier(), 'en');
                 $msg = '<p>Studieprogrammet blir undervist på engelsk og du finn derfor informasjon om studieprogrammet på ' . l('dei engelske nettsidene', $url) . '.</p>';
               }
               else {
-                $url = 'https://www.samordnaopptak.no/info/english/language-requirements/';
-                $msg = '<p>This programme is taught in Norwegian and you must document Norwegian language proficiency to be considered for admission. The programme description is ' . l('only available in Norwegian', $url) . '.</p>';
+                $url1 = 'https://www.samordnaopptak.no/info/english/language-requirements/';
+                $url2 = $base_url . '/nb/' . drupal_get_path_alias('node/' . $node->getIdentifier(), 'nb');
+                $msg = '<p>This programme is taught in Norwegian and you must document ' . l('Norwegian language proficiency', $url1) . ' to be considered for admission. The programme description is ' . l('only available in Norwegian', $url2) . '.</p>';
               }
             }
             else $msg = t('Information about this study is not available in English');
