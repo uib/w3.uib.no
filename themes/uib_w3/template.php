@@ -38,7 +38,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
   }
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
-      $variables['classes_array'][] = $node->field_uib_feature_article['und'][0]['value'] === '1' ? 'uib-article__feature_article' : 'uib-article__' . $node->field_uib_article_type['und'][0]['value'];
+      $variables['classes_array'][] = $node->field_uib_feature_article['und'][0]['value'] === '1' ? 'uib-article__feature_article' : 'uib-article__' . $node->field_uib_article_type['und'][0]['value'] . ' area-' . $node->field_uib_area['und'][0]['target_id'];
       if ($node->field_uib_feature_article['und'][0]['value'] == 1) {
         if (!empty($node->field_uib_feature_heading_style)) {
           $variables['classes_array'][] = 'feature-article-style-' . $node->field_uib_feature_heading_style['und'][0]['value'];
