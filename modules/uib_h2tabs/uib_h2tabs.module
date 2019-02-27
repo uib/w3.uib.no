@@ -35,42 +35,46 @@ function _uib_h2tabs_filter_h2_prepare($text, $filter) {
 function _uib_h2tabs_filter_h2_process($text, $filter) {
   // Recode markup
   $text = explode('----', $text);
-  $extra = count($text) > 1 ? $text[1] : '';
-  $text = $text[0];
+  $part_one = array_shift($text);
+  $extra = FALSE;
+  if (!empty($text)){
+    $extra = count($text) > 1 ? implode('----', $text) : $text[0];
+  }
   $h2s = array();
-  $e = preg_match_all('/<h2.*?>(.*?)<\/h2>/', $text, $h2s, PREG_OFFSET_CAPTURE);
+  $e = preg_match_all('/<h2.*?>(.*?)<\/h2>/', $part_one, $h2s, PREG_OFFSET_CAPTURE);
   if ($e > 0) {
     $hits_index = count($h2s[1]) -1;
+    $extra = $extra ? _uib_h2tabs_filter_h2_process($extra, $filter) : '' ;
     if ($hits_index == 0) { //Only one H2 - header, no need for accordion
-      return $text;
+      return $part_one . $extra;
     }
     // Tabs contents
     $tabs_contents = '';
     for ($i = $hits_index; $i >= 0; $i--) { // loop backwards through hits
       $id = _uib_h2tabs__generate_id($h2s[1][$i][0]);
       $h2 = $h2s[0][$i][0]; // The whole regex match, incl. <h2>
-      $add_markup = "<div id=\"$id\">
-      ";
+      $add_markup = '<div id="$id">
+      ';
       $add_markup .= $h2;
       // Use the content of the h2, i.e. the contents of the first captured pattern
       $pos_match = $h2s[0][$i][1]; // position of match in text
-      $add_markup .= "<div>";
-      $add_markup .= substr($text, $pos_match + strlen($h2));
-      $add_markup .= "</div>";
-      $text = substr($text, 0, $pos_match); // remove this portion from text
+      $add_markup .= '<div>';
+      $add_markup .= substr($part_one, $pos_match + strlen($h2));
+      $add_markup .= '</div>';
+      $part_one = substr($part_one, 0, $pos_match); // remove this portion from text
       $add_markup .= "
       </div>
       ";
       $tabs_contents = $add_markup . $tabs_contents;
     }
-    return $text . "
-      <div class=\"uib-tabs-container\">
-      <div class=\"tabs-content\">" .
-      $tabs_contents . $extra . "
+    return $part_one . '
+      <div class="uib-tabs-container">
+      <div class="tabs-content">' .
+      $tabs_contents. '
       </div>
-      </div>";
+      </div>' . $extra ;
   }
-  return $text;
+  return $part_one;
 }
 
 /**
