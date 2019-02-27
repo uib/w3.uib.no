@@ -849,7 +849,8 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         $output[$key] = $arr;
         break;
       case 'changed':
-        $output[$key] = db_query('SELECT MAX(timestamp) FROM node_revision WHERE nid = :nid and uid > 1', array(':nid' => $wrapped_entity->getIdentifier()))->fetchField();
+        $upd = db_query('SELECT MAX(timestamp) FROM node_revision WHERE nid = :nid and uid > 1', array(':nid' => $wrapped_entity->getIdentifier()))->fetchField();
+        $output[$key] = ( empty($upd) ) ? $wrapped_entity->created->value() : $upd;
         break;
       default:
         $output[$key] = uib_search__null_if_empty($v->value());
