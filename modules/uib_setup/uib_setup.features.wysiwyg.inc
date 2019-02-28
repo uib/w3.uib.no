@@ -63,7 +63,8 @@ function uib_setup_wysiwyg_default_profiles() {
       'css_setting' => 'none',
       'css_theme' => 'adminimal',
       'css_path' => '',
-      'stylesSet' => 'Call to action=a.study--call-to-action',
+      'stylesSet' => 'Call to action=a.study--call-to-action
+Align right=p.text-align-right',
       'block_formats' => 'p,h2,h3,h4',
       'forcePasteAsPlainText' => 0,
       'pasteFromWordNumberedHeadingToList' => 0,

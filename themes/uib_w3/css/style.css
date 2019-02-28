@@ -1166,6 +1166,9 @@ a.study--exchange {
   padding-right: 1rem;
   text-decoration: none; }
 
+p.text-align-right {
+  text-align: right; }
+
 .node-type-area .media-vimeo-video,
 .node-type-area .media-youtube-video,
 .node-type-uib-study .media-vimeo-video,
