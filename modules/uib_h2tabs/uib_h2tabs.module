@@ -53,7 +53,7 @@ function _uib_h2tabs_filter_h2_process($text, $filter) {
     for ($i = $hits_index; $i >= 0; $i--) { // loop backwards through hits
       $id = _uib_h2tabs__generate_id($h2s[1][$i][0]);
       $h2 = $h2s[0][$i][0]; // The whole regex match, incl. <h2>
-      $add_markup = '<div id="$id">
+      $add_markup = '<div id="' . $id . '">
       ';
       $add_markup .= $h2;
       // Use the content of the h2, i.e. the contents of the first captured pattern
