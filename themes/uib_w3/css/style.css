@@ -2069,14 +2069,14 @@ p.text-align-right {
       .article-info .uib-author a:hover {
         text-decoration: underline; }
 
-.uib-article__event .content .article-info, .uib-article__event .content-top .article-info, .uib-article__infopage .content .article-info, .uib-article__infopage .content-top .article-info {
+.uib-article__event .content .article-info, .uib-article__event .content-top .article-info, .uib-article__infopage .content .article-info, .uib-article__infopage .content-top .article-info, .node-uib-content-list .content .article-info, .node-uib-content-list .content-top .article-info {
   padding-top: 1.25rem;
   clear: both;
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif;
   border-bottom: none; }
-  .uib-article__event .content .article-info span, .uib-article__event .content-top .article-info span, .uib-article__infopage .content .article-info span, .uib-article__infopage .content-top .article-info span {
+  .uib-article__event .content .article-info span, .uib-article__event .content-top .article-info span, .uib-article__infopage .content .article-info span, .uib-article__infopage .content-top .article-info span, .node-uib-content-list .content .article-info span, .node-uib-content-list .content-top .article-info span {
     font-style: italic; }
-  .uib-article__event .content .article-info .uib-date-info:before, .uib-article__event .content-top .article-info .uib-date-info:before, .uib-article__infopage .content .article-info .uib-date-info:before, .uib-article__infopage .content-top .article-info .uib-date-info:before {
+  .uib-article__event .content .article-info .uib-date-info:before, .uib-article__event .content-top .article-info .uib-date-info:before, .uib-article__infopage .content .article-info .uib-date-info:before, .uib-article__infopage .content-top .article-info .uib-date-info:before, .node-uib-content-list .content .article-info .uib-date-info:before, .node-uib-content-list .content-top .article-info .uib-date-info:before {
     display: none; }
 
 .field-name-field-uib-profiled-message {

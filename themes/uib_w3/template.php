@@ -1205,6 +1205,7 @@ function uib_w3_preprocess_node(&$variables, $hook) {
       $variables['content']['field_uib_location']['#label_display'] = 'hidden';
       $variables['content']['field_uib_event_type']['#label_display'] = 'hidden';
       $variables['content']['field_uib_contacts']['#label_display'] = 'hidden';
+
       $article_info = __uib_w3__article_info($variables['node']);
       if (isset($variables['content']['field_uib_text'])) {
         $variables['content']['field_uib_text'][0]['#markup'] = __uib_w3__add_table_wrapper($variables['content']['field_uib_text'][0]['#markup']);
@@ -1272,6 +1273,13 @@ function uib_w3_preprocess_node(&$variables, $hook) {
     }
   }
   else {
+    if ($variables['type'] == 'uib_article' && $hook == 'node' && isset($variables['content']['field_uib_text'])
+        && ($variables['field_uib_article_type']['und'][0]['value'] == 'event' || $variables['field_uib_article_type']['und'][0]['value'] == 'infopage') ) {
+      $article_info = __uib_w3__article_info($variables['node']);
+      $variables['content']['field_uib_text'][0]['#markup'] = __uib_w3__add_table_wrapper($variables['content']['field_uib_text'][0]['#markup']);
+      $variables['content']['field_uib_text'][0]['#markup'] = $variables['content']['field_uib_text'][0]['#markup'] . render($article_info);
+      unset($variables['content']['article_info']);
+    }
     // Add class no-kicker to related content without a kicker
     if (!isset($variables['field_uib_kicker']) || empty($variables['field_uib_kicker'][0]['value'])) $variables['classes_array'][] = 'no-kicker';
     if ($variables['type'] == 'uib_article' && $variables['view_mode'] == 'full') {
