@@ -694,6 +694,7 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     'secondary_text',
     'market_text',
     'article_type',
+    'area',
     'promote',
     'url',
     'type',
@@ -739,6 +740,10 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
         else if ($search_manual_boost<$min) {
           $search_manual_boost = $min;
         }
+        break;
+      case 'area':
+        $area = get_entity_area($wrapped_entity->field_uib_area);
+        $output[$key] = $area;
         break;
       case 'links':
         if ($wrapped_entity->type->value() == 'uib_external_content') {
@@ -906,6 +911,12 @@ function uib_search__get_elastic_entity_array($wrapped_entity) {
     ),
   );
   return $output + $hits;
+}
+
+
+function get_entity_area($ent) {
+  if (isset($ent->value()[0]->title)) return $ent->value()[0]->title;
+  return null;
 }
 
 /**
@@ -1408,6 +1419,7 @@ function uib_search__create_query($use_post_boosting = FALSE) {
       'w3.type',
       'w3.changed',
       'w3.article_type',
+      'w3.area',
       'w3.location',
       'w3.study_code',
       'mail',

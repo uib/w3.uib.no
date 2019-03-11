@@ -121,7 +121,6 @@
       // Don't process if a new query is underway
       if ($.uib_search.querynum > data.querynum) return;
 
-
       var resultstag = $(resultsselector);
       if ($.trim($('form#uib-search-form .search-field').val())=='') {
         resultstag.html('');
@@ -305,7 +304,8 @@
           var changedtag = $('<div/>')
             .text(last_updated + first_published)
             .addClass('published');
-          name = $('<a></a>').attr('href', link).html(title);
+          var area = $().getVal(v._source.w3, 'area') ? " | " + $().getVal(v._source.w3, 'area') : '';
+          name = $('<a></a>').attr('href', link).html(title + area);
           lft = $('<div></div>').addClass('lft')
             .append(
               $('<div></div>').addClass('title').append(name)

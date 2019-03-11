@@ -689,6 +689,9 @@
               "type": "string",
               "index": "not_analyzed"
             },
+            "area": {
+              "type": "string"
+            },
             "search_keywords": {
               "type": "string"
             },
