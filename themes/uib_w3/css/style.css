@@ -3399,14 +3399,8 @@ p.text-align-right {
 .field-name-field-uib-copyright .field-label {
   font-weight: normal; }
 
-.field-name-field-uib-description {
-  margin-right: .5rem; }
-
-.field-name-field-uib-owner {
-  margin-right: .5rem; }
-  .field-name-field-uib-owner .field-label {
-    font-weight: normal;
-    padding-right: 0.25rem; }
+.field-name-field-uib-owner .field-label {
+  font-weight: normal; }
 
 .field-name-field-uib-important-message {
   width: 100%;
