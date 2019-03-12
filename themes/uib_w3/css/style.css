@@ -7257,7 +7257,7 @@ body #mc_embed_signup div.mce_inline_error {
     -webkit-flex: 1 0 100%;
     flex: 1 0 100%;
     font-size: 1.125rem;
-    padding: 1rem 0.5rem 1rem 0; }
+    padding: 1rem 0.5rem 1.2rem 0; }
     @media (min-width: 600px) {
       .user-contact-info ul li {
         -ms-flex: 1 0 50%;
@@ -7283,7 +7283,7 @@ body #mc_embed_signup div.mce_inline_error {
     font-size: 1.4375rem; }
   .user-contact-info ul .user-contact__value {
     font-size: 1.0625rem;
-    display: inline-block; }
+    display: table; }
     .user-contact-info ul .user-contact__value a div {
       text-decoration: underline; }
     .user-contact-info ul .user-contact__value .phone-number {
