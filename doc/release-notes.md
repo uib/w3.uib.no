@@ -1,3 +1,13 @@
+# Release 112 _2019-03-14_
+- Lagt til områdenavn i lenketekst i søkeresultat #21999
+- Lagt til støtte for høyrestilt brødtekst #21871
+- Rettet feil der anker-ID ikke ble vist i direktelenker til trekkspillmenypunkt #21977
+- Flyttet dato for publisering og oppdatering til bunnen av brødtekstfeltet når siden inngår som del av en innholdsliste #21985
+- Justert plasseringen av dato for publisering og oppdatering på infosider og arrangementer #21986
+- Fjernet overflødig luft mellom felt for billedtekst, foto og opphavsrett #22039
+- Minsket luften under kontakinformasjonen på personsider #22016
+- Installert sikkerhetsoppdatering for Drupal-modul #22096
+
 # Release 111 _2019-02-27_
 - Lagt til støtte for visning av flere blokker med trekkspillmenyer i brødtekst #21957
 - Lagt til støtte for bruk av "Call to action"-lenker i artikler på studentsidene og utdanningsområdet #21960
@@ -6,7 +16,7 @@
 - Endret teksten som vises når informasjon om et gitt studieprogram ikke er tilgjengelig i valgt språkversjon #21958
 - Rettet feil der lenke til informasjon om ny eksamen ikke ble vist i engelsk versjon av fakultetsvise eksamensoversikter #21876
 - Rettet feil der oppdateringsdato for artikler i visse tilfeller var ukorrekt i søkeresultat #21930
-- Innstallert sikkerhetsoppdateringer for Drupal-moduler #21946 #21964
+- Installert sikkerhetsoppdateringer for Drupal-moduler #21946 #21964
 
 # Release 110 _2019-02-14_
 - Lagt til støtte for kobling til studieretningenes studieplan på studieprogramsider #21517
