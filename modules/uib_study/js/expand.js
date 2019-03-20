@@ -1,11 +1,16 @@
 (function ($) {
   Drupal.behaviors.uibStudyBehavior = {
     attach: function (context, settings) {
-      $('.study-listing').accordion({
-        active: false,
-        collapsible: true,
-        heightStyle: 'content',
-        icons: false
+      $('.study-listing').each(function(i,elem) {
+        $(this).accordion({
+          activate: function(e, ui) {
+            sessionStorage.setItem('accordion-active'+i, $(this).accordion( "option", "active"));
+          },
+          active: parseInt(sessionStorage.getItem('accordion-active'+i)),
+          collapsible: true,
+          heightStyle: 'content',
+          icons: false
+        });
       });
       $(document).ready(function() {
         $('.page-studies-alphabetical #uib-study-filter-form').hide();
