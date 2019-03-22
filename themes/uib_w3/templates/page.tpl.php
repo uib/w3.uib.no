@@ -95,7 +95,6 @@
       </header>
       <nav class="mobile_dropdown">
         <?php
-        $variables['mobile']['#prefix'] = '<nav class="mobile noscript">';
         print render($variables['mobile']);
         ?>
       </nav>

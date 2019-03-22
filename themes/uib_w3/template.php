@@ -186,7 +186,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     else {
       $variables['mobile']['global_mobile_menu'] = __uib_w3__get_renderable_menu('menu-global-menu-2');
     }
-    $variables['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu">';
+    $variables['mobile']['global_mobile_menu']['#prefix'] = '<nav class="global-mobile-menu mobile noscript">';
     $variables['mobile']['global_mobile_menu']['#suffix'] = '</nav>';
     $variables['mobile']['global_mobile_menu']['#weight'] = 5;
   }
