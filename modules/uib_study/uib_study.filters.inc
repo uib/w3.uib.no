@@ -145,7 +145,18 @@ function uib_study__get_studyprogrammes_by_cat() {
     '#type' => 'container',
     '#attributes' => array('class' => 'study-listing'),
   );
-  $studyprogrammes = drupal_http_request($base_url . '/' . $l . '/uib-study-data/studieprogram');
+  $attilatest_urls = array(
+    'https://w3-staging.test.uib.no',
+    'https://w3-kurs.test.uib.no',
+    'https://w3-prestaging.test.uib.no',
+  );
+  if (in_array($base_url, $attilatest_urls)) {
+    $options['context'] = stream_context_create(array('ssl' => ['verify_peer' => FALSE, 'verify_peer_name' => FALSE]));
+    $studyprogrammes = drupal_http_request($base_url . '/' . $l . '/uib-study-data/studieprogram', $options);
+  }
+  else {
+    $studyprogrammes = drupal_http_request($base_url . '/' . $l . '/uib-study-data/studieprogram');
+  }
   $studyprogrammes = drupal_json_decode($studyprogrammes->data);
   $studies_with_category = array();
   foreach($studyprogrammes['nodes'] as $sp) {
