@@ -981,68 +981,7 @@ EOD;
           $link = l(t('See list of recommended exchange agreements'), $urls[$lang][0] . '/' . $study_code . '/' . $urls[$lang][2], array('attributes' => array('class' => array('study--exchange'))));
           $study_text_w3 = str_replace('<p>(* exchange *)</p>', '<p>' . $link . '</p>', $study_text_w3);
         }
-        if (strpos($study_text_w3, '(* studyinfo *)') !== 0) {
-          $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
-          $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
-          $lang_appendix = $lang == 'en' ? ':en' : '';
-          $studyinfo = FALSE;
-          if (isset($data['gradnavn' . $lang_appendix])) {
-            $studyinfo .= '<dt>' . t('Degree') . ':' . '</dt>';
-            $studyinfo .= '<dd>' . $data['gradnavn' . $lang_appendix] . '</dd>';
-          }
-          if ($data['grunnstudium'] && $lang == 'nb') {
-            $study_prerequisite = uib_study__extract_study_info($data_2, 'B_RE_KRAV');
-            if (isset($study_prerequisite['#text'])) {
-              $studyinfo .= '<dt>' . 'Opptakskrav:' . '</dt>';
-              $studyinfo .= '<dd>' . strip_tags($study_prerequisite['#text'], '<a>') . '</dd>';
-            }
-          }
-          if (isset($data['studiepoeng'])) {
-            $studyinfo .= '<dt>' . t('ECTS credits') . ':' . '</dt>';
-            $studyinfo .= '<dd>' . $data['studiepoeng'] . '</dd>';
-          }
-          if (!empty($node->field_uib_study_start)) {
-            $studystart = '';
-            $start = array(
-              'nb' => array(
-                'spring' => 'Vår',
-                'autumn' => 'Haust',
-              ),
-              'en' => array(
-                'spring' => 'Spring',
-                'autumn' => 'Autumn',
-              ),
-            );
-            foreach($node->field_uib_study_start['und'] as $key => $ss) {
-              $studystart .= $start[$lang][$ss['value']];
-              $studystart .= $key < count($node->field_uib_study_start['und']) - 1 ? ' ' . t('and') . ' ' : '';
-            }
-            if (!empty($node->field_uib_study_start_extra)) {
-              if (isset($node->field_uib_study_start_extra[$lang])) {
-                $studystart .= ' (' . $node->field_uib_study_start_extra[$lang][0]['value'] . ')';
-              }
-            }
-            $studyinfo .= '<dt>' . (t('Study start')) . ':' . '</dt>';
-            $studyinfo .= '<dd>' . $studystart . '</dd>';
-          }
-          $study_plan = FALSE;
-          if (uib_study__has_study_plan($data_2)) {
-            $study_alias = drupal_get_path_alias(current_path());
-            $study_plan = "<p class='uib-study-plan'>" . l(t('See full study plan'), drupal_get_path_alias($study_alias) . '/plan') . "</p>";
-          }
-          if ($studyinfo || $study_plan) {
-            $output = '<div class="uib-study__practical-info">';
-            $output .= '<h3>' . t('Practical information') . '</h3>';
-            if ($studyinfo) {
-              $output .= '<dl>' . $studyinfo . '</dl>';
-            }
-            if ($study_plan) {
-              $output .= $study_plan;
-            }
-            $output .= '</div>';
-            $study_text_w3 = str_replace('<p>(* studyinfo *)</p>', $output, $study_text_w3);
-          }
-        }
+
         $study_text_w3 = uib_media__insert_captions($study_text_w3, $node, $lang);
         $o_lang = $lang == 'nb' ? 'en' : 'nb';
         $course_prefix = array('nb' => 'nb/emne', 'en' => 'en/course');
