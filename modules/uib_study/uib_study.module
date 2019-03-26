@@ -676,7 +676,6 @@ function uib_study_block_view($delta = '') {
   $is_course = uib_study__is_course();
   $is_exchange = uib_study__is_exchange();
   $is_evu_course = uib_study__is_course('evu');
-
   switch ($delta) {
     case 'study_reading_lists':
       if ($is_course) {
@@ -1635,6 +1634,10 @@ EOD;
             $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
             $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
           }
+          $study_prerequisite = uib_study__extract_study_info($data_2, 'B_RE_KRAV');
+          if (isset($study_prerequisite['#text'])) {
+            $items[] = uib_study__get_study_facts_markup('Opptakskrav', strip_tags($study_prerequisite['#text']));
+          }
         }
         $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
         $seats = uib_study__extract_study_info($data_2, $seats_info);
@@ -1642,8 +1645,15 @@ EOD;
           $items[] = uib_study__get_study_facts_markup(t('Intake'), $seats['#text']);
         }
         if ($category == 'masterprogram' && $language->language == 'en') {
-          $items[] = uib_study__get_study_facts_markup('Tuition fee', 'None');
+          $items[] = uib_study__get_study_facts_markup('Tuition', 'None');
         }
+        if ($data['studiepoeng']) {
+          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
+        }
+        if (isset($node->field_uib_study_start['und'][0]['value'])) {
+          $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__get_study_start($node));
+        }
+
         $render = array(
           '#theme' => 'item_list',
           '#items' => $items,
@@ -1975,6 +1985,38 @@ EOD;
   }
 
   return $block;
+}
+
+
+/**
+ * Get study start of current study
+ */
+function uib_study__get_study_start($node) {
+  global $language;
+  $lang = $language->language;
+  if (!empty($node->field_uib_study_start)) {
+    $studystart = '';
+    $start = array(
+      'nb' => array(
+        'spring' => 'Vår',
+        'autumn' => 'Haust',
+      ),
+      'en' => array(
+        'spring' => 'Spring',
+        'autumn' => 'Autumn',
+      ),
+    );
+    foreach($node->field_uib_study_start['und'] as $key => $ss) {
+      $studystart .= $start[$lang][$ss['value']];
+      $studystart .= $key < count($node->field_uib_study_start['und']) - 1 ? ' ' . t('and') . ' ' : '';
+    }
+    if (!empty($node->field_uib_study_start_extra)) {
+      if (isset($node->field_uib_study_start_extra[$lang])) {
+        $studystart .= ' (' . $node->field_uib_study_start_extra[$lang][0]['value'] . ')';
+      }
+    }
+    return $studystart;
+  }
 }
 
 /**
