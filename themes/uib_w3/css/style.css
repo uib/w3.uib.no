@@ -3410,7 +3410,8 @@ p.text-align-right {
   margin: 25px 0;
   max-width: 72rem;
   font-size: 1.125rem;
-  min-height: 93px; }
+  min-height: 93px;
+  z-index: 11; }
   @media only screen and (min-width: 600px) {
     .field-name-field-uib-important-message {
       margin: 0; } }
@@ -3439,17 +3440,21 @@ p.text-align-right {
 
 @media only screen and (min-width: 600px) {
   .uib_breadcrumb + .field-name-field-uib-important-message {
-    top: -30px; } }
+    top: -20px; } }
 
 .front .field-name-field-uib-important-message {
+  width: auto;
   margin: 25px 1.25rem; }
   @media only screen and (min-width: 600px) {
     .front .field-name-field-uib-important-message {
-      top: -1.45rem;
-      margin: 0 1.25rem; } }
+      margin: 1.25rem; } }
   @media only screen and (min-width: 74.5rem) {
     .front .field-name-field-uib-important-message {
-      margin: 0 auto; } }
+      margin: 1.25rem auto; } }
+
+@media only screen and (min-width: 600px) {
+  .front .field-name-field-uib-important-message ~ .field-name-field-uib-primary-text .field-item {
+    margin-top: 113px; } }
 
 .view-internal-market {
   display: -moz-flex;
