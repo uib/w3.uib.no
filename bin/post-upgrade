@@ -4,11 +4,11 @@
 # It can be use to perform migrations or other manipulations of the content
 # and configuration of the site.
 
-if [ "$(hostname)" = attilatest.uib.no ]; then
-    if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
-        bin/site-drush uib-toggle-publish-text -v
-    fi
-fi
+#if [ "$(hostname)" = attilatest.uib.no ]; then
+#    if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
+#
+#    fi
+#fi
 
 
 # if [ $(pwd) == '/var/www/w3-prestaging.test.uib.no' ] ;then
