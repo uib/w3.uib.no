@@ -137,14 +137,7 @@ function uib_study__filter_form() {
   return $form;
 }
 
-function uib_study__get_studyprogrammes_by_cat() {
-  global $language;
-  global $base_url;
-  $l = $language->language;
-  $output = array(
-    '#type' => 'container',
-    '#attributes' => array('class' => 'study-listing'),
-  );
+function uib_study__get_study_data_json($base_url, $l) {
   $attilatest_urls = array(
     'https://w3-staging.test.uib.no',
     'https://w3-kurs.test.uib.no',
@@ -158,6 +151,18 @@ function uib_study__get_studyprogrammes_by_cat() {
     $studyprogrammes = drupal_http_request($base_url . '/' . $l . '/uib-study-data/studieprogram');
   }
   $studyprogrammes = drupal_json_decode($studyprogrammes->data);
+  return $studyprogrammes;
+}
+
+function uib_study__get_studyprogrammes_by_cat() {
+  global $language;
+  global $base_url;
+  $l = $language->language;
+  $output = array(
+    '#type' => 'container',
+    '#attributes' => array('class' => 'study-listing'),
+  );
+  $studyprogrammes = uib_study__get_study_data_json($base_url, $l);
   $studies_with_category = array();
   foreach($studyprogrammes['nodes'] as $sp) {
     if (!empty($sp['node']['field_uib_study_tag'])) {
@@ -214,8 +219,7 @@ function uib_study__get_studyprogrammes_by_alpha() {
   global $language;
   $l = $language->language;
   global $base_url;
-  $studyprogrammes = drupal_http_request($base_url . '/' . $l . '/uib-study-data/studieprogram');
-  $studyprogrammes = drupal_json_decode($studyprogrammes->data);
+  $studyprogrammes = uib_study__get_study_data_json($base_url, $l);
   $alpha_groups = array();
   $selected = uib_study__get_filter_selected();
   foreach ($studyprogrammes['nodes'] as $study) {
