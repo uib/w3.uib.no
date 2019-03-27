@@ -1573,10 +1573,6 @@ EOD;
             $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
             $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
           }
-          $study_prerequisite = uib_study__extract_study_info($data_2, 'B_RE_KRAV');
-          if (isset($study_prerequisite['#text'])) {
-            $items[] = uib_study__get_study_facts_markup('Opptakskrav', strip_tags($study_prerequisite['#text']));
-          }
         }
         $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
         $seats = uib_study__extract_study_info($data_2, $seats_info);
