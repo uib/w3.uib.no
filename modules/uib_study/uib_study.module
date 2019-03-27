@@ -2742,6 +2742,8 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       '#value' => $study->field_uib_study_code->value() . ' ' . $study->language($language->language)->field_uib_study_title->value(),
       '#weight' => -3,
     );
+
+
     if ($study->field_uib_study_type->value() != 'program') {
       hide($form['field_uib_study_text']);
       hide($form['field_uib_new_student']);
@@ -2762,6 +2764,28 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
     }
     if (!in_array($study->field_uib_study_type->value(), array('program', 'specialization'))) {
       hide($form['field_uib_study_tag']);
+    }
+
+    if ($study->field_uib_study_type->value() == 'program') {
+      $hidden_if_new = array(
+        'field_uib_study_image',
+        'field_uib_feed',
+        'field_uib_link_section',
+        'field_uib_link_section_2',
+        'field_uib_study_organisation',
+        'field_uib_main_media',
+        'field_uib_main_media_en',
+        'field_uib_study_relation',
+      );
+      foreach ($hidden_if_new as $h) {
+        $form[$h]['#states'] = array(
+          'invisible' => array(
+            ':input[name="field_uib_publish_text[' . $language->language .']"]' => array(
+              array('checked' => TRUE),
+            ),
+          ),
+        );
+      }
     }
 
     if ($GLOBALS['user']->uid != 1) {

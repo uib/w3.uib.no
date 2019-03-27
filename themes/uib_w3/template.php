@@ -711,34 +711,29 @@ EOD;
     case isset($variables['node']) && $variables['node']->type == 'uib_study':
       global $language;
       $study_type = $variables['node']->field_uib_study_type['und'][0]['value'];
-      $variables['page']['content_bottom']['field_uib_study_relation'] =
-        field_view_field(
-          'node',
-          $variables['node'],
-          'field_uib_study_relation', array(
-            'weight' => '30',
-            'type' => 'entityreference_entity_view',
-            'settings' => array('view_mode' => 'short_teaser', 'hide_admin_links' => TRUE),
-          )
-        );
+      if (!uib_study__programme_use_w3_data($study_type)) {
+        $variables['page']['content_bottom']['field_uib_study_relation'] = field_view_field('node', $variables['node'],'field_uib_study_relation', array(
+              'weight' => '30',
+              'type' => 'entityreference_entity_view',
+              'settings' => array('view_mode' => 'short_teaser', 'hide_admin_links' => TRUE),
+        ));
+        $tmpVar = field_view_field('node',$variables['node'],'field_uib_related_content_label');
+        if (!empty($tmpVar)) {
+          $variables['page']['content_bottom']['field_uib_study_relation']['#label_display'] = 'display';
+          $variables['page']['content_bottom']['field_uib_study_relation']['#title'] = $tmpVar[0]['#markup'];
+        }
 
-      $tmpVar = field_view_field('node',$variables['node'],'field_uib_related_content_label');
-      if (!empty($tmpVar)) {
-        $variables['page']['content_bottom']['field_uib_study_relation']['#label_display'] = 'display';
-        $variables['page']['content_bottom']['field_uib_study_relation']['#title'] = $tmpVar[0]['#markup'];
-      }
-
-      if (!empty($variables['page']['content_bottom']['field_uib_study_relation']['#items'])) {
-        foreach ($variables['page']['content_bottom']['field_uib_study_relation']['#items'] as $k => $e) {
-          if (
-            $e['entity']->language != 'und' &&
-            $e['entity']->language != $variables['language']->language
-          ) {
-            unset($variables['page']['content_bottom']['field_uib_study_relation']['#items'][$k]);
+        if (!empty($variables['page']['content_bottom']['field_uib_study_relation']['#items'])) {
+          foreach ($variables['page']['content_bottom']['field_uib_study_relation']['#items'] as $k => $e) {
+            if (
+              $e['entity']->language != 'und' &&
+              $e['entity']->language != $variables['language']->language
+            ) {
+              unset($variables['page']['content_bottom']['field_uib_study_relation']['#items'][$k]);
+            }
           }
         }
       }
-
       unset($variables['page']['content']['system_main']['nodes']
         [$variables['node']->nid]['field_uib_main_media'][0]['#contextual_links']);
 
@@ -850,16 +845,18 @@ SCRIPT;
           $variables['page']['content']['study_more_information'] = __uib_w3__render_block('uib_study', 'study_more_information', 6);
         }
         $link_section = $language->language == 'en' ? '_2' : '';
-        $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
-          'label' => 'hidden',
-          'weight' => 0,
-        ));
-        $variables['page']['content_bottom']['field_uib_feed'] = field_view_field('node', $variables['node'], 'field_uib_feed', array(
-          'type' => 'uib_area_link_feed',
-          'settings' => array('view_mode' => 'full'),
-          'label' => 'hidden',
-          'weight' => 40,
-        ));
+        if (!uib_study__programme_use_w3_data($study_type)) {
+          $variables['page']['content_bottom']['field_uib_link_section'] = field_view_field('node', $variables['node'], 'field_uib_link_section' . $link_section, array(
+            'label' => 'hidden',
+            'weight' => 0,
+          ));
+          $variables['page']['content_bottom']['field_uib_feed'] = field_view_field('node', $variables['node'], 'field_uib_feed', array(
+            'type' => 'uib_area_link_feed',
+            'settings' => array('view_mode' => 'full'),
+            'label' => 'hidden',
+            'weight' => 40,
+          ));
+        }
       }
       if ($variables['node']->field_uib_study_type['und'][0]['value'] == 'exchange') {
         $variables['page']['content']['study_image'] = field_view_field('node', $variables['node'], 'field_uib_study_image', array(
