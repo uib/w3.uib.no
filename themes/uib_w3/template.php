@@ -244,13 +244,19 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   $variables['page']['header']['search'] =
     __uib_w3__render_block('uib_search', 'global-searchform', -5);
-  $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
-  if ($current_area) {
-    $variables['page']['footer']['social_media'] = field_view_field('node', $current_area, 'field_uib_social_media', array(
-      'type' => 'socialmedia_formatter',
-      'settings' => array('link' => TRUE),
-      'weight' => '20',
-    ));
+
+  if ($is_study_programme && uib_study__programme_use_w3_data($variables['node']->field_uib_study_type['und'][0]['value'])) {
+    $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_study', 'study_contact_colophon', 15);
+  }
+  else {
+    $variables['page']['footer']['uib_area_colophon'] = __uib_w3__render_block('uib_area','colophon_2',15);
+    if ($current_area) {
+      $variables['page']['footer']['social_media'] = field_view_field('node', $current_area, 'field_uib_social_media', array(
+        'type' => 'socialmedia_formatter',
+        'settings' => array('link' => TRUE),
+        'weight' => '20',
+      ));
+    }
   }
   drupal_add_js('sites/all/themes/uib/uib_w3/js/w3.js');
 

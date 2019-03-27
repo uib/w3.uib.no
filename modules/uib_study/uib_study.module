@@ -15,6 +15,10 @@ function uib_study_block_info() {
       'info' => t('Study content from FS'),
       'status' => TRUE,
     ),
+    'study_contact_colophon' => array(
+      'info' => t('Contact info about study'),
+      'status' => TRUE,
+    ),
     'study_content_w3' => array(
       'info' => t('Study content from w3 with inserted content from FS'),
       'status' => TRUE,
@@ -991,7 +995,19 @@ EOD;
           'label' => 'hidden',
           'weight' => '-10',
         ));
-        if (!empty($node->field_uib_study_phone) || !empty($node->field_uib_study_mail) || !empty($node->field_uib_study_contact_info)) {
+        $block['title'] = '';
+        $block['content'] = array(
+          '#type' => 'markup',
+          '#markup' => render($render),
+        );
+      }
+      break;
+    case 'study_contact_colophon':
+      $node = menu_get_object();
+      if ($node && uib_study__programme_use_w3_data($node->field_uib_study_type['und'][0]['value'])) {
+        $data = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
+        $study_plan = uib_study__has_study_plan($data);
+        if (!empty($node->field_uib_study_phone) || !empty($node->field_uib_study_mail) || !empty($node->field_uib_study_contact_info) || $study_plan) {
           $render['contact'] = array(
             '#type' => 'container',
             '#attributes' => array('class' => 'uib-study__contact'),
@@ -999,7 +1015,7 @@ EOD;
             'heading' => array(
               '#type' => 'html_tag',
               '#tag' => 'h3',
-              '#value' => t('More information'),
+              '#value' => t('Questions about the study'),
               '#weight' => -5,
             ),
             'phone' => field_view_field('node', $node, 'field_uib_study_phone', array(
@@ -1013,16 +1029,26 @@ EOD;
               'weight' => 2,
             )),
           );
+          if ($study_plan) {
+            $study_alias = drupal_get_path_alias(current_path());
+            $render['contact']['study_plan'] = array(
+              '#type' => 'html_tag',
+              '#tag' => 'p',
+              '#value' => l(t('See full study plan'), drupal_get_path_alias($study_alias) . '/plan'),
+              '#weight' => 3,
+              '#attributes' => array('class' => array('uib-study-plan')),
+            );
+          }
           if (!empty($render['contact']['mail'])) {
             $mail = $render['contact']['mail'][0]['#markup'];
             $render['contact']['mail'][0]['#markup'] = l($mail, 'mailto:' . $mail, array('absolute' => TRUE));
           }
+          $block['title'] = '';
+          $block['content'] = array(
+            '#type' => 'markup',
+            '#markup' => render($render),
+          );
         }
-        $block['title'] = '';
-        $block['content'] = array(
-          '#type' => 'markup',
-          '#markup' => render($render),
-        );
       }
       break;
     case 'study_content':
