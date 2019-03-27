@@ -296,6 +296,7 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
     }
   }
   $active_trail = $uib_active_trail;
+  array_pop($active_trail);
 }
 
 /**
