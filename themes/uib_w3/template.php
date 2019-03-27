@@ -177,6 +177,11 @@ function uib_w3_preprocess_page(&$variables, $hook) {
         $variables['area_menu'] = $area_menu;
       }
       $variables['area_menu_footer'] = $area_menu;
+      if ($is_study_programme) {
+        if (uib_study__programme_use_w3_data($variables['node']->field_uib_study_type['und'][0]['value'])) {
+          unset($variables['area_menu_footer']);
+        }
+      }
     }
   }
   if (!is_int(strpos($page_menu_item['path'], 'node/add/'))) {
