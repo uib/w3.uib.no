@@ -10316,6 +10316,8 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info .dt,
     .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info .uib-study-plan {
       clear: left; }
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .study--more-below {
+    margin-bottom: 0.5rem; }
 .node-type-uib-study.uib-study__program--new .footer {
   max-width: 47.375rem; }
   .node-type-uib-study.uib-study__program--new .footer .uib-study__contact {
