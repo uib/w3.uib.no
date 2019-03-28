@@ -1725,7 +1725,6 @@ function uib_w3_breadcrumb(&$vars) {
   if (count($breadcrumb) < 2) return FALSE;
   $output = '<nav class="breadcrumb" role="navigation"><ol>';
   foreach ($breadcrumb as $key => $crumb) {
-    if (strpos($crumb, 'http:#')) $crumb = strip_tags($crumb);
     if (!strstr($crumb, 'node/all')) {
       $output .= '<li>' . urldecode($crumb) . ' </li>';
     }
