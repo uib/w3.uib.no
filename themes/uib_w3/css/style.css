@@ -10319,7 +10319,10 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
 .node-type-uib-study.uib-study__program--new .footer {
   max-width: 47.375rem; }
   .node-type-uib-study.uib-study__program--new .footer .uib-study__contact {
-    margin-bottom: 2.5rem; }
+    margin-bottom: 0; }
+    @media (min-width: 780px) {
+      .node-type-uib-study.uib-study__program--new .footer .uib-study__contact {
+        margin-bottom: 2.5rem; } }
     .node-type-uib-study.uib-study__program--new .footer .uib-study__contact h3 {
       font-weight: normal;
       margin: 0 0 0.5rem 0;
