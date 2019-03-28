@@ -16,7 +16,44 @@ function uib_study_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'arguments' => array(),
   );
+  $items['uib-clean-up-studies'] = array(
+    'decription' => 'Clean up after changes to study programme template',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(),
+  );
   return $items;
+}
+
+Function drush_uib_study_uib_clean_up_studies() {
+  $admin_user = &drupal_static(__FUNCTION__);
+  if (!isset($admin_user)) {
+    $admin_user = user_load(1);
+  }
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->fieldCondition('field_uib_study_type', 'value', 'program')
+    ->fieldCondition('field_uib_study_text', 'value', 'NULL', '!=')
+    ->addMetaData('account', $admin_user)
+    ->execute();
+  if (!empty($result)) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $search = array(
+      '<p>(* studyinfo *)</p>',
+    );
+    foreach($nodes as $node) {
+      $study = entity_metadata_wrapper('node', $node);
+      foreach (['en', 'nb'] as $l) {
+        $study_text = $study->language($l)->field_uib_study_text->value();
+        $study_text = str_replace($search, '', $study_text);
+        if ($study_text != $study->language($l)->field_uib_study_text->value()) {
+          $study->language($l)->field_uib_study_text->set($study_text);
+          $study->save();
+          uibx_log('Cleaned up study text for ' . $study->field_uib_study_code->value());
+        }
+      }
+    }
+  }
 }
 
 function drush_uib_study_uib_create_study_krav() {

@@ -1,11 +1,6 @@
  CKEDITOR.addTemplates('uib_study_templates',{
    imagesPath: '/sites/all/modules/uib/uib_ckeditor_config/plugins/templates/images/',
    templates:[{
-     title: 'Practical information',
-     image: 'FAKTABOKS.svg',
-     description: 'Practical information about this study prgramme',
-     html: '(* studyinfo *)',
-   },{
      title: 'Specializations',
      image: 'FAKTABOKS.svg',
      description: 'Specializations available in this programme',
