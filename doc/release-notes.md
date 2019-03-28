@@ -1,3 +1,16 @@
+# Release 113 _2019-03-28_
+- Endret hvilke felt som vises i faktalinjen på studieprogramsider basert på ny mal #22129 #21877
+- Endret kolofonfeltet på studieprogramsider basert på ny mal #22130
+- Fjernet områdemenyen fra studieprogramsider basert på ny mal #22168
+- Fjernet en del felt fra visning på studieprogramsider basert på ny mal #22190
+- Lagt til rette for at de aller fleste nettlesere nå husker hvilken fane som var valgt når man går tilbake til siden uib.no/studier #22140
+- Lagt til fast tekst før vitnesbyrd, video og bilde på studieprogramsider basert på ny mal #22131
+- Rettet valideringsfeil i forbindelse med undermenyen til globalmenypunktet "Om UiB" #22175
+- Korrigert plasseringen av feltet for "Viktig melding" #22142
+- Minsket luften mellom tittel og ingress på studieprogramsider basert på ny mal #22126
+- Sikkerhetsoppdatert Drupal-kjernen #22154
+- Oppdatert diverse Drupal-moduler #22155 #22159 #22160 #22161 #22162 #22164 #22165 #22166 #22167 #22218
+
 # Release 112 _2019-03-14_
 - Lagt til områdenavn i lenketekst i søkeresultat #21999
 - Lagt til støtte for høyrestilt brødtekst #21871
