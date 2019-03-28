@@ -1572,7 +1572,28 @@ EOD;
         $data = uib_study__fspres_get_node_json($node->nid, 'info.json', FALSE);
         $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
         $items = array();
+        if ($category == 'masterprogram' && $language->language == 'en') {
+          $items[] = uib_study__get_study_facts_markup('Tuition', 'None');
+        }
         $items[] = uib_study__get_duration($data, $language);
+        if ($data['grunnstudium'] && $language->language == 'nb') {
+          $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
+          if (!empty($points)) {
+            $points = strip_tags($points['#text']);
+            $points = explode('/', $points);
+            $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
+            $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
+          }
+        }
+        $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
+        $seats = uib_study__extract_study_info($data_2, $seats_info);
+        if (!empty($seats['#text'])) {
+          $items[] = uib_study__get_study_facts_markup(t('Intake'), $seats['#text']);
+        }
+        if ($data['grunnstudium'] && !empty($node->field_uib_admission_requirements) && $language->language == 'nb') {
+          $adreq = taxonomy_term_load($node->field_uib_admission_requirements['und'][0]['tid']);
+          $items[] = uib_study__get_study_facts_markup('Opptakskrav', $adreq->name, TRUE);
+        }
         if ($has_lang && (!empty($node->field_uib_study_language) || !empty($node->field_uib_study_foreign_language))) {
           $teaching_language = array(
             'en' => t('English'),
@@ -1593,32 +1614,11 @@ EOD;
           }
           $items[] = uib_study__get_study_facts_markup(t('Language'), $tl);
         }
-        if ($data['grunnstudium'] && $language->language == 'nb') {
-          $points = uib_study__extract_study_info($data_2, 'B_RE_POENG');
-          if (!empty($points)) {
-            $points = strip_tags($points['#text']);
-            $points = explode('/', $points);
-            $items[] = uib_study__get_study_facts_markup('Ordinær', trim($points[0]));
-            $items[] = uib_study__get_study_facts_markup('Primær', trim($points[1]));
-          }
-          if (!empty($node->field_uib_admission_requirements) && $language->language == 'nb') {
-            $adreq = taxonomy_term_load($node->field_uib_admission_requirements['und'][0]['tid']);
-            $items[] = uib_study__get_study_facts_markup('Opptakskrav', $adreq->name, TRUE);
-          }
-        }
-        $seats_info = $data['infocategory'] == 'masterprogram' ? 'M_RE_PLASS' : 'B_RE_PLASS';
-        $seats = uib_study__extract_study_info($data_2, $seats_info);
-        if (!empty($seats['#text'])) {
-          $items[] = uib_study__get_study_facts_markup(t('Intake'), $seats['#text']);
-        }
-        if ($category == 'masterprogram' && $language->language == 'en') {
-          $items[] = uib_study__get_study_facts_markup('Tuition', 'None');
-        }
         if ($data['studiepoeng']) {
-          $items[] = uib_study__get_study_facts_markup(t('ECTS credits'), $data['studiepoeng']);
+          $items[] = uib_study__get_study_facts_markup(t('ECTS'), $data['studiepoeng']);
         }
         if (isset($node->field_uib_study_start['und'][0]['value'])) {
-          $items[] = uib_study__get_study_facts_markup(t('Study start'), uib_study__get_study_start($node));
+          $items[] = uib_study__get_study_facts_markup(t('Start'), uib_study__get_study_start($node));
         }
 
         $render = array(
