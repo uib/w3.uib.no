@@ -974,6 +974,7 @@ EOD;
         }
         if (strpos($study_text_w3, '(* testimonial *)') !== 0) {
           $testimonial = uib_study__get_testimonial();
+          $testimonial['#prefix'] = '<p><em>' . t('More information below') . '</em></p>';
           $testimonial = render($testimonial);
           $study_text_w3 = str_replace('<p>(* testimonial *)</p>', $testimonial, $study_text_w3);
         }
@@ -987,6 +988,7 @@ EOD;
         }
 
         $study_text_w3 = uib_media__insert_captions($study_text_w3, $node, $lang);
+        $study_text_w3 = str_replace('<div class="media', '<p><em>' . t('More information below') . '</em></p><div class="media', $study_text_w3);
         $o_lang = $lang == 'nb' ? 'en' : 'nb';
         $course_prefix = array('nb' => 'nb/emne', 'en' => 'en/course');
         $study_text_w3 = str_replace($course_prefix[$o_lang], $course_prefix[$lang], $study_text_w3);
