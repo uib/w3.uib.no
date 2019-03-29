@@ -1575,7 +1575,11 @@ EOD;
         $data_2 = uib_study__fspres_get_node_json($node->nid, 'render.json', TRUE);
         $items = array();
         if ($category == 'masterprogram' && $language->language == 'en') {
-          $items[] = uib_study__get_study_facts_markup('Tuition', 'None');
+          if (isset($node->field_uib_study_tuition['en'][0]['value'])) {
+            $items[] = uib_study__get_study_facts_markup('Tuition', $node->field_uib_study_tuition['en'][0]['value']);
+          } else {
+            $items[] = uib_study__get_study_facts_markup('Tuition', 'None');
+          }
         }
         $items[] = uib_study__get_duration($data, $language);
         if ($data['grunnstudium'] && $language->language == 'nb') {
@@ -2784,7 +2788,6 @@ function uib_study_form_alter(&$form, &$form_state, $form_id) {
       '#value' => $study->field_uib_study_code->value() . ' ' . $study->language($language->language)->field_uib_study_title->value(),
       '#weight' => -3,
     );
-
 
     if ($study->field_uib_study_type->value() != 'program') {
       hide($form['field_uib_study_text']);

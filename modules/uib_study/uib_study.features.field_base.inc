@@ -804,6 +804,28 @@ function uib_study_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_uib_study_tuition'.
+  $field_bases['field_uib_study_tuition'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_uib_study_tuition',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 30,
+    ),
+    'translatable' => 1,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_uib_study_type'.
   $field_bases['field_uib_study_type'] = array(
     'active' => 1,
