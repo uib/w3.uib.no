@@ -974,7 +974,7 @@ EOD;
         }
         if (strpos($study_text_w3, '(* testimonial *)') !== 0) {
           $testimonial = uib_study__get_testimonial();
-          $testimonial['#prefix'] = '<p class="study--more-below"><em>' . t('More information below') . '</em></p>';
+          if (!empty($testimonial)) $testimonial['#prefix'] = '<p class="study--more-below"><em>' . t('More information below') . '</em></p>';
           $testimonial = render($testimonial);
           $study_text_w3 = str_replace('<p>(* testimonial *)</p>', $testimonial, $study_text_w3);
         }
