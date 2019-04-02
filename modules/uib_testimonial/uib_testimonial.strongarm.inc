@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_testimonial.strongarm.inc
@@ -103,6 +104,13 @@ function uib_testimonial_strongarm() {
     ),
   );
   $export['field_bundle_settings_node__uib_testimonial'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_default_language_for_uib_testimonial';
+  $strongarm->value = '-- current --';
+  $export['i18n_node_default_language_for_uib_testimonial'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

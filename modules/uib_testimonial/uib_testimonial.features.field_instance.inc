@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_testimonial.features.field_instance.inc
@@ -772,7 +773,7 @@ function uib_testimonial_field_default_field_instances() {
               'rel' => '',
               'target' => '',
               'text' => '',
-              'title' => '',
+              'title' => 'Testimonial',
             ),
             'destination' => '[node:url:path]',
             'linked' => 1,

@@ -60,6 +60,7 @@ features[variable][] = diff_enable_revisions_page_node_uib_testimonial
 features[variable][] = diff_show_preview_changes_node_uib_testimonial
 features[variable][] = diff_view_mode_preview_node_uib_testimonial
 features[variable][] = field_bundle_settings_node__uib_testimonial
+features[variable][] = i18n_node_default_language_for_uib_testimonial
 features[variable][] = i18n_node_extended_uib_testimonial
 features[variable][] = i18n_node_options_uib_testimonial
 features[variable][] = i18n_sync_node_type_uib_testimonial
