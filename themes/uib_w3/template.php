@@ -207,10 +207,10 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     );
     if ($area_menu_name = uib_area__get_current_menu()) {
       $variables['page']['subheader']['area_menu']['#prefix'] = '<nav class="mobile_area mobile_dropdown">';
-      $variblaes['page']['subheader']['area_menu']['#suffix'] = '</nav>';
+      $variables['page']['subheader']['area_menu']['#suffix'] = '</nav>';
       $variables['page']['subheader']['area_menu']['expandable'] = __uib_w3__get_renderable_menu($area_menu_name);
-      $variables['page']['subheader']['area_menu']['expandable']['#prefix'] = '<nav class="area-mobile-menu">';
-      $variables['page']['subheader']['area_menu']['expandable']['#suffix'] = '</nav>';
+      $variables['page']['subheader']['area_menu']['expandable']['#prefix'] = '<div class="area-mobile-menu">';
+      $variables['page']['subheader']['area_menu']['expandable']['#suffix'] = '</div>';
       $variables['page']['subheader']['area_menu']['expandable']['#weight'] = 2;
     }
   }
