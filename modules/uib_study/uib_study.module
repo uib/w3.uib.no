@@ -1556,8 +1556,10 @@ EOD;
           if (!strpos($tmp['#text'],"mailto")) {
             $markup .= preg_replace('/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/', '<a href="mailto:$1">$1</a>', $tmp['#text']);
           }
+          else {
+            $markup .= $tmp['#text'];
+          }
         }
-
         $block['content'] = $markup;
       }
       break;
