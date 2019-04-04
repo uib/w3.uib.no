@@ -2529,6 +2529,10 @@ function uib_study__study_link($code, $text=NULL) {
       $node = node_load($nid);
       global $language;
       $text = $node->field_uib_study_title[$language->language][0]['value'];
+      // If there is no text in the current language, try undefined
+      if (!isset($text) && isset($node->field_uib_study_title['und'][0]['value'])) {
+        $text = $node->field_uib_study_title['und'][0]['value'];
+      }
     }
     return l($text, $path);
   }
