@@ -172,7 +172,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   $is_study_programme = isset($variables['node']) && $variables['node']->type == 'uib_study' && $variables['node']->field_uib_study_type['und'][0]['value'] == 'program' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
-    if (!empty($area_menu)) {
+    $hide_area_menu = __uib_w3__is_area_menu_hidden($area_menu);
+    if (!empty($area_menu) && !$hide_area_menu) {
       if (!$variables['is_front'] && !$is_feature_front && !$is_feature_article && !$is_study_programme) {
         $variables['area_menu'] = $area_menu;
       }
@@ -1758,7 +1759,7 @@ function __uib_w3__empty_region($region) {
  */
 function uib_w3_menu_link($variables) {
   global $user;
-  $level_user = in_array('superbruker', $user->roles) || in_array('innholdsprodusent', $user->roles) || in_array('level 3', $user->roles) ? true : false;
+  $level_user = in_array('superbruker', $user->roles) || in_array('innholdsprodusent', $user->roles) || $user->uid == 1 ? true : false;
   if (strstr($variables['theme_hook_original'], 'menu_link__menu_area_')) {
     if ((!empty($variables['element']['#below']) || $variables['element']['#href'] != 'http:#') || $level_user) {
       $link = str_replace('http:#', '#', theme_menu_link($variables));
@@ -1955,4 +1956,16 @@ function uib_w3__get_theme_suggested_title($variables,$with_name = true) {
     if($with_name) $title .= ' | ' . $variables['head_title_array']['name'];
   }
   return $title;
+}
+
+/*
+ * Returns true if the user is not a superuser,content creator, level 3 and if there is no elements in the menu provided
+ */
+function __uib_w3__is_area_menu_hidden($area_menu) {
+  global $user;
+  if (in_array('superbruker', $user->roles) || in_array('innholdsprodusent', $user->roles) || $user->uid == 1) return false;
+  foreach ($area_menu as $item) {
+    if (!empty($item['#below'])) return false;
+  }
+  return true;
 }
