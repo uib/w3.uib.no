@@ -13,7 +13,7 @@ jQuery( document ).ready(function ($) {
 			}, 400);
 			return false;
 	});
-	$(".mobile_area>div>ul.menu>li.expanded>a").click (function(event){
+	$(".mobile_area>div>ul.menu>li.expanded>a, .mobile_area>nav>ul.menu>li.expanded>a").click (function(event){
     if (this.href.slice(-1) == "#") event.preventDefault();
     if ($(window).width() < 780) {
 			event.preventDefault();
