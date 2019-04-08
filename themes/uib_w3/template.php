@@ -1966,7 +1966,7 @@ function __uib_w3__is_area_menu_hidden($area_menu) {
   global $user;
   if (in_array('superbruker', $user->roles) || in_array('innholdsprodusent', $user->roles) || $user->uid == 1) return false;
   foreach ($area_menu as $item) {
-    if (!empty($item['#below'])) return false;
+    if (!empty($item['#below']) || (isset($item['#href']) && $item['#href'] != 'http:#')) return false;
   }
   return true;
 }
