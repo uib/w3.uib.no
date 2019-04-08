@@ -295,7 +295,26 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
         break;
     }
   }
+
+  if ($uib_active_trail[2]['title'] == 'Emne' || $uib_active_trail[2]['title'] == 'Course') {
+    $title = $lang == 'en' ? 'Education' : 'Utdanning';
+    $href = $lang == 'en' ? 'node/48593' : 'node/48591';
+    $uib_active_trail[1] = array(
+      'title' => $title,
+      'href' => $href,
+      'link_path' => '',
+      'localized_options' => array(),
+      'type' => 0,
+    );
+  }
+  ksort($uib_active_trail);
+
+  if ($uib_active_trail[2]['href'] == 'studies') unset($uib_active_trail[1]);
+  foreach ($uib_active_trail as $key => $value) {
+    if (empty($value['href'])) unset($uib_active_trail[$key]);
+  }
   $active_trail = $uib_active_trail;
+  if (3<count($active_trail) || $active_trail[count($active_trail)-1]['href'] == current_path()) array_pop($active_trail);
 }
 
 /**

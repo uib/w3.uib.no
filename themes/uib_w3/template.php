@@ -1724,10 +1724,9 @@ function __uib_w3__get_renderable_menu($menu_name) {
  */
 function uib_w3_breadcrumb(&$vars) {
   $breadcrumb = $vars['breadcrumb'];
-  if (count($breadcrumb) < 2) return FALSE;
   $output = '<nav class="breadcrumb" role="navigation"><ol>';
   foreach ($breadcrumb as $key => $crumb) {
-    if (strpos($crumb, 'http:#') || ($key == count($breadcrumb)-1 && count($breadcrumb) != 1)) $crumb = strip_tags($crumb);
+    if (strpos($crumb, 'http:#')) $crumb = strip_tags($crumb);
     if (!strstr($crumb, 'node/all')) {
       $output .= '<li>' . urldecode($crumb) . ' </li>';
     }
