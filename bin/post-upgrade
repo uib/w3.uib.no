@@ -16,5 +16,3 @@
 # fi
 
 REL=113
-
-bin/site-drush uib-create-study-krav -v

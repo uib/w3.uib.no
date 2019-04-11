@@ -56,48 +56,6 @@ Function drush_uib_study_uib_clean_up_studies() {
   }
 }
 
-function drush_uib_study_uib_create_study_krav() {
-  $new_terms = array(
-    'GENS',
-    'REALR2',
-    'SIVING',
-    'MEROD',
-    'MATRS',
-    'REALFA',
-    'LÆRMA4',
-    'LÆREA2',
-    'MUSUIB',
-    'MATTE4',
-  );
-  foreach($new_terms as $new_term) {
-    $tid = uib_study__create_taxonomy_term($new_term, 'uib_study_krav');
-    if ($tid) uibx_log('Taxonomy term "' . $new_term . '" with tid ' . $tid . ' is created');
-    else uibx_log('Taxonomy term "' . $new_term . '" was not created');
-  }
-}
-
-function drush_uib_study_uib_toggle_publish_text() {
-  $admin_user = &drupal_static(__FUNCTION__);
-  if(!isset($admin_user)) {
-    $admin_user = user_load(1);
-  }
-  $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', 'node')
-    ->fieldCondition('field_uib_study_type', 'value', 'program')
-    ->addMetaData('account', $admin_user)
-    ->execute();
-  if (!empty($result)) {
-    $nodes = node_load_multiple(array_keys($result['node']));
-    foreach ($nodes as $node) {
-      $study = entity_metadata_wrapper('node', $node);
-      $study->language('nb')->field_uib_publish_text->set(1);
-      $study->language('en')->field_uib_publish_text->set(1);
-      $study->save();
-    }
-  }
-}
-
 function drush_uib_study_uib_sync_fs() {
   // Find out what study_codes are in use.
   $unused_codes = array();
