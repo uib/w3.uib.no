@@ -1,3 +1,18 @@
+# Release 114 _2019-04-11_
+- Fjernet malen "Practical information" (visning av faktaboks i brødtekst) fra publiseringsverktøylinjen på studieprogram der ny mal er brukt, samt fjernet den inaktive koden (\* studyinfo \*) maskinelt fra teksten #22224
+- Lagt til redigerbart felt for "Tuition" i ny studieprogrammal #22223
+- Lagt til rette for at teksten "Meir informasjon under" kun blir vist når det faktisk finnes vitnesbyrd på studieprogramsider basert på ny mal #22233
+- Rettet feil der riktig tekstformat ikke var satt som standard i brødtekstfeltet på studieprogramsider basert på ny mal #22243
+- Rettet feil der visse emnenavn ikke ble vist i studieløpstabeller #22241
+- Rettet feil i forbindelse med sidenes universelle utforming #22237
+- Rettet feil der undermenyen til globalmenypunktet "Om UiB" ikke kunne åpnes på mobil #22236
+- Rettet feil der den nedre områdemenyen ikke kunne åpnes på mobil #22265
+- Endret rutinen for visning av kontaktinformasjon på studieprogramsider basert på gammel mal #22259
+- Endret utseende på krediteringstekst for videoer #22227
+- Fjernet strek under feltet for områdetittel dersom meny ikke finnes #22262
+- Justert luften mellom elementene i kolofonfeltet på studieprogramsider basert på ny mal #22266
+- Oppdatert Drupal-modul #22269
+
 # Release 113 _2019-03-28_
 - Endret hvilke felt som vises i faktalinjen på studieprogramsider basert på ny mal #22129 #21877
 - Endret kolofonfeltet på studieprogramsider basert på ny mal #22130
