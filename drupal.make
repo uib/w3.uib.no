@@ -62,6 +62,7 @@ projects[filecache][version] = 1.0-beta4
 projects[flag][version] = 3.9
 projects[focal_point][version] = 1.2
 projects[geocoder][version] = 1.4
+projects[geocoder][patch] = https://www.drupal.org/files/issues/2018-10-31/3007742-4-php53-incompatibility.patch
 projects[geofield][version] = 2.4
 projects[geophp][version] = 1.7
 projects[google_analytics][version] = 2.6
