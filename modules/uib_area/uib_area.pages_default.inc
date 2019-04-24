@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_area.pages_default.inc

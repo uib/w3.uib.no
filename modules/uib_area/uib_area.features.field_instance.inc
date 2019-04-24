@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_area.features.field_instance.inc
@@ -325,7 +326,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 3,
     ),
@@ -734,7 +737,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 12,
     ),
@@ -1210,7 +1215,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 8,
     ),
@@ -2249,7 +2256,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ',
+    'description' => '<ul><li>Add desired social media. Use the format <strong>network:username</strong> (for example: <strong>twitter:uib</strong>).</li><li><strong>The following networks are supported:</strong><ul style="list-style-type:circle"><li>academia</li><li>facebook</li><li>flickr</li><li>github</li><li>gitlab</li><li>gitlabuib</li><li>instagram</li><li>snapchat</li><li>twitter</li><li>vimeo</li><li>youtube</li></ul></li><li>Social media icons will appear in the colophon on all pages belonging to the given area.</li></ul>',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -2294,9 +2301,12 @@ function uib_area_field_default_field_instances() {
       'better_formats' => array(
         'allowed_formats' => array(
           'basic_html' => 'basic_html',
+          'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'study_text_html' => 0,
+          'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
         'default_order_toggle' => 0,
@@ -2304,6 +2314,9 @@ function uib_area_field_default_field_instances() {
           'formats' => array(
             'basic_html' => array(
               'weight' => -9,
+            ),
+            'feature_text_html' => array(
+              'weight' => 0,
             ),
             'full_html' => array(
               'weight' => -7,
@@ -2313,6 +2326,12 @@ function uib_area_field_default_field_instances() {
             ),
             'restricted_html' => array(
               'weight' => -8,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
+            ),
+            'uib_markdown_limited' => array(
+              'weight' => 0,
             ),
           ),
         ),
@@ -2325,6 +2344,8 @@ function uib_area_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         'size' => 30,
       ),
       'type' => 'text_textfield',
@@ -2716,7 +2737,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 3,
     ),
@@ -3076,7 +3099,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 7,
     ),
@@ -5567,7 +5592,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 31,
     ),
@@ -5711,7 +5738,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 32,
     ),
@@ -5765,7 +5794,9 @@ function uib_area_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
       'type' => 'options_select',
       'weight' => 33,
     ),
@@ -5779,11 +5810,11 @@ function uib_area_field_default_field_instances() {
 <li>When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary H2-heading).</li>
 <li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
 </ul>');
+  t('<ul><li>Add desired social media. Use the format <strong>network:username</strong> (for example: <strong>twitter:uib</strong>).</li><li><strong>The following networks are supported:</strong><ul style="list-style-type:circle"><li>academia</li><li>facebook</li><li>flickr</li><li>github</li><li>gitlab</li><li>gitlabuib</li><li>instagram</li><li>snapchat</li><li>twitter</li><li>vimeo</li><li>youtube</li></ul></li><li>Social media icons will appear in the colophon on all pages belonging to the given area.</li></ul>');
   t('<ul><li>This description will be displayed in search results on uib.no and on articles where areas are used as related content.</li><li>The text in this field will also be accessed by external search engines, and is generally considered as important metadata.</li><li>In addition external search engines will sometimes use the description as search results snippets.</li></ul>');
   t('Add a link to a page with contact information that overrides the addresses under the "Contact us" header in the colophon.');
   t('Add a link to a page with visitor information that overrides the address and map link under the "Visit us" header in the colophon.');
   t('Add a testimonial that will be featured on the front page. ');
-  t('Add ids for the social media links that are desired.  Use strings like twitter:uib, youtube:unibergen, facebook:universitetetibergen, vimeo:uib and flickr:unibergen. Replace "uib" with the desired account. ');
   t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
   t('Adds a rss feed to the right sidebar');

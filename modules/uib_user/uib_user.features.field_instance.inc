@@ -2149,7 +2149,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, gitlab, gitlabuib, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.',
+    'description' => '<ul><li>Add desired social media. Use the format <strong>network:username</strong> (for example: <strong>twitter:uibrector_olsen</strong>).</li><li>If <strong>twitter</strong> is added, both a twitter icon and a twitter feed will appear on the person page.</li><li><strong>The following networks are supported:</strong><ul style="list-style-type:circle"><li>academia (UiB profiles only)</li><li>dblp</li><li>facebook</li><li>flickr</li><li>github</li><li>gitlab</li><li>gitlabuib</li><li>googlescholar</li><li>instagram</li><li>linkedin</li><li>orcid</li><li>philpeople</li><li>researcherid</li><li>researchgate</li><li>scopus</li><li>snapchat</li><li>twitter</li><li>vimeo</li><li>youtube</li></ul></li></ul>',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -2192,6 +2192,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
           'full_html' => 'full_html',
           'plain_text' => 'plain_text',
           'restricted_html' => 'restricted_html',
+          'study_text_html' => 0,
           'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 0,
@@ -2212,6 +2213,9 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
             ),
             'restricted_html' => array(
               'weight' => -8,
+            ),
+            'study_text_html' => array(
+              'weight' => 0,
             ),
             'uib_markdown_limited' => array(
               'weight' => 0,
@@ -2409,9 +2413,9 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('<ul><li>Add desired social media. Use the format <strong>network:username</strong> (for example: <strong>twitter:uibrector_olsen</strong>).</li><li>If <strong>twitter</strong> is added, both a twitter icon and a twitter feed will appear on the person page.</li><li><strong>The following networks are supported:</strong><ul style="list-style-type:circle"><li>academia (UiB profiles only)</li><li>dblp</li><li>facebook</li><li>flickr</li><li>github</li><li>gitlab</li><li>gitlabuib</li><li>googlescholar</li><li>instagram</li><li>linkedin</li><li>orcid</li><li>philpeople</li><li>researcherid</li><li>researchgate</li><li>scopus</li><li>snapchat</li><li>twitter</li><li>vimeo</li><li>youtube</li></ul></li></ul>');
   t('<ul><li>To find and use a competence term, start typing the word and make a selection from the list that appears.</li><li>If the term does not exist, you can apply for this in<a href="https://bs.uib.no/?module=issues&action=new&gid=77"> Issue Tracker (bs.uib.no)</a></li></ul>');
   t('Add a more specific title (position) here.');
-  t('Add desired social media links. Use the format <strong>network:username</strong> — for example <em>twitter:uibrector_olsen</em>. The following network identifiers are supported: <em><strong>academia</strong> (UiB profiles only), <strong>dblp, facebook, flickr, github, gitlab, gitlabuib, googlescholar, instagram, linkedin, orcid, researcherid, researchgate, scopus, snapchat, twitter, vimeo</strong></em>, and <em><strong>youtube</strong></em>.');
   t('CV');
   t('Choose how CRIStin publications displayed in the "Publications" tab are sorted. "Category" will sort per year (descending) within each CRIStin main category. "Year" will sort publications strictly after year (descending).');
   t('Choose if you want CRIStin publications displayed before or after any you manually add in the "Publications" field. The default is to display CRIStin publications before.');

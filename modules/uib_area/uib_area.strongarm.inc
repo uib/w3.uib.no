@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_area.strongarm.inc
@@ -9,6 +10,48 @@
  */
 function uib_area_strongarm() {
   $export = array();
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_area';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_area'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_uib_ou';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_uib_ou'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_area';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_area'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_uib_ou';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_uib_ou'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_area';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_area'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_view_mode_preview_node_uib_ou';
+  $strongarm->value = 'full';
+  $export['diff_view_mode_preview_node_uib_ou'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -162,6 +205,20 @@ function uib_area_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_default_language_for_area';
+  $strongarm->value = '-- current --';
+  $export['i18n_node_default_language_for_area'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'i18n_node_default_language_for_uib_ou';
+  $strongarm->value = '-- current --';
+  $export['i18n_node_default_language_for_uib_ou'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_node_extended_area';
   $strongarm->value = '1';
   $export['i18n_node_extended_area'] = $strongarm;
@@ -194,11 +251,11 @@ function uib_area_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'i18n_sync_node_type_area';
   $strongarm->value = array(
-    0 => 'field_uib_staff_status',
-    1 => 'field_uib_sebra_id',
-    2 => 'field_uib_content_manager',
-    3 => 'field_uib_ou',
-    4 => 'field_uib_staff',
+    0 => 'field_uib_staff',
+    1 => 'field_uib_content_manager',
+    2 => 'field_uib_ou',
+    3 => 'field_uib_staff_status',
+    4 => 'field_uib_sebra_id',
   );
   $export['i18n_sync_node_type_area'] = $strongarm;
 

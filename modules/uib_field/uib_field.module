@@ -57,6 +57,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'dblp' => array('http://dblp.uni-trier.de/rec/pid/', 'http://dblp.uni-trier.de'),
     'gitlab' => array('https://gitlab.com/', 'https://gitlab.com/uib'),
     'gitlabuib' => array('https://git.app.uib.no/', 'https://git.app.uib.no/'),
+    'philpeople' => array('https://philpeople.org/profiles/', 'https://philpeople.org/departments/bergen/'),
   );
   foreach ($items as $delta => $item) {
     $sm = explode(':', $item['safe_value']);
@@ -82,6 +83,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
         'instagram' => 'Instagram',
         'linkedin' => 'LinkedIn',
         'orcid' => 'ORCID',
+        'philpeople' => 'PhilPeople',
         'researcherid' => 'ResearcherID',
         'researchgate' => 'ResearchGate',
         'scopus' => 'Scopus',

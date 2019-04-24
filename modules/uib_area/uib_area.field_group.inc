@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * uib_area.field_group.inc
