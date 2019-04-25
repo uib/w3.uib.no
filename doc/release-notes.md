@@ -1,5 +1,10 @@
+# Release 115 _2019-04-25_
+- Endret brødsmulestiene (bl.a. fjernet siste ledd) #22127
+- Lagt til støtte for kobling til PhilPeople på personsider #22270
+- Sikkerhetsoppdatert Drupal-kjernen samt installert en modul-patch #22289 #22290
+
 # Release 114 _2019-04-11_
-- Fjernet malen "Practical information" (visning av faktaboks i brødtekst) fra publiseringsverktøylinjen på studieprogram der ny mal er brukt, samt fjernet den inaktive koden (\* studyinfo \*) maskinelt fra teksten #22224
+- Fjernet malen "Practical information" (visning av faktaboks i brødtekst) fra publiseringsverktøylinjen på studieprogram der ny mal er brukt, samt fjernet den inaktive koden (* studyinfo *) maskinelt fra teksten #22224
 - Lagt til redigerbart felt for "Tuition" i ny studieprogrammal #22223
 - Lagt til rette for at teksten "Meir informasjon under" kun blir vist når det faktisk finnes vitnesbyrd på studieprogramsider basert på ny mal #22233
 - Rettet feil der riktig tekstformat ikke var satt som standard i brødtekstfeltet på studieprogramsider basert på ny mal #22243
