@@ -265,7 +265,7 @@ function uib_area_block_view($delta='') {
           $place = node_load($area->field_uib_ou['und'][0]['target_id']);
         }
         if (empty($place->field_uib_jobbnorge_id['und'])) {
-          continue;
+          break;
         }
         $feed = uib_feed__jobbnorge_url($place->field_uib_jobbnorge_id['und'][0]['value'], $area->language);
         $block['content'] = uib_feed__format($feed, t('Open Positions'), $limit = 999, array('uib_feed__format_pre_render'), array('uib_area__jobbnorge_format_post_render', 'uib_area__feed_format_post_render'));

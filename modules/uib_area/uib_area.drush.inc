@@ -791,7 +791,7 @@ function _uib_area_build_kmd_entity($item) {
       case 'images':
         $dir = 'public://kmd_imported_files';
         file_prepare_directory($dir, FILE_CREATE_DIRECTORY);
-        if (!isset($value->{'768'})) continue;
+        if (!isset($value->{'768'})) break;
         $image = system_retrieve_file(
           $value->{'768'},
           $dir,
@@ -799,7 +799,7 @@ function _uib_area_build_kmd_entity($item) {
           FILE_EXISTS_REPLACE
         );
         if (!$image) {
-          continue;
+          break;
         }
 
         $file = entity_metadata_wrapper('file', $image->fid);
