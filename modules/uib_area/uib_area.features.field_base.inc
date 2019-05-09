@@ -545,6 +545,7 @@ function uib_area_field_default_field_bases() {
         'book_release' => 'Book release',
         'guided_tour' => 'Guided tour',
         'presentation' => 'Presentation',
+        'literary_salon' => 'Literary salon',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
