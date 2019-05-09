@@ -1,3 +1,10 @@
+# Release 116 _2019-05-09_
+- Forbedret listen over visningsalternativer for bilde og video i redigeringsgrensesnittet #22367
+- Åpnet opp for at også vanlige innholdsprodusenter får tilgang til URL-felt for Google Maps i artikler #22349
+- Lagt til "Litterær salong" som ny arrangementstype #22355
+- Fjernet feilmeldinger som ble vist på lokale utviklingsinstanser #22347
+- Sikkerhetsoppdatert Drupal-kjernen #22365
+
 # Release 115 _2019-04-25_
 - Endret brødsmulestiene (bl.a. fjernet siste ledd) #22127
 - Lagt til støtte for kobling til PhilPeople på personsider #22270
