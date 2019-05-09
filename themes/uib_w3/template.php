@@ -38,8 +38,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz
   }
   if ($node = menu_get_object()) {
     if ($node->type == 'uib_article') {
-      $variables['classes_array'][] = $node->field_uib_feature_article['und'][0]['value'] === '1' ? 'uib-article__feature_article' : 'uib-article__' . $node->field_uib_article_type['und'][0]['value'] . ' area-' . $node->field_uib_area['und'][0]['target_id'];
-      if ($node->field_uib_feature_article['und'][0]['value'] == 1) {
+      $variables['classes_array'][] = isset($node->field_uib_feature_article['und']) && $node->field_uib_feature_article['und'][0]['value'] === '1' ? 'uib-article__feature_article' : 'uib-article__' . $node->field_uib_article_type['und'][0]['value'] . ' area-' . $node->field_uib_area['und'][0]['target_id'];
+      if (isset($node->field_uib_feature_article['und']) && $node->field_uib_feature_article['und'][0]['value'] == 1) {
         if (!empty($node->field_uib_feature_heading_style)) {
           $variables['classes_array'][] = 'feature-article-style-' . $node->field_uib_feature_heading_style['und'][0]['value'];
         }
@@ -168,7 +168,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     if ($is_view_page) break;
   }
   $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
-  $is_feature_article = isset($variables['node']) && $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
+  $is_feature_article = isset($variables['node']->field_uib_feature_article['und']) && isset($variables['node']) && $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
   $is_study_programme = isset($variables['node']) && $variables['node']->type == 'uib_study' && $variables['node']->field_uib_study_type['und'][0]['value'] == 'program' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
     $area_menu = __uib_w3__get_renderable_menu($area_menu_name);
@@ -367,7 +367,7 @@ EOD;
       // set menu to appear as tabs
       $jq = uib_w3__accordion_script();
       drupal_add_js($jq, 'inline');
-      $is_feature_article = $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? TRUE : FALSE;
+      $is_feature_article = isset($variables['node']->field_uib_feature_article['und']) && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? TRUE : FALSE;
       if (!$is_feature_article) {
         $variables['page']['content_top']['kicker'] = field_view_field('node', $variables['node'], 'field_uib_kicker', array(
           'label' => 'hidden',
@@ -384,7 +384,7 @@ EOD;
         'label' => 'hidden',
         'weight' => -35,
       ));
-      $feature_view_mode = count($variables['node']->field_uib_main_media['und']) > 1 ? 'feature_article_full_width' : 'feature_image';
+      $feature_view_mode = isset($variables['node']->field_uib_main_media['und']) && count($variables['node']->field_uib_main_media['und']) > 1 ? 'feature_article_full_width' : 'feature_image';
       $file_view_mode = $is_feature_article ? $feature_view_mode : 'content_main';
       $image_weight = $is_feature_article ? -60 : -30;
       $variables['page']['content_top']['field_uib_main_media'] = field_view_field('node', $variables['node'], 'field_uib_main_media', array(
