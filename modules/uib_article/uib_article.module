@@ -271,10 +271,6 @@ function uib_article_form_alter(&$form, &$form_state, $form_id) {
       }
     }
 
-    //Hide Gmap link option for everyone except lvl 1 and admin
-    if (!in_array('superbruker', $user->roles, TRUE) && $user->uid != 1) {
-      unset($form['field_uib_gmap_link']);
-    }
     //Fields to be hidden/required if event is not chosen
     $form['field_uib_event_type']['#states'] = array(
       'visible' => array(
