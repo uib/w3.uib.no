@@ -79,3 +79,10 @@ function uib_media__find_media_in_text($text, $captions, $num = 0, $text_with_ca
     return $text_with_captions . $text;
   }
 }
+
+function uib_media_form_alter(&$form, &$form_state, $form_id) {
+  $form['#attached']['js'][] = array(
+    'data' => drupal_get_path('module', 'uib_media') . '/js/image_display_formats.js',
+    'type' => 'file',
+  );
+}
