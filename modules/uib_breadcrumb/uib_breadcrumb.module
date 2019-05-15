@@ -85,6 +85,9 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
             if ($active_trail_end['link_path'] == $current_path && $active_trail_end_area_nid == $current_area->nid) {
               $uib_active_trail = array_merge($uib_active_trail, $active_trail);
             }
+            else if ($active_trail_end['link_path'] == $current_path) {
+              $uib_active_trail[] = __uib_get_current_menu_crumb();
+            }
             else {
               $uib_active_trail[] = end($active_trail);
             }
@@ -293,6 +296,9 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
           'type' => 0,
         );
         break;
+      case 'node/%/persons':
+        $uib_active_trail[] = __uib_get_current_menu_crumb();
+        break;
     }
   }
 
@@ -314,7 +320,18 @@ function uib_breadcrumb_menu_breadcrumb_alter(&$active_trail, $item) {
     if (empty($value['href'])) unset($uib_active_trail[$key]);
   }
   $active_trail = $uib_active_trail;
-  if (3<count($active_trail) || $active_trail[count($active_trail)-1]['href'] == current_path()) array_pop($active_trail);
+  if ($active_trail[count($active_trail)-1]['href'] == current_path()) array_pop($active_trail);
+}
+
+/**
+ * Implements hook_views_pre_render()
+ */
+function uib_breadcrumb_views_pre_render(&$view) {
+  $breadcrumb = drupal_get_breadcrumb();
+  if ($view->args[1] == 'faculty') {
+    array_pop($breadcrumb);
+    drupal_set_breadcrumb($breadcrumb);
+  }
 }
 
 /**
@@ -449,6 +466,25 @@ function __uib_get_parent_item($mlid) {
    ->fetchAssoc();
   return $result;
 }
+
+  /**
+  * Get menu crumb from menu items, based on current area and current path
+  */
+  function __uib_get_current_menu_crumb() {
+   $current_area = uib_area__get_current();
+   $menu_name = 'menu-area-'.$current_area->nid;
+   $link_path = current_path();
+   $sql = "select max(mlid),link_title,link_path from menu_links where mlid in (select plid from menu_links where menu_name=:menu_name and link_path=:link_path) group by mlid";
+   $item = db_query($sql,array(':menu_name'=>$menu_name,':link_path'=>$link_path))->fetchObject();
+
+   return array(
+     'title' => $item->link_title,
+     'href' => $item->link_path,
+     'link_path' => '',
+     'localized_options' => array(),
+     'type' => 0,
+   );
+ }
 
 /**
  * Getting the ids of links in an area menu
