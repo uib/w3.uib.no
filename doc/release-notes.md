@@ -1,3 +1,11 @@
+# Release 117 _2019-05-23_
+- Innlogging via https://uib.no/user eller https://uib.no/login sender nå bruker til norsk editor #21652
+- Utbedret brødsmulestiene ytterligere #22346
+- Fjernet systemadvarsler #22369
+- Flyttet "Send"-knapp i 'Media Module' på berøringsskjerm-enheter #22268
+- Fikset feil i javascript som førte til at chatboten Hubro på HF-området ikke fungerte #22409
+- Oppdatering av diverse Drupal-moduler #22403 #22404 #22405
+
 # Release 116 _2019-05-09_
 - Forbedret listen over visningsalternativer for bilde og video i redigeringsgrensesnittet #22367
 - Åpnet opp for at også vanlige innholdsprodusenter får tilgang til URL-felt for Google Maps i artikler #22349
