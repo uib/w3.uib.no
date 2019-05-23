@@ -241,3 +241,23 @@
 #file-entity-edit.file-form.file-image-form {
   padding-left: 1.25rem;
 }
+
+@media (pointer: coarse) {
+  .media-browser-tab {
+    margin-top: 1.5rem;
+  }
+  .media-browser-tab .form-actions {
+    position: absolute;
+    top: 2.5rem;
+  }
+  .media-browser-tab form#media-internet-add-upload, .media-browser-tab form#file-entity-add-upload {
+    margin-top: 0.5rem;
+  }
+  .media-browser-tab form#file-entity-add-upload label:not([for]):after {
+    display: block;
+    content: "Unable to edit focal point on device";
+  }
+  .media-browser-tab form#file-entity-add-upload #edit-focal-point {
+    display: none;
+  }
+}
