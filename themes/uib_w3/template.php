@@ -1133,7 +1133,7 @@ function uib_w3_page_alter(&$page) {
  */
 function uib_w3_gt_callback(&$children, $elements) {
   $gt = '<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLPBXPW"
+<noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-KLPBXPW"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->';
   $children = preg_replace('@<body[^>]*>@', '$0' . $gt, $children, 1);
