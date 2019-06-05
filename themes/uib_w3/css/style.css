@@ -2694,6 +2694,14 @@ p.text-align-right {
       content: "";
       top: 0;
       left: -1rem; }
+.node-type-uib-content-list .main-bar > h2 {
+  font-size: 1.9375rem; }
+  @media (min-width: 600px) {
+    .node-type-uib-content-list .main-bar > h2 {
+      font-size: 2.0625rem; } }
+  @media (min-width: 960px) {
+    .node-type-uib-content-list .main-bar > h2 {
+      font-size: 2.625rem; } }
 
 .hasDatepicker {
   display: inline; }

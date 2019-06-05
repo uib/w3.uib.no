@@ -181,7 +181,7 @@ function uib_content_list_preprocess_node(&$variables, $hook) {
         }
         $created = $node->created;
         $changed = $node->changed;
-        $title = l($node->title, 'node/' . $node->nid);
+        $title = $node->title;
         $node->title = NULL;
         $node_view = node_view($node);
         unset($node_view['field_uib_byline']);
