@@ -1,3 +1,7 @@
+# Release 118 _2019-06-06_
+- Rettet feil i forbindelse med sidenes universelle utforming #22450
+- Fjernet lenke fra infoside-overskrift i innholdslister #22451
+
 # Release 117 _2019-05-23_
 - Innlogging via https://uib.no/user eller https://uib.no/login sender nå bruker til norsk editor #21652
 - Utbedret brødsmulestiene ytterligere #22346
