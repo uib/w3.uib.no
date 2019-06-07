@@ -993,10 +993,15 @@ EOD;
         $course_prefix = array('nb' => 'nb/emne', 'en' => 'en/course');
         $study_text_w3 = str_replace($course_prefix[$o_lang], $course_prefix[$lang], $study_text_w3);
         $render['study_text'][0]['#markup'] = $study_text_w3;
-        $render['new_student'] = field_view_field('node', $node, 'field_uib_new_student', array(
-          'label' => 'hidden',
-          'weight' => '-10',
-        ));
+        $now = time();
+        $new_student_start = mktime(0, 0, 0, 6, 18, date('Y'));
+        $new_student_end = mktime(0, 0, 0, 9, 1, date('Y'));
+        if ($now >= $new_student_start && $now <= $new_student_end) {
+          $render['new_student'] = field_view_field('node', $node, 'field_uib_new_student', array(
+            'label' => 'hidden',
+            'weight' => '-10',
+          ));
+        }
         $block['title'] = '';
         $block['content'] = array(
           '#type' => 'markup',
