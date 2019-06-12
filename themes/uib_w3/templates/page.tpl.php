@@ -102,7 +102,7 @@
 <?php endif; ?>
 <?php if ($page['subheader']): ?>
     <div class="subheader__wrapper">
-<?php print render($page['subheader']); ?>
+    <?php print render($page['subheader']); ?>
     </div>
 <?php endif; ?>
 <?php if (!empty($area_menu)): ?>

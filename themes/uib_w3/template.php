@@ -200,8 +200,8 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     global $base_path;
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
-      '#prefix' => '<h2>',
-      '#suffix' => '</h2>',
+      '#prefix' => '<span class="subheader__content" role="complementary">',
+      '#suffix' => '</span>',
       '#title' => $current_area->title,
       '#href' => $base_path . drupal_get_path_alias("node/{$current_area->nid}",
         $variables['language']->language ),

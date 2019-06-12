@@ -8235,26 +8235,27 @@ body #mc_embed_signup div.mce_inline_error {
 
 .subheader__wrapper {
   background: #eae6e2; }
-  .subheader__wrapper h2 {
+  .subheader__wrapper span {
     font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     font-weight: normal;
     font-size: 1.4375rem;
     text-align: center;
     padding: 1.5rem 0 1.5rem 0;
     margin: 0 auto;
-    max-width: 72rem; }
+    max-width: 72rem;
+    display: block; }
     @media (min-width: 600px) {
-      .subheader__wrapper h2 {
+      .subheader__wrapper span {
         font-size: 2rem;
         letter-spacing: 0.15rem;
         padding: 2.1875rem 0 2.1875rem 0; } }
     @media (min-width: 960px) {
-      .subheader__wrapper h2 {
+      .subheader__wrapper span {
         font-size: 2.8125em; } }
-    .subheader__wrapper h2 a, .subheader__wrapper h2 a:link {
+    .subheader__wrapper span a, .subheader__wrapper span a:link {
       text-decoration: none;
       color: #333; }
-      .subheader__wrapper h2 a:hover, .subheader__wrapper h2 a:active, .subheader__wrapper h2 a:link:hover, .subheader__wrapper h2 a:link:active {
+      .subheader__wrapper span a:hover, .subheader__wrapper span a:active, .subheader__wrapper span a:link:hover, .subheader__wrapper span a:link:active {
         text-decoration: underline; }
 
 .content-main-wrapper .region-content:after {
