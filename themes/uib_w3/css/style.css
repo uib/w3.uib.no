@@ -10260,12 +10260,24 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .region-content {
     max-width: 100%;
     margin: 0; }
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student {
+    border: 1px #b7b7b7 solid;
+    background: #fff;
+    padding: 1.25rem; }
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student div, .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student * {
+      margin-left: 0;
+      margin-right: 0; }
+    .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student h2:first-child {
+      color: #cf3c3a;
+      padding-top: 0;
+      margin-bottom: 1rem; }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper h2, .node-type-uib-study.uib-study__program--new .content-main-wrapper h3, .node-type-uib-study.uib-study__program--new .content-main-wrapper h4, .node-type-uib-study.uib-study__program--new .content-main-wrapper p, .node-type-uib-study.uib-study__program--new .content-main-wrapper ul, .node-type-uib-study.uib-study__program--new .content-main-wrapper ol,
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__table,
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-feature_article_standard,
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib_study__image,
   .node-type-uib-study.uib-study__program--new .content-main-wrapper .node-uib-testimonial > .content,
-  .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info {
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info,
+  .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student {
     max-width: 47.375rem;
     margin-left: 1.25rem;
     margin-right: 1.25rem;
@@ -10276,7 +10288,8 @@ html[lang^='nb'] #block-views-recent-news-block-date-selector .view-content .ite
       .node-type-uib-study.uib-study__program--new .content-main-wrapper .media-feature_article_standard,
       .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib_study__image,
       .node-type-uib-study.uib-study__program--new .content-main-wrapper .node-uib-testimonial > .content,
-      .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info {
+      .node-type-uib-study.uib-study__program--new .content-main-wrapper .uib-study__practical-info,
+      .node-type-uib-study.uib-study__program--new .content-main-wrapper .field-name-field-uib-new-student {
         margin-left: auto;
         margin-right: auto; } }
   .node-type-uib-study.uib-study__program--new .content-main-wrapper h2, .node-type-uib-study.uib-study__program--new .content-main-wrapper h3 {

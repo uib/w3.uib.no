@@ -742,34 +742,34 @@ function uib_study_field_default_field_instances() {
           'feature_text_html' => 0,
           'full_html' => 'full_html',
           'plain_text' => 0,
-          'restricted_html' => 'restricted_html',
-          'study_text_html' => 0,
+          'restricted_html' => 0,
+          'study_text_html' => 'study_text_html',
           'uib_markdown_limited' => 0,
         ),
         'allowed_formats_toggle' => 1,
-        'default_order_toggle' => 0,
+        'default_order_toggle' => 1,
         'default_order_wrapper' => array(
           'formats' => array(
             'basic_html' => array(
-              'weight' => -9,
+              'weight' => -48,
             ),
             'feature_text_html' => array(
-              'weight' => 0,
+              'weight' => -46,
             ),
             'full_html' => array(
-              'weight' => -7,
+              'weight' => -44,
             ),
             'plain_text' => array(
-              'weight' => -10,
+              'weight' => -49,
             ),
             'restricted_html' => array(
-              'weight' => -8,
+              'weight' => -47,
             ),
             'study_text_html' => array(
-              'weight' => 0,
+              'weight' => -50,
             ),
             'uib_markdown_limited' => array(
-              'weight' => 0,
+              'weight' => -45,
             ),
           ),
         ),
