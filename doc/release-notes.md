@@ -1,3 +1,7 @@
+# Release 119 _2019-06-20_
+- Gjort endringer på feltet "Ny student" på studieprogramsidene (endret utseende, lagt til datotest og støtte for visning av video) #22464 #22472
+- Rettet feil i forbindelse med sidenes universelle utforming #22449 #22461
+
 # Release 118 _2019-06-06_
 - Rettet feil i forbindelse med sidenes universelle utforming #22450
 - Fjernet lenke fra infoside-overskrift i innholdslister #22451
