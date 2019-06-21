@@ -8655,7 +8655,7 @@ body #mc_embed_signup div.mce_inline_error {
       grid-row: 4;
       grid-column: 2 / 3;
       align-self: start;
-      position: static; }
+      top: 0; }
     @media (min-width: 0px) and (orientation: portrait) {
       .node-type-area.feature-area .content-top-wrapper .content-top .field-name-field-uib-primary-media {
         grid-row: 1 / 5;
