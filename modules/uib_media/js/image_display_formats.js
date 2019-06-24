@@ -22,8 +22,11 @@
         $("[value=feature_image_portrait]").text(Drupal.t("Feature article image (portrait orientation)"));
         $("#edit-format").append(full_width);
         $("[value=feature_article_full_width]").text(Drupal.t("Feature article image or video (full width)"));
-        // Firefox needs the form to be reset
-        $('#media-wysiwyg-format-form').trigger("reset");
+        // Firefox needs the form to be reset in order to show the options in the dropdown list in the correct order initially
+        if (!$("#edit-format option[selected]").length) {
+          $("[value=feature_article_standard]").attr("selected","selected");
+          $('#media-wysiwyg-format-form').trigger("reset");
+        }
       }
     }
   }
