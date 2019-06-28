@@ -198,10 +198,12 @@ function uib_w3_preprocess_page(&$variables, $hook) {
   }
   if ($current_area && !$variables['is_front'] && ($current_area->field_uib_area_type['und'][0]['value'] != 'feature area' || (uib_area__get_node_type() != 'area' || $is_view_page)) && !$is_feature_article && !$is_study_programme) {
     global $base_path;
+    $subheader_prefix = ($variables['node']->type == 'area') ? '<h1 class="subheader__content">' : '<span class="subheader__content" role="complementary">';
+    $subheader_suffix = ($variables['node']->type == 'area') ? '</h1>' : '</span>';
     $variables['page']['subheader']['area'] = array(
       '#type' => 'link',
-      '#prefix' => '<span class="subheader__content" role="complementary">',
-      '#suffix' => '</span>',
+      '#prefix' => $subheader_prefix,
+      '#suffix' => $subheader_suffix,
       '#title' => $current_area->title,
       '#href' => $base_path . drupal_get_path_alias("node/{$current_area->nid}",
         $variables['language']->language ),

@@ -8251,7 +8251,7 @@ body #mc_embed_signup div.mce_inline_error {
 
 .subheader__wrapper {
   background: #eae6e2; }
-  .subheader__wrapper span {
+  .subheader__wrapper span, .subheader__wrapper h1 {
     font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
     font-weight: normal;
     font-size: 1.4375rem;
@@ -8261,17 +8261,17 @@ body #mc_embed_signup div.mce_inline_error {
     max-width: 72rem;
     display: block; }
     @media (min-width: 600px) {
-      .subheader__wrapper span {
+      .subheader__wrapper span, .subheader__wrapper h1 {
         font-size: 2rem;
         letter-spacing: 0.15rem;
         padding: 2.1875rem 0 2.1875rem 0; } }
     @media (min-width: 960px) {
-      .subheader__wrapper span {
+      .subheader__wrapper span, .subheader__wrapper h1 {
         font-size: 2.8125em; } }
-    .subheader__wrapper span a, .subheader__wrapper span a:link {
+    .subheader__wrapper span a, .subheader__wrapper span a:link, .subheader__wrapper h1 a, .subheader__wrapper h1 a:link {
       text-decoration: none;
       color: #333; }
-      .subheader__wrapper span a:hover, .subheader__wrapper span a:active, .subheader__wrapper span a:link:hover, .subheader__wrapper span a:link:active {
+      .subheader__wrapper span a:hover, .subheader__wrapper span a:active, .subheader__wrapper span a:link:hover, .subheader__wrapper span a:link:active, .subheader__wrapper h1 a:hover, .subheader__wrapper h1 a:active, .subheader__wrapper h1 a:link:hover, .subheader__wrapper h1 a:link:active {
         text-decoration: underline; }
 
 .content-main-wrapper .region-content:after {
