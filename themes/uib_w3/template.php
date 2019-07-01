@@ -167,7 +167,7 @@ function uib_w3_preprocess_page(&$variables, $hook) {
     $is_view_page = in_array($view_page, $variables['theme_hook_suggestions']);
     if ($is_view_page) break;
   }
-  $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page ? true : false;
+  $is_feature_front = $current_area && $current_area->field_uib_area_type['und'][0]['value'] == 'feature area' && uib_area__get_node_type() == 'area' && !$is_view_page && $variables['node'] ? true : false;
   $is_feature_article = isset($variables['node']->field_uib_feature_article['und']) && isset($variables['node']) && $variables['node']->type == 'uib_article' && $variables['node']->field_uib_feature_article['und'][0]['value'] === '1' ? true : false;
   $is_study_programme = isset($variables['node']) && $variables['node']->type == 'uib_study' && $variables['node']->field_uib_study_type['und'][0]['value'] == 'program' ? true : false;
   if ($area_menu_name = uib_area__get_current_menu()) {
