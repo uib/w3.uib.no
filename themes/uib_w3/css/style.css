@@ -1684,7 +1684,14 @@ p.text-align-right {
         padding: 0 0.3125rem; }
         .uib-feature-area-menu .menu li a {
           max-width: 100%;
-          white-space: nowrap; }
+          white-space: nowrap;
+          border: solid 2px #cf3c3a;
+          color: #fff;
+          background: #cf3c3a; }
+          .uib-feature-area-menu .menu li a:hover {
+            border: none 0;
+            color: #cf3c3a;
+            background: #fff; }
           .feature-video .uib-feature-area-menu .menu li a {
             background: #cf3c3a;
             border: solid 2px #fff;
@@ -1705,7 +1712,11 @@ p.text-align-right {
   @media (min-width: 780px) {
     .uib-feature-area-menu .menu li a {
       background: rgba(56, 56, 56, 0.7);
-      color: #fff; }
+      color: #fff;
+      border: none; }
+      .uib-feature-area-menu .menu li a:hover {
+        border: none;
+        color: #fff; }
       .feature-video .uib-feature-area-menu .menu li a {
         background: #cf3c3a;
         border: solid 2px #cf3c3a;
@@ -1718,15 +1729,20 @@ p.text-align-right {
           color: #cf3c3a;
           text-decoration: none; } }
   @media (min-width: 1065px) {
-    .feature-video .uib-feature-area-menu .menu li a {
-      background: rgba(56, 56, 56, 0.7);
-      border: none 0;
-      color: #fff; }
-    .feature-video .uib-feature-area-menu .menu li a:hover {
-      background: rgba(56, 56, 56, 0.4);
-      text-decoration: none;
-      border: none 0;
-      color: #fff; } }
+    .uib-feature-area-menu .menu li a {
+      border: none 0; }
+      .uib-feature-area-menu .menu li a:hover {
+        color: #fff;
+        border: none 0; }
+      .feature-video .uib-feature-area-menu .menu li a {
+        background: rgba(56, 56, 56, 0.7);
+        border: none 0;
+        color: #fff; }
+      .feature-video .uib-feature-area-menu .menu li a:hover {
+        background: rgba(56, 56, 56, 0.4);
+        text-decoration: none;
+        border: none 0;
+        color: #fff; } }
 
 .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
   margin: 0 auto;
