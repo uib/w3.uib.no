@@ -1,3 +1,10 @@
+# Release 120 _2019-07-04_
+- Rettet feil der listen over visningsalternativer for bilde og video alltid ble nullstilt i mal for feature-artikkel #22510
+- Rettet feil der menyen ikke ble vist i nettleseren Edge i mal for satsningsområder #22476
+- Rettet feil der menyen ble vist på kartsider i mal for satsningsområder #22535
+- Rettet feil der meny-knappene fikk ukorrekt utseende i mal for satsningsområder #22495
+- Rettet feil i forbindelse med sidenes universelle utforming #22522
+
 # Release 119 _2019-06-20_
 - Gjort endringer på feltet "Ny student" på studieprogramsidene (endret utseende, lagt til datotest og støtte for visning av video) #22464 #22472
 - Rettet feil i forbindelse med sidenes universelle utforming #22449 #22461
