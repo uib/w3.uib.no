@@ -8725,7 +8725,9 @@ body #mc_embed_signup div.mce_inline_error {
           grid-row: 2;
           grid-column: 2 / 3;
           align-self: start;
-          position: static; } }
+          position: static; }
+        .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area-menu {
+          position: absolute; } }
     @media (min-width: 1000px) {
       .node-type-area.feature-area .content-top-wrapper .content-top .field-name-field-uib-primary-media {
         grid-row: 1 / 5; } }
