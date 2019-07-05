@@ -8707,10 +8707,12 @@ body #mc_embed_signup div.mce_inline_error {
       .node-type-area.feature-area .content-top-wrapper .content-top .field-name-field-uib-secondary-text {
         grid-row: 2; }
       .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area-menu {
-        grid-row: 5; } }
+        grid-row: 5;
+        position: static; } }
     @media (min-width: 750px) and (orientation: portrait) {
       .node-type-area.feature-area .content-top-wrapper .content-top .uib-feature-area-menu {
-        grid-row: 3; } }
+        grid-row: 3;
+        position: absolute; } }
     @media (min-width: 780px) {
       .node-type-area.feature-area .content-top-wrapper .content-top {
         grid-template-columns: 1fr 48.75rem 1fr; }
