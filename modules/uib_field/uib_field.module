@@ -46,7 +46,7 @@ function uib_field_field_formatter_view($entity_type, $entity, $field, $instance
     'vimeo' => array('https://vimeo.com/', 'https://vimeo.com/uib'),
     'instagram' => array('https://www.instagram.com/', 'https://www.instagram.com/unibergen/'),
     'github' => array('https://github.com/', 'https://github.com/uib'),
-    'linkedin' => array('https://linkedin.com/in/', 'https://linkedin.com/edu/school/15492'),
+    'linkedin' => array('https://www.linkedin.com/in/', 'https://www.linkedin.com/school/university-of-bergen/'),
     'researchgate' => array('https://www.researchgate.net/profile/', 'https://www.researchgate.net/institution/University_of_Bergen'),
     'snapchat' => array('https://www.snapchat.com/add/', 'https://www.snapchat.com/add/'),
     'orcid' => array('https://orcid.org/', 'https://orcid.org'),
