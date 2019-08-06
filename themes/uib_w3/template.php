@@ -1118,6 +1118,17 @@ SCRIPT;
       drupal_add_js('http' . (isset($_SERVER['HTTPS']) ? 's' : '').'://'. $_SERVER['HTTP_HOST'] . '/watsonbot/public/js/addchatbot.js');
     }
   }
+  $invisible_header = array(
+    '#type' => 'html_tag',
+    '#tag' => 'h2',
+    '#attributes' => array('class' => 'element-invisible'),
+    '#value' => t('Content')
+  );
+  if($variables['node']->type == 'area') {
+    $variables['page']['subheader']['main-content-title'] = $invisible_header;
+  } else if ($variables['node']->type == 'uib_article') {
+    array_unshift($variables['page']['content']['system_main']['nodes'][$variables['node']->nid],$invisible_header);
+  }
 }
 
 /**
