@@ -676,16 +676,32 @@ button {
 .color-color-blue-50 .sub-swatch :nth-child(4) {
   background-color: #cce3ef; }
 
-.field-name-field-uib-copyright {
-  display: inline-block;
+body.uib-study__program--new .content-main-wrapper .media-feature_article_standard p {
+  line-height: 1.5;
   font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
   margin: 0;
   color: #606060;
   font-size: 1rem;
-  line-height: 1.5; }
-  .field-name-field-uib-copyright .field-label {
+  padding-right: 0.5rem; }
+.media-feature_article_standard .field-name-field-uib-copyright,
+.media-feature_article_standard .field-name-field-uib-owner {
+  display: inline-block;
+  font-family: "adobe-garamond-pro", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  margin: 0;
+  color: #606060;
+  font-size: 1rem; }
+  .media-feature_article_standard .field-name-field-uib-copyright .field-label,
+  .media-feature_article_standard .field-name-field-uib-owner .field-label {
     display: inline;
     padding-right: 0.5rem; }
+.media-feature_article_standard .uib-feature__media-info .field-name-field-uib-copyright .field-label,
+.media-feature_article_standard .uib-feature__media-info .field-name-field-uib-owner .field-label,
+.media-feature_article_standard picture + .field-name-field-uib-copyright .field-label,
+.media-feature_article_standard picture + .field-name-field-uib-owner .field-label,
+.media-feature_article_standard picture + .field-name-field-uib-copyright + .field-name-field-uib-owner .field-label {
+  padding-right: 0; }
+.media-feature_article_standard picture + .field-name-field-uib-copyright + .field-name-field-uib-owner .field-item, .media-feature_article_standard.mediamedia-element-container .field-name-field-uib-owner .field-item {
+  padding-right: 0.5rem; }
 
 .font-family-primary {
   font-family: "myriad-pro", Verdana, Tahoma, "DejaVu Sans", sans-serif; }
