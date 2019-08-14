@@ -1211,6 +1211,10 @@ p.text-align-right {
 .node-type-uib-testimonial .full-width {
   width: 100%; }
 
+.node-type-area .media-vimeo-video,
+.node-type-area .media-youtube-video {
+  margin-bottom: 0; }
+
 .node-type-uib-study .field-name-field-uib-main-media {
   margin-bottom: 2.5rem; }
 
@@ -1958,8 +1962,9 @@ p.text-align-right {
   .field-name-field-uib-primary-text a {
     font-size: 1.25rem; }
   .field-name-field-uib-primary-text p {
-    font-size: 1.25rem;
-    padding-bottom: 1rem; }
+    font-size: 1.25rem; }
+    .field-name-field-uib-primary-text p:last-child {
+      padding-bottom: 1rem; }
   .field-name-field-uib-primary-text h3 {
     font-size: 1.625rem; }
   .field-name-field-uib-primary-text h4 {
@@ -1978,7 +1983,10 @@ p.text-align-right {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      flex-wrap: wrap; } }
+      flex-wrap: wrap;
+      padding-top: 0; }
+      .field-name-field-uib-primary-text p:last-child {
+        padding-bottom: 0; } }
 
 @media screen and (max-width: 960px) {
   .field-name-field-uib-primary-text + .field-name-field-uib-secondary-text {
