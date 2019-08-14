@@ -1764,7 +1764,7 @@ p.text-align-right {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap; }
-    @media (min-width: 1065px) {
+    @media (min-width: 780px) {
       .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
         flex-wrap: nowrap; } }
     .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.odd a:visited, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a, .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items > .field-item.even a:visited {
