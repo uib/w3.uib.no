@@ -693,7 +693,7 @@ body.uib-study__program--new .content-main-wrapper .media-feature_article_standa
   .media-feature_article_standard .field-name-field-uib-copyright .field-label,
   .media-feature_article_standard .field-name-field-uib-owner .field-label {
     display: inline;
-    padding-right: 0.5rem; }
+    padding-right: 0.3rem; }
 .media-feature_article_standard .uib-feature__media-info .field-name-field-uib-copyright .field-label,
 .media-feature_article_standard .uib-feature__media-info .field-name-field-uib-owner .field-label,
 .media-feature_article_standard picture + .field-name-field-uib-copyright .field-label,
