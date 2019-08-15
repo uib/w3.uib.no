@@ -1767,6 +1767,9 @@ p.text-align-right {
 .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
   margin: 0 auto;
   max-width: 22.5rem; }
+  @media (min-width: 780px) and (max-width: 1065px) {
+    .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper {
+      max-width: none; } }
   .front .content-top .field-name-field-uib-profiled-message.field.field-wrapper > .field-items {
     display: -ms-flexbox;
     -ms-flex-direction: row;
