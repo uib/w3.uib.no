@@ -1,3 +1,15 @@
+# Release 121 _2019-08-15_
+- Rettet feil der menyen i mal for satsningsområder forsvant i portrettvisning ved bruk av nettleseren Edge #22538
+- Rettet feil der tilknyttede personer i artikler i visse tilfeller overlappet bunnmenyen #22624
+- Rettet feil i forbindelse med sidenes universelle utforming #22570
+- Justert visningen av introvideo og introtekst på områdesider #22541
+- Justert krediteringstekstene til bilder og videoer #22619
+- Justert visningen av forsideikonene på middels brede skjermer (nettbrett) #22581
+- Endret standard-verdi på LinkedIn-lenke #22539
+- Endret lenke til side med mer eksamensinformasjon på engelske emnesider #22653
+- Flyttet søke-knapp på sider for EVU-kurs #22621
+- Oppdatert dato i rutine som fjerner inaktive innholdsprodusenter #22637
+
 # Release 120 _2019-07-04_
 - Rettet feil der listen over visningsalternativer for bilde og video alltid ble nullstilt i mal for feature-artikkel #22510
 - Rettet feil der menyen ikke ble vist i nettleseren Edge i mal for satsningsområder #22476
