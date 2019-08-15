@@ -2227,7 +2227,7 @@ function uib_study__semester_exam_information($data, $lang, $list, $part = FALSE
   }
   if (!($part || $list)) {
     if ($lang == ':en') {
-      $path = 'node/48706';
+      $path = 'node/125996';
     }
     else {
       $path = 'node/115188';
