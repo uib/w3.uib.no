@@ -133,6 +133,7 @@
         </div>
       </div>
 <?php endif; ?>
+      <h2 class="element-invisible"><?php print t('Content'); ?></h2>
 <?php if ($page['content']): ?>
       <div class="content-main-wrapper">
 <?php print render($page['content']); ?>
