@@ -81,6 +81,7 @@ function uib_media__find_media_in_text($text, $captions, $num = 0, $text_with_ca
 }
 
 function uib_media_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
   if ($form['#form_id'] == 'media_wysiwyg_format_form') {
     $form['#attached']['js'][] = array(
       'data' => drupal_get_path('module', 'uib_media') . '/js/image_display_formats.js',
@@ -94,6 +95,11 @@ function uib_media_form_alter(&$form, &$form_state, $form_id) {
     );
   }
   if (isset($form['field_uib_consent'])) {
+    if (!in_array('superbruker', $user->roles)) {
+      $form['field_file_image_title_text']['#access'] = FALSE;
+      $form['field_uib_copyright']['#access'] == FALSE;
+      $form['replace_keep_original_filename']['#access'] = FALSE;
+    }
     $form['field_uib_consent']['#element_validate'] = array('uib_media__consent_declaration_validate');
     $form['field_uib_declaration_consent']['#states'] = array(
       'visible' => array(

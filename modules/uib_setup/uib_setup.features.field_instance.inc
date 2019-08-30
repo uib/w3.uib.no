@@ -17,7 +17,7 @@ function uib_setup_field_default_field_instances() {
     'bundle' => 'field_uib_declaration_consent',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Enter the ID of the consent form. A copy of the consent form with the ID was sent to your e-mail (Example: «H19/23»)',
+    'description' => 'Enter the ID of the consent form. A copy of the consent form with the ID was sent to your e-mail (Example: "H19/23")',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -966,7 +966,7 @@ function uib_setup_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Photos where a person or persons are the main subject, require that you obtain a consent before publishing. <a href="https://www.uib.no/photocon">Photo publishing / Consent when using photo</a>',
+    'description' => '<ul><li>Photos where a person or persons are the main subject, require that you obtain a consent before publishing</li><li>You need one consent per person</li><li><a href="https://www.uib.no/en/photocon" target="_blank">Consent for use of photos</a></li></ul>',
     'display' => array(
       'area_bottom' => array(
         'label' => 'above',
@@ -1077,7 +1077,7 @@ function uib_setup_field_default_field_instances() {
     ),
     'entity_type' => 'file',
     'field_name' => 'field_uib_consent',
-    'label' => 'Consent when publishing photo',
+    'label' => 'Does using the photo require a declaration of consent?',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1354,8 +1354,7 @@ function uib_setup_field_default_field_instances() {
     'bundle' => 'image',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'You will need this
-one declaration per person',
+    'description' => '',
     'display' => array(
       'area_bottom' => array(
         'label' => 'above',
@@ -1471,7 +1470,7 @@ one declaration per person',
     ),
     'entity_type' => 'file',
     'field_name' => 'field_uib_declaration_consent',
-    'label' => 'Declaration consent',
+    'label' => 'Declaration of consent',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2570,24 +2569,22 @@ one declaration per person',
 <li>The Photo field should include the copyright owner (the photographer) and optionally who the photo is taken on behalf of and that has the right to use it, e.g. Eivind Senneset for UiB</li>
 <li>Please note that a photo can only be used if both the owner and the people in it have permitted its use in this context.</li>
 </ul>');
+  t('<ul><li>Photos where a person or persons are the main subject, require that you obtain a consent before publishing</li><li>You need one consent per person</li><li><a href="https://www.uib.no/en/photocon" target="_blank">Consent for use of photos</a></li></ul>');
   t('Alt Text');
-  t('Consent when publishing photo');
   t('Copyright');
-  t('Declaration consent');
+  t('Declaration of consent');
   t('Description');
-  t('Enter the ID of the consent form. A copy of the consent form with the ID was sent to your e-mail (Example: «H19/23»)');
+  t('Does using the photo require a declaration of consent?');
+  t('Enter the ID of the consent form. A copy of the consent form with the ID was sent to your e-mail (Example: "H19/23")');
   t('Enter the first and last name of the person in the photo (Example: "Ole Olsen")');
   t('ID of the declaration of consent');
   t('Name of person in the photo');
   t('Note: The Copyright field will be removed in the near future, so from now on you should only use the Photo field.');
   t('Photo');
-  t('Photos where a person or persons are the main subject, require that you obtain a consent before publishing. <a href="https://www.uib.no/photocon">Photo publishing / Consent when using photo</a>');
   t('Producer');
   t('This is the text that accompanies the image in the article.');
   t('Title');
   t('Use this field to describe the purpose or the content of the image in case the image does not load, or so that a visually impaired reader using a screen reader knows what the image contains. This is not necessarily the same as the description field.');
-  t('You will need this
-one declaration per person');
 
   return $field_instances;
 }
