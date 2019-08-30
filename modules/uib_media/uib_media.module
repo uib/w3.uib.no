@@ -93,4 +93,25 @@ function uib_media_form_alter(&$form, &$form_state, $form_id) {
       'type' => 'file',
     );
   }
+  if (isset($form['field_uib_consent'])) {
+    $form['field_uib_consent']['#element_validate'] = array('uib_media__consent_declaration_validate');
+    $form['field_uib_declaration_consent']['#states'] = array(
+      'visible' => array(
+        ':input[name="field_uib_consent[und]"]' => array('value' => '1'),
+       ),
+      'required' => array(
+        ':input[name="field_uib_consent[und]"]' => array('value' => '1'),
+       )
+     );
+  }
+}
+function uib_media__consent_declaration_validate(&$form, &$form_state) {
+  if($form_state['values']['field_uib_consent']['und'][0]['value']){
+    if (empty($form_state['values']['field_uib_declaration_consent']['und'][0]['field_uib_persons_consent']['und'][0]['value'])) {
+      form_set_error('Consent name',t('You must supply name of person or persons in the photo'));
+    }
+    if(empty($form_state['values']['field_uib_declaration_consent']['und'][0]['field_uib_declaration_id']['und'][0]['value'])) {
+      form_set_error('Declaration id', t('You must supply ID of the declaration of consent'));
+    }
+  }
 }
