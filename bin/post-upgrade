@@ -15,4 +15,8 @@
 #
 # fi
 
-REL=113
+REL=122
+
+bin/site-drush fix-media-library-settings --verbose
+bin/site-drush cc all
+
