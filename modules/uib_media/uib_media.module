@@ -97,7 +97,7 @@ function uib_media_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form['field_uib_consent'])) {
     if (!in_array('superbruker', $user->roles)) {
       $form['field_file_image_title_text']['#access'] = FALSE;
-      $form['field_uib_copyright']['#access'] == FALSE;
+      $form['field_uib_copyright']['#access'] = FALSE;
       $form['replace_keep_original_filename']['#access'] = FALSE;
     }
     $form['field_uib_consent']['#element_validate'] = array('uib_media__consent_declaration_validate');

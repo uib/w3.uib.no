@@ -1077,7 +1077,7 @@ function uib_setup_field_default_field_instances() {
     ),
     'entity_type' => 'file',
     'field_name' => 'field_uib_consent',
-    'label' => 'Does using the photo require a declaration of consent?',
+    'label' => 'Does using this photo require a declaration of consent?',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -2553,7 +2553,7 @@ function uib_setup_field_default_field_instances() {
   t('Copyright');
   t('Declaration of consent');
   t('Description');
-  t('Does using the photo require a declaration of consent?');
+  t('Does using this photo require a declaration of consent?');
   t('Enter the ID of the consent form. A copy of the consent form with the ID was sent to your e-mail (Example: "H19/23")');
   t('Enter the first and last name of the person in the photo (Example: "Ole Olsen")');
   t('ID of the declaration of consent');
