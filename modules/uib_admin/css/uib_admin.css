@@ -133,7 +133,9 @@
 
 /* Styling for buttons */
 #page #content-wrapper input.form-submit,
-#page #content-wrapper a.button {
+#page #content-wrapper a.button,
+#modalContent .field-name-field-uib-declaration-consent input.field-add-more-submit,
+#edit-field-uib-declaration-consent input.field-add-more-submit {
   background: #4d8f46;
   color: #eee;
   border: 1px #777 solid;
@@ -145,7 +147,9 @@
 }
 #page #content-wrapper input.remove,
 #page #content-wrapper input#edit-delete,
-#page #content-wrapper input[id*="remove-button"] {
+#page #content-wrapper input[id*="remove-button"],
+#modalContent .field-name-field-uib-declaration-consent .field-name-field-uib-declaration-id + input,
+#edit-field-uib-declaration-consent .field-name-field-uib-declaration-id + input {
   background: #b73939;
   color: #fff;
   border: 1px #777 solid;
@@ -174,6 +178,42 @@
 }
 #page #content-wrapper fieldset.collapsible fieldset {
   border: 0;
+}
+
+/* Styling for photo consent and credits */
+#modalContent .field-name-field-uib-consent .form-item label,
+#modalContent .field-name-field-uib-declaration-consent .form-item label,
+#modalContent .field-name-field-uib-consent .form-item label,
+#modalContent .field-name-field-uib-declaration-consent .form-item label,
+#modalContent .field-name-field-uib-owner .form-item label,
+#modalContent .field-name-field-uib-copyright .form-item label,
+#edit-field-uib-consent .form-item label,
+#edit-field-uib-declaration-consent .form-item label,
+#edit-field-uib-consent .form-item label,
+#edit-field-uib-declaration-consent .form-item label,
+#edit-field-uib-owner .form-item label,
+#edit-field-uib-copyright .form-item label {
+  width: auto;
+  float: none;
+}
+#modalContent .field-name-field-uib-declaration-consent table th,
+#edit-field-uib-declaration-consent table th {
+  background: #fff;
+  color: #000;
+}
+#modalContent .field-name-field-uib-declaration-consent table th label .form-required,
+#edit-field-uib-declaration-consent table th label .form-required {
+  display: none;
+}
+#modalContent .field-name-field-uib-consent > div > label,
+#edit-field-uib-consent > div > label {
+  padding: 14px 18px;
+  background: #e1e2dc;
+  color: #000;
+}
+#modalContent .field-name-field-uib-consent .description a,
+#edit-field-uib-consent .description a {
+  color: #0074bd;
 }
 
 /* Styling for general layout and alignment */
