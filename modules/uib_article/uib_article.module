@@ -743,6 +743,7 @@ function uib_article_theme_field_multiple_value_form($variables) {
     }
     usort($items, '_field_sort_items_value_helper');
 
+    $item_counter = 0;
     // Add the items as table rows.
     foreach ($items as $key => $item) {
       $item['_weight']['#attributes']['class'] = array($order_class);
@@ -773,7 +774,7 @@ function uib_article_theme_field_multiple_value_form($variables) {
           }
         }
         if(isset($item['#field_name']) && $item['#field_name'] == 'field_uib_declaration_consent') {
-          $rows[0]['class'][0] = 'nodrag';
+          $rows[$item_counter]['class'][0] = 'nodrag';
         }
       } else {
         $cells = array(
@@ -783,6 +784,7 @@ function uib_article_theme_field_multiple_value_form($variables) {
           'data' => $cells,
         );
       }
+      $item_counter++;
     }
 
     $output = '<div class="form-item">';
