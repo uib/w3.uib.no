@@ -1,3 +1,8 @@
+# Release 122 _2019-09-05_
+- Endret grensesnittet for bildeopplasting for å oppfylle GDPR-krav om samtykke fra avbildede personer #21795 #22729 #22734
+- Endret data fra tidlig utgave av undervisningsspråk på sider for studieprogram #22658
+- Lagt til rutine som månedlig fjerner ubrukte kompetansefelt #22684
+
 # Release 121 _2019-08-15_
 - Rettet feil der menyen i mal for satsningsområder forsvant i portrettvisning ved bruk av nettleseren Edge #22538
 - Rettet feil der tilknyttede personer i artikler i visse tilfeller overlappet bunnmenyen #22624
