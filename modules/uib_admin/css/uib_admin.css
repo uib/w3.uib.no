@@ -201,10 +201,6 @@
   background: #fff;
   color: #000;
 }
-#modalContent .field-name-field-uib-declaration-consent table th label .form-required,
-#edit-field-uib-declaration-consent table th label .form-required {
-  display: none;
-}
 #modalContent .field-name-field-uib-consent > div > label,
 #edit-field-uib-consent > div > label {
   padding: 14px 18px;
@@ -243,7 +239,11 @@
 .i18n-nb .form-item-title .description br + ul,
 .i18n-en .form-item-title .description ul:first-child,
 .i18n-nb #edit-scheduler-settings #edit-extra-info p:nth-child(2),
-.i18n-en #edit-scheduler-settings #edit-extra-info p:first-child {
+.i18n-en #edit-scheduler-settings #edit-extra-info p:first-child,
+#modalContent .field-name-field-uib-declaration-consent table th label .form-required,
+#modalContent .field-name-field-uib-declaration-consent .tabledrag-toggle-weight-wrapper,
+#edit-field-uib-declaration-consent table th label .form-required,
+#edit-field-uib-declaration-consent .tabledrag-toggle-weight-wrapper {
   display: none;
 }
 #page #content-wrapper fieldset.vertical-tabs-pane fieldset.date-combo legend {
