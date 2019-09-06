@@ -1641,7 +1641,6 @@ function uib_setup_user_default_permissions() {
     'name' => 'translate file entities',
     'roles' => array(
       'admin' => 'admin',
-      'innholdsprodusent' => 'innholdsprodusent',
       'level 3' => 'level 3',
       'superbruker' => 'superbruker',
     ),
