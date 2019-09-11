@@ -325,7 +325,6 @@ function uib_study__get_exchange_agreements($nid) {
   $results = $query
     ->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'uib_study')
-    ->propertyCondition('language', $language->language)
     ->fieldCondition('field_uib_study_part_of', 'target_id', $nid)
     ->execute();
   if (!empty($results['node'])) {
