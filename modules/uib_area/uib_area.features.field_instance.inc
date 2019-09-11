@@ -1023,7 +1023,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'area',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.',
+    'description' => 'Adds a link list to the area front page. It it possible to use internal links when linking to pages within www.uib.no',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1508,8 +1508,7 @@ function uib_area_field_default_field_instances() {
     'default_value' => NULL,
     'default_value_function' => '',
     'deleted' => 0,
-    'description' => '<strong>Front page:</strong> Adds both news articles and events to the front page. <br>
-<strong>News page:</strong> Adds news articles to the middle section of the page. The first article is the profiled article in the middle. Only the first five articles will show on the area page. More information: <a href="http://w3docs.h.uib.no/redigere-områdeforside#97"> Promoted articles </a>',
+    'description' => '<strong>Front page:</strong> Adds both news articles and events to the front page.<br><strong>News page:</strong> Adds news articles to the middle section of the page. The first article is the profiled article in the middle. Only the first five articles will show on the area page.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3577,7 +3576,7 @@ function uib_area_field_default_field_instances() {
     'bundle' => 'uib_article',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.',
+    'description' => 'Add several relevant links to the text in these fields. It is possible to use internal links when linking to pages within www.uib.no',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -3622,6 +3621,7 @@ function uib_area_field_default_field_instances() {
       'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
+        'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
         'target' => 'default',
@@ -3632,8 +3632,10 @@ function uib_area_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
+      'rel_remove' => 'default',
       'title' => 'required',
-      'title_label_use_field_label' => FALSE,
+      'title_allowed_values' => '',
+      'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -5735,8 +5737,7 @@ function uib_area_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('<strong>Front page:</strong> Adds both news articles and events to the front page. <br>
-<strong>News page:</strong> Adds news articles to the middle section of the page. The first article is the profiled article in the middle. Only the first five articles will show on the area page. More information: <a href="http://w3docs.h.uib.no/redigere-områdeforside#97"> Promoted articles </a>');
+  t('<strong>Front page:</strong> Adds both news articles and events to the front page.<br><strong>News page:</strong> Adds news articles to the middle section of the page. The first article is the profiled article in the middle. Only the first five articles will show on the area page.');
   t('<ul>
 <li>When using the paragraph format "Heading 2" more than one time, an accordion menu is created (not an ordinary H2-heading).</li>
 <li>To end the accordion menu and opening up for putting more content underneath, hit enter, fill in ---- and hit enter again.</li>
@@ -5746,8 +5747,8 @@ function uib_area_field_default_field_instances() {
   t('Add a link to a page with contact information that overrides the addresses under the "Contact us" header in the colophon.');
   t('Add a link to a page with visitor information that overrides the address and map link under the "Visit us" header in the colophon.');
   t('Add a testimonial that will be featured on the front page. ');
-  t('Add several relevant links to the text in these fields. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
-  t('Adds a link list to the area front page. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
+  t('Add several relevant links to the text in these fields. It is possible to use internal links when linking to pages within www.uib.no');
+  t('Adds a link list to the area front page. It it possible to use internal links when linking to pages within www.uib.no');
   t('Adds a rss feed to the right sidebar');
   t('An author who is external to UiB may be added here. (Always use the byline field for UiB authors.) If you want to add a URL to the external author, this may be done in the form [author name](URL) Example: [Redaksjonen](http://difi.no)');
   t('Area');

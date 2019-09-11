@@ -433,7 +433,7 @@ function uib_study_field_default_field_instances() {
     'bundle' => 'uib_study',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.',
+    'description' => 'Adds a link list to a study node. It is possible to use internal links when linking to pages within www.uib.no.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -3238,7 +3238,7 @@ function uib_study_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('<ul><li>The text in this field will be accessed by external search engines, and is generally considered as important metadata.</li><li>The search engines will sometimes use the description as search results snippets.</li></ul>');
-  t('Adds a link list to a study node. It it possible to use  <a href="http://w3docs.h.uib.no/?q=node/16">internal links</a> when linking to pages within www.uib.no.');
+  t('Adds a link list to a study node. It is possible to use internal links when linking to pages within www.uib.no.');
   t('Admission requirements');
   t('Alternative field to display english media for english content. If field is not set, the default media will be displayed. ');
   t('Attach other pages to this page. You can choose content in Norwegian or English, and the content will display according to the users current language. If language is undefined, the item will display in all languages.');

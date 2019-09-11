@@ -238,7 +238,7 @@ function uib_user_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Phone number can be changed in PAGA',
+    'description' => 'Phone numbers are stored and maintained in the <a href="https://uib.bluegarden.net" target="_blank">HR-portal</a>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -2434,7 +2434,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Optional tab content');
   t('Organisational unit');
   t('Phone');
-  t('Phone number can be changed in PAGA');
+  t('Phone numbers are stored and maintained in the <a href="https://uib.bluegarden.net" target="_blank">HR-portal</a>');
   t('Position');
   t('Position category');
   t('Position code');
