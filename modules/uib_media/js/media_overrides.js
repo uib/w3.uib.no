@@ -1,6 +1,8 @@
 (function ($) {
-  Drupal.behaviors.imageDisplayFormats = {
+  Drupal.behaviors.mediaOverrides = {
     attach: function (context, settings) {
+      $("#media-internet-add-upload label").text(Drupal.t("Video URL (YouTube or Vimeo)"));
+      $("#media-internet-add-upload .description").remove();
       $("[value=default]").remove();
       $("[value=full_width_banner]").remove();
       $("[value=teaser]").remove();
