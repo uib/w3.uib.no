@@ -124,3 +124,10 @@ function uib_media__consent_declaration_validate(&$form, &$form_state) {
     }
   }
 }
+
+/**
+ * Implements hook_media_browser_plugins_alter().
+ */
+function uib_media_browser_plugins_alter(&$plugins) {
+	$plugins['media_internet']['#title'] = 'Video';
+}
