@@ -1,3 +1,10 @@
+# Release 123 _2019-09-12_
+- Begrenset tillatte filtyper, samt fjernet unødvendig steg på innsetting av inline-bilder i brødtekstfelt #22706 #22768
+- Fjernet "Oversettelse" som dukket opp ved redigering av eksisterende bildefiler #22735
+- Oppdatert engelske hjelpetekster i editor #22752
+- Rettet problem med engelsk språkversjon av utvekslingsavtaler #22757
+- Endret tittel på fanen for opplasting av video fra "Web" til Video" (i engelsk editor) #22720
+
 # Release 122 _2019-09-05_
 - Endret grensesnittet for bildeopplasting for å oppfylle GDPR-krav om samtykke fra avbildede personer #21795 #22729 #22734
 - Endret data fra tidlig utgave av undervisningsspråk på sider for studieprogram #22658
