@@ -110,6 +110,9 @@ function uib_media_form_alter(&$form, &$form_state, $form_id) {
        )
      );
   }
+  if ($form['#form_id'] == 'file_entity_add_upload' && $form['#options']['id'] == 'media_wysiwyg') {
+    $form['upload']['#upload_validators']['file_validate_extensions'][0] = 'jpg jpeg png';
+  }
 }
 function uib_media__consent_declaration_validate(&$form, &$form_state) {
   if($form_state['values']['field_uib_consent']['und'][0]['value']){
