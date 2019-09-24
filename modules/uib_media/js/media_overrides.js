@@ -1,6 +1,16 @@
 (function ($) {
   Drupal.behaviors.mediaOverrides = {
     attach: function (context, settings) {
+      $("#edit-embed-code").change(function() {
+        var last_pathname = $(this).val().replace(/\/$/,'').split('/').pop();
+        if (last_pathname.includes(".")) {
+          $("#media-internet-add-upload #edit-next").click(function(event) {
+            event.preventDefault();
+          });
+          alert (Drupal.t("Only URLs to YouTube and Vimeo are allowed."));
+          $(this).val('');
+        }
+      });
       $("#media-internet-add-upload .form-item-embed-code label").text(Drupal.t("Video URL (YouTube or Vimeo)"));
       $("#media-internet-add-upload .description").remove();
       $("[value=default]").remove();
