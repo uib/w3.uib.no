@@ -1233,7 +1233,7 @@ function __uib_w3__article_gmap(&$map_link) {
     '#markup' => '<div class="article-gmap">',
     '#weight' => '0',
   );
-  $element['#markup'] .= '<a href="'.$url.'"><img src="'.$imgurl.'"></a>';
+  $element['#markup'] .= '<a href="'.$url.'"><img src="'.$imgurl.'" alt="Google Maps"></a>';
   $element['#markup'] .= '</div>';
   return $element;
 }
