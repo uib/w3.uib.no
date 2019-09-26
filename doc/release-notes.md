@@ -1,3 +1,8 @@
+# Release 124 _2019-09-26_
+- Sperret muligheten for opplasting av filer via Video-fanen i filbehandleren #22769
+- Rettet feil i forbindelse med oppretting av nye områder #22800
+- Rettet feil i forbindelse med sidenes universelle utforming #22801
+
 # Release 123 _2019-09-12_
 - Begrenset tillatte filtyper, samt fjernet unødvendig steg på innsetting av inline-bilder i brødtekstfelt #22706 #22768
 - Fjernet "Oversettelse" som dukket opp ved redigering av eksisterende bildefiler #22735
