@@ -9,6 +9,7 @@
           });
           alert (Drupal.t("Only URLs to YouTube and Vimeo are allowed."));
           $(this).val('');
+          $("#media-internet-add-upload #edit-next").off('click');
         }
       });
       $("#media-internet-add-upload .form-item-embed-code label").text(Drupal.t("Video URL (YouTube or Vimeo)"));
