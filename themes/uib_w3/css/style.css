@@ -2327,7 +2327,7 @@ p.text-align-right {
       margin: 0;
       padding: 0; }
       #block-uib-area-bottom-links ul li:after {
-        content: "\00a0/\00a0"; }
+        content: "\00a0\00a0|\00a0"; }
       #block-uib-area-bottom-links ul li:last-child:after {
         content: ""; }
       #block-uib-area-bottom-links ul li a {
