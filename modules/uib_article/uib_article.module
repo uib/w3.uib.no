@@ -711,7 +711,7 @@ function uib_article_theme_field_multiple_value_form($variables) {
   $output = '';
 
   // Disable table drag for image caption fields
-  $draggable = !in_array($element['#field_name'], array('field_uib_imagecaptions', 'field_uib_imagecaptions2'));
+  $draggable = !in_array($element['#field_name'], array('field_uib_imagecaptions', 'field_uib_imagecaptions2', 'field_uib_text_image_captions'));
 
   if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
     $table_id = drupal_html_id($element['#field_name'] . '_values');
