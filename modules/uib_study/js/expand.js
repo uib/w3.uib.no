@@ -13,12 +13,7 @@
         });
       });
       $(document).ready(function() {
-        $('.page-studies-alphabetical #uib-study-filter-form').hide();
         setInitChecked();
-      });
-      $('.page-studies-alphabetical .study-filter-form-form h2').click(function(event) {
-        $('.page-studies-alphabetical #uib-study-filter-form').toggle('blind');
-        $(this).toggleClass('expanded');
       });
       $('.page-studies-alphabetical #edit-submit').click(function(event) {
         event.preventDefault();
