@@ -1,3 +1,9 @@
+# Release 125 _2019-10-17_
+- Endret filterskjemaet på uib.no/studier/alfabetisk slik at det alltid er ekspandert #22872
+- Endret engelsk hjelpetekst for telefonfelt på personsidene #22879
+- Lagt til lenke til side med informasjon om personvern nederst på sidene #22843
+- Deaktivert dra-og-slipp-funksjon for tekstfelt tilknyttet bilder i brødtekst #22863
+
 # Release 124 _2019-09-26_
 - Sperret muligheten for opplasting av filer via Video-fanen i filbehandleren #22769
 - Rettet feil i forbindelse med oppretting av nye områder #22800
