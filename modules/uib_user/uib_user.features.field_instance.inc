@@ -238,7 +238,7 @@ function uib_user_field_default_field_instances() {
     'bundle' => 'user',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Phone numbers are stored and maintained in the <a href="https://uib.bluegarden.net" target="_blank">HR-portal</a>',
+    'description' => '<ul><li>Landline numbers are obtained from SEBRA. Issues regarding landline numbers can be reported to <a href="https://bs.uib.no/?module=issues&amp;action=new&amp;gid=154" target="_blank">IT support</a>.</li><li>Mobile phone numbers are obtained from the <a href="https://uib.bluegarden.net" target="_blank">HR portal</a> and may be altered by the user.</li></ul>',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -278,7 +278,7 @@ function uib_user_field_default_field_instances() {
       'ca_phone_separator' => '-',
       'entity_translation_sync' => FALSE,
       'phone_country_code' => 0,
-      'phone_default_country_code' => 47,
+      'phone_default_country_code' => 1,
       'phone_int_max_length' => 15,
       'user_register_form' => 0,
     ),
@@ -2414,6 +2414,7 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   // Translatables
   // Included for use with string extractors like potx.
   t('<ul><li>Add desired social media. Use the format <strong>network:username</strong> (for example: <strong>twitter:uibrector_olsen</strong>).</li><li>If <strong>twitter</strong> is added, both a twitter icon and a twitter feed will appear on the person page.</li><li><strong>The following networks are supported:</strong><ul style="list-style-type:circle"><li>academia (UiB profiles only)</li><li>dblp</li><li>facebook</li><li>flickr</li><li>github</li><li>gitlab</li><li>gitlabuib</li><li>googlescholar</li><li>instagram</li><li>linkedin</li><li>orcid</li><li>philpeople</li><li>researcherid</li><li>researchgate</li><li>scopus</li><li>snapchat</li><li>twitter</li><li>vimeo</li><li>youtube</li></ul></li></ul>');
+  t('<ul><li>Landline numbers are obtained from SEBRA. Issues regarding landline numbers can be reported to <a href="https://bs.uib.no/?module=issues&amp;action=new&amp;gid=154" target="_blank">IT support</a>.</li><li>Mobile phone numbers are obtained from the <a href="https://uib.bluegarden.net" target="_blank">HR portal</a> and may be altered by the user.</li></ul>');
   t('<ul><li>To find and use a competence term, start typing the word and make a selection from the list that appears.</li><li>If the term does not exist, you can apply for this in<a href="https://bs.uib.no/?module=issues&action=new&gid=77"> Issue Tracker (bs.uib.no)</a></li></ul>');
   t('Add a more specific title (position) here.');
   t('CV');
@@ -2434,7 +2435,6 @@ The domain \'local\' is for local users.  The domain \'uib\' is for used for use
   t('Optional tab content');
   t('Organisational unit');
   t('Phone');
-  t('Phone numbers are stored and maintained in the <a href="https://uib.bluegarden.net" target="_blank">HR-portal</a>');
   t('Position');
   t('Position category');
   t('Position code');
