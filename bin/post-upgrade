@@ -6,8 +6,8 @@
 
 if [ "$(hostname)" = attilatest.uib.no ]; then
     if [ $(pwd) == '/var/www/w3.uib.no'  ] ;then
-      bin/site-drush uib-sync-phd 10103,21943 -v
-      bin/site-drush uapcm  -v
+      bin/site-drush uib-sync-phd -v
+      bin/site-drush uapcm 10103,21943 -v
     fi
 fi
 
